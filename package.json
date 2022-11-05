@@ -12,7 +12,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prettier": "prettier --write ."
+    "prettier": "prettier --write .",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@types/node": "18.11.9",
@@ -26,5 +27,8 @@
     "react-dom": "18.2.0",
     "sass": "^1.56.0",
     "typescript": "4.8.4"
+  },
+  "devDependencies": {
+    "husky": "^8.0.1"
   }
 }
