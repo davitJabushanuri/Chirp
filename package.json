@@ -1,29 +1,30 @@
 {
-	"name": "twitter",
-	"version": "0.1.0",
-	"private": true,
-	"engines": {
-		"node": ">= 16.0.0",
-		"yarn": ">= 1.22.0",
-		"npm": "please use yarn"
-	},
-	"scripts": {
-		"dev": "next dev",
-		"build": "next build",
-		"start": "next start",
-		"lint": "next lint"
-	},
-	"dependencies": {
-		"@types/node": "18.11.9",
-		"@types/react": "18.0.25",
-		"@types/react-dom": "18.0.8",
-		"eslint": "8.26.0",
-		"eslint-config-next": "13.0.2",
-		"next": "13.0.2",
-		"prettier": "^2.7.1",
-		"react": "18.2.0",
-		"react-dom": "18.2.0",
-		"sass": "^1.56.0",
-		"typescript": "4.8.4"
-	}
+  "name": "twitter",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">= 16.0.0",
+    "yarn": ">= 1.22.0",
+    "npm": "please use yarn"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "prettier": "prettier --write ."
+  },
+  "dependencies": {
+    "@types/node": "18.11.9",
+    "@types/react": "18.0.25",
+    "@types/react-dom": "18.0.8",
+    "eslint": "8.26.0",
+    "eslint-config-next": "13.0.2",
+    "next": "13.0.2",
+    "prettier": "^2.7.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "sass": "^1.56.0",
+    "typescript": "4.8.4"
+  }
 }
