@@ -22,8 +22,6 @@
   - [ ] User can post a tweet with an image
   - [ ] User can post a tweet with a video
   - [ ] User can post a tweet with a gif
-  - [ ] User can post a tweet with a poll
-  - [ ] User can post a tweet with a location
 
 - ### Tweet interactions
 

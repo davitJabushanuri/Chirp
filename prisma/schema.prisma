@@ -7,8 +7,54 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// models for twitter
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+  id               Int            @id @default(autoincrement())
+  name             String
+  email            String         @unique
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+  tweets           Tweet[]
+  sentMessages     Message[]      @relation("sender")
+  receivedMessages Message[]      @relation("receiver")
+  conversations    Conversation[]
+}
+
+model Tweet {
+  id       Int     @id @default(autoincrement())
+  text     String?
+  image    String?
+  gif      String?
+  video    String?
+  likes    Int     @default(0)
+  rewteets Int     @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+}
+
+model Message {
+  id             Int          @id @default(autoincrement())
+  text           String
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  sender         User         @relation(name: "sender", fields: [senderId], references: [id])
+  senderId       Int
+  receiver       User         @relation(name: "receiver", fields: [receiverId], references: [id])
+  receiverId     Int
+  Conversation   Conversation @relation(fields: [conversationId], references: [id])
+  conversationId Int
+}
+
+model Conversation {
+  id         Int       @id @default(autoincrement())
+  name       String?
+  senderId   Int
+  receiverId Int
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  users      User[]
+  messages   Message[]
 }
