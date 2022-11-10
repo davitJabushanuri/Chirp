@@ -1,4 +1,4 @@
-import styles from "./Navbar.module.scss";
+import styles from "./Trends.module.scss";
 
 const Navbar = () => {
   return <div className={styles.container}></div>;
