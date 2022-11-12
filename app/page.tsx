@@ -1,4 +1,4 @@
-import { Tweets } from "@/features/Tweets";
+import { Tweets } from "@/features/tweets";
 
 import styles from "./landingPage.module.scss";
 
