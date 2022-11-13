@@ -15,6 +15,7 @@ module.exports = {
     "plugin:react-hooks/recommended",
     "plugin:jsx-a11y/recommended",
     "plugin:testing-library/react",
+    "plugin:jest-dom/recommended",
   ],
 
   plugins: [
@@ -23,6 +24,7 @@ module.exports = {
     "react-hooks",
     "jsx-a11y",
     "testing-library",
+    "jest-dom",
   ],
 
   globals: {
@@ -63,7 +65,7 @@ module.exports = {
         patterns: ["@/features/*/*"],
       },
     ],
-    "@typescript-eslint/no-unused-vars": ["error"],
+    "@typescript-eslint/no-unused-vars": ["warn"],
 
     "@typescript-eslint/explicit-function-return-type": ["off"],
     "@typescript-eslint/explicit-module-boundary-types": ["off"],
