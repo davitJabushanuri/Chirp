@@ -14,13 +14,28 @@ module.exports = {
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "plugin:jsx-a11y/recommended",
+    "plugin:testing-library/react",
   ],
 
-  plugins: ["@typescript-eslint", "react", "react-hooks", "jsx-a11y"],
+  plugins: [
+    "@typescript-eslint",
+    "react",
+    "react-hooks",
+    "jsx-a11y",
+    "testing-library",
+  ],
 
   globals: {
     React: "readonly",
   },
+
+  overrides: [
+    {
+      files: ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[jt]s?(x)"],
+      extends: ["plugin:testing-library/react"],
+    },
+  ],
+
   rules: {
     "import/order": [
       "error",
