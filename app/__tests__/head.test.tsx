@@ -1,18 +1,27 @@
-import { render, screen } from "@testing-library/react";
+/* eslint-disable testing-library/no-node-access */
+import { render, waitFor } from "@testing-library/react";
 
 import Head from "../head";
 
-test("should add proper page title and meta description", async () => {
-  const title = "Page title";
-  const titleSuffix = " | Twitter";
-  const description = "Page description";
+describe("Head", () => {
+  test("should add page title and meta description if props are present", async () => {
+    const title = "Page title";
+    const titleSuffix = " | Twitter";
+    const description = "Page description";
 
-  const { rerender } = render(<Head title={title} description={description} />);
-  expect(document.title).toBe(title + titleSuffix);
+    render(<Head title={title} description={description} />);
+    await waitFor(() => {
+      expect(document.title).toBe(title + titleSuffix);
+    });
 
-  const metaDescription = document.querySelector('meta[name="description"]');
-  expect(metaDescription).toHaveAttribute("content", description);
+    const metaDescription = document.querySelector('meta[name="description"]');
+    expect(metaDescription).toHaveAttribute("content", description);
+  });
 
-  rerender(<Head />);
-  expect(document.title).toBe("");
+  test("page title should return empty string if props are not present", async () => {
+    render(<Head />);
+    await waitFor(() => {
+      expect(document.title).toBe("");
+    });
+  });
 });

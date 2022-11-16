@@ -16,6 +16,7 @@ module.exports = {
     "plugin:jsx-a11y/recommended",
     "plugin:testing-library/react",
     "plugin:jest-dom/recommended",
+    "plugin:cypress/recommended",
   ],
 
   plugins: [
@@ -25,6 +26,7 @@ module.exports = {
     "jsx-a11y",
     "testing-library",
     "jest-dom",
+    "cypress",
   ],
 
   globals: {
@@ -66,10 +68,15 @@ module.exports = {
       },
     ],
     "@typescript-eslint/no-unused-vars": ["warn"],
-
     "@typescript-eslint/explicit-function-return-type": ["off"],
     "@typescript-eslint/explicit-module-boundary-types": ["off"],
     "@typescript-eslint/no-empty-function": ["off"],
     "@typescript-eslint/no-explicit-any": ["off"],
+
+    // React testing library
+    "testing-library/await-async-query": "error",
+    "testing-library/no-await-sync-query": "error",
+    "testing-library/no-debugging-utils": "warn",
+    "testing-library/no-dom-import": "off",
   },
 };
