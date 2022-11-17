@@ -1,7 +1,7 @@
 import styles from "./Trends.module.scss";
 
-const Navbar = () => {
+const Trends = () => {
   return <div className={styles.container}></div>;
 };
 
-export default Navbar;
+export default Trends;

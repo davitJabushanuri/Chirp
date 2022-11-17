@@ -18,7 +18,7 @@
     "esModuleInterop": true,
     "jsx": "react",
     "moduleResolution": "node",
-    "target": "es2019",
+    "target": "ES2015",
     "strict": true,
     "skipLibCheck": true,
     "resolveJsonModule": true
