@@ -13,90 +13,49 @@ import styles from "./styles/Navbar.module.scss";
 
 export const Navbar = () => {
   const pathname = usePathname();
-  console.log(pathname);
 
   return (
     <div className={styles.container}>
       <NavItem
         icon={
-          pathname === `/` || pathname === `/home` ? (
-            <HomeActive color="#ccc" />
-          ) : (
-            <Home color="#ccc" />
-          )
+          pathname === `/` || pathname === `/home` ? <HomeActive /> : <Home />
         }
         title={`Home`}
         isActive={pathname === `/` || pathname === `/home`}
       />
 
       <NavItem
-        icon={
-          pathname === `/explore` ? (
-            <HashtagActive color="#ccc" />
-          ) : (
-            <Hashtag color="#ccc" />
-          )
-        }
+        icon={pathname === `/explore` ? <HashtagActive /> : <Hashtag />}
         title={`Explore`}
         isActive={pathname === `/explore`}
       />
 
       <NavItem
-        icon={
-          pathname === `/notifications` ? (
-            <BellActive color="#ccc" />
-          ) : (
-            <Bell color="#ccc" />
-          )
-        }
+        icon={pathname === `/notifications` ? <BellActive /> : <Bell />}
         title={`Notifications`}
         isActive={pathname === `/notifications`}
       />
 
       <NavItem
-        icon={
-          pathname === `/messages` ? (
-            <EnvelopeActive color="#ccc" />
-          ) : (
-            <Envelope color="#ccc" />
-          )
-        }
+        icon={pathname === `/messages` ? <EnvelopeActive /> : <Envelope />}
         title={`Messages`}
         isActive={pathname === `/messages`}
       />
 
       <NavItem
-        icon={
-          pathname === `/bookmarks` ? (
-            <BookmarkActive color="#ccc" />
-          ) : (
-            <Bookmark color="#ccc" />
-          )
-        }
+        icon={pathname === `/bookmarks` ? <BookmarkActive /> : <Bookmark />}
         title={`Bookmarks`}
         isActive={pathname === `/bookmarks`}
       />
 
       <NavItem
-        icon={
-          pathname === `/profile` ? (
-            <UserActive color="#ccc" />
-          ) : (
-            <User color="#ccc" />
-          )
-        }
+        icon={pathname === `/profile` ? <UserActive /> : <User />}
         title={`Profile`}
         isActive={pathname === `/profile`}
       />
 
       <NavItem
-        icon={
-          pathname === `/settings` ? (
-            <Gear color="#ccc" />
-          ) : (
-            <Gear color="#ccc" />
-          )
-        }
+        icon={pathname === `/settings` ? <Gear /> : <Gear />}
         title={`Settings`}
         isActive={pathname === `/settings`}
       />
