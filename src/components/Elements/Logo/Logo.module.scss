@@ -12,4 +12,10 @@
   &:active {
     background-color: #1e3e57;
   }
+
+  @media screen and (min-width: 1300px) {
+    height: 1.8rem;
+    width: 1.8rem;
+    margin: 0;
+  }
 }
