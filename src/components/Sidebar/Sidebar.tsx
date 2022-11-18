@@ -1,6 +1,6 @@
+import { Logo } from "@/components/Elements/Logo";
+import { TweetButton } from "@/components/Elements/TweetButton";
 import { Navbar } from "@/features/navbar";
-
-import Logo from "../Elements/Logo/Logo";
 
 import styles from "./Sidebar.module.scss";
 
@@ -9,6 +9,7 @@ const Sidebar = () => {
     <aside className={styles.container}>
       <Logo />
       <Navbar />
+      <TweetButton />
     </aside>
   );
 };

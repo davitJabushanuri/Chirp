@@ -2,13 +2,16 @@ body {
   min-height: 100vh;
   background-color: #15202b;
   color: #fff;
-
   display: grid;
-  grid-template-columns: 250px 1fr;
+  grid-template-columns: 1fr;
 
-  a {
-    color: inherit;
-    text-decoration: none;
+  @media screen and (min-width: 500px) {
+    grid-template-columns: min-content 1fr;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
   }
 }
 

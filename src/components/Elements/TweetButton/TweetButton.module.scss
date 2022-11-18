@@ -1,0 +1,40 @@
+.container {
+  margin-top: 1rem;
+  padding: 0.8rem;
+  background-color: #1d9bf0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  margin: 1rem auto;
+
+  &:hover {
+    background-color: #1a8ed6;
+    cursor: pointer;
+  }
+
+  .icon {
+    width: 1.4rem;
+    height: 1.4rem;
+  }
+
+  .text {
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 500;
+    display: none;
+  }
+
+  @media screen and (min-width: 1300px) {
+    width: auto;
+
+    .icon {
+      display: none;
+    }
+
+    .text {
+      display: block;
+    }
+  }
+}

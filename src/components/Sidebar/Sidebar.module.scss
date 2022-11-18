@@ -1,3 +1,17 @@
 .container {
-  padding: 0.7rem;
+  display: none;
+
+  @media screen and (min-width: 500px) {
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #2f3944;
+    padding: 0.2rem 0.5rem;
+  }
+
+  @media screen and (min-width: 620px) {
+    padding: 0.2rem 1rem;
+  }
+
+  @media screen and (min-width: 1300px) {
+  }
 }

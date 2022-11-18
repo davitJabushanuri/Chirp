@@ -3,7 +3,7 @@ import Link from "next/link";
 import { LogoIcon } from "./assets/logo";
 import styles from "./Logo.module.scss";
 
-const Logo = () => {
+export const Logo = () => {
   return (
     <Link href={`/`}>
       <div className={styles.container}>
@@ -12,5 +12,3 @@ const Logo = () => {
     </Link>
   );
 };
-
-export default Logo;

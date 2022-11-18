@@ -2,7 +2,7 @@
   width: fit-content;
   text-decoration: none;
   color: #fff;
-  padding: 0.2rem;
+  padding: 0.3rem 0;
 
   &:hover {
     .container {
@@ -18,28 +18,33 @@
 
   .container {
     padding: 0.7rem;
-    padding-right: 1.4rem;
     border-radius: 100vmax;
 
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 0.7rem;
-    display: flex;
-    transition: all 0.1s ease-in-out;
-
     .icon {
-      width: 1.8rem;
-      height: 1.8rem;
-      margin-right: 0.5rem;
+      width: 1.5rem;
+      height: 1.5rem;
     }
 
     span {
       font-size: 1.2rem;
+      display: none;
     }
 
     .active {
       font-weight: 500;
+    }
+
+    @media screen and (min-width: 1300px) {
+      padding-right: 1.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 1rem;
+      display: flex;
+      transition: all 0.1s ease-in-out;
+      span {
+        display: block;
+      }
     }
   }
 }
