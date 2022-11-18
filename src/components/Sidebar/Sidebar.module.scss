@@ -4,15 +4,17 @@
   @media screen and (min-width: 500px) {
     display: flex;
     flex-direction: column;
+    align-items: center;
     border-right: 1px solid #2f3944;
-    padding: 0.2rem 0.5rem;
+    padding: 0.2rem 0.3rem;
   }
 
   @media screen and (min-width: 620px) {
-    padding: 0.2rem 1rem;
+    padding: 0.2rem 0.8rem;
   }
 
   @media screen and (min-width: 1300px) {
     padding: 0.2rem 2rem;
+    align-items: flex-start;
   }
 }
