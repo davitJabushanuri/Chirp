@@ -1,7 +1,20 @@
-import styles from "./styles.NavItem.module.scss";
+import Link from "next/link";
 
-const NavItem = () => {
-  return <div className={styles.container}>Enter</div>;
+import { INavItemProps } from "../types";
+
+import styles from "./styles/NavItem.module.scss";
+
+const NavItem = ({ icon, title, isActive }: INavItemProps) => {
+  return (
+    <>
+      <Link className={styles.link} href={title.toLowerCase()}>
+        <div className={styles.container}>
+          <div className={styles.icon}>{icon}</div>
+          <span className={isActive ? styles.active : ""}>{title}</span>
+        </div>
+      </Link>
+    </>
+  );
 };
 
 export default NavItem;

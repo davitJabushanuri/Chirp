@@ -1,0 +1,40 @@
+.link {
+  width: fit-content;
+  text-decoration: none;
+  color: #fff;
+  padding: 0.2rem;
+
+  &:hover {
+    .container {
+      background-color: #2c3640;
+    }
+  }
+
+  .container {
+    padding: 0.7rem;
+    padding-right: 1.4rem;
+    border-radius: 100vmax;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.7rem;
+    display: flex;
+    transition: all 0.1s ease-in-out;
+
+    .icon {
+      width: 1.8rem;
+      height: 1.8rem;
+      margin-right: 0.5rem;
+    }
+
+    span {
+      font-size: 1.2rem;
+      font-weight: 300;
+    }
+
+    .active {
+      font-weight: 500;
+    }
+  }
+}

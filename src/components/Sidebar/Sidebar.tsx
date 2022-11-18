@@ -1,7 +1,13 @@
+import { Navbar } from "@/features/navbar";
+
 import styles from "./Sidebar.module.scss";
 
 const Sidebar = () => {
-  return <div className={styles.container}></div>;
+  return (
+    <aside className={styles.container}>
+      <Navbar />
+    </aside>
+  );
 };
 
 export default Sidebar;
