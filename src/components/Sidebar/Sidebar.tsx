@@ -5,7 +5,7 @@ import { Navbar } from "@/features/navbar";
 
 import styles from "./Sidebar.module.scss";
 
-const Sidebar = () => {
+export const Sidebar = () => {
   return (
     <aside className={styles.container}>
       <Logo />
@@ -15,5 +15,3 @@ const Sidebar = () => {
     </aside>
   );
 };
-
-export default Sidebar;

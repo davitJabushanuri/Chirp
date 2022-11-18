@@ -1,17 +1,14 @@
 import { usePathname } from "next/navigation";
 
 import { BellActive, Bell } from "../assets/bell";
-import { Bookmark, BookmarkActive } from "../assets/bookmark";
 import { Envelope, EnvelopeActive } from "../assets/envelope";
-import { Gear, GearActive } from "../assets/gear";
-import { Hashtag, HashtagActive } from "../assets/hashtag";
 import { HomeActive, Home } from "../assets/home";
-import { User, UserActive } from "../assets/user";
+import { Search, SearchActive } from "../assets/search";
 
 import NavItem from "./NavItem";
-import styles from "./styles/Navbar.module.scss";
+import styles from "./styles/MobileNavbar.module.scss";
 
-export const Navbar = () => {
+export const MobileNavbar = () => {
   const pathname = usePathname();
 
   return (
@@ -25,7 +22,7 @@ export const Navbar = () => {
       />
 
       <NavItem
-        icon={pathname === `/explore` ? <HashtagActive /> : <Hashtag />}
+        icon={pathname === `/explore` ? <SearchActive /> : <Search />}
         title={`Explore`}
         isActive={pathname === `/explore`}
       />
@@ -40,24 +37,6 @@ export const Navbar = () => {
         icon={pathname === `/messages` ? <EnvelopeActive /> : <Envelope />}
         title={`Messages`}
         isActive={pathname === `/messages`}
-      />
-
-      <NavItem
-        icon={pathname === `/bookmarks` ? <BookmarkActive /> : <Bookmark />}
-        title={`Bookmarks`}
-        isActive={pathname === `/bookmarks`}
-      />
-
-      <NavItem
-        icon={pathname === `/profile` ? <UserActive /> : <User />}
-        title={`Profile`}
-        isActive={pathname === `/profile`}
-      />
-
-      <NavItem
-        icon={pathname === `/settings` ? <GearActive /> : <Gear />}
-        title={`Settings`}
-        isActive={pathname === `/settings`}
       />
     </div>
   );
