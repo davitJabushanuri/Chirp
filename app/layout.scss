@@ -9,8 +9,18 @@ body {
     display: grid;
     grid-template-columns: 1fr;
 
+    .mobile-tweet-button {
+      position: fixed;
+      bottom: 4.2rem;
+      right: 1rem;
+    }
+
     @media screen and (min-width: 500px) {
       grid-template-columns: min-content 1fr;
+
+      .mobile-tweet-button {
+        display: none;
+      }
 
       a {
         color: inherit;
