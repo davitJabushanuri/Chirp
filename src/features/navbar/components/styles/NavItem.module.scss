@@ -8,6 +8,12 @@
     .container {
       background-color: #2c3640;
     }
+
+    &:active {
+      .container {
+        background-color: #35414d;
+      }
+    }
   }
 
   .container {
