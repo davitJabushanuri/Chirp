@@ -1,0 +1,57 @@
+.container {
+  background-color: #15202b;
+  padding-bottom: 0.2rem;
+  position: sticky;
+  top: 0;
+
+  form {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background-color: #273340;
+    border: 1px solid #15202b;
+    border-radius: 100vmax;
+    padding: 0.7rem 0.8rem 0.7rem 1.2rem;
+    fill: #8b98a5;
+
+    &:focus-within {
+      background-color: #15202b;
+      border: 1px solid #1da1f2;
+      fill: #1da1f2;
+    }
+
+    .icon {
+      width: 1.2rem;
+      height: 1.2rem;
+    }
+
+    input {
+      color: #fff;
+      outline: none;
+      border: none;
+      background: transparent;
+      font-size: 0.9rem;
+      width: 90%;
+
+      &::placeholder {
+        color: #8b98a5;
+      }
+    }
+
+    .close {
+      border: none;
+      margin-left: auto;
+      width: 1.3rem;
+      height: 1.3rem;
+      border-radius: 100vmax;
+      padding: 0.3rem;
+      background-color: #1da1f2;
+      fill: #15202b;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #1890db;
+      }
+    }
+  }
+}
