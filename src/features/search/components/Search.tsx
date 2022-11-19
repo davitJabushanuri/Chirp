@@ -1,7 +1,5 @@
-import styles from "./styles/Comments.module.scss";
+import styles from "./styles/Search.module.scss";
 
-const Comments = () => {
-  return <div className={styles.container}>Enter</div>;
+export const Search = () => {
+  return <div className={styles.container}>Search</div>;
 };
-
-export default Comments;

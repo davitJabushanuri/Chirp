@@ -1,4 +1,5 @@
 "use client";
+import { Aside } from "@/components/layout/aside";
 import { Header } from "@/features/header";
 import { MobileNavbar } from "@/features/navbar";
 import { TweetButton } from "@/features/sidebar";
@@ -24,6 +25,7 @@ export default function RootLayout({
             <Header />
             {children}
           </main>
+          <Aside />
         </div>
       </body>
     </html>
