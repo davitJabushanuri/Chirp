@@ -1,5 +1,6 @@
 "use client";
 import { TweetButton } from "@/components/Elements/TweetButton";
+import { Header } from "@/features/header";
 import { MobileNavbar } from "@/features/navbar";
 import { Sidebar } from "@/features/sidebar";
 import "./globals.css";
@@ -19,7 +20,10 @@ export default function RootLayout({
             <TweetButton />
           </div>
           <Sidebar />
-          <main>{children}</main>
+          <main>
+            <Header />
+            {children}
+          </main>
         </div>
       </body>
     </html>
