@@ -1,5 +1,6 @@
-import { Pen } from "./assets/pen";
-import styles from "./TweetButton.module.scss";
+import { Pen } from "../assets/pen";
+
+import styles from "./styles/TweetButton.module.scss";
 
 export const TweetButton = () => {
   return (

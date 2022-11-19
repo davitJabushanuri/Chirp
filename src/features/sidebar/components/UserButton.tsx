@@ -2,8 +2,9 @@ import Image from "next/image";
 
 import Avatar from "@/assets/user_placeholder.png";
 
-import { Options } from "./assets/options";
-import styles from "./UserButton.module.scss";
+import { Options } from "../assets/options";
+
+import styles from "./styles/UserButton.module.scss";
 
 export const UserButton = () => {
   return (

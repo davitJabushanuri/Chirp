@@ -1,9 +1,9 @@
-import { Logo } from "@/components/Elements/Logo";
-import { TweetButton } from "@/components/Elements/TweetButton";
-import { UserButton } from "@/components/Elements/UserButton";
 import { Navbar } from "@/features/navbar";
 
-import styles from "./Sidebar.module.scss";
+import { Logo } from "./Logo";
+import styles from "./styles/Sidebar.module.scss";
+import { TweetButton } from "./TweetButton";
+import { UserButton } from "./UserButton";
 
 export const Sidebar = () => {
   return (

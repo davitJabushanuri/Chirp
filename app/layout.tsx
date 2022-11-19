@@ -1,7 +1,7 @@
 "use client";
-import { TweetButton } from "@/components/Elements/TweetButton";
 import { Header } from "@/features/header";
 import { MobileNavbar } from "@/features/navbar";
+import { TweetButton } from "@/features/sidebar";
 import { Sidebar } from "@/features/sidebar";
 import "./globals.css";
 import "./layout.scss";
