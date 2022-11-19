@@ -1,8 +1,9 @@
 .container {
   padding: 0.7rem;
-  height: 1.6rem;
-  width: 1.6rem;
+  height: 3rem;
+  width: 3rem;
   border-radius: 100vmax;
+  margin-bottom: 0.5rem;
 
   &:hover {
     background-color: #162d3f;
@@ -13,7 +14,7 @@
   }
 
   @media screen and (min-width: 1300px) {
-    height: 1.8rem;
-    width: 1.8rem;
+    height: 3.2rem;
+    width: 3.2rem;
   }
 }

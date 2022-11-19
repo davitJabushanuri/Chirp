@@ -6,8 +6,8 @@
   justify-content: center;
 
   .avatar {
-    width: 2.4rem;
-    height: 2.4rem;
+    width: 3.6rem;
+    height: 3.6rem;
     padding: 0.6rem;
     border-radius: 100vmax;
 
@@ -35,7 +35,7 @@
     border-radius: 100vmax;
     align-items: center;
     gap: 0.6rem;
-    padding: 0.6rem;
+    padding: 0.4rem 0.6rem;
 
     &:hover {
       cursor: pointer;
@@ -44,6 +44,8 @@
 
     .avatar {
       padding: 0;
+      width: 2.4rem;
+      height: 2.4rem;
     }
 
     .userInfo {

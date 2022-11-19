@@ -1,10 +1,8 @@
 .container {
-  height: calc(100vh - 0.4rem);
   position: sticky;
   top: 0;
-  overflow-x: hidden;
+  height: 100vh;
   overflow-y: auto;
-
   display: none;
 
   @media screen and (min-width: 500px) {

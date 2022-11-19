@@ -2,7 +2,7 @@
   width: fit-content;
   text-decoration: none;
   color: #fff;
-  padding: 0.2rem 0;
+  padding: 0.3rem 0;
 
   &:hover {
     .container {
@@ -42,6 +42,7 @@
   }
 
   @media screen and (min-width: 1300px) {
+    padding: 0.2rem 0;
     .container {
       padding-right: 1.4rem;
       display: flex;
