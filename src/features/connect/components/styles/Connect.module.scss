@@ -1,0 +1,31 @@
+.container {
+  background-color: #1e2732;
+  border-radius: 1rem;
+  overflow: hidden;
+
+  h1 {
+    padding: 1rem;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+
+  button {
+    width: 100%;
+    border: none;
+    padding: 1rem;
+    color: #1e8eda;
+    background-color: transparent;
+    cursor: pointer;
+    text-align: left;
+    font-size: 0.9rem;
+
+    &:hover {
+      background-color: #2e3640;
+    }
+
+    &:active {
+      background-color: #2b333d;
+    }
+  }
+}

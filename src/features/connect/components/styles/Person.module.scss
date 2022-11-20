@@ -1,0 +1,67 @@
+.container {
+  padding: 0.8rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #252e38;
+  }
+
+  &:active {
+    background-color: #15202b;
+  }
+
+  .person {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+
+    .avatar {
+      width: 2.8rem;
+      height: 2.8rem;
+
+      .image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-right: 1rem;
+      }
+    }
+    .info {
+      line-height: 1.1;
+      .name {
+        font-size: 0.96rem;
+        font-weight: 500;
+        color: #f7f7f7;
+      }
+
+      .username {
+        font-size: 0.8rem;
+        color: #8b98a5;
+      }
+    }
+  }
+
+  .followButton {
+    width: fit-content;
+    background-color: #eff3f4;
+    color: #1e2732;
+    border: none;
+    padding: 0.3rem 1rem;
+    border-radius: 100vmax;
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #e1e7e8;
+    }
+
+    &:active {
+      background-color: #d4dce0;
+    }
+  }
+}

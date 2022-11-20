@@ -14,7 +14,7 @@ export const Trends = () => {
         <Trend ranking={5} title="#Mastodon" tweets="45.8K" />
       </div>
 
-      <button>Show more</button>
+      <button>Show more</button>      
     </div>
   );
 };

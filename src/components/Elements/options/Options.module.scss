@@ -1,0 +1,17 @@
+.container {
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 100vmax;
+  padding: 0.5rem;
+  cursor: pointer;
+  fill: #8b98a5;
+
+  &:hover {
+    background-color: #24394a;
+    fill: #1d9bf0;
+  }
+
+  &:active {
+    background-color: #203b52;
+  }
+}
