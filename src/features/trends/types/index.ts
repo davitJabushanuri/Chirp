@@ -1,3 +1,5 @@
-export interface iTrend {
-  id: number;
+export interface iTrendProps {
+  ranking: number;
+  title: string;
+  tweets: string;
 }

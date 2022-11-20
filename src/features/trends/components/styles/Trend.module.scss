@@ -1,0 +1,59 @@
+.container {
+  padding: 0.2rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #2e3640;
+  }
+
+  &:active {
+    background-color: #2b333d;
+  }
+
+  .trend {
+    padding: 0.4rem 0;
+
+    .stats {
+      font-size: 0.8rem;
+      line-height: 1.6;
+      color: #8b98a5;
+
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+
+      .dot {
+        display: block;
+        width: 2px;
+        height: 2px;
+        border-radius: 50%;
+        background-color: #8b98a5;
+      }
+    }
+
+    .title {
+      font-weight: 500;
+      color: #f7f7f7;
+    }
+  }
+
+  .options {
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 100vmax;
+    padding: 0.5rem;
+    cursor: pointer;
+    fill: #fafafa;
+
+    &:hover {
+      background-color: #24394a;
+      fill: #1d9bf0;
+    }
+
+    &:active {
+      background-color: #203b52;
+    }
+  }
+}
