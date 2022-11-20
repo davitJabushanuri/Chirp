@@ -4,7 +4,7 @@ import styles from "./styles/Connect.module.scss";
 export const Connect = () => {
   return (
     <div className={styles.container}>
-      <h1>Connect</h1>
+      <h1>Who to follow</h1>
 
       <div className={styles.people}>
         <Person name="Gatsby ft. Valhalla" username="@GatsbyJS" image="" />

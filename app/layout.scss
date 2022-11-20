@@ -32,7 +32,7 @@ body {
     }
 
     @media screen and (min-width: 1020px) {
-      grid-template-columns: min-content 1fr 330px;
+      grid-template-columns: min-content 1fr 340px;
       max-width: 1020px;
     }
 
@@ -42,7 +42,7 @@ body {
     }
 
     @media screen and (min-width: 1300px) {
-      grid-template-columns: 280px 1fr 400px;
+      grid-template-columns: 300px 1fr 400px;
       max-width: 1300px;
     }
   }
