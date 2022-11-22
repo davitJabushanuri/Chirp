@@ -3,7 +3,7 @@ import { FooterLink } from "./link";
 
 export const Footer = () => {
   return (
-    <div className={styles.container}>
+    <footer className={styles.container}>
       <FooterLink title="Terms of Service" url="#" />
       <FooterLink title="Privacy Policy" url="#" />
       <FooterLink title="Cookie Policy" url="#" />
@@ -11,6 +11,6 @@ export const Footer = () => {
       <FooterLink title="Ads info" url="#" />
       <FooterLink title="More..." url="#" />
       <span>© 2022 Twitter, Inc.</span>
-    </div>
+    </footer>
   );
 };

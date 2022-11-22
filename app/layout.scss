@@ -1,3 +1,5 @@
+@use "abstracts/media-query.scss" as *;
+
 body {
   min-height: 100vh;
   background-color: #15202b;
@@ -14,7 +16,7 @@ body {
       right: 1rem;
     }
 
-    @media screen and (min-width: 500px) {
+    @include mq("small") {
       grid-template-columns: min-content 1fr;
 
       .mobile-tweet-button {
@@ -27,33 +29,27 @@ body {
       }
     }
 
-    @media screen and (min-width: 700px) {
+    @include mq("medium") {
       max-width: 700px;
     }
 
-    @media screen and (min-width: 1020px) {
+    @include mq("large") {
       grid-template-columns: min-content 1fr 340px;
       max-width: 1020px;
     }
 
-    @media screen and (min-width: 1120px) {
+    @include mq("x-large") {
       grid-template-columns: min-content 1fr 400px;
       max-width: 1120px;
     }
 
-    @media screen and (min-width: 1300px) {
+    @include mq("xx-large") {
       grid-template-columns: 300px 1fr 400px;
       max-width: 1300px;
     }
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-}
-
 .svgIcon {
-  fill: rgb(255, 255, 255);
+  fill: #fff;
 }
