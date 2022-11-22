@@ -1,3 +1,5 @@
+@use "abstracts/media-query.scss" as *;
+
 .link {
   width: fit-content;
   text-decoration: none;
@@ -35,13 +37,13 @@
     }
   }
 
-  @media screen and (min-width: 500px) {
+  @include mq("small") {
     .container {
       padding: 0.7rem;
     }
   }
 
-  @media screen and (min-width: 1300px) {
+  @include mq("xx-large") {
     padding: 0.2rem 0;
     .container {
       padding-right: 1.4rem;

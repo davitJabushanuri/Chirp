@@ -1,3 +1,5 @@
+@use "abstracts/media-query.scss" as *;
+
 .container {
   position: fixed;
   bottom: 0;
@@ -12,7 +14,7 @@
   align-items: center;
   justify-content: space-around;
 
-  @media screen and (min-width: 500px) {
+  @include mq("small") {
     display: none;
   }
 }

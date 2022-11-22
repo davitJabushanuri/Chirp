@@ -1,3 +1,5 @@
+@use "abstracts/media-query.scss" as *;
+
 .container {
   padding: 0.8rem;
   background-color: #1d9bf0;
@@ -25,7 +27,7 @@
     display: none;
   }
 
-  @media screen and (min-width: 1300px) {
+  @include mq("xx-large") {
     border-radius: 100vmax;
     width: 100%;
 

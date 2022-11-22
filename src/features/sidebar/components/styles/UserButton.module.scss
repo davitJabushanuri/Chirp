@@ -1,3 +1,5 @@
+@use "abstracts/media-query.scss" as *;
+
 .container {
   width: 100%;
   margin-top: auto;
@@ -31,7 +33,7 @@
     display: none;
   }
 
-  @media screen and (min-width: 1300px) {
+  @include mq("xx-large") {
     border-radius: 100vmax;
     align-items: center;
     gap: 0.6rem;
