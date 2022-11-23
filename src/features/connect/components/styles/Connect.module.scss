@@ -1,10 +1,11 @@
 .container {
-  background-color: #1e2732;
+  background-color: var(--clr-connect-background);
   border-radius: 1rem;
 
   h1 {
     padding: 1rem;
-    color: #fff;
+    padding-bottom: 0.6rem;
+    color: var(--clr-secondary);
     font-size: 1.2rem;
     font-weight: 700;
   }
@@ -19,12 +20,14 @@
     text-align: left;
     font-size: 0.9rem;
 
+    border-radius: 0 0 1rem 1rem;
+
     &:hover {
-      background-color: #2e3640;
+      background-color: var(--clr-connect-hover);
     }
 
     &:active {
-      background-color: #2b333d;
+      background-color: var(--clr-connect-active);
     }
   }
 }

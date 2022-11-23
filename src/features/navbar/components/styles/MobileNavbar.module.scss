@@ -7,8 +7,8 @@
   right: 0;
   z-index: 99;
   padding: 0.2rem;
-  background-color: #15202b;
-  border-top: 1px solid #38444d;
+  background-color: var(--clr-background);
+  border-top: 1px solid var(--clr-border);
 
   display: flex;
   align-items: center;

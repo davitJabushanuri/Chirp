@@ -1,19 +1,124 @@
-// :root:has(.light) {
-//   --clr-primary: #000;
-//   --clr-secondary: #fff;
-// }
+////////////////////////////////////////
+// LIGHT THEME
+////////////////////////////////////////
+$light-background: #ffffff;
 
-// :root:has(.dark) {
-//   --clr-primary: #fff;
-//   --clr-secondary: #000;
-// }
+$light-primary: #1d9bf0;
+$light-primary-hover: #1a8cd8;
+$light-primary-active: #177cc0;
+$light-primary-disabled: #8ecdf8;
 
-.light {
-  --clr-primary: #000;
-  --clr-secondary: #fff;
-}
+$light-secondary: #0f1419;
 
-.dark {
-  --clr-primary: #fff;
-  --clr-secondary: #000;
-}
+$light-tertiary: #536471;
+
+$light-nav-hover: #e7e7e8;
+$light-nav-active: #cfd0d1;
+
+$light-trends-background: #f7f9f9;
+$light-trends-hover: #eff1f1;
+$light-trends-active: #e6e7e7;
+
+$light-connect-background: #f7f9f9;
+$light-connect-hover: #eff1f1;
+$light-connect-active: #ebf0f2;
+
+$light-connect-button-hover: #272c30;
+$light-connect-button-active: #3f4347;
+
+$light-options-hover: #e1eef6;
+$light-options-active: #d2ebfc;
+
+$light-tweet-hover: #f7f7f7;
+
+$light-search-background: #eff3f4;
+
+$light-logo: #1d9bf0;
+$light-logo-hover: #e8f5fd;
+$light-logo-active: #d2ebfc;
+
+$light-border: #eff3f4;
+
+////////////////////////////////////////
+// DARK THEME
+////////////////////////////////////////
+
+$dark-background: #000000;
+
+$dark-primary: #1d9bf0;
+$dark-primary-hover: #1a8cd8;
+$dark-primary-active: #177cc0;
+$dark-primary-disabled: #8ecdf8;
+
+$dark-secondary: #e7e9ea;
+
+$dark-tertiary: #71767b;
+
+$dark-nav-hover: #031018;
+$dark-nav-active: #061f30;
+
+$dark-trends-background: #16181c;
+$dark-trends-hover: #1d1f23;
+$dark-trends-active: #26282c;
+
+$dark-connect-background: #16181c;
+$dark-connect-hover: #1d1f23;
+$dark-connect-active: #141618;
+
+$dark-connect-button-hover: #d7dbdc;
+$dark-connect-button-active: #bfc2c3;
+
+$dark-options-hover: #0a171f;
+$dark-options-active: #061f30;
+
+$dark-tweet-hover: #080808;
+
+$dark-search-background: #202327;
+
+$dark-logo: #d6d9db;
+$dark-logo-hover: #031018;
+$dark-logo-active: #061f30;
+
+$dark-border: #2f3336;
+
+////////////////////////////////////////
+// DIM THEME
+////////////////////////////////////////
+
+$dim-background: #15202b;
+
+$dim-primary: #1d9bf0;
+$dim-primary-hover: #1a8cd8;
+$dim-primary-active: #177cc0;
+$dim-primary-disabled: #8ecdf8;
+
+$dim-secondary: #f7f9f9;
+
+$dim-tertiary: #808d9a;
+
+$dim-nav-hover: #2c3640;
+$dim-nav-active: #424c54;
+
+$dim-trends-background: #1e2732;
+$dim-trends-hover: #252e38;
+$dim-trends-active: #2e3640;
+
+$dim-connect-background: #16181c;
+$dim-connect-hover: #252e38;
+$dim-connect-active: #17202a;
+
+$dim-connect-button-hover: #d7dbdc;
+$dim-connect-button-active: #bfc2c3;
+
+$dim-options-hover: #162d3f;
+$dim-options-active: #173952;
+
+$dim-tweet-hover: #1c2732;
+
+$dim-search-background: #273340;
+
+$dim-logo: #ffffff;
+$dim-logo-hover: #162d3f;
+$dim-logo-active: #173952;
+
+$dim-border: #38444d;

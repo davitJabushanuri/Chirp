@@ -1,5 +1,4 @@
 .container {
-  background-color: #15202b;
   padding: 0.4rem 0;
   position: sticky;
   top: 0;
@@ -8,49 +7,68 @@
     display: flex;
     align-items: center;
     gap: 1rem;
-    background-color: #273340;
-    border: 1px solid #15202b;
+    background-color: var(--clr-search-background);
+    border: 1px solid var(--clr-search-background);
+    color: var(--clr-secondary);
+    font-size: 0.9rem;
     border-radius: 100vmax;
-    padding: 0.7rem 0.8rem 0.7rem 1rem;
-    fill: #8b98a5;
+    padding: 0.6rem 0.6rem 0.6rem 1rem;
+    fill: var(--clr-tertiary);
 
     &:focus-within {
-      background-color: #15202b;
-      border: 1px solid #1da1f2;
-      fill: #1da1f2;
+      background-color: var(--clr-background);
+      border: 1px solid var(--clr-primary);
+      fill: var(--clr-primary);
     }
 
     .icon {
-      width: 1.2rem;
-      height: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      svg {
+        width: 1.2rem;
+        height: 1.2rem;
+      }
     }
 
     input {
-      color: #fff;
       outline: none;
       border: none;
       background: transparent;
-      font-size: 0.9rem;
       width: 90%;
 
       &::placeholder {
-        color: #8b98a5;
+        color: var(--clr-tertiary);
       }
     }
 
     .close {
       border: none;
       margin-left: auto;
-      width: 1.3rem;
-      height: 1.3rem;
-      border-radius: 100vmax;
+      width: 1.2rem;
+      height: 1.2rem;
       padding: 0.3rem;
-      background-color: #1da1f2;
-      fill: #15202b;
+      border-radius: 100vmax;
+      background-color: var(--clr-primary);
+      fill: var(--clr-background);
       cursor: pointer;
 
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
       &:hover {
-        background-color: #1890db;
+        background-color: var(--clr-primary-hover);
+      }
+
+      &:active {
+        background-color: var(--clr-primary-active);
+      }
+
+      svg {
+        width: 0.7rem;
+        height: 0.7rem;
       }
     }
   }

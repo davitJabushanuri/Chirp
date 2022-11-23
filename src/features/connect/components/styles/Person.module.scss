@@ -6,11 +6,11 @@
   cursor: pointer;
 
   &:hover {
-    background-color: #252e38;
+    background-color: var(--clr-connect-hover);
   }
 
-  &:active {
-    background-color: #15202b;
+  &:active:not(:focus-within) {
+    background-color: var(--clr-connect-active);
   }
 
   .person {
@@ -35,33 +35,33 @@
       .name {
         font-size: 0.96rem;
         font-weight: 500;
-        color: #f7f7f7;
+        color: var(--clr-secondary);
       }
 
       .username {
         font-size: 0.8rem;
-        color: #8b98a5;
+        color: var(--clr-tertiary);
       }
     }
   }
 
   .followButton {
     width: fit-content;
-    background-color: #eff3f4;
-    color: #1e2732;
+    background-color: var(--clr-secondary);
+    color: var(--clr-background);
     border: none;
-    padding: 0.3rem 1rem;
+    padding: 0.4rem 1rem;
     border-radius: 100vmax;
     font-size: 0.8rem;
     font-weight: 700;
     cursor: pointer;
 
     &:hover {
-      background-color: #e1e7e8;
+      background-color: var(--clr-connect-button-hover);
     }
 
     &:active {
-      background-color: #d4dce0;
+      background-color: var(--clr-connect-button-active);
     }
   }
 }

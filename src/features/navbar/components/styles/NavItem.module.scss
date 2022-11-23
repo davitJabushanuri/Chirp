@@ -3,22 +3,24 @@
 .link {
   width: fit-content;
   text-decoration: none;
-  color: #fff;
   padding: 0.3rem 0;
+  cursor: pointer;
 
   &:hover {
     .container {
-      background-color: #2c3640;
+      background-color: var(--clr-nav-hover);
     }
 
     &:active {
       .container {
-        background-color: #35414d;
+        background-color: var(--clr-nav-active);
       }
     }
   }
 
   .container {
+    color: var(--clr-secondary);
+    fill: var(--clr-secondary);
     padding: 0.5rem;
     border-radius: 100vmax;
 

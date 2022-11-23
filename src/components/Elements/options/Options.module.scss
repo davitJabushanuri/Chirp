@@ -4,14 +4,14 @@
   border-radius: 100vmax;
   padding: 0.5rem;
   cursor: pointer;
-  fill: #8b98a5;
+  fill: var(--clr-tertiary);
 
   &:hover {
-    background-color: #24394a;
-    fill: #1d9bf0;
+    background-color: var(--clr-options-hover);
+    fill: var(--clr-primary);
   }
 
   &:active {
-    background-color: #203b52;
+    background-color: var(--clr-options-active);
   }
 }

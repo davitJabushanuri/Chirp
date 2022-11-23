@@ -1,10 +1,10 @@
 .container {
-  background-color: #1e2732;
+  background-color: var(--clr-trends-background);
   border-radius: 1rem;
 
   h1 {
     padding: 1rem;
-    color: #fff;
+    color: var(--clr-secondary);
     font-size: 1.2rem;
     font-weight: 700;
   }
@@ -13,7 +13,7 @@
     width: 100%;
     border: none;
     padding: 1rem;
-    color: #1e8eda;
+    color: var(--clr-primary);
     background-color: transparent;
     cursor: pointer;
     text-align: left;
@@ -21,11 +21,11 @@
     border-radius: 0 0 1rem 1rem;
 
     &:hover {
-      background-color: #2e3640;
+      background-color: var(--clr-trends-hover);
     }
 
     &:active {
-      background-color: #2b333d;
+      background-color: var(--clr-trends-active);
     }
   }
 }

@@ -2,7 +2,9 @@
 
 .container {
   padding: 0.8rem;
-  background-color: #1d9bf0;
+  color: #fff;
+  background-color: var(--clr-primary);
+  fill: #fff;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -11,8 +13,12 @@
   margin: 1rem 0;
 
   &:hover {
-    background-color: #1a8ed6;
+    background-color: var(--clr-primary-hover);
     cursor: pointer;
+  }
+
+  &:active {
+    background-color: var(--clr-primary-active);
   }
 
   .icon {
@@ -21,7 +27,6 @@
   }
 
   .text {
-    color: white;
     font-size: 1rem;
     font-weight: 500;
     display: none;

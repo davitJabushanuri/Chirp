@@ -1,0 +1,121 @@
+@use "./colors" as *;
+
+.light {
+  --clr-background: #{$light-background};
+
+  --clr-primary: #{$light-primary};
+  --clr-primary-hover: #{$light-primary-hover};
+  --clr-primary-active: #{$light-primary-active};
+  --clr-primary-disabled: #{$light-primary-disabled};
+
+  --clr-secondary: #{$light-secondary};
+
+  --clr-tertiary: #{$light-tertiary};
+
+  --clr-nav-hover: #{$light-nav-hover};
+  --clr-nav-active: #{$light-nav-active};
+
+  --clr-trends-background: #{$light-trends-background};
+  --clr-trends-hover: #{$light-trends-hover};
+  --clr-trends-active: #{$light-trends-active};
+
+  --clr-connect-background: #{$light-connect-background};
+  --clr-connect-hover: #{$light-connect-hover};
+  --clr-connect-active: #{$light-connect-active};
+
+  --clr-connect-button-hover: #{$light-connect-button-hover};
+  --clr-connect-button-active: #{$light-connect-button-active};
+
+  --clr-options-hover: #{$light-options-hover};
+  --clr-options-active: #{$light-options-active};
+
+  --clr-tweet-hover: #{$light-tweet-hover};
+
+  --clr-search-background: #{$light-search-background};
+
+  --clr-logo: #{$light-logo};
+  --clr-logo-hover: #{$light-logo-hover};
+  --clr-logo-active: #{$light-logo-active};
+
+  --clr-border: #{$light-border};
+}
+
+.dark {
+  --clr-background: #{$dark-background};
+
+  --clr-primary: #{$dark-primary};
+  --clr-primary-hover: #{$dark-primary-hover};
+  --clr-primary-active: #{$dark-primary-active};
+  --clr-primary-disabled: #{$dark-primary-disabled};
+
+  --clr-secondary: #{$dark-secondary};
+
+  --clr-tertiary: #{$dark-tertiary};
+
+  --clr-nav-hover: #{$dark-nav-hover};
+  --clr-nav-active: #{$dark-nav-active};
+
+  --clr-trends-background: #{$dark-trends-background};
+  --clr-trends-hover: #{$dark-trends-hover};
+  --clr-trends-active: #{$dark-trends-active};
+
+  --clr-connect-background: #{$dark-connect-background};
+  --clr-connect-hover: #{$dark-connect-hover};
+  --clr-connect-active: #{$dark-connect-active};
+
+  --clr-connect-button-hover: #{$dark-connect-button-hover};
+  --clr-connect-button-active: #{$dark-connect-button-active};
+
+  --clr-options-hover: #{$dark-options-hover};
+  --clr-options-active: #{$dark-options-active};
+
+  --clr-tweet-hover: #{$dark-tweet-hover};
+
+  --clr-search-background: #{$dark-search-background};
+
+  --clr-logo: #{$dark-logo};
+  --clr-logo-hover: #{$dark-logo-hover};
+  --clr-logo-active: #{$dark-logo-active};
+
+  --clr-border: #{$dark-border};
+}
+
+.dim {
+  --clr-background: #{$dim-background};
+
+  --clr-primary: #{$dim-primary};
+  --clr-primary-hover: #{$dim-primary-hover};
+  --clr-primary-active: #{$dim-primary-active};
+  --clr-primary-disabled: #{$dim-primary-disabled};
+
+  --clr-secondary: #{$dim-secondary};
+
+  --clr-tertiary: #{$dim-tertiary};
+
+  --clr-nav-hover: #{$dim-nav-hover};
+  --clr-nav-active: #{$dim-nav-active};
+
+  --clr-trends-background: #{$dim-trends-background};
+  --clr-trends-hover: #{$dim-trends-hover};
+  --clr-trends-active: #{$dim-trends-active};
+
+  --clr-connect-background: #{$dim-connect-background};
+  --clr-connect-hover: #{$dim-connect-hover};
+  --clr-connect-active: #{$dim-connect-active};
+
+  --clr-connect-button-hover: #{$dim-connect-button-hover};
+  --clr-connect-button-active: #{$dim-connect-button-active};
+
+  --clr-options-hover: #{$dim-options-hover};
+  --clr-options-active: #{$dim-options-active};
+
+  --clr-tweet-hover: #{$dim-tweet-hover};
+
+  --clr-search-background: #{$dim-search-background};
+
+  --clr-logo: #{$dim-logo};
+  --clr-logo-hover: #{$dim-logo-hover};
+  --clr-logo-active: #{$dim-logo-active};
+
+  --clr-border: #{$dim-border};
+}

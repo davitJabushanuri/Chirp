@@ -6,13 +6,15 @@
   width: 3rem;
   border-radius: 100vmax;
   margin-bottom: 0.5rem;
+  fill: var(--clr-logo);
+  cursor: pointer;
 
   &:hover {
-    background-color: #162d3f;
+    background-color: var(--clr-logo-hover);
   }
 
   &:active {
-    background-color: #1e3e57;
+    background-color: var(--clr-logo-active);
   }
 
   @include mq("xx-large") {

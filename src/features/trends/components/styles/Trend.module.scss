@@ -5,11 +5,11 @@
   cursor: pointer;
 
   &:hover {
-    background-color: #252e38;
+    background-color: var(--clr-trends-hover);
   }
 
   &:active {
-    background-color: #2b333d;
+    background-color: var(--clr-trends-active);
   }
 
   .trend {
@@ -18,8 +18,7 @@
     .stats {
       font-size: 0.7rem;
       line-height: 1.7;
-      color: #8b98a5;
-
+      color: var(--clr-tertiary);
       display: flex;
       align-items: center;
       gap: 0.4rem;
@@ -29,14 +28,14 @@
         width: 2px;
         height: 2px;
         border-radius: 50%;
-        background-color: #8b98a5;
+        background-color: var(--clr-tertiary);
       }
     }
 
     .title {
       font-size: 0.9rem;
       font-weight: 500;
-      color: #f7f7f7;
+      color: var(--clr-secondary);
     }
   }
 }
