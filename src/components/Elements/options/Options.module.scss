@@ -1,10 +1,12 @@
 .container {
-  width: 2.2rem;
-  height: 2.2rem;
+  width: 2rem;
+  height: 2rem;
   border-radius: 100vmax;
-  padding: 0.5rem;
   cursor: pointer;
   fill: var(--clr-tertiary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &:hover {
     background-color: var(--clr-options-hover);
@@ -13,5 +15,10 @@
 
   &:active {
     background-color: var(--clr-options-active);
+  }
+
+  svg {
+    width: 1.1rem;
+    height: 1.1rem;
   }
 }

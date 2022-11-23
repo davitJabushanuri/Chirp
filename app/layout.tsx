@@ -14,7 +14,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("dim");
 
   return (
     <html className={theme} lang="en">

@@ -1,5 +1,5 @@
 .container {
-  padding: 0.2rem 1rem;
+  padding: 0.2rem 0.6rem 0.2rem 1rem;
   display: flex;
   justify-content: space-between;
   cursor: pointer;
@@ -8,7 +8,7 @@
     background-color: var(--clr-trends-hover);
   }
 
-  &:active {
+  &:active:not(:focus-within) {
     background-color: var(--clr-trends-active);
   }
 
@@ -37,5 +37,8 @@
       font-weight: 500;
       color: var(--clr-secondary);
     }
+  }
+  .options {
+    margin-left: auto;
   }
 }
