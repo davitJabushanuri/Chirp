@@ -14,10 +14,10 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const [theme, setTheme] = useState("dim");
+  const [theme, setTheme] = useState("theme-dim");
 
   return (
-    <html className={theme} lang="en">
+    <html className={`${theme} color-purple`} lang="en">
       <body>
         <div className="layout">
           <MobileNavbar />
@@ -31,7 +31,7 @@ export default function RootLayout({
             <button
               onClick={() =>
                 setTheme((prev) => {
-                  return prev === "light" ? "dark" : "light";
+                  return prev === "theme-light" ? "theme-dark" : "theme-light";
                 })
               }
             >

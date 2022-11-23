@@ -1,6 +1,8 @@
 @use "./colors" as *;
 
-.light {
+// THEMES
+
+.theme-light {
   --clr-background: #{$light-background};
 
   --clr-primary: #{$light-primary};
@@ -40,7 +42,7 @@
   --clr-border: #{$light-border};
 }
 
-.dark {
+.theme-dark {
   --clr-background: #{$dark-background};
 
   --clr-primary: #{$dark-primary};
@@ -80,7 +82,7 @@
   --clr-border: #{$dark-border};
 }
 
-.dim {
+.theme-dim {
   --clr-background: #{$dim-background};
 
   --clr-primary: #{$dim-primary};
@@ -118,4 +120,48 @@
   --clr-logo-active: #{$dim-logo-active};
 
   --clr-border: #{$dim-border};
+}
+
+// PRIMARY COLORS
+
+.color-blue {
+  --clr-primary: #{$blue-primary};
+  --clr-primary-hover: #{$blue-primary-hover};
+  --clr-primary-active: #{$blue-primary-active};
+  --clr-primary-disabled: #{$blue-primary-disabled};
+}
+
+.color-yellow {
+  --clr-primary: #{$yellow-primary};
+  --clr-primary-hover: #{$yellow-primary-hover};
+  --clr-primary-active: #{$yellow-primary-active};
+  --clr-primary-disabled: #{$yellow-primary-disabled};
+}
+
+.color-rose {
+  --clr-primary: #{$rose-primary};
+  --clr-primary-hover: #{$rose-primary-hover};
+  --clr-primary-active: #{$rose-primary-active};
+  --clr-primary-disabled: #{$rose-primary-disabled};
+}
+
+.color-purple {
+  --clr-primary: #{$purple-primary};
+  --clr-primary-hover: #{$purple-primary-hover};
+  --clr-primary-active: #{$purple-primary-active};
+  --clr-primary-disabled: #{$purple-primary-disabled};
+}
+
+.color-orange {
+  --clr-primary: #{$orange-primary};
+  --clr-primary-hover: #{$orange-primary-hover};
+  --clr-primary-active: #{$orange-primary-active};
+  --clr-primary-disabled: #{$orange-primary-disabled};
+}
+
+.color-green {
+  --clr-primary: #{$green-primary};
+  --clr-primary-hover: #{$green-primary-hover};
+  --clr-primary-active: #{$green-primary-active};
+  --clr-primary-disabled: #{$green-primary-disabled};
 }
