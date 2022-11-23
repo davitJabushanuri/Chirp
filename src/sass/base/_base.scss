@@ -1,0 +1,6 @@
+@use "./typography" as *;
+
+html,
+body {
+  font-family: $ff-base;
+}

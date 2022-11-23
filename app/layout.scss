@@ -1,9 +1,12 @@
+@use "main.scss";
 @use "abstracts/media-query" as *;
+@use "abstracts/colors.scss" as *;
 
 body {
   min-height: 100vh;
-  background-color: #15202b;
-  color: #fff;
+  // background-color: #15202b;
+  background-color: var(--clr-secondary);
+  color: var(--clr-primary);
 
   .layout {
     margin: 0 auto;
