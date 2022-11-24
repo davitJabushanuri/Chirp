@@ -1,12 +1,11 @@
 "use client";
-import { useState } from "react";
 
 import { Aside } from "@/components/layout/aside";
 import { Header } from "@/features/header";
 import { MobileNavbar } from "@/features/navbar";
 import { TweetButton } from "@/features/sidebar";
 import { Sidebar } from "@/features/sidebar";
-
+import { useTheme } from "@/stores/useTheme";
 import "./layout.scss";
 
 export default function RootLayout({
@@ -14,10 +13,10 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const [theme, setTheme] = useState("theme-dim");
+  const theme = useTheme((state) => state.theme);
 
   return (
-    <html className={`${theme} color-purple`} lang="en">
+    <html className={`${theme} color-blue`} lang="en">
       <body>
         <div className="layout">
           <MobileNavbar />
@@ -28,15 +27,6 @@ export default function RootLayout({
           <main>
             <Header />
             {children}
-            <button
-              onClick={() =>
-                setTheme((prev) => {
-                  return prev === "theme-light" ? "theme-dark" : "theme-light";
-                })
-              }
-            >
-              switch theme
-            </button>
           </main>
           <Aside />
         </div>
