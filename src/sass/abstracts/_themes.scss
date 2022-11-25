@@ -14,6 +14,13 @@
   --clr-light-active: #d2ebfc;
   --clr-dim-active: #173952;
   --clr-dark-active: #061f30;
+
+  --clr-blue: #1d9bf0;
+  --clr-yellow: #ffd400;
+  --clr-rose: #f91880;
+  --clr-violet: #7856ff;
+  --clr-orange: #ff7a00;
+  --clr-green: #00ba7c;
 }
 
 .theme-light {
@@ -159,11 +166,11 @@
   --clr-primary-disabled: #{$rose-primary-disabled};
 }
 
-.color-purple {
-  --clr-primary: #{$purple-primary};
-  --clr-primary-hover: #{$purple-primary-hover};
-  --clr-primary-active: #{$purple-primary-active};
-  --clr-primary-disabled: #{$purple-primary-disabled};
+.color-violet {
+  --clr-primary: #{$violet-primary};
+  --clr-primary-hover: #{$violet-primary-hover};
+  --clr-primary-active: #{$violet-primary-active};
+  --clr-primary-disabled: #{$violet-primary-disabled};
 }
 
 .color-orange {

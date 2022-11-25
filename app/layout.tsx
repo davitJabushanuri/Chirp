@@ -5,7 +5,8 @@ import { Header } from "@/features/header";
 import { MobileNavbar } from "@/features/navbar";
 import { TweetButton } from "@/features/sidebar";
 import { Sidebar } from "@/features/sidebar";
-import { useThemeStore } from "@/stores/useThemeStore";
+import { useColor } from "@/stores/useColor";
+import { useTheme } from "@/stores/useTheme";
 import "./layout.scss";
 
 export default function RootLayout({
@@ -13,10 +14,16 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const theme = useThemeStore((state) => state.theme);
+  const currentTheme = useTheme((state) => state.theme);
+  const currentColor = useColor((state) => state.color);
 
   return (
-    <html className={`${theme} color-blue`} lang="en">
+    <html
+      className={`${currentTheme || "theme-dim"} ${
+        currentColor || "color-blue"
+      }`}
+      lang="en"
+    >
       <body>
         <div className="layout">
           <MobileNavbar />

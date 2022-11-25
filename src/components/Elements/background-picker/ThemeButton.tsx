@@ -1,7 +1,7 @@
 import { setCookie } from "cookies-next";
 
 import { Tick } from "@/assets/tick";
-import { useThemeStore } from "@/stores/useThemeStore";
+import { useTheme } from "@/stores/useTheme";
 
 import styles from "./ThemeButton.module.scss";
 
@@ -11,14 +11,12 @@ interface IThemeButton {
 
 const ThemeButton = ({ theme }: IThemeButton) => {
   const title = theme.charAt(0).toUpperCase() + theme.slice(1);
-  const currentTheme = useThemeStore((state) => state.theme);
-  const setTheme = useThemeStore((state) => state.setTheme);
+  const currentTheme = useTheme((state) => state.theme);
+  const setTheme = useTheme((state) => state.setTheme);
   const SaveTheme = (theme: string) => {
     setCookie("theme", theme);
     setTheme(theme);
   };
-
-  console.log(currentTheme, theme);
 
   return (
     <button

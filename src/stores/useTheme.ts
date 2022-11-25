@@ -1,14 +1,14 @@
 import { CookieValueTypes, getCookie } from "cookies-next";
 import create from "zustand";
 
-interface IThemeStore {
+interface ITheme {
   theme: string | CookieValueTypes;
   setTheme: (theme: string) => void;
 }
 
-const initialValue = getCookie("theme");
+// const initialValue = getCookie("theme");
 
-export const useThemeStore = create<IThemeStore>((set) => ({
+export const useTheme = create<ITheme>((set) => ({
   theme: "theme-dark",
   setTheme: (theme: string) =>
     set({
