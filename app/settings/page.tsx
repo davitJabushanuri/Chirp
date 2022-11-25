@@ -1,18 +1,14 @@
 "use client";
-import { useTheme } from "@/stores/useTheme";
+
+import { BackgroundPicker } from "@/components/Elements/background-picker";
+
+import styles from "./settings.module.scss";
 
 const Settings = () => {
-  const setTheme = useTheme((state) => state.setTheme);
-
   return (
-    <div>
-      <h1>Settings</h1>
-
-      <button onClick={() => setTheme("theme-light")}>Light</button>
-      <br />
-      <button onClick={() => setTheme("theme-dark")}>dark</button>
-      <br />
-      <button onClick={() => setTheme("theme-dim")}>dim</button>
+    <div className={styles.container}>
+      <h1>These settings affect all the Twitter accounts on this browser.</h1>
+      <BackgroundPicker />
     </div>
   );
 };

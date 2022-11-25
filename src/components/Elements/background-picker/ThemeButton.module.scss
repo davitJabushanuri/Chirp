@@ -1,0 +1,108 @@
+.container {
+  height: 4rem;
+  border-radius: 0.3rem;
+  font-weight: 500;
+  font-size: 0.925rem;
+  border: 1px solid var(--clr-border);
+  cursor: pointer;
+
+  display: grid;
+  place-items: center;
+  grid-template-columns: 4rem 1fr;
+
+  .tickContainer {
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .tick {
+      height: 1.2rem;
+      width: 1.2rem;
+      border-radius: 50%;
+      border: 2px solid var(--clr-tertiary);
+      display: flex;
+      place-items: center;
+      place-content: center;
+
+      svg {
+        height: 100%;
+        width: 100%;
+        fill: var(--clr-light);
+        display: none;
+      }
+    }
+  }
+
+  .text {
+    margin-right: 2rem;
+  }
+}
+
+#light {
+  background-color: var(--clr-light);
+  color: var(--clr-dark);
+
+  &:hover {
+    .tickContainer {
+      background-color: var(--clr-light-hover);
+    }
+  }
+
+  &:active {
+    .tickContainer {
+      background-color: var(--clr-light-active);
+    }
+  }
+}
+
+#dim {
+  background-color: var(--clr-dim);
+  color: var(--clr-light);
+
+  &:hover {
+    .tickContainer {
+      background-color: var(--clr-dim-hover);
+    }
+
+    &.active {
+      .tickContainer {
+        background-color: var(--clr-dim-active);
+      }
+    }
+  }
+}
+
+#dark {
+  background-color: var(--clr-dark);
+  color: var(--clr-light);
+
+  &:hover {
+    .tickContainer {
+      background-color: var(--clr-dark-hover);
+    }
+  }
+
+  &:active {
+    .tickContainer {
+      background-color: var(--clr-dark-active);
+    }
+  }
+}
+
+.active {
+  border: 2px solid var(--clr-primary);
+
+  .tickContainer {
+    .tick {
+      background-color: var(--clr-primary);
+      border-color: var(--clr-primary);
+
+      svg {
+        display: block;
+      }
+    }
+  }
+}

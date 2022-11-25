@@ -5,7 +5,7 @@ import { Header } from "@/features/header";
 import { MobileNavbar } from "@/features/navbar";
 import { TweetButton } from "@/features/sidebar";
 import { Sidebar } from "@/features/sidebar";
-import { useTheme } from "@/stores/useTheme";
+import { useThemeStore } from "@/stores/useThemeStore";
 import "./layout.scss";
 
 export default function RootLayout({
@@ -13,7 +13,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const theme = useTheme((state) => state.theme);
+  const theme = useThemeStore((state) => state.theme);
 
   return (
     <html className={`${theme} color-blue`} lang="en">
