@@ -1,0 +1,44 @@
+.container {
+  padding: 1rem 1rem 0 1rem;
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  gap: 1rem;
+  border-bottom: 1px solid var(--clr-border);
+
+  .tweet {
+    .text {
+
+      textarea {
+        width: 100%;
+        resize: none;
+        font-size: 1.2rem;
+        color: var(--clr-secondary);
+        border-bottom: 1px solid var(--clr-background);
+        margin-top: 1rem;
+
+        &:focus {
+          border-bottom: 1px solid var(--clr-border);
+          margin-top: 3rem;
+        }
+
+        &::placeholder {
+          color: var(--clr-tertiary);
+        }
+      }
+    }
+
+    .actions {
+      padding: 0.7rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+
+      .media {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+    }
+  }
+}

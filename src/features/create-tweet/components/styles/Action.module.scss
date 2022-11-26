@@ -1,0 +1,24 @@
+.container {
+  height: 2rem;
+  width: 2rem;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background-color: var(--clr-trends-hover);
+  }
+
+  &:active {
+    background-color: var(--clr-trends-active);
+  }
+
+  .icon {
+    fill: var(--clr-primary);
+    height: 1.2rem;
+    width: 1.2rem;
+  }
+
+}

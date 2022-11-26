@@ -1,4 +1,4 @@
-import { Options } from "@/components/Elements/options";
+import { Options } from "@/components/elements/options";
 
 import { iTrendProps } from "../types";
 

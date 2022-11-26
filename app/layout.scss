@@ -32,6 +32,10 @@ body {
 
     @include mq("medium") {
       max-width: 700px;
+
+      main {
+        border-right: 1px solid var(--clr-border);
+      }
     }
 
     @include mq("large") {
