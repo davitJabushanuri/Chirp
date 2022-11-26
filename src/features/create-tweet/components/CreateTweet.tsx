@@ -25,9 +25,13 @@ export const CreateTweet = () => {
           <div className={styles.media}>
             <Action icon={<ImageIcon />} />
             <Action icon={<GifIcon />} />
-            <Action icon={<PollIcon />} />
+            <span className={styles.hide}>
+              <Action icon={<PollIcon />} />
+            </span>
             <Action icon={<EmojiIcon />} />
-            <Action icon={<ScheduleIcon />} />
+            <span className={styles.hide}>
+              <Action icon={<ScheduleIcon />} />
+            </span>
             <Action icon={<LocationIcon />} />
           </div>
           <div className={styles.tweetButton}>

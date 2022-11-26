@@ -1,11 +1,13 @@
 "use client";
 
 import { Aside } from "@/components/layout/aside";
+import { CreateTweetModal } from "@/features/create-tweet";
 import { Header } from "@/features/header";
 import { MobileNavbar } from "@/features/navbar";
 import { TweetButton } from "@/features/sidebar";
 import { Sidebar } from "@/features/sidebar";
 import { useColor } from "@/stores/useColor";
+import { useModal } from "@/stores/useModal";
 import { useTheme } from "@/stores/useTheme";
 import "./layout.scss";
 
@@ -16,6 +18,7 @@ export default function RootLayout({
 }) {
   const currentTheme = useTheme((state) => state.theme);
   const currentColor = useColor((state) => state.color);
+  const isModalOpen = useModal((state) => state.isModalOpen);
 
   return (
     <html
@@ -37,6 +40,7 @@ export default function RootLayout({
           </main>
           <Aside />
         </div>
+        {isModalOpen && <CreateTweetModal />}
       </body>
     </html>
   );
