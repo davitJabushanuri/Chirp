@@ -1,6 +1,4 @@
-import Image from "next/image";
-
-import Avatar from "@/assets/user_placeholder.png";
+import { HamburgerButton } from "@/components/elements/hamburger-button";
 
 import { Star } from "../assets/star";
 
@@ -8,17 +6,12 @@ import styles from "./styles/Header.module.scss";
 
 export const Header = () => {
   return (
-    <div className={styles.container}>
-      <div className={styles.user}>
-        <Image
-          className={styles.image}
-          src={Avatar}
-          alt="avatar"
-          placeholder="blur"
-        />
-      </div>
+    <div id="home" className={styles.container}>
+      <HamburgerButton />
 
-      <div className={styles.home}>Home</div>
+      <a href="#home" className={styles.home}>
+        Home
+      </a>
 
       <div className={styles.star}>
         <Star />

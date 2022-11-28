@@ -11,22 +11,10 @@
   position: sticky;
   top: 0;
 
-  .user {
-    width: 2rem;
-    height: 2rem;
-    overflow: hidden;
-
-    .image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 50%;
-    }
-  }
-
   .home {
     color: var(--clr-secondary);
     font-weight: 700;
+    cursor: pointer;
   }
 
   .star {
@@ -48,10 +36,6 @@
   }
 
   @include mq("small") {
-    .user {
-      display: none;
-    }
-
     .home {
       font-size: 1.2rem;
     }

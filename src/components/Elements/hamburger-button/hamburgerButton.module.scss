@@ -1,0 +1,19 @@
+@use "abstracts/media-query" as *;
+
+.container {
+  width: 2rem;
+  height: 2rem;
+  overflow: hidden;
+  cursor: pointer;
+
+  .image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  @include mq ("small") {
+    display: none;
+  }
+}

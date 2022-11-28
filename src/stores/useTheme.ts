@@ -9,7 +9,7 @@ interface ITheme {
 // const initialValue = getCookie("theme");
 
 export const useTheme = create<ITheme>((set) => ({
-  theme: "theme-dark",
+  theme: "theme-dim",
   setTheme: (theme: string) =>
     set({
       theme,

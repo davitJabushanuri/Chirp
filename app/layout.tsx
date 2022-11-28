@@ -4,11 +4,15 @@ import { Aside } from "@/components/layout/aside";
 import { CreateTweetModal } from "@/features/create-tweet";
 import { Header } from "@/features/header";
 import { MobileNavbar } from "@/features/navbar";
+import { HamburgerMenu } from "@/features/navbar";
 import { TweetButton } from "@/features/sidebar";
 import { Sidebar } from "@/features/sidebar";
 import { useColor } from "@/stores/useColor";
+import { useHamburger } from "@/stores/useHamburger";
 import { useModal } from "@/stores/useModal";
 import { useTheme } from "@/stores/useTheme";
+import SupabaseListener from "@/utils/supabase-listener";
+import supabase from "@/utils/supabaseClient";
 import "./layout.scss";
 
 export default function RootLayout({
@@ -19,6 +23,7 @@ export default function RootLayout({
   const currentTheme = useTheme((state) => state.theme);
   const currentColor = useColor((state) => state.color);
   const isModalOpen = useModal((state) => state.isModalOpen);
+  const isHamburgerOpen = useHamburger((state) => state.isHamburgerOpen);
 
   return (
     <html
@@ -41,6 +46,7 @@ export default function RootLayout({
           <Aside />
         </div>
         {isModalOpen && <CreateTweetModal />}
+        {isHamburgerOpen && <HamburgerMenu />}
       </body>
     </html>
   );

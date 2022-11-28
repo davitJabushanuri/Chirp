@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
+import { CloseIcon } from "@/assets/CloseIcon";
 import { useModal } from "@/stores/useModal";
 
 import { BackArrow } from "../assets/BackArrow";
-import { CloseIcon } from "../assets/CloseIcon";
 
 import { CreateTweet } from "./CreateTweet";
 import styles from "./styles/CreateTweetModal.module.scss";
