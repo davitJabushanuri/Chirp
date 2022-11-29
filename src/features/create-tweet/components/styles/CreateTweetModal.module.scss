@@ -9,6 +9,7 @@
   display: flex;
   justify-content: center;
   z-index: 9999;
+  animation: fadeIn 0.3s ease-in-out;
 
   .modal {
     background-color: var(--clr-background);
@@ -67,11 +68,34 @@
     @include mq("medium") {
       max-width: 600px;
       height: fit-content;
+      animation: slideIn 0.3s ease-in-out;
     }
   }
 
   @include mq ("medium") {
     background-color: var(--clr-modal-background);
     padding-top: 4rem;
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    // opacity: 0;
+    transform: translateY(2rem);
+  }
+
+  100% {
+    // opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
   }
 }

@@ -1,4 +1,5 @@
 "use client";
+import { Suspense, use } from "react";
 
 import { Aside } from "@/components/layout/aside";
 import { CreateTweetModal } from "@/features/create-tweet";
@@ -33,20 +34,22 @@ export default function RootLayout({
       lang="en"
     >
       <body>
-        <div className="layout">
-          <MobileNavbar />
-          <div className="mobile-tweet-button">
-            <TweetButton />
+        <Suspense fallback={<div>Loading...</div>}>
+          <div className="layout">
+            <MobileNavbar />
+            <div className="mobile-tweet-button">
+              <TweetButton />
+            </div>
+            <Sidebar />
+            <main>
+              <Header />
+              {children}
+            </main>
+            <Aside />
           </div>
-          <Sidebar />
-          <main>
-            <Header />
-            {children}
-          </main>
-          <Aside />
-        </div>
-        {isModalOpen && <CreateTweetModal />}
-        {isHamburgerOpen && <HamburgerMenu />}
+          {isModalOpen && <CreateTweetModal />}
+          {isHamburgerOpen && <HamburgerMenu />}
+        </Suspense>
       </body>
     </html>
   );

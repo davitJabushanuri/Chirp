@@ -165,14 +165,6 @@
   }
 }
 
-.hidden {
-  animation: fadeOut 0.2s ease-in-out forwards;
-
-  .hamburger {
-    animation: slideOut 0.2s ease-in-out forwards;
-  }
-}
-
 @keyframes slideIn {
   0% {
     transform: translateX(-100%);
@@ -184,15 +176,6 @@
 
 }
 
-@keyframes slideOut {
-  0% {
-    transform: translateX(0);
-  }
-
-  100% {
-    transform: translateX(-100%);
-  }
-}
 
 @keyframes fadeIn {
   0% {
@@ -203,14 +186,4 @@
     opacity: 1;
   }
 
-}
-
-@keyframes fadeOut {
-  0% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
-  }
 }

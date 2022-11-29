@@ -16,6 +16,7 @@
         color: var(--clr-secondary);
         border-bottom: 1px solid var(--clr-background);
         margin-top: 1rem;
+        transition: all 0.1s ease-in-out;
 
         &:focus {
           border-bottom: 1px solid var(--clr-border);
