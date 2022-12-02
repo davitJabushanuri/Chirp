@@ -1,23 +1,20 @@
+"use client";
+
+import { CookieValueTypes, getCookie } from "cookies-next";
 import create from "zustand";
-import { persist } from "zustand/middleware";
 
 interface ITheme {
-  theme: string;
+  theme: CookieValueTypes;
   setTheme: (theme: string) => void;
 }
 
-export const useTheme = create(
-  persist<ITheme>(
-    (set) => ({
-      theme: "theme-dim",
-      setTheme: (theme: string) =>
-        set({
-          theme,
-        }),
+// TODO: refactor this to get class from html before hydration
+const theme = typeof window !== "undefined" ? getCookie("theme") : "";
+
+export const useTheme = create<ITheme>((set) => ({
+  theme: theme,
+  setTheme: (theme: string) =>
+    set({
+      theme,
     }),
-    {
-      name: "theme",
-      getStorage: () => localStorage,
-    },
-  ),
-);
+}));

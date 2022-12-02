@@ -1,53 +1,26 @@
-"use client";
+import { cookies } from "next/headers";
 
-import { Aside } from "@/components/layout/aside";
-import { CreateTweetModal } from "@/features/create-tweet";
-import { Header } from "@/features/header";
-import { MobileNavbar } from "@/features/navbar";
-import { HamburgerMenu } from "@/features/navbar";
-import { TweetButton } from "@/features/sidebar";
-import { Sidebar } from "@/features/sidebar";
-import { useColor } from "@/stores/useColor";
-import { useHamburger } from "@/stores/useHamburger";
-import { useModal } from "@/stores/useModal";
-import { useTheme } from "@/stores/useTheme";
-import ReactQueryWrapper from "@/utils/react-query";
-import SupabaseListener from "@/utils/supabase-listener";
+import MainLayout from "@/components/layout/main-layout/MainLayout";
+
 import "./layout.scss";
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const currentTheme = useTheme((state) => state.theme);
-  const currentColor = useColor((state) => state.color);
-  const isModalOpen = useModal((state) => state.isModalOpen);
-  const isHamburgerOpen = useHamburger((state) => state.isHamburgerOpen);
+  const nextCookies = cookies();
+  const theme = nextCookies.get("theme");
+  const color = nextCookies.get("color");
 
   return (
     <html
-      className={`${currentTheme || "theme-dim"} ${
-        currentColor || "color-blue"
+      className={`${theme?.value || "theme-light"} ${
+        color?.value || "color-blue"
       }`}
       lang="en"
     >
-      <body>
-        <div className="layout">
-          <MobileNavbar />
-          <div className="mobile-tweet-button">
-            <TweetButton />
-          </div>
-          <Sidebar />
-          <main>
-            <Header />
-            <ReactQueryWrapper>{children}</ReactQueryWrapper>
-          </main>
-          <Aside />
-        </div>
-        {isModalOpen && <CreateTweetModal />}
-        {isHamburgerOpen && <HamburgerMenu />}
-      </body>
+      <MainLayout>{children}</MainLayout>
     </html>
   );
 }
