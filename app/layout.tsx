@@ -1,5 +1,4 @@
 "use client";
-import { Suspense, useEffect, useState } from "react";
 
 import { Aside } from "@/components/layout/aside";
 import { CreateTweetModal } from "@/features/create-tweet";
@@ -12,8 +11,8 @@ import { useColor } from "@/stores/useColor";
 import { useHamburger } from "@/stores/useHamburger";
 import { useModal } from "@/stores/useModal";
 import { useTheme } from "@/stores/useTheme";
+import ReactQueryWrapper from "@/utils/react-query";
 import SupabaseListener from "@/utils/supabase-listener";
-import supabase from "@/utils/supabaseClient";
 import "./layout.scss";
 
 export default function RootLayout({
@@ -34,22 +33,20 @@ export default function RootLayout({
       lang="en"
     >
       <body>
-        <Suspense fallback={<div>Loading...</div>}>
-          <div className="layout">
-            <MobileNavbar />
-            <div className="mobile-tweet-button">
-              <TweetButton />
-            </div>
-            <Sidebar />
-            <main>
-              <Header />
-              {children}
-            </main>
-            <Aside />
+        <div className="layout">
+          <MobileNavbar />
+          <div className="mobile-tweet-button">
+            <TweetButton />
           </div>
-          {isModalOpen && <CreateTweetModal />}
-          {isHamburgerOpen && <HamburgerMenu />}
-        </Suspense>
+          <Sidebar />
+          <main>
+            <Header />
+            <ReactQueryWrapper>{children}</ReactQueryWrapper>
+          </main>
+          <Aside />
+        </div>
+        {isModalOpen && <CreateTweetModal />}
+        {isHamburgerOpen && <HamburgerMenu />}
       </body>
     </html>
   );
