@@ -1,17 +1,23 @@
-import { CookieValueTypes, getCookie } from "cookies-next";
 import create from "zustand";
+import { persist } from "zustand/middleware";
 
 interface ITheme {
-  theme: string | CookieValueTypes;
+  theme: string;
   setTheme: (theme: string) => void;
 }
 
-// const initialValue = getCookie("theme");
-
-export const useTheme = create<ITheme>((set) => ({
-  theme: "theme-dim",
-  setTheme: (theme: string) =>
-    set({
-      theme,
+export const useTheme = create(
+  persist<ITheme>(
+    (set) => ({
+      theme: "theme-dim",
+      setTheme: (theme: string) =>
+        set({
+          theme,
+        }),
     }),
-}));
+    {
+      name: "theme",
+      getStorage: () => localStorage,
+    },
+  ),
+);

@@ -1,5 +1,3 @@
-import { setCookie } from "cookies-next";
-
 import { Tick } from "@/assets/tick";
 import { useTheme } from "@/stores/useTheme";
 
@@ -13,10 +11,6 @@ const ThemeButton = ({ theme }: IThemeButton) => {
   const title = theme.charAt(0).toUpperCase() + theme.slice(1);
   const currentTheme = useTheme((state) => state.theme);
   const setTheme = useTheme((state) => state.setTheme);
-  const SaveTheme = (theme: string) => {
-    setCookie("theme", theme);
-    setTheme(theme);
-  };
 
   return (
     <button
@@ -30,7 +24,7 @@ const ThemeButton = ({ theme }: IThemeButton) => {
       className={`${styles.container} ${
         `theme-${theme}` === currentTheme ? styles.active : ""
       }`}
-      onClick={() => SaveTheme(`theme-${theme}`)}
+      onClick={() => setTheme(`theme-${theme}`)}
     >
       <div className={styles.tickContainer}>
         <span className={styles.tick}>

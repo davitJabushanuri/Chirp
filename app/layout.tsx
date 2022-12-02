@@ -1,5 +1,5 @@
 "use client";
-import { Suspense, use } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 import { Aside } from "@/components/layout/aside";
 import { CreateTweetModal } from "@/features/create-tweet";
