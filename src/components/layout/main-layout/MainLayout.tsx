@@ -19,7 +19,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const isHamburgerOpen = useHamburger((state) => state.isHamburgerOpen);
 
   return (
-    <body className={`${currentTheme ?? ""} ${currentColor ?? ""}`}>
+    <body className={`${currentTheme} ${currentColor}`}>
       <div className="layout">
         <MobileNavbar />
         <div className="mobile-tweet-button">

@@ -56,6 +56,15 @@
 
   --clr-tweet-hover: #{$light-tweet-hover};
 
+  --clr-comment-hover: #{$light-comment-hover};
+  --clr-comment-active: #{$light-comment-active};
+
+  --clr-heart-hover: #{$light-heart-hover};
+  --clr-heart-active: #{$light-heart-active};
+
+  --clr-retweet-hover: #{$light-retweet-hover};
+  --clr-retweet-active: #{$light-retweet-active};
+
   --clr-search-background: #{$light-search-background};
 
   --clr-logo: #{$light-logo};
@@ -95,6 +104,15 @@
   --clr-options-active: #{$dark-options-active};
 
   --clr-tweet-hover: #{$dark-tweet-hover};
+
+  --clr-comment-hover: #{$dark-comment-hover};
+  --clr-comment-active: #{$dark-comment-active};
+
+  --clr-heart-hover: #{$dark-heart-hover};
+  --clr-heart-active: #{$dark-heart-active};
+
+  --clr-retweet-hover: #{$dark-retweet-hover};
+  --clr-retweet-active: #{$dark-retweet-active};
 
   --clr-search-background: #{$dark-search-background};
 
@@ -136,6 +154,15 @@
 
   --clr-tweet-hover: #{$dim-tweet-hover};
 
+  --clr-comment-hover: #{$dim-comment-hover};
+  --clr-comment-active: #{$dim-comment-active};
+
+  --clr-heart-hover: #{$dim-heart-hover};
+  --clr-heart-active: #{$dim-heart-active};
+
+  --clr-retweet-hover: #{$dim-retweet-hover};
+  --clr-retweet-active: #{$dim-retweet-active};
+
   --clr-search-background: #{$dim-search-background};
 
   --clr-logo: #{$dim-logo};
@@ -152,6 +179,7 @@
   --clr-primary-hover: #{$blue-primary-hover};
   --clr-primary-active: #{$blue-primary-active};
   --clr-primary-disabled: #{$blue-primary-disabled};
+
 }
 
 .color-yellow {

@@ -33,33 +33,29 @@ model User {
 
 // twitter tweet model
 model Tweet {
-  id                      Int     @id @default(autoincrement())
+  id                      Int         @id @default(autoincrement())
   text                    String?
-  source                  String  @default("web")
+  image                   String?
+  source                  String      @default("web")
   in_reply_to_status_id   Int?
   in_reply_to_user_id     Int?
   in_reply_to_screen_name String?
-
-  user_id        Int
-  user           User        @relation(fields: [user_id], references: [id])
-  coordinates_id String?
-  coordinates    Coordinate? @relation(fields: [coordinates_id], references: [id])
-  place_id       String?
-  place          Place?      @relation(fields: [place_id], references: [id])
-
-  quoted_status_id Int?
-  is_quote_status  Boolean @default(false)
-
-  quote_count    Int @default(0)
-  reply_count    Int @default(0)
-  retweet_count  Int @default(0)
-  favorite_count Int @default(0)
-
-  possibly_sensitive Boolean? @default(false)
-  lang               String   @default("en")
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  user_id                 Int
+  user                    User        @relation(fields: [user_id], references: [id])
+  coordinates_id          String?
+  coordinates             Coordinate? @relation(fields: [coordinates_id], references: [id])
+  place_id                String?
+  place                   Place?      @relation(fields: [place_id], references: [id])
+  quoted_status_id        Int?
+  is_quote_status         Boolean     @default(false)
+  quote_count             Int         @default(0)
+  reply_count             Int         @default(0)
+  retweet_count           Int         @default(0)
+  favorite_count          Int         @default(0)
+  possibly_sensitive      Boolean?    @default(false)
+  lang                    String      @default("en")
+  createdAt               DateTime    @default(now())
+  updatedAt               DateTime    @updatedAt
 }
 
 // twitter coordinates model
