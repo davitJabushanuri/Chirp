@@ -5,8 +5,8 @@ import { Envelope, EnvelopeActive } from "../assets/envelope";
 import { HomeActive, Home } from "../assets/home";
 import { Search, SearchActive } from "../assets/search";
 
-import NavItem from "./NavItem";
-import styles from "./styles/MobileNavbar.module.scss";
+import NavItem from "./navbar-item";
+import styles from "./styles/mobile-navbar.module.scss";
 
 export const MobileNavbar = () => {
   const pathname = usePathname();

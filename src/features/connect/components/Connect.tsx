@@ -1,5 +1,5 @@
-import Person from "./Person";
-import styles from "./styles/Connect.module.scss";
+import Person from "./person";
+import styles from "./styles/connect.module.scss";
 
 export const Connect = () => {
   return (

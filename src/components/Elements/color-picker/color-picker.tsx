@@ -1,5 +1,5 @@
-import Color from "./Color";
-import styles from "./ColorPicker.module.scss";
+import Color from "./color";
+import styles from "./styles/color-picker.module.scss";
 
 export const ColorPicker = () => {
   return (

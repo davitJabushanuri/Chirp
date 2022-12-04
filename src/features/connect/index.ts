@@ -1,1 +1,1 @@
-export * from "./components/Connect";
+export * from "./components/connect";

@@ -1,7 +1,9 @@
+import { setCookie } from "cookies-next";
+
 import { Tick } from "@/assets/tick";
 import { useColor } from "@/stores/useColor";
 
-import styles from "./Color.module.scss";
+import styles from "./styles/color.module.scss";
 
 interface IColor {
   color: string;
@@ -31,7 +33,10 @@ const Color = ({ color }: IColor) => {
       className={`${styles.container} ${
         `color-${color}` === currentColor ? styles.active : ""
       }`}
-      onClick={() => setColor(`color-${color}`)}
+      onClick={() => {
+        setCookie("color", `color-${color}`);
+        setColor(`color-${color}`);
+      }}
     >
       <div className={styles.tick}>
         <Tick />

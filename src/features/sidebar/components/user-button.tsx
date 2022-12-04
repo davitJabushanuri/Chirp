@@ -4,7 +4,7 @@ import Avatar from "@/assets/user_placeholder.png";
 
 import { Options } from "../assets/options";
 
-import styles from "./styles/UserButton.module.scss";
+import styles from "./styles/user-button.module.scss";
 
 export const UserButton = () => {
   return (

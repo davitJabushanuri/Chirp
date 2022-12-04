@@ -1,2 +1,2 @@
-export * from "./components/Sidebar";
-export * from "./components/TweetButton";
+export * from "./components/sidebar";
+export * from "./components/tweet-button";

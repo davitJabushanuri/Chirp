@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { INavItemProps } from "../types";
 
-import styles from "./styles/NavItem.module.scss";
+import styles from "./styles/navbar-item.module.scss";
 
 const NavItem = ({ icon, title, isActive }: INavItemProps) => {
   return (

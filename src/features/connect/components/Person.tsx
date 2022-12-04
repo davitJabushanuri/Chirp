@@ -4,7 +4,7 @@ import Avatar from "@/assets/user_placeholder.png";
 
 import { IPersonProps } from "../types";
 
-import styles from "./styles/Person.module.scss";
+import styles from "./styles/person.module.scss";
 
 const person = ({ name, username, image }: IPersonProps) => {
   return (

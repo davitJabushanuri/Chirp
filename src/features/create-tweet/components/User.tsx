@@ -2,7 +2,7 @@ import Image from "next/image";
 
 import Avatar from "@/assets/user_placeholder.png";
 
-import styles from "./styles/User.module.scss";
+import styles from "./styles/user.module.scss";
 
 const User = () => {
   return (

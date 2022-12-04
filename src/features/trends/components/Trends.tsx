@@ -1,5 +1,5 @@
-import styles from "./styles/Trends.module.scss";
-import Trend from "./Trend";
+import styles from "./styles/trends.module.scss";
+import Trend from "./trend";
 
 export const Trends = () => {
   return (

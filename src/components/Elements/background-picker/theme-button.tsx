@@ -1,7 +1,9 @@
+import { setCookie } from "cookies-next";
+
 import { Tick } from "@/assets/tick";
 import { useTheme } from "@/stores/useTheme";
 
-import styles from "./ThemeButton.module.scss";
+import styles from "./styles/theme-button.module.scss";
 
 interface IThemeButton {
   theme: string;
@@ -24,7 +26,10 @@ const ThemeButton = ({ theme }: IThemeButton) => {
       className={`${styles.container} ${
         `theme-${theme}` === currentTheme ? styles.active : ""
       }`}
-      onClick={() => setTheme(`theme-${theme}`)}
+      onClick={() => {
+        setTheme(`theme-${theme}`);
+        setCookie("theme", `theme-${theme}`);
+      }}
     >
       <div className={styles.tickContainer}>
         <span className={styles.tick}>

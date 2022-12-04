@@ -3,7 +3,7 @@ import { useState } from "react";
 import { SearchClose } from "../assets/SearchClose";
 import { SearchIcon } from "../assets/SearchIcon";
 
-import styles from "./styles/Search.module.scss";
+import styles from "./styles/search.module.scss";
 
 export const Search = () => {
   const [search, setSearch] = useState<string>("");

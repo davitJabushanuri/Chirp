@@ -1,4 +1,4 @@
-import styles from "./styles/TweetButton.module.scss";
+import styles from "./styles/tweet-button.module.scss";
 
 const TweetButton = () => {
   return (

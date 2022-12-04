@@ -8,8 +8,8 @@ import { Hashtag, HashtagActive } from "../assets/hashtag";
 import { HomeActive, Home } from "../assets/home";
 import { User, UserActive } from "../assets/user";
 
-import NavItem from "./NavItem";
-import styles from "./styles/Navbar.module.scss";
+import NavItem from "./navbar-item";
+import styles from "./styles/navbar.module.scss";
 
 export const Navbar = () => {
   const pathname = usePathname();

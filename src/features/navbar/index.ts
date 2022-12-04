@@ -1,3 +1,3 @@
-export * from "./components/Navbar";
-export * from "./components/MobileNavbar";
-export * from "./components/HamburgerMenu";
+export * from "./components/navbar";
+export * from "./components/mobile-navbar";
+export * from "./components/hamburger-menu";

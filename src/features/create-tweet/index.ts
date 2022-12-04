@@ -1,2 +1,2 @@
-export * from "./components/CreateTweet";
-export * from "./components/CreateTweetModal";
+export * from "./components/create-tweet";
+export * from "./components/create-tweet-modal";

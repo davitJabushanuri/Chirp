@@ -1,5 +1,5 @@
-import styles from "./Footer.module.scss";
 import { FooterLink } from "./link";
+import styles from "./styles/footer.module.scss";
 
 export const Footer = () => {
   return (

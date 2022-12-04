@@ -3,7 +3,7 @@ import { Connect } from "@/features/connect";
 import { Search } from "@/features/search";
 import { Trends } from "@/features/trends";
 
-import styles from "./Aside.module.scss";
+import styles from "./styles/aside.module.scss";
 
 export const Aside = () => {
   return (

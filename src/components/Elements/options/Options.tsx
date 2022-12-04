@@ -1,6 +1,6 @@
 import { Dots } from "@/assets/dot";
 
-import styles from "./Options.module.scss";
+import styles from "./styles/options.module.scss";
 
 export const Options = () => {
   return (

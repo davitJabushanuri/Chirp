@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { LogoIcon } from "../assets/logo";
 
-import styles from "./styles/Logo.module.scss";
+import styles from "./styles/logo.module.scss";
 
 export const Logo = () => {
   return (

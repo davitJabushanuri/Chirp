@@ -5,10 +5,10 @@ import { LocationIcon } from "../assets/Location";
 import { PollIcon } from "../assets/Poll";
 import { ScheduleIcon } from "../assets/Schedule";
 
-import Action from "./Action";
-import styles from "./styles/CreateTweet.module.scss";
-import TweetButton from "./TweetButton";
-import User from "./User";
+import Action from "./action";
+import styles from "./styles/create-tweet.module.scss";
+import TweetButton from "./tweet-button";
+import User from "./user";
 
 export const CreateTweet = () => {
   return (

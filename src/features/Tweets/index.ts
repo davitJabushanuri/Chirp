@@ -1,1 +1,1 @@
-export * from "./components/Tweets";
+export * from "./components/tweets";

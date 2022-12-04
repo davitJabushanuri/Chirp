@@ -1,5 +1,5 @@
-import styles from "./BackgroundPicker.module.scss";
-import ThemeButton from "./ThemeButton";
+import styles from "./styles/background-picker.module.scss";
+import ThemeButton from "./theme-button";
 
 export const BackgroundPicker = () => {
   return (

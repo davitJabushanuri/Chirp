@@ -1,1 +1,1 @@
-export * from "./BackgroundPicker";
+export * from "./background-picker";

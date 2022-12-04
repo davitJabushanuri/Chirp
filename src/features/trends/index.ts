@@ -1,1 +1,1 @@
-export * from "./components/Trends";
+export * from "./components/trends";

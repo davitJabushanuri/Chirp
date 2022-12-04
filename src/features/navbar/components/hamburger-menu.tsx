@@ -12,7 +12,7 @@ import { Gear } from "../assets/gear";
 import { PlusIcon } from "../assets/PlusIcon";
 import { User } from "../assets/user";
 
-import styles from "./styles/HamburgerMenu.module.scss";
+import styles from "./styles/hamburger-menu.module.scss";
 
 export const HamburgerMenu = () => {
   const isHamburgerOpen = useHamburger((state) => state.isHamburgerOpen);

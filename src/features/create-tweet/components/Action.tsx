@@ -1,4 +1,4 @@
-import styles from "./styles/Action.module.scss";
+import styles from "./styles/action.module.scss";
 
 const Action = ({ icon }: { icon: React.ReactNode }) => {
   return (

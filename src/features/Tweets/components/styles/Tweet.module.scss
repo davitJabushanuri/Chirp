@@ -1,0 +1,205 @@
+.container {
+  padding: 0.2rem 1rem;
+  display: grid;
+  gap: 0.4rem;
+  grid-template-columns: 3rem 1fr;
+  cursor: pointer;
+  border-bottom: 1px solid var(--clr-border);
+
+  &:hover {
+    background-color: var(--clr-tweet-hover);
+  }
+
+
+  .avatar {
+    margin-top: 0.6rem;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+  }
+
+  .header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding-left: 0.4rem;
+
+    .user {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.2rem;
+
+      .name {
+        font-weight: 500;
+        font-size: 0.925rem;
+        cursor: pointer;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      .username {
+        font-size: 0.9rem;
+        color: var(--clr-tertiary);
+        cursor: pointer;
+      }
+
+      .dot {
+        margin: 0.2rem 0.1rem 0 0.1rem;
+        color: var(--clr-tertiary);
+
+      }
+
+      .date {
+        font-size: 0.9rem;
+        color: var(--clr-tertiary);
+        cursor: pointer;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+
+      .verified {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        svg {
+          width: 1.2rem;
+          height: 1.2rem;
+          fill: var(--clr-primary);
+          cursor: pointer;
+
+        }
+      }
+    }
+  }
+
+  .tweet {
+    padding-left: 0.4rem;
+
+    .text {
+      font-size: 0.925rem;
+      cursor: pointer;
+    }
+
+    .image {
+      width: 100%;
+      height: 100%;
+      border-radius: 1rem;
+      overflow: hidden;
+      cursor: pointer;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  .actions {
+    margin-top: 0.4rem;
+    max-width: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    div {
+      display: flex;
+      align-items: center;
+
+    }
+
+    button {
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+
+      &:hover {
+        span {
+          color: var(--clr-primary);
+        }
+
+        .icon {
+          background-color: var(--clr-comment-hover);
+
+          svg {
+            fill: var(--clr-primary);
+          }
+        }
+
+        .retweetIcon {
+          background-color: var(--clr-retweet-hover);
+        }
+
+        .heartIcon {
+          background-color: var(--clr-heart-hover);
+        }
+      }
+
+      &:active {
+        span {
+          color: var(--clr-primary);
+        }
+
+        .icon {
+          background-color: var(--clr-comment-active);
+
+          svg {
+            fill: var(--clr-primary);
+          }
+        }
+
+        .retweetIcon {
+          background-color: var(--clr-retweet-active);
+        }
+
+        .heartIcon {
+          background-color: var(--clr-heart-active);
+        }
+      }
+
+      span {
+        font-size: 0.7rem;
+        color: var(--clr-tertiary);
+        display: flex;
+        align-items: center;
+      }
+
+      .icon {
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+
+        svg {
+          width: 1.1rem;
+          height: 1.1rem;
+          fill: var(--clr-tertiary);
+          cursor: pointer;
+        }
+      }
+    }
+
+
+  }
+}

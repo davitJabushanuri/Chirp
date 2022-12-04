@@ -5,8 +5,8 @@ import { useModal } from "@/stores/useModal";
 
 import { BackArrow } from "../assets/BackArrow";
 
-import { CreateTweet } from "./CreateTweet";
-import styles from "./styles/CreateTweetModal.module.scss";
+import { CreateTweet } from "./create-tweet";
+import styles from "./styles/create-tweet-modal.module.scss";
 
 export const CreateTweetModal = () => {
   const closeModal = useModal((state) => state.closeModal);

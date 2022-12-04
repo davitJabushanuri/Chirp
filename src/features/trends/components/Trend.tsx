@@ -2,7 +2,7 @@ import { Options } from "@/components/elements/options";
 
 import { iTrendProps } from "../types";
 
-import styles from "./styles/Trend.module.scss";
+import styles from "./styles/trend.module.scss";
 
 const Trend = ({
   ranking = 1,

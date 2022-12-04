@@ -2,7 +2,7 @@ import { useModal } from "@/stores/useModal";
 
 import { Pen } from "../assets/pen";
 
-import styles from "./styles/TweetButton.module.scss";
+import styles from "./styles/tweet-button.module.scss";
 
 export const TweetButton = () => {
   const openModal = useModal((state) => state.openModal);
