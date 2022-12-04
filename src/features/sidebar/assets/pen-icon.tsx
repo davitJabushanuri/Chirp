@@ -1,4 +1,4 @@
-export const Pen = () => {
+export const PenIcon = () => {
   return (
     <svg className="svgIcon" viewBox="0 0 24 24" aria-hidden="true">
       <g>

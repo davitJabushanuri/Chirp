@@ -1,9 +1,9 @@
 import { usePathname } from "next/navigation";
 
-import { BellActive, Bell } from "../assets/bell";
-import { Envelope, EnvelopeActive } from "../assets/envelope";
-import { HomeActive, Home } from "../assets/home";
-import { Search, SearchActive } from "../assets/search";
+import { BellActive, Bell } from "../assets/bell-icon";
+import { Envelope, EnvelopeActive } from "../assets/envelope-icon";
+import { HomeActive, Home } from "../assets/home-icon";
+import { Search, SearchActive } from "../assets/search-icon";
 
 import NavItem from "./navbar-item";
 import styles from "./styles/mobile-navbar.module.scss";

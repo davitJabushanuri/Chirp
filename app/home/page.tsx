@@ -3,7 +3,7 @@
 import { CreateTweet } from "@/features/create-tweet";
 import { Tweets } from "@/features/tweets";
 
-import styles from "./home.module.scss";
+import styles from "./styles/home.module.scss";
 
 const Home = () => {
   return (

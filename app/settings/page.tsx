@@ -3,7 +3,7 @@
 import { BackgroundPicker } from "@/components/elements/background-picker";
 import { ColorPicker } from "@/components/elements/color-picker";
 
-import styles from "./settings.module.scss";
+import styles from "./styles/settings.module.scss";
 
 const Settings = () => {
   return (

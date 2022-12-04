@@ -1,9 +1,9 @@
-import { EmojiIcon } from "../assets/Emoji";
-import { GifIcon } from "../assets/Gif";
-import { ImageIcon } from "../assets/Image";
-import { LocationIcon } from "../assets/Location";
-import { PollIcon } from "../assets/Poll";
-import { ScheduleIcon } from "../assets/Schedule";
+import { EmojiIcon } from "../assets/emoji-icon";
+import { GifIcon } from "../assets/gif-icon";
+import { ImageIcon } from "../assets/image-icon";
+import { LocationIcon } from "../assets/location-icon";
+import { PollIcon } from "../assets/poll-icon";
+import { ScheduleIcon } from "../assets/schedule-icon";
 
 import Action from "./action";
 import styles from "./styles/create-tweet.module.scss";

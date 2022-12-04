@@ -3,14 +3,14 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { CloseIcon } from "@/assets/CloseIcon";
+import { CloseIcon } from "@/assets/close-icon";
 import Avatar from "@/assets/user_placeholder.png";
 import { useHamburger } from "@/stores/useHamburger";
 
-import { Bookmark } from "../assets/bookmark";
-import { Gear } from "../assets/gear";
-import { PlusIcon } from "../assets/PlusIcon";
-import { User } from "../assets/user";
+import { Bookmark } from "../assets/bookmark-icon";
+import { Gear } from "../assets/gear-icon";
+import { PlusIcon } from "../assets/plus-icon";
+import { User } from "../assets/user-icon";
 
 import styles from "./styles/hamburger-menu.module.scss";
 

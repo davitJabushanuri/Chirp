@@ -2,7 +2,7 @@ import Image from "next/image";
 
 import Avatar from "@/assets/user_placeholder.png";
 
-import { Options } from "../assets/options";
+import { OptionsIcon } from "../assets/options-icon";
 
 import styles from "./styles/user-button.module.scss";
 
@@ -22,7 +22,7 @@ export const UserButton = () => {
         <span className={styles.username}>@johndoe</span>
       </div>
       <div className={styles.options}>
-        <Options />
+        <OptionsIcon />
       </div>
     </div>
   );

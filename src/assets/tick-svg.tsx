@@ -1,4 +1,4 @@
-export const Tick = () => {
+export const TickIcon = () => {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true">
       <g>

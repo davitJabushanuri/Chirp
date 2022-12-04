@@ -1,4 +1,4 @@
-export const BackArrow = () => {
+export const BackArrowIcon = () => {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true">
       <g>

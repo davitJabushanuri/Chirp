@@ -1,4 +1,4 @@
-import styles from "./explore.module.scss";
+import styles from "./styles/explore.module.scss";
 
 const Explore = () => {
   return <div className={styles.container}>explore</div>;

@@ -1,6 +1,6 @@
 import { useModal } from "@/stores/useModal";
 
-import { Pen } from "../assets/pen";
+import { PenIcon } from "../assets/pen-icon";
 
 import styles from "./styles/tweet-button.module.scss";
 
@@ -10,7 +10,7 @@ export const TweetButton = () => {
   return (
     <button onClick={() => openModal()} className={styles.container}>
       <div className={styles.icon}>
-        <Pen />
+        <PenIcon />
       </div>
       <div className={styles.text}>Tweet</div>
     </button>

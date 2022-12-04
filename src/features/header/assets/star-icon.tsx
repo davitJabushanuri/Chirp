@@ -1,4 +1,4 @@
-export const Star = () => {
+export const StarIcon = () => {
   return (
     <svg className="svgIcon" viewBox="0 0 24 24" aria-hidden="true">
       <g>

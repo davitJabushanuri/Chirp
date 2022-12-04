@@ -2,7 +2,7 @@ import { cookies } from "next/headers";
 
 import MainLayout from "@/components/layout/main-layout/main-layout";
 
-import "./layout.scss";
+import "./styles/layout.scss";
 
 export default async function RootLayout({
   children,
