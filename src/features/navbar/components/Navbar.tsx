@@ -1,12 +1,12 @@
 import { usePathname } from "next/navigation";
 
-import { BellActive, Bell } from "../assets/bell";
-import { Bookmark, BookmarkActive } from "../assets/bookmark";
-import { Envelope, EnvelopeActive } from "../assets/envelope";
-import { Gear, GearActive } from "../assets/gear";
-import { Hashtag, HashtagActive } from "../assets/hashtag";
-import { HomeActive, Home } from "../assets/home";
-import { User, UserActive } from "../assets/user";
+import { BellActive, Bell } from "../assets/bell-icon";
+import { Bookmark, BookmarkActive } from "../assets/bookmark-icon";
+import { Envelope, EnvelopeActive } from "../assets/envelope-icon";
+import { Gear, GearActive } from "../assets/gear-icon";
+import { Hashtag, HashtagActive } from "../assets/hashtag-icon";
+import { HomeActive, Home } from "../assets/home-icon";
+import { User, UserActive } from "../assets/user-icon";
 
 import NavItem from "./navbar-item";
 import styles from "./styles/navbar.module.scss";

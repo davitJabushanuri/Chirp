@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import Avatar from "@/assets/user_placeholder.png";
 import { Options } from "@/components/elements/options";
@@ -14,7 +15,7 @@ import styles from "./styles/tweet.module.scss";
 
 const Tweet = ({ tweet }: { tweet: ITweet }) => {
   return (
-    <div className={styles.container}>
+    <Link href={`/status/${tweet.id}`} className={styles.container}>
       <div className={styles.avatar}>
         <Image src={Avatar} alt="" />
       </div>
@@ -22,11 +23,11 @@ const Tweet = ({ tweet }: { tweet: ITweet }) => {
         <div className={styles.header}>
           <div className={styles.user}>
             <span className={styles.name}>John Doe</span>
-            {
-              <span className={styles.verified}>
-                <VerifiedIcon />
-              </span>
-            }
+
+            <span className={styles.verified}>
+              <VerifiedIcon />
+            </span>
+
             <span className={styles.username}>@johndoe</span>
             <span className={styles.dot}>·</span>
             <span className={styles.date}>1h</span>
@@ -87,7 +88,7 @@ const Tweet = ({ tweet }: { tweet: ITweet }) => {
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

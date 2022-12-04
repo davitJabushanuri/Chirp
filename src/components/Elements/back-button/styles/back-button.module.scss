@@ -1,0 +1,22 @@
+@use "abstracts/media-query" as *;
+
+.container {
+  width: 2rem;
+  height: 2rem;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+
+  &:hover {
+    background-color: var(--clr-trends-active);
+  }
+
+
+
+  @include mq ("small") {
+    display: none;
+  }
+}

@@ -1,7 +1,7 @@
 import supabase from "@/utils/supabaseClient";
 
-export default async function getTweet() {
-  const { data, error } = await supabase.from("Tweet").select("*");
+export default async function getTweet({ id }: { id: string }) {
+  const { data, error } = await supabase.from("Tweet").select("*").eq("id", id);
   if (error) {
     console.log("error", error);
   }

@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-import { SearchClose } from "../assets/SearchClose";
-import { SearchIcon } from "../assets/SearchIcon";
+import { SearchCloseIcon } from "../assets/search-close-icon";
+import { SearchIcon } from "../assets/search-icon";
 
 import styles from "./styles/search.module.scss";
 
@@ -22,7 +22,7 @@ export const Search = () => {
         />
         {search && (
           <button onClick={() => setSearch("")} className={styles.close}>
-            <SearchClose />
+            <SearchCloseIcon />
           </button>
         )}
       </form>

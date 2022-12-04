@@ -1,15 +1,10 @@
 @use "abstracts/media-query" as *;
 
 .container {
-  background-color: rgba($color: var(--clr-background), $alpha: 0.9);
   display: flex;
   align-items: center;
-  padding: 0.6rem 0.8rem;
   gap: 1rem;
-  z-index: 99;
-
-  position: sticky;
-  top: 0;
+  height: 100%;
 
   .home {
     color: var(--clr-secondary);
@@ -20,10 +15,12 @@
   .star {
     fill: var(--clr-secondary);
     margin-left: auto;
-    height: 2.2rem;
-    width: 2.2rem;
-    padding: 0.5rem;
+    height: 2rem;
+    width: 2rem;
     border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &:hover {
       cursor: pointer;
@@ -33,6 +30,8 @@
     &:active {
       background-color: var(--clr-nav-active);
     }
+
+
   }
 
   @include mq("small") {

@@ -1,0 +1,31 @@
+@use './abstracts/media-query' as *;
+
+.container {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  height: 100%;
+
+  .search {
+    width: 100%;
+
+    form {
+      height: 1.8rem;
+    }
+  }
+
+  button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+  }
+
+  @include mq('small') {
+    .search {
+      form {
+        height: 100%;
+      }
+    }
+  }
+}
