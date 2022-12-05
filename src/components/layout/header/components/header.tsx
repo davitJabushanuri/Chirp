@@ -1,6 +1,6 @@
 import { usePathname } from "next/navigation";
 
-import { BackButton } from "@/components/elements/back-button/back-button";
+import { BackButton } from "@/components/elements/back-button";
 import { HamburgerButton } from "@/components/elements/hamburger-button";
 
 import { BookmarksHeader } from "./bookmarks-header";
@@ -18,15 +18,17 @@ export const Header = () => {
 
   return (
     <div id="home" className={styles.container}>
-      <div className={styles.hamburgerButton}>
-        {pathname === "/bookmarks" ||
-        pathname === "/profile" ||
-        pathname?.split("/")[1] === "status" ? (
+      {pathname === "/bookmarks" ||
+      pathname === "/profile" ||
+      pathname?.split("/")[1] === "status" ? (
+        <div className={styles.backButton}>
           <BackButton />
-        ) : (
+        </div>
+      ) : (
+        <div className={styles.hamburgerButton}>
           <HamburgerButton />
-        )}
-      </div>
+        </div>
+      )}
       {pathname === "/home" || pathname === "/" ? (
         <HomeHeader />
       ) : pathname === "/explore" ? (

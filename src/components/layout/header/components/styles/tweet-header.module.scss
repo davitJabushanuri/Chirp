@@ -3,8 +3,11 @@
 .container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
+  gap: 1rem;
+
+  .backButton {
+    display: none;
+  }
 
   .title {
     font-size: 1rem;
@@ -15,6 +18,10 @@
 
 
   @include mq('small') {
+    .backButton {
+      display: block;
+    }
+
     .title {
       font-size: 1.2rem;
     }

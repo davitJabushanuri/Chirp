@@ -1,6 +1,6 @@
 import { setCookie } from "cookies-next";
 
-import { Tick } from "@/assets/tick";
+import { TickIcon } from "@/assets/tick-svg";
 import { useTheme } from "@/stores/useTheme";
 
 import styles from "./styles/theme-button.module.scss";
@@ -33,7 +33,7 @@ const ThemeButton = ({ theme }: IThemeButton) => {
     >
       <div className={styles.tickContainer}>
         <span className={styles.tick}>
-          <Tick />
+          <TickIcon />
         </span>
       </div>
       <span className={styles.text}>{title}</span>

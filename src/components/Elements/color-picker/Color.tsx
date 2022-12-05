@@ -1,6 +1,6 @@
 import { setCookie } from "cookies-next";
 
-import { Tick } from "@/assets/tick";
+import { TickIcon } from "@/assets/tick-svg";
 import { useColor } from "@/stores/useColor";
 
 import styles from "./styles/color.module.scss";
@@ -39,7 +39,7 @@ const Color = ({ color }: IColor) => {
       }}
     >
       <div className={styles.tick}>
-        <Tick />
+        <TickIcon />
       </div>
     </button>
   );

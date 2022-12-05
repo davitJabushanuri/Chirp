@@ -13,10 +13,4 @@
   &:hover {
     background-color: var(--clr-trends-active);
   }
-
-
-
-  @include mq ("small") {
-    display: none;
-  }
 }

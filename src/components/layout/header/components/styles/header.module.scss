@@ -15,7 +15,8 @@
   gap: 1rem;
   align-items: center;
 
-  .hamburgerButton {
+  .hamburgerButton,
+  .backButton {
     display: flex;
     align-items: center;
   }
@@ -29,7 +30,8 @@
   @include mq('small') {
     grid-template-columns: 1fr;
 
-    .hamburgerButton {
+    .hamburgerButton,
+    .backButton {
       display: none;
     }
   }
