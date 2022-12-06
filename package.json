@@ -55,6 +55,7 @@
     "@typescript-eslint/parser": "^5.42.0",
     "cookies-next": "^2.1.1",
     "cypress": "^11.1.0",
+    "dayjs": "^1.11.6",
     "encoding": "^0.1.13",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-cypress": "^2.12.1",
