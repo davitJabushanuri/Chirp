@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  justify-content: center;
+  padding-top: 4rem;
+
+
+  .loading {
+    width: 2rem;
+    height: 2rem;
+    border: 2px solid var(--clr-blue);
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+  }
+}

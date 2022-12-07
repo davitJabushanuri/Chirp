@@ -1,6 +1,7 @@
 "use client";
-
 import { useQuery } from "@tanstack/react-query";
+
+import { LoadingSpinner } from "@/components/elements/loading-spinner";
 
 import getTweets from "../api/getTweets";
 import { ITweet } from "../types";
@@ -16,7 +17,7 @@ export const Tweets = () => {
   } = useQuery<ITweet[] | null>(["tweets"], () => getTweets());
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner />;
   }
 
   if (isError) {

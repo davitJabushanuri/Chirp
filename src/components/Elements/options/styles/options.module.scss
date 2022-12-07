@@ -10,11 +10,12 @@
 
   &:hover {
     background-color: var(--clr-options-hover);
-    fill: var(--clr-primary);
+    fill: var(--clr-blue);
   }
 
   &:active {
     background-color: var(--clr-options-active);
+    fill: var(--clr-blue);
   }
 
   svg {

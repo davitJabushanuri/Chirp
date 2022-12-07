@@ -8,7 +8,9 @@ import styles from "./styles/aside.module.scss";
 export const Aside = () => {
   return (
     <aside className={styles.container}>
-      <Search />
+      <div className={styles.search}>
+        <Search />
+      </div>
       <Trends />
       <Connect />
       <Footer />

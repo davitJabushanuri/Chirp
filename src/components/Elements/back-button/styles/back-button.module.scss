@@ -11,6 +11,10 @@
   border-radius: 50%;
 
   &:hover {
+    background-color: var(--clr-trends-hover);
+  }
+
+  &:active {
     background-color: var(--clr-trends-active);
   }
 }

@@ -1,0 +1,123 @@
+.container {
+  .tweetDetails {
+    padding: 1rem;
+
+    .user {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+
+      .avatar {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        overflow: hidden;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .userInfo {
+        .name {
+          display: flex;
+          align-items: center;
+          gap: 0.2rem;
+
+          .text {
+            font-size: 0.925rem;
+            font-weight: 500;
+          }
+
+          .icon {
+            width: 1.2rem;
+            height: 1.2rem;
+            fill: var(--clr-primary);
+          }
+        }
+
+        .username {
+          font-size: 0.9rem;
+          color: var(--clr-tertiary);
+        }
+      }
+
+      .option {
+        margin-left: auto;
+        margin-bottom: auto;
+      }
+    }
+
+    .tweet {
+
+      .text {
+        font-size: 1.375rem;
+        line-height: 1.5;
+      }
+
+      .image {
+        margin-top: 0.8rem;
+        width: 100%;
+        height: 100%;
+        border-radius: 1rem;
+        overflow: hidden;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+
+    .tweetDate {
+      padding: 1rem 0;
+      font-size: 0.9rem;
+      color: var(--clr-tertiary);
+      border-bottom: 1px solid var(--clr-border);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .tweetStatistics {
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--clr-border);
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+
+      .statistic {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+
+        .number {
+          font-size: 0.950rem;
+        }
+
+        .text {
+          font-size: 0.875rem;
+          color: var(--clr-tertiary);
+        }
+      }
+    }
+
+    .tweetActions {
+      padding: 0.4rem 0;
+      border-bottom: 1px solid var(--clr-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+
+      svg {
+        width: 21px;
+        height: 21px;
+      }
+    }
+  }
+}

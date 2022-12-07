@@ -11,11 +11,19 @@ import { useModal } from "@/stores/useModal";
 import { useTheme } from "@/stores/useTheme";
 import ReactQueryWrapper from "@/utils/react-query";
 
-const MainLayout = ({ children }: { children: React.ReactNode }) => {
+const MainLayout = ({
+  children,
+  session,
+}: {
+  children: React.ReactNode;
+  session: any;
+}) => {
   const currentTheme = useTheme((state) => state.theme);
   const currentColor = useColor((state) => state.color);
   const isModalOpen = useModal((state) => state.isModalOpen);
   const isHamburgerOpen = useHamburger((state) => state.isHamburgerOpen);
+
+  console.log("session", session);
 
   return (
     <body className={`${currentTheme} ${currentColor}`}>

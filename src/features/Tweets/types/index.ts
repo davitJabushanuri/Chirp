@@ -7,8 +7,8 @@ export interface ITweet {
   text?: string;
   image?: string;
   user_id: number;
-  created_at: string;
-  updated_at: string;
+  createdAt: string;
+  updatedAt: string;
   coordinates?: string;
   favorite_count: number;
   in_reply_to_screen_name?: number;

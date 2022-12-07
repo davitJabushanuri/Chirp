@@ -22,7 +22,7 @@
     background-color: var(--clr-background);
     position: sticky;
     top: 0;
-    padding: 0.4rem 0;
+    padding: 0.4rem 0 0.250rem 0;
   }
 
   @include mq("large") {

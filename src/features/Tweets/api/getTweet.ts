@@ -5,5 +5,5 @@ export default async function getTweet({ id }: { id: string }) {
   if (error) {
     console.log("error", error);
   }
-  return data;
+  return data ? data[0] : null;
 }
