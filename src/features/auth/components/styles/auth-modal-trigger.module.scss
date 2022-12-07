@@ -1,0 +1,171 @@
+@use './abstracts/media-query' as *;
+
+.container {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 3.8rem;
+  z-index: 1000;
+  background-color: var(--clr-background);
+  border-top: 1px solid var(--clr-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .content {
+    width: 100%;
+
+    .placeholder {
+      display: none;
+    }
+
+    .text {
+      display: none;
+    }
+
+    .buttons {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      padding: 1rem;
+
+      button {
+        width: 100%;
+        min-width: 5rem;
+        padding: 0.4rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 100vmax;
+        font-weight: 600;
+        font-size: 0.85rem;
+        cursor: pointer;
+      }
+
+      .signIn {
+        background-color: var(--clr-background);
+        color: var(--clr-blue);
+        border: 1px solid var(--clr-modal-background);
+
+        &:hover {
+          background-color: var(--clr-dim-hover);
+        }
+
+        &:active {
+          background-color: var(--clr-dim-active);
+        }
+      }
+
+      .signUp {
+        background-color: var(--clr-blue);
+        border: 1px solid var(--clr-modal-background);
+
+        &:hover {
+          background-color: var(--clr-blue-hover);
+        }
+
+        &:active {
+          background-color: var(--clr-blue-active);
+        }
+      }
+    }
+  }
+
+
+  @include mq('small') {
+    background-color: var(--clr-blue);
+
+    .content {
+      .buttons {
+
+        button {
+          padding: 0.5rem;
+          font-size: 0.9rem;
+        }
+
+        .signIn {
+          background-color: var(--clr-blue);
+          color: var(--clr-light);
+          border: 1px solid var(--clr-login-border);
+
+          &:hover {
+            background-color: var(--clr-login-hover);
+          }
+
+          &:active {
+            background-color: var(--clr-login-active);
+          }
+        }
+
+        .signUp {
+          background-color: var(--clr-light);
+          color: var(--clr-dim);
+
+          &:hover {
+            background-color: var(--clr-signup-hover);
+          }
+
+          &:active {
+            background-color: var(--clr-signup-active);
+          }
+        }
+      }
+    }
+
+  }
+
+  @include mq('medium') {
+    height: 4.25rem;
+
+    .content {
+      margin: 0 auto;
+      max-width: 700px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .text {
+        display: block;
+        padding: 0 1rem;
+        margin-left: 60px;
+
+        h1 {
+          font-size: 1.375rem;
+          font-weight: 700;
+          letter-spacing: 0.8px;
+        }
+
+        p {
+          font-size: 0.875rem;
+          font-weight: 400;
+        }
+      }
+    }
+
+  }
+
+  @include mq("large") {
+    .content {
+      max-width: 1020px;
+    }
+  }
+
+  @include mq("x-large") {
+    .content {
+      max-width: 1100px;
+
+    }
+  }
+
+  @include mq("xx-large") {
+    .content {
+      max-width: 1300px;
+
+      .text {
+        margin-left: 280px;
+      }
+    }
+  }
+}

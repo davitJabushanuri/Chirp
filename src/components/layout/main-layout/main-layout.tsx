@@ -2,6 +2,7 @@
 
 import { Aside } from "@/components/layout/aside";
 import { Header } from "@/components/layout/header";
+import { AuthModalTrigger } from "@/features/auth";
 import { CreateTweetModal } from "@/features/create-tweet";
 import { HamburgerMenu, MobileNavbar } from "@/features/navbar";
 import { Sidebar, TweetButton } from "@/features/sidebar";
@@ -23,8 +24,6 @@ const MainLayout = ({
   const isModalOpen = useModal((state) => state.isModalOpen);
   const isHamburgerOpen = useHamburger((state) => state.isHamburgerOpen);
 
-  console.log("session", session);
-
   return (
     <body className={`${currentTheme} ${currentColor}`}>
       <div className="layout">
@@ -41,6 +40,7 @@ const MainLayout = ({
       </div>
       {isModalOpen && <CreateTweetModal />}
       {isHamburgerOpen && <HamburgerMenu />}
+      <AuthModalTrigger />
     </body>
   );
 };
