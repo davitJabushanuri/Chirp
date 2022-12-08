@@ -1,14 +1,10 @@
-import supabase from "@/utils/supabaseClient";
-
 import styles from "./styles/landing-page.module.scss";
 
 export default async function Home() {
-  // const { data, error } = await supabase.auth.signUp({
-  //   email: "davitiuss@gmail.com",
-  //   password: "password",
-  // });
-
-  // console.log(data, error);
-
-  return <div className={styles.container}></div>;
+  return (
+    <div className={styles.container}>
+      <a href="/api/auth/signup">Sign up</a>
+      <a href="/api/auth/login">Login</a>
+    </div>
+  );
 }

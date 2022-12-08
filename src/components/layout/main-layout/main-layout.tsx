@@ -2,26 +2,21 @@
 
 import { Aside } from "@/components/layout/aside";
 import { Header } from "@/components/layout/header";
-import { AuthModalTrigger } from "@/features/auth";
+import { AuthModal, AuthModalTrigger } from "@/features/auth";
 import { CreateTweetModal } from "@/features/create-tweet";
 import { HamburgerMenu, MobileNavbar } from "@/features/navbar";
 import { Sidebar, TweetButton } from "@/features/sidebar";
+import { useAuthModal } from "@/stores/useAuthModal";
 import { useColor } from "@/stores/useColor";
 import { useHamburger } from "@/stores/useHamburger";
-import { useModal } from "@/stores/useModal";
 import { useTheme } from "@/stores/useTheme";
-import ReactQueryWrapper from "@/utils/react-query";
+import { useTweetModal } from "@/stores/useTweetModal";
 
-const MainLayout = ({
-  children,
-  session,
-}: {
-  children: React.ReactNode;
-  session: any;
-}) => {
+const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const currentTheme = useTheme((state) => state.theme);
   const currentColor = useColor((state) => state.color);
-  const isModalOpen = useModal((state) => state.isModalOpen);
+  const isTweetModalOpen = useTweetModal((state) => state.isModalOpen);
+  const isAuthModalOpen = useAuthModal((state) => state.isModalOpen);
   const isHamburgerOpen = useHamburger((state) => state.isHamburgerOpen);
 
   return (
@@ -34,13 +29,14 @@ const MainLayout = ({
         <Sidebar />
         <main>
           <Header />
-          <ReactQueryWrapper>{children}</ReactQueryWrapper>
+          {children}
         </main>
         <Aside />
       </div>
-      {isModalOpen && <CreateTweetModal />}
+      {isTweetModalOpen && <CreateTweetModal />}
       {isHamburgerOpen && <HamburgerMenu />}
-      <AuthModalTrigger />
+      {!true && <AuthModalTrigger />}
+      {isAuthModalOpen && <AuthModal />}
     </body>
   );
 };

@@ -6,7 +6,7 @@ interface IModal {
   closeModal: () => void;
 }
 
-export const useModal = create<IModal>((set) => ({
+export const useTweetModal = create<IModal>((set) => ({
   isModalOpen: false,
   openModal: () => set({ isModalOpen: true }),
   closeModal: () => set({ isModalOpen: false }),

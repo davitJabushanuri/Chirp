@@ -1,11 +1,11 @@
-import { useModal } from "@/stores/useModal";
+import { useTweetModal } from "@/stores/useTweetModal";
 
 import { PenIcon } from "../assets/pen-icon";
 
 import styles from "./styles/tweet-button.module.scss";
 
 export const TweetButton = () => {
-  const openModal = useModal((state) => state.openModal);
+  const openModal = useTweetModal((state) => state.openModal);
 
   return (
     <button onClick={() => openModal()} className={styles.container}>
