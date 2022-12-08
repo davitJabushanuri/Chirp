@@ -11,8 +11,17 @@ import { useColor } from "@/stores/useColor";
 import { useHamburger } from "@/stores/useHamburger";
 import { useTheme } from "@/stores/useTheme";
 import { useTweetModal } from "@/stores/useTweetModal";
+import ReactQueryWrapper from "@/utils/react-query";
 
-const MainLayout = ({ children }: { children: React.ReactNode }) => {
+const MainLayout = ({
+  children,
+  theme,
+  color,
+}: {
+  children: React.ReactNode;
+  theme: string | undefined;
+  color: string | undefined;
+}) => {
   const currentTheme = useTheme((state) => state.theme);
   const currentColor = useColor((state) => state.color);
   const isTweetModalOpen = useTweetModal((state) => state.isModalOpen);
@@ -20,7 +29,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const isHamburgerOpen = useHamburger((state) => state.isHamburgerOpen);
 
   return (
-    <body className={`${currentTheme} ${currentColor}`}>
+    <body className={`${currentTheme || theme} ${currentColor || color}`}>
       <div className="layout">
         <MobileNavbar />
         <div className="mobile-tweet-button">
@@ -29,7 +38,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
         <Sidebar />
         <main>
           <Header />
-          {children}
+          <ReactQueryWrapper>{children}</ReactQueryWrapper>
         </main>
         <Aside />
       </div>
