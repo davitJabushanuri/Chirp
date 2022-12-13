@@ -16,19 +16,21 @@ model VerificationToken {
 }
 
 model Account {
-  id                String  @id @default(cuid())
-  userId            Int
-  type              String
-  provider          String
-  providerAccountId String
-  refresh_token     String? @db.Text
-  access_token      String? @db.Text
-  expires_at        Int?
-  token_type        String?
-  scope             String?
-  id_token          String? @db.Text
-  session_state     String?
-  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id                 String  @id @default(cuid())
+  userId             Int
+  type               String
+  provider           String
+  providerAccountId  String
+  refresh_token      String? @db.Text
+  access_token       String? @db.Text
+  oath_token         String? @db.Text
+  oauth_token_secret String?
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String? @db.Text
+  session_state      String?
+  user               User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
 }
@@ -54,7 +56,7 @@ model User {
   url                   String?
   description           String?
   protected             Boolean?
-  verified              Boolean?
+  verified              Boolean   @default(false)
   followers_count       Int       @default(0)
   friends_count         Int       @default(0)
   favorites_count       Int       @default(0)

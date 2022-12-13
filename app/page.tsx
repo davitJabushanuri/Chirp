@@ -6,6 +6,7 @@ import styles from "./styles/landing-page.module.scss";
 
 export default function Home() {
   const { data: session } = useSession();
+  console.log(session);
 
   return (
     <div className={styles.container}>

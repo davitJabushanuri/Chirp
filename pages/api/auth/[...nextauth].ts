@@ -1,14 +1,22 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import NextAuth, { type NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import TwitterProvider from "next-auth/providers/twitter";
 
-import { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET } from "@/config";
+import {
+  GOOGLE_CLIENT_ID,
+  GOOGLE_CLIENT_SECRET,
+  TWITTER_CLIENT_ID,
+  TWITTER_CLIENT_SECRET,
+} from "@/config";
 import { prisma } from "@/lib/prisma";
 
 export const authOptions: NextAuthOptions = {
+  session: {
+    strategy: "database",
+  },
   callbacks: {
-    async signIn({ user, account, profile, email, credentials }) {
-      console.log(user, account, profile, email, credentials);
+    async signIn() {
       const isAllowedToSignIn = true;
       if (isAllowedToSignIn) {
         return true;
@@ -17,24 +25,25 @@ export const authOptions: NextAuthOptions = {
       }
     },
 
-    async jwt({ token, account, profile }) {
-      if (account) {
-        token.accessToken = account.access_token;
-        token.id = profile?.id;
+    async session({ session, user }) {
+      console.log(user);
+      if (user) {
+        session.user.id = user?.id;
+        session.user.name = user?.name;
+        session.user.email = user?.email;
+        session.user.image = user?.image;
+        session.user.role = user?.role;
       }
-      return token;
-    },
-
-    async session({ token, session }) {
-      if (token) {
-        session.user.id = token.id;
-        session.user.name = token.name;
-        session.user.email = token.email;
-        session.user.image = token.picture;
-      }
-
       return session;
     },
+  },
+
+  pages: {
+    signIn: "/auth/signin",
+    newUser: "/auth/new-user",
+    error: "/auth/error",
+    signOut: "/auth/signout",
+    verifyRequest: "/auth/verify-request",
   },
 
   adapter: PrismaAdapter(prisma),
@@ -42,6 +51,12 @@ export const authOptions: NextAuthOptions = {
     GoogleProvider({
       clientId: GOOGLE_CLIENT_ID,
       clientSecret: GOOGLE_CLIENT_SECRET,
+    }),
+
+    TwitterProvider({
+      clientId: TWITTER_CLIENT_ID,
+      clientSecret: TWITTER_CLIENT_SECRET,
+      version: "2.0",
     }),
   ],
 };
