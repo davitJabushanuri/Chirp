@@ -1,4 +1,7 @@
+"use client";
+
 import { setCookie } from "cookies-next";
+import { useEffect } from "react";
 
 import { TickIcon } from "@/assets/tick-svg";
 import { useColor } from "@/stores/useColor";
@@ -6,12 +9,18 @@ import { useColor } from "@/stores/useColor";
 import styles from "./styles/color.module.scss";
 
 interface IColor {
+  activeColor: string | undefined;
   color: string;
 }
 
-const Color = ({ color }: IColor) => {
+const Color = ({ activeColor, color }: IColor) => {
   const currentColor = useColor((state) => state.color);
   const setColor = useColor((state) => state.setColor);
+
+  useEffect(() => {
+    setColor(activeColor || "color-blue");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <button

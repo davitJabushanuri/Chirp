@@ -31,7 +31,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "pages/api/auth/[...auth0].js"
+    "@/types/*"
   ],
   "exclude": ["node_modules", "cypress", "./cypress.config.ts"]
 }

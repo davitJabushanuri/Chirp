@@ -1,4 +1,5 @@
 "use client";
+import { SessionProvider } from "next-auth/react";
 
 import { Aside } from "@/components/layout/aside";
 import { Header } from "@/components/layout/header";
@@ -29,24 +30,26 @@ const MainLayout = ({
   const isHamburgerOpen = useHamburger((state) => state.isHamburgerOpen);
 
   return (
-    <body className={`${currentTheme || theme} ${currentColor || color}`}>
-      <div className="layout">
-        <MobileNavbar />
-        <div className="mobile-tweet-button">
-          <TweetButton />
+    <SessionProvider>
+      <body className={`${currentTheme || theme} ${currentColor || color}`}>
+        <div className="layout">
+          <MobileNavbar />
+          <div className="mobile-tweet-button">
+            <TweetButton />
+          </div>
+          <Sidebar />
+          <main>
+            <Header />
+            <ReactQueryWrapper>{children}</ReactQueryWrapper>
+          </main>
+          <Aside />
         </div>
-        <Sidebar />
-        <main>
-          <Header />
-          <ReactQueryWrapper>{children}</ReactQueryWrapper>
-        </main>
-        <Aside />
-      </div>
-      {isTweetModalOpen && <CreateTweetModal />}
-      {isHamburgerOpen && <HamburgerMenu />}
-      {!true && <AuthModalTrigger />}
-      {isAuthModalOpen && <AuthModal />}
-    </body>
+        {isTweetModalOpen && <CreateTweetModal />}
+        {isHamburgerOpen && <HamburgerMenu />}
+        {!true && <AuthModalTrigger />}
+        {isAuthModalOpen && <AuthModal />}
+      </body>
+    </SessionProvider>
   );
 };
 
