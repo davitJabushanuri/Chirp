@@ -32,6 +32,9 @@
 
   --clr-signup-hover: #D7DBDC;
   --clr-signup-active: #BFC2C3;
+
+  --clr-auth-button-hover: #E6E6E6;
+  --clr-auth-button-active: #CCCCCC;
 }
 
 .theme-light {
@@ -81,6 +84,7 @@
   --clr-logo-active: #{$light-logo-active};
 
   --clr-border: #{$light-border};
+  --clr-auth-border: #{$light-auth-border};
 }
 
 .theme-dark {
@@ -130,6 +134,7 @@
   --clr-logo-active: #{$dark-logo-active};
 
   --clr-border: #{$dark-border};
+  --clr-auth-border: #{$dark-auth-border};
 }
 
 .theme-dim {
@@ -179,6 +184,7 @@
   --clr-logo-active: #{$dim-logo-active};
 
   --clr-border: #{$dim-border};
+  --clr-auth-border: #{$dim-auth-border};
 }
 
 // PRIMARY COLORS

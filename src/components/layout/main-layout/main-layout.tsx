@@ -1,5 +1,5 @@
 "use client";
-import { SessionProvider } from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 import { Aside } from "@/components/layout/aside";
 import { Header } from "@/components/layout/header";
@@ -12,6 +12,7 @@ import { useColor } from "@/stores/useColor";
 import { useHamburger } from "@/stores/useHamburger";
 import { useTheme } from "@/stores/useTheme";
 import { useTweetModal } from "@/stores/useTweetModal";
+import NextAuthProvider from "@/utils/next-auth-provider";
 import ReactQueryWrapper from "@/utils/react-query";
 
 const MainLayout = ({
@@ -29,8 +30,10 @@ const MainLayout = ({
   const isAuthModalOpen = useAuthModal((state) => state.isModalOpen);
   const isHamburgerOpen = useHamburger((state) => state.isHamburgerOpen);
 
+  const { data: session } = useSession();
+
   return (
-    <SessionProvider>
+    <NextAuthProvider>
       <body className={`${currentTheme || theme} ${currentColor || color}`}>
         <div className="layout">
           <MobileNavbar />
@@ -46,10 +49,10 @@ const MainLayout = ({
         </div>
         {isTweetModalOpen && <CreateTweetModal />}
         {isHamburgerOpen && <HamburgerMenu />}
-        {!true && <AuthModalTrigger />}
+        {!session && <AuthModalTrigger />}
         {isAuthModalOpen && <AuthModal />}
       </body>
-    </SessionProvider>
+    </NextAuthProvider>
   );
 };
 

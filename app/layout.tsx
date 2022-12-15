@@ -2,6 +2,7 @@ import { cookies } from "next/headers";
 
 import MainLayout from "@/components/layout/main-layout/main-layout";
 import "./styles/layout.scss";
+import NextAuthProvider from "@/utils/next-auth-provider";
 
 export const revalidate = 0;
 
@@ -21,9 +22,11 @@ export default async function RootLayout({
       }`}
       lang="en"
     >
-      <MainLayout theme={theme?.value} color={color?.value}>
-        {children}
-      </MainLayout>
+      <NextAuthProvider>
+        <MainLayout theme={theme?.value} color={color?.value}>
+          {children}
+        </MainLayout>
+      </NextAuthProvider>
     </html>
   );
 }

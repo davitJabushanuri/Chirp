@@ -1,10 +1,8 @@
-import { useAuthModal } from "@/stores/useAuthModal";
+import Link from "next/link";
 
 import styles from "./styles/auth-modal-trigger.module.scss";
 
 export const AuthModalTrigger = () => {
-  const openModal = useAuthModal((state) => state.openModal);
-
   return (
     <div className={styles.container}>
       <div className={styles.content}>
@@ -13,11 +11,11 @@ export const AuthModalTrigger = () => {
           <p>People on Twitter are the first to know.</p>
         </div>
         <div className={styles.buttons}>
-          <button onClick={() => openModal()} className={styles.signIn}>
-            Log in
+          <button className={styles.signIn}>
+            <Link href={`/auth/signin`}>Sign in</Link>
           </button>
-          <button onClick={() => openModal()} className={styles.signUp}>
-            Sign up
+          <button className={styles.signUp}>
+            <Link href={`/auth/signin`}>Sign up</Link>
           </button>
         </div>
       </div>

@@ -1,0 +1,161 @@
+.container {
+  display: flex;
+  justify-content: center;
+
+  .loginForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    max-width: 300px;
+
+    .title {
+      margin: 1rem 0;
+      font-size: 1.6rem;
+      font-weight: 500;
+    }
+
+    // #425364
+
+    button {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.6rem;
+      align-items: center;
+      border: 1px solid var(--clr-auth-border);
+      background-color: var(--clr-light);
+      color: var(--clr-dark);
+      padding: 0.6rem;
+      border-radius: 100vmax;
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.20s ease-in-out;
+
+      &:hover {
+        background-color: var(--clr-auth-button-hover);
+      }
+
+      &:active {
+        background-color: var(--clr-auth-button-active);
+      }
+
+      .icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        svg {
+          width: 1.1rem;
+          height: 1.1rem;
+        }
+      }
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+
+      .line {
+        width: 100%;
+        height: 1px;
+        background-color: var(--clr-auth-border);
+      }
+    }
+
+    .formContainer {
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        .inputContainer {
+          height: 55px;
+
+          label {
+            border-radius: 0.2rem;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: flex-end;
+            padding: 0.5rem;
+            cursor: text;
+            overflow: hidden;
+            border: 1px solid var(--clr-auth-border);
+            transition: all 0.2s ease-in-out;
+
+            &:focus-within {
+              outline: 2px solid var(--clr-blue);
+            }
+
+            span {
+              pointer-events: none;
+              position: absolute;
+              left: 0;
+              top: 0;
+              bottom: 0;
+              transition: 0.2s ease-in-out;
+              display: flex;
+              align-items: center;
+              font-size: 1rem;
+              padding: 0.5rem;
+              color: var(--clr-tertiary);
+            }
+
+            input {
+              width: 100%;
+
+              &::placeholder {
+                color: transparent;
+              }
+            }
+
+            input:focus+span {
+              font-size: 0.8rem;
+              transform: translateY(-0.6rem);
+              color: var(--clr-blue);
+            }
+
+            input:not(:placeholder-shown)+span {
+              transform: translateY(-0.6rem);
+              font-size: 0.8rem;
+            }
+
+          }
+
+        }
+      }
+    }
+
+    .forgotPassword {
+      button {
+        background-color: var(--clr-background);
+        color: var(--clr-secondary);
+      }
+    }
+
+    .signUp {
+      margin-top: 2rem;
+      font-size: 14px;
+
+      span {
+        color: var(--clr-tertiary);
+      }
+
+      a {
+        color: var(--clr-blue);
+        margin-left: 0.3rem;
+        cursor: pointer;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
