@@ -1,10 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import { useSession } from "next-auth/react";
 
+import { DotIcon } from "@/assets/dot-icon";
 import Avatar from "@/assets/user_placeholder.png";
 import { useAuthModal } from "@/stores/useAuthModal";
-
-import { OptionsIcon } from "../assets/options-icon";
 
 import styles from "./styles/user-button.module.scss";
 
@@ -33,7 +32,7 @@ export const UserButton = () => {
           )}
         </div>
         <div className={styles.options}>
-          <OptionsIcon />
+          <DotIcon />
         </div>
       </button>
     </>

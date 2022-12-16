@@ -29,9 +29,9 @@ export const Header = () => {
           <HamburgerButton />
         </div>
       )}
-      {pathname === "/home" || pathname === "/" ? (
+      {pathname === "/home" ? (
         <HomeHeader />
-      ) : pathname === "/explore" ? (
+      ) : pathname === "/explore" || pathname === "/" ? (
         <ExploreHeader />
       ) : pathname === "/notifications" ? (
         <NotificationsHeader />

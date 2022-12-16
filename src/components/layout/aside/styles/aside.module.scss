@@ -25,6 +25,10 @@
     padding: 0.4rem 0 0.250rem 0;
   }
 
+  .registerForm {
+    padding: 1rem;
+  }
+
   @include mq("large") {
     display: flex;
     flex-direction: column;

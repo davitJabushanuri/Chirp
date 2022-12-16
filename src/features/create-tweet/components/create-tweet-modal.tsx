@@ -1,9 +1,8 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
+import { BackArrowIcon } from "@/assets/back-arrow-icon";
 import { CloseIcon } from "@/assets/close-icon";
 import { useTweetModal } from "@/stores/useTweetModal";
-
-import { BackArrowIcon } from "../../../assets/back-arrow-icon";
 
 import { CreateTweet } from "./create-tweet";
 import styles from "./styles/create-tweet-modal.module.scss";
