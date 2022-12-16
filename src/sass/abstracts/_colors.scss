@@ -49,6 +49,12 @@ $light-logo-active: #d2ebfc;
 $light-border: #eff3f4;
 $light-auth-border: #cfd9de;
 
+$light-signout-background: #999999;
+$light-signout-logout-hover: #272C30;
+$light-signout-logout-active: #3F4347;
+$light-signout-cancel-hover: #E7E7E8;
+$light-signout-cancel-active: #CFD0D1;
+
 ////////////////////////////////////////
 // DARK THEME
 ////////////////////////////////////////
@@ -101,6 +107,12 @@ $dark-logo-active: #061f30;
 $dark-border: #2f3336;
 $dark-auth-border: #333639;
 
+$dark-signout-background: #242D34;
+$dark-signout-logout-hover: #D7DBDC;
+$dark-signout-logout-active: #BFC2C3;
+$dark-signout-cancel-hover: #181919;
+$dark-signout-cancel-active: #303131;
+
 ////////////////////////////////////////
 // DIM THEME
 ////////////////////////////////////////
@@ -152,6 +164,12 @@ $dim-logo-active: #173952;
 
 $dim-border: #38444d;
 $dim-auth-border: #425364;
+
+$dim-signout-background: #31404E;
+$dim-signout-logout-hover: #D7DBDC;
+$dim-signout-logout-active: #BFC2C3;
+$dim-signout-cancel-hover: #2B3640;
+$dim-signout-cancel-active: #414B53;
 
 ////////////////////////////////////////
 // COLORS

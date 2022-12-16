@@ -1,13 +1,19 @@
 import create from "zustand";
 
 interface IModal {
-  isModalOpen: boolean;
-  openModal: () => void;
-  closeModal: () => void;
+  isUserModalOpen: boolean;
+  isSignOutModalOpen: boolean;
+  openUserModal: () => void;
+  closeUserModal: () => void;
+  openSignOutModal: () => void;
+  closeSignOutModal: () => void;
 }
 
 export const useAuthModal = create<IModal>((set) => ({
-  isModalOpen: false,
-  openModal: () => set({ isModalOpen: true }),
-  closeModal: () => set({ isModalOpen: false }),
+  isUserModalOpen: false,
+  isSignOutModalOpen: false,
+  openUserModal: () => set({ isUserModalOpen: true }),
+  closeUserModal: () => set({ isUserModalOpen: false }),
+  openSignOutModal: () => set({ isSignOutModalOpen: true }),
+  closeSignOutModal: () => set({ isSignOutModalOpen: false }),
 }));

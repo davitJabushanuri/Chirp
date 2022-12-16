@@ -85,6 +85,12 @@
 
   --clr-border: #{$light-border};
   --clr-auth-border: #{$light-auth-border};
+
+  --clr-signout-background: #{$light-signout-background};
+  --clr-signout-logout-hover: #{$light-signout-logout-hover};
+  --clr-signout-logout-active: #{$light-signout-logout-active};
+  --clr-signout-cancel-hover: #{$light-signout-cancel-hover};
+  --clr-signout-cancel-active: #{$light-signout-cancel-active};
 }
 
 .theme-dark {
@@ -135,6 +141,12 @@
 
   --clr-border: #{$dark-border};
   --clr-auth-border: #{$dark-auth-border};
+
+  --clr-signout-background: #{$dark-signout-background};
+  --clr-signout-logout-hover: #{$dark-signout-logout-hover};
+  --clr-signout-logout-active: #{$dark-signout-logout-active};
+  --clr-signout-cancel-hover: #{$dark-signout-cancel-hover};
+  --clr-signout-cancel-active: #{$dark-signout-cancel-active};
 }
 
 .theme-dim {
@@ -185,6 +197,12 @@
 
   --clr-border: #{$dim-border};
   --clr-auth-border: #{$dim-auth-border};
+
+  --clr-signout-background: #{$dim-signout-background};
+  --clr-signout-logout-hover: #{$dim-signout-logout-hover};
+  --clr-signout-logout-active: #{$dim-signout-logout-active};
+  --clr-signout-cancel-hover: #{$dim-signout-cancel-hover};
+  --clr-signout-cancel-active: #{$dim-signout-cancel-active};
 }
 
 // PRIMARY COLORS

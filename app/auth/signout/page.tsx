@@ -1,5 +1,13 @@
+"use client";
+
+import { SignOutModal } from "@/features/sidebar";
+
 const SignOut = () => {
-  return <div>signout</div>;
+  return (
+    <div>
+      <SignOutModal />
+    </div>
+  );
 };
 
 export default SignOut;

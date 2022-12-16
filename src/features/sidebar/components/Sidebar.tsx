@@ -1,3 +1,5 @@
+import { useSession } from "next-auth/react";
+
 import { Navbar } from "@/features/navbar";
 
 import { Logo } from "./logo";
@@ -6,12 +8,14 @@ import { TweetButton } from "./tweet-button";
 import { UserButton } from "./user-button";
 
 export const Sidebar = () => {
+  const { data: session } = useSession();
+
   return (
     <aside className={styles.container}>
       <Logo />
       <Navbar />
-      <TweetButton />
-      <UserButton />
+      {session && <TweetButton />}
+      {session && <UserButton />}
     </aside>
   );
 };

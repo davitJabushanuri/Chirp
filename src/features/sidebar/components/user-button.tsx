@@ -1,29 +1,41 @@
-import Image from "next/image";
+/* eslint-disable @next/next/no-img-element */
+import { useSession } from "next-auth/react";
 
 import Avatar from "@/assets/user_placeholder.png";
+import { useAuthModal } from "@/stores/useAuthModal";
 
 import { OptionsIcon } from "../assets/options-icon";
 
 import styles from "./styles/user-button.module.scss";
 
 export const UserButton = () => {
+  const { data: session } = useSession();
+  const openUserModal = useAuthModal((state) => state.openUserModal);
+
   return (
-    <div className={styles.container}>
-      <div className={styles.avatar}>
-        <Image
-          className={styles.image}
-          src={Avatar}
-          alt="avatar"
-          placeholder="blur"
-        />
-      </div>
-      <div className={styles.userInfo}>
-        <span className={styles.name}>John Doe</span>
-        <span className={styles.username}>@johndoe</span>
-      </div>
-      <div className={styles.options}>
-        <OptionsIcon />
-      </div>
-    </div>
+    <>
+      <button onClick={() => openUserModal()} className={styles.container}>
+        <div className={styles.avatar}>
+          <img
+            className={styles.image}
+            src={session?.user?.image || Avatar}
+            alt="avatar"
+          />
+        </div>
+        <div className={styles.userInfo}>
+          {session?.user && (
+            <span className={styles.name}>{session?.user?.name}</span>
+          )}
+          {session?.user && (
+            <span className={styles.username}>
+              @{session?.user?.email.split("@")[0]}
+            </span>
+          )}
+        </div>
+        <div className={styles.options}>
+          <OptionsIcon />
+        </div>
+      </button>
+    </>
   );
 };

@@ -1,0 +1,105 @@
+@use "abstracts/media-query" as *;
+
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--clr-signout-background);
+  z-index: 999999999;
+
+  .modal {
+    width: 100%;
+    height: 100%;
+    background-color: var(--clr-background);
+    overflow: hidden;
+    border-radius: 1rem;
+    padding: 1.9rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      svg {
+        width: 2.2rem;
+        height: 2.2rem;
+        fill: var(--clr-primary);
+      }
+    }
+
+    .title {
+      font-size: 1.2rem;
+      color: var(--clr-secondary);
+      font-weight: 600;
+    }
+
+    .description {
+      font-size: 0.925rem;
+      color: var(--clr-tertiary);
+      line-height: 1.6;
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+
+      button {
+        width: 100%;
+        color: var(--clr-background);
+        font-size: 0.9rem;
+        font-weight: 500;
+        border-radius: 100vmax;
+        border: 1px solid var(--clr-auth-border);
+        padding: 0.7rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease-in-out;
+      }
+
+      .signout {
+        background-color: var(--clr-secondary);
+        color: var(--clr-background);
+
+        &:hover {
+          background-color: var(--clr-signout-logout-hover);
+        }
+
+        &:active {
+          background-color: var(--clr-signout-logout-active);
+        }
+      }
+
+      .cancel {
+        background-color: var(--clr-background);
+        color: var(--clr-secondary);
+
+        &:hover {
+          background-color: var(--clr-signout-cancel-hover);
+        }
+
+        &:active {
+          background-color: var(--clr-signout-cancel-active);
+        }
+      }
+
+    }
+
+    @include mq("small") {
+      width: 320px;
+      height: 340px;
+    }
+  }
+}

@@ -3,10 +3,10 @@ import { useSession } from "next-auth/react";
 
 import { Aside } from "@/components/layout/aside";
 import { Header } from "@/components/layout/header";
-import { AuthModal, AuthModalTrigger } from "@/features/auth";
+import { AuthModalTrigger } from "@/features/auth";
 import { CreateTweetModal } from "@/features/create-tweet";
 import { HamburgerMenu, MobileNavbar } from "@/features/navbar";
-import { Sidebar, TweetButton } from "@/features/sidebar";
+import { Sidebar, TweetButton, UserModal } from "@/features/sidebar";
 import { useAuthModal } from "@/stores/useAuthModal";
 import { useColor } from "@/stores/useColor";
 import { useHamburger } from "@/stores/useHamburger";
@@ -27,10 +27,10 @@ const MainLayout = ({
   const currentTheme = useTheme((state) => state.theme);
   const currentColor = useColor((state) => state.color);
   const isTweetModalOpen = useTweetModal((state) => state.isModalOpen);
-  const isAuthModalOpen = useAuthModal((state) => state.isModalOpen);
   const isHamburgerOpen = useHamburger((state) => state.isHamburgerOpen);
+  const isUserModalOpen = useAuthModal((state) => state.isUserModalOpen);
 
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
 
   return (
     <NextAuthProvider>
@@ -49,8 +49,8 @@ const MainLayout = ({
         </div>
         {isTweetModalOpen && <CreateTweetModal />}
         {isHamburgerOpen && <HamburgerMenu />}
-        {!session && <AuthModalTrigger />}
-        {isAuthModalOpen && <AuthModal />}
+        {!session && status !== "loading" && <AuthModalTrigger />}
+        {isUserModalOpen && <UserModal />}
       </body>
     </NextAuthProvider>
   );
