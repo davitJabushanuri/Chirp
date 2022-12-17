@@ -19,7 +19,7 @@ export const Header = () => {
   return (
     <div id="home" className={styles.container}>
       {pathname === "/bookmarks" ||
-      pathname === "/profile" ||
+      pathname?.split("/")[1] === "profile" ||
       pathname?.split("/")[1] === "status" ? (
         <div className={styles.backButton}>
           <BackButton />
@@ -39,7 +39,7 @@ export const Header = () => {
         <MessagesHeader />
       ) : pathname === "/bookmarks" ? (
         <BookmarksHeader />
-      ) : pathname === "/profile" ? (
+      ) : pathname?.split("/")[1] === "profile" ? (
         <ProfileHeader />
       ) : pathname?.split("/")[1] === "status" ? (
         <TweetHeader />

@@ -13,6 +13,9 @@ export default async function Tweets(
         where: {
           id: Number(req.query.id),
         },
+        include: {
+          author: true,
+        },
       });
       res.status(200).json(tweet);
     } catch (error: any) {

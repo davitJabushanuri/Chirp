@@ -5,5 +5,6 @@ export interface IIconProps {
 export interface INavItemProps {
   icon: React.ReactNode;
   title: string;
+  path: string;
   isActive: boolean;
 }

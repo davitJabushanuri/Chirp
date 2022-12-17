@@ -9,7 +9,14 @@ export default async function Tweets(
   const { method } = req;
   if (method === "GET") {
     try {
-      const tweets = await prisma.tweet.findMany();
+      const tweets = await prisma.tweet.findMany({
+        include: {
+          author: true,
+        },
+        orderBy: {
+          created_at: "desc",
+        },
+      });
       res.status(200).json(tweets);
     } catch (error: any) {
       res.status(500).json({ error: error.message });
