@@ -1,3 +1,5 @@
+import { signIn } from "next-auth/react";
+
 import { AppleLogo } from "../assets/apple-logo";
 import { GoogleLogo } from "../assets/google-logo";
 
@@ -12,14 +14,14 @@ export const RegisterForm = () => {
       </p>
 
       <div className={styles.buttons}>
-        <button className={styles.google}>
+        <button onClick={() => signIn("google")} className={styles.google}>
           <span className={styles.icon}>
             <GoogleLogo />
           </span>
           <span className={styles.text}>Sign up with Google</span>
         </button>
 
-        <button className={styles.apple}>
+        <button onClick={() => signIn("apple")} className={styles.apple}>
           <span className={styles.icon}>
             <AppleLogo />
           </span>

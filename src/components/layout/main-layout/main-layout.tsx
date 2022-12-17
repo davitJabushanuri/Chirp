@@ -1,6 +1,7 @@
 "use client";
 import { useSession } from "next-auth/react";
 
+import { LoadingScreen } from "@/components/elements/loading-screen";
 import { Aside } from "@/components/layout/aside";
 import { Header } from "@/components/layout/header";
 import { AuthModalTrigger } from "@/features/auth";
@@ -35,22 +36,28 @@ const MainLayout = ({
   return (
     <NextAuthProvider>
       <body className={`${currentTheme || theme} ${currentColor || color}`}>
-        <div className="layout">
-          <MobileNavbar />
-          <div className="mobile-tweet-button">
-            <TweetButton />
-          </div>
-          <Sidebar />
-          <main>
-            <Header />
-            <ReactQueryWrapper>{children}</ReactQueryWrapper>
-          </main>
-          <Aside />
-        </div>
-        {isTweetModalOpen && <CreateTweetModal />}
-        {isHamburgerOpen && <HamburgerMenu />}
-        {!session && status !== "loading" && <AuthModalTrigger />}
-        {isUserModalOpen && <UserModal />}
+        {status === "loading" ? (
+          <LoadingScreen />
+        ) : (
+          <>
+            <div className="layout">
+              <MobileNavbar />
+              <div className="mobile-tweet-button">
+                <TweetButton />
+              </div>
+              <Sidebar />
+              <main>
+                <Header />
+                <ReactQueryWrapper>{children}</ReactQueryWrapper>
+              </main>
+              <Aside />
+            </div>
+            {isTweetModalOpen && <CreateTweetModal />}
+            {isHamburgerOpen && <HamburgerMenu />}
+            {!session && <AuthModalTrigger />}
+            {isUserModalOpen && <UserModal />}
+          </>
+        )}
       </body>
     </NextAuthProvider>
   );

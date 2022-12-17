@@ -1,0 +1,35 @@
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--clr-background);
+  z-index: 99999999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .logo {
+    svg {
+      width: 4rem;
+      height: 4rem;
+      fill: var(--clr-blue);
+      animation: breath 1s ease-in-out infinite;
+    }
+  }
+}
+
+@keyframes breath {
+  0% {
+    opacity: 0.8;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.8;
+  }
+}
