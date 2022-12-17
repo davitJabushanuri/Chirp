@@ -25,13 +25,17 @@
     padding: 0.4rem 0 0.250rem 0;
   }
 
+  .trends,
+  .connect,
+  .footer {
+    margin-top: 0.8rem;
+  }
+
   .registerForm {
     padding-top: 1rem;
   }
 
   @include mq("large") {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    display: block;
   }
 }

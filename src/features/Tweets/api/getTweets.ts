@@ -1,9 +1,9 @@
-import supabase from "@/utils/supabaseClient";
-
 export default async function getTweets() {
-  const { data, error } = await supabase.from("Tweet").select("*");
-  if (error) {
-    console.log("error", error);
+  try {
+    const response = await fetch("/api/tweets");
+    const tweets = await response.json();
+    return tweets;
+  } catch (error: any) {
+    console.error(error);
   }
-  return data;
 }

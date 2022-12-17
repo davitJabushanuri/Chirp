@@ -17,11 +17,19 @@ export const Aside = () => {
     <aside className={styles.container}>
       {session && (
         <>
-          <div className={styles.search}>
-            {pathname !== "/" && pathname !== "/explore" && <Search />}
+          {pathname !== "/" && pathname !== "/explore" && (
+            <div className={styles.search}>
+              <Search />
+            </div>
+          )}
+          {pathname !== "/" && pathname !== "/explore" && (
+            <div className={styles.trends}>
+              <Trends />
+            </div>
+          )}
+          <div className={styles.connect}>
+            <Connect />
           </div>
-          {pathname !== "/" && pathname !== "/explore" && <Trends />}
-          <Connect />
         </>
       )}
       {!session && (
@@ -30,7 +38,9 @@ export const Aside = () => {
         </div>
       )}
 
-      <Footer />
+      <div className={styles.footer}>
+        <Footer />
+      </div>
     </aside>
   );
 };
