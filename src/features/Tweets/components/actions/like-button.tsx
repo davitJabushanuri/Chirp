@@ -10,7 +10,10 @@ export const LikeButton = ({
   smallIcons?: boolean;
 }) => {
   return (
-    <button className={`${styles.container} ${styles.like}`}>
+    <button
+      onClick={(e) => e.stopPropagation()}
+      className={`${styles.container} ${styles.like}`}
+    >
       <span
         className={`${styles.icon} ${
           smallIcons ? styles.smallIcon : styles.bigIcons

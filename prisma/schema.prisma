@@ -51,11 +51,13 @@ model User {
   emailVerified         DateTime?
   image                 String?
   role                  String    @default("user")
+  username              String?   @unique
   screen_name           String?   @unique
+  password              String?
   location              String?
   url                   String?
   description           String?
-  protected             Boolean?
+  protected             Boolean   @default(false)
   verified              Boolean   @default(false)
   followers_count       Int       @default(0)
   friends_count         Int       @default(0)
@@ -87,17 +89,17 @@ model Tweet {
   reply_count             Int         @default(0)
   retweet_count           Int         @default(0)
   favorite_count          Int         @default(0)
-  possibly_sensitive      Boolean?    @default(false)
+  possibly_sensitive      Boolean     @default(false)
   lang                    String      @default("en")
   created_at              DateTime    @default(now())
   updated_at              DateTime    @updatedAt
   images                  Image[]
-  user_id                 Int
-  author                  User        @relation(fields: [user_id], references: [id])
-  coordinates_id          String?
+  author                  User        @relation(fields: [author_id], references: [id])
+  author_id               Int
   coordinates             Coordinate? @relation(fields: [coordinates_id], references: [id])
-  place_id                String?
+  coordinates_id          String?
   place                   Place?      @relation(fields: [place_id], references: [id])
+  place_id                String?
 }
 
 // twitter images model

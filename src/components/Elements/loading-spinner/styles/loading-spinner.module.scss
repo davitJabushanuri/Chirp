@@ -1,16 +1,17 @@
 .container {
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
+  padding: 1rem;
 
 
   .loading {
     border: 4px solid #195D8D;
-    /* Light grey */
     border-top: 4px solid var(--clr-blue);
-    /* Blue */
     border-radius: 50%;
-    width: 2rem;
-    height: 2rem;
+    width: 1.6rem;
+    height: 1.6rem;
     animation: spin 1s linear infinite;
   }
 }

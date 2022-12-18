@@ -1,12 +1,10 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @next/next/no-img-element */
-
 import { useQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
-import Image from "next/image";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import Avatar from "@/assets/user_placeholder.png";
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { Options } from "@/components/elements/options";
 
@@ -43,16 +41,20 @@ export const TweetDetails = () => {
       <div className={styles.tweetDetails}>
         <div className={styles.user}>
           <div className={styles.avatar}>
-            <Image src={Avatar} alt="" />
+            <Link href={`/profile/${tweet?.author?.id}`}>
+              <img src={tweet?.author?.image} alt="" />
+            </Link>
           </div>
           <div className={styles.userInfo}>
             <div className={styles.name}>
-              <span className={styles.text}>John Doe</span>
+              <span className={styles.text}>{tweet?.author?.name}</span>
               <span className={styles.icon}>
-                <VerifiedIcon />
+                {tweet?.author?.verified && <VerifiedIcon />}
               </span>
             </div>
-            <div className={styles.username}>@johndoe</div>
+            <div className={styles.username}>
+              @{tweet?.author?.email.split("@")[0]}
+            </div>
           </div>
           <div className={styles.option}>
             <Options />
@@ -67,9 +69,9 @@ export const TweetDetails = () => {
           )}
         </div>
         <div className={styles.tweetDate}>
-          <span>{dayjs(tweet?.createdAt).format(`h:mm A`)}</span>
+          <span>{dayjs(tweet?.created_at).format(`h:mm A`)}</span>
           <span>·</span>
-          <span>{dayjs(tweet?.createdAt).format(`MMM D, YYYY`)}</span>
+          <span>{dayjs(tweet?.created_at).format(`MMM D, YYYY`)}</span>
         </div>
 
         {tweet.retweet_count! + tweet.reply_count! + tweet.favorite_count! >

@@ -1,7 +1,8 @@
+import { LocationIcon } from "@/assets/location-icon";
+
 import { EmojiIcon } from "../assets/emoji-icon";
 import { GifIcon } from "../assets/gif-icon";
 import { ImageIcon } from "../assets/image-icon";
-import { LocationIcon } from "../assets/location-icon";
 import { PollIcon } from "../assets/poll-icon";
 import { ScheduleIcon } from "../assets/schedule-icon";
 

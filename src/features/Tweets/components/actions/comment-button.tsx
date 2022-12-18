@@ -4,7 +4,10 @@ import styles from "./styles/actions.module.scss";
 
 export const CommentButton = ({ stats = 0 }: { stats?: number }) => {
   return (
-    <button className={`${styles.container} ${styles.comment}`}>
+    <button
+      onClick={(e) => e.stopPropagation()}
+      className={`${styles.container} ${styles.comment}`}
+    >
       <span className={`${styles.icon}`}>
         <CommentIcon />
       </span>

@@ -23,7 +23,9 @@ export const UserButton = () => {
         </div>
         <div className={styles.userInfo}>
           {session?.user && (
-            <span className={styles.name}>{session?.user?.name}</span>
+            <span className={styles.name}>
+              {session?.user?.name.split(" ")[0]}
+            </span>
           )}
           {session?.user && (
             <span className={styles.username}>

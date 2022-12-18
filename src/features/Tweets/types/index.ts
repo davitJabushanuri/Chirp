@@ -1,3 +1,5 @@
+import { IUser } from "@/features/profile";
+
 export interface IFeed {
   id: number;
 }
@@ -7,8 +9,8 @@ export interface ITweet {
   text?: string;
   image?: string;
   user_id: number;
-  createdAt: string;
-  updatedAt: string;
+  created_at: string;
+  updated_at: string;
   coordinates?: string;
   favorite_count: number;
   in_reply_to_screen_name?: number;
@@ -23,4 +25,5 @@ export interface ITweet {
   reply_count?: number;
   retweet_count?: number;
   source?: string;
+  author: IUser;
 }

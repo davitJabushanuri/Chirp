@@ -31,8 +31,9 @@
       gap: 0.6rem;
       padding: 0.5rem;
       border-radius: 100vmax;
-      background-color: var(--clr-secondary);
-      color: var(--clr-background);
+      background-color: var(--clr-light);
+      color: var(--clr-dark);
+      border: 1px solid var(--clr-border);
       font-size: 0.9rem;
       font-weight: 600;
       cursor: pointer;

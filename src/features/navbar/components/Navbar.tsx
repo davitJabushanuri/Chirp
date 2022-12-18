@@ -20,17 +20,17 @@ export const Navbar = () => {
     <div className={styles.container}>
       {session && (
         <NavItem
-          icon={
-            pathname === `/` || pathname === `/home` ? <HomeActive /> : <Home />
-          }
+          icon={pathname === `/home` ? <HomeActive /> : <Home />}
           title={`Home`}
-          isActive={pathname === `/` || pathname === `/home`}
+          path={`home`}
+          isActive={pathname === `/home`}
         />
       )}
 
       <NavItem
         icon={pathname === `/explore` ? <HashtagActive /> : <Hashtag />}
         title={`Explore`}
+        path={`explore`}
         isActive={pathname === `/explore`}
       />
 
@@ -38,6 +38,7 @@ export const Navbar = () => {
         <NavItem
           icon={pathname === `/notifications` ? <BellActive /> : <Bell />}
           title={`Notifications`}
+          path={`notifications`}
           isActive={pathname === `/notifications`}
         />
       )}
@@ -46,6 +47,7 @@ export const Navbar = () => {
         <NavItem
           icon={pathname === `/messages` ? <EnvelopeActive /> : <Envelope />}
           title={`Messages`}
+          path={`messages`}
           isActive={pathname === `/messages`}
         />
       )}
@@ -54,21 +56,26 @@ export const Navbar = () => {
         <NavItem
           icon={pathname === `/bookmarks` ? <BookmarkActive /> : <Bookmark />}
           title={`Bookmarks`}
+          path={`bookmarks`}
           isActive={pathname === `/bookmarks`}
         />
       )}
 
       {session && (
         <NavItem
-          icon={pathname === `/profile` ? <UserActive /> : <User />}
+          icon={
+            pathname?.split(`/`)[1] === "profile" ? <UserActive /> : <User />
+          }
           title={`Profile`}
-          isActive={pathname === `/profile`}
+          path={`profile/${session?.user?.id}`}
+          isActive={pathname?.split(`/`)[1] === "profile"}
         />
       )}
 
       <NavItem
         icon={pathname === `/settings` ? <GearActive /> : <Gear />}
         title={`Settings`}
+        path={`settings`}
         isActive={pathname === `/settings`}
       />
     </div>

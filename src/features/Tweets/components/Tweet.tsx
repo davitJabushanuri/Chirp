@@ -1,8 +1,11 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable @next/next/no-img-element */
-import Image from "next/image";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
-import Avatar from "@/assets/user_placeholder.png";
 import { Options } from "@/components/elements/options";
 
 import { VerifiedIcon } from "../assets/verified-icon";
@@ -14,24 +17,46 @@ import { RetweetButton } from "./actions/retweet-button";
 import { ShareButton } from "./actions/share-button";
 import styles from "./styles/tweet.module.scss";
 
+dayjs.extend(relativeTime);
+
 const Tweet = ({ tweet }: { tweet: ITweet }) => {
+  const router = useRouter();
+
   return (
-    <Link href={`/status/${tweet.id}`} className={styles.container}>
-      <div className={styles.avatar}>
-        <Image src={Avatar} alt="" />
+    <div
+      onClick={() => router.push(`/status/${tweet.id}`)}
+      className={styles.container}
+    >
+      <div onClick={(e) => e.stopPropagation()} className={styles.avatar}>
+        <Link href={`/profile/${tweet?.author?.id}`}>
+          <img src={tweet?.author?.image} alt="" />
+        </Link>
       </div>
       <div className={styles.content}>
         <div className={styles.header}>
           <div className={styles.user}>
-            <span className={styles.name}>John Doe</span>
-
-            <span className={styles.verified}>
-              <VerifiedIcon />
+            <span onClick={(e) => e.stopPropagation()} className={styles.name}>
+              <Link href={`/profile/${tweet?.author?.id}`}>
+                {tweet?.author?.name}
+              </Link>
             </span>
 
-            <span className={styles.username}>@johndoe</span>
+            <span className={styles.verified}>
+              {tweet?.author?.verified && <VerifiedIcon />}
+            </span>
+
+            <span
+              onClick={(e) => e.stopPropagation()}
+              className={styles.username}
+            >
+              <Link href={`/profile/${tweet?.author?.id}`}>
+                @{tweet?.author?.email?.split("@")[0]}
+              </Link>
+            </span>
             <span className={styles.dot}>·</span>
-            <span className={styles.date}>1h</span>
+            <span className={styles.date}>
+              {dayjs(tweet?.created_at).format("MMM D")}
+            </span>
           </div>
 
           <button className={styles.options}>
@@ -59,7 +84,7 @@ const Tweet = ({ tweet }: { tweet: ITweet }) => {
           <ShareButton />
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 

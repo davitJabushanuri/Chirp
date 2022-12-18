@@ -45,7 +45,9 @@ export const Header = () => {
         <TweetHeader />
       ) : pathname === "/settings" ? (
         <SettingsHeader />
-      ) : null}
+      ) : (
+        <HomeHeader />
+      )}
     </div>
   );
 };

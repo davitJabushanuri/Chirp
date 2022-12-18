@@ -18,24 +18,28 @@ export const MobileNavbar = () => {
           pathname === `/` || pathname === `/home` ? <HomeActive /> : <Home />
         }
         title={`Home`}
+        path={`home`}
         isActive={pathname === `/` || pathname === `/home`}
       />
 
       <NavItem
         icon={pathname === `/explore` ? <SearchActive /> : <Search />}
         title={`Explore`}
+        path={`explore`}
         isActive={pathname === `/explore`}
       />
 
       <NavItem
         icon={pathname === `/notifications` ? <BellActive /> : <Bell />}
         title={`Notifications`}
+        path={`notifications`}
         isActive={pathname === `/notifications`}
       />
 
       <NavItem
         icon={pathname === `/messages` ? <EnvelopeActive /> : <Envelope />}
         title={`Messages`}
+        path={`messages`}
         isActive={pathname === `/messages`}
       />
     </div>

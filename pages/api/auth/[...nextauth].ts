@@ -32,8 +32,13 @@ export const authOptions: NextAuthOptions = {
         session.user.email = user?.email;
         session.user.image = user?.image;
         session.user.role = user?.role;
+        session.user.username = user?.username;
       }
       return session;
+    },
+
+    redirect() {
+      return "/home";
     },
   },
 

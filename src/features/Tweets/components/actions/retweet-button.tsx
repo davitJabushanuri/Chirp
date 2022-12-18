@@ -4,7 +4,10 @@ import styles from "./styles/actions.module.scss";
 
 export const RetweetButton = ({ stats = 0 }: { stats?: number }) => {
   return (
-    <button className={`${styles.container} ${styles.retweet}`}>
+    <button
+      onClick={(e) => e.stopPropagation()}
+      className={`${styles.container} ${styles.retweet}`}
+    >
       <span className={`${styles.icon}`}>
         <RetweetIcon />
       </span>

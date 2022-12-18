@@ -26,9 +26,7 @@ export const Tweets = () => {
 
   return (
     <div className={styles.container}>
-      {tweets?.map((tweet) => (
-        <Tweet key={tweet.id} tweet={tweet} />
-      ))}
+      {tweets && tweets?.map((tweet) => <Tweet key={tweet.id} tweet={tweet} />)}
     </div>
   );
 };
