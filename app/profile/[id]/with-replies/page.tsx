@@ -1,5 +1,11 @@
+import { ProfileTweetsAndReplies } from "@/features/profile";
+
 const page = () => {
-  return <div>tweets and replies</div>;
+  return (
+    <div>
+      <ProfileTweetsAndReplies />
+    </div>
+  );
 };
 
 export default page;

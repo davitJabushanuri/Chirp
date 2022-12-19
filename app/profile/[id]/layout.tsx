@@ -1,3 +1,5 @@
+"use client";
+
 import { Profile } from "@/features/profile";
 
 import styles from "./styles/layout.module.scss";

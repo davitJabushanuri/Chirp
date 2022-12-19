@@ -1,5 +1,11 @@
+import { ProfileLikes } from "@/features/profile";
+
 const page = () => {
-  return <div>likes</div>;
+  return (
+    <div>
+      <ProfileLikes />
+    </div>
+  );
 };
 
 export default page;

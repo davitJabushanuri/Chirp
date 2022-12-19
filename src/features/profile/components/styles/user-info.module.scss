@@ -31,6 +31,7 @@ $avatar-top: calc(-1 * #{$avatar-size} / 2 - #{$avatar-border});
       border-radius: 50%;
       border: 4px solid var(--clr-background);
       overflow: hidden;
+      background-color: var(--clr-auth-border);
 
       img {
         width: 100%;
@@ -104,10 +105,16 @@ $avatar-top: calc(-1 * #{$avatar-size} / 2 - #{$avatar-border});
           justify-content: center;
           gap: 0.2rem;
 
-          svg {
-            width: 1.225rem;
-            height: 1.225rem;
-            fill: var(--clr-tertiary);
+          .icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            svg {
+              width: 1.225rem;
+              height: 1.225rem;
+              fill: var(--clr-tertiary);
+            }
           }
         }
       }
@@ -118,7 +125,13 @@ $avatar-top: calc(-1 * #{$avatar-size} / 2 - #{$avatar-border});
 
         .stat {
           display: flex;
+          align-items: flex-end;
           gap: 0.2rem;
+          cursor: pointer;
+
+          &:hover {
+            text-decoration: underline;
+          }
 
           .number {
             font-weight: 500;

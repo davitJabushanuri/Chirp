@@ -2,7 +2,6 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
-import { usePathname } from "next/navigation";
 
 import { LocationIcon } from "@/assets/location-icon";
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
@@ -13,10 +12,7 @@ import { IUser } from "../types";
 
 import styles from "./styles/user-info.module.scss";
 
-export const UserInfo = () => {
-  const pathname = usePathname();
-  const id = pathname?.split("/")[2] || "";
-
+export const UserInfo = ({ id }: { id: string }) => {
   const {
     data: user,
     isLoading,
@@ -50,7 +46,7 @@ export const UserInfo = () => {
         <div className={styles.user}>
           <div className={styles.name}>
             <h1>{user?.name}</h1>
-            <p>@{user?.username ?? user?.email.split("@")[0]}</p>
+            <p>@{user?.username ?? user?.email?.split("@")[0]}</p>
           </div>
 
           {user?.description && (
@@ -60,12 +56,12 @@ export const UserInfo = () => {
           )}
 
           <div className={styles.locationAndJoined}>
-            {!user?.location && (
+            {user?.location && (
               <div className={styles.location}>
                 <span className={styles.icon}>
                   <LocationIcon />
                 </span>
-                <span className={styles.text}>{user?.location}georgia</span>
+                <span className={styles.text}>{user?.location}</span>
               </div>
             )}
 
