@@ -9,14 +9,12 @@ export const ProfileNavbar = ({
   pathname: string | null;
   id: string | null;
 }) => {
-  console.log("pathname: ", pathname);
-
   return (
     <div className={styles.container}>
       <NavItem
         text="Tweets"
         href={`/profile/${id}`}
-        active={pathname === `/profile/${id}}`}
+        active={pathname === `/profile/${id}`}
       />
       <NavItem
         text="Tweets & replies"
@@ -47,8 +45,11 @@ const NavItem = ({
   active: boolean;
 }) => {
   return (
-    <Link href={href} className={active ? styles.active : ""}>
-      {text}
+    <Link href={href} className={styles.navItem}>
+      <span className={active ? styles.active : ""}>
+        <p>{text}</p>
+        <div className={styles.border}></div>
+      </span>
     </Link>
   );
 };

@@ -2,4 +2,59 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
+  cursor: pointer;
+  border-bottom: 1px solid var(--clr-border);
+
+
+
+
+  .navItem {
+    width: 100%;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      background-color: var(--clr-nav-hover);
+    }
+
+    &:active {
+      background-color: var(--clr-nav-active);
+    }
+  }
+
+  span {
+    position: relative;
+    padding: 1rem 0;
+    font-size: 0.825rem;
+    font-weight: 500;
+    color: var(--clr-tertiary);
+    border-bottom: 2px solid transparent;
+
+    p {
+      padding: 0 0.4rem;
+    }
+
+    .border {
+      position: absolute;
+      bottom: 0;
+      height: 4px;
+      width: 100%;
+      border-radius: 100vmax;
+      background-color: var(--clr-primary);
+      display: none;
+    }
+  }
+
+  .active {
+    color: var(--clr-secondary);
+
+    .border {
+      display: block;
+    }
+  }
+
+
 }

@@ -43,8 +43,10 @@ const Color = ({ activeColor, color }: IColor) => {
         `color-${color}` === currentColor ? styles.active : ""
       }`}
       onClick={() => {
-        setCookie("color", `color-${color}`);
         setColor(`color-${color}`);
+        setCookie("color", `color-${color}`, {
+          maxAge: 60 * 60 * 24 * 365,
+        });
       }}
     >
       <div className={styles.tick}>

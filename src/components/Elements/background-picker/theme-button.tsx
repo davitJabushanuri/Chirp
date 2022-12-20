@@ -37,7 +37,9 @@ const ThemeButton = ({ activeTheme, theme }: IThemeButton) => {
       }`}
       onClick={() => {
         setTheme(`theme-${theme}`);
-        setCookie("theme", `theme-${theme}`);
+        setCookie("theme", `theme-${theme}`, {
+          maxAge: 60 * 60 * 24 * 365,
+        });
       }}
     >
       <div className={styles.tickContainer}>

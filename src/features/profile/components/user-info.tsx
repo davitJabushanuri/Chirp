@@ -1,32 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import { useQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
 
 import { LocationIcon } from "@/assets/location-icon";
-import { LoadingSpinner } from "@/components/elements/loading-spinner";
 
-import getUser from "../api/get-user";
 import { CalendarIcon } from "../assets/calendar-icon";
 import { IUser } from "../types";
 
 import styles from "./styles/user-info.module.scss";
 
-export const UserInfo = ({ id }: { id: string }) => {
-  const {
-    data: user,
-    isLoading,
-    isError,
-  } = useQuery<IUser | null>(["user", id], () => getUser(id));
-
-  if (isLoading) {
-    return <LoadingSpinner />;
-  }
-
-  if (isError) {
-    return <p>Error</p>;
-  }
-
+export const UserInfo = ({ user }: { user: IUser }) => {
   return (
     <div className={styles.container}>
       <div className={styles.banner}>
