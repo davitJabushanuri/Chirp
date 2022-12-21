@@ -1,12 +1,13 @@
+@use 'abstracts/media-query' as *;
+
 .container {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  cursor: pointer;
+  display: grid;
   border-bottom: 1px solid var(--clr-border);
+  overflow-x: auto;
 
-
-
+  @include mq('small') {
+    grid-template-columns: 2fr 3fr 2fr 2fr;
+  }
 
   .navItem {
     width: 100%;
@@ -15,6 +16,7 @@
     align-items: center;
     justify-content: center;
     transition: all 0.2s ease-in-out;
+    cursor: pointer;
 
     &:hover {
       background-color: var(--clr-nav-hover);

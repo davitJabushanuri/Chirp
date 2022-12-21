@@ -34,7 +34,7 @@ export const Profile = ({ children }: { children: React.ReactNode }) => {
     <div className={styles.container}>
       <UserInfo user={user} />
       <ProfileNavbar pathname={pathname} id={id} />
-      <main>{children}</main>
+      <div>{children}</div>
     </div>
   );
 };

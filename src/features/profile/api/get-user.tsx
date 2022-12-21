@@ -1,4 +1,4 @@
-const getUser = async (id: string) => {
+const getUser = async (id: string | undefined) => {
   try {
     const response = await fetch(`/api/users/${id}`);
     const user = await response.json();

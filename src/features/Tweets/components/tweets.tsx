@@ -7,7 +7,7 @@ import getTweets from "../api/getTweets";
 import { ITweet } from "../types";
 
 import styles from "./styles/tweets.module.scss";
-import Tweet from "./tweet";
+import { Tweet } from "./tweet";
 
 export const Tweets = () => {
   const {

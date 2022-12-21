@@ -1,3 +1,5 @@
+import { ITweet } from "@/features/tweets";
+
 export interface IUser {
   id: number;
   name: string;
@@ -22,4 +24,5 @@ export interface IUser {
   default_profile_image?: boolean;
   created_at: string;
   updated_at: string;
+  tweets: ITweet[];
 }

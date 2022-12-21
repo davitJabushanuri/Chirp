@@ -2,7 +2,6 @@
 import { useSession } from "next-auth/react";
 
 import { DotIcon } from "@/assets/dot-icon";
-import Avatar from "@/assets/user_placeholder.png";
 import { useAuthModal } from "@/stores/useAuthModal";
 
 import styles from "./styles/user-button.module.scss";
@@ -15,11 +14,11 @@ export const UserButton = () => {
     <>
       <button onClick={() => openUserModal()} className={styles.container}>
         <div className={styles.avatar}>
-          <img
-            className={styles.image}
-            src={session?.user?.image || Avatar}
-            alt="avatar"
-          />
+          {session?.user?.profile_image_url ? (
+            <img src={session?.user?.profile_image_url} alt="" />
+          ) : (
+            <img src="/user_placeholder.png" alt="" />
+          )}
         </div>
         <div className={styles.userInfo}>
           {session?.user && (

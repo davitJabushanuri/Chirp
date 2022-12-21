@@ -10,6 +10,16 @@ export default async function User(req: NextApiRequest, res: NextApiResponse) {
         where: {
           id: Number(req.query.id),
         },
+        include: {
+          tweets: {
+            include: {
+              author: true,
+            },
+            orderBy: {
+              created_at: "desc",
+            },
+          },
+        },
       });
       res.status(200).json(user);
     } catch (error: any) {

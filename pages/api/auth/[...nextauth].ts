@@ -33,6 +33,7 @@ export const authOptions: NextAuthOptions = {
         session.user.image = user?.image;
         session.user.role = user?.role;
         session.user.username = user?.username;
+        session.user.profile_image_url = user?.profile_image_url;
       }
       return session;
     },

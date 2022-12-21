@@ -42,7 +42,11 @@ export const TweetDetails = () => {
         <div className={styles.user}>
           <div className={styles.avatar}>
             <Link href={`/profile/${tweet?.author?.id}`}>
-              <img src={tweet?.author?.image} alt="" />
+              {tweet?.author?.profile_image_url ? (
+                <img src={tweet?.author?.profile_image_url} alt="" />
+              ) : (
+                <img src="/user_placeholder.png" alt="" />
+              )}
             </Link>
           </div>
           <div className={styles.userInfo}>

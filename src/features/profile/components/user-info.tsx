@@ -19,7 +19,11 @@ export const UserInfo = ({ user }: { user: IUser }) => {
       </div>
       <div className={styles.info}>
         <div className={styles.avatar}>
-          <img src={user?.profile_image_url || user?.image} alt="" />
+          {user?.profile_image_url ? (
+            <img src={user?.profile_image_url} alt="" />
+          ) : (
+            <img src="/user_placeholder.png" alt="" />
+          )}
         </div>
 
         <div className={styles.editProfile}>

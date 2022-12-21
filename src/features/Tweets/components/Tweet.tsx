@@ -19,7 +19,7 @@ import styles from "./styles/tweet.module.scss";
 
 dayjs.extend(relativeTime);
 
-const Tweet = ({ tweet }: { tweet: ITweet }) => {
+export const Tweet = ({ tweet }: { tweet: ITweet }) => {
   const router = useRouter();
 
   return (
@@ -29,7 +29,11 @@ const Tweet = ({ tweet }: { tweet: ITweet }) => {
     >
       <div onClick={(e) => e.stopPropagation()} className={styles.avatar}>
         <Link href={`/profile/${tweet?.author?.id}`}>
-          <img src={tweet?.author?.image} alt="" />
+          {tweet?.author?.profile_image_url ? (
+            <img src={tweet?.author?.profile_image_url} alt="" />
+          ) : (
+            <img src="/user_placeholder.png" alt="" />
+          )}
         </Link>
       </div>
       <div className={styles.content}>
@@ -87,5 +91,3 @@ const Tweet = ({ tweet }: { tweet: ITweet }) => {
     </div>
   );
 };
-
-export default Tweet;
