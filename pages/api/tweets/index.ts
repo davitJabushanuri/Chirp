@@ -12,6 +12,8 @@ export default async function Tweets(
       const tweets = await prisma.tweet.findMany({
         include: {
           author: true,
+          likes: true,
+          media: true,
         },
         orderBy: {
           created_at: "desc",

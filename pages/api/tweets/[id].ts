@@ -8,10 +8,12 @@ export default async function Tweet(req: NextApiRequest, res: NextApiResponse) {
     try {
       const tweet = await prisma.tweet.findUnique({
         where: {
-          id: Number(req.query.id),
+          id: req.query.id as string,
         },
         include: {
           author: true,
+          likes: true,
+          media: true,
         },
       });
       res.status(200).json(tweet);

@@ -8,7 +8,7 @@ export default async function User(req: NextApiRequest, res: NextApiResponse) {
     try {
       const user = await prisma.user.findUnique({
         where: {
-          id: Number(req.query.id),
+          id: req.query.id as string,
         },
         include: {
           tweets: {

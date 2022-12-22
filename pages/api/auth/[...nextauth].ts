@@ -32,7 +32,7 @@ export const authOptions: NextAuthOptions = {
         session.user.email = user?.email;
         session.user.image = user?.image;
         session.user.role = user?.role;
-        session.user.username = user?.username;
+        session.user.username = user?.screen_name;
         session.user.profile_image_url = user?.profile_image_url;
       }
       return session;

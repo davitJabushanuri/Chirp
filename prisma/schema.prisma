@@ -48,7 +48,7 @@ model Session {
 ////////////////////////////////
 
 model User {
-  id          String  @id @default(uuid())
+  id          String  @id @default(cuid())
   name        String
   screen_name String? @unique
   location    String?
@@ -59,6 +59,7 @@ model User {
 
   email         String?   @unique
   emailVerified DateTime?
+  image         String?
   password      String?
   role          String    @default("user")
   created_at    DateTime  @default(now())
@@ -90,7 +91,7 @@ model Follows {
 }
 
 model Tweet {
-  id                      String   @id @default(uuid())
+  id                      String   @id @default(cuid())
   text                    String?
   source                  String   @default("web")
   in_reply_to_status_id   String?
@@ -105,15 +106,14 @@ model Tweet {
   possibly_sensitive      Boolean  @default(false)
   lang                    String   @default("en")
   created_at              DateTime @default(now())
-  updated_at              DateTime @updatedAt
   author                  User     @relation(fields: [userId], references: [id])
   userId                  String
-  Media                   Media[]
-  Likes                   Likes[]
+  media                   Media[]
+  likes                   Likes[]
 }
 
 model Media {
-  id         String @id @default(uuid())
+  id         String @id @default(cuid())
   media_url  String
   media_type String
   tweet      Tweet  @relation(fields: [tweet_id], references: [id])
@@ -121,7 +121,7 @@ model Media {
 }
 
 model Likes {
-  id       String @id @default(uuid())
+  id       String @id @default(cuid())
   tweet    Tweet  @relation(fields: [tweet_id], references: [id])
   tweet_id String
   user     User   @relation(fields: [user_id], references: [id])
