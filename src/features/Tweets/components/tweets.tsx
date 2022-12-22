@@ -14,6 +14,7 @@ export const Tweets = () => {
     data: tweets,
     isLoading,
     isError,
+    isSuccess,
   } = useQuery<ITweet[] | null>(["tweets"], () => getTweets());
 
   if (isLoading) {
@@ -26,7 +27,8 @@ export const Tweets = () => {
 
   return (
     <div className={styles.container}>
-      {tweets && tweets?.map((tweet) => <Tweet key={tweet.id} tweet={tweet} />)}
+      {isSuccess &&
+        tweets?.map((tweet) => <Tweet key={tweet.id} tweet={tweet} />)}
     </div>
   );
 };

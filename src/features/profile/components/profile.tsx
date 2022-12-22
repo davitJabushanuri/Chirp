@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
 
-import getUser from "../api/get-user";
+import { getUser } from "../api/get-user";
 import { IUser } from "../types";
 
 import { ProfileNavbar } from "./profile-navbar";

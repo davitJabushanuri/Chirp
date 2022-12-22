@@ -7,7 +7,7 @@ import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { Tweet } from "@/features/tweets";
 import { ITweet } from "@/features/tweets";
 
-import getUser from "../api/get-user";
+import { getUser } from "../api/get-user";
 import { IUser } from "../types";
 
 import styles from "./styles/profile-tweets.module.scss";

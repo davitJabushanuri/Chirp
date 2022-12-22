@@ -17,7 +17,7 @@ model VerificationToken {
 
 model Account {
   id                 String  @id @default(cuid())
-  userId             Int
+  userId             String
   type               String
   provider           String
   providerAccountId  String
@@ -39,93 +39,91 @@ model Session {
   id           String   @id @default(cuid())
   sessionToken String   @unique
   expires      DateTime
-  userId       Int
+  userId       String
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
-// twitter user model
+////////////////////////////////
+// Twitter
+////////////////////////////////
+
 model User {
-  id                    Int       @id @default(autoincrement())
-  name                  String
-  email                 String?   @unique
-  emailVerified         DateTime?
-  image                 String?
-  role                  String    @default("user")
-  username              String?   @unique
-  screen_name           String?   @unique
-  password              String?
-  location              String?
-  url                   String?
-  description           String?
-  protected             Boolean   @default(false)
-  verified              Boolean   @default(false)
-  followers_count       Int       @default(0)
-  friends_count         Int       @default(0)
-  favorites_count       Int       @default(0)
-  statuses_count        Int       @default(0)
-  profile_banner_url    String?
-  profile_image_url     String?
-  default_profile       Boolean   @default(false)
-  default_profile_image Boolean   @default(false)
-  created_at            DateTime  @default(now())
-  updated_at            DateTime  @updatedAt
-  tweets                Tweet[]
-  accounts              Account[]
-  sessions              Session[]
+  id          String  @id @default(uuid())
+  name        String
+  screen_name String? @unique
+  location    String?
+  url         String?
+  description String?
+  protected   Boolean @default(false) //protected: your tweets and account information are only visible to people who follow you
+  verified    Boolean @default(false)
+
+  email         String?   @unique
+  emailVerified DateTime?
+  password      String?
+  role          String    @default("user")
+  created_at    DateTime  @default(now())
+
+  followers_count Int @default(0)
+  friends_count   Int @default(0)
+  favorites_count Int @default(0)
+  statuses_count  Int @default(0)
+
+  profile_banner_url String?
+  profile_image_url  String?
+
+  accounts Account[]
+  sessions Session[]
+  tweets   Tweet[]
+  Likes    Likes[]
+
+  followers Follows[] @relation("following")
+  following Follows[] @relation("follower")
 }
 
-// twitter tweet model
+model Follows {
+  follower     User   @relation("follower", fields: [follower_id], references: [id])
+  follower_id  String
+  following    User   @relation("following", fields: [following_id], references: [id])
+  following_id String
+
+  @@id([follower_id, following_id])
+}
+
 model Tweet {
-  id                      Int         @id @default(autoincrement())
+  id                      String   @id @default(uuid())
   text                    String?
-  image                   String?
-  source                  String      @default("web")
-  in_reply_to_status_id   Int?
-  in_reply_to_user_id     Int?
+  source                  String   @default("web")
+  in_reply_to_status_id   String?
+  in_reply_to_user_id     String?
   in_reply_to_screen_name String?
-  quoted_status_id        Int?
-  is_quote_status         Boolean     @default(false)
-  quote_count             Int         @default(0)
-  reply_count             Int         @default(0)
-  retweet_count           Int         @default(0)
-  favorite_count          Int         @default(0)
-  possibly_sensitive      Boolean     @default(false)
-  lang                    String      @default("en")
-  created_at              DateTime    @default(now())
-  updated_at              DateTime    @updatedAt
-  images                  Image[]
-  author                  User        @relation(fields: [author_id], references: [id])
-  author_id               Int
-  coordinates             Coordinate? @relation(fields: [coordinates_id], references: [id])
-  coordinates_id          String?
-  place                   Place?      @relation(fields: [place_id], references: [id])
-  place_id                String?
+  is_quote_status         Boolean  @default(false)
+  quoted_status_id        String?
+  quote_count             Int      @default(0)
+  reply_count             Int      @default(0)
+  retweet_count           Int      @default(0)
+  favorite_count          Int      @default(0)
+  possibly_sensitive      Boolean  @default(false)
+  lang                    String   @default("en")
+  created_at              DateTime @default(now())
+  updated_at              DateTime @updatedAt
+  author                  User     @relation(fields: [userId], references: [id])
+  userId                  String
+  Media                   Media[]
+  Likes                   Likes[]
 }
 
-// twitter images model
-model Image {
+model Media {
+  id         String @id @default(uuid())
+  media_url  String
+  media_type String
+  tweet      Tweet  @relation(fields: [tweet_id], references: [id])
+  tweet_id   String
+}
+
+model Likes {
   id       String @id @default(uuid())
-  url      String
   tweet    Tweet  @relation(fields: [tweet_id], references: [id])
-  tweet_id Int
-}
-
-// twitter coordinates model
-model Coordinate {
-  id        String  @id @default(uuid())
-  longitude Float
-  latitude  Float
-  tweets    Tweet[]
-}
-
-// twitter place model
-model Place {
-  id           String  @id @default(uuid())
-  url          String?
-  place_type   String?
-  name         String?
-  full_name    String?
-  country_code String?
-  country      String?
-  tweets       Tweet[]
+  tweet_id String
+  user     User   @relation(fields: [user_id], references: [id])
+  user_id  String
 }

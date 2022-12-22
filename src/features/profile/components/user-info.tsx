@@ -1,15 +1,22 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import dayjs from "dayjs";
+import { useSession } from "next-auth/react";
 
+import { DotIcon } from "@/assets/dot-icon";
 import { LocationIcon } from "@/assets/location-icon";
 
+import { updateProfile } from "../api/update-profile";
 import { CalendarIcon } from "../assets/calendar-icon";
 import { IUser } from "../types";
 
 import styles from "./styles/user-info.module.scss";
 
 export const UserInfo = ({ user }: { user: IUser }) => {
+  const { data: session } = useSession();
+
+  console.log("user", session);
+
   return (
     <div className={styles.container}>
       <div className={styles.banner}>
@@ -27,7 +34,23 @@ export const UserInfo = ({ user }: { user: IUser }) => {
         </div>
 
         <div className={styles.editProfile}>
-          <button>Edit Profile</button>
+          {session?.user?.id === user?.id ? (
+            <button
+              onClick={() => updateProfile(user.id)}
+              className={styles.editProfile}
+            >
+              Edit Profile
+            </button>
+          ) : (
+            <div className={styles.visitorActions}>
+              <button className={styles.options}>
+                <DotIcon />
+              </button>
+              <button className={styles.message}>message</button>
+              <button className={styles.notifications}>notifications</button>
+              <button className={styles.follow}>Follow</button>
+            </div>
+          )}
         </div>
 
         <div className={styles.user}>

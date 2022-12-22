@@ -1,3 +1,5 @@
+"use client";
+
 import { ProfileMedia } from "@/features/profile";
 
 const page = () => {
