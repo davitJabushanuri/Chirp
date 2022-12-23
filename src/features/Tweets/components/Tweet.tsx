@@ -84,7 +84,7 @@ export const Tweet = ({ tweet }: { tweet: ITweet }) => {
         <div className={styles.actions}>
           <CommentButton stats={tweet?.reply_count} />
           <RetweetButton stats={tweet?.retweet_count} />
-          <LikeButton stats={tweet?.favorite_count} />
+          <LikeButton tweetId={tweet?.id} likes={tweet?.likes} />
           <ShareButton />
         </div>
       </div>

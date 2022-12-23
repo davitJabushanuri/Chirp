@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation";
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { Options } from "@/components/elements/options";
 
-import getTweet from "../api/getTweet";
+import getTweet from "../api/get-tweet";
 import { VerifiedIcon } from "../assets/verified-icon";
 import { ITweet } from "../types";
 
@@ -78,7 +78,7 @@ export const TweetDetails = () => {
           <span>{dayjs(tweet?.created_at).format(`MMM D, YYYY`)}</span>
         </div>
 
-        {tweet.retweet_count! + tweet.reply_count! + tweet.favorite_count! >
+        {tweet.retweet_count! + tweet.reply_count! + tweet?.likes?.length >
           0 && (
           <div className={styles.tweetStatistics}>
             {tweet.retweet_count! > 0 && (
@@ -95,10 +95,12 @@ export const TweetDetails = () => {
               </div>
             )}
 
-            {tweet?.favorite_count > 0 && (
+            {tweet?.likes.length && (
               <div className={styles.statistic}>
-                <span className={styles.number}>{tweet.favorite_count}</span>
-                <span className={styles.text}>Likes</span>
+                <span className={styles.number}>{tweet?.likes?.length}</span>
+                <span className={styles.text}>
+                  {tweet?.likes?.length === 1 ? `Like` : `Likes`}
+                </span>
               </div>
             )}
           </div>
@@ -107,7 +109,11 @@ export const TweetDetails = () => {
         <div className={styles.tweetActions}>
           <CommentButton />
           <RetweetButton />
-          <LikeButton />
+          <LikeButton
+            smallIcons={false}
+            tweetId={tweet?.id}
+            likes={tweet?.likes}
+          />
           <ShareButton />
         </div>
       </div>

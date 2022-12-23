@@ -90,6 +90,9 @@
 }
 
 .like {
+
+
+
   &:hover {
     .icon {
       background-color: var(--clr-heart-hover);
@@ -118,6 +121,8 @@
       color: var(--clr-rose);
     }
   }
+
+
 }
 
 .share {
@@ -139,5 +144,17 @@
         fill: var(--clr-blue);
       }
     }
+  }
+}
+
+.liked {
+  .icon {
+    svg {
+      fill: var(--clr-rose);
+    }
+  }
+
+  .stats {
+    color: var(--clr-rose);
   }
 }

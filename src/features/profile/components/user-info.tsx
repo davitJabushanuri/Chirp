@@ -15,8 +15,6 @@ import styles from "./styles/user-info.module.scss";
 export const UserInfo = ({ user }: { user: IUser }) => {
   const { data: session } = useSession();
 
-  console.log("user", session);
-
   return (
     <div className={styles.container}>
       <div className={styles.banner}>

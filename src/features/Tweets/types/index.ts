@@ -5,7 +5,7 @@ export interface IFeed {
 }
 
 export interface ITweet {
-  id: number;
+  id: string;
   text?: string;
   image?: string;
   user_id: number;
@@ -26,4 +26,11 @@ export interface ITweet {
   retweet_count?: number;
   source?: string;
   author: IUser;
+  likes: ILike[];
+}
+
+export interface ILike {
+  id: string;
+  user_id: string;
+  tweet_id: string;
 }

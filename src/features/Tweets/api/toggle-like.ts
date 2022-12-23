@@ -1,4 +1,10 @@
-export const toggleLike = async (tweetId: string, userId: string) => {
+export const toggleLike = async ({
+  tweetId,
+  userId,
+}: {
+  tweetId: string;
+  userId: string;
+}) => {
   try {
     const response = await fetch("/api/tweets/like", {
       method: "POST",
@@ -8,8 +14,8 @@ export const toggleLike = async (tweetId: string, userId: string) => {
       body: JSON.stringify({ tweetId, userId }),
     });
     const data = await response.json();
-    console.log(data);
+    return data;
   } catch (error: any) {
-    console.error(error);
+    return { error: error.message };
   }
 };

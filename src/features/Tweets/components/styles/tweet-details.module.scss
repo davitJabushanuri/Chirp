@@ -89,7 +89,7 @@
     }
 
     .tweetStatistics {
-      padding: 1rem 0;
+      padding: 1rem 0.2rem;
       border-bottom: 1px solid var(--clr-border);
       display: flex;
       align-items: center;
@@ -102,18 +102,18 @@
         gap: 0.3rem;
 
         .number {
-          font-size: 0.950rem;
+          font-size: 0.815rem;
         }
 
         .text {
-          font-size: 0.875rem;
+          font-size: 0.815rem;
           color: var(--clr-tertiary);
         }
       }
     }
 
     .tweetActions {
-      padding: 0.4rem 0;
+      padding: 0.225rem 0;
       border-bottom: 1px solid var(--clr-border);
       display: flex;
       align-items: center;

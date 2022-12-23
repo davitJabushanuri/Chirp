@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
 
-import getTweets from "../api/getTweets";
+import getTweets from "../api/get-tweets";
 import { ITweet } from "../types";
 
 import styles from "./styles/tweets.module.scss";
@@ -28,6 +28,7 @@ export const Tweets = () => {
   return (
     <div className={styles.container}>
       {isSuccess &&
+        tweets?.length &&
         tweets?.map((tweet) => <Tweet key={tweet.id} tweet={tweet} />)}
     </div>
   );
