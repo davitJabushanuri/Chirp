@@ -7,7 +7,6 @@ export interface IFeed {
 export interface ITweet {
   id: string;
   text?: string;
-  image?: string;
   user_id: number;
   created_at: string;
   updated_at: string;
@@ -27,10 +26,18 @@ export interface ITweet {
   source?: string;
   author: IUser;
   likes: ILike[];
+  media?: IMedia[];
 }
 
 export interface ILike {
   id: string;
   user_id: string;
+  tweet_id: string;
+}
+
+export interface IMedia {
+  id: string;
+  media_url: string;
+  media_type: string;
   tweet_id: string;
 }

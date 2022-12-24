@@ -74,9 +74,24 @@ export const Tweet = ({ tweet }: { tweet: ITweet }) => {
               <p>{tweet.text}</p>
             </div>
           )}
-          {tweet.image && (
-            <div className={styles.image}>
-              <img src={tweet.image || ""} alt="" />
+          {tweet?.media && tweet?.media.length > 0 && (
+            <div
+              className={`${styles.images} ${
+                tweet?.media?.length === 1
+                  ? styles.one
+                  : tweet?.media?.length === 2
+                  ? styles.two
+                  : tweet?.media?.length === 3
+                  ? styles.three
+                  : tweet?.media?.length === 4
+                  ? styles.four
+                  : styles.many
+              }`}
+            >
+              {tweet?.media?.slice(0, 4).map((media) => {
+                return <img key={media?.id} src={media?.media_url} alt="" />;
+              })}
+              <div className={styles.showAll}>+{tweet?.media?.length - 4}</div>
             </div>
           )}
         </div>

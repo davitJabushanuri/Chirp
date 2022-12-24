@@ -16,6 +16,7 @@ import { CommentButton } from "./actions/comment-button";
 import { LikeButton } from "./actions/like-button";
 import { RetweetButton } from "./actions/retweet-button";
 import { ShareButton } from "./actions/share-button";
+import { Comments } from "./comments";
 import styles from "./styles/tweet-details.module.scss";
 
 export const TweetDetails = () => {
@@ -66,9 +67,24 @@ export const TweetDetails = () => {
         </div>
         <div className={styles.tweet}>
           {tweet.text && <div className={styles.text}>{tweet?.text}</div>}
-          {tweet.image && (
-            <div className={styles.image}>
-              <img src={tweet.image} alt="" />
+          {tweet?.media && tweet?.media.length > 0 && (
+            <div
+              className={`${styles.images} ${
+                tweet?.media?.length === 1
+                  ? styles.one
+                  : tweet?.media?.length === 2
+                  ? styles.two
+                  : tweet?.media?.length === 3
+                  ? styles.three
+                  : tweet?.media?.length === 4
+                  ? styles.four
+                  : styles.many
+              }`}
+            >
+              {tweet?.media?.slice(0, 4).map((media) => {
+                return <img key={media?.id} src={media?.media_url} alt="" />;
+              })}
+              <div className={styles.showAll}>+{tweet?.media?.length - 4}</div>
             </div>
           )}
         </div>
@@ -118,7 +134,9 @@ export const TweetDetails = () => {
         </div>
       </div>
       <div className={styles.createComment}></div>
-      <div className={styles.comments}></div>
+      <div className={styles.comments}>
+        <Comments tweetId={tweet?.id} />
+      </div>
     </div>
   );
 };

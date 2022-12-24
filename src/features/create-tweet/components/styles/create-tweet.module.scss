@@ -49,6 +49,30 @@
           }
         }
       }
+
+      .button {
+        background-color: var(--clr-primary);
+        border-radius: 100vmax;
+        padding: 0.425rem 1rem;
+        font-size: 0.9rem;
+        font-weight: 500;
+        cursor: pointer;
+        color: var(--clr-light);
+
+        &:hover {
+          background-color: var(--clr-primary-hover);
+        }
+
+        &:active {
+          background-color: var(--clr-primary-active);
+        }
+
+        &:disabled {
+          opacity: 0.5;
+          cursor: default;
+
+        }
+      }
     }
   }
 }

@@ -27,7 +27,7 @@ export const Comments = ({ tweetId }: { tweetId: string }) => {
   return (
     <div className={styles.container}>
       {isSuccess &&
-        comments.length &&
+        comments?.length > 0 &&
         comments?.map((comment) => {
           return <Tweet key={comment?.id} tweet={comment} />;
         })}

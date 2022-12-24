@@ -45,7 +45,7 @@ export const ProfileMedia = () => {
         <div className={styles.tweets}>
           {user?.tweets
             ?.filter((tweet) => {
-              return tweet.image;
+              return tweet?.media && tweet?.media?.length > 0;
             })
             .map((tweet: ITweet) => {
               return <Tweet key={tweet.id} tweet={tweet} />;
