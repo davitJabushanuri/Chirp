@@ -5,7 +5,6 @@ export const postTweet = async ({
   text: string;
   userId: string;
 }) => {
-  console.log("postTweet", text, userId);
   const response = await fetch("/api/tweets/create", {
     method: "POST",
     headers: {

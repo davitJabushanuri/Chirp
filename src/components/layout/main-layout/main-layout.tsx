@@ -40,22 +40,24 @@ const MainLayout = ({
           <LoadingScreen />
         ) : (
           <>
-            <div className="layout">
-              <MobileNavbar />
-              <div className="mobile-tweet-button">
-                <TweetButton />
+            <ReactQueryWrapper>
+              <div className="layout">
+                <MobileNavbar />
+                <div className="mobile-tweet-button">
+                  <TweetButton />
+                </div>
+                <Sidebar />
+                <main>
+                  <Header />
+                  {children}
+                </main>
+                <Aside />
               </div>
-              <Sidebar />
-              <main>
-                <Header />
-                <ReactQueryWrapper>{children}</ReactQueryWrapper>
-              </main>
-              <Aside />
-            </div>
-            {isTweetModalOpen && <CreateTweetModal />}
-            {isHamburgerOpen && <HamburgerMenu />}
-            {!session && <AuthModalTrigger />}
-            {isUserModalOpen && <UserModal />}
+              {isTweetModalOpen && <CreateTweetModal />}
+              {isHamburgerOpen && <HamburgerMenu />}
+              {!session && <AuthModalTrigger />}
+              {isUserModalOpen && <UserModal />}
+            </ReactQueryWrapper>
           </>
         )}
       </body>
