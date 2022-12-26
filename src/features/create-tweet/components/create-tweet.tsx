@@ -49,6 +49,9 @@ export const CreateTweet = () => {
   const chooseImage = async () => {
     imageUploadRef.current?.click();
     const file = imageUploadRef.current?.files?.[0];
+
+    // reset file input
+    if (imageUploadRef.current) imageUploadRef.current.value = "";
     if (file) {
       const reader = new FileReader();
       reader.readAsDataURL(file);
@@ -93,6 +96,7 @@ export const CreateTweet = () => {
           <input
             className={styles.fileInput}
             type="file"
+            onChange={chooseImage}
             ref={imageUploadRef}
           />
           <div
@@ -131,7 +135,7 @@ export const CreateTweet = () => {
           <div className={styles.media}>
             <button
               disabled={chosenImages.length >= 4}
-              onClick={() => chooseImage()}
+              onClick={() => imageUploadRef.current?.click()}
             >
               <Action icon={<ImageIcon />} />
             </button>
