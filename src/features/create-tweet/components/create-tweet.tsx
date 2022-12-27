@@ -21,14 +21,24 @@ import User from "./user";
 interface IChosenImages {
   url: string | ArrayBuffer | null;
   id: number;
+  file: File;
 }
 
 export const CreateTweet = () => {
   const { data: session } = useSession();
   const queryClient = useQueryClient();
   const mutation = useMutation(
-    ({ text, userId }: { text: string; userId: string }) =>
-      postTweet({ text, userId }),
+    ({
+      text,
+      userId,
+      files,
+    }: {
+      text: string;
+      userId: string;
+      files: File[];
+    }) => {
+      return postTweet({ text, userId, files });
+    },
 
     {
       onSuccess: () => {
@@ -44,7 +54,6 @@ export const CreateTweet = () => {
   const [text, setText] = useState("");
   const imageUploadRef = useRef<HTMLInputElement>(null);
   const [chosenImages, setChosenImages] = useState<IChosenImages[]>([]);
-  console.log(chosenImages);
 
   const chooseImage = async () => {
     imageUploadRef.current?.click();
@@ -52,6 +61,7 @@ export const CreateTweet = () => {
 
     // reset file input
     if (imageUploadRef.current) imageUploadRef.current.value = "";
+
     if (file) {
       const reader = new FileReader();
       reader.readAsDataURL(file);
@@ -61,24 +71,11 @@ export const CreateTweet = () => {
           {
             url: reader.result,
             id: Math.random(),
+            file: file,
           },
         ]);
       };
     }
-
-    // if (file) {
-    //   const { data, error } = await supabase.storage
-    //     .from("twitter-v2")
-    //     .upload(`image`, file, {
-    //       cacheControl: "3600",
-    //       upsert: false,
-    //     });
-
-    //   if (error) {
-    //     console.log(error);
-    //   }
-    //   console.log(data);
-    // }
   };
 
   return (
@@ -152,7 +149,11 @@ export const CreateTweet = () => {
           <div className={styles.tweetButton}>
             <button
               onClick={() =>
-                mutation.mutate({ text: text, userId: session?.user?.id })
+                mutation.mutate({
+                  text: text,
+                  userId: session?.user?.id,
+                  files: chosenImages.map((img) => img.file),
+                })
               }
               disabled={text.length === 0}
               className={styles.button}
