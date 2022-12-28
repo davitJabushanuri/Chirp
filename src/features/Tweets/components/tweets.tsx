@@ -25,6 +25,8 @@ export const Tweets = () => {
     return <div>Something went wrong</div>;
   }
 
+  console.log(tweets);
+
   return (
     <div className={styles.container}>
       {isSuccess &&

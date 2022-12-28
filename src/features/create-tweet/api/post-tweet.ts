@@ -24,6 +24,8 @@ export const postTweet = async ({
 
     if (files.length > 0) {
       await postMedia({ files, tweetId: data.id });
+      // delay to allow for media to be uploaded
+      await new Promise((resolve) => setTimeout(resolve, 1000));
     }
 
     return data;

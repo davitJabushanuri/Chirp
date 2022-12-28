@@ -5,7 +5,6 @@ import { useRef, useState } from "react";
 
 import { CloseIcon } from "@/assets/close-icon";
 import { LocationIcon } from "@/assets/location-icon";
-import supabase from "@/utils/supabaseClient";
 
 import { postTweet } from "../api/post-tweet";
 import { EmojiIcon } from "../assets/emoji-icon";
@@ -42,11 +41,13 @@ export const CreateTweet = () => {
 
     {
       onSuccess: () => {
-        setText("");
-        queryClient.invalidateQueries(["tweets"]);
+        console.log("success");
       },
       onError: (error) => {
         console.log(error);
+      },
+      onSettled: () => {
+        queryClient.invalidateQueries(["tweets"]);
       },
     },
   );

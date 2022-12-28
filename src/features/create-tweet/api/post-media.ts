@@ -1,3 +1,5 @@
+import cuid from "cuid";
+
 import supabase from "@/utils/supabaseClient";
 
 export const postMedia = async ({
@@ -9,16 +11,21 @@ export const postMedia = async ({
 }) => {
   try {
     files.forEach(async (file) => {
-      const { data: media, error } = await supabase.storage
+      const imagePath = cuid();
+
+      const { error } = await supabase.storage
         .from("images")
-        .upload(`image-${file.name}`, file, {
+        .upload(`image-${imagePath}`, file, {
           cacheControl: "3600",
           upsert: false,
         });
-
       if (error) {
         console.log("error", error);
-      } else
+      } else {
+        const { data: mediaUrl } = supabase.storage
+          .from("images")
+          .getPublicUrl(`image-${imagePath}`);
+
         await fetch("/api/tweets/media", {
           method: "POST",
           headers: {
@@ -26,10 +33,11 @@ export const postMedia = async ({
           },
           body: JSON.stringify({
             tweet_id: tweetId,
-            media_url: media?.path,
+            media_url: mediaUrl?.publicUrl,
             media_type: "image",
           }),
         });
+      }
     });
   } catch (error) {
     console.log("error", error);

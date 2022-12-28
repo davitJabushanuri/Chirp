@@ -89,13 +89,7 @@ export const Tweet = ({ tweet }: { tweet: ITweet }) => {
               }`}
             >
               {tweet?.media?.slice(0, 4).map((media) => {
-                return (
-                  <img
-                    key={media?.id}
-                    src={`https://hbrhodokmkprrksqwoph.supabase.co/storage/v1/object/public/images/${media?.media_url}`}
-                    alt=""
-                  />
-                );
+                return <img key={media?.id} src={media?.media_url} alt="" />;
               })}
               <div className={styles.showAll}>+{tweet?.media?.length - 4}</div>
             </div>
