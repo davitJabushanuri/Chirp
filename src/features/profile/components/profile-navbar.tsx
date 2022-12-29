@@ -11,25 +11,21 @@ export const ProfileNavbar = ({
 }) => {
   return (
     <div className={styles.container}>
-      <NavItem
-        text="Tweets"
-        href={`/profile/${id}`}
-        active={pathname === `/profile/${id}`}
-      />
+      <NavItem text="Tweets" href={`/${id}`} active={pathname === `/${id}`} />
       <NavItem
         text="Tweets & replies"
-        href={`/profile/${id}/with-replies`}
-        active={pathname === `/profile/${id}/with-replies`}
+        href={`/${id}/with-replies`}
+        active={pathname === `/${id}/with-replies`}
       />
       <NavItem
         text="Media"
-        href={`/profile/${id}/media`}
-        active={pathname === `/profile/${id}/media`}
+        href={`/${id}/media`}
+        active={pathname === `/${id}/media`}
       />
       <NavItem
         text="Likes"
-        href={`/profile/${id}/likes`}
-        active={pathname === `/profile/${id}/likes`}
+        href={`/${id}/likes`}
+        active={pathname === `/${id}/likes`}
       />
     </div>
   );

@@ -50,7 +50,7 @@ model Session {
 model User {
   id          String  @id @default(cuid())
   name        String
-  screen_name String? @unique
+  screen_name String? @unique @default("email.split('@')[0]")
   location    String?
   url         String?
   description String?

@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -17,6 +18,8 @@ import styles from "./styles/hamburger-menu.module.scss";
 export const HamburgerMenu = () => {
   const isHamburgerOpen = useHamburger((state) => state.isHamburgerOpen);
   const closeHamburger = useHamburger((state) => state.closeHamburger);
+
+  const { data: session } = useSession();
 
   return (
     <div
@@ -52,9 +55,17 @@ export const HamburgerMenu = () => {
         </div>
 
         <nav>
-          <HamburgerLink title="Profile" icon={<User />} />
-          <HamburgerLink title="Bookmarks" icon={<Bookmark />} />
-          <HamburgerLink title="Settings" icon={<Gear />} />
+          <HamburgerLink
+            title="Profile"
+            path={session?.user?.id}
+            icon={<User />}
+          />
+          <HamburgerLink
+            title="Bookmarks"
+            path={`bookmarks`}
+            icon={<Bookmark />}
+          />
+          <HamburgerLink title="Settings" path={`settings`} icon={<Gear />} />
         </nav>
       </div>
     </div>
@@ -63,15 +74,17 @@ export const HamburgerMenu = () => {
 
 const HamburgerLink = ({
   title,
+  path,
   icon,
 }: {
   title: string;
+  path: string;
   icon: React.ReactNode;
 }) => {
   const closeHamburger = useHamburger((state) => state.closeHamburger);
 
   return (
-    <Link href={`/${title.toLowerCase()}`}>
+    <Link href={`/${path}`}>
       <div onClick={() => closeHamburger()} className={styles.link}>
         <span className={styles.icon}>{icon}</span>
         <span className={styles.text}>{title}</span>

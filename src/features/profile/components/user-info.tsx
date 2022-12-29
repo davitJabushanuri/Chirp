@@ -5,8 +5,8 @@ import { useSession } from "next-auth/react";
 
 import { DotIcon } from "@/assets/dot-icon";
 import { LocationIcon } from "@/assets/location-icon";
+import { useEditProfile } from "@/stores/useEditProfile";
 
-import { updateProfile } from "../api/update-profile";
 import { CalendarIcon } from "../assets/calendar-icon";
 import { IUser } from "../types";
 
@@ -14,6 +14,9 @@ import styles from "./styles/user-info.module.scss";
 
 export const UserInfo = ({ user }: { user: IUser }) => {
   const { data: session } = useSession();
+  const openEditProfileModal = useEditProfile(
+    (state) => state.openEditProfileModal,
+  );
 
   return (
     <div className={styles.container}>
@@ -34,7 +37,7 @@ export const UserInfo = ({ user }: { user: IUser }) => {
         <div className={styles.editProfile}>
           {session?.user?.id === user?.id ? (
             <button
-              onClick={() => updateProfile(user.id)}
+              onClick={() => openEditProfileModal()}
               className={styles.editProfile}
             >
               Edit Profile

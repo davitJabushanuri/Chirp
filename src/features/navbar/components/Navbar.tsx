@@ -64,11 +64,11 @@ export const Navbar = () => {
       {session && (
         <NavItem
           icon={
-            pathname?.split(`/`)[1] === "profile" ? <UserActive /> : <User />
+            pathname === `/${session?.user?.id}` ? <UserActive /> : <User />
           }
           title={`Profile`}
-          path={`profile/${session?.user?.id}`}
-          isActive={pathname?.split(`/`)[1] === "profile"}
+          path={session?.user?.id}
+          isActive={pathname === `/${session?.user?.id}`}
         />
       )}
 

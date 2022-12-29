@@ -14,6 +14,8 @@ export default async function User(req: NextApiRequest, res: NextApiResponse) {
           tweets: {
             include: {
               author: true,
+              media: true,
+              likes: true,
             },
             orderBy: {
               created_at: "desc",

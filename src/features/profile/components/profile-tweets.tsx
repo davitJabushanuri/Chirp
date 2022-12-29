@@ -14,7 +14,7 @@ import styles from "./styles/profile-tweets.module.scss";
 
 export const ProfileTweets = () => {
   const pathname = usePathname();
-  const userId = pathname?.split("/")[2];
+  const userId = pathname?.split("/")[1];
 
   const {
     data: user,

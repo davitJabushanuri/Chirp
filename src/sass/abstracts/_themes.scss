@@ -46,6 +46,8 @@
   --clr-primary-disabled: #{$light-primary-disabled};
 
   --clr-secondary: #{$light-secondary};
+  --clr-secondary-hover: #{$light-secondary-hover};
+  --clr-secondary-active: #{$light-secondary-active};
 
   --clr-tertiary: #{$light-tertiary};
 
@@ -102,6 +104,8 @@
   --clr-primary-disabled: #{$dark-primary-disabled};
 
   --clr-secondary: #{$dark-secondary};
+  --clr-secondary-hover: #{$dark-secondary-hover};
+  --clr-secondary-active: #{$dark-secondary-active};
 
   --clr-tertiary: #{$dark-tertiary};
 
@@ -158,6 +162,8 @@
   --clr-primary-disabled: #{$dim-primary-disabled};
 
   --clr-secondary: #{$dim-secondary};
+  --clr-secondary-hover: #{$dim-secondary-hover};
+  --clr-secondary-active: #{$dim-secondary-active};
 
   --clr-tertiary: #{$dim-tertiary};
 
