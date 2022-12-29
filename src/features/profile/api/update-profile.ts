@@ -3,15 +3,15 @@ import { postImage } from "./post-image";
 export const updateProfile = async (profile: IProfile, userId: string) => {
   if (!profile) return;
   try {
-    let bannerUrl = "" as string | undefined;
-    let avatarUrl = "" as string | undefined;
+    let bannerUrl: string | undefined;
+    let avatarUrl: string | undefined;
 
     if (profile?.banner?.file) {
-      bannerUrl = await postImage(profile?.banner?.file);
+      bannerUrl = await postImage(profile?.banner?.file, "banners");
     }
 
     if (profile?.avatar?.file) {
-      avatarUrl = await postImage(profile?.avatar?.file);
+      avatarUrl = await postImage(profile?.avatar?.file, "avatars");
     }
 
     const response = await fetch(`/api/users/${userId}`, {
@@ -25,8 +25,8 @@ export const updateProfile = async (profile: IProfile, userId: string) => {
         bio: profile?.bio,
         location: profile?.location,
         website: profile?.website,
-        banner: bannerUrl,
-        avatar: avatarUrl,
+        banner: bannerUrl ? bannerUrl : profile?.banner?.url,
+        avatar: avatarUrl ? avatarUrl : profile?.avatar?.url,
       }),
     });
     const updatedProfile = await response.json();

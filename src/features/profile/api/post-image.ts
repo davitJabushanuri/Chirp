@@ -2,13 +2,13 @@ import cuid from "cuid";
 
 import supabase from "@/utils/supabaseClient";
 
-export const postImage = async (file: File) => {
+export const postImage = async (file: File, bucket: string) => {
   try {
     const imagePath = cuid();
 
     const { error } = await supabase.storage
-      .from("banners")
-      .upload(`banner-${imagePath}`, file, {
+      .from(bucket)
+      .upload(`${bucket}-${imagePath}`, file, {
         cacheControl: "3600",
         upsert: false,
       });
@@ -16,8 +16,8 @@ export const postImage = async (file: File) => {
       console.log("error", error);
     } else {
       const { data: mediaUrl } = supabase.storage
-        .from("banners")
-        .getPublicUrl(`banner-${imagePath}`);
+        .from(bucket)
+        .getPublicUrl(`${bucket}-${imagePath}`);
 
       return mediaUrl?.publicUrl;
     }
