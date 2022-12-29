@@ -25,7 +25,7 @@ export const Profile = ({ children }: { children: React.ReactNode }) => {
     data: user,
     isLoading,
     isError,
-  } = useQuery<IUser>(["user", id], () => getUser(id));
+  } = useQuery<IUser>(["users", id], () => getUser(id));
 
   if (isLoading) {
     return <LoadingSpinner />;

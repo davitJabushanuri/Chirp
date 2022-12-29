@@ -154,6 +154,10 @@
           fill: var(--clr-secondary);
         }
       }
+
+      .bannerInput {
+        display: none;
+      }
     }
 
     .avatar {
@@ -205,6 +209,10 @@
           height: 21px;
           fill: var(--clr-secondary);
         }
+      }
+
+      .avatarInput {
+        display: none;
       }
     }
 

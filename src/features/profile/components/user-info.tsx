@@ -8,6 +8,7 @@ import { LocationIcon } from "@/assets/location-icon";
 import { useEditProfile } from "@/stores/useEditProfile";
 
 import { CalendarIcon } from "../assets/calendar-icon";
+import { WebsiteIcon } from "../assets/website-icon";
 import { IUser } from "../types";
 
 import styles from "./styles/user-info.module.scss";
@@ -73,6 +74,17 @@ export const UserInfo = ({ user }: { user: IUser }) => {
                   <LocationIcon />
                 </span>
                 <span className={styles.text}>{user?.location}</span>
+              </div>
+            )}
+
+            {user?.url && (
+              <div className={styles.website}>
+                <span className={styles.icon}>
+                  <WebsiteIcon />
+                </span>
+                <span className={styles.text}>
+                  <a href={`${user?.url}`}>{user?.url}</a>
+                </span>
               </div>
             )}
 

@@ -94,8 +94,10 @@ $avatar-top: calc(-1 * #{$avatar-size} / 2 - #{$avatar-border});
 
       .locationAndJoined {
         display: flex;
+        flex-wrap: wrap;
 
         .location,
+        .website,
         .joined {
           font-size: 0.875rem;
           color: var(--clr-tertiary);
@@ -114,6 +116,18 @@ $avatar-top: calc(-1 * #{$avatar-size} / 2 - #{$avatar-border});
               width: 1.2rem;
               height: 1.2rem;
               fill: var(--clr-tertiary);
+            }
+          }
+        }
+
+        .website {
+          cursor: pointer;
+
+          .text {
+            color: var(--clr-primary);
+
+            &:hover {
+              text-decoration: underline;
             }
           }
         }

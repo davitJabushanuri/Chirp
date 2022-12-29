@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
-import { useState } from "react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useRef, useState } from "react";
 
 import { BackArrowIcon } from "@/assets/back-arrow-icon";
 import { CloseIcon } from "@/assets/close-icon";
@@ -15,15 +16,62 @@ export const EditProfileModal = ({ user }: { user: IUser }) => {
   const closeEditProfileModal = useEditProfile(
     (state) => state.closeEditProfileModal,
   );
+  const queryClient = useQueryClient();
+  const mutation = useMutation(
+    ({ profile, userId }: { profile: IProfile; userId: string }) => {
+      return updateProfile(profile, userId);
+    },
+
+    {
+      onSuccess: () => {
+        console.log("success");
+      },
+      onError: (error) => {
+        console.log(error);
+      },
+      onSettled: () => {
+        closeEditProfileModal();
+        queryClient.invalidateQueries(["users", user?.id]);
+      },
+    },
+  );
 
   const [profile, setProfile] = useState<IProfile>({
     name: user?.name || "",
     bio: user?.description || "",
     location: user?.location || "",
     website: user?.url || "",
-    banner: user?.profile_banner_url || "",
-    avatar: user?.profile_image_url || "",
+    banner: {
+      url: user?.profile_banner_url || "",
+      file: undefined,
+    },
+    avatar: { url: user?.profile_image_url || "", file: undefined },
   });
+
+  const bannerInputRef = useRef<HTMLInputElement>(null);
+  const avatarInputRef = useRef<HTMLInputElement>(null);
+
+  const chooseImage = async (event: any, type: string) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    if (type === "banner" && bannerInputRef.current)
+      bannerInputRef.current.value = "";
+
+    if (type === "avatar" && avatarInputRef.current)
+      avatarInputRef.current.value = "";
+
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      setProfile({
+        ...profile,
+        [type]: { url: reader.result as string, file },
+      });
+    };
+
+    reader.readAsDataURL(file);
+  };
 
   return (
     <div className={styles.container}>
@@ -44,7 +92,7 @@ export const EditProfileModal = ({ user }: { user: IUser }) => {
           <h2>Edit Profile</h2>
 
           <button
-            onClick={() => updateProfile(profile, user?.id)}
+            onClick={() => mutation.mutate({ profile, userId: user.id })}
             disabled={profile?.name.length === 0}
             className={styles.save}
           >
@@ -53,22 +101,50 @@ export const EditProfileModal = ({ user }: { user: IUser }) => {
         </div>
 
         <div className={styles.banner}>
-          {user?.profile_banner_url && (
-            <img src={user.profile_banner_url} alt="banner" />
+          {profile?.banner?.file ? (
+            <img src={profile?.banner?.url} alt="banner" />
+          ) : (
+            user?.profile_banner_url && (
+              <img src={user.profile_banner_url} alt="banner" />
+            )
           )}
 
-          <button className={styles.chooseBanner}>
+          <input
+            className={styles.bannerInput}
+            type="file"
+            accept="image/*"
+            ref={bannerInputRef}
+            onChange={(e) => chooseImage(e, "banner")}
+          />
+          <button
+            onClick={() => bannerInputRef.current?.click()}
+            className={styles.chooseBanner}
+          >
             <CameraIcon />
           </button>
         </div>
 
         <div className={styles.avatar}>
-          {user?.profile_image_url ? (
+          {profile?.avatar.file ? (
+            <img src={profile?.avatar?.url} alt="avatar" />
+          ) : user?.profile_image_url ? (
             <img src={user.profile_image_url} alt="avatar" />
           ) : (
             <img src="/user_placeholder.png" alt="" />
           )}
-          <button className={styles.chooseAvatar}>
+
+          <input
+            className={styles.avatarInput}
+            type="file"
+            accept="image/*"
+            ref={avatarInputRef}
+            onChange={(e) => chooseImage(e, "avatar")}
+          />
+
+          <button
+            onClick={() => avatarInputRef?.current?.click()}
+            className={styles.chooseAvatar}
+          >
             <CameraIcon />
           </button>
         </div>
