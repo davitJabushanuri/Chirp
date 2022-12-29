@@ -1,7 +1,7 @@
 import { ITweet } from "@/features/tweets";
 
 export interface IUser {
-  id: number;
+  id: string;
   name: string;
   email: string;
   emailVerified?: Date;
@@ -25,4 +25,13 @@ export interface IUser {
   created_at: string;
   updated_at: string;
   tweets: ITweet[];
+}
+
+export interface IProfile {
+  name: string;
+  bio: string | undefined;
+  location: string | undefined;
+  website: string | undefined;
+  banner: string | undefined;
+  avatar: string | undefined;
 }

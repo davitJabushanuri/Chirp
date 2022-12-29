@@ -17,6 +17,7 @@
     border-radius: 1rem;
     width: 100%;
     height: 100%;
+    padding-bottom: 2rem;
 
 
     .header {
@@ -95,6 +96,19 @@
 
         &:active {
           background-color: var(--clr-secondary-active);
+        }
+
+        &:disabled {
+          opacity: 0.6;
+          cursor: default;
+
+          &:hover {
+            background-color: var(--clr-secondary);
+          }
+
+          &:active {
+            background-color: var(--clr-secondary);
+          }
         }
       }
     }
@@ -194,6 +208,13 @@
       }
     }
 
+    .form {
+      padding: 0 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+    }
+
 
 
     @include mq("medium") {
@@ -229,4 +250,80 @@
   100% {
     opacity: 1;
   }
+}
+
+.input {
+  height: 55px;
+
+  label {
+    border-radius: 0.3rem;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    padding: 0.5rem;
+    cursor: text;
+    overflow: hidden;
+    outline: 1px solid var(--clr-auth-border);
+    transition: all 0.1s ease-in-out;
+
+    &:focus-within {
+      outline: 2px solid var(--clr-primary);
+    }
+
+    span {
+      pointer-events: none;
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      transition: 0.2s ease-in-out;
+      display: flex;
+      align-items: center;
+      font-size: 1rem;
+      padding: 0.5rem;
+      color: var(--clr-tertiary);
+    }
+
+    input {
+      width: 100%;
+
+      &::placeholder {
+        color: transparent;
+      }
+    }
+
+    input:focus+span {
+      font-size: 0.8rem;
+      transform: translateY(-0.6rem);
+      color: var(--clr-primary);
+    }
+
+    input:not(:placeholder-shown)+span {
+      transform: translateY(-0.6rem);
+      font-size: 0.8rem;
+    }
+
+  }
+
+  .isError {
+    outline: 1px solid #F4212E;
+
+    &:focus-within {
+      outline: 2px solid #F4212E;
+
+      span {
+        color: #F4212E;
+      }
+    }
+  }
+
+  .error {
+    color: #F4212E;
+    font-size: 12px;
+    margin-left: 0.5rem;
+  }
+
 }
