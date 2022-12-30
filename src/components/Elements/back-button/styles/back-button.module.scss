@@ -9,6 +9,13 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
+  transition: all 0.15s ease-in-out;
+
+  svg {
+    width: 19px;
+    height: 19px;
+    fill: var(--clr-secondary);
+  }
 
   &:hover {
     background-color: var(--clr-trends-hover);

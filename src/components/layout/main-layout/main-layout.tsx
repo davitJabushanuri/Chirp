@@ -3,7 +3,6 @@ import { useSession } from "next-auth/react";
 
 import { LoadingScreen } from "@/components/elements/loading-screen";
 import { Aside } from "@/components/layout/aside";
-import { Header } from "@/components/layout/header";
 import { AuthModalTrigger } from "@/features/auth";
 import { CreateTweetModal } from "@/features/create-tweet";
 import { HamburgerMenu, MobileNavbar } from "@/features/navbar";
@@ -47,10 +46,7 @@ const MainLayout = ({
                   <TweetButton />
                 </div>
                 <Sidebar />
-                <main>
-                  <Header />
-                  {children}
-                </main>
+                <main>{children}</main>
                 <Aside />
               </div>
               {isTweetModalOpen && <CreateTweetModal />}

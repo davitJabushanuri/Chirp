@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { usePathname } from "next/navigation";
 
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
+import { ProfileHeader } from "@/components/layout/header";
 import { useEditProfile } from "@/stores/useEditProfile";
 
 import { getUser } from "../api/get-user";
@@ -37,6 +38,7 @@ export const Profile = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div className={styles.container}>
+      <ProfileHeader user={user} />
       <UserInfo user={user} />
       <ProfileNavbar pathname={pathname} id={id} />
       <div>{children}</div>
