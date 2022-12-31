@@ -32,7 +32,6 @@ export const updateProfile = async (profile: IProfile, userId: string) => {
     const updatedProfile = await response.json();
     return updatedProfile;
   } catch (error) {
-    console.log(error);
     throw new Error("Failed to update profile");
   }
 };

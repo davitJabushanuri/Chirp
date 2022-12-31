@@ -75,17 +75,18 @@ model User {
   accounts Account[]
   sessions Session[]
   tweets   Tweet[]
-  Likes    Likes[]
+  likes    Likes[]
 
   followers Follows[] @relation("following")
   following Follows[] @relation("follower")
 }
 
 model Follows {
-  follower     User   @relation("follower", fields: [follower_id], references: [id])
+  follower     User     @relation("follower", fields: [follower_id], references: [id])
   follower_id  String
-  following    User   @relation("following", fields: [following_id], references: [id])
+  following    User     @relation("following", fields: [following_id], references: [id])
   following_id String
+  created_at   DateTime @default(now())
 
   @@id([follower_id, following_id])
 }
@@ -121,9 +122,10 @@ model Media {
 }
 
 model Likes {
-  id       String @id @default(cuid())
-  tweet    Tweet  @relation(fields: [tweet_id], references: [id])
-  tweet_id String
-  user     User   @relation(fields: [user_id], references: [id])
-  user_id  String
+  id         String   @id @default(cuid())
+  tweet      Tweet    @relation(fields: [tweet_id], references: [id])
+  tweet_id   String
+  user       User     @relation(fields: [user_id], references: [id])
+  user_id    String
+  created_at DateTime @default(now())
 }

@@ -21,6 +21,7 @@ export const postMedia = async ({
         });
       if (error) {
         console.log("error", error);
+        throw new Error("Failed to upload image");
       } else {
         const { data: mediaUrl } = supabase.storage
           .from("images")
@@ -41,5 +42,6 @@ export const postMedia = async ({
     });
   } catch (error) {
     console.log("error", error);
+    throw new Error("Failed to upload image");
   }
 };

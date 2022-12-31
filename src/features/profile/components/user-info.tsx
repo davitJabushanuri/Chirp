@@ -22,8 +22,6 @@ import { IUser } from "../types";
 import styles from "./styles/user-info.module.scss";
 
 export const UserInfo = ({ user }: { user: IUser }) => {
-  console.log(user);
-
   const { data: session } = useSession();
   const openEditProfileModal = useEditProfile(
     (state) => state.openEditProfileModal,

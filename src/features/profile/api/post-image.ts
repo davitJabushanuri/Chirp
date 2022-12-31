@@ -13,7 +13,7 @@ export const postImage = async (file: File, bucket: string) => {
         upsert: false,
       });
     if (error) {
-      console.log("error", error);
+      throw new Error(error.message);
     } else {
       const { data: mediaUrl } = supabase.storage
         .from(bucket)
@@ -21,7 +21,7 @@ export const postImage = async (file: File, bucket: string) => {
 
       return mediaUrl?.publicUrl;
     }
-  } catch (error) {
-    console.log("error", error);
+  } catch (error: any) {
+    throw new Error(error.message);
   }
 };

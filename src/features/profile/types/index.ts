@@ -51,3 +51,12 @@ export interface IFollow {
   following: IUser;
   following_id: string;
 }
+
+export interface ILike {
+  id: string;
+  user: IUser;
+  user_id: string;
+  tweet: ITweet;
+  tweet_id: string;
+  created_at: string;
+}

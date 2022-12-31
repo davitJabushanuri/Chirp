@@ -1,3 +1,5 @@
+"use client";
+
 import { ProfileLikes } from "@/features/profile";
 
 const page = () => {
