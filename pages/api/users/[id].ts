@@ -11,6 +11,10 @@ export default async function User(req: NextApiRequest, res: NextApiResponse) {
           id: req.query.id as string,
         },
         include: {
+          followers: true,
+          following: true,
+          Likes: true,
+
           tweets: {
             include: {
               author: true,

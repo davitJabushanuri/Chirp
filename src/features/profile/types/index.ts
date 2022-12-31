@@ -25,6 +25,8 @@ export interface IUser {
   created_at: string;
   updated_at: string;
   tweets: ITweet[];
+  followers: IFollow[];
+  following: IFollow[];
 }
 
 export interface IProfile {
@@ -40,4 +42,12 @@ export interface IProfile {
     url: string | undefined;
     file: File | undefined;
   };
+}
+
+export interface IFollow {
+  id: string;
+  follower: IUser;
+  follower_id: string;
+  following: IUser;
+  following_id: string;
 }

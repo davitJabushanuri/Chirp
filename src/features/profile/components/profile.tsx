@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { usePathname } from "next/navigation";
 
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
+import { TryAgain } from "@/components/elements/try-again";
 import { ProfileHeader } from "@/components/layout/header";
 import { useEditProfile } from "@/stores/useEditProfile";
 import { useInspectImage } from "@/stores/useInspectImage";
@@ -34,11 +35,19 @@ export const Profile = ({ children }: { children: React.ReactNode }) => {
   } = useQuery<IUser>(["users", id], () => getUser(id));
 
   if (isLoading) {
-    return <LoadingSpinner />;
+    return (
+      <div className={styles.loading}>
+        <LoadingSpinner />
+      </div>
+    );
   }
 
   if (isError) {
-    return <p>Error</p>;
+    return (
+      <div className={styles.error}>
+        <TryAgain />
+      </div>
+    );
   }
 
   return (

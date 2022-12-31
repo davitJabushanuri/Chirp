@@ -7,6 +7,11 @@ import { useSession } from "next-auth/react";
 
 import { DotIcon } from "@/assets/dot-icon";
 import { LocationIcon } from "@/assets/location-icon";
+import { MessageIcon } from "@/assets/message-icon";
+import {
+  ReceivingNotificationsIcon,
+  ReceiveNotificationsIcon,
+} from "@/assets/notifications-icon";
 import { useEditProfile } from "@/stores/useEditProfile";
 import { useInspectImage } from "@/stores/useInspectImage";
 
@@ -17,6 +22,8 @@ import { IUser } from "../types";
 import styles from "./styles/user-info.module.scss";
 
 export const UserInfo = ({ user }: { user: IUser }) => {
+  console.log(user);
+
   const { data: session } = useSession();
   const openEditProfileModal = useEditProfile(
     (state) => state.openEditProfileModal,
@@ -71,9 +78,17 @@ export const UserInfo = ({ user }: { user: IUser }) => {
               <button className={styles.options}>
                 <DotIcon />
               </button>
-              <button className={styles.message}>message</button>
-              <button className={styles.notifications}>notifications</button>
-              <button className={styles.follow}>Follow</button>
+              <button className={styles.message}>
+                <MessageIcon />
+              </button>
+              <button className={styles.notifications}>
+                <ReceiveNotificationsIcon />
+              </button>
+              {user?.followers?.includes(session?.user?.id) ? (
+                <button className={styles.following}>Following</button>
+              ) : (
+                <button className={styles.follow}>Follow</button>
+              )}
             </div>
           )}
         </div>
