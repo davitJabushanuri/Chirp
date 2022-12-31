@@ -1,9 +1,10 @@
 export default async function getTweet({ id }: { id: string }) {
-  try {
-    const response = await fetch(`/api/tweets/${id}`);
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error(error);
+  const response = await fetch(`/api/tweets/${id}`);
+
+  if (!response.ok) {
+    throw new Error("Network response was not ok");
   }
+
+  const data = await response.json();
+  return data;
 }

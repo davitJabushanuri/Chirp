@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import dayjs from "dayjs";
@@ -6,6 +8,7 @@ import { useSession } from "next-auth/react";
 import { DotIcon } from "@/assets/dot-icon";
 import { LocationIcon } from "@/assets/location-icon";
 import { useEditProfile } from "@/stores/useEditProfile";
+import { useInspectImage } from "@/stores/useInspectImage";
 
 import { CalendarIcon } from "../assets/calendar-icon";
 import { WebsiteIcon } from "../assets/website-icon";
@@ -19,17 +22,37 @@ export const UserInfo = ({ user }: { user: IUser }) => {
     (state) => state.openEditProfileModal,
   );
 
+  const openInspectModal = useInspectImage((state) => state.openInspectModal);
+  const setSource = useInspectImage((state) => state.setSource);
+  const setSourceType = useInspectImage((state) => state.setSourceType);
+
   return (
     <div className={styles.container}>
       <div className={styles.banner}>
         {user?.profile_banner_url && (
-          <img src={user?.profile_banner_url} alt="" />
+          <img
+            onClick={() => {
+              setSource(user?.profile_banner_url || "");
+              setSourceType("banner");
+              openInspectModal();
+            }}
+            src={user?.profile_banner_url}
+            alt=""
+          />
         )}
       </div>
       <div className={styles.info}>
         <div className={styles.avatar}>
           {user?.profile_image_url ? (
-            <img src={user?.profile_image_url} alt="" />
+            <img
+              onClick={() => {
+                setSource(user?.profile_image_url || "");
+                setSourceType("avatar");
+                openInspectModal();
+              }}
+              src={user?.profile_image_url}
+              alt=""
+            />
           ) : (
             <img src="/user_placeholder.png" alt="" />
           )}

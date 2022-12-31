@@ -6,11 +6,13 @@ import { usePathname } from "next/navigation";
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { ProfileHeader } from "@/components/layout/header";
 import { useEditProfile } from "@/stores/useEditProfile";
+import { useInspectImage } from "@/stores/useInspectImage";
 
 import { getUser } from "../api/get-user";
 import { IUser } from "../types";
 
 import { EditProfileModal } from "./edit-profile-modal";
+import { InspectImageModal } from "./inspect-image-modal";
 import { ProfileNavbar } from "./profile-navbar";
 import styles from "./styles/profile.module.scss";
 import { UserInfo } from "./user-info";
@@ -20,6 +22,9 @@ export const Profile = ({ children }: { children: React.ReactNode }) => {
   const id = pathname?.split("/")[1] || "";
   const isEditProfileModalOpen = useEditProfile(
     (state) => state.isEditProfileModalOpen,
+  );
+  const isInspectModalOpen = useInspectImage(
+    (state) => state.isInspectModalOpen,
   );
 
   const {
@@ -43,6 +48,7 @@ export const Profile = ({ children }: { children: React.ReactNode }) => {
       <ProfileNavbar pathname={pathname} id={id} />
       <div>{children}</div>
       {isEditProfileModalOpen && <EditProfileModal user={user} />}
+      {isInspectModalOpen && <InspectImageModal />}
     </div>
   );
 };

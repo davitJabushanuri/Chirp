@@ -27,7 +27,10 @@ export const TweetDetails = () => {
     data: tweet,
     isLoading,
     isError,
-  } = useQuery<ITweet>(["tweets", id], () => getTweet({ id }));
+    isSuccess,
+  } = useQuery<ITweet, Error>(["tweets", id], () => {
+    return getTweet({ id });
+  });
 
   if (isLoading) {
     return <LoadingSpinner />;
@@ -78,7 +81,7 @@ export const TweetDetails = () => {
                   ? styles.three
                   : tweet?.media?.length === 4
                   ? styles.four
-                  : styles.many
+                  : ""
               }`}
             >
               {tweet?.media?.slice(0, 4).map((media) => {
