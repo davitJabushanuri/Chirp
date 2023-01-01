@@ -4,34 +4,43 @@ import { usePathname } from "next/navigation";
 
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
-import { ITweet, Tweet } from "@/features/tweets";
+import { Tweet } from "@/features/tweets";
 
-import { getUserTweets } from "../api/get-user-tweets";
+import { getUser } from "../api/get-user";
+import { IUser } from "../types";
 
 import styles from "./styles/profile-tweets-and-replies.module.scss";
 
 export const ProfileTweetsAndReplies = () => {
   const pathname = usePathname();
-  const userId = pathname?.split("/")[1];
+  const id = pathname?.split("/")[1];
 
   const {
-    data: tweets,
+    data: user,
     isLoading,
     isError,
     isSuccess,
-  } = useQuery<ITweet[]>(["user-tweets", userId], () => getUserTweets(userId));
+  } = useQuery<IUser>(["users", id], () => getUser(id));
 
   if (isLoading) {
-    return <LoadingSpinner />;
+    return (
+      <div className={styles.loading}>
+        <LoadingSpinner />
+      </div>
+    );
   }
 
   if (isError) {
-    return <TryAgain />;
+    return (
+      <div className={styles.error}>
+        <TryAgain />
+      </div>
+    );
   }
 
   return (
     <div className={styles.container}>
-      {isSuccess && tweets?.length === 0 && (
+      {isSuccess && user?.tweets?.length === 0 && (
         <div className={styles.noTweets}>
           <div className={styles.noTweetsText}>
             This account hasn&apos;t tweeted yet
@@ -39,9 +48,9 @@ export const ProfileTweetsAndReplies = () => {
         </div>
       )}
 
-      {isSuccess && tweets?.length > 0 && (
+      {isSuccess && user?.tweets?.length > 0 && (
         <div className={styles.tweets}>
-          {tweets
+          {user?.tweets
             ?.filter((tweet) => {
               return (
                 tweet?.in_reply_to_status_id ||

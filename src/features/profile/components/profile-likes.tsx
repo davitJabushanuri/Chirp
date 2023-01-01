@@ -7,37 +7,43 @@ import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
 import { Tweet } from "@/features/tweets";
 
-import { getUserLikes } from "../api/get-user-likes";
-import { ILike } from "../types";
+import { getUser } from "../api/get-user";
+import { IUser } from "../types";
 
 import styles from "./styles/profile-likes.module.scss";
 
 export const ProfileLikes = () => {
   const pathname = usePathname();
-  const userId = pathname?.split("/")[1];
+  const id = pathname?.split("/")[1];
 
   const {
-    data: likes,
+    data: user,
     isLoading,
     isError,
     isSuccess,
-  } = useQuery<ILike[]>(["user-likes", userId], () => {
-    return getUserLikes(userId);
-  });
+  } = useQuery<IUser>(["users", id], () => getUser(id));
 
   if (isLoading) {
-    return <LoadingSpinner />;
+    return (
+      <div className={styles.loading}>
+        <LoadingSpinner />
+      </div>
+    );
   }
 
   if (isError) {
-    return <TryAgain />;
+    return (
+      <div className={styles.error}>
+        <TryAgain />
+      </div>
+    );
   }
 
   return (
     <div className={styles.container}>
       {isSuccess &&
-        likes.length > 0 &&
-        likes?.map((like) => {
+        user?.likes.length > 0 &&
+        user?.likes?.map((like) => {
           return <Tweet key={like.id} tweet={like?.tweet} />;
         })}
     </div>

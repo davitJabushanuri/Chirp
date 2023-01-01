@@ -11,10 +11,58 @@ export default async function User(req: NextApiRequest, res: NextApiResponse) {
           id: req.query.id as string,
         },
         include: {
-          followers: true,
-          following: true,
-          tweets: true,
-          likes: true,
+          followers: {
+            include: {
+              follower: true,
+              following: true,
+            },
+
+            orderBy: {
+              created_at: "desc",
+            },
+          },
+          following: {
+            include: {
+              follower: true,
+              following: true,
+            },
+
+            orderBy: {
+              created_at: "desc",
+            },
+          },
+          tweets: {
+            include: {
+              media: true,
+              author: true,
+              likes: {
+                include: {
+                  tweet: true,
+                  user: true,
+                },
+              },
+            },
+
+            orderBy: {
+              created_at: "desc",
+            },
+          },
+          likes: {
+            include: {
+              tweet: {
+                include: {
+                  media: true,
+                  author: true,
+                  likes: true,
+                },
+              },
+              user: true,
+            },
+
+            orderBy: {
+              created_at: "desc",
+            },
+          },
         },
       });
       res.status(200).json(user);

@@ -27,6 +27,7 @@ export interface IUser {
   tweets: ITweet[];
   followers: IFollow[];
   following: IFollow[];
+  likes: ILike[];
 }
 
 export interface IProfile {
