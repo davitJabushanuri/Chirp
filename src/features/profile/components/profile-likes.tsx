@@ -23,7 +23,9 @@ export const ProfileLikes = () => {
     isLoading,
     isError,
     isSuccess,
-  } = useQuery<IUser>(["users", id], () => getUser(id));
+  } = useQuery<IUser>(["users", id], () => getUser(id), {
+    refetchOnWindowFocus: false,
+  });
 
   if (isLoading) {
     return (

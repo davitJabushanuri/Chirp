@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable @next/next/no-img-element */
 "use client";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import { useSession } from "next-auth/react";
 
@@ -15,6 +16,7 @@ import {
 import { useEditProfile } from "@/stores/useEditProfile";
 import { useInspectImage } from "@/stores/useInspectImage";
 
+import { toggleFollow } from "../api/toggle-follow";
 import { CalendarIcon } from "../assets/calendar-icon";
 import { WebsiteIcon } from "../assets/website-icon";
 import { IUser } from "../types";
@@ -23,6 +25,9 @@ import styles from "./styles/user-info.module.scss";
 
 export const UserInfo = ({ user }: { user: IUser }) => {
   const { data: session } = useSession();
+  const isFollowing = user?.followers.find(
+    (follower) => follower?.follower_id === session?.user?.id,
+  );
   const openEditProfileModal = useEditProfile(
     (state) => state.openEditProfileModal,
   );
@@ -30,6 +35,27 @@ export const UserInfo = ({ user }: { user: IUser }) => {
   const openInspectModal = useInspectImage((state) => state.openInspectModal);
   const setSource = useInspectImage((state) => state.setSource);
   const setSourceType = useInspectImage((state) => state.setSourceType);
+
+  const queryClient = useQueryClient();
+  const mutation = useMutation(
+    ({ followerId, userId }: { followerId: string; userId: string }) => {
+      return toggleFollow(followerId, userId);
+    },
+
+    {
+      onSuccess: () => {
+        console.log("success");
+      },
+
+      onError: () => {
+        console.log("error");
+      },
+
+      onSettled: () => {
+        queryClient.invalidateQueries(["users", user?.id]);
+      },
+    },
+  );
 
   return (
     <div className={styles.container}>
@@ -82,11 +108,18 @@ export const UserInfo = ({ user }: { user: IUser }) => {
               <button className={styles.notifications}>
                 <ReceiveNotificationsIcon />
               </button>
-              {user?.followers?.includes(session?.user?.id) ? (
-                <button className={styles.following}>Following</button>
-              ) : (
-                <button className={styles.follow}>Follow</button>
-              )}
+
+              <button
+                onClick={() =>
+                  mutation.mutate({
+                    followerId: session?.user?.id || "",
+                    userId: user?.id || "",
+                  })
+                }
+                className={isFollowing ? styles.following : styles.follow}
+              >
+                {isFollowing ? "Following" : "Follow"}
+              </button>
             </div>
           )}
         </div>

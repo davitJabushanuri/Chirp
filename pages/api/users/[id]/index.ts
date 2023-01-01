@@ -14,7 +14,6 @@ export default async function User(req: NextApiRequest, res: NextApiResponse) {
           followers: {
             include: {
               follower: true,
-              following: true,
             },
 
             orderBy: {
