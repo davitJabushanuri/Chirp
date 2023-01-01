@@ -1,6 +1,5 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
 
@@ -8,8 +7,7 @@ import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
 import { Tweet } from "@/features/tweets";
 
-import { getUser } from "../api/get-user";
-import { IUser } from "../types";
+import { useUser } from "../hooks/useUser";
 
 import styles from "./styles/profile-likes.module.scss";
 
@@ -18,14 +16,7 @@ export const ProfileLikes = () => {
   const pathname = usePathname();
   const id = pathname?.split("/")[1];
 
-  const {
-    data: user,
-    isLoading,
-    isError,
-    isSuccess,
-  } = useQuery<IUser>(["users", id], () => getUser(id), {
-    refetchOnWindowFocus: false,
-  });
+  const { data: user, isLoading, isError, isSuccess } = useUser(id);
 
   if (isLoading) {
     return (

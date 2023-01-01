@@ -1,6 +1,5 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
 
@@ -8,8 +7,7 @@ import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
 import { Tweet } from "@/features/tweets";
 
-import { getUser } from "../api/get-user";
-import { IUser } from "../types";
+import { useUser } from "../hooks/useUser";
 
 import styles from "./styles/profile-tweets-and-replies.module.scss";
 
@@ -18,14 +16,7 @@ export const ProfileTweetsAndReplies = () => {
   const pathname = usePathname();
   const id = pathname?.split("/")[1];
 
-  const {
-    data: user,
-    isLoading,
-    isError,
-    isSuccess,
-  } = useQuery<IUser>(["users", id], () => getUser(id), {
-    refetchOnWindowFocus: false,
-  });
+  const { data: user, isLoading, isError, isSuccess } = useUser(id);
 
   if (isLoading) {
     return (
@@ -45,23 +36,26 @@ export const ProfileTweetsAndReplies = () => {
 
   return (
     <div className={styles.container}>
-      {isSuccess && user?.tweets?.length === 0 && (
-        <div className={styles.noTweets}>
-          {user?.id === session?.user?.id ? (
-            <div>
-              <h1>You haven&apos;t tweeted anything yet.</h1>
-              <p>When you do, it&apos;ll show up here.</p>
-            </div>
-          ) : (
-            <div>
-              <h1>
-                @{user?.email?.split("@")[0]} hasn&apos;t tweeted anything yet.
-              </h1>
-              <p>When they do, it&apos;ll show up here.</p>
-            </div>
-          )}
-        </div>
-      )}
+      {isSuccess &&
+        user?.tweets?.filter((tweet) => tweet?.in_reply_to_status_id)
+          ?.length === 0 && (
+          <div className={styles.noTweets}>
+            {user?.id === session?.user?.id ? (
+              <div>
+                <h1>You haven&apos;t tweeted anything yet.</h1>
+                <p>When you do, it&apos;ll show up here.</p>
+              </div>
+            ) : (
+              <div>
+                <h1>
+                  @{user?.email?.split("@")[0]} hasn&apos;t tweeted anything
+                  yet.
+                </h1>
+                <p>When they do, it&apos;ll show up here.</p>
+              </div>
+            )}
+          </div>
+        )}
 
       {isSuccess && user?.tweets?.length > 0 && (
         <div className={styles.tweets}>

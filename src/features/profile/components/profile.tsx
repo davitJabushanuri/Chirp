@@ -1,6 +1,5 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
 import { usePathname } from "next/navigation";
 
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
@@ -9,8 +8,7 @@ import { ProfileHeader } from "@/components/layout/header";
 import { useEditProfile } from "@/stores/useEditProfile";
 import { useInspectImage } from "@/stores/useInspectImage";
 
-import { getUser } from "../api/get-user";
-import { IUser } from "../types";
+import { useUser } from "../hooks/useUser";
 
 import { EditProfileModal } from "./edit-profile-modal";
 import { InspectImageModal } from "./inspect-image-modal";
@@ -28,13 +26,7 @@ export const Profile = ({ children }: { children: React.ReactNode }) => {
     (state) => state.isInspectModalOpen,
   );
 
-  const {
-    data: user,
-    isLoading,
-    isError,
-  } = useQuery<IUser>(["users", id], () => getUser(id), {
-    refetchOnWindowFocus: false,
-  });
+  const { data: user, isLoading, isError } = useUser(id);
 
   if (isLoading) {
     return (
