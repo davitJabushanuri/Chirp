@@ -4,36 +4,36 @@ import { useQuery } from "@tanstack/react-query";
 import { usePathname } from "next/navigation";
 
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
+import { TryAgain } from "@/components/elements/try-again";
 import { ITweet } from "@/features/tweets";
 import { Tweet } from "@/features/tweets";
 
-import { getUser } from "../api/get-user";
-import { IUser } from "../types";
+import { getUserTweets } from "../api/get-user-tweets";
 
 import styles from "./styles/profile-media.module.scss";
 
 export const ProfileMedia = () => {
   const pathname = usePathname();
-  const userId = pathname?.split("/")[2];
+  const userId = pathname?.split("/")[1];
 
   const {
-    data: user,
+    data: tweets,
     isLoading,
     isError,
     isSuccess,
-  } = useQuery<IUser>(["user", userId], () => getUser(userId));
+  } = useQuery<ITweet[]>(["user-tweets", userId], () => getUserTweets(userId));
 
   if (isLoading) {
     return <LoadingSpinner />;
   }
 
   if (isError) {
-    return <div>Something went wrong</div>;
+    return <TryAgain />;
   }
 
   return (
     <div className={styles.container}>
-      {isSuccess && user?.tweets?.length === 0 && (
+      {isSuccess && tweets?.length === 0 && (
         <div className={styles.noTweets}>
           <div className={styles.noTweetsText}>
             This account hasn&apos;t tweeted yet
@@ -41,13 +41,13 @@ export const ProfileMedia = () => {
         </div>
       )}
 
-      {isSuccess && user?.tweets?.length > 0 && (
+      {isSuccess && tweets?.length > 0 && (
         <div className={styles.tweets}>
-          {user?.tweets
+          {tweets
             ?.filter((tweet) => {
               return tweet?.media && tweet?.media?.length > 0;
             })
-            .map((tweet: ITweet) => {
+            .map((tweet) => {
               return <Tweet key={tweet.id} tweet={tweet} />;
             })}
         </div>

@@ -48,7 +48,7 @@ export const CreateTweet = () => {
       },
       onSettled: () => {
         queryClient.invalidateQueries(["tweets"]);
-        queryClient.invalidateQueries(["users", session?.user.id]);
+        queryClient.invalidateQueries(["user-tweets", session?.user.id]);
       },
     },
   );

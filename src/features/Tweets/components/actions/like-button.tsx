@@ -27,6 +27,8 @@ export const LikeButton = ({
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["tweets"]);
+        queryClient.invalidateQueries(["user-tweets", session?.user?.id]);
+        queryClient.invalidateQueries(["user-likes", session?.user?.id]);
       },
       onError: () => {
         console.log("error");
@@ -38,6 +40,7 @@ export const LikeButton = ({
     <button
       onClick={(e) => {
         e.stopPropagation();
+        if (!session) return;
         mutation.mutate({ tweetId: tweetId, userId: session?.user?.id });
       }}
       className={`${styles.container} ${styles.like} ${

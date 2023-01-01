@@ -22,6 +22,9 @@ export default async function UserLikes(
             },
           },
         },
+        orderBy: {
+          created_at: "desc",
+        },
       });
 
       res.status(200).json(tweetsByUser);

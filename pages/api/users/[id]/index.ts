@@ -13,6 +13,8 @@ export default async function User(req: NextApiRequest, res: NextApiResponse) {
         include: {
           followers: true,
           following: true,
+          tweets: true,
+          likes: true,
         },
       });
       res.status(200).json(user);

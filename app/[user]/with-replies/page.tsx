@@ -1,3 +1,5 @@
+"use client";
+
 import { ProfileTweetsAndReplies } from "@/features/profile";
 
 const page = () => {

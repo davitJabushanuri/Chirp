@@ -16,6 +16,7 @@ export const toggleLike = async ({
     const data = await response.json();
     return data;
   } catch (error: any) {
-    return { error: error.message };
+    console.log("error", error);
+    throw new Error("Failed to like tweet");
   }
 };

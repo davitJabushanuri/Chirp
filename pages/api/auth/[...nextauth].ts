@@ -12,6 +12,8 @@ import {
 import { prisma } from "@/lib/prisma";
 
 export const authOptions: NextAuthOptions = {
+  secret: process.env.NEXTAUTH_SECRET,
+
   session: {
     strategy: "database",
   },

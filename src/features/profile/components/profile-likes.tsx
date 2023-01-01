@@ -20,6 +20,7 @@ export const ProfileLikes = () => {
     data: likes,
     isLoading,
     isError,
+    isSuccess,
   } = useQuery<ILike[]>(["user-likes", userId], () => {
     return getUserLikes(userId);
   });
@@ -34,9 +35,11 @@ export const ProfileLikes = () => {
 
   return (
     <div className={styles.container}>
-      {likes?.map((like) => {
-        return <Tweet key={like.id} tweet={like?.tweet} />;
-      })}
+      {isSuccess &&
+        likes.length > 0 &&
+        likes?.map((like) => {
+          return <Tweet key={like.id} tweet={like?.tweet} />;
+        })}
     </div>
   );
 };

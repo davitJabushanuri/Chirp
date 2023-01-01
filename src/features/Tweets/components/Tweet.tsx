@@ -28,7 +28,7 @@ export const Tweet = ({ tweet }: { tweet: ITweet }) => {
       className={styles.container}
     >
       <div onClick={(e) => e.stopPropagation()} className={styles.avatar}>
-        <Link href={`/profile/${tweet?.author?.id}`}>
+        <Link href={`/${tweet?.author?.id}`}>
           {tweet?.author?.profile_image_url ? (
             <img src={tweet?.author?.profile_image_url} alt="" />
           ) : (
@@ -40,9 +40,7 @@ export const Tweet = ({ tweet }: { tweet: ITweet }) => {
         <div className={styles.header}>
           <div className={styles.user}>
             <span onClick={(e) => e.stopPropagation()} className={styles.name}>
-              <Link href={`/profile/${tweet?.author?.id}`}>
-                {tweet?.author?.name}
-              </Link>
+              <Link href={`/${tweet?.author?.id}`}>{tweet?.author?.name}</Link>
             </span>
 
             <span className={styles.verified}>
@@ -53,7 +51,7 @@ export const Tweet = ({ tweet }: { tweet: ITweet }) => {
               onClick={(e) => e.stopPropagation()}
               className={styles.username}
             >
-              <Link href={`/profile/${tweet?.author?.id}`}>
+              <Link href={`/${tweet?.author?.id}`}>
                 @{tweet?.author?.email?.split("@")[0]}
               </Link>
             </span>

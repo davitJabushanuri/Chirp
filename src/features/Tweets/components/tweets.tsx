@@ -2,6 +2,7 @@
 import { useQuery } from "@tanstack/react-query";
 
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
+import { TryAgain } from "@/components/elements/try-again";
 
 import getTweets from "../api/get-tweets";
 import { ITweet } from "../types";
@@ -22,10 +23,8 @@ export const Tweets = () => {
   }
 
   if (isError) {
-    return <div>Something went wrong</div>;
+    return <TryAgain />;
   }
-
-  console.log(tweets);
 
   return (
     <div className={styles.container}>
