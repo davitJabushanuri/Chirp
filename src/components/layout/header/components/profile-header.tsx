@@ -30,10 +30,13 @@ export const ProfileHeader = ({ user }: { user: IUser }) => {
           ) : path === "likes" ? (
             <span className={styles.stats}>
               {user?.likes?.length}{" "}
-              {user?.likes?.length === 1 ? "like" : "likes"}
+              {user?.likes?.length === 1 ? "Like" : "Likes"}
             </span>
           ) : (
-            <span className={styles.stats}>{user?.tweets?.length} tweets</span>
+            <span className={styles.stats}>
+              {user?.tweets?.length}{" "}
+              {user?.tweets?.length === 1 ? "Tweet" : "Tweets"}
+            </span>
           ))}
       </div>
     </div>

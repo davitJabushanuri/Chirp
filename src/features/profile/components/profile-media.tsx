@@ -1,6 +1,8 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
+import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
 
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
@@ -13,6 +15,7 @@ import { IUser } from "../types";
 import styles from "./styles/profile-media.module.scss";
 
 export const ProfileMedia = () => {
+  const { data: session } = useSession();
   const pathname = usePathname();
   const id = pathname?.split("/")[1];
 
@@ -42,10 +45,23 @@ export const ProfileMedia = () => {
   return (
     <div className={styles.container}>
       {isSuccess && user?.tweets?.length === 0 && (
-        <div className={styles.noTweets}>
-          <div className={styles.noTweetsText}>
-            This account hasn&apos;t tweeted yet
-          </div>
+        <div className={styles.noMedia}>
+          {session?.user?.id === id ? (
+            <div>
+              <img src="/media-placeholder.png" alt="" />
+              <h1>Lights, camera ... attachments!</h1>
+              <p>
+                When you send tweets with photos or videos in them, they will
+                show up here.
+              </p>
+            </div>
+          ) : (
+            <div>
+              <img src="/media-placeholder.png" alt="" />
+              <h1>@{user?.email?.split("@")[0]} hasn&apos;t tweeted media</h1>
+              <p>Once they do, those Tweets will show up here.</p>
+            </div>
+          )}
         </div>
       )}
 

@@ -1,5 +1,7 @@
 "use client";
+
 import { useQuery } from "@tanstack/react-query";
+import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
 
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
@@ -12,6 +14,7 @@ import { IUser } from "../types";
 import styles from "./styles/profile-tweets-and-replies.module.scss";
 
 export const ProfileTweetsAndReplies = () => {
+  const { data: session } = useSession();
   const pathname = usePathname();
   const id = pathname?.split("/")[1];
 
@@ -42,9 +45,19 @@ export const ProfileTweetsAndReplies = () => {
     <div className={styles.container}>
       {isSuccess && user?.tweets?.length === 0 && (
         <div className={styles.noTweets}>
-          <div className={styles.noTweetsText}>
-            This account hasn&apos;t tweeted yet
-          </div>
+          {user?.id === session?.user?.id ? (
+            <div>
+              <h1>You haven&apos;t tweeted anything yet.</h1>
+              <p>When you do, it&apos;ll show up here.</p>
+            </div>
+          ) : (
+            <div>
+              <h1>
+                @{user?.email?.split("@")[0]} hasn&apos;t tweeted anything yet.
+              </h1>
+              <p>When they do, it&apos;ll show up here.</p>
+            </div>
+          )}
         </div>
       )}
 
