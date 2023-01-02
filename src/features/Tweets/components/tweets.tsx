@@ -1,22 +1,15 @@
 "use client";
-import { useQuery } from "@tanstack/react-query";
 
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
 
-import getTweets from "../api/get-tweets";
-import { ITweet } from "../types";
+import { useTweets } from "../hooks/useTweets";
 
 import styles from "./styles/tweets.module.scss";
 import { Tweet } from "./tweet";
 
 export const Tweets = () => {
-  const {
-    data: tweets,
-    isLoading,
-    isError,
-    isSuccess,
-  } = useQuery<ITweet[] | null>(["tweets"], () => getTweets());
+  const { data: tweets, isLoading, isError, isSuccess } = useTweets();
 
   if (isLoading) {
     return <LoadingSpinner />;

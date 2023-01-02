@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @next/next/no-img-element */
-import { useQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -8,9 +7,8 @@ import { usePathname } from "next/navigation";
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { Options } from "@/components/elements/options";
 
-import getTweet from "../api/get-tweet";
 import { VerifiedIcon } from "../assets/verified-icon";
-import { ITweet } from "../types";
+import { useTweet } from "../hooks/useTweet";
 
 import { CommentButton } from "./actions/comment-button";
 import { LikeButton } from "./actions/like-button";
@@ -23,14 +21,7 @@ export const TweetDetails = () => {
   const pathname = usePathname();
   const id = pathname?.split(`/`)[2] || ``;
 
-  const {
-    data: tweet,
-    isLoading,
-    isError,
-    isSuccess,
-  } = useQuery<ITweet, Error>(["tweets", id], () => {
-    return getTweet({ id });
-  });
+  const { data: tweet, isLoading, isError } = useTweet(id);
 
   if (isLoading) {
     return <LoadingSpinner />;
@@ -131,6 +122,7 @@ export const TweetDetails = () => {
           <LikeButton
             smallIcons={false}
             tweetId={tweet?.id}
+            tweetAuthorId={tweet?.author?.id}
             likes={tweet?.likes}
           />
           <ShareButton />

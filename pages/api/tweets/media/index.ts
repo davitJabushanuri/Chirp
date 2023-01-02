@@ -2,10 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 import { prisma } from "@/lib/prisma";
 
-export default async function Tweets(
-  req: NextApiRequest,
-  res: NextApiResponse,
-) {
+export default async function Media(req: NextApiRequest, res: NextApiResponse) {
   const { method } = req;
   const { tweet_id, media_url, media_type } = req.body;
 

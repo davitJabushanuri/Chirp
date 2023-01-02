@@ -9,10 +9,12 @@ import styles from "./styles/actions.module.scss";
 
 export const LikeButton = ({
   tweetId,
+  tweetAuthorId,
   likes,
   smallIcons = true,
 }: {
   tweetId: string;
+  tweetAuthorId: string;
   likes?: ILike[];
   smallIcons?: boolean;
 }) => {
@@ -27,8 +29,9 @@ export const LikeButton = ({
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["tweets"]);
-        queryClient.invalidateQueries(["user-tweets", session?.user?.id]);
-        queryClient.invalidateQueries(["user-likes", session?.user?.id]);
+        queryClient.invalidateQueries(["users", session?.user?.id]);
+        if (session?.user?.id !== tweetAuthorId)
+          queryClient.invalidateQueries(["users", tweetAuthorId]);
       },
       onError: () => {
         console.log("error");

@@ -5,6 +5,7 @@ import { useRef, useState } from "react";
 
 import { CloseIcon } from "@/assets/close-icon";
 import { LocationIcon } from "@/assets/location-icon";
+import { useTweetModal } from "@/stores/useTweetModal";
 
 import { postTweet } from "../api/post-tweet";
 import { EmojiIcon } from "../assets/emoji-icon";
@@ -25,6 +26,8 @@ interface IChosenImages {
 
 export const CreateTweet = () => {
   const { data: session } = useSession();
+  const closeModal = useTweetModal((state) => state.closeModal);
+
   const queryClient = useQueryClient();
   const mutation = useMutation(
     ({
@@ -40,15 +43,18 @@ export const CreateTweet = () => {
     },
 
     {
-      onSuccess: () => {
+      onSuccess: async () => {
         console.log("success");
+        queryClient.invalidateQueries(["tweets"]);
+        queryClient.invalidateQueries(["users", session?.user.id]);
       },
       onError: (error) => {
         console.log(error);
       },
       onSettled: () => {
-        queryClient.invalidateQueries(["tweets"]);
-        queryClient.invalidateQueries(["users", session?.user.id]);
+        setText("");
+        setChosenImages([]);
+        closeModal();
       },
     },
   );
@@ -89,6 +95,7 @@ export const CreateTweet = () => {
       <div className={styles.tweet}>
         <div className={styles.text}>
           <textarea
+            value={text}
             onChange={(e) => setText(e.target.value)}
             placeholder="What's happening?"
           />

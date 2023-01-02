@@ -1,9 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
-
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
 
-import { getComments } from "../api/get-comments";
-import { ITweet } from "../types";
+import { useComments } from "../hooks/useComments";
 
 import styles from "./styles/comments.module.scss";
 import { Tweet } from "./tweet";
@@ -14,7 +11,7 @@ export const Comments = ({ tweetId }: { tweetId: string }) => {
     isLoading,
     isError,
     isSuccess,
-  } = useQuery<ITweet[]>([`comments`], () => getComments(tweetId));
+  } = useComments(tweetId);
 
   if (isLoading) {
     return <LoadingSpinner />;
