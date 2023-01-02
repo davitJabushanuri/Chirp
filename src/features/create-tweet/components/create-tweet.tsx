@@ -24,7 +24,15 @@ interface IChosenImages {
   file: File;
 }
 
-export const CreateTweet = () => {
+export const CreateTweet = ({
+  in_reply_to_status_id,
+  in_reply_to_user_screen_name,
+  placeholder = `What's happening?`,
+}: {
+  in_reply_to_status_id?: string;
+  in_reply_to_user_screen_name?: string;
+  placeholder?: string;
+}) => {
   const { data: session } = useSession();
   const closeModal = useTweetModal((state) => state.closeModal);
 
@@ -34,12 +42,22 @@ export const CreateTweet = () => {
       text,
       userId,
       files,
+      in_reply_to_user_screen_name,
+      in_reply_to_status_id,
     }: {
       text: string;
       userId: string;
       files: File[];
+      in_reply_to_user_screen_name?: string | null;
+      in_reply_to_status_id?: string | null;
     }) => {
-      return postTweet({ text, userId, files });
+      return postTweet({
+        text,
+        userId,
+        files,
+        in_reply_to_user_screen_name,
+        in_reply_to_status_id,
+      });
     },
 
     {
@@ -47,6 +65,8 @@ export const CreateTweet = () => {
         console.log("success");
         queryClient.invalidateQueries(["tweets"]);
         queryClient.invalidateQueries(["users", session?.user.id]);
+        in_reply_to_user_screen_name &&
+          queryClient.invalidateQueries(["comments"]);
       },
       onError: (error) => {
         console.log(error);
@@ -87,91 +107,106 @@ export const CreateTweet = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.user}>
-        <User />
-      </div>
-
-      <div className={styles.tweet}>
-        <div className={styles.text}>
-          <textarea
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-            placeholder="What's happening?"
-          />
-          <input
-            className={styles.fileInput}
-            type="file"
-            onChange={chooseImage}
-            ref={imageUploadRef}
-          />
-          <div
-            className={`${styles.chosenImages} ${
-              chosenImages.length === 1
-                ? styles.one
-                : chosenImages.length === 2
-                ? styles.two
-                : chosenImages.length === 3
-                ? styles.three
-                : chosenImages.length === 4
-                ? styles.four
-                : ""
-            }`}
-          >
-            {chosenImages.map((image) => {
-              return (
-                <div key={image.id} className={styles.imageContainer}>
-                  <button
-                    onClick={() => {
-                      setChosenImages(
-                        chosenImages.filter((img) => img.id !== image.id),
-                      );
-                    }}
-                    className={styles.close}
-                  >
-                    <CloseIcon />
-                  </button>
-                  <img src={image.url as string} alt="" />
-                </div>
-              );
-            })}
+    <>
+      {in_reply_to_user_screen_name && (
+        <div className={styles.replying}>
+          <span className={styles.replyingTo}>Replying to</span>
+          <span className={styles.replyingToUsername}>
+            @{in_reply_to_user_screen_name}
+          </span>
+        </div>
+      )}
+      <div className={styles.container}>
+        <div className={styles.user}>
+          <User />
+        </div>
+        <div className={styles.tweet}>
+          <div className={styles.text}>
+            <textarea
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+              placeholder={placeholder}
+            />
+            <input
+              className={styles.fileInput}
+              type="file"
+              onChange={chooseImage}
+              ref={imageUploadRef}
+            />
+            <div
+              className={`${styles.chosenImages} ${
+                chosenImages.length === 1
+                  ? styles.one
+                  : chosenImages.length === 2
+                  ? styles.two
+                  : chosenImages.length === 3
+                  ? styles.three
+                  : chosenImages.length === 4
+                  ? styles.four
+                  : ""
+              }`}
+            >
+              {chosenImages.map((image) => {
+                return (
+                  <div key={image.id} className={styles.imageContainer}>
+                    <button
+                      onClick={() => {
+                        setChosenImages(
+                          chosenImages.filter((img) => img.id !== image.id),
+                        );
+                      }}
+                      className={styles.close}
+                    >
+                      <CloseIcon />
+                    </button>
+                    <img src={image.url as string} alt="" />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          <div className={styles.actions}>
+            <div className={styles.media}>
+              <button
+                disabled={chosenImages.length >= 4}
+                onClick={() => imageUploadRef.current?.click()}
+              >
+                <Action icon={<ImageIcon />} />
+              </button>
+              <Action icon={<GifIcon />} />
+              <span className={styles.hide}>
+                <Action icon={<PollIcon />} />
+              </span>
+              <Action icon={<EmojiIcon />} />
+              <span className={styles.hide}>
+                <Action icon={<ScheduleIcon />} />
+              </span>
+              <Action icon={<LocationIcon />} />
+            </div>
+            <div className={styles.tweetButton}>
+              <button
+                onClick={() =>
+                  mutation.mutate({
+                    text: text,
+                    userId: session?.user?.id,
+                    files: chosenImages.map((img) => img.file),
+                    in_reply_to_user_screen_name: in_reply_to_user_screen_name
+                      ? in_reply_to_user_screen_name
+                      : null,
+                    in_reply_to_status_id: in_reply_to_status_id
+                      ? in_reply_to_status_id
+                      : null,
+                  })
+                }
+                disabled={text.length === 0}
+                className={styles.button}
+              >
+                Tweet
+              </button>
+            </div>
           </div>
         </div>
-        <div className={styles.actions}>
-          <div className={styles.media}>
-            <button
-              disabled={chosenImages.length >= 4}
-              onClick={() => imageUploadRef.current?.click()}
-            >
-              <Action icon={<ImageIcon />} />
-            </button>
-            <Action icon={<GifIcon />} />
-            <span className={styles.hide}>
-              <Action icon={<PollIcon />} />
-            </span>
-            <Action icon={<EmojiIcon />} />
-            <span className={styles.hide}>
-              <Action icon={<ScheduleIcon />} />
-            </span>
-            <Action icon={<LocationIcon />} />
-          </div>
-          <div className={styles.tweetButton}>
-            <button
-              onClick={() =>
-                mutation.mutate({
-                  text: text,
-                  userId: session?.user?.id,
-                  files: chosenImages.map((img) => img.file),
-                })
-              }
-              disabled={text.length === 0}
-              className={styles.button}
-            >
-              Tweet
-            </button>
-          </div>
-        </div>
       </div>
-    </div>
+    </>
   );
 };

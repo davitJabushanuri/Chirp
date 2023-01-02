@@ -7,13 +7,21 @@ export default async function CreateTweet(
   res: NextApiResponse,
 ) {
   const { method } = req;
-  const { text, userId } = req.body;
+  const { text, userId, in_reply_to_user_screen_name, in_reply_to_status_id } =
+    req.body;
+
   if (method === "POST") {
     try {
       const tweet = await prisma.tweet.create({
         data: {
           text,
           userId,
+          in_reply_to_screen_name: in_reply_to_user_screen_name
+            ? in_reply_to_user_screen_name
+            : null,
+          in_reply_to_status_id: in_reply_to_status_id
+            ? in_reply_to_status_id
+            : null,
         },
       });
 

@@ -1,7 +1,25 @@
 @use './abstracts/media-query' as *;
 
+.replying {
+  margin-left: 5rem;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  cursor: pointer;
+
+  .replyingTo {
+    color: var(--clr-tertiary);
+  }
+
+  .replyingToUsername {
+    color: var(--clr-primary);
+    cursor: pointer;
+  }
+}
+
 .container {
-  padding: 1rem 1rem 0 1rem;
+  padding: 0.4rem 1rem 0 1rem;
   display: grid;
   grid-template-columns: 3rem 1fr;
   gap: 1rem;
