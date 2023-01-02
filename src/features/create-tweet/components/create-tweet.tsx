@@ -5,6 +5,7 @@ import { useRef, useState } from "react";
 
 import { CloseIcon } from "@/assets/close-icon";
 import { LocationIcon } from "@/assets/location-icon";
+import { User } from "@/components/elements/user";
 import { useTweetModal } from "@/stores/useTweetModal";
 
 import { postTweet } from "../api/post-tweet";
@@ -16,7 +17,6 @@ import { ScheduleIcon } from "../assets/schedule-icon";
 
 import Action from "./action";
 import styles from "./styles/create-tweet.module.scss";
-import User from "./user";
 
 interface IChosenImages {
   url: string | ArrayBuffer | null;
@@ -118,7 +118,10 @@ export const CreateTweet = ({
       )}
       <div className={styles.container}>
         <div className={styles.user}>
-          <User />
+          <User
+            userId={session?.user?.id}
+            userImage={session?.user?.profile_image_url}
+          />
         </div>
         <div className={styles.tweet}>
           <div className={styles.text}>
