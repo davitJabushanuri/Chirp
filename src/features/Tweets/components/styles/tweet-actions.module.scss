@@ -1,0 +1,12 @@
+.container {
+  padding: 0.225rem 0;
+  border-bottom: 1px solid var(--clr-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  svg {
+    width: 21px;
+    height: 21px;
+  }
+}
