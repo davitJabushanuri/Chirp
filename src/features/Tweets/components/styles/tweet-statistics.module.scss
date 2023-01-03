@@ -1,0 +1,23 @@
+.container {
+  padding: 1rem 0.2rem;
+  border-bottom: 1px solid var(--clr-border);
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+
+  .statistic {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+
+    .number {
+      font-size: 0.815rem;
+    }
+
+    .text {
+      font-size: 0.815rem;
+      color: var(--clr-tertiary);
+    }
+  }
+}
