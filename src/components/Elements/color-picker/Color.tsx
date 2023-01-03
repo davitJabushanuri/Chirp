@@ -4,7 +4,7 @@ import { setCookie } from "cookies-next";
 import { useEffect } from "react";
 
 import { TickIcon } from "@/assets/tick-svg";
-import { useColor } from "@/stores/useColor";
+import { useColor } from "@/stores/use-color";
 
 import styles from "./styles/color.module.scss";
 

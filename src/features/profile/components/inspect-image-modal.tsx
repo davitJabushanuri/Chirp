@@ -5,16 +5,16 @@
 
 import { CloseIcon } from "@/assets/close-icon";
 import { useDisableBodyScroll } from "@/hooks";
-import { useInspectImage } from "@/stores/useInspectImage";
+import { useInspectImage } from "@/stores/use-inspect-profile-image";
 
 import styles from "./styles/inspect-image-modal.module.scss";
 
 export const InspectImageModal = () => {
+  useDisableBodyScroll();
+
   const closeInspectModal = useInspectImage((state) => state.closeInspectModal);
   const source = useInspectImage((state) => state.source);
   const sourceType = useInspectImage((state) => state.sourceType);
-
-  useDisableBodyScroll();
 
   return (
     <div onClick={() => closeInspectModal()} className={styles.container}>

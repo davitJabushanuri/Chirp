@@ -7,11 +7,11 @@ import { AuthModalTrigger } from "@/features/auth";
 import { CreateTweetModal } from "@/features/create-tweet";
 import { HamburgerMenu, MobileNavbar } from "@/features/navbar";
 import { Sidebar, TweetButton, UserModal } from "@/features/sidebar";
-import { useAuthModal } from "@/stores/useAuthModal";
-import { useColor } from "@/stores/useColor";
-import { useHamburger } from "@/stores/useHamburger";
-import { useTheme } from "@/stores/useTheme";
-import { useTweetModal } from "@/stores/useTweetModal";
+import { useAuthModal } from "@/stores/use-auth-modal";
+import { useColor } from "@/stores/use-color";
+import { useTweetModal } from "@/stores/use-create-tweet-modal";
+import { useHamburger } from "@/stores/use-hamburger";
+import { useTheme } from "@/stores/use-theme";
 import NextAuthProvider from "@/utils/next-auth-provider";
 import ReactQueryWrapper from "@/utils/react-query";
 

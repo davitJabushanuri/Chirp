@@ -2,11 +2,14 @@ import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 import { TwitterLogo } from "@/assets/twitter-logo";
+import { useDisableBodyScroll } from "@/hooks";
 
 import styles from "./styles/signout-modal.module.scss";
 
 export const SignOutModal = () => {
   const router = useRouter();
+
+  useDisableBodyScroll();
 
   return (
     <div className={styles.container}>

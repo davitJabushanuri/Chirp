@@ -13,21 +13,6 @@
 
   .avatar {
     margin-top: 0.6rem;
-    width: 3rem;
-    height: 3rem;
-    border-radius: 50%;
-    overflow: hidden;
-    cursor: pointer;
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-
-      &:hover {
-        opacity: 0.9;
-      }
-    }
   }
 
   .header {
@@ -73,7 +58,6 @@
         }
       }
 
-
       .verified {
         display: flex;
         align-items: center;
@@ -90,6 +74,28 @@
     }
   }
 
+  .replying {
+    margin: 0.2rem 0;
+    padding-left: 0.4rem;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+
+    .replyingTo {
+      color: var(--clr-tertiary);
+    }
+
+    .replyingToUsername {
+      color: var(--clr-primary);
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
   .tweet {
     padding-left: 0.4rem;
 
@@ -102,12 +108,10 @@
     .images {
       position: relative;
       margin-top: 0.8rem;
-      width: 100%;
-      height: 100%;
+      max-height: 700px;
       border-radius: 1rem;
       overflow: hidden;
       display: grid;
-      gap: 2px;
 
       img {
         width: 100%;
@@ -120,54 +124,77 @@
           filter: brightness(0.9);
         }
       }
-
-      .showAll {
-        display: none;
-      }
-
     }
 
     .one {
       grid-template-columns: 1fr;
+
+      img {
+        object-fit: contain;
+        width: auto;
+        border-radius: 1rem;
+      }
     }
 
     .two {
       grid-template-columns: 1fr 1fr;
+      gap: 0.2rem;
+
+      img {
+        aspect-ratio: 0.85 / 1;
+      }
     }
 
     .three {
       grid-template-columns: 1fr 1fr;
       grid-template-rows: 1fr 1fr;
+      grid-template-areas:
+        'first second'
+        'first third';
+      gap: 0.2rem;
 
-      img {
-        aspect-ratio: 1/1;
+      img:nth-of-type(1) {
+        grid-area: first;
+        aspect-ratio: 0.85 / 1;
+      }
+
+      img:nth-of-type(2) {
+        grid-area: second;
+        aspect-ratio: 1.76 / 1;
+      }
+
+      img:nth-of-type(3) {
+        grid-area: third;
+        aspect-ratio: 1.76 / 1;
       }
     }
 
     .four {
       grid-template-columns: 1fr 1fr;
       grid-template-rows: 1fr 1fr;
+      grid-template-areas:
+        'first second'
+        'third fourth';
+      gap: 0.2rem;
 
-      img {
-        aspect-ratio: 1/1;
-      }
-    }
-
-    .many {
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
-
-      img {
-        aspect-ratio: 1/1;
+      img:nth-of-type(1) {
+        grid-area: first;
+        aspect-ratio: 1.76 / 1;
       }
 
+      img:nth-of-type(2) {
+        grid-area: second;
+        aspect-ratio: 1.76 / 1;
+      }
 
-      .showAll {
-        position: absolute;
-        top: 0;
-        left: 0;
-        display: block;
-        background-color: aquamarine;
+      img:nth-of-type(3) {
+        grid-area: third;
+        aspect-ratio: 1.76 / 1;
+      }
+
+      img:nth-of-type(4) {
+        grid-area: fourth;
+        aspect-ratio: 1.76 / 1;
       }
     }
   }

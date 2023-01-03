@@ -3,7 +3,7 @@
 
 import { useSession } from "next-auth/react";
 
-import { useHamburger } from "@/stores/useHamburger";
+import { useHamburger } from "@/stores/use-hamburger";
 
 import styles from "./styles/hamburger-button.module.scss";
 

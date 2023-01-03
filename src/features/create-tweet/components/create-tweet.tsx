@@ -6,7 +6,7 @@ import { useRef, useState } from "react";
 import { CloseIcon } from "@/assets/close-icon";
 import { LocationIcon } from "@/assets/location-icon";
 import { User } from "@/components/elements/user";
-import { useTweetModal } from "@/stores/useTweetModal";
+import { useTweetModal } from "@/stores/use-create-tweet-modal";
 
 import { postTweet } from "../api/post-tweet";
 import { EmojiIcon } from "../assets/emoji-icon";

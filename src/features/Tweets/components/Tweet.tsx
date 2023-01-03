@@ -7,8 +7,9 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 import { Options } from "@/components/elements/options";
+import { User } from "@/components/elements/user";
 
-import { VerifiedIcon } from "../assets/verified-icon";
+import { VerifiedIcon } from "../../../assets/verified-icon";
 import { ITweet } from "../types";
 
 import { CommentButton } from "./actions/comment-button";
@@ -28,13 +29,10 @@ export const Tweet = ({ tweet }: { tweet: ITweet }) => {
       className={styles.container}
     >
       <div onClick={(e) => e.stopPropagation()} className={styles.avatar}>
-        <Link href={`/${tweet?.author?.id}`}>
-          {tweet?.author?.profile_image_url ? (
-            <img src={tweet?.author?.profile_image_url} alt="" />
-          ) : (
-            <img src="/user_placeholder.png" alt="" />
-          )}
-        </Link>
+        <User
+          userId={tweet?.author?.id}
+          userImage={tweet?.author?.profile_image_url}
+        />
       </div>
       <div className={styles.content}>
         <div className={styles.header}>
@@ -66,6 +64,21 @@ export const Tweet = ({ tweet }: { tweet: ITweet }) => {
           </button>
         </div>
 
+        {tweet?.in_reply_to_status_id && (
+          <div className={styles.replying}>
+            <span className={styles.replyingTo}>Replying to</span>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                router.push(`/${tweet?.in_reply_to_screen_name}`);
+              }}
+              className={styles.replyingToUsername}
+            >
+              @{tweet?.in_reply_to_screen_name}
+            </button>
+          </div>
+        )}
+
         <div className={styles.tweet}>
           {tweet.text && (
             <div className={styles.text}>
@@ -89,7 +102,6 @@ export const Tweet = ({ tweet }: { tweet: ITweet }) => {
               {tweet?.media?.slice(0, 4).map((media) => {
                 return <img key={media?.id} src={media?.media_url} alt="" />;
               })}
-              <div className={styles.showAll}>+{tweet?.media?.length - 4}</div>
             </div>
           )}
         </div>

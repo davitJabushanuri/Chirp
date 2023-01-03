@@ -5,8 +5,8 @@ import { usePathname } from "next/navigation";
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
 import { ProfileHeader } from "@/components/layout/header";
-import { useEditProfile } from "@/stores/useEditProfile";
-import { useInspectImage } from "@/stores/useInspectImage";
+import { useEditProfile } from "@/stores/use-edit-profile";
+import { useInspectImage } from "@/stores/use-inspect-profile-image";
 
 import { useUser } from "../hooks/useUser";
 

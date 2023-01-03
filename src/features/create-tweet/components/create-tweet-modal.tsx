@@ -2,13 +2,16 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { BackArrowIcon } from "@/assets/back-arrow-icon";
 import { CloseIcon } from "@/assets/close-icon";
-import { useTweetModal } from "@/stores/useTweetModal";
+import { useDisableBodyScroll } from "@/hooks";
+import { useTweetModal } from "@/stores/use-create-tweet-modal";
 
 import { CreateTweet } from "./create-tweet";
 import styles from "./styles/create-tweet-modal.module.scss";
 
 export const CreateTweetModal = () => {
   const closeModal = useTweetModal((state) => state.closeModal);
+
+  useDisableBodyScroll();
 
   return (
     <div onClick={() => closeModal()} className={styles.container}>

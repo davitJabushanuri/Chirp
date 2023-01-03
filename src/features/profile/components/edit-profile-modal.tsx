@@ -4,7 +4,8 @@ import { useRef, useState } from "react";
 
 import { BackArrowIcon } from "@/assets/back-arrow-icon";
 import { CloseIcon } from "@/assets/close-icon";
-import { useEditProfile } from "@/stores/useEditProfile";
+import { useDisableBodyScroll } from "@/hooks";
+import { useEditProfile } from "@/stores/use-edit-profile";
 
 import { updateProfile } from "../api/update-profile";
 import { CameraIcon } from "../assets/camera-icon";
@@ -13,6 +14,8 @@ import { IProfile, IUser } from "../types";
 import styles from "./styles/edit-profile-modal.module.scss";
 
 export const EditProfileModal = ({ user }: { user: IUser }) => {
+  useDisableBodyScroll();
+
   const closeEditProfileModal = useEditProfile(
     (state) => state.closeEditProfileModal,
   );

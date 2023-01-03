@@ -1,1 +1,1 @@
-export * from "./useDisableBodyScroll";
+export * from "./use-disable-body-scroll";

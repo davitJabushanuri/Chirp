@@ -1,4 +1,4 @@
-import { useTweetModal } from "@/stores/useTweetModal";
+import { useTweetModal } from "@/stores/use-create-tweet-modal";
 
 import { PenIcon } from "../assets/pen-icon";
 

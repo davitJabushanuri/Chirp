@@ -6,7 +6,7 @@ import Link from "next/link";
 
 import { CloseIcon } from "@/assets/close-icon";
 import Avatar from "@/assets/user_placeholder.png";
-import { useHamburger } from "@/stores/useHamburger";
+import { useHamburger } from "@/stores/use-hamburger";
 
 import { Bookmark } from "../assets/bookmark-icon";
 import { Gear } from "../assets/gear-icon";

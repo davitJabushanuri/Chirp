@@ -1,13 +1,15 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @next/next/no-img-element */
 import dayjs from "dayjs";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
-import { Options } from "@/components/elements/options";
+import { TweetAuthor } from "@/components/elements/tweet-author";
+import { CreateTweet } from "@/features/create-tweet";
+import { useInspectTweetImage } from "@/stores/use-inspect-tweet-images";
 
-import { VerifiedIcon } from "../assets/verified-icon";
 import { useTweet } from "../hooks/useTweet";
 
 import { CommentButton } from "./actions/comment-button";
@@ -15,11 +17,21 @@ import { LikeButton } from "./actions/like-button";
 import { RetweetButton } from "./actions/retweet-button";
 import { ShareButton } from "./actions/share-button";
 import { Comments } from "./comments";
+import { InspectTweetImageModal } from "./inspect-tweet-image-modal";
 import styles from "./styles/tweet-details.module.scss";
 
 export const TweetDetails = () => {
+  const router = useRouter();
   const pathname = usePathname();
   const id = pathname?.split(`/`)[2] || ``;
+
+  const isTweetImageModalOpen = useInspectTweetImage(
+    (state) => state.isTweetImageModalOpen,
+  );
+
+  const openTweetImageModal = useInspectTweetImage(
+    (state) => state.openTweetImageModal,
+  );
 
   const { data: tweet, isLoading, isError } = useTweet(id);
 
@@ -33,32 +45,25 @@ export const TweetDetails = () => {
 
   return (
     <div className={styles.container}>
+      {isTweetImageModalOpen && <InspectTweetImageModal tweet={tweet} />}
       <div className={styles.tweetDetails}>
-        <div className={styles.user}>
-          <div className={styles.avatar}>
-            <Link href={`/profile/${tweet?.author?.id}`}>
-              {tweet?.author?.profile_image_url ? (
-                <img src={tweet?.author?.profile_image_url} alt="" />
-              ) : (
-                <img src="/user_placeholder.png" alt="" />
-              )}
-            </Link>
+        <TweetAuthor author={tweet?.author} />
+
+        {tweet?.in_reply_to_status_id && (
+          <div className={styles.replying}>
+            <span className={styles.replyingTo}>Replying to</span>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                router.push(`/${tweet?.in_reply_to_screen_name}`);
+              }}
+              className={styles.replyingToUsername}
+            >
+              @{tweet?.in_reply_to_screen_name}
+            </button>
           </div>
-          <div className={styles.userInfo}>
-            <div className={styles.name}>
-              <span className={styles.text}>{tweet?.author?.name}</span>
-              <span className={styles.icon}>
-                {tweet?.author?.verified && <VerifiedIcon />}
-              </span>
-            </div>
-            <div className={styles.username}>
-              @{tweet?.author?.email.split("@")[0]}
-            </div>
-          </div>
-          <div className={styles.option}>
-            <Options />
-          </div>
-        </div>
+        )}
+
         <div className={styles.tweet}>
           {tweet.text && <div className={styles.text}>{tweet?.text}</div>}
           {tweet?.media && tweet?.media.length > 0 && (
@@ -76,9 +81,15 @@ export const TweetDetails = () => {
               }`}
             >
               {tweet?.media?.slice(0, 4).map((media) => {
-                return <img key={media?.id} src={media?.media_url} alt="" />;
+                return (
+                  <img
+                    onClick={() => openTweetImageModal()}
+                    key={media?.id}
+                    src={media?.media_url}
+                    alt=""
+                  />
+                );
               })}
-              <div className={styles.showAll}>+{tweet?.media?.length - 4}</div>
             </div>
           )}
         </div>
@@ -128,7 +139,13 @@ export const TweetDetails = () => {
           <ShareButton />
         </div>
       </div>
-      <div className={styles.createComment}></div>
+      <div className={styles.createComment}>
+        <CreateTweet
+          in_reply_to_user_screen_name={tweet?.author?.email?.split("@")[0]}
+          in_reply_to_status_id={tweet?.id}
+          placeholder="Tweet your reply"
+        />
+      </div>
       <div className={styles.comments}>
         <Comments tweetId={tweet?.id} />
       </div>

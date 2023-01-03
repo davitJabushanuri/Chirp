@@ -13,8 +13,8 @@ import {
   ReceivingNotificationsIcon,
   ReceiveNotificationsIcon,
 } from "@/assets/notifications-icon";
-import { useEditProfile } from "@/stores/useEditProfile";
-import { useInspectImage } from "@/stores/useInspectImage";
+import { useEditProfile } from "@/stores/use-edit-profile";
+import { useInspectImage } from "@/stores/use-inspect-profile-image";
 
 import { toggleFollow } from "../api/toggle-follow";
 import { CalendarIcon } from "../assets/calendar-icon";

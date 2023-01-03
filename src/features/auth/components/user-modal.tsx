@@ -3,7 +3,7 @@
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 
-import { useAuthModal } from "@/stores/useAuthModal";
+import { useAuthModal } from "@/stores/use-auth-modal";
 
 import styles from "./styles/user-modal.module.scss";
 

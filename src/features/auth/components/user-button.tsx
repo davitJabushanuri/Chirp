@@ -2,7 +2,7 @@
 import { useSession } from "next-auth/react";
 
 import { DotIcon } from "@/assets/dot-icon";
-import { useAuthModal } from "@/stores/useAuthModal";
+import { useAuthModal } from "@/stores/use-auth-modal";
 
 import styles from "./styles/user-button.module.scss";
 
