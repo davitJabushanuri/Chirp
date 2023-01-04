@@ -14,6 +14,8 @@
 
   .images {
     position: relative;
+    display: grid;
+    grid-template-rows: 1fr 46px;
 
     .close {
       position: absolute;
@@ -76,15 +78,37 @@
         display: block;
       }
     }
+
+    .imagesContainer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tweetActions {
+
+      span {
+        color: var(--clr-light) !important;
+      }
+
+      svg {
+        fill: var(--clr-light) !important;
+      }
+    }
   }
 
   .tweetDetails {
-    display: none;
+    padding: 0.8rem 0.5rem 0.8rem 1rem;
     background-color: var(--clr-background);
-    transition: all 0.3s ease-in-out;
+    display: none;
 
     @include mq('medium') {
       display: block;
+    }
+
+    .createComment {
+      margin-top: 0.8rem;
+      border-bottom: 1px solid var(--clr-border);
     }
   }
 

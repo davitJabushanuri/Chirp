@@ -11,8 +11,12 @@ export const TweetStatistics = ({
   quote_count: number | undefined;
   likes: ILike[] | undefined;
 }) => {
+  const isVisible = retweet_count > 0 || quote_count > 0 || likes?.length;
+
   return (
-    <div className={styles.container}>
+    <div
+      className={`${styles.container} ${isVisible ? styles.show : styles.hide}`}
+    >
       {/* retweets */}
       {retweet_count > 0 && (
         <div className={styles.statistic}>

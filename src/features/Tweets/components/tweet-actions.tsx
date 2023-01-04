@@ -10,10 +10,12 @@ export const TweetActions = ({
   tweetId,
   tweetAuthorId,
   likes,
+  showStats = false,
 }: {
   tweetId: string;
   tweetAuthorId: string;
   likes: ILike[];
+  showStats?: boolean;
 }) => {
   return (
     <div className={styles.container}>
@@ -21,6 +23,7 @@ export const TweetActions = ({
       <RetweetButton />
       <LikeButton
         smallIcons={false}
+        showStats={showStats}
         tweetId={tweetId}
         tweetAuthorId={tweetAuthorId}
         likes={likes}

@@ -12,11 +12,13 @@ export const LikeButton = ({
   tweetAuthorId,
   likes,
   smallIcons = true,
+  showStats = false,
 }: {
   tweetId: string;
   tweetAuthorId: string;
   likes?: ILike[];
   smallIcons?: boolean;
+  showStats?: boolean;
 }) => {
   const { data: session } = useSession();
   const hasLiked = likes?.some((like) => like.user_id === session?.user?.id);
@@ -57,7 +59,7 @@ export const LikeButton = ({
       >
         {hasLiked ? <HeartIconActive /> : <HeartIcon />}
       </span>
-      {smallIcons && likes && likes?.length > 0 && (
+      {showStats && likes && likes?.length > 0 && (
         <span className={styles.stats}>{likes?.length}</span>
       )}
     </button>

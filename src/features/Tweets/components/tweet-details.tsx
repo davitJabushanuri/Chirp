@@ -1,8 +1,6 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @next/next/no-img-element */
-import dayjs from "dayjs";
 import { usePathname, useRouter } from "next/navigation";
 
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
@@ -12,13 +10,12 @@ import { useInspectTweetImage } from "@/stores/use-inspect-tweet-images";
 
 import { useTweet } from "../hooks/useTweet";
 
-import { CommentButton } from "./actions/comment-button";
-import { LikeButton } from "./actions/like-button";
-import { RetweetButton } from "./actions/retweet-button";
-import { ShareButton } from "./actions/share-button";
 import { Comments } from "./comments";
 import { InspectTweetImageModal } from "./inspect-tweet-image-modal";
 import styles from "./styles/tweet-details.module.scss";
+import { TweetActions } from "./tweet-actions";
+import { TweetCreationDate } from "./tweet-creation-date";
+import { TweetStatistics } from "./tweet-statistics";
 
 export const TweetDetails = () => {
   const router = useRouter();
@@ -93,50 +90,21 @@ export const TweetDetails = () => {
             </div>
           )}
         </div>
-        <div className={styles.tweetDate}>
-          <span>{dayjs(tweet?.created_at).format(`h:mm A`)}</span>
-          <span>·</span>
-          <span>{dayjs(tweet?.created_at).format(`MMM D, YYYY`)}</span>
-        </div>
 
-        {tweet.retweet_count! + tweet.reply_count! + tweet?.likes?.length >
-          0 && (
-          <div className={styles.tweetStatistics}>
-            {tweet.retweet_count! > 0 && (
-              <div className={styles.statistic}>
-                <span className={styles.number}>{tweet.retweet_count}</span>
-                <span className={styles.text}>Retweets</span>
-              </div>
-            )}
+        <TweetCreationDate date={tweet?.created_at} />
 
-            {tweet.quote_count! > 0 && (
-              <div className={styles.statistic}>
-                <span className={styles.number}>{tweet.quote_count}</span>
-                <span className={styles.text}>Quote Tweets</span>
-              </div>
-            )}
-
-            {tweet?.likes.length && (
-              <div className={styles.statistic}>
-                <span className={styles.number}>{tweet?.likes?.length}</span>
-                <span className={styles.text}>
-                  {tweet?.likes?.length === 1 ? `Like` : `Likes`}
-                </span>
-              </div>
-            )}
-          </div>
-        )}
+        <TweetStatistics
+          retweet_count={tweet?.retweet_count}
+          quote_count={tweet?.quote_count}
+          likes={tweet?.likes}
+        />
 
         <div className={styles.tweetActions}>
-          <CommentButton />
-          <RetweetButton />
-          <LikeButton
-            smallIcons={false}
+          <TweetActions
             tweetId={tweet?.id}
             tweetAuthorId={tweet?.author?.id}
             likes={tweet?.likes}
           />
-          <ShareButton />
         </div>
       </div>
       <div className={styles.createComment}>
