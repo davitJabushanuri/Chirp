@@ -22,6 +22,8 @@ export const TweetDetails = () => {
   const pathname = usePathname();
   const id = pathname?.split(`/`)[2] || ``;
 
+  const setImageIndex = useInspectTweetImage((state) => state.setImageIndex);
+
   const isTweetImageModalOpen = useInspectTweetImage(
     (state) => state.isTweetImageModalOpen,
   );
@@ -77,10 +79,13 @@ export const TweetDetails = () => {
                   : ""
               }`}
             >
-              {tweet?.media?.slice(0, 4).map((media) => {
+              {tweet?.media?.slice(0, 4).map((media, index) => {
                 return (
                   <img
-                    onClick={() => openTweetImageModal()}
+                    onClick={() => {
+                      setImageIndex(index);
+                      openTweetImageModal();
+                    }}
                     key={media?.id}
                     src={media?.media_url}
                     alt=""

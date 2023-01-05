@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable @next/next/no-img-element */
 import { CloseIcon } from "@/assets/close-icon";
 import { TweetAuthor } from "@/components/elements/tweet-author";
@@ -9,6 +11,7 @@ import { ShowArrowsIcon, HideArrowsIcon } from "../assets/double-arrows-icon";
 import { ITweet } from "../types";
 
 import { Comments } from "./comments";
+import { ImageCarousel } from "./image-carousel";
 import styles from "./styles/inspect-tweet-image-modal.module.scss";
 import { TweetActions } from "./tweet-actions";
 import { TweetCreationDate } from "./tweet-creation-date";
@@ -37,25 +40,41 @@ export const InspectTweetImageModal = ({ tweet }: { tweet: ITweet }) => {
         isTweetDetailsOpen ? styles.hideTweetDetails : styles.showTweetDetails
       }`}
     >
-      <div className={styles.images}>
-        <button onClick={() => closeTweetImageModal()} className={styles.close}>
+      <div onClick={() => closeTweetImageModal()} className={styles.images}>
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            closeTweetImageModal();
+          }}
+          className={styles.close}
+        >
           <CloseIcon />
         </button>
 
         <div className={styles.toggleTweetDetails}>
           {isTweetDetailsOpen ? (
-            <button onClick={() => hideTweetDetails()}>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                hideTweetDetails();
+              }}
+            >
               <HideArrowsIcon />
             </button>
           ) : (
-            <button onClick={() => showTweetDetails()}>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                showTweetDetails();
+              }}
+            >
               <ShowArrowsIcon />
             </button>
           )}
         </div>
 
         <div className={styles.imagesContainer}>
-          <img src={tweet?.media[2]?.media_url} alt="" />
+          <ImageCarousel images={tweet?.media} />
         </div>
         <div className={styles.tweetActions}>
           <TweetActions
