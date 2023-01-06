@@ -4,16 +4,16 @@
 
 :root {
   --clr-light: #fff;
-  --clr-dark: #000;
-  --clr-dim: #15202b;
-
   --clr-light-hover: #f3f4f6;
-  --clr-dim-hover: #162d3f;
-  --clr-dark-hover: #0e0f11;
-
   --clr-light-active: #d2ebfc;
-  --clr-dim-active: #173952;
+
+  --clr-dark: #000;
+  --clr-dark-hover: #0e0f11;
   --clr-dark-active: #061f30;
+
+  --clr-dim: #15202b;
+  --clr-dim-hover: #162d3f;
+  --clr-dim-active: #173952;
 
   --clr-blue: #1d9bf0;
   --clr-blue-hover: #1a8cd8;
@@ -25,6 +25,13 @@
   --clr-green: #00ba7c;
 
   --clr-modal-background: rgba(91, 112, 131, 0.4);
+  --clr-modal: rgb(32, 33, 38);
+  --clr-modal-opacity: rgba(32, 33, 38, 0.9);
+  --clr-modal-hover: rgb(49, 50, 56);
+  --clr-modal-active: rgb(66, 66, 71);
+
+  --clr-modal-actions-hover: rgb(57, 58, 64);
+  --clr-modal-actions-active: rgb(88, 90, 93);
 
   --clr-login-hover: #34A5F2;
   --clr-login-active: #4AAFF3;

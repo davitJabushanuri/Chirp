@@ -1,7 +1,5 @@
 import create from "zustand";
 
-import { ITweet } from "@/features/tweets";
-
 interface IInspectTweetImage {
   isTweetImageModalOpen: boolean;
   openTweetImageModal: () => void;
@@ -11,8 +9,8 @@ interface IInspectTweetImage {
   isTweetDetailsOpen: boolean;
   showTweetDetails: () => void;
   hideTweetDetails: () => void;
-  tweet: ITweet | undefined;
-  setTweet: (tweet: ITweet) => void;
+  tweetId: string;
+  setTweetId: (tweetId: string) => void;
 }
 
 export const useInspectTweetImage = create<IInspectTweetImage>((set) => ({
@@ -24,6 +22,6 @@ export const useInspectTweetImage = create<IInspectTweetImage>((set) => ({
   isTweetDetailsOpen: true,
   showTweetDetails: () => set({ isTweetDetailsOpen: true }),
   hideTweetDetails: () => set({ isTweetDetailsOpen: false }),
-  tweet: undefined,
-  setTweet: (tweet: ITweet) => set({ tweet: tweet }),
+  tweetId: "",
+  setTweetId: (tweetId: string) => set({ tweetId: tweetId }),
 }));
