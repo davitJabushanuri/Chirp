@@ -18,6 +18,7 @@ export const useCreateTweet = () => {
       },
       onSettled: () => {
         queryClient.invalidateQueries(["tweets"]);
+        queryClient.invalidateQueries(["comments"]);
       },
     },
   );

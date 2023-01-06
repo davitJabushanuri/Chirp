@@ -14,8 +14,8 @@ export const LikeButton = ({
   smallIcons = true,
   showStats = false,
 }: {
-  tweetId: string;
-  tweetAuthorId: string;
+  tweetId: string | undefined;
+  tweetAuthorId: string | undefined;
   likes?: ILike[];
   smallIcons?: boolean;
   showStats?: boolean;
@@ -26,7 +26,7 @@ export const LikeButton = ({
   const queryClient = useQueryClient();
 
   const mutation = useMutation(
-    ({ tweetId, userId }: { tweetId: string; userId: string }) =>
+    ({ tweetId, userId }: { tweetId: string | undefined; userId: string }) =>
       toggleLike({ tweetId, userId }),
     {
       onSuccess: () => {

@@ -12,10 +12,10 @@ export const TweetActions = ({
   likes,
   showStats = false,
 }: {
-  tweetId: string;
-  tweetAuthorId: string;
-  likes: ILike[];
-  showStats?: boolean;
+  tweetId: string | undefined;
+  tweetAuthorId: string | undefined;
+  likes: ILike[] | undefined;
+  showStats?: boolean | undefined;
 }) => {
   return (
     <div className={styles.container}>

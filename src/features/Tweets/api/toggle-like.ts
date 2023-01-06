@@ -3,8 +3,8 @@ export const toggleLike = async ({
   tweetId,
   userId,
 }: {
-  tweetId: string;
-  userId: string;
+  tweetId: string | undefined;
+  userId: string | undefined;
 }) => {
   try {
     const response = await axios.post("/api/tweets/like", {

@@ -8,11 +8,11 @@
   height: 100%;
   background-color: var(--clr-modal-background);
   z-index: 99;
-  display: grid;
-  grid-template-columns: 1fr;
-  transition: all 0.3s ease-in-out;
+  display: flex;
+
 
   .images {
+    width: 100%;
     position: relative;
     display: grid;
     grid-template-rows: 1fr 46px;
@@ -98,9 +98,30 @@
   }
 
   .tweetDetails {
-    padding: 0.8rem 0.5rem 0.8rem 1rem;
     background-color: var(--clr-background);
     display: none;
+    overflow-y: auto;
+
+    .tweetAuthor {
+      padding: 0.8rem 0.5rem 0 1rem;
+    }
+
+    .tweetText {
+      padding: 0 1rem;
+    }
+
+    .tweetDate {
+      padding: 0 1rem;
+    }
+
+    .tweetStatistics {
+      padding: 0 1rem;
+    }
+
+    .tweetActions {
+      margin: 0 1rem;
+      border-bottom: 1px solid var(--clr-border);
+    }
 
     @include mq('medium') {
       display: block;
@@ -110,25 +131,9 @@
       margin-top: 0.8rem;
       border-bottom: 1px solid var(--clr-border);
     }
+
+    .comments {
+      padding-bottom: calc(100vh - 6rem);
+    }
   }
-
-  .show {
-    display: block;
-  }
-
-  .hide {
-    display: none;
-  }
-
-  @include mq('medium') {
-    grid-template-columns: 1fr 340px;
-  }
-}
-
-.showTweetDetails {
-  grid-template-columns: 1fr 340px;
-}
-
-.hideTweetDetails {
-  grid-template-columns: 1fr;
 }

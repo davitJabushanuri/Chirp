@@ -75,7 +75,7 @@
   .imageContainer {
     img {
       width: auto;
-      animation: slideIn 0.5s ease-in-out;
+      max-height: calc(100vh - 46px);
     }
   }
 }

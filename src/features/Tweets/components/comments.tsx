@@ -5,7 +5,7 @@ import { useComments } from "../hooks/useComments";
 import styles from "./styles/comments.module.scss";
 import { Tweet } from "./tweet";
 
-export const Comments = ({ tweetId }: { tweetId: string }) => {
+export const Comments = ({ tweetId }: { tweetId: string | undefined }) => {
   const {
     data: comments,
     isLoading,

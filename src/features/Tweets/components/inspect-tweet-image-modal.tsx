@@ -8,7 +8,6 @@ import { useDisableBodyScroll } from "@/hooks";
 import { useInspectTweetImage } from "@/stores/use-inspect-tweet-images";
 
 import { ShowArrowsIcon, HideArrowsIcon } from "../assets/double-arrows-icon";
-import { ITweet } from "../types";
 
 import { Comments } from "./comments";
 import { ImageCarousel } from "./image-carousel";
@@ -17,7 +16,7 @@ import { TweetActions } from "./tweet-actions";
 import { TweetCreationDate } from "./tweet-creation-date";
 import { TweetStatistics } from "./tweet-statistics";
 
-export const InspectTweetImageModal = ({ tweet }: { tweet: ITweet }) => {
+export const InspectTweetImageModal = () => {
   const closeTweetImageModal = useInspectTweetImage(
     (state) => state.closeTweetImageModal,
   );
@@ -32,14 +31,12 @@ export const InspectTweetImageModal = ({ tweet }: { tweet: ITweet }) => {
     (state) => state.hideTweetDetails,
   );
 
+  const tweet = useInspectTweetImage((state) => state.tweet);
+
   useDisableBodyScroll();
 
   return (
-    <div
-      className={`${styles.container} ${
-        isTweetDetailsOpen ? styles.hideTweetDetails : styles.showTweetDetails
-      }`}
-    >
+    <div className={styles.container}>
       <div onClick={() => closeTweetImageModal()} className={styles.images}>
         <button
           onClick={(e) => {
@@ -59,7 +56,7 @@ export const InspectTweetImageModal = ({ tweet }: { tweet: ITweet }) => {
                 hideTweetDetails();
               }}
             >
-              <HideArrowsIcon />
+              <ShowArrowsIcon />
             </button>
           ) : (
             <button
@@ -68,7 +65,7 @@ export const InspectTweetImageModal = ({ tweet }: { tweet: ITweet }) => {
                 showTweetDetails();
               }}
             >
-              <ShowArrowsIcon />
+              <HideArrowsIcon />
             </button>
           )}
         </div>
@@ -85,35 +82,46 @@ export const InspectTweetImageModal = ({ tweet }: { tweet: ITweet }) => {
           />
         </div>
       </div>
-      <div
-        className={`${styles.tweetDetails} ${
-          isTweetDetailsOpen ? styles.hide : styles.show
-        }`}
-      >
-        <TweetAuthor author={tweet?.author} />
-        <div className={styles.tweetText}>{tweet?.text}</div>
-        <TweetCreationDate date={tweet?.created_at} />
-        <TweetStatistics
-          retweet_count={tweet?.retweet_count}
-          quote_count={tweet?.quote_count}
-          likes={tweet?.likes}
-        />
-        <TweetActions
-          tweetId={tweet?.id}
-          tweetAuthorId={tweet?.author?.id}
-          likes={tweet?.likes}
-        />
+      {isTweetDetailsOpen && (
+        <div className={styles.tweetDetails}>
+          <div className={styles.tweetAuthor}>
+            <TweetAuthor author={tweet?.author} />
+          </div>
+          <div className={styles.tweetText}>{tweet?.text}</div>
 
-        <div className={styles.createComment}>
-          <CreateTweet
-            in_reply_to_user_screen_name={tweet?.author?.email?.split("@")[0]}
-            in_reply_to_status_id={tweet?.id}
-            placeholder="Tweet your reply"
-          />
+          <div className={styles.tweetDate}>
+            <TweetCreationDate date={tweet?.created_at} />
+          </div>
+
+          <div className={styles.tweetStatistics}>
+            <TweetStatistics
+              retweet_count={tweet?.retweet_count}
+              quote_count={tweet?.quote_count}
+              likes={tweet?.likes}
+            />
+          </div>
+
+          <div className={styles.tweetActions}>
+            <TweetActions
+              tweetId={tweet?.id}
+              tweetAuthorId={tweet?.author?.id}
+              likes={tweet?.likes}
+            />
+          </div>
+
+          <div className={styles.createComment}>
+            <CreateTweet
+              in_reply_to_user_screen_name={tweet?.author?.email?.split("@")[0]}
+              in_reply_to_status_id={tweet?.id}
+              placeholder="Tweet your reply"
+            />
+          </div>
+
+          <div className={styles.comments}>
+            <Comments tweetId={tweet?.id} />
+          </div>
         </div>
-
-        <Comments tweetId={tweet?.id} />
-      </div>
+      )}
     </div>
   );
 };

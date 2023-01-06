@@ -1,8 +1,10 @@
 .container {
+  margin: 0 auto;
   padding: 0.225rem 0;
   display: flex;
   align-items: center;
   justify-content: space-around;
+  max-width: 570px;
 
   svg {
     width: 21px;

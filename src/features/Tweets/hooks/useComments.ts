@@ -13,7 +13,7 @@ export const useComments = (id: string | undefined) => {
     {
       refetchOnWindowFocus: false,
       onSuccess: (data) => {
-        queryClient.setQueryData(["tweets"], data);
+        queryClient.setQueryData(["comments"], data);
       },
     },
   );

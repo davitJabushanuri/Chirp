@@ -6,7 +6,7 @@ import { User } from "../user";
 
 import styles from "./styles/tweet-author.module.scss";
 
-export const TweetAuthor = ({ author }: { author: IUser }) => {
+export const TweetAuthor = ({ author }: { author: IUser | undefined }) => {
   return (
     <div className={styles.container}>
       <User userId={author?.id} userImage={author?.profile_image_url} />

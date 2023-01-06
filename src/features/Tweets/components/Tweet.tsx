@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable @next/next/no-img-element */
@@ -8,6 +9,7 @@ import { useRouter } from "next/navigation";
 
 import { Options } from "@/components/elements/options";
 import { User } from "@/components/elements/user";
+import { useInspectTweetImage } from "@/stores/use-inspect-tweet-images";
 
 import { VerifiedIcon } from "../../../assets/verified-icon";
 import { ITweet } from "../types";
@@ -22,6 +24,14 @@ dayjs.extend(relativeTime);
 
 export const Tweet = ({ tweet }: { tweet: ITweet }) => {
   const router = useRouter();
+
+  const setImageIndex = useInspectTweetImage((state) => state.setImageIndex);
+
+  const openTweetImageModal = useInspectTweetImage(
+    (state) => state.openTweetImageModal,
+  );
+
+  const setTweet = useInspectTweetImage((state) => state.setTweet);
 
   return (
     <div
@@ -99,8 +109,20 @@ export const Tweet = ({ tweet }: { tweet: ITweet }) => {
                   : ""
               }`}
             >
-              {tweet?.media?.slice(0, 4).map((media) => {
-                return <img key={media?.id} src={media?.media_url} alt="" />;
+              {tweet?.media?.slice(0, 4).map((media, index) => {
+                return (
+                  <img
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setImageIndex(index);
+                      setTweet(tweet);
+                      openTweetImageModal();
+                    }}
+                    key={media?.id}
+                    src={media?.media_url}
+                    alt=""
+                  />
+                );
               })}
             </div>
           )}

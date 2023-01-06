@@ -4,6 +4,7 @@
 import { usePathname, useRouter } from "next/navigation";
 
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
+import { TryAgain } from "@/components/elements/try-again";
 import { TweetAuthor } from "@/components/elements/tweet-author";
 import { CreateTweet } from "@/features/create-tweet";
 import { useInspectTweetImage } from "@/stores/use-inspect-tweet-images";
@@ -11,7 +12,6 @@ import { useInspectTweetImage } from "@/stores/use-inspect-tweet-images";
 import { useTweet } from "../hooks/useTweet";
 
 import { Comments } from "./comments";
-import { InspectTweetImageModal } from "./inspect-tweet-image-modal";
 import styles from "./styles/tweet-details.module.scss";
 import { TweetActions } from "./tweet-actions";
 import { TweetCreationDate } from "./tweet-creation-date";
@@ -24,13 +24,11 @@ export const TweetDetails = () => {
 
   const setImageIndex = useInspectTweetImage((state) => state.setImageIndex);
 
-  const isTweetImageModalOpen = useInspectTweetImage(
-    (state) => state.isTweetImageModalOpen,
-  );
-
   const openTweetImageModal = useInspectTweetImage(
     (state) => state.openTweetImageModal,
   );
+
+  const setTweet = useInspectTweetImage((state) => state.setTweet);
 
   const { data: tweet, isLoading, isError } = useTweet(id);
 
@@ -39,15 +37,13 @@ export const TweetDetails = () => {
   }
 
   if (isError) {
-    return <div>Error</div>;
+    return <TryAgain />;
   }
 
   return (
     <div className={styles.container}>
-      {isTweetImageModalOpen && <InspectTweetImageModal tweet={tweet} />}
       <div className={styles.tweetDetails}>
         <TweetAuthor author={tweet?.author} />
-
         {tweet?.in_reply_to_status_id && (
           <div className={styles.replying}>
             <span className={styles.replyingTo}>Replying to</span>
@@ -62,7 +58,6 @@ export const TweetDetails = () => {
             </button>
           </div>
         )}
-
         <div className={styles.tweet}>
           {tweet.text && <div className={styles.text}>{tweet?.text}</div>}
           {tweet?.media && tweet?.media.length > 0 && (
@@ -84,6 +79,7 @@ export const TweetDetails = () => {
                   <img
                     onClick={() => {
                       setImageIndex(index);
+                      setTweet(tweet);
                       openTweetImageModal();
                     }}
                     key={media?.id}
@@ -97,13 +93,11 @@ export const TweetDetails = () => {
         </div>
 
         <TweetCreationDate date={tweet?.created_at} />
-
         <TweetStatistics
           retweet_count={tweet?.retweet_count}
           quote_count={tweet?.quote_count}
           likes={tweet?.likes}
         />
-
         <div className={styles.tweetActions}>
           <TweetActions
             tweetId={tweet?.id}
