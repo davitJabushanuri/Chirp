@@ -1,7 +1,9 @@
+/* eslint-disable no-restricted-imports */
 "use client";
 
 import { TweetHeader } from "@/components/layout/header";
-import { TweetDetails } from "@/features/tweets";
+
+import { TweetDetails } from "../../../features/tweets/components/tweet-details";
 
 import styles from "./styles/tweet-page.module.scss";
 

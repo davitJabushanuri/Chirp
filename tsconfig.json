@@ -2,9 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
-      "@/components/*": ["./src/components/*"],
-      "@/features/*": ["./src/features/*"]
+      "@/*": ["./src/*"]
     },
     "target": "ES2015",
     "lib": ["dom", "dom.iterable", "esnext"],
