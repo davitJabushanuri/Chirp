@@ -6,7 +6,7 @@ import { IPersonProps } from "../types";
 
 import styles from "./styles/person.module.scss";
 
-const person = ({ name, username, image }: IPersonProps) => {
+export const Person = ({ name, username, image }: IPersonProps) => {
   return (
     <div className={styles.container}>
       <div className={styles.person}>
@@ -22,5 +22,3 @@ const person = ({ name, username, image }: IPersonProps) => {
     </div>
   );
 };
-
-export default person;

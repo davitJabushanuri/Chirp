@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 
-import { BackgroundPicker } from "../../components/elements/background-picker/background-picker";
-import { ColorPicker } from "../../components/elements/color-picker/color-picker";
+import { BackgroundPicker } from "@/components/elements/background-picker";
+import { ColorPicker } from "@/components/elements/color-picker";
 
 import { SettingsLayout } from "./settings-layout";
 import styles from "./styles/settings.module.scss";

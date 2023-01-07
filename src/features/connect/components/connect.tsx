@@ -1,4 +1,4 @@
-import Person from "./person";
+import { Person } from "./person";
 import styles from "./styles/connect.module.scss";
 
 export const Connect = () => {

@@ -2,8 +2,7 @@
 "use client";
 
 import { TweetHeader } from "@/components/layout/header";
-
-import { TweetDetails } from "../../../features/tweets/components/tweet-details";
+import { TweetDetails } from "@/features/tweets";
 
 import styles from "./styles/tweet-page.module.scss";
 
