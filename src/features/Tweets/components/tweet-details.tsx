@@ -28,7 +28,7 @@ export const TweetDetails = () => {
     (state) => state.openTweetImageModal,
   );
 
-  const setTweet = useInspectTweetImage((state) => state.setTweet);
+  const setTweetId = useInspectTweetImage((state) => state.setTweetId);
 
   const { data: tweet, isLoading, isError } = useTweet(id);
 
@@ -79,7 +79,7 @@ export const TweetDetails = () => {
                   <img
                     onClick={() => {
                       setImageIndex(index);
-                      setTweet(tweet);
+                      setTweetId(tweet?.id);
                       openTweetImageModal();
                     }}
                     key={media?.id}

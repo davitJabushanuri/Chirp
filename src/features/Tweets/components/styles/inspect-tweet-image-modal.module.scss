@@ -1,4 +1,5 @@
 @use './abstracts/media-query' as *;
+$modal: var(--clr-modal);
 
 .container {
   position: fixed;
@@ -6,7 +7,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: var(--clr-modal-background);
+  background-color: var(--clr-modal);
   z-index: 99;
   display: flex;
 
@@ -28,13 +29,14 @@
       align-items: center;
       justify-content: center;
       border-radius: 50%;
+      background-color: var(--clr-modal);
 
       &:hover {
-        background-color: var(--clr-trends-hover);
+        background-color: var(--clr-modal-hover);
       }
 
       &:active {
-        background-color: var(--clr-trends-active);
+        background-color: var(--clr-modal-active);
       }
 
       svg {
@@ -58,13 +60,14 @@
         align-items: center;
         justify-content: center;
         border-radius: 50%;
+        background-color: var(--clr-modal);
 
         &:hover {
-          background-color: var(--clr-trends-hover);
+          background-color: var(--clr-modal-hover);
         }
 
         &:active {
-          background-color: var(--clr-trends-active);
+          background-color: var(--clr-modal-active);
         }
 
         svg {
@@ -86,21 +89,30 @@
     }
 
     .tweetActions {
+      svg {
+        fill: var(--clr-light);
+      }
 
       span {
-        color: var(--clr-light) !important;
+        color: var(--clr-light);
       }
 
-      svg {
-        fill: var(--clr-light) !important;
-      }
+      --clr-comment-hover: var(--clr-modal-actions-hover);
+      --clr-comment-active: var(--clr-modal-actions-active);
+
+      --clr-heart-hover: var(--clr-modal-actions-hover);
+      --clr-heart-active: var(--clr-modal-actions-active);
+
+      --clr-retweet-hover: var(--clr-modal-actions-hover);
+      --clr-retweet-active: var(--clr-modal-actions-active);
     }
   }
 
   .tweetDetails {
     background-color: var(--clr-background);
-    display: none;
+    min-width: 340px;
     overflow-y: auto;
+    display: none;
 
     .tweetAuthor {
       padding: 0.8rem 0.5rem 0 1rem;
@@ -135,5 +147,9 @@
     .comments {
       padding-bottom: calc(100vh - 6rem);
     }
+  }
+
+  @include mq('medium') {
+    background-color: var(--clr-modal-opacity)
   }
 }

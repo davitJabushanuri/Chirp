@@ -1,4 +1,5 @@
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
+import { TryAgain } from "@/components/elements/try-again";
 
 import { useComments } from "../hooks/useComments";
 
@@ -18,7 +19,7 @@ export const Comments = ({ tweetId }: { tweetId: string | undefined }) => {
   }
 
   if (isError) {
-    return <div>Error</div>;
+    return <TryAgain />;
   }
 
   return (

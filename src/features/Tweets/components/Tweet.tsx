@@ -31,7 +31,7 @@ export const Tweet = ({ tweet }: { tweet: ITweet }) => {
     (state) => state.openTweetImageModal,
   );
 
-  const setTweet = useInspectTweetImage((state) => state.setTweet);
+  const setTweetId = useInspectTweetImage((state) => state.setTweetId);
 
   return (
     <div
@@ -115,7 +115,7 @@ export const Tweet = ({ tweet }: { tweet: ITweet }) => {
                     onClick={(e) => {
                       e.stopPropagation();
                       setImageIndex(index);
-                      setTweet(tweet);
+                      setTweetId(tweet?.id);
                       openTweetImageModal();
                     }}
                     key={media?.id}
