@@ -108,7 +108,7 @@ export const TweetDetails = () => {
       </div>
       <div className={styles.createComment}>
         <CreateTweet
-          in_reply_to_user_screen_name={tweet?.author?.email?.split("@")[0]}
+          in_reply_to_screen_name={tweet?.author?.email?.split("@")[0]}
           in_reply_to_status_id={tweet?.id}
           placeholder="Tweet your reply"
         />

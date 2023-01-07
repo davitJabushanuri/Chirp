@@ -6,50 +6,21 @@ export const postTweet = async ({
   text,
   userId,
   files,
-  in_reply_to_user_screen_name,
+  in_reply_to_screen_name,
   in_reply_to_status_id,
 }: {
   text: string;
   userId: string;
   files: File[];
-  in_reply_to_user_screen_name?: string | null;
+  in_reply_to_screen_name?: string | null;
   in_reply_to_status_id?: string | null;
 }) => {
-  // try {
-  //   const response = await fetch("/api/tweets/create", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       text,
-  //       userId,
-  //     }),
-  //   });
-  //   const data = await response.json();
-
-  //   if (files.length > 0) {
-  //     await postMedia({ files, tweetId: data.id });
-  //     // delay to allow for media to be uploaded
-  //     await new Promise((resolve) => setTimeout(resolve, 1000));
-  //   }
-
-  //   return data;
-  // } catch (error) {
-  //   console.log("error", error);
-  //   throw new Error("Failed to create tweet");
-  // }
-
   try {
     const { data } = await axios.post(`/api/tweets/create`, {
       text,
       userId,
-      in_reply_to_user_screen_name: in_reply_to_user_screen_name
-        ? in_reply_to_user_screen_name
-        : null,
-      in_reply_to_status_id: in_reply_to_status_id
-        ? in_reply_to_status_id
-        : null,
+      in_reply_to_screen_name,
+      in_reply_to_status_id,
     });
 
     if (files.length > 0) {

@@ -3,43 +3,43 @@
 ## Auth
 
 - [ ] User can sign up
-- [ ] User can sign in
-- [ ] User can sign out
-- [ ] User can sign in with Google
+- [x] User can sign in
+- [x] User can sign out
+- [x] User can sign in with Google
 - [ ] User can sign in with Facebook
 - [ ] User can sign in with Twitter
 - [ ] User can sign in with Github
 
 ## Tweets
 
-- [ ] User can see all tweets
-- [ ] User can post a tweet
+- [x] User can see all tweets
+- [x] User can post a tweet
 - [ ] User can edit a tweet
 - [ ] User can delete a tweet
 
 - ### Media
 
-  - [ ] User can post a tweet with an image
+  - [x] User can post a tweet with an image
   - [ ] User can post a tweet with a video
   - [ ] User can post a tweet with a gif
 
 - ### Tweet interactions
 
-  - [ ] User can reply to a tweet
-  - [ ] User can like a tweet
+  - [x] User can reply to a tweet
+  - [x] User can like a tweet
   - [ ] User can retweet a tweet
   - [ ] User can report a tweet
 
 ## Profile
 
 - [ ] User can see who they follow
-- [ ] User can follow other users
+- [x] User can follow other users
 - [ ] User can see who follows them
-- [ ] User can see a timeline of tweets
-- [ ] User can see a list of tweets they've liked
+- [x] User can see a timeline of tweets
+- [x] User can see a list of tweets they've liked
 - [ ] User can see a list of tweets they've retweeted
-- [ ] User can see a list of tweets they've replied to
-- [ ] User can see a list of tweets they've posted
+- [x] User can see a list of tweets they've replied to
+- [x] User can see a list of tweets they've posted
 
 ## Direct Messages
 

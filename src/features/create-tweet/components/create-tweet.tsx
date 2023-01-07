@@ -1,87 +1,41 @@
 /* eslint-disable @next/next/no-img-element */
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 import { useRef, useState } from "react";
 
 import { CloseIcon } from "@/assets/close-icon";
 import { LocationIcon } from "@/assets/location-icon";
 import { User } from "@/components/elements/user";
-import { useTweetModal } from "@/stores/use-create-tweet-modal";
 
-import { postTweet } from "../api/post-tweet";
 import { EmojiIcon } from "../assets/emoji-icon";
 import { GifIcon } from "../assets/gif-icon";
 import { ImageIcon } from "../assets/image-icon";
 import { PollIcon } from "../assets/poll-icon";
 import { ScheduleIcon } from "../assets/schedule-icon";
+import { useCreateTweet } from "../hooks/useCreateTweet";
+import { IChosenImages } from "../types";
 
 import Action from "./action";
 import styles from "./styles/create-tweet.module.scss";
 
-interface IChosenImages {
-  url: string | ArrayBuffer | null;
-  id: number;
-  file: File;
-}
-
 export const CreateTweet = ({
+  in_reply_to_screen_name,
   in_reply_to_status_id,
-  in_reply_to_user_screen_name,
   placeholder = `What's happening?`,
 }: {
+  in_reply_to_screen_name?: string;
   in_reply_to_status_id?: string;
-  in_reply_to_user_screen_name?: string;
   placeholder?: string;
 }) => {
   const { data: session } = useSession();
-  const closeModal = useTweetModal((state) => state.closeModal);
-
-  const queryClient = useQueryClient();
-  const mutation = useMutation(
-    ({
-      text,
-      userId,
-      files,
-      in_reply_to_user_screen_name,
-      in_reply_to_status_id,
-    }: {
-      text: string;
-      userId: string;
-      files: File[];
-      in_reply_to_user_screen_name?: string | null;
-      in_reply_to_status_id?: string | null;
-    }) => {
-      return postTweet({
-        text,
-        userId,
-        files,
-        in_reply_to_user_screen_name,
-        in_reply_to_status_id,
-      });
-    },
-
-    {
-      onSuccess: async () => {
-        console.log("success");
-        queryClient.invalidateQueries(["tweets"]);
-        queryClient.invalidateQueries(["users", session?.user.id]);
-        in_reply_to_user_screen_name &&
-          queryClient.invalidateQueries(["comments"]);
-      },
-      onError: (error) => {
-        console.log(error);
-      },
-      onSettled: () => {
-        setText("");
-        setChosenImages([]);
-        closeModal();
-      },
-    },
-  );
 
   const [text, setText] = useState("");
   const imageUploadRef = useRef<HTMLInputElement>(null);
   const [chosenImages, setChosenImages] = useState<IChosenImages[]>([]);
+
+  const mutation = useCreateTweet({
+    setText,
+    setChosenImages,
+  });
 
   const chooseImage = async () => {
     imageUploadRef.current?.click();
@@ -108,11 +62,11 @@ export const CreateTweet = ({
 
   return (
     <>
-      {in_reply_to_user_screen_name && (
+      {in_reply_to_screen_name && (
         <div className={styles.replying}>
           <span className={styles.replyingTo}>Replying to</span>
           <span className={styles.replyingToUsername}>
-            @{in_reply_to_user_screen_name}
+            @{in_reply_to_screen_name}
           </span>
         </div>
       )}
@@ -193,12 +147,8 @@ export const CreateTweet = ({
                     text: text,
                     userId: session?.user?.id,
                     files: chosenImages.map((img) => img.file),
-                    in_reply_to_user_screen_name: in_reply_to_user_screen_name
-                      ? in_reply_to_user_screen_name
-                      : null,
-                    in_reply_to_status_id: in_reply_to_status_id
-                      ? in_reply_to_status_id
-                      : null,
+                    in_reply_to_screen_name,
+                    in_reply_to_status_id,
                   })
                 }
                 disabled={text.length === 0}
