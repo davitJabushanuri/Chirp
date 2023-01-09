@@ -31,6 +31,7 @@ export const LikeButton = ({
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["tweets"]);
+        queryClient.invalidateQueries(["comments"]);
         queryClient.invalidateQueries(["users", session?.user?.id]);
         if (session?.user?.id !== tweetAuthorId)
           queryClient.invalidateQueries(["users", tweetAuthorId]);

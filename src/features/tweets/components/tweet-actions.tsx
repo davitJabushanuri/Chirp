@@ -18,7 +18,11 @@ export const TweetActions = ({
   showStats?: boolean | undefined;
 }) => {
   return (
-    <div className={styles.container}>
+    <div
+      className={`${styles.container} ${
+        showStats ? styles.tweet : styles.tweetDetails
+      }`}
+    >
       <CommentButton />
       <RetweetButton />
       <LikeButton

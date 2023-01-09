@@ -15,7 +15,10 @@ export const User = ({
 
   return (
     <button
-      onClick={() => router.push(`/${userId}`)}
+      onClick={(e) => {
+        e.stopPropagation();
+        router.push(`/${userId}`);
+      }}
       className={styles.container}
     >
       {userImage ? (

@@ -9,7 +9,6 @@ export default async function CreateTweet(
   const { method } = req;
   const { text, userId, in_reply_to_screen_name, in_reply_to_status_id } =
     req.body;
-  console.log(text, userId, in_reply_to_screen_name, in_reply_to_status_id);
 
   if (method === "POST") {
     try {

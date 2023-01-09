@@ -4,8 +4,13 @@ import styles from "./styles/options.module.scss";
 
 export const Options = () => {
   return (
-    <div className={styles.container}>
+    <button
+      onClick={(e) => {
+        e.stopPropagation();
+      }}
+      className={styles.container}
+    >
       <DotIcon />
-    </div>
+    </button>
   );
 };

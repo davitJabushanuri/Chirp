@@ -1,6 +1,6 @@
 .container {
-  width: 2rem;
-  height: 2rem;
+  width: 32px;
+  height: 32px;
   border-radius: 100vmax;
   cursor: pointer;
   fill: var(--clr-tertiary);
@@ -19,7 +19,7 @@
   }
 
   svg {
-    width: 1.1rem;
-    height: 1.1rem;
+    width: 17px;
+    height: 17px;
   }
 }

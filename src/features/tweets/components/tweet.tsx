@@ -14,11 +14,8 @@ import { useInspectTweetImage } from "@/stores/use-inspect-tweet-images";
 import { VerifiedIcon } from "../../../assets/verified-icon";
 import { ITweet } from "../types";
 
-import { CommentButton } from "./actions/comment-button";
-import { LikeButton } from "./actions/like-button";
-import { RetweetButton } from "./actions/retweet-button";
-import { ShareButton } from "./actions/share-button";
 import styles from "./styles/tweet.module.scss";
+import { TweetActions } from "./tweet-actions";
 
 dayjs.extend(relativeTime);
 
@@ -38,7 +35,7 @@ export const Tweet = ({ tweet }: { tweet: ITweet }) => {
       onClick={() => router.push(`/status/${tweet.id}`)}
       className={styles.container}
     >
-      <div onClick={(e) => e.stopPropagation()} className={styles.avatar}>
+      <div className={styles.avatar}>
         <User
           userId={tweet?.author?.id}
           userImage={tweet?.author?.profile_image_url}
@@ -129,14 +126,12 @@ export const Tweet = ({ tweet }: { tweet: ITweet }) => {
         </div>
 
         <div className={styles.actions}>
-          <CommentButton stats={tweet?.reply_count} />
-          <RetweetButton stats={tweet?.retweet_count} />
-          <LikeButton
+          <TweetActions
+            likes={tweet?.likes}
             tweetId={tweet?.id}
             tweetAuthorId={tweet?.author?.id}
-            likes={tweet?.likes}
+            showStats={true}
           />
-          <ShareButton />
         </div>
       </div>
     </div>
