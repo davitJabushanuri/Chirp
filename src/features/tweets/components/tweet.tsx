@@ -66,9 +66,9 @@ export const Tweet = ({ tweet }: { tweet: ITweet }) => {
             </span>
           </div>
 
-          <button className={styles.options}>
+          <div className={styles.options}>
             <Options />
-          </button>
+          </div>
         </div>
 
         {tweet?.in_reply_to_status_id && (
