@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { useTweetModal } from "@/stores/use-create-tweet-modal";
+import { useCreateTweetModal } from "@/stores/use-create-tweet-modal";
 
 import { postTweet } from "../api/post-tweet";
 import { IChosenImages } from "../types";
@@ -12,7 +12,7 @@ export const useCreateTweet = ({
   setText: (text: string) => void;
   setChosenImages: (chosenImages: IChosenImages[]) => void;
 }) => {
-  const closeModal = useTweetModal((state) => state.closeModal);
+  const closeModal = useCreateTweetModal((state) => state.closeModal);
 
   const queryClient = useQueryClient();
 

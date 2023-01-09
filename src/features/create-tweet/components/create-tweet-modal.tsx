@@ -3,13 +3,21 @@
 import { BackArrowIcon } from "@/assets/back-arrow-icon";
 import { CloseIcon } from "@/assets/close-icon";
 import { useDisableBodyScroll } from "@/hooks";
-import { useTweetModal } from "@/stores/use-create-tweet-modal";
+import { useCreateTweetModal } from "@/stores/use-create-tweet-modal";
 
 import { CreateTweet } from "./create-tweet";
 import styles from "./styles/create-tweet-modal.module.scss";
 
 export const CreateTweetModal = () => {
-  const closeModal = useTweetModal((state) => state.closeModal);
+  const quoted_tweet = useCreateTweetModal((state) => state.quoted_tweet);
+  const in_reply_to_screen_name = useCreateTweetModal(
+    (state) => state.in_reply_to_screen_name,
+  );
+  const in_reply_to_status_id = useCreateTweetModal(
+    (state) => state.in_reply_to_status_id,
+  );
+  const placeholder = useCreateTweetModal((state) => state.placeholder);
+  const closeModal = useCreateTweetModal((state) => state.closeModal);
 
   useDisableBodyScroll();
 
@@ -24,7 +32,12 @@ export const CreateTweetModal = () => {
             <CloseIcon />
           </span>
         </button>
-        <CreateTweet />
+        <CreateTweet
+          quoted_tweet={quoted_tweet}
+          in_reply_to_screen_name={in_reply_to_screen_name}
+          in_reply_to_status_id={in_reply_to_status_id}
+          placeholder={placeholder}
+        />
       </div>
     </div>
   );

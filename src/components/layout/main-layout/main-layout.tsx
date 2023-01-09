@@ -10,7 +10,7 @@ import { Sidebar, TweetButton, UserModal } from "@/features/sidebar";
 import { InspectTweetImageModal } from "@/features/tweets";
 import { useAuthModal } from "@/stores/use-auth-modal";
 import { useColor } from "@/stores/use-color";
-import { useTweetModal } from "@/stores/use-create-tweet-modal";
+import { useCreateTweetModal } from "@/stores/use-create-tweet-modal";
 import { useHamburger } from "@/stores/use-hamburger";
 import { useInspectTweetImage } from "@/stores/use-inspect-tweet-images";
 import { useTheme } from "@/stores/use-theme";
@@ -28,7 +28,7 @@ const MainLayout = ({
 }) => {
   const currentTheme = useTheme((state) => state.theme);
   const currentColor = useColor((state) => state.color);
-  const isTweetModalOpen = useTweetModal((state) => state.isModalOpen);
+  const isTweetModalOpen = useCreateTweetModal((state) => state.isModalOpen);
   const isHamburgerOpen = useHamburger((state) => state.isHamburgerOpen);
   const isUserModalOpen = useAuthModal((state) => state.isUserModalOpen);
   const isTweetImageModalOpen = useInspectTweetImage(

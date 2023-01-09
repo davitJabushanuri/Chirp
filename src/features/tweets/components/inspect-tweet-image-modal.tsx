@@ -81,6 +81,7 @@ export const InspectTweetImageModal = () => {
             </div>
             <div className={styles.tweetActions}>
               <TweetActions
+                tweet={tweet}
                 tweetId={tweet?.id}
                 tweetAuthorId={tweet?.author?.id}
                 likes={tweet?.likes}
@@ -115,6 +116,7 @@ export const InspectTweetImageModal = () => {
 
               <div className={styles.tweetActions}>
                 <TweetActions
+                  tweet={tweet}
                   tweetId={tweet?.id}
                   tweetAuthorId={tweet?.author?.id}
                   likes={tweet?.likes}

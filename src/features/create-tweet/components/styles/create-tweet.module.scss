@@ -1,22 +1,120 @@
 @use './abstracts/media-query' as *;
 
-.replying {
-  margin-left: 5rem;
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  cursor: pointer;
+.quotedTweet {
+  padding: 1rem 1rem 0 1rem;
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  gap: 1rem;
 
-  .replyingTo {
-    color: var(--clr-tertiary);
+  .avatar {
+    display: grid;
+    place-items: center;
+    grid-template-rows: 3rem 1fr;
+    gap: 0.2rem;
+
+    .divider {
+      padding: 0.2rem 0;
+      width: 2px;
+      min-height: 2rem;
+      height: 100%;
+      background-color: var(--clr-border);
+    }
   }
 
-  .replyingToUsername {
-    color: var(--clr-primary);
+  .userDetails {
+    display: flex;
+    gap: 0.2rem;
+
+    .name {
+      font-size: 14px;
+      color: var(--clr-secondary);
+      font-weight: 500;
+      cursor: pointer;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .username {
+      font-size: 14px;
+      color: var(--clr-tertiary);
+      cursor: pointer;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .dot {
+      margin-inline: 0.1rem;
+      color: var(--clr-tertiary);
+
+    }
+
+    .date {
+      font-size: 0.9rem;
+      color: var(--clr-tertiary);
+      cursor: pointer;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .verified {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      svg {
+        width: 1rem;
+        height: 1rem;
+        fill: var(--clr-blue);
+        cursor: pointer;
+
+      }
+    }
+  }
+
+  .tweet {
+    margin-top: 0.2rem;
+  }
+
+  .replying {
+    margin-top: 1rem;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
     cursor: pointer;
+
+    .replyingTo {
+      color: var(--clr-tertiary);
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .replyingToUsername {
+      color: var(--clr-primary);
+      cursor: pointer;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
   }
+
+  .withoutQuotedTweet {
+    margin: 0 0 0 4rem;
+  }
+
 }
+
+
 
 .container {
   padding: 0.4rem 1rem 0 1rem;

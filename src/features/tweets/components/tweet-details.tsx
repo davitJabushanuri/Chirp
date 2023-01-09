@@ -100,6 +100,7 @@ export const TweetDetails = () => {
         />
         <div className={styles.tweetActions}>
           <TweetActions
+            tweet={tweet}
             tweetId={tweet?.id}
             tweetAuthorId={tweet?.author?.id}
             likes={tweet?.likes}
