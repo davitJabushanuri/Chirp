@@ -3,6 +3,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { CloseIcon } from "@/assets/close-icon";
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
+import { TryAgain } from "@/components/elements/try-again";
 import { TweetAuthor } from "@/components/elements/tweet-author";
 import { CreateTweet } from "@/features/create-tweet";
 import { useDisableBodyScroll } from "@/hooks";
@@ -41,9 +42,17 @@ export const InspectTweetImageModal = () => {
 
   return (
     <div className={styles.container}>
-      <div onClick={() => closeTweetImageModal()} className={styles.images}>
-        {isLoading ? null : isError ? null : (
-          <>
+      {isLoading ? (
+        <div className={styles.loading}>
+          <LoadingSpinner />
+        </div>
+      ) : isError ? (
+        <div className={styles.error}>
+          <TryAgain />
+        </div>
+      ) : (
+        <>
+          <div onClick={() => closeTweetImageModal()} className={styles.images}>
             <button
               onClick={(e) => {
                 e.stopPropagation();
@@ -88,15 +97,9 @@ export const InspectTweetImageModal = () => {
                 showStats={true}
               />
             </div>
-          </>
-        )}
-      </div>
-      {isTweetDetailsOpen && (
-        <div className={styles.tweetDetails}>
-          {isLoading ? (
-            <LoadingSpinner />
-          ) : isError ? null : (
-            <>
+          </div>
+          {isTweetDetailsOpen && (
+            <div className={styles.tweetDetails}>
               <div className={styles.tweetAuthor}>
                 <TweetAuthor author={tweet?.author} />
               </div>
@@ -134,9 +137,9 @@ export const InspectTweetImageModal = () => {
               <div className={styles.comments}>
                 <Comments tweetId={tweet?.id} />
               </div>
-            </>
+            </div>
           )}
-        </div>
+        </>
       )}
     </div>
   );

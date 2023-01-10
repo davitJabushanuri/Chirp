@@ -1,5 +1,6 @@
 "use client";
 
+import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
 import { ExploreHeader } from "@/components/layout/header";
 
@@ -9,6 +10,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <ExploreHeader />
+      <LoadingSpinner />
       <TryAgain />
     </div>
   );
