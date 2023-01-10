@@ -1,0 +1,117 @@
+@use './abstracts/media-query' as *;
+
+.container {
+  z-index: 999;
+
+  .background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-color: rgba(91, 112, 131, 0.4);
+    cursor: default;
+
+    @include mq ('small') {
+      background-color: transparent;
+    }
+  }
+
+  .modal {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    border-radius: 2rem 2rem 0 0;
+    background-color: var(--clr-background);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    animation: slideUp 0.2s ease-in-out;
+
+
+    .retweet,
+    .quote {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 0.8rem 1rem;
+      font-size: 14px;
+      font-weight: 500;
+
+      .icon {
+        display: flex;
+      }
+
+      svg {
+        width: 17.5px;
+        height: 17.5px;
+        fill: var(--clr-secondary);
+      }
+
+      &:hover {
+        background-color: var(--clr-trends-hover);
+      }
+
+      &:active {
+        background-color: var(--clr-trends-active);
+      }
+    }
+
+    .cancel {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.7rem 1rem;
+      margin: 0.6rem 1rem;
+      border-radius: 100vmax;
+      background-color: var(--clr-background);
+      border: 1px solid var(--clr-border);
+
+      &:hover {
+        background-color: var(--clr-nav-hover);
+      }
+
+      &:active {
+        background-color: var(--clr-nav-active);
+      }
+    }
+
+    @include mq ('small') {
+      position: absolute;
+      top: 0.4rem;
+      left: -6rem;
+      width: max-content;
+      height: max-content;
+      border-radius: 0.8rem;
+      animation: slideDown 0.1s ease-in-out;
+
+      box-shadow: 0 0 4px 3px var(--clr-border);
+
+      .cancel {
+        display: none;
+      }
+    }
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(100%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    height: 0;
+  }
+
+  100% {
+    height: 82px;
+  }
+}

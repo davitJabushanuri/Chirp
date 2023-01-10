@@ -75,7 +75,7 @@ model User {
   accounts Account[]
   sessions Session[]
   tweets   Tweet[]
-  likes    Likes[]
+  likes    Like[]
 
   followers     Follows[]     @relation("following")
   following     Follows[]     @relation("follower")
@@ -113,7 +113,7 @@ model Tweet {
   author                  User          @relation(fields: [userId], references: [id])
   userId                  String
   media                   Media[]
-  likes                   Likes[]
+  likes                   Like[]
   retweets                Retweet[]
   quoted_tweets           QuotedTweet[]
   bookmarks               Bookmark[]
@@ -127,7 +127,7 @@ model Media {
   tweet_id   String
 }
 
-model Likes {
+model Like {
   id         String   @id @default(cuid())
   tweet      Tweet    @relation(fields: [tweet_id], references: [id])
   tweet_id   String
