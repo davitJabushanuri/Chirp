@@ -1,25 +1,29 @@
 .container {
-  width: 32px;
-  height: 32px;
-  border-radius: 100vmax;
-  cursor: pointer;
-  fill: var(--clr-tertiary);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: relative;
 
-  &:hover {
-    background-color: var(--clr-options-hover);
-    fill: var(--clr-blue);
-  }
+  .optionsButton {
+    width: 32px;
+    height: 32px;
+    border-radius: 100vmax;
+    cursor: pointer;
+    fill: var(--clr-tertiary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-  &:active {
-    background-color: var(--clr-options-active);
-    fill: var(--clr-blue);
-  }
+    &:hover {
+      background-color: var(--clr-options-hover);
+      fill: var(--clr-blue);
+    }
 
-  svg {
-    width: 17px;
-    height: 17px;
+    &:active {
+      background-color: var(--clr-options-active);
+      fill: var(--clr-blue);
+    }
+
+    svg {
+      width: 17px;
+      height: 17px;
+    }
   }
 }

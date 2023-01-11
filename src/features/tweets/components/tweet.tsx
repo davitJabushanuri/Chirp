@@ -67,7 +67,7 @@ export const Tweet = ({ tweet }: { tweet: ITweet }) => {
           </div>
 
           <div className={styles.options}>
-            <Options />
+            <Options tweet={tweet} />
           </div>
         </div>
 

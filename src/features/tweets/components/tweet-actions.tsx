@@ -26,7 +26,7 @@ export const TweetActions = ({
       }`}
     >
       <CommentButton tweet={tweet} />
-      <RetweetButton />
+      <RetweetButton tweet={tweet} />
       <LikeButton
         smallIcons={false}
         showStats={showStats}
@@ -34,7 +34,7 @@ export const TweetActions = ({
         tweetAuthorId={tweetAuthorId}
         likes={likes}
       />
-      <ShareButton />
+      <ShareButton tweet={tweet} />
     </div>
   );
 };

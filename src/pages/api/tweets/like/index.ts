@@ -25,7 +25,7 @@ export default async function Like(req: NextApiRequest, res: NextApiResponse) {
         res.status(404).json({ error: "User not found" });
       }
 
-      const like = await prisma.likes.findFirst({
+      const like = await prisma.like.findFirst({
         where: {
           tweet_id: tweetId,
           user_id: userId,
@@ -33,14 +33,14 @@ export default async function Like(req: NextApiRequest, res: NextApiResponse) {
       });
 
       if (like) {
-        await prisma.likes.delete({
+        await prisma.like.delete({
           where: {
             id: like.id,
           },
         });
         res.status(200).json({ message: "Tweet unliked" });
       } else {
-        await prisma.likes.create({
+        await prisma.like.create({
           data: {
             tweet: {
               connect: {
