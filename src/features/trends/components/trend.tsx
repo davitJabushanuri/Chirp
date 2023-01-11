@@ -1,4 +1,4 @@
-import { Options } from "@/components/elements/options";
+import { DotIcon } from "@/assets/dot-icon";
 
 import { iTrendProps } from "../types";
 
@@ -20,7 +20,7 @@ const Trend = ({
         <div className={styles.stats}>{tweets} Tweets</div>
       </div>
       <div className={styles.options}>
-        <Options />
+        <DotIcon />
       </div>
     </div>
   );

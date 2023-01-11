@@ -101,7 +101,7 @@ export const InspectTweetImageModal = () => {
           {isTweetDetailsOpen && (
             <div className={styles.tweetDetails}>
               <div className={styles.tweetAuthor}>
-                <TweetAuthor author={tweet?.author} />
+                <TweetAuthor tweet={tweet} />
               </div>
               <div className={styles.tweetText}>{tweet?.text}</div>
 

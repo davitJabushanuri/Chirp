@@ -43,7 +43,7 @@ export const TweetDetails = () => {
   return (
     <div className={styles.container}>
       <div className={styles.tweetDetails}>
-        <TweetAuthor author={tweet?.author} />
+        <TweetAuthor tweet={tweet} />
         {tweet?.in_reply_to_status_id && (
           <div className={styles.replying}>
             <span className={styles.replyingTo}>Replying to</span>

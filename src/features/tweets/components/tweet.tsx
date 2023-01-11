@@ -7,7 +7,6 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-import { Options } from "@/components/elements/options";
 import { User } from "@/components/elements/user";
 import { useInspectTweetImage } from "@/stores/use-inspect-tweet-images";
 
@@ -16,6 +15,7 @@ import { ITweet } from "../types";
 
 import styles from "./styles/tweet.module.scss";
 import { TweetActions } from "./tweet-actions";
+import { TweetOptions } from "./tweet-options";
 
 dayjs.extend(relativeTime);
 
@@ -67,7 +67,7 @@ export const Tweet = ({ tweet }: { tweet: ITweet }) => {
           </div>
 
           <div className={styles.options}>
-            <Options tweet={tweet} />
+            <TweetOptions tweet={tweet} />
           </div>
         </div>
 

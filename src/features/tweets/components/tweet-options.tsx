@@ -5,11 +5,11 @@ import { useState } from "react";
 import { DotIcon } from "@/assets/dot-icon";
 import { ITweet, OptionsAction } from "@/features/tweets";
 
-import { ActionsModal } from "../actions-modal";
+import { ActionsModal } from "../../../components/elements/actions-modal";
 
 import styles from "./styles/options.module.scss";
 
-export const Options = ({ tweet }: { tweet: ITweet }) => {
+export const TweetOptions = ({ tweet }: { tweet: ITweet }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
