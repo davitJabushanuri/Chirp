@@ -14,6 +14,7 @@ export default async function Tweets(
           author: true,
           likes: true,
           media: true,
+          retweets: true,
         },
         orderBy: {
           created_at: "desc",

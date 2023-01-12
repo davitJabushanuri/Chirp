@@ -1,0 +1,61 @@
+.container {
+  position: relative;
+
+  .sortButton {
+    fill: var(--clr-secondary);
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 19px;
+      height: 19px;
+      fill: var(--clr-secondary);
+    }
+
+    &:hover {
+      cursor: pointer;
+      background-color: var(--clr-nav-hover);
+    }
+
+    &:active {
+      background-color: var(--clr-nav-active);
+    }
+
+
+  }
+}
+
+.sortActions {
+  .actionButton {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem 1rem;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+
+    .icon {
+      display: flex;
+    }
+
+    svg {
+      width: 17.5px;
+      height: 17.5px;
+      fill: var(--clr-secondary);
+    }
+
+    &:hover {
+      background-color: var(--clr-trends-hover);
+    }
+
+    &:active {
+      background-color: var(--clr-trends-active);
+    }
+  }
+}

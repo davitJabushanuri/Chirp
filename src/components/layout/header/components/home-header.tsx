@@ -1,6 +1,5 @@
 import { HamburgerButton } from "@/components/elements/hamburger-button";
-
-import { StarIcon } from "../assets/star-icon";
+import { SortTweets } from "@/components/elements/sort-tweets";
 
 import styles from "./styles/home-header.module.scss";
 
@@ -14,7 +13,7 @@ export const HomeHeader = () => {
       </a>
 
       <div className={styles.star}>
-        <StarIcon />
+        <SortTweets />
       </div>
     </div>
   );

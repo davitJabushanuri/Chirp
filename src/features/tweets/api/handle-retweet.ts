@@ -2,7 +2,8 @@ import axios from "axios";
 
 export const handleRetweet = async (tweetId: string, userId: string) => {
   try {
-    const { data } = await axios.post(`/api/tweets/${tweetId}/retweet`, {
+    const { data } = await axios.post(`/api/tweets/retweet`, {
+      tweetId,
       userId,
     });
     return data;

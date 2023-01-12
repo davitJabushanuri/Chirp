@@ -20,31 +20,7 @@
   }
 
   .star {
-    fill: var(--clr-secondary);
     margin-left: auto;
-    height: 2rem;
-    width: 2rem;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    svg {
-      width: 19px;
-      height: 19px;
-      fill: var(--clr-secondary);
-    }
-
-    &:hover {
-      cursor: pointer;
-      background-color: var(--clr-nav-hover);
-    }
-
-    &:active {
-      background-color: var(--clr-nav-active);
-    }
-
-
   }
 
   @include mq("small") {

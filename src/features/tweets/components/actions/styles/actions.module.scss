@@ -159,3 +159,15 @@
     color: var(--clr-rose);
   }
 }
+
+.retweeted {
+  .icon {
+    svg {
+      fill: var(--clr-green);
+    }
+  }
+
+  .stats {
+    color: var(--clr-green);
+  }
+}

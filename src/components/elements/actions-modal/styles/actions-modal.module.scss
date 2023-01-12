@@ -12,6 +12,7 @@
     z-index: 998;
     background-color: rgba(91, 112, 131, 0.4);
     cursor: default;
+    animation: fadeIn 0.2s ease-in-out;
 
     @include mq ('small') {
       background-color: transparent;
@@ -84,6 +85,16 @@
   }
 
   100% {
-    height: 100px;
+    height: 80px;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
   }
 }

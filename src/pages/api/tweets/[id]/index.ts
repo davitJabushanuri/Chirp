@@ -12,8 +12,22 @@ export default async function Tweet(req: NextApiRequest, res: NextApiResponse) {
         },
         include: {
           author: true,
-          likes: true,
+          likes: {
+            orderBy: {
+              created_at: "desc",
+            },
+          },
           media: true,
+          retweets: {
+            orderBy: {
+              created_at: "desc",
+            },
+          },
+          quoted_tweets: {
+            orderBy: {
+              created_at: "desc",
+            },
+          },
         },
       });
       res.status(200).json(tweet);
