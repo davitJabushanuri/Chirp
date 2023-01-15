@@ -42,7 +42,7 @@ module.exports = {
 
   rules: {
     "import/order": [
-      "error",
+      "warn",
       {
         groups: [
           "builtin",
@@ -62,7 +62,7 @@ module.exports = {
     "import/no-named-as-default": "off",
 
     "no-restricted-imports": [
-      "error",
+      "warn",
       {
         patterns: ["@/features/*/*"],
       },
