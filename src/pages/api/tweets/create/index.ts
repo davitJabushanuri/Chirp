@@ -7,8 +7,13 @@ export default async function CreateTweet(
   res: NextApiResponse,
 ) {
   const { method } = req;
-  const { text, userId, in_reply_to_screen_name, in_reply_to_status_id } =
-    req.body;
+  const {
+    text,
+    userId,
+    in_reply_to_screen_name,
+    in_reply_to_status_id,
+    quoted_tweet_id,
+  } = req.body;
 
   if (method === "POST") {
     try {
@@ -22,6 +27,7 @@ export default async function CreateTweet(
           in_reply_to_status_id: in_reply_to_status_id
             ? in_reply_to_status_id
             : null,
+          quoted_tweet_id: quoted_tweet_id ? quoted_tweet_id : null,
         },
       });
 

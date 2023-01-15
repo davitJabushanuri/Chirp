@@ -16,18 +16,20 @@ import { GifIcon } from "../assets/gif-icon";
 import { ImageIcon } from "../assets/image-icon";
 import { PollIcon } from "../assets/poll-icon";
 import { ScheduleIcon } from "../assets/schedule-icon";
-import { useCreateTweet } from "../hooks/useCreateTweet";
+import { useCreateTweet } from "../hooks/use-create-tweet";
 import { IChosenImages } from "../types";
 
 import Action from "./action";
 import styles from "./styles/create-tweet.module.scss";
 
 export const CreateTweet = ({
+  parent_tweet,
   quoted_tweet,
   in_reply_to_screen_name,
   in_reply_to_status_id,
   placeholder,
 }: {
+  parent_tweet?: ITweet | null;
   quoted_tweet?: ITweet | null;
   in_reply_to_screen_name?: string | null;
   in_reply_to_status_id?: string | null;
@@ -68,39 +70,39 @@ export const CreateTweet = ({
 
   return (
     <>
-      <div className={styles.quotedTweet}>
-        {quoted_tweet && (
+      <div className={styles.parentTweet}>
+        {parent_tweet && (
           <div className={styles.avatar}>
             <User
-              userId={quoted_tweet?.author?.id}
-              userImage={quoted_tweet?.author?.profile_image_url}
+              userId={parent_tweet?.author?.id}
+              userImage={parent_tweet?.author?.profile_image_url}
             />
             <div className={styles.divider}></div>
           </div>
         )}
         <div className={styles.content}>
-          {quoted_tweet && (
+          {parent_tweet && (
             <>
               <div className={styles.userDetails}>
                 <span className={styles.name}>
-                  {quoted_tweet?.author?.name}
+                  {parent_tweet?.author?.name}
                 </span>
 
                 <span className={styles.verified}>
-                  {quoted_tweet?.author?.verified && <VerifiedIcon />}
+                  {parent_tweet?.author?.verified && <VerifiedIcon />}
                 </span>
 
                 <span className={styles.username}>
-                  @{quoted_tweet?.author?.email?.split("@")[0]}
+                  @{parent_tweet?.author?.email?.split("@")[0]}
                 </span>
                 <span className={styles.dot}>·</span>
                 <span className={styles.date}>
-                  {dayjs(quoted_tweet?.created_at).format("MMM D")}
+                  {dayjs(parent_tweet?.created_at).format("MMM D")}
                 </span>
               </div>
               <div className={styles.tweet}>
-                {quoted_tweet?.text && (
-                  <div className={styles.text}>{quoted_tweet?.text}</div>
+                {parent_tweet?.text && (
+                  <div className={styles.text}>{parent_tweet?.text}</div>
                 )}
               </div>
             </>
@@ -109,7 +111,7 @@ export const CreateTweet = ({
           {in_reply_to_screen_name && (
             <div
               className={`${styles.replying} ${
-                !quoted_tweet ? styles.withoutQuotedTweet : ""
+                !parent_tweet ? styles.withoutQuotedTweet : ""
               }`}
             >
               <span className={styles.replyingTo}>Replying to</span>
@@ -171,6 +173,71 @@ export const CreateTweet = ({
                   </div>
                 );
               })}
+              {/* Quoted Tweet */}
+              {quoted_tweet && (
+                <div
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
+                  className={styles.quotedTweet}
+                >
+                  <div className={styles.userDetails}>
+                    <span className={styles.name}>
+                      {quoted_tweet?.author?.name}
+                    </span>
+
+                    <span className={styles.verified}>
+                      {quoted_tweet?.author?.verified && <VerifiedIcon />}
+                    </span>
+
+                    <span className={styles.username}>
+                      @{quoted_tweet?.author?.email?.split("@")[0]}
+                    </span>
+                    <span className={styles.dot}>·</span>
+                    <span className={styles.date}>
+                      {dayjs(quoted_tweet?.created_at).format("MMM D")}
+                    </span>
+                  </div>
+
+                  <div className={styles.tweet}>
+                    {quoted_tweet?.text && (
+                      <div className={styles.text}>{quoted_tweet?.text}</div>
+                    )}
+
+                    {quoted_tweet?.media?.length > 0 && (
+                      <div className={styles.media}>
+                        {quoted_tweet?.media &&
+                          quoted_tweet?.media.length > 0 && (
+                            <div
+                              className={`${styles.images} ${
+                                quoted_tweet?.media?.length === 1
+                                  ? styles.one
+                                  : quoted_tweet?.media?.length === 2
+                                  ? styles.two
+                                  : quoted_tweet?.media?.length === 3
+                                  ? styles.three
+                                  : quoted_tweet?.media?.length === 4
+                                  ? styles.four
+                                  : ""
+                              }`}
+                            >
+                              {quoted_tweet?.media?.slice(0, 4).map((media) => {
+                                return (
+                                  <img
+                                    key={media?.id}
+                                    src={media?.media_url}
+                                    alt=""
+                                  />
+                                );
+                              })}
+                            </div>
+                          )}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+              {/* Quoted Tweet */}
             </div>
           </div>
           <div className={styles.actions}>

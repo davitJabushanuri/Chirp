@@ -12,7 +12,7 @@ export const CommentButton = ({
   tweet: ITweet;
   stats?: number;
 }) => {
-  const setQuotedTweet = useCreateTweetModal((state) => state.setQuotedTweet);
+  const setParentTweet = useCreateTweetModal((state) => state.setParentTweet);
 
   const setScreenName = useCreateTweetModal((state) => state.setScreenName);
 
@@ -26,7 +26,7 @@ export const CommentButton = ({
     <button
       onClick={(e) => {
         e.stopPropagation();
-        setQuotedTweet(tweet);
+        setParentTweet(tweet);
         setScreenName(tweet?.author?.email?.split("@")[0]);
         setStatusId(tweet?.id);
         setPlaceholder(`Tweet your reply`);

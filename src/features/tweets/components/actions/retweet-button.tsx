@@ -2,6 +2,7 @@ import { useSession } from "next-auth/react";
 import { useState } from "react";
 
 import { Action, ActionsModal } from "@/components/elements/actions-modal";
+import { useCreateTweetModal } from "@/stores/use-create-tweet-modal";
 
 import { QuoteTweetIcon } from "../../assets/quote-tweet-icon";
 import { RetweetIcon } from "../../assets/retweet-icon";
@@ -15,6 +16,9 @@ export const RetweetButton = ({ tweet }: { tweet: ITweet }) => {
   const hasRetweeted = tweet?.retweets?.some(
     (retweet) => retweet?.user_id === session?.user?.id,
   );
+
+  const openCreateTweetModal = useCreateTweetModal((state) => state.openModal);
+  const setQuotedTweet = useCreateTweetModal((state) => state.setQuotedTweet);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -38,7 +42,13 @@ export const RetweetButton = ({ tweet }: { tweet: ITweet }) => {
             />
           </button>
 
-          <button>
+          <button
+            onClick={() => {
+              setQuotedTweet(tweet);
+              openCreateTweetModal();
+              setIsModalOpen(false);
+            }}
+          >
             <Action icon={<QuoteTweetIcon />} text={`Quote Tweet`} />
           </button>
         </ActionsModal>
@@ -53,7 +63,7 @@ export const RetweetButton = ({ tweet }: { tweet: ITweet }) => {
         <span className={styles.icon}>
           <RetweetIcon />
         </span>
-        {tweet?.retweets.length > 0 && (
+        {tweet && tweet?.retweets?.length > 0 && (
           <span className={styles.stats}>{tweet?.retweets?.length}</span>
         )}
       </button>

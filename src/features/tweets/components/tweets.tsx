@@ -23,7 +23,11 @@ export const Tweets = () => {
     <div className={styles.container}>
       {isSuccess &&
         tweets?.length > 0 &&
-        tweets?.map((tweet) => <Tweet key={tweet.id} tweet={tweet} />)}
+        tweets?.map((tweet) => (
+          <div className={styles.tweetContainer} key={tweet.id}>
+            <Tweet tweet={tweet} />
+          </div>
+        ))}
     </div>
   );
 };

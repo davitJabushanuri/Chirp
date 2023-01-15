@@ -9,6 +9,7 @@ import { CreateTweet } from "./create-tweet";
 import styles from "./styles/create-tweet-modal.module.scss";
 
 export const CreateTweetModal = () => {
+  const parent_tweet = useCreateTweetModal((state) => state.parent_tweet);
   const quoted_tweet = useCreateTweetModal((state) => state.quoted_tweet);
   const in_reply_to_screen_name = useCreateTweetModal(
     (state) => state.in_reply_to_screen_name,
@@ -22,7 +23,12 @@ export const CreateTweetModal = () => {
   useDisableBodyScroll();
 
   return (
-    <div onClick={() => closeModal()} className={styles.container}>
+    <div
+      onClick={() => {
+        closeModal();
+      }}
+      className={styles.container}
+    >
       <div onClick={(e) => e.stopPropagation()} className={styles.modal}>
         <button onClick={() => closeModal()} className={styles.close}>
           <span className={styles.arrow}>
@@ -33,6 +39,7 @@ export const CreateTweetModal = () => {
           </span>
         </button>
         <CreateTweet
+          parent_tweet={parent_tweet}
           quoted_tweet={quoted_tweet}
           in_reply_to_screen_name={in_reply_to_screen_name}
           in_reply_to_status_id={in_reply_to_status_id}

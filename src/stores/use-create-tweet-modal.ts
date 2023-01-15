@@ -6,6 +6,8 @@ interface IModal {
   isModalOpen: boolean;
   openModal: () => void;
   closeModal: () => void;
+  parent_tweet: ITweet | null;
+  setParentTweet: (tweet: ITweet | null) => void;
   quoted_tweet: ITweet | null;
   setQuotedTweet: (tweet: ITweet | null) => void;
   in_reply_to_screen_name: string | null;
@@ -19,7 +21,16 @@ interface IModal {
 export const useCreateTweetModal = create<IModal>((set) => ({
   isModalOpen: false,
   openModal: () => set({ isModalOpen: true }),
-  closeModal: () => set({ isModalOpen: false }),
+  closeModal: () => {
+    set({ isModalOpen: false });
+    set({ parent_tweet: null });
+    set({ quoted_tweet: null });
+    set({ in_reply_to_screen_name: null });
+    set({ in_reply_to_status_id: null });
+    set({ placeholder: `What's happening?` });
+  },
+  parent_tweet: null,
+  setParentTweet: (tweet) => set({ parent_tweet: tweet }),
   quoted_tweet: null,
   setQuotedTweet: (tweet) => set({ quoted_tweet: tweet }),
   in_reply_to_screen_name: null,
