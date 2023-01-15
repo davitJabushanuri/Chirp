@@ -12,6 +12,7 @@ import { useInspectTweetImage } from "@/stores/use-inspect-tweet-images";
 import { useTweet } from "../hooks/useTweet";
 
 import { Comments } from "./comments";
+import { QuotedTweet } from "./quoted-tweet";
 import styles from "./styles/tweet-details.module.scss";
 import { TweetActions } from "./tweet-actions";
 import { TweetCreationDate } from "./tweet-creation-date";
@@ -90,6 +91,8 @@ export const TweetDetails = () => {
               })}
             </div>
           )}
+
+          {tweet?.quoted_tweet && <QuotedTweet tweet={tweet?.quoted_tweet} />}
         </div>
 
         <TweetCreationDate date={tweet?.created_at} />

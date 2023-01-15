@@ -10,6 +10,7 @@ import { LocationIcon } from "@/assets/location-icon";
 import { VerifiedIcon } from "@/assets/verified-icon";
 import { User } from "@/components/elements/user";
 import { ITweet } from "@/features/tweets";
+import { QuotedTweet } from "@/features/tweets";
 
 import { EmojiIcon } from "../assets/emoji-icon";
 import { GifIcon } from "../assets/gif-icon";
@@ -173,71 +174,7 @@ export const CreateTweet = ({
                   </div>
                 );
               })}
-              {/* Quoted Tweet */}
-              {quoted_tweet && (
-                <div
-                  onClick={(e) => {
-                    e.stopPropagation();
-                  }}
-                  className={styles.quotedTweet}
-                >
-                  <div className={styles.userDetails}>
-                    <span className={styles.name}>
-                      {quoted_tweet?.author?.name}
-                    </span>
-
-                    <span className={styles.verified}>
-                      {quoted_tweet?.author?.verified && <VerifiedIcon />}
-                    </span>
-
-                    <span className={styles.username}>
-                      @{quoted_tweet?.author?.email?.split("@")[0]}
-                    </span>
-                    <span className={styles.dot}>·</span>
-                    <span className={styles.date}>
-                      {dayjs(quoted_tweet?.created_at).format("MMM D")}
-                    </span>
-                  </div>
-
-                  <div className={styles.tweet}>
-                    {quoted_tweet?.text && (
-                      <div className={styles.text}>{quoted_tweet?.text}</div>
-                    )}
-
-                    {quoted_tweet?.media?.length > 0 && (
-                      <div className={styles.media}>
-                        {quoted_tweet?.media &&
-                          quoted_tweet?.media.length > 0 && (
-                            <div
-                              className={`${styles.images} ${
-                                quoted_tweet?.media?.length === 1
-                                  ? styles.one
-                                  : quoted_tweet?.media?.length === 2
-                                  ? styles.two
-                                  : quoted_tweet?.media?.length === 3
-                                  ? styles.three
-                                  : quoted_tweet?.media?.length === 4
-                                  ? styles.four
-                                  : ""
-                              }`}
-                            >
-                              {quoted_tweet?.media?.slice(0, 4).map((media) => {
-                                return (
-                                  <img
-                                    key={media?.id}
-                                    src={media?.media_url}
-                                    alt=""
-                                  />
-                                );
-                              })}
-                            </div>
-                          )}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              )}
-              {/* Quoted Tweet */}
+              {quoted_tweet && <QuotedTweet tweet={quoted_tweet} />}
             </div>
           </div>
           <div className={styles.actions}>
