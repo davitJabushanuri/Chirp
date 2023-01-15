@@ -15,6 +15,12 @@ export default async function Tweets(
           likes: true,
           media: true,
           retweets: true,
+          quoted_tweet: {
+            include: {
+              author: true,
+              media: true,
+            },
+          },
         },
         orderBy: {
           created_at: "desc",

@@ -28,7 +28,7 @@ export interface ITweet {
   likes: ILike[];
   media: IMedia[];
   retweets: IRetweet[];
-  quoted_tweets: IQuotedTweet[];
+  quoted_tweet: ITweet;
 }
 
 export interface ILike {
@@ -48,12 +48,5 @@ export interface IRetweet {
   id: string;
   user_id: string;
   tweet_id: string;
-  created_at: string;
-}
-
-export interface IQuotedTweet {
-  id: string;
-  text?: string;
-  user_id: number;
   created_at: string;
 }

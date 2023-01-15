@@ -123,6 +123,73 @@ export const Tweet = ({ tweet }: { tweet: ITweet }) => {
               })}
             </div>
           )}
+
+          {tweet?.quoted_tweet && (
+            <div
+              onClick={(e) => {
+                e.stopPropagation();
+                router.push(`/status/${tweet?.quoted_tweet?.id}`);
+              }}
+              className={styles.quotedTweet}
+            >
+              <div className={styles.userDetails}>
+                <span className={styles.name}>
+                  {tweet?.quoted_tweet?.author?.name}
+                </span>
+
+                <span className={styles.verified}>
+                  {tweet?.quoted_tweet?.author?.verified && <VerifiedIcon />}
+                </span>
+
+                <span className={styles.username}>
+                  @{tweet?.quoted_tweet?.author?.email?.split("@")[0]}
+                </span>
+                <span className={styles.dot}>·</span>
+                <span className={styles.date}>
+                  {dayjs(tweet?.quoted_tweet?.created_at).format("MMM D")}
+                </span>
+              </div>
+
+              <div className={styles.tweet}>
+                {tweet?.quoted_tweet?.text && (
+                  <div className={styles.text}>{tweet?.quoted_tweet?.text}</div>
+                )}
+
+                {tweet?.quoted_tweet?.media?.length > 0 && (
+                  <div className={styles.media}>
+                    {tweet?.quoted_tweet?.media &&
+                      tweet?.quoted_tweet?.media.length > 0 && (
+                        <div
+                          className={`${styles.images} ${
+                            tweet?.quoted_tweet?.media?.length === 1
+                              ? styles.one
+                              : tweet?.quoted_tweet?.media?.length === 2
+                              ? styles.two
+                              : tweet?.quoted_tweet?.media?.length === 3
+                              ? styles.three
+                              : tweet?.quoted_tweet?.media?.length === 4
+                              ? styles.four
+                              : ""
+                          }`}
+                        >
+                          {tweet?.quoted_tweet?.media
+                            ?.slice(0, 4)
+                            .map((media) => {
+                              return (
+                                <img
+                                  key={media?.id}
+                                  src={media?.media_url}
+                                  alt=""
+                                />
+                              );
+                            })}
+                        </div>
+                      )}
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
         </div>
 
         <div className={styles.actions}>

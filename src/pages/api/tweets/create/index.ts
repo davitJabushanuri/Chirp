@@ -15,6 +15,8 @@ export default async function CreateTweet(
     quoted_tweet_id,
   } = req.body;
 
+  console.log(quoted_tweet_id);
+
   if (method === "POST") {
     try {
       const tweet = await prisma.tweet.create({

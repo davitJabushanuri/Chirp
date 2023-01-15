@@ -8,12 +8,14 @@ export const postTweet = async ({
   files,
   in_reply_to_screen_name,
   in_reply_to_status_id,
+  quoted_tweet_id,
 }: {
   text: string;
   userId: string;
   files: File[];
   in_reply_to_screen_name?: string | null;
   in_reply_to_status_id?: string | null;
+  quoted_tweet_id?: string | null;
 }) => {
   try {
     const { data } = await axios.post(`/api/tweets/create`, {
@@ -21,6 +23,7 @@ export const postTweet = async ({
       userId,
       in_reply_to_screen_name,
       in_reply_to_status_id,
+      quoted_tweet_id,
     });
 
     if (files.length > 0) {

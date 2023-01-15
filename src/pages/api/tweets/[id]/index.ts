@@ -23,8 +23,12 @@ export default async function Tweet(req: NextApiRequest, res: NextApiResponse) {
               created_at: "desc",
             },
           },
-          quote: true,
-          quoted_tweet: true,
+          quoted_tweet: {
+            include: {
+              author: true,
+              media: true,
+            },
+          },
         },
       });
       res.status(200).json(tweet);

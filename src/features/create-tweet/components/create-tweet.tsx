@@ -267,6 +267,7 @@ export const CreateTweet = ({
                     files: chosenImages.map((img) => img.file),
                     in_reply_to_screen_name,
                     in_reply_to_status_id,
+                    quoted_tweet_id: quoted_tweet ? quoted_tweet.id : null,
                   })
                 }
                 disabled={text.length === 0}
