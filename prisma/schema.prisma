@@ -117,6 +117,9 @@ model Tweet {
   quote                   Tweet?     @relation("quoted_tweet")
   quoted_tweet_id         String?    @unique
   quoted_tweet            Tweet?     @relation("quoted_tweet", fields: [quoted_tweet_id], references: [id])
+  comments                Tweet[]    @relation("tweet-comment")
+  comment_id              String?    @unique
+  tweet_comments          Tweet?     @relation("tweet-comment", fields: [comment_id], references: [id])
   bookmarks               Bookmark[]
 }
 
