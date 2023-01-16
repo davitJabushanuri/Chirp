@@ -5,13 +5,7 @@ import { ITweet } from "../../types";
 
 import styles from "./styles/actions.module.scss";
 
-export const CommentButton = ({
-  tweet,
-  stats = 0,
-}: {
-  tweet: ITweet;
-  stats?: number;
-}) => {
+export const CommentButton = ({ tweet }: { tweet: ITweet }) => {
   const setParentTweet = useCreateTweetModal((state) => state.setParentTweet);
 
   const setScreenName = useCreateTweetModal((state) => state.setScreenName);
@@ -37,7 +31,9 @@ export const CommentButton = ({
       <span className={`${styles.icon}`}>
         <CommentIcon />
       </span>
-      {stats > 0 && <span className={styles.stats}>{stats}</span>}
+      {tweet?.comments?.length > 0 && (
+        <span className={styles.stats}>{tweet?.comments?.length}</span>
+      )}
     </button>
   );
 };

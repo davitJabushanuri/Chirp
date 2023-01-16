@@ -21,7 +21,9 @@ export default async function Tweets(
               media: true,
             },
           },
+          comments: true,
         },
+
         orderBy: {
           created_at: "desc",
         },

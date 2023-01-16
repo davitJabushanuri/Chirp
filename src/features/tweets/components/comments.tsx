@@ -1,34 +1,18 @@
-import { LoadingSpinner } from "@/components/elements/loading-spinner";
-import { TryAgain } from "@/components/elements/try-again";
-
-import { useComments } from "../hooks/useComments";
+import { ITweet } from "../types";
 
 import styles from "./styles/comments.module.scss";
 import { Tweet } from "./tweet";
 
-export const Comments = ({ tweetId }: { tweetId: string | undefined }) => {
-  const {
-    data: comments,
-    isLoading,
-    isError,
-    isSuccess,
-  } = useComments(tweetId);
-
-  if (isLoading) {
-    return <LoadingSpinner />;
-  }
-
-  if (isError) {
-    return <TryAgain />;
-  }
-
+export const Comments = ({ tweet }: { tweet: ITweet[] | undefined }) => {
   return (
     <div className={styles.container}>
-      {isSuccess &&
-        comments?.length > 0 &&
-        comments?.map((comment) => {
-          return <Tweet key={comment?.id} tweet={comment} />;
-        })}
+      {tweet?.map((tweet) => {
+        return (
+          <div className={styles.tweetContainer} key={tweet?.id}>
+            <Tweet tweet={tweet} />
+          </div>
+        );
+      })}
     </div>
   );
 };

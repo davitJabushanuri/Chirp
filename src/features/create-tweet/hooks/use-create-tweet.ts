@@ -42,11 +42,10 @@ export const useCreateTweet = ({
       });
     },
     {
-      onSuccess: ({ userId, in_reply_to_screen_name }) => {
+      onSuccess: ({ userId }) => {
         console.log("success");
         queryClient.invalidateQueries(["tweets"]);
         queryClient.invalidateQueries(["users", userId]);
-        in_reply_to_screen_name && queryClient.invalidateQueries(["comments"]);
       },
       onError: (error) => {
         console.log("error", error);

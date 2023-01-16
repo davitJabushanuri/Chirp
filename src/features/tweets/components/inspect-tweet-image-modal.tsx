@@ -135,7 +135,7 @@ export const InspectTweetImageModal = () => {
               </div>
 
               <div className={styles.comments}>
-                <Comments tweetId={tweet?.id} />
+                <Comments tweet={tweet?.comments} />
               </div>
             </div>
           )}

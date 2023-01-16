@@ -97,7 +97,6 @@ model Tweet {
   id                      String     @id @default(cuid())
   text                    String?
   source                  String     @default("web")
-  in_reply_to_status_id   String?
   in_reply_to_user_id     String?
   in_reply_to_screen_name String?
   is_quote_status         Boolean    @default(false)
@@ -118,8 +117,8 @@ model Tweet {
   quoted_tweet_id         String?    @unique
   quoted_tweet            Tweet?     @relation("quoted_tweet", fields: [quoted_tweet_id], references: [id])
   comments                Tweet[]    @relation("tweet-comment")
-  comment_id              String?    @unique
-  tweet_comments          Tweet?     @relation("tweet-comment", fields: [comment_id], references: [id])
+  in_reply_to_status_id   String?
+  tweet_comments          Tweet?     @relation("tweet-comment", fields: [in_reply_to_status_id], references: [id])
   bookmarks               Bookmark[]
 }
 

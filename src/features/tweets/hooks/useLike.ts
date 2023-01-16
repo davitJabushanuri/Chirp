@@ -18,7 +18,6 @@ export const useLike = ({
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["tweets"]);
-        queryClient.invalidateQueries(["comments"]);
         queryClient.invalidateQueries(["users", sessionOwnerId]);
         if (sessionOwnerId !== tweetAuthorId)
           queryClient.invalidateQueries(["users", tweetAuthorId]);
