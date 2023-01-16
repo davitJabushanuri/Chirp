@@ -30,6 +30,16 @@ export default async function Tweet(req: NextApiRequest, res: NextApiResponse) {
             },
           },
 
+          quotes: {
+            include: {
+              author: true,
+            },
+
+            orderBy: {
+              created_at: "desc",
+            },
+          },
+
           comments: {
             include: {
               author: true,

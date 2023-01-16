@@ -29,6 +29,7 @@ export interface ITweet {
   media: IMedia[];
   retweets: IRetweet[];
   quoted_tweet: ITweet;
+  quotes: ITweet[];
   comments: ITweet[];
 }
 

@@ -21,6 +21,7 @@ export default async function Tweets(
               media: true,
             },
           },
+          quotes: true,
           comments: true,
         },
 

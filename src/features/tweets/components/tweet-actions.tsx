@@ -25,7 +25,7 @@ export const TweetActions = ({
         showStats ? styles.tweet : styles.tweetDetails
       }`}
     >
-      <CommentButton tweet={tweet} />
+      <CommentButton tweet={tweet} showStats={showStats} />
       <RetweetButton tweet={tweet} />
       <LikeButton
         smallIcons={false}

@@ -21,7 +21,9 @@ export const TweetStatistics = ({
       {retweet_count > 0 && (
         <div className={styles.statistic}>
           <span className={styles.number}>{retweet_count}</span>
-          <span className={styles.text}>Retweets</span>
+          <span className={styles.text}>
+            {retweet_count === 1 ? `Retweet` : `Retweets`}
+          </span>
         </div>
       )}
 
@@ -29,7 +31,9 @@ export const TweetStatistics = ({
       {quote_count > 0 && (
         <div className={styles.statistic}>
           <span className={styles.number}>{quote_count}</span>
-          <span className={styles.text}>Quote Tweets</span>
+          <span className={styles.text}>
+            {quote_count === 1 ? `Quote Tweet` : `Quote Tweets`}
+          </span>
         </div>
       )}
 

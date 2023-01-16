@@ -113,12 +113,12 @@ model Tweet {
   media                   Media[]
   likes                   Like[]
   retweets                Retweet[]
-  quote                   Tweet?     @relation("quoted_tweet")
-  quoted_tweet_id         String?    @unique
+  quotes                  Tweet[]    @relation("quoted_tweet")
+  quoted_tweet_id         String?
   quoted_tweet            Tweet?     @relation("quoted_tweet", fields: [quoted_tweet_id], references: [id])
   comments                Tweet[]    @relation("tweet-comment")
   in_reply_to_status_id   String?
-  tweet_comments          Tweet?     @relation("tweet-comment", fields: [in_reply_to_status_id], references: [id])
+  tweet_comment           Tweet?     @relation("tweet-comment", fields: [in_reply_to_status_id], references: [id])
   bookmarks               Bookmark[]
 }
 

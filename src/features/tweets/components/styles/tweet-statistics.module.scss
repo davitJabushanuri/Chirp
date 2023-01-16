@@ -12,11 +12,13 @@
     gap: 0.3rem;
 
     .number {
-      font-size: 0.815rem;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--clr-secondary);
     }
 
     .text {
-      font-size: 0.815rem;
+      font-size: 13px;
       color: var(--clr-tertiary);
     }
   }

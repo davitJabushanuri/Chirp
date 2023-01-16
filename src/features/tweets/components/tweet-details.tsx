@@ -97,8 +97,8 @@ export const TweetDetails = () => {
 
         <TweetCreationDate date={tweet?.created_at} />
         <TweetStatistics
-          retweet_count={tweet?.retweet_count}
-          quote_count={tweet?.quote_count}
+          retweet_count={tweet?.retweets?.length}
+          quote_count={tweet?.quotes?.length}
           likes={tweet?.likes}
         />
         <div className={styles.tweetActions}>
