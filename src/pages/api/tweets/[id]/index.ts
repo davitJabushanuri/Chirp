@@ -13,6 +13,9 @@ export default async function Tweet(req: NextApiRequest, res: NextApiResponse) {
         include: {
           author: true,
           likes: {
+            include: {
+              user: true,
+            },
             orderBy: {
               created_at: "desc",
             },

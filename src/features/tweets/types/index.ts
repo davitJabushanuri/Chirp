@@ -37,6 +37,7 @@ export interface ILike {
   id: string;
   user_id: string;
   tweet_id: string;
+  user: IUser;
 }
 
 export interface IMedia {

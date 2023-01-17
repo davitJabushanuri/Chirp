@@ -11,6 +11,11 @@
     align-items: center;
     gap: 0.3rem;
 
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
     .number {
       font-size: 13px;
       font-weight: 700;
