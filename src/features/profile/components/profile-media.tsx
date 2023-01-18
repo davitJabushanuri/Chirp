@@ -8,7 +8,7 @@ import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
 import { Tweet } from "@/features/tweets";
 
-import { useUser } from "../hooks/useUser";
+import { useUser } from "../hooks/use-user";
 
 import styles from "./styles/profile-media.module.scss";
 

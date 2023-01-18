@@ -1,11 +1,13 @@
 import create from "zustand";
 
+import { IUser } from "@/features/profile";
+
 interface ITweetStatistics {
   isTweetStatisticsModalOpen: boolean;
   openTweetStatisticsModal: () => void;
   closeTweetStatisticsModal: () => void;
-  statistics: any;
-  setStatistics: (statistics: any) => void;
+  authors: IUser[] | null;
+  setAuthors: (authors: IUser[]) => void;
   statisticType: string | null;
   setStatisticType: (statisticType: string) => void;
 }
@@ -13,10 +15,11 @@ interface ITweetStatistics {
 export const useTweetStatistics = create<ITweetStatistics>((set) => ({
   isTweetStatisticsModalOpen: false,
   openTweetStatisticsModal: () =>
-    set({ isTweetStatisticsModalOpen: true, statistics: null }),
+    set({ isTweetStatisticsModalOpen: true, authors: null }),
   closeTweetStatisticsModal: () => set({ isTweetStatisticsModalOpen: false }),
-  statistics: null,
-  setStatistics: (statistics: any) => set({ statistics }),
+  authors: null,
+
+  setAuthors: (authors) => set({ authors }),
   statisticType: null,
   setStatisticType: (statisticType: string) => set({ statisticType }),
 }));

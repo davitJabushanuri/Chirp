@@ -8,7 +8,7 @@ import { ProfileHeader } from "@/components/layout/header";
 import { useEditProfile } from "@/stores/use-edit-profile";
 import { useInspectImage } from "@/stores/use-inspect-profile-image";
 
-import { useUser } from "../hooks/useUser";
+import { useUser } from "../hooks/use-user";
 
 import { EditProfileModal } from "./edit-profile-modal";
 import { InspectImageModal } from "./inspect-image-modal";

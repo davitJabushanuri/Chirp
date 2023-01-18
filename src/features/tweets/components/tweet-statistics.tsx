@@ -1,4 +1,6 @@
-import { useTweetStatistics } from "@/stores/use-tweet-statistics";
+import { useState } from "react";
+
+import { IUser } from "@/features/profile";
 
 import { ILike } from "../types";
 
@@ -16,16 +18,9 @@ export const TweetStatistics = ({
 }) => {
   const isVisible = retweet_count > 0 || quote_count > 0 || likes?.length;
 
-  const isModalOpen = useTweetStatistics(
-    (state) => state.isTweetStatisticsModalOpen,
-  );
-  const openModal = useTweetStatistics(
-    (state) => state.openTweetStatisticsModal,
-  );
-  const setStatistics = useTweetStatistics((state) => state.setStatistics);
-  const setStatisticType = useTweetStatistics(
-    (state) => state.setStatisticType,
-  );
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [authors, setAuthors] = useState<IUser[]>([]);
+  const [title, setTitle] = useState<string>("");
 
   return (
     <div
@@ -35,7 +30,7 @@ export const TweetStatistics = ({
       {retweet_count > 0 && (
         <button
           onClick={() => {
-            openModal();
+            setIsModalOpen(true);
           }}
           className={styles.statistic}
         >
@@ -50,7 +45,7 @@ export const TweetStatistics = ({
       {quote_count > 0 && (
         <button
           onClick={() => {
-            openModal();
+            setIsModalOpen(true);
           }}
           className={styles.statistic}
         >
@@ -65,9 +60,9 @@ export const TweetStatistics = ({
       {likes && likes.length > 0 && (
         <button
           onClick={() => {
-            setStatistics(likes?.map((like) => like.user));
-            setStatisticType("Liked By");
-            openModal();
+            setAuthors(likes?.map((like) => like.user));
+            setTitle("Liked By");
+            setIsModalOpen(true);
           }}
           className={styles.statistic}
         >
@@ -78,7 +73,13 @@ export const TweetStatistics = ({
         </button>
       )}
 
-      {isModalOpen && <TweetStatisticsModal />}
+      {isModalOpen && (
+        <TweetStatisticsModal
+          authors={authors}
+          title={title}
+          setIsModalOpen={setIsModalOpen}
+        />
+      )}
     </div>
   );
 };

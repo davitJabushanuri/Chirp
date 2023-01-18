@@ -1,0 +1,12 @@
+.follow {
+  background-color: var(--clr-secondary);
+  color: var(--clr-background);
+
+  &:hover {
+    background-color: var(--clr-secondary-hover);
+  }
+
+  &:active {
+    background-color: var(--clr-secondary-active);
+  }
+}
