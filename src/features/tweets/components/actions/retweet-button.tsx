@@ -32,7 +32,7 @@ export const RetweetButton = ({ tweet }: { tweet: ITweet }) => {
             onClick={() =>
               retweetMutation.mutate({
                 tweetId: tweet?.id,
-                userId: tweet?.author?.id,
+                userId: session?.user?.id,
               })
             }
           >

@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { IUser } from "@/features/profile";
 
-import { ILike } from "../types";
+import { ILike, IRetweet, ITweet } from "../types";
 
 import styles from "./styles/tweet-statistics.module.scss";
 import { TweetStatisticsModal } from "./tweet-statistics-modal";
@@ -11,15 +11,19 @@ export const TweetStatistics = ({
   retweet_count = 0,
   quote_count = 0,
   likes,
+  retweets,
+  quotes,
 }: {
   retweet_count: number | undefined;
   quote_count: number | undefined;
   likes: ILike[] | undefined;
+  retweets: IRetweet[] | undefined;
+  quotes: ITweet[] | undefined;
 }) => {
   const isVisible = retweet_count > 0 || quote_count > 0 || likes?.length;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [authors, setAuthors] = useState<IUser[]>([]);
+  const [authors, setAuthors] = useState<IUser[] | undefined>([]);
   const [title, setTitle] = useState<string>("");
 
   return (
@@ -30,6 +34,8 @@ export const TweetStatistics = ({
       {retweet_count > 0 && (
         <button
           onClick={() => {
+            setAuthors(retweets?.map((retweet) => retweet.user));
+            setTitle("Retweeted By");
             setIsModalOpen(true);
           }}
           className={styles.statistic}
@@ -78,6 +84,7 @@ export const TweetStatistics = ({
           authors={authors}
           title={title}
           setIsModalOpen={setIsModalOpen}
+          setAuthors={setAuthors}
         />
       )}
     </div>

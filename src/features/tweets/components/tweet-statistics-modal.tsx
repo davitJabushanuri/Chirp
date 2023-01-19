@@ -1,8 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+
 import { BackArrowIcon } from "@/assets/back-arrow-icon";
 import { CloseIcon } from "@/assets/close-icon";
+import { FollowButton } from "@/components/elements/follow-button";
 import { IUser } from "@/features/profile";
 
 import styles from "./styles/tweet-statistics-modal.module.scss";
@@ -11,17 +15,28 @@ export const TweetStatisticsModal = ({
   authors,
   title,
   setIsModalOpen,
+  setAuthors,
 }: {
   authors: IUser[] | undefined;
   title: string;
   setIsModalOpen: (value: boolean) => void;
+  setAuthors: (value: IUser[] | undefined) => void;
 }) => {
   return (
-    <div onClick={() => setIsModalOpen(false)} className={styles.container}>
+    <div
+      onClick={() => {
+        setIsModalOpen(false);
+        setAuthors(undefined);
+      }}
+      className={styles.container}
+    >
       <div onClick={(e) => e.stopPropagation()} className={styles.modal}>
         <header>
           <button
-            onClick={() => setIsModalOpen(false)}
+            onClick={() => {
+              setIsModalOpen(false);
+              setAuthors(undefined);
+            }}
             className={styles.close}
           >
             <span className={styles.arrow}>
@@ -38,12 +53,7 @@ export const TweetStatisticsModal = ({
 
         <div className={styles.people}>
           {authors?.map((author: IUser) => {
-            // return <ActivityAuthor key={author?.id} author={author} />;
-            return (
-              <div key={author?.id} className={styles.author}>
-                <Author author={author} />
-              </div>
-            );
+            return <Author key={author?.id} author={author} />;
           })}
         </div>
       </div>
@@ -52,8 +62,18 @@ export const TweetStatisticsModal = ({
 };
 
 const Author = ({ author }: { author: IUser }) => {
+  const { data: session } = useSession();
+  const router = useRouter();
+
+  const isFollowing = author?.followers.some(
+    (follower) => follower?.follower_id === session?.user?.id,
+  );
+
   return (
-    <div className={styles.author}>
+    <div
+      onClick={() => router.push(`/${author?.id}`)}
+      className={styles.author}
+    >
       <div className={styles.avatar}>
         <img src={author.profile_image_url} alt="avatar" />
       </div>
@@ -67,8 +87,12 @@ const Author = ({ author }: { author: IUser }) => {
             </span>
           </div>
 
-          <div className={styles.follow}>
-            <button>Follow</button>
+          <div onClick={(e) => e.stopPropagation()} className={styles.follow}>
+            <FollowButton
+              followerId={session?.user?.id}
+              userId={author?.id}
+              isFollowing={isFollowing}
+            />
           </div>
         </div>
 

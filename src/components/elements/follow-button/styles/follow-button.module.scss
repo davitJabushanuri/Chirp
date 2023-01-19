@@ -1,6 +1,11 @@
 .follow {
   background-color: var(--clr-secondary);
   color: var(--clr-background);
+  padding: 0.5rem 1rem;
+  border-radius: 100vmax;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
 
   &:hover {
     background-color: var(--clr-secondary-hover);

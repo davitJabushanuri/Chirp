@@ -14,7 +14,11 @@ export default async function Tweet(req: NextApiRequest, res: NextApiResponse) {
           author: true,
           likes: {
             include: {
-              user: true,
+              user: {
+                include: {
+                  followers: true,
+                },
+              },
             },
             orderBy: {
               created_at: "desc",
@@ -22,6 +26,13 @@ export default async function Tweet(req: NextApiRequest, res: NextApiResponse) {
           },
           media: true,
           retweets: {
+            include: {
+              user: {
+                include: {
+                  followers: true,
+                },
+              },
+            },
             orderBy: {
               created_at: "desc",
             },
