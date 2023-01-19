@@ -1,29 +1,60 @@
+/* eslint-disable jsx-a11y/mouse-events-have-key-events */
+import { useState } from "react";
+
 import { useFollow } from "@/features/profile";
 
 import styles from "./styles/follow-button.module.scss";
+import { UnfollowModal } from "./unfollow-modal";
 
 export const FollowButton = ({
-  followerId,
   userId,
+  username,
+  followerId,
   isFollowing = false,
 }: {
-  followerId: string;
+  username: string;
   userId: string;
+  followerId: string;
   isFollowing: boolean;
 }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [text, setText] = useState<"Following" | "Unfollow">("Following");
+
   const mutation = useFollow();
 
   return (
-    <button
-      onClick={() =>
-        mutation.mutate({
-          followerId,
-          userId,
-        })
-      }
-      className={isFollowing ? styles.following : styles.follow}
-    >
-      {isFollowing ? "Following" : "Follow"}
-    </button>
+    <div className={styles.container}>
+      {isFollowing ? (
+        <button
+          onClick={() => setIsModalOpen(true)}
+          onMouseEnter={() => setText("Unfollow")}
+          onMouseOut={() => setText("Following")}
+          className={styles.following}
+        >
+          {text}
+        </button>
+      ) : (
+        <button
+          onClick={() =>
+            mutation.mutate({
+              followerId,
+              userId,
+            })
+          }
+          className={styles.follow}
+        >
+          Follow
+        </button>
+      )}
+
+      {isModalOpen && (
+        <UnfollowModal
+          username={username}
+          userId={userId}
+          followerId={followerId}
+          setIsModalOpen={setIsModalOpen}
+        />
+      )}
+    </div>
   );
 };

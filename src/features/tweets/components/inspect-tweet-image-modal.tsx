@@ -114,6 +114,8 @@ export const InspectTweetImageModal = () => {
                   retweet_count={tweet?.retweets?.length}
                   quote_count={tweet?.quotes?.length}
                   likes={tweet?.likes}
+                  retweets={tweet?.retweets}
+                  quotes={tweet?.quotes}
                 />
               </div>
 

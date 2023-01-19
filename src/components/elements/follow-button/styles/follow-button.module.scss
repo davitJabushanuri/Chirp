@@ -1,17 +1,40 @@
-.follow {
-  background-color: var(--clr-secondary);
-  color: var(--clr-background);
-  padding: 0.5rem 1rem;
-  border-radius: 100vmax;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
+.container {
 
-  &:hover {
-    background-color: var(--clr-secondary-hover);
+  button {
+    padding: 7px 15px;
+    border-radius: 100vmax;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  &:active {
-    background-color: var(--clr-secondary-active);
+  .following {
+    color: var(--clr-secondary);
+    border: 1px solid var(--clr-border);
+    width: 90px;
+
+    &:hover {
+      background-color: var(--clr-background-hover);
+    }
+
+    &:active {
+      background-color: var(--clr-background-active);
+    }
+  }
+
+  .follow {
+    background-color: var(--clr-secondary);
+    color: var(--clr-background);
+
+    &:hover {
+      background-color: var(--clr-secondary-hover);
+    }
+
+    &:active {
+      background-color: var(--clr-secondary-active);
+    }
   }
 }
