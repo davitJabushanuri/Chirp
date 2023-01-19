@@ -15,18 +15,15 @@ export const TweetStatisticsModal = ({
   authors,
   title,
   setIsModalOpen,
-  setAuthors,
 }: {
   authors: IUser[] | undefined;
   title: string;
   setIsModalOpen: (value: boolean) => void;
-  setAuthors: (value: IUser[] | undefined) => void;
 }) => {
   return (
     <div
       onClick={() => {
         setIsModalOpen(false);
-        setAuthors(undefined);
       }}
       className={styles.container}
     >
@@ -35,7 +32,6 @@ export const TweetStatisticsModal = ({
           <button
             onClick={() => {
               setIsModalOpen(false);
-              setAuthors(undefined);
             }}
             className={styles.close}
           >
@@ -48,7 +44,9 @@ export const TweetStatisticsModal = ({
             </span>
           </button>
 
-          <h2 className={styles.title}>{title}</h2>
+          <h2 className={styles.title}>
+            {title === `likes` ? `Liked By` : `Retweeted By`}
+          </h2>
         </header>
 
         <div className={styles.people}>
@@ -92,6 +90,7 @@ const Author = ({ author }: { author: IUser }) => {
               followerId={session?.user?.id}
               userId={author?.id}
               isFollowing={isFollowing}
+              username={author?.email?.split("@")[0]}
             />
           </div>
         </div>

@@ -120,13 +120,14 @@
   gap: 0.6rem;
   padding: 11px 16px;
   cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
 
   &:hover {
-    background-color: var(--clr-nav-hover);
+    background-color: var(--clr-connect-hover);
   }
 
   &:active {
-    background-color: var(--clr-nav-active);
+    background-color: var(--clr-connect-active);
   }
 
   .avatar {

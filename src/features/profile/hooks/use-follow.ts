@@ -19,8 +19,10 @@ export const useFollow = () => {
         console.log("error");
       },
 
-      onSettled: ({ userId }) => {
+      onSettled: ({ userId, followerId }) => {
         queryClient.invalidateQueries(["users", userId]);
+        queryClient.invalidateQueries(["users", followerId]);
+        queryClient.invalidateQueries(["tweets"]);
       },
     },
   );

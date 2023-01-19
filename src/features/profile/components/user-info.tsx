@@ -91,6 +91,7 @@ export const UserInfo = ({ user }: { user: IUser }) => {
                 followerId={session?.user?.id}
                 userId={user?.id}
                 isFollowing={isFollowing}
+                username={user?.email?.split("@")[0]}
               />
             </div>
           )}
