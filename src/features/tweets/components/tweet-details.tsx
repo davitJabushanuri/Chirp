@@ -101,7 +101,6 @@ export const TweetDetails = () => {
           quote_count={tweet?.quotes?.length}
           likes={tweet?.likes}
           retweets={tweet?.retweets}
-          quotes={tweet?.quotes}
         />
         <div className={styles.tweetActions}>
           <TweetActions

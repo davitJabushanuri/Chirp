@@ -46,7 +46,14 @@ export default async function Tweet(req: NextApiRequest, res: NextApiResponse) {
 
           quotes: {
             include: {
+              likes: true,
+              retweets: true,
               author: true,
+              quoted_tweet: {
+                include: {
+                  author: true,
+                },
+              },
             },
 
             orderBy: {

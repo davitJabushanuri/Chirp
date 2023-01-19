@@ -5,4 +5,5 @@ export * from "./components/inspect-tweet-image-modal";
 export * from "./components/options-action";
 export * from "./components/tweet-options";
 export * from "./components/quoted-tweet";
+export * from "./components/tweet-quotes";
 export * from "./types/index";

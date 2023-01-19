@@ -1,6 +1,7 @@
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 
-import { ILike, IRetweet, ITweet } from "../types";
+import { ILike, IRetweet } from "../types";
 
 import styles from "./styles/tweet-statistics.module.scss";
 import { TweetStatisticsModal } from "./tweet-statistics-modal";
@@ -10,14 +11,14 @@ export const TweetStatistics = ({
   quote_count = 0,
   likes,
   retweets,
-  quotes,
 }: {
   retweet_count: number | undefined;
   quote_count: number | undefined;
   likes: ILike[] | undefined;
   retweets: IRetweet[] | undefined;
-  quotes: ITweet[] | undefined;
 }) => {
+  const router = useRouter();
+  const pathname = usePathname();
   const isVisible = retweet_count > 0 || quote_count > 0 || likes?.length;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -47,7 +48,7 @@ export const TweetStatistics = ({
       {quote_count > 0 && (
         <button
           onClick={() => {
-            setIsModalOpen(true);
+            router?.push(`${pathname}/quotes`);
           }}
           className={styles.statistic}
         >
