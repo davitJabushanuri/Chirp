@@ -22,7 +22,7 @@ export const Tweets = () => {
   return (
     <div className={styles.container}>
       {isSuccess &&
-        tweets?.length > 0 &&
+        tweets?.length &&
         tweets?.map((tweet) => (
           <div className={styles.tweetContainer} key={tweet.id}>
             <Tweet tweet={tweet} />

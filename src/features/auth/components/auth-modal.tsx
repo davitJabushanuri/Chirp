@@ -4,12 +4,10 @@ import { BackArrowIcon } from "@/assets/back-arrow-icon";
 import { CloseIcon } from "@/assets/close-icon";
 import { TwitterLogo } from "@/assets/twitter-logo";
 
-import { IProviders } from "../types";
-
 import { LoginForm } from "./login-form";
 import styles from "./styles/auth-modal.module.scss";
 
-export const AuthModal = ({ providers }: { providers: IProviders | null }) => {
+export const AuthModal = () => {
   return (
     <div className={styles.container}>
       <div className={styles.modal}>
@@ -29,7 +27,7 @@ export const AuthModal = ({ providers }: { providers: IProviders | null }) => {
           </div>
           <div className={styles.placeholder}></div>
         </div>
-        <LoginForm providers={providers} />
+        <LoginForm />
       </div>
     </div>
   );

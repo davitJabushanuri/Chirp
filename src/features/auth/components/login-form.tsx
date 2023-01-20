@@ -5,11 +5,10 @@ import Link from "next/link";
 
 import { AppleLogo } from "../assets/apple-logo";
 import { GoogleLogo } from "../assets/google-logo";
-import { IProviders } from "../types";
 
 import styles from "./styles/login-form.module.scss";
 
-export const LoginForm = ({ providers }: { providers: IProviders | null }) => {
+export const LoginForm = () => {
   return (
     <div className={styles.container}>
       <div className={styles.loginForm}>

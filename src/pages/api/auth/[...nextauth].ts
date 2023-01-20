@@ -17,6 +17,7 @@ export const authOptions: NextAuthOptions = {
   session: {
     strategy: "database",
   },
+
   callbacks: {
     async signIn() {
       const isAllowedToSignIn = true;
@@ -27,7 +28,7 @@ export const authOptions: NextAuthOptions = {
       }
     },
 
-    async session({ session, user }) {
+    session: async ({ session, user }) => {
       if (user) {
         session.user.id = user?.id;
         session.user.name = user?.name;
@@ -38,10 +39,6 @@ export const authOptions: NextAuthOptions = {
         session.user.profile_image_url = user?.profile_image_url;
       }
       return session;
-    },
-
-    redirect() {
-      return "/home";
     },
   },
 

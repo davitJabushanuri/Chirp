@@ -26,7 +26,7 @@ export const UserButton = () => {
           )}
           {session?.user && (
             <span className={styles.username}>
-              @{session?.user?.email.split("@")[0]}
+              @{session?.user?.email?.split("@")[0]}
             </span>
           )}
         </div>
