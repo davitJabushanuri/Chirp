@@ -1,5 +1,20 @@
 .container {
   position: relative;
+
+  .toastContainer {
+    display: grid;
+    place-content: center;
+
+    .toast {
+      background-color: var(--clr-primary);
+      color: var(--clr-secondary);
+      box-shadow: none;
+      font-size: 14px;
+      min-width: fit-content;
+      min-height: fit-content;
+    }
+
+  }
 }
 
 .comment,

@@ -8,3 +8,5 @@ export const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET as string;
 export const TWITTER_CLIENT_ID = process.env.TWITTER_CLIENT_ID as string;
 export const TWITTER_CLIENT_SECRET = process.env
   .TWITTER_CLIENT_SECRET as string;
+
+export const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL as string;

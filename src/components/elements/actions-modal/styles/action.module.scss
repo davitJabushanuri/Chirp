@@ -1,5 +1,4 @@
 .container {
-
   width: 100%;
   display: flex;
   align-items: center;
@@ -7,6 +6,7 @@
   padding: 0.8rem 1rem;
   font-size: 14px;
   font-weight: 500;
+  cursor: pointer;
 
   .icon {
     display: flex;
