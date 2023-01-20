@@ -62,6 +62,96 @@ export default async function User(req: NextApiRequest, res: NextApiResponse) {
               created_at: "desc",
             },
           },
+
+          bookmarks: {
+            include: {
+              tweet: {
+                include: {
+                  media: true,
+                  author: {
+                    include: {
+                      bookmarks: true,
+                    },
+                  },
+                  likes: {
+                    include: {
+                      user: {
+                        include: {
+                          followers: true,
+                        },
+                      },
+                    },
+                    orderBy: {
+                      created_at: "desc",
+                    },
+                  },
+                  bookmarks: {
+                    include: {
+                      user: true,
+                    },
+                    orderBy: {
+                      created_at: "desc",
+                    },
+                  },
+
+                  comments: {
+                    include: {
+                      author: true,
+                      likes: true,
+                      media: true,
+                      retweets: true,
+                      quoted_tweet: {
+                        include: {
+                          author: true,
+                          media: true,
+                        },
+                      },
+                    },
+
+                    orderBy: {
+                      created_at: "desc",
+                    },
+                  },
+                  quoted_tweet: {
+                    include: {
+                      author: true,
+                      media: true,
+                    },
+                  },
+
+                  quotes: {
+                    include: {
+                      likes: true,
+                      retweets: true,
+                      author: true,
+                      quoted_tweet: {
+                        include: {
+                          author: true,
+                        },
+                      },
+                    },
+
+                    orderBy: {
+                      created_at: "desc",
+                    },
+                  },
+
+                  retweets: {
+                    include: {
+                      user: {
+                        include: {
+                          followers: true,
+                        },
+                      },
+                    },
+                    orderBy: {
+                      created_at: "desc",
+                    },
+                  },
+                },
+              },
+            },
+          },
         },
       });
       res.status(200).json(user);

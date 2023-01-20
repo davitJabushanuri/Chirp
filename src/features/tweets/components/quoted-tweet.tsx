@@ -31,7 +31,11 @@ export const QuotedTweet = ({ tweet }: { tweet: ITweet }) => {
     >
       <div className={styles.userDetails}>
         <span className={styles.avatar}>
-          <img src={tweet?.author?.profile_image_url} alt="" />
+          {tweet?.author?.profile_image_url ? (
+            <img src={tweet?.author?.profile_image_url} alt="" />
+          ) : (
+            <img src="/user_placeholder.png" alt="" />
+          )}
         </span>
 
         <span className={styles.name}>{tweet?.author?.name}</span>

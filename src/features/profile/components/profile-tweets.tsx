@@ -58,7 +58,11 @@ export const ProfileTweets = () => {
       {isSuccess && user?.tweets?.length > 0 && (
         <div className={styles.tweets}>
           {user?.tweets?.map((tweet: ITweet) => {
-            return <Tweet key={tweet.id} tweet={tweet} />;
+            return (
+              <div className={styles.tweetContainer} key={tweet?.id}>
+                <Tweet tweet={tweet} />
+              </div>
+            );
           })}
         </div>
       )}

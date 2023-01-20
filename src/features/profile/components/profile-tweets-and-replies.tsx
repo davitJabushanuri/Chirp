@@ -69,7 +69,11 @@ export const ProfileTweetsAndReplies = () => {
               );
             })
             .map((tweet) => {
-              return <Tweet key={tweet.id} tweet={tweet} />;
+              return (
+                <div className={styles.tweetContainer} key={tweet?.id}>
+                  <Tweet tweet={tweet} />
+                </div>
+              );
             })}
         </div>
       )}

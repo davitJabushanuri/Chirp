@@ -62,7 +62,11 @@ export const ProfileLikes = () => {
       {isSuccess &&
         user?.likes.length > 0 &&
         user?.likes?.map((like) => {
-          return <Tweet key={like.id} tweet={like?.tweet} />;
+          return (
+            <div className={styles.tweetContainer} key={like?.id}>
+              <Tweet tweet={like?.tweet} />
+            </div>
+          );
         })}
     </div>
   );

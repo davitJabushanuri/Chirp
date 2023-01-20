@@ -7,7 +7,7 @@ export default async function Bookmark(
   res: NextApiResponse,
 ) {
   const { method } = req;
-  const { tweetId, userId } = req.body;
+  const { tweetId, userId, bookmarkId } = req.body;
 
   if (method === "POST") {
     try {
@@ -29,10 +29,7 @@ export default async function Bookmark(
     try {
       await prisma.bookmark.delete({
         where: {
-          tweet_id_user_id: {
-            tweet_id: tweetId,
-            user_id: userId,
-          },
+          id: bookmarkId,
         },
       });
       res.status(200).json({
@@ -42,6 +39,4 @@ export default async function Bookmark(
       res.status(500).json({ error: error.message });
     }
   }
-
-  return res.status(200).json({ message: "Hello" });
 }

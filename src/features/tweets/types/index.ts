@@ -30,7 +30,7 @@ export interface ITweet {
   retweets: IRetweet[];
   quoted_tweet: ITweet;
   quotes: ITweet[];
-  comments: IBookmark[];
+  comments: ITweet[];
   bookmarks: IBookmark[];
 }
 

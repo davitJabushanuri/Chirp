@@ -16,15 +16,17 @@ export const useBookmark = ({
     ({
       tweetId,
       userId,
+      bookmarkId,
       action,
     }: {
       tweetId: string | undefined;
       userId: string;
+      bookmarkId?: string;
       action: "add" | "remove";
     }) => {
       return action === "add"
         ? AddToBookmarks({ tweetId, userId })
-        : RemoveFromBookmarks({ tweetId, userId });
+        : RemoveFromBookmarks(bookmarkId);
     },
     {
       onSuccess: () => {

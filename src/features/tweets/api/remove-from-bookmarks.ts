@@ -1,17 +1,10 @@
 import axios from "axios";
 
-export const RemoveFromBookmarks = async ({
-  tweetId,
-  userId,
-}: {
-  tweetId: string | undefined;
-  userId: string | undefined;
-}) => {
+export const RemoveFromBookmarks = async (bookmarkId: string | undefined) => {
   try {
     const { data } = await axios.delete(`/api/tweets/bookmark`, {
       data: {
-        tweetId,
-        userId,
+        bookmarkId,
       },
     });
     return data;

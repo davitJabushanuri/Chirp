@@ -1,5 +1,7 @@
 import { ITweet } from "@/features/tweets";
 
+import { IBookmark } from "./../../tweets/types/index";
+
 export interface IUser {
   id: string;
   name: string;
@@ -28,7 +30,7 @@ export interface IUser {
   followers: IFollow[];
   following: IFollow[];
   likes: ILike[];
-  bookmarks: ITweet[];
+  bookmarks: IBookmark[];
 }
 
 export interface IProfile {

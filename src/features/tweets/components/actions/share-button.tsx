@@ -77,6 +77,9 @@ export const ShareButton = ({ tweet }: { tweet: ITweet }) => {
                   tweetId: tweet?.id,
                   userId: session?.user?.id,
                   action: "remove",
+                  bookmarkId: tweet?.bookmarks?.find(
+                    (bookmark) => bookmark?.user_id === session?.user?.id,
+                  )?.id,
                 });
                 setIsModalOpen(false);
                 removedFromBookmarks();

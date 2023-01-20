@@ -65,7 +65,11 @@ export const ProfileMedia = () => {
               return tweet?.media && tweet?.media?.length > 0;
             })
             .map((tweet) => {
-              return <Tweet key={tweet.id} tweet={tweet} />;
+              return (
+                <div className={styles.tweetContainer} key={tweet?.id}>
+                  <Tweet tweet={tweet} />
+                </div>
+              );
             })}
         </div>
       )}
