@@ -28,6 +28,7 @@ export interface IUser {
   followers: IFollow[];
   following: IFollow[];
   likes: ILike[];
+  bookmarks: ITweet[];
 }
 
 export interface IProfile {

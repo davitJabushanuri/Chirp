@@ -30,7 +30,8 @@ export interface ITweet {
   retweets: IRetweet[];
   quoted_tweet: ITweet;
   quotes: ITweet[];
-  comments: ITweet[];
+  comments: IBookmark[];
+  bookmarks: IBookmark[];
 }
 
 export interface ILike {
@@ -53,4 +54,12 @@ export interface IRetweet {
   tweet_id: string;
   created_at: string;
   user: IUser;
+}
+
+export interface IBookmark {
+  id: string;
+  user_id: string;
+  tweet_id: string;
+  user: IUser;
+  tweet: ITweet;
 }

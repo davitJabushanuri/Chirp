@@ -11,7 +11,11 @@ export default async function Tweets(
     try {
       const tweets = await prisma.tweet.findMany({
         include: {
-          author: true,
+          author: {
+            include: {
+              bookmarks: true,
+            },
+          },
           likes: true,
           media: true,
           retweets: true,
@@ -23,6 +27,14 @@ export default async function Tweets(
           },
           quotes: true,
           comments: true,
+          bookmarks: {
+            include: {
+              user: true,
+            },
+            orderBy: {
+              created_at: "desc",
+            },
+          },
         },
 
         orderBy: {

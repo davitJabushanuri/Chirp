@@ -1,3 +1,4 @@
+import { useSession } from "next-auth/react";
 import { useState } from "react";
 import { ToastContainer, toast, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -6,21 +7,34 @@ import { MessageIcon } from "@/assets/message-icon";
 import { Action, ActionsModal } from "@/components/elements/actions-modal";
 import { BASE_URL } from "@/config";
 
-import { AddToBookmarksIcon } from "../../assets/bookmark-icon";
+import {
+  AddToBookmarksIcon,
+  RemoveFromBookmarksIcon,
+} from "../../assets/bookmark-icon";
 import { CopyLinkIcon } from "../../assets/copy-link-icon";
 import { ShareIcon } from "../../assets/share-icon";
+import { useBookmark } from "../../hooks/useBookmark";
 import { ITweet } from "../../types";
 
 import styles from "./styles/actions.module.scss";
 
 export const ShareButton = ({ tweet }: { tweet: ITweet }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { data: session } = useSession();
 
-  // get url of tweet
-  // copy url to clipboard
-  // open share modal
   const url = `${BASE_URL}/status/${tweet?.id}`;
   const notify = () => toast("Copied to clipboard");
+  const addedToBookmarks = () => toast("Tweet added to your Bookmarks");
+  const removedFromBookmarks = () => toast("Tweet removed from your bookmarks");
+
+  const isBookmarked = tweet?.bookmarks?.some(
+    (bookmark) => bookmark?.user_id === session?.user?.id,
+  );
+
+  const mutation = useBookmark({
+    tweetAuthorId: tweet?.author?.id,
+    sessionOwnerId: session?.user?.id,
+  });
 
   return (
     <div className={styles.container}>
@@ -56,9 +70,38 @@ export const ShareButton = ({ tweet }: { tweet: ITweet }) => {
             <Action icon={<MessageIcon />} text={`Send via Direct Message`} />
           </button>
 
-          <button>
-            <Action icon={<AddToBookmarksIcon />} text={`Bookmark`} />
-          </button>
+          {isBookmarked ? (
+            <button
+              onClick={() => {
+                mutation.mutate({
+                  tweetId: tweet?.id,
+                  userId: session?.user?.id,
+                  action: "remove",
+                });
+                setIsModalOpen(false);
+                removedFromBookmarks();
+              }}
+            >
+              <Action
+                icon={<RemoveFromBookmarksIcon />}
+                text={`Remove Tweet from Bookmarks`}
+              />
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                mutation.mutate({
+                  tweetId: tweet?.id,
+                  userId: session?.user?.id,
+                  action: "add",
+                });
+                setIsModalOpen(false);
+                addedToBookmarks();
+              }}
+            >
+              <Action icon={<AddToBookmarksIcon />} text={`Bookmark`} />
+            </button>
+          )}
         </ActionsModal>
       )}
       <button
