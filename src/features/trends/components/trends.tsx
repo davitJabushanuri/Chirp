@@ -1,20 +1,43 @@
+import { LoadingSpinner } from "@/components/elements/loading-spinner";
+import { TryAgain } from "@/components/elements/try-again";
+import { useHashtags } from "@/features/explore";
+
 import styles from "./styles/trends.module.scss";
 import Trend from "./trend";
 
 export const Trends = () => {
+  const { data: hashtags, isLoading, isError } = useHashtags();
+
   return (
     <div className={styles.container}>
-      <h1>Trends</h1>
+      {isLoading ? (
+        <div className={styles.loading}>
+          <LoadingSpinner />
+        </div>
+      ) : isError ? (
+        <div className={styles.error}>
+          <TryAgain />
+        </div>
+      ) : (
+        <>
+          <h1>Trends</h1>
 
-      <div className={styles.trends}>
-        <Trend ranking={1} title="#FIFAWorldCup" tweets="861K" />
-        <Trend ranking={2} title="#Qatar2022" tweets="213K" />
-        <Trend ranking={3} title="#Elon" tweets="826K" />
-        <Trend ranking={4} title="#casino" tweets="66.8K" />
-        <Trend ranking={5} title="#Mastodon" tweets="45.8K" />
-      </div>
+          <div className={styles.trends}>
+            {hashtags?.map((hashtag, index) => {
+              return (
+                <Trend
+                  key={hashtag.id}
+                  ranking={index + 1}
+                  title={hashtag.text}
+                  tweets={hashtag.score}
+                />
+              );
+            })}
+          </div>
 
-      <button>Show more</button>
+          <button>Show more</button>
+        </>
+      )}
     </div>
   );
 };

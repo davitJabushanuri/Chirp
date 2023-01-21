@@ -2,6 +2,11 @@
   background-color: var(--clr-trends-background);
   border-radius: 1rem;
 
+  .loading,
+  .error {
+    padding: 0.4rem;
+  }
+
   h1 {
     padding: 1rem;
     color: var(--clr-secondary);

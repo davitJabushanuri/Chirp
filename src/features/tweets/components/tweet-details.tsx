@@ -60,7 +60,7 @@ export const TweetDetails = () => {
           </div>
         )}
         <div className={styles.tweet}>
-          {tweet.text && <div className={styles.text}>{tweet?.text}</div>}
+          {tweet?.text && <div className={styles.text}>{tweet?.text}</div>}
           {tweet?.media && tweet?.media.length > 0 && (
             <div
               className={`${styles.images} ${

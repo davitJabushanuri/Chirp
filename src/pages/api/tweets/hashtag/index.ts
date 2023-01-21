@@ -12,6 +12,7 @@ export default async function Retweet(
   if (method === "GET") {
     try {
       const hashtags = await prisma.hashtag.findMany({
+        take: 10,
         orderBy: {
           score: "desc",
         },

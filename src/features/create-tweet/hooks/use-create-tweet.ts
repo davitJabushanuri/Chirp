@@ -45,6 +45,7 @@ export const useCreateTweet = ({
       onSuccess: ({ userId }) => {
         console.log("success");
         queryClient.invalidateQueries(["tweets"]);
+        queryClient.invalidateQueries(["hashtags"]);
         queryClient.invalidateQueries(["users", userId]);
       },
       onError: (error) => {
