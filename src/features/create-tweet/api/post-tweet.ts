@@ -1,5 +1,7 @@
 import axios from "axios";
 
+import { postHashtags, retrieveHashtagsFromTweet } from "@/features/explore";
+
 import { postMedia } from "./post-media";
 
 export const postTweet = async ({
@@ -29,6 +31,9 @@ export const postTweet = async ({
     if (files.length > 0) {
       await postMedia({ files, tweetId: data.id });
     }
+
+    const hashtags = retrieveHashtagsFromTweet(text);
+    if (hashtags) await postHashtags(hashtags);
 
     return data;
   } catch (error: any) {

@@ -157,8 +157,8 @@ model Bookmark {
 
 model Hashtag {
   id         String   @id @default(cuid())
-  hashtag    String
-  score      Int      @default(0)
+  text       String   @unique
+  score      Int      @default(1)
   created_at DateTime @default(now())
 }
 
