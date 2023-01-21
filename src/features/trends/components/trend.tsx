@@ -13,7 +13,9 @@ const Trend = ({ ranking = 1, title, tweets = 1 }: iTrendProps) => {
           <span>Trending</span>
         </div>
         <div className={styles.title}>{title}</div>
-        <div className={styles.stats}>{tweets} Tweets</div>
+        <div className={styles.stats}>
+          {tweets} {tweets === 1 ? "tweet" : "tweets"}
+        </div>
       </div>
       <div className={styles.options}>
         <DotIcon />

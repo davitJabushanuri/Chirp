@@ -23,16 +23,17 @@ export const Trends = () => {
           <h1>Trends</h1>
 
           <div className={styles.trends}>
-            {hashtags?.map((hashtag, index) => {
-              return (
-                <Trend
-                  key={hashtag.id}
-                  ranking={index + 1}
-                  title={hashtag.text}
-                  tweets={hashtag.score}
-                />
-              );
-            })}
+            {hashtags.length > 0 &&
+              hashtags?.map((hashtag, index) => {
+                return (
+                  <Trend
+                    key={hashtag.id}
+                    ranking={index + 1}
+                    title={hashtag.text}
+                    tweets={hashtag.score}
+                  />
+                );
+              })}
           </div>
 
           <button>Show more</button>

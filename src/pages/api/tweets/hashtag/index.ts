@@ -30,14 +30,14 @@ export default async function Retweet(
       hashtags?.forEach(async (hashtag: string) => {
         const hashtagExists = await prisma.hashtag.findUnique({
           where: {
-            text: hashtag,
+            hashtag: hashtag.toLowerCase(),
           },
         });
 
         if (hashtagExists) {
           await prisma.hashtag.update({
             where: {
-              text: hashtag,
+              hashtag: hashtag.toLowerCase(),
             },
             data: {
               score: {
@@ -50,6 +50,7 @@ export default async function Retweet(
           await prisma.hashtag.create({
             data: {
               text: hashtag,
+              hashtag: hashtag.toLowerCase(),
             },
           });
           res.status(200).json({ message: "Hashtag created" });
