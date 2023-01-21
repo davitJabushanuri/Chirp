@@ -54,7 +54,7 @@
     @include mq ('small') {
       position: absolute;
       top: 0.4rem;
-      left: -6rem;
+      transform: translateX(calc(-100% + 2rem));
       width: max-content;
       height: max-content;
       border-radius: 0.8rem;
