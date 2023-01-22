@@ -6,3 +6,4 @@ export * from "./components/profile-tweets-and-replies";
 export * from "./types";
 export * from "./hooks/use-follow";
 export * from "./hooks/use-user";
+export * from "./hooks/use-users";

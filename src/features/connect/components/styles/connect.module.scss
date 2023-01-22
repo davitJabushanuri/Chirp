@@ -2,18 +2,23 @@
   background-color: var(--clr-connect-background);
   border-radius: 1rem;
 
+  .loading,
+  .error {
+    padding: 4rem 0;
+  }
+
   h1 {
-    padding: 1rem;
+    padding: 11px 15px;
     padding-bottom: 0.6rem;
     color: var(--clr-secondary);
-    font-size: 1.2rem;
+    font-size: 19px;
     font-weight: 700;
   }
 
   button {
     width: 100%;
     border: none;
-    padding: 1rem;
+    padding: 11px 15px;
     color: var(--clr-primary);
     background-color: transparent;
     cursor: pointer;

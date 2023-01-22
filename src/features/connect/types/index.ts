@@ -1,5 +1,6 @@
 export interface IPersonProps {
-  name: string;
-  username: string;
-  image: string;
+  name: string | undefined;
+  userId: string | undefined;
+  username: string | undefined;
+  image: string | undefined;
 }

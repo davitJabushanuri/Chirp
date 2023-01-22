@@ -26,7 +26,9 @@ export const FollowButton = ({
     <div className={styles.container}>
       {isFollowing ? (
         <button
-          onClick={() => setIsModalOpen(true)}
+          onClick={() => {
+            setIsModalOpen(true);
+          }}
           onMouseEnter={() => setText("Unfollow")}
           onMouseOut={() => setText("Following")}
           className={styles.following}
