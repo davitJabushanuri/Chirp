@@ -1,7 +1,7 @@
 import { useSession } from "next-auth/react";
 
 import { HeartIcon, HeartIconActive } from "../../assets/heart-icon";
-import { useLike } from "../../hooks/useLike";
+import { useLike } from "../../hooks/use-like";
 import { ILike } from "../../types";
 
 import styles from "./styles/actions.module.scss";

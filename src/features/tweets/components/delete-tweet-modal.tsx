@@ -2,16 +2,23 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import { useDisableBodyScroll } from "@/hooks";
 
+import { useDeleteTweet } from "../hooks/use-delete-tweet";
+import { ITweet } from "../types";
+
 import styles from "./styles/delete-tweet-modal.module.scss";
 
 export const DeleteTweetModal = ({
+  tweet,
   setIsDeleteModalOpen,
   setIsActionsModalOpen,
 }: {
+  tweet: ITweet;
   setIsDeleteModalOpen: (value: boolean) => void;
   setIsActionsModalOpen: (value: boolean) => void;
 }) => {
   useDisableBodyScroll();
+
+  const mutation = useDeleteTweet();
 
   return (
     <div
@@ -29,7 +36,17 @@ export const DeleteTweetModal = ({
           results.
         </p>
 
-        <button className={styles.delete}>Delete</button>
+        <button
+          onClick={() => {
+            mutation.mutate({
+              tweetId: tweet?.id,
+            });
+            setIsDeleteModalOpen(false);
+          }}
+          className={styles.delete}
+        >
+          Delete
+        </button>
         <button
           className={styles.cancel}
           onClick={() => {

@@ -6,7 +6,7 @@ import { useCreateTweetModal } from "@/stores/use-create-tweet-modal";
 
 import { QuoteTweetIcon } from "../../assets/quote-tweet-icon";
 import { RetweetIcon } from "../../assets/retweet-icon";
-import { useRetweet } from "../../hooks/useRetweet";
+import { useRetweet } from "../../hooks/use-retweet";
 import { ITweet } from "../../types";
 
 import styles from "./styles/actions.module.scss";

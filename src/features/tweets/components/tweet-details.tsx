@@ -9,7 +9,7 @@ import { TweetAuthor } from "@/components/elements/tweet-author";
 import { CreateTweet } from "@/features/create-tweet";
 import { useInspectTweetImage } from "@/stores/use-inspect-tweet-images";
 
-import { useTweet } from "../hooks/useTweet";
+import { useTweet } from "../hooks/use-tweet";
 
 import { Comments } from "./comments";
 import { QuotedTweet } from "./quoted-tweet";

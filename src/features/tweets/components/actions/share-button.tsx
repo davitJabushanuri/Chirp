@@ -13,7 +13,7 @@ import {
 } from "../../assets/bookmark-icon";
 import { CopyLinkIcon } from "../../assets/copy-link-icon";
 import { ShareIcon } from "../../assets/share-icon";
-import { useBookmark } from "../../hooks/useBookmark";
+import { useBookmark } from "../../hooks/use-bookmark";
 import { ITweet } from "../../types";
 
 import styles from "./styles/actions.module.scss";

@@ -3,7 +3,7 @@ import { usePathname } from "next/navigation";
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
 
-import { useTweet } from "../hooks/useTweet";
+import { useTweet } from "../hooks/use-tweet";
 
 import styles from "./styles/tweet-quotes.module.scss";
 import { Tweet } from "./tweet";

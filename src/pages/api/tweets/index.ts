@@ -46,4 +46,18 @@ export default async function Tweets(
       res.status(500).json({ error: error.message });
     }
   }
+
+  if (method === "DELETE") {
+    try {
+      const { tweetId } = req.body;
+      const tweet = await prisma.tweet.delete({
+        where: {
+          id: tweetId,
+        },
+      });
+      res.status(200).json(tweet);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  }
 }

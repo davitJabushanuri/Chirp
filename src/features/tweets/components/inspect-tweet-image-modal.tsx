@@ -10,7 +10,7 @@ import { useDisableBodyScroll } from "@/hooks";
 import { useInspectTweetImage } from "@/stores/use-inspect-tweet-images";
 
 import { ShowArrowsIcon, HideArrowsIcon } from "../assets/double-arrows-icon";
-import { useTweet } from "../hooks/useTweet";
+import { useTweet } from "../hooks/use-tweet";
 
 import { Comments } from "./comments";
 import { ImageCarousel } from "./image-carousel";

@@ -54,6 +54,7 @@ export const TweetOptions = ({ tweet }: { tweet: ITweet }) => {
 
       {isDeleteModalOpen && (
         <DeleteTweetModal
+          tweet={tweet}
           setIsDeleteModalOpen={setIsDeleteModalOpen}
           setIsActionsModalOpen={setIsActionsModalOpen}
         />

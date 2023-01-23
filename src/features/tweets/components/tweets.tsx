@@ -3,7 +3,7 @@
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
 
-import { useTweets } from "../hooks/useTweets";
+import { useTweets } from "../hooks/use-tweets";
 
 import styles from "./styles/tweets.module.scss";
 import { Tweet } from "./tweet";
