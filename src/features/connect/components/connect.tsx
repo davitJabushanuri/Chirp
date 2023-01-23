@@ -26,7 +26,14 @@ export const Connect = () => {
           <h1>Who to follow</h1>
           <div className={styles.people}>
             {people
-              ?.filter((person) => person.id !== session?.user?.id)
+              ?.filter((person) => {
+                return (
+                  person.id !== session?.user?.id ||
+                  person.followers.some(
+                    (follower) => follower.id !== session?.user?.id,
+                  )
+                );
+              })
               ?.map((person) => {
                 return <Person key={person.id} person={person} />;
               })}
