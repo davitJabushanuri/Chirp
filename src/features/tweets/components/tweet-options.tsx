@@ -18,10 +18,12 @@ import { SadFaceIcon } from "../assets/sad-face-icon";
 import { TrashIcon } from "../assets/trash-icon";
 
 import styles from "./styles/tweet-options.module.scss";
+import { DeleteTweetModal } from "./delete-tweet-modal";
 
 export const TweetOptions = ({ tweet }: { tweet: ITweet }) => {
   const { data: session } = useSession();
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isActionsModalOpen, setIsActionsModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   return (
     <div
@@ -30,29 +32,54 @@ export const TweetOptions = ({ tweet }: { tweet: ITweet }) => {
       }}
       className={styles.container}
     >
-      {isModalOpen && (
-        <ActionsModal setIsModalOpen={setIsModalOpen}>
+      {isActionsModalOpen && (
+        <ActionsModal setIsModalOpen={setIsActionsModalOpen}>
           {tweet?.author?.id === session?.user?.id ? (
-            <TweetAuthorActions tweet={tweet} />
+            <TweetAuthorActions
+              tweet={tweet}
+              setIsActionsModalOpen={setIsActionsModalOpen}
+              setIsDeleteModalOpen={setIsDeleteModalOpen}
+            />
           ) : (
             <TweetVisitorActions tweet={tweet} />
           )}
         </ActionsModal>
       )}
       <button
-        onClick={() => setIsModalOpen(true)}
+        onClick={() => setIsActionsModalOpen(true)}
         className={styles.optionsButton}
       >
         <DotIcon />
       </button>
+
+      {isDeleteModalOpen && (
+        <DeleteTweetModal
+          setIsDeleteModalOpen={setIsDeleteModalOpen}
+          setIsActionsModalOpen={setIsActionsModalOpen}
+        />
+      )}
     </div>
   );
 };
 
-const TweetAuthorActions = ({ tweet }: { tweet: ITweet }) => {
+const TweetAuthorActions = ({
+  tweet,
+  setIsActionsModalOpen,
+  setIsDeleteModalOpen,
+}: {
+  tweet: ITweet;
+  setIsActionsModalOpen: (value: boolean) => void;
+  setIsDeleteModalOpen: (value: boolean) => void;
+}) => {
   return (
     <>
-      <button className={styles.delete}>
+      <button
+        onClick={() => {
+          setIsActionsModalOpen(false);
+          setIsDeleteModalOpen(true);
+        }}
+        className={styles.delete}
+      >
         <Action icon={<TrashIcon />} text={`Delete`} />
       </button>
 

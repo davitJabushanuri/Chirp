@@ -30,10 +30,10 @@
 
 .delete {
   svg {
-    fill: #F4212E;
+    fill: var(--clr-red);
   }
 
   span {
-    color: #F4212E;
+    color: var(--clr-red);
   }
 }
