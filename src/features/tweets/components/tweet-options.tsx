@@ -4,6 +4,7 @@ import { useSession } from "next-auth/react";
 import { useState } from "react";
 
 import { DotIcon } from "@/assets/dot-icon";
+import { SadFaceIcon } from "@/assets/sad-face-icon";
 import { Action, ActionsModal } from "@/components/elements/actions-modal";
 import { ITweet } from "@/features/tweets";
 
@@ -14,11 +15,10 @@ import { UnfollowIcon } from "../assets/follow-icon";
 import { MuteIcon } from "../assets/mute-icon";
 import { PinIcon } from "../assets/pin-icon";
 import { ReportIcon } from "../assets/report-icon";
-import { SadFaceIcon } from "../assets/sad-face-icon";
 import { TrashIcon } from "../assets/trash-icon";
 
-import styles from "./styles/tweet-options.module.scss";
 import { DeleteTweetModal } from "./delete-tweet-modal";
+import styles from "./styles/tweet-options.module.scss";
 
 export const TweetOptions = ({ tweet }: { tweet: ITweet }) => {
   const { data: session } = useSession();

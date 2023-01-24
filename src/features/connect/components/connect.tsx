@@ -39,7 +39,7 @@ export const Connect = () => {
               })}
           </div>
 
-          <button>Show more</button>
+          <button className={styles.showMore}>Show more</button>
         </>
       )}
     </div>

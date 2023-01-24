@@ -36,7 +36,7 @@ export const Trends = () => {
               })}
           </div>
 
-          <button>Show more</button>
+          <button className={styles.showMore}>Show more</button>
         </>
       )}
     </div>

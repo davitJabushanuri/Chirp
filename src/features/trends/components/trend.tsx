@@ -1,4 +1,8 @@
+import { useState } from "react";
+
 import { DotIcon } from "@/assets/dot-icon";
+import { SadFaceIcon } from "@/assets/sad-face-icon";
+import { Action, ActionsModal } from "@/components/elements/actions-modal";
 
 import { iTrendProps } from "../types";
 
@@ -17,11 +21,30 @@ const Trend = ({ ranking = 1, title, tweets = 1 }: iTrendProps) => {
           {tweets} {tweets === 1 ? "tweet" : "tweets"}
         </div>
       </div>
-      <div className={styles.options}>
-        <DotIcon />
-      </div>
+      <TrendOptions />
     </div>
   );
 };
 
 export default Trend;
+
+const TrendOptions = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  return (
+    <div className={styles.options}>
+      <button onClick={() => setIsModalOpen(true)}>
+        <DotIcon />
+      </button>
+      {isModalOpen && (
+        <ActionsModal setIsModalOpen={setIsModalOpen}>
+          <Action icon={<SadFaceIcon />} text={`Not interested in this`} />
+          <Action
+            icon={<SadFaceIcon />}
+            text={`This trend is harmful or spammy`}
+          />
+        </ActionsModal>
+      )}
+    </div>
+  );
+};
