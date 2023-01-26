@@ -38,11 +38,24 @@ const TrendOptions = () => {
       </button>
       {isModalOpen && (
         <ActionsModal setIsModalOpen={setIsModalOpen}>
-          <Action icon={<SadFaceIcon />} text={`Not interested in this`} />
-          <Action
-            icon={<SadFaceIcon />}
-            text={`This trend is harmful or spammy`}
-          />
+          <button
+            onClick={() => {
+              setIsModalOpen(false);
+            }}
+          >
+            <Action icon={<SadFaceIcon />} text={`Not interested in this`} />
+          </button>
+
+          <button
+            onClick={() => {
+              setIsModalOpen(false);
+            }}
+          >
+            <Action
+              icon={<SadFaceIcon />}
+              text={`This trend is harmful or spammy`}
+            />
+          </button>
         </ActionsModal>
       )}
     </div>

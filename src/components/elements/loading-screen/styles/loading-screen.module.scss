@@ -15,7 +15,7 @@
       width: 4rem;
       height: 4rem;
       fill: var(--clr-blue);
-      animation: breath 1s ease-in-out infinite;
+      animation: breath 2s ease-in-out infinite;
     }
   }
 }
@@ -27,9 +27,5 @@
 
   50% {
     opacity: 1;
-  }
-
-  100% {
-    opacity: 0.8;
   }
 }

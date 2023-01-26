@@ -3,31 +3,35 @@
 .container {
   margin-top: auto;
   width: 100%;
-  margin-bottom: 0.6rem;
-
-
+  margin-bottom: 8px;
+  border-radius: 100vmax;
+  padding: 11px;
+  cursor: pointer;
   display: flex;
   justify-content: center;
+  transition: all 0.1s ease-in-out;
+
+  &:hover {
+    background-color: var(--clr-nav-hover);
+  }
+
+  &:active {
+    background-color: var(--clr-nav-active);
+  }
+
+
+
 
   .avatar {
-    width: 3.6rem;
-    height: 3.6rem;
-    padding: 0.6rem;
+    width: 38px;
+    height: 38px;
     border-radius: 100vmax;
-
-    &:hover {
-      cursor: pointer;
-      background-color: var(--clr-nav-hover);
-    }
-
-    &:active {
-      background-color: var(--clr-nav-active);
-    }
+    border-radius: 50%;
+    overflow: hidden;
 
     img {
       width: 100%;
       height: 100%;
-      border-radius: 50%;
       object-fit: cover;
     }
   }
@@ -41,37 +45,21 @@
   }
 
   @include mq("xx-large") {
-    border-radius: 100vmax;
     align-items: center;
-    gap: 0.6rem;
-    padding: 0.4rem 0.6rem;
-
-    &:hover {
-      cursor: pointer;
-      background-color: var(--clr-nav-hover);
-    }
-
-    &:active {
-      background-color: var(--clr-nav-active);
-    }
-
-    .avatar {
-      padding: 0;
-      width: 2.4rem;
-      height: 2.4rem;
-    }
+    gap: 0.5rem;
 
     .userInfo {
       display: flex;
       flex-direction: column;
 
       .name {
+        font-size: 14px;
         font-weight: 500;
         color: var(--clr-secondary);
       }
 
       .username {
-        font-size: 0.9rem;
+        font-size: 14px;
         color: var(--clr-tertiary);
       }
     }
@@ -80,10 +68,10 @@
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      width: 1.2rem;
-      height: 1.2rem;
+      width: 17.5px;
+      height: 17.5px;
       margin-left: auto;
-      fill: var(--clr-tertiary);
+      fill: var(--clr-secondary);
     }
   }
 }

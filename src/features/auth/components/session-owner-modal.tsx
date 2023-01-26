@@ -7,7 +7,7 @@ import { useAuthModal } from "@/stores/use-auth-modal";
 
 import styles from "./styles/user-modal.module.scss";
 
-export const UserModal = () => {
+export const SessionOwnerModal = () => {
   const { data: session } = useSession();
   const closeUserModal = useAuthModal((state) => state.closeUserModal);
 

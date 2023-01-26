@@ -1,6 +1,6 @@
 import { useSession } from "next-auth/react";
 
-import { UserButton } from "@/features/auth";
+import { SessionOwnerButton } from "@/features/auth";
 import { Navbar } from "@/features/navbar";
 
 import { Logo } from "./logo";
@@ -15,7 +15,7 @@ export const Sidebar = () => {
       <Logo />
       <Navbar />
       {session && <TweetButton />}
-      {session && <UserButton />}
+      {session && <SessionOwnerButton />}
     </aside>
   );
 };

@@ -4,11 +4,13 @@ import { useSession } from "next-auth/react";
 import { DotIcon } from "@/assets/dot-icon";
 import { useAuthModal } from "@/stores/use-auth-modal";
 
+import { SessionOwnerModal } from "./session-owner-modal";
 import styles from "./styles/user-button.module.scss";
 
-export const UserButton = () => {
+export const SessionOwnerButton = () => {
   const { data: session } = useSession();
   const openUserModal = useAuthModal((state) => state.openUserModal);
+  const isUserModalOpen = useAuthModal((state) => state.isUserModalOpen);
 
   return (
     <>
@@ -34,6 +36,7 @@ export const UserButton = () => {
           <DotIcon />
         </div>
       </button>
+      {isUserModalOpen && <SessionOwnerModal />}
     </>
   );
 };

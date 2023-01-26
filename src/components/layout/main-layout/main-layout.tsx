@@ -6,9 +6,8 @@ import { Aside } from "@/components/layout/aside";
 import { AuthModalTrigger } from "@/features/auth";
 import { CreateTweetModal } from "@/features/create-tweet";
 import { HamburgerMenu, MobileNavbar } from "@/features/navbar";
-import { Sidebar, TweetButton, UserModal } from "@/features/sidebar";
+import { Sidebar, TweetButton } from "@/features/sidebar";
 import { InspectTweetImageModal } from "@/features/tweets";
-import { useAuthModal } from "@/stores/use-auth-modal";
 import { useColor } from "@/stores/use-color";
 import { useCreateTweetModal } from "@/stores/use-create-tweet-modal";
 import { useHamburger } from "@/stores/use-hamburger";
@@ -30,7 +29,6 @@ const MainLayout = ({
   const currentColor = useColor((state) => state.color);
   const isTweetModalOpen = useCreateTweetModal((state) => state.isModalOpen);
   const isHamburgerOpen = useHamburger((state) => state.isHamburgerOpen);
-  const isUserModalOpen = useAuthModal((state) => state.isUserModalOpen);
   const isTweetImageModalOpen = useInspectTweetImage(
     (state) => state.isTweetImageModalOpen,
   );
@@ -57,7 +55,6 @@ const MainLayout = ({
               {isTweetModalOpen && <CreateTweetModal />}
               {isHamburgerOpen && <HamburgerMenu />}
               {!session && <AuthModalTrigger />}
-              {isUserModalOpen && <UserModal />}
               {isTweetImageModalOpen && <InspectTweetImageModal />}
             </ReactQueryWrapper>
           </>
