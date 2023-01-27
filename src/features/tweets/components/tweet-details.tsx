@@ -6,7 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
 import { TweetAuthor } from "@/components/elements/tweet-author";
-import { CreateTweet } from "@/features/create-tweet";
+import { CreateTweetWrapper } from "@/features/create-tweet";
 import { useInspectTweetImage } from "@/stores/use-inspect-tweet-images";
 
 import { useTweet } from "../hooks/use-tweet";
@@ -111,13 +111,7 @@ export const TweetDetails = () => {
           />
         </div>
       </div>
-      <div className={styles.createComment}>
-        <CreateTweet
-          in_reply_to_screen_name={tweet?.author?.email?.split("@")[0]}
-          in_reply_to_status_id={tweet?.id}
-          placeholder="Tweet your reply"
-        />
-      </div>
+      <CreateTweetWrapper />
       <div className={styles.comments}>
         <Comments tweet={tweet?.comments} />
       </div>

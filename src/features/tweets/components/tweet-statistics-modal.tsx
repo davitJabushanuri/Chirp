@@ -73,7 +73,11 @@ const Author = ({ author }: { author: IUser }) => {
       className={styles.author}
     >
       <div className={styles.avatar}>
-        <img src={author.profile_image_url} alt="avatar" />
+        {author?.profile_image_url ? (
+          <img src={author.profile_image_url} alt="avatar" />
+        ) : (
+          <img src="/user_placeholder.png" alt="" />
+        )}
       </div>
 
       <div className={styles.info}>

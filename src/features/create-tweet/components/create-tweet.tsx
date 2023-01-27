@@ -8,6 +8,7 @@ import { useRef, useState } from "react";
 import { CloseIcon } from "@/assets/close-icon";
 import { LocationIcon } from "@/assets/location-icon";
 import { VerifiedIcon } from "@/assets/verified-icon";
+import { BackButton } from "@/components/elements/back-button";
 import { User } from "@/components/elements/user";
 import { ITweet } from "@/features/tweets";
 import { QuotedTweet } from "@/features/tweets";
@@ -29,14 +30,17 @@ export const CreateTweet = ({
   in_reply_to_screen_name,
   in_reply_to_status_id,
   placeholder,
+  isComment = false,
 }: {
   parent_tweet?: ITweet | null;
   quoted_tweet?: ITweet | null;
   in_reply_to_screen_name?: string | null;
   in_reply_to_status_id?: string | null;
   placeholder?: string | null;
+  isComment?: boolean;
 }) => {
   const { data: session } = useSession();
+  const [isCommentOpen, setIsCommentOpen] = useState(isComment);
 
   const [text, setText] = useState("");
   const imageUploadRef = useRef<HTMLInputElement>(null);
@@ -125,13 +129,18 @@ export const CreateTweet = ({
       </div>
 
       <div className={styles.container}>
-        <div className={styles.user}>
-          <User
-            userId={session?.user?.id}
-            userImage={session?.user?.profile_image_url}
-          />
-        </div>
+        <User
+          userId={session?.user?.id}
+          userImage={session?.user?.profile_image_url}
+        />
+
         <div className={styles.tweet}>
+          {isComment && isCommentOpen && (
+            <button
+              onClick={() => setIsCommentOpen(false)}
+              className={styles.commentButton}
+            ></button>
+          )}
           <div className={styles.text}>
             <textarea
               value={text}
