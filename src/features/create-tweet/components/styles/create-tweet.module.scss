@@ -1,7 +1,7 @@
 @use './abstracts/media-query' as *;
 
 .parentTweet {
-  padding: 1rem 1rem 0 1rem;
+  padding: 0 1rem;
   display: grid;
   grid-template-columns: 3rem 1fr;
   gap: 1rem;
@@ -114,37 +114,30 @@
 
 }
 
-
-
 .container {
   position: relative;
   width: 100%;
-  padding: 0.4rem 1rem 0 1rem;
+  padding: 1rem;
   display: grid;
   grid-template-columns: 3rem 1fr;
   gap: 1rem;
+  transition: all 0.2s ease-in-out;
 
   .tweet {
-    position: relative;
-
-
-    .commentButton {
-      background-color: aqua;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
 
     .text {
+
+      .placeholder {
+        font-size: 1.2rem;
+        color: var(--clr-tertiary);
+        cursor: text;
+      }
+
       textarea {
         width: 100%;
-        height: 3rem;
         font-size: 1.2rem;
         color: var(--clr-secondary);
         border-bottom: 1px solid var(--clr-background);
-        margin-top: 1rem;
         transition: all 0.1s ease-in-out;
 
         &::placeholder {
@@ -265,6 +258,8 @@
       }
     }
 
+
+
     .actions {
       padding: 0.7rem 0;
       display: flex;
@@ -286,29 +281,48 @@
         }
       }
 
-      .button {
-        background-color: var(--clr-primary);
-        border-radius: 100vmax;
-        padding: 0.425rem 1rem;
-        font-size: 0.9rem;
-        font-weight: 500;
-        cursor: pointer;
-        color: var(--clr-light);
+    }
 
-        &:hover {
-          background-color: var(--clr-primary-hover);
-        }
-
-        &:active {
-          background-color: var(--clr-primary-active);
-        }
-
-        &:disabled {
-          opacity: 0.5;
-          cursor: default;
-
-        }
-      }
+    .hideActions {
+      display: none;
     }
   }
+
+  .tweetButton {
+    background-color: var(--clr-primary);
+    border-radius: 100vmax;
+    padding: 0.425rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    color: var(--clr-light);
+    margin-left: auto;
+
+    &:hover {
+      background-color: var(--clr-primary-hover);
+    }
+
+    &:active {
+      background-color: var(--clr-primary-active);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: default;
+
+    }
+  }
+
+  .isComment {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 1rem;
+  }
+
+}
+
+.hideActions {
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
 }

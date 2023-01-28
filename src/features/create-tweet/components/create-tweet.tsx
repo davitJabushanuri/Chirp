@@ -40,7 +40,6 @@ export const CreateTweet = ({
   isComment?: boolean;
 }) => {
   const { data: session } = useSession();
-  const [isCommentOpen, setIsCommentOpen] = useState(isComment);
 
   const [text, setText] = useState("");
   const imageUploadRef = useRef<HTMLInputElement>(null);
@@ -128,25 +127,25 @@ export const CreateTweet = ({
         </div>
       </div>
 
-      <div className={styles.container}>
+      <div
+        className={`${styles.container} ${isComment ? styles.hideActions : ""}`}
+      >
         <User
           userId={session?.user?.id}
           userImage={session?.user?.profile_image_url}
         />
 
         <div className={styles.tweet}>
-          {isComment && isCommentOpen && (
-            <button
-              onClick={() => setIsCommentOpen(false)}
-              className={styles.commentButton}
-            ></button>
-          )}
           <div className={styles.text}>
-            <textarea
-              value={text}
-              onChange={(e) => setText(e.target.value)}
-              placeholder={placeholder || "What's happening?"}
-            />
+            {isComment ? (
+              <p className={styles.placeholder}>{placeholder}</p>
+            ) : (
+              <textarea
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+                placeholder={placeholder || "What's happening?"}
+              />
+            )}
             <input
               className={styles.fileInput}
               type="file"
@@ -186,7 +185,12 @@ export const CreateTweet = ({
               {quoted_tweet && <QuotedTweet tweet={quoted_tweet} />}
             </div>
           </div>
-          <div className={styles.actions}>
+
+          <div
+            className={`${styles.actions} ${
+              isComment ? styles.hideActions : ""
+            }`}
+          >
             <div className={styles.media}>
               <button
                 disabled={chosenImages.length >= 4}
@@ -204,26 +208,26 @@ export const CreateTweet = ({
               </span>
               <Action icon={<LocationIcon />} />
             </div>
-            <div className={styles.tweetButton}>
-              <button
-                onClick={() =>
-                  mutation.mutate({
-                    text: text,
-                    userId: session?.user?.id,
-                    files: chosenImages.map((img) => img.file),
-                    in_reply_to_screen_name,
-                    in_reply_to_status_id,
-                    quoted_tweet_id: quoted_tweet ? quoted_tweet.id : null,
-                  })
-                }
-                disabled={text.length === 0}
-                className={styles.button}
-              >
-                Tweet
-              </button>
-            </div>
           </div>
         </div>
+        <button
+          onClick={() =>
+            mutation.mutate({
+              text: text,
+              userId: session?.user?.id,
+              files: chosenImages.map((img) => img.file),
+              in_reply_to_screen_name,
+              in_reply_to_status_id,
+              quoted_tweet_id: quoted_tweet ? quoted_tweet.id : null,
+            })
+          }
+          disabled={text.length === 0}
+          className={`${styles.tweetButton} ${
+            !isComment ? styles.isComment : ""
+          }`}
+        >
+          {isComment ? `Reply` : `Tweet`}
+        </button>
       </div>
     </>
   );

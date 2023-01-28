@@ -5,6 +5,7 @@
   grid-template-columns: 3rem 1fr;
   cursor: pointer;
   max-width: 100%;
+  transition: all 0.2s ease-in-out;
 
   &:hover {
     background-color: var(--clr-tweet-hover);
