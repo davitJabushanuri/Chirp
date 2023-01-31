@@ -43,10 +43,6 @@ model Session {
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
-////////////////////////////////
-// Twitter
-////////////////////////////////
-
 model User {
   id                 String         @id @default(cuid())
   name               String
@@ -79,6 +75,8 @@ model User {
   sent_messages      Message[]      @relation("receiver")
   received_messages  Message[]      @relation("sender")
   conversations      Conversation[]
+  pinned_tweet_id    String?
+  pinned_tweet       Tweet?         @relation("pinned_tweet", fields: [pinned_tweet_id], references: [id])
 }
 
 model Follows {
@@ -118,19 +116,20 @@ model Tweet {
   in_reply_to_status_id   String?
   tweet_comment           Tweet?     @relation("tweet-comment", fields: [in_reply_to_status_id], references: [id])
   bookmarks               Bookmark[]
+  pinned_by_users         User[]     @relation("pinned_tweet")
 }
 
 model Media {
   id         String @id @default(cuid())
   media_url  String
   media_type String
-  tweet      Tweet  @relation(fields: [tweet_id], references: [id])
+  tweet      Tweet  @relation(fields: [tweet_id], references: [id], onDelete: Cascade)
   tweet_id   String
 }
 
 model Like {
   id         String   @id @default(cuid())
-  tweet      Tweet    @relation(fields: [tweet_id], references: [id])
+  tweet      Tweet    @relation(fields: [tweet_id], references: [id], onDelete: Cascade)
   tweet_id   String
   user       User     @relation(fields: [user_id], references: [id])
   user_id    String
@@ -139,7 +138,7 @@ model Like {
 
 model Retweet {
   id         String   @id @default(cuid())
-  tweet      Tweet    @relation(fields: [tweet_id], references: [id])
+  tweet      Tweet    @relation(fields: [tweet_id], references: [id], onDelete: Cascade)
   tweet_id   String
   user       User     @relation(fields: [user_id], references: [id])
   user_id    String
@@ -148,7 +147,7 @@ model Retweet {
 
 model Bookmark {
   id         String   @id @default(cuid())
-  tweet      Tweet    @relation(fields: [tweet_id], references: [id])
+  tweet      Tweet    @relation(fields: [tweet_id], references: [id], onDelete: Cascade)
   tweet_id   String
   user       User     @relation(fields: [user_id], references: [id])
   user_id    String
