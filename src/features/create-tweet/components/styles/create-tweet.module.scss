@@ -87,7 +87,7 @@
   }
 
   .replying {
-    margin-top: 1rem;
+    padding-top: 11px;
     font-size: 14px;
     display: flex;
     align-items: center;
@@ -117,11 +117,10 @@
 .container {
   position: relative;
   width: 100%;
-  padding: 1rem;
+  padding: 0 15px 11px 15px;
   display: grid;
   grid-template-columns: 3rem 1fr;
   gap: 1rem;
-  transition: all 0.2s ease-in-out;
 
   .tweet {
 
@@ -134,11 +133,13 @@
       }
 
       textarea {
+        margin-top: 1rem;
+        resize: none;
         width: 100%;
+        height: 3rem;
         font-size: 1.2rem;
         color: var(--clr-secondary);
         border-bottom: 1px solid var(--clr-background);
-        transition: all 0.1s ease-in-out;
 
         &::placeholder {
           color: var(--clr-tertiary);
@@ -157,6 +158,7 @@
           max-height: 700px;
           border-radius: 1rem;
           overflow: hidden;
+          margin-bottom: 1rem;
 
           img {
             width: 100%;
@@ -261,7 +263,6 @@
 
 
     .actions {
-      padding: 0.7rem 0;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -317,7 +318,7 @@
     position: absolute;
     bottom: 0;
     right: 0;
-    margin: 1rem;
+    margin: 11px 15px;
   }
 
 }
@@ -325,4 +326,5 @@
 .hideActions {
   grid-template-columns: auto 1fr auto;
   align-items: center;
+  padding: 1rem;
 }

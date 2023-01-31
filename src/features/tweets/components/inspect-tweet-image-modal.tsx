@@ -5,7 +5,7 @@ import { CloseIcon } from "@/assets/close-icon";
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
 import { TweetAuthor } from "@/components/elements/tweet-author";
-import { CreateTweet } from "@/features/create-tweet";
+import { CreateTweet, CreateTweetWrapper } from "@/features/create-tweet";
 import { useDisableBodyScroll } from "@/hooks";
 import { useInspectTweetImage } from "@/stores/use-inspect-tweet-images";
 
@@ -127,13 +127,10 @@ export const InspectTweetImageModal = () => {
                 />
               </div>
 
-              <div className={styles.createComment}>
-                <CreateTweet
-                  in_reply_to_screen_name={tweet?.author?.email?.split("@")[0]}
-                  in_reply_to_status_id={tweet?.id}
-                  placeholder="Tweet your reply"
-                />
-              </div>
+              <CreateTweetWrapper
+                in_reply_to_screen_name={tweet?.author?.email?.split("@")[0]}
+                in_reply_to_status_id={tweet?.id}
+              />
 
               <div className={styles.comments}>
                 <Comments tweet={tweet?.comments} />

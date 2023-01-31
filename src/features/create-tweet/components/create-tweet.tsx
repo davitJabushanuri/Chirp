@@ -8,7 +8,6 @@ import { useRef, useState } from "react";
 import { CloseIcon } from "@/assets/close-icon";
 import { LocationIcon } from "@/assets/location-icon";
 import { VerifiedIcon } from "@/assets/verified-icon";
-import { BackButton } from "@/components/elements/back-button";
 import { User } from "@/components/elements/user";
 import { ITweet } from "@/features/tweets";
 import { QuotedTweet } from "@/features/tweets";
@@ -112,7 +111,7 @@ export const CreateTweet = ({
             </>
           )}
 
-          {in_reply_to_screen_name && (
+          {in_reply_to_screen_name && !isComment && (
             <div
               className={`${styles.replying} ${
                 !parent_tweet ? styles.withoutQuotedTweet : ""

@@ -111,7 +111,10 @@ export const TweetDetails = () => {
           />
         </div>
       </div>
-      <CreateTweetWrapper />
+      <CreateTweetWrapper
+        in_reply_to_screen_name={tweet?.author?.email?.split(`@`)[0]}
+        in_reply_to_status_id={tweet?.id}
+      />
       <div className={styles.comments}>
         <Comments tweet={tweet?.comments} />
       </div>
