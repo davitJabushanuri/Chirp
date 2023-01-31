@@ -1,11 +1,12 @@
 .container {
-  height: 2rem;
-  width: 2rem;
+  height: 32px;
+  width: 32px;
   cursor: pointer;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background-color 0.2s ease-in-out;
 
   &:hover {
     background-color: var(--clr-trends-hover);
@@ -17,8 +18,8 @@
 
   .icon {
     fill: var(--clr-primary);
-    height: 1.2rem;
-    width: 1.2rem;
+    height: 19px;
+    width: 19px;
   }
 
 }

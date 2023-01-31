@@ -30,6 +30,7 @@ export const CreateTweet = ({
   in_reply_to_status_id,
   placeholder,
   isComment = false,
+  isInspectModal = false,
 }: {
   parent_tweet?: ITweet | null;
   quoted_tweet?: ITweet | null;
@@ -37,6 +38,7 @@ export const CreateTweet = ({
   in_reply_to_status_id?: string | null;
   placeholder?: string | null;
   isComment?: boolean;
+  isInspectModal?: boolean;
 }) => {
   const { data: session } = useSession();
 
@@ -198,13 +200,17 @@ export const CreateTweet = ({
                 <Action icon={<ImageIcon />} />
               </button>
               <Action icon={<GifIcon />} />
-              <span className={styles.hide}>
-                <Action icon={<PollIcon />} />
-              </span>
+              {!isInspectModal && (
+                <span className={styles.hide}>
+                  <Action icon={<PollIcon />} />
+                </span>
+              )}
               <Action icon={<EmojiIcon />} />
-              <span className={styles.hide}>
-                <Action icon={<ScheduleIcon />} />
-              </span>
+              {!isInspectModal && (
+                <span className={styles.hide}>
+                  <Action icon={<ScheduleIcon />} />
+                </span>
+              )}
               <Action icon={<LocationIcon />} />
             </div>
           </div>
