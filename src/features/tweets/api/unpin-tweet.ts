@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const unpinTweet = async (id: string) => {
+export const unpinTweet = async (id: string | undefined) => {
   try {
     const { data } = await axios.delete("/api/tweets/pin", {
       data: {

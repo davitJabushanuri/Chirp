@@ -59,7 +59,7 @@ export const ProfileTweets = () => {
       )}
 
       {isSuccess && user?.pinned_tweet && (
-        <PinnedTweet pinned_tweet={user?.pinned_tweet?.tweet} />
+        <PinnedTweet pinned_tweet={user?.pinned_tweet} />
       )}
 
       {isSuccess && user?.tweets?.length > 0 && (
@@ -67,7 +67,7 @@ export const ProfileTweets = () => {
           {user?.tweets
             ?.filter((tweet) => {
               if (user?.pinned_tweet) {
-                return tweet?.id !== user?.pinned_tweet?.tweet?.id;
+                return tweet?.id !== user?.pinned_tweet?.id;
               }
               return true;
             })

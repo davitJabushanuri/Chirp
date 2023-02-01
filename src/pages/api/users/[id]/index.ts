@@ -26,15 +26,11 @@ export default async function User(req: NextApiRequest, res: NextApiResponse) {
           },
           pinned_tweet: {
             include: {
-              tweet: {
-                include: {
-                  media: true,
-                  author: true,
-                  likes: true,
-                  comments: true,
-                  retweets: true,
-                },
-              },
+              media: true,
+              author: true,
+              likes: true,
+              comments: true,
+              retweets: true,
             },
           },
 

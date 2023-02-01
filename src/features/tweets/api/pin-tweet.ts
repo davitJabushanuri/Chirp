@@ -5,7 +5,7 @@ export const pinTweet = async (
   userId: string | undefined,
 ) => {
   try {
-    const { data } = await axios.post("/api/tweets/pin", {
+    const { data } = await axios.put("/api/tweets/pin", {
       tweetId,
       userId,
     });

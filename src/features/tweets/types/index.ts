@@ -32,7 +32,7 @@ export interface ITweet {
   quotes: ITweet[];
   comments: ITweet[];
   bookmarks: IBookmark[];
-  pins: IPinnedTweet[];
+  pinned_by_users: IUser[];
 }
 
 export interface ILike {
@@ -65,10 +65,10 @@ export interface IBookmark {
   tweet: ITweet;
 }
 
-export interface IPinnedTweet {
-  id: string;
-  user_id: string;
-  tweet_id: string;
-  user: IUser;
-  tweet: ITweet;
-}
+// export interface IPinnedTweet {
+//   id: string;
+//   user_id: string;
+//   tweet_id: string;
+//   user: IUser;
+//   tweet: ITweet;
+// }

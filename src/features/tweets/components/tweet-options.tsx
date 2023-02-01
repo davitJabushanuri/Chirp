@@ -20,6 +20,7 @@ import { usePinTweet } from "../hooks/use-pin-tweet";
 
 import { DeleteTweetModal } from "./delete-tweet-modal";
 import styles from "./styles/tweet-options.module.scss";
+import { useUser } from "@/features/profile";
 
 export const TweetOptions = ({ tweet }: { tweet: ITweet }) => {
   const { data: session } = useSession();
@@ -74,6 +75,7 @@ const TweetAuthorActions = ({
   setIsDeleteModalOpen: (value: boolean) => void;
 }) => {
   const { data: session } = useSession();
+  const { data: user } = useUser(session?.user?.id);
   const pinMutation = usePinTweet();
 
   return (
@@ -88,17 +90,33 @@ const TweetAuthorActions = ({
         <Action icon={<TrashIcon />} text={`Delete`} />
       </button>
 
-      <button
-        onClick={() => {
-          pinMutation.mutate({
-            tweetId: tweet.id,
-            userId: session?.user?.id,
-          });
-          setIsActionsModalOpen(false);
-        }}
-      >
-        <Action icon={<PinIcon />} text={`Pin to your profile`} />
-      </button>
+      {tweet?.id === user?.pinned_tweet?.id ? (
+        <button
+          onClick={() => {
+            pinMutation.mutate({
+              tweetId: tweet.id,
+              userId: session?.user?.id,
+              action: "unpin",
+            });
+            setIsActionsModalOpen(false);
+          }}
+        >
+          <Action icon={<PinIcon />} text={`Unpin to your profile`} />
+        </button>
+      ) : (
+        <button
+          onClick={() => {
+            pinMutation.mutate({
+              tweetId: tweet.id,
+              userId: session?.user?.id,
+              action: "pin",
+            });
+            setIsActionsModalOpen(false);
+          }}
+        >
+          <Action icon={<PinIcon />} text={`Pin to your profile`} />
+        </button>
+      )}
 
       <button>
         <Action icon={<CommentIcon />} text={`Change who can reply`} />
