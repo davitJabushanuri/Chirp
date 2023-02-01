@@ -16,6 +16,7 @@ import { MuteIcon } from "../assets/mute-icon";
 import { PinIcon } from "../assets/pin-icon";
 import { ReportIcon } from "../assets/report-icon";
 import { TrashIcon } from "../assets/trash-icon";
+import { usePinTweet } from "../hooks/use-pin-tweet";
 
 import { DeleteTweetModal } from "./delete-tweet-modal";
 import styles from "./styles/tweet-options.module.scss";
@@ -72,6 +73,9 @@ const TweetAuthorActions = ({
   setIsActionsModalOpen: (value: boolean) => void;
   setIsDeleteModalOpen: (value: boolean) => void;
 }) => {
+  const { data: session } = useSession();
+  const pinMutation = usePinTweet();
+
   return (
     <>
       <button
@@ -84,7 +88,15 @@ const TweetAuthorActions = ({
         <Action icon={<TrashIcon />} text={`Delete`} />
       </button>
 
-      <button>
+      <button
+        onClick={() => {
+          pinMutation.mutate({
+            tweetId: tweet.id,
+            userId: session?.user?.id,
+          });
+          setIsActionsModalOpen(false);
+        }}
+      >
         <Action icon={<PinIcon />} text={`Pin to your profile`} />
       </button>
 

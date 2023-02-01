@@ -11,6 +11,33 @@ export default async function User(req: NextApiRequest, res: NextApiResponse) {
           id: req.query.id as string,
         },
         include: {
+          retweets: {
+            include: {
+              tweet: {
+                include: {
+                  media: true,
+                  author: true,
+                  likes: true,
+                  comments: true,
+                  retweets: true,
+                },
+              },
+            },
+          },
+          pinned_tweet: {
+            include: {
+              tweet: {
+                include: {
+                  media: true,
+                  author: true,
+                  likes: true,
+                  comments: true,
+                  retweets: true,
+                },
+              },
+            },
+          },
+
           followers: {
             include: {
               follower: true,

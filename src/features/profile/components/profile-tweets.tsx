@@ -10,6 +10,7 @@ import { ITweet } from "@/features/tweets";
 
 import { useUser } from "../hooks/use-user";
 
+import { PinnedTweet } from "./pinned-tweet";
 import styles from "./styles/profile-tweets.module.scss";
 
 export const ProfileTweets = () => {
@@ -18,6 +19,8 @@ export const ProfileTweets = () => {
   const id = pathname?.split("/")[1];
 
   const { data: user, isLoading, isError, isSuccess } = useUser(id);
+
+  console.log("user", user);
 
   if (isLoading) {
     return (
@@ -55,15 +58,26 @@ export const ProfileTweets = () => {
         </div>
       )}
 
+      {isSuccess && user?.pinned_tweet && (
+        <PinnedTweet pinned_tweet={user?.pinned_tweet?.tweet} />
+      )}
+
       {isSuccess && user?.tweets?.length > 0 && (
         <div className={styles.tweets}>
-          {user?.tweets?.map((tweet: ITweet) => {
-            return (
-              <div className={styles.tweetContainer} key={tweet?.id}>
-                <Tweet tweet={tweet} />
-              </div>
-            );
-          })}
+          {user?.tweets
+            ?.filter((tweet) => {
+              if (user?.pinned_tweet) {
+                return tweet?.id !== user?.pinned_tweet?.tweet?.id;
+              }
+              return true;
+            })
+            ?.map((tweet: ITweet) => {
+              return (
+                <div className={styles.tweetContainer} key={tweet?.id}>
+                  <Tweet tweet={tweet} />
+                </div>
+              );
+            })}
         </div>
       )}
     </div>

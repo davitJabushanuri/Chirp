@@ -1,0 +1,28 @@
+.container {
+  border-bottom: 1px solid var(--clr-border);
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--clr-tweet-hover);
+  }
+
+  .pin {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--clr-tertiary);
+    padding: 8px 0 0 3rem;
+
+    .icon {
+      display: flex;
+
+      svg {
+        fill: var(--clr-tertiary);
+        width: 15px;
+        height: 15px;
+      }
+    }
+  }
+}

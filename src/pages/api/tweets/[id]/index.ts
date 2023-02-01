@@ -11,6 +11,11 @@ export default async function Tweet(req: NextApiRequest, res: NextApiResponse) {
           id: req.query.id as string,
         },
         include: {
+          pins: {
+            include: {
+              user: true,
+            },
+          },
           author: {
             include: {
               bookmarks: true,

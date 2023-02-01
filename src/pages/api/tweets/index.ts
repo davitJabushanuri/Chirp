@@ -11,6 +11,12 @@ export default async function Tweets(
     try {
       const tweets = await prisma.tweet.findMany({
         include: {
+          pins: {
+            include: {
+              user: true,
+            },
+          },
+
           author: {
             include: {
               bookmarks: true,
