@@ -24,7 +24,7 @@ export default async function Retweet(
             id: retweet.id,
           },
         });
-        res.status(200).json({ message: "Tweet unretweeted" });
+        res.status(200).json({ message: "Tweet un retweeted" });
       } else {
         await prisma.retweet.create({
           data: {

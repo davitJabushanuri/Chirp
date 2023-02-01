@@ -24,7 +24,7 @@ import styles from "./styles/user-info.module.scss";
 
 export const UserInfo = ({ user }: { user: IUser }) => {
   const { data: session } = useSession();
-  const isFollowing = user?.followers.some(
+  const isFollowing = user?.followers?.some(
     (follower) => follower?.follower_id === session?.user?.id,
   );
   const openEditProfileModal = useEditProfile(

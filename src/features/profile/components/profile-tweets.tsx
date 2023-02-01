@@ -8,7 +8,7 @@ import { TryAgain } from "@/components/elements/try-again";
 import { Tweet } from "@/features/tweets";
 import { ITweet } from "@/features/tweets";
 
-import { useUser } from "../hooks/use-user";
+import { useUserTweets } from "../hooks/use-user-tweets";
 
 import { PinnedTweet } from "./pinned-tweet";
 import styles from "./styles/profile-tweets.module.scss";
@@ -18,9 +18,11 @@ export const ProfileTweets = () => {
   const pathname = usePathname();
   const id = pathname?.split("/")[1];
 
-  const { data: user, isLoading, isError, isSuccess } = useUser(id);
+  // const { data: user, isLoading, isError, isSuccess } = useUser(id);
 
-  console.log("user", user);
+  const { data: tweets, isLoading, isError, isSuccess } = useUserTweets(id);
+
+  console.log(tweets);
 
   if (isLoading) {
     return (
@@ -40,7 +42,7 @@ export const ProfileTweets = () => {
 
   return (
     <div className={styles.container}>
-      {isSuccess && user?.tweets?.length === 0 && (
+      {/* {isSuccess && tweets?.length === 0 && (
         <div className={styles.noTweets}>
           {user?.id === session?.user?.id ? (
             <div>
@@ -56,28 +58,21 @@ export const ProfileTweets = () => {
             </div>
           )}
         </div>
-      )}
+      )} */}
 
-      {isSuccess && user?.pinned_tweet && (
+      {/* {isSuccess && user?.pinned_tweet && (
         <PinnedTweet pinned_tweet={user?.pinned_tweet} />
-      )}
+      )} */}
 
-      {isSuccess && user?.tweets?.length > 0 && (
+      {isSuccess && tweets?.length > 0 && (
         <div className={styles.tweets}>
-          {user?.tweets
-            ?.filter((tweet) => {
-              if (user?.pinned_tweet) {
-                return tweet?.id !== user?.pinned_tweet?.id;
-              }
-              return true;
-            })
-            ?.map((tweet: ITweet) => {
-              return (
-                <div className={styles.tweetContainer} key={tweet?.id}>
-                  <Tweet tweet={tweet} />
-                </div>
-              );
-            })}
+          {tweets?.map((tweet: ITweet) => {
+            return (
+              <div className={styles.tweetContainer} key={tweet?.id}>
+                <Tweet tweet={tweet} />
+              </div>
+            );
+          })}
         </div>
       )}
     </div>

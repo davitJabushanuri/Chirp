@@ -18,8 +18,6 @@ export default async function User(req: NextApiRequest, res: NextApiResponse) {
                   media: true,
                   author: true,
                   likes: true,
-                  comments: true,
-                  retweets: true,
                 },
               },
             },
@@ -29,8 +27,6 @@ export default async function User(req: NextApiRequest, res: NextApiResponse) {
               media: true,
               author: true,
               likes: true,
-              comments: true,
-              retweets: true,
             },
           },
 
