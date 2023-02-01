@@ -10,19 +10,15 @@ import { ITweet } from "@/features/tweets";
 
 import { useUserTweets } from "../hooks/use-user-tweets";
 
-import { PinnedTweet } from "./pinned-tweet";
 import styles from "./styles/profile-tweets.module.scss";
 
 export const ProfileTweets = () => {
-  const { data: session } = useSession();
   const pathname = usePathname();
   const id = pathname?.split("/")[1];
 
   // const { data: user, isLoading, isError, isSuccess } = useUser(id);
 
   const { data: tweets, isLoading, isError, isSuccess } = useUserTweets(id);
-
-  console.log(tweets);
 
   if (isLoading) {
     return (

@@ -7,7 +7,7 @@ import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
 import { Tweet } from "@/features/tweets";
 
-import { useUser } from "../hooks/use-user";
+import { useUserTweetsWithReplies } from "../hooks/use-user-tweets-with-replies";
 
 import styles from "./styles/profile-tweets-and-replies.module.scss";
 
@@ -16,7 +16,12 @@ export const ProfileTweetsAndReplies = () => {
   const pathname = usePathname();
   const id = pathname?.split("/")[1];
 
-  const { data: user, isLoading, isError, isSuccess } = useUser(id);
+  const {
+    data: tweets,
+    isLoading,
+    isError,
+    isSuccess,
+  } = useUserTweetsWithReplies(id);
 
   if (isLoading) {
     return (
@@ -36,45 +41,34 @@ export const ProfileTweetsAndReplies = () => {
 
   return (
     <div className={styles.container}>
-      {isSuccess &&
-        user?.tweets?.filter((tweet) => tweet?.in_reply_to_status_id)
-          ?.length === 0 && (
-          <div className={styles.noTweets}>
-            {user?.id === session?.user?.id ? (
-              <div>
-                <h1>You haven&apos;t tweeted anything yet.</h1>
-                <p>When you do, it&apos;ll show up here.</p>
-              </div>
-            ) : (
-              <div>
-                <h1>
-                  @{user?.email?.split("@")[0]} hasn&apos;t tweeted anything
-                  yet.
-                </h1>
-                <p>When they do, it&apos;ll show up here.</p>
-              </div>
-            )}
-          </div>
-        )}
+      {isSuccess && tweets?.length === 0 && (
+        <div className={styles.noTweets}>
+          {tweets[0]?.author?.id === session?.user?.id ? (
+            <div>
+              <h1>You haven&apos;t tweeted anything yet.</h1>
+              <p>When you do, it&apos;ll show up here.</p>
+            </div>
+          ) : (
+            <div>
+              <h1>
+                @{tweets[0]?.author?.email?.split("@")[0]} hasn&apos;t tweeted
+                anything yet.
+              </h1>
+              <p>When they do, it&apos;ll show up here.</p>
+            </div>
+          )}
+        </div>
+      )}
 
-      {isSuccess && user?.tweets?.length > 0 && (
+      {isSuccess && tweets?.length > 0 && (
         <div className={styles.tweets}>
-          {user?.tweets
-            ?.filter((tweet) => {
-              return (
-                tweet?.in_reply_to_status_id ||
-                tweet?.in_reply_to_user_id ||
-                tweet?.in_reply_to_screen_name ||
-                tweet?.quoted_status_id
-              );
-            })
-            .map((tweet) => {
-              return (
-                <div className={styles.tweetContainer} key={tweet?.id}>
-                  <Tweet tweet={tweet} />
-                </div>
-              );
-            })}
+          {tweets?.map((tweet) => {
+            return (
+              <div className={styles.tweetContainer} key={tweet?.id}>
+                <Tweet tweet={tweet} />
+              </div>
+            );
+          })}
         </div>
       )}
     </div>

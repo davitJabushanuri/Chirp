@@ -8,7 +8,7 @@ import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
 import { Tweet } from "@/features/tweets";
 
-import { useUser } from "../hooks/use-user";
+import { useUserTweetsWithMedia } from "../hooks/use-user-tweets-with-media";
 
 import styles from "./styles/profile-media.module.scss";
 
@@ -17,7 +17,12 @@ export const ProfileMedia = () => {
   const pathname = usePathname();
   const id = pathname?.split("/")[1];
 
-  const { data: user, isLoading, isError, isSuccess } = useUser(id);
+  const {
+    data: tweets,
+    isLoading,
+    isError,
+    isSuccess,
+  } = useUserTweetsWithMedia(id);
 
   if (isLoading) {
     return (
@@ -37,7 +42,7 @@ export const ProfileMedia = () => {
 
   return (
     <div className={styles.container}>
-      {isSuccess && user?.tweets?.length === 0 && (
+      {isSuccess && tweets?.length === 0 && (
         <div className={styles.noMedia}>
           {session?.user?.id === id ? (
             <div>
@@ -51,26 +56,22 @@ export const ProfileMedia = () => {
           ) : (
             <div>
               <img src="/media-placeholder.png" alt="" />
-              <h1>@{user?.email?.split("@")[0]} hasn&apos;t tweeted media</h1>
+              <h1>user hasn&apos;t tweeted media</h1>
               <p>Once they do, those Tweets will show up here.</p>
             </div>
           )}
         </div>
       )}
 
-      {isSuccess && user?.tweets?.length > 0 && (
+      {isSuccess && tweets?.length > 0 && (
         <div className={styles.tweets}>
-          {user?.tweets
-            ?.filter((tweet) => {
-              return tweet?.media && tweet?.media?.length > 0;
-            })
-            .map((tweet) => {
-              return (
-                <div className={styles.tweetContainer} key={tweet?.id}>
-                  <Tweet tweet={tweet} />
-                </div>
-              );
-            })}
+          {tweets?.map((tweet) => {
+            return (
+              <div className={styles.tweetContainer} key={tweet?.id}>
+                <Tweet tweet={tweet} />
+              </div>
+            );
+          })}
         </div>
       )}
     </div>

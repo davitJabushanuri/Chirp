@@ -7,7 +7,7 @@ import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
 import { Tweet } from "@/features/tweets";
 
-import { useUser } from "../hooks/use-user";
+import { useUserLikes } from "../hooks/use-user-likes";
 
 import styles from "./styles/profile-likes.module.scss";
 
@@ -16,7 +16,7 @@ export const ProfileLikes = () => {
   const pathname = usePathname();
   const id = pathname?.split("/")[1];
 
-  const { data: user, isLoading, isError, isSuccess } = useUser(id);
+  const { data: likes, isLoading, isError, isSuccess } = useUserLikes(id);
 
   if (isLoading) {
     return (
@@ -36,7 +36,7 @@ export const ProfileLikes = () => {
 
   return (
     <div className={styles.container}>
-      {isSuccess && user?.likes?.length === 0 && (
+      {isSuccess && likes?.length === 0 && (
         <div className={styles.noLikes}>
           {session?.user?.id === id ? (
             <div>
@@ -48,9 +48,7 @@ export const ProfileLikes = () => {
             </div>
           ) : (
             <div>
-              <h1>
-                @{user?.email?.split("@")[0]} hasn&apos;t liked any tweets
-              </h1>
+              <h1>user hasn&apos;t liked any tweets</h1>
               <p>
                 <span>When they do, those Tweets will show up here.</span>
               </p>
@@ -60,8 +58,8 @@ export const ProfileLikes = () => {
       )}
 
       {isSuccess &&
-        user?.likes.length > 0 &&
-        user?.likes?.map((like) => {
+        likes.length > 0 &&
+        likes?.map((like) => {
           return (
             <div className={styles.tweetContainer} key={like?.id}>
               <Tweet tweet={like?.tweet} />

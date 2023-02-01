@@ -40,6 +40,7 @@ export interface ILike {
   user_id: string;
   tweet_id: string;
   user: IUser;
+  tweet: ITweet;
 }
 
 export interface IMedia {

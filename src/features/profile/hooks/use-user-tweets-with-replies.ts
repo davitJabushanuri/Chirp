@@ -2,14 +2,14 @@ import { useQuery } from "@tanstack/react-query";
 
 import { ITweet } from "@/features/tweets";
 
-import { getUserTweets } from "../api/get-user-tweets";
+import { getUserTweetsWithReplies } from "../api/get-user-tweets-with-replies";
 
-export const useUserTweets = (id: string | undefined) => {
+export const useUserTweetsWithReplies = (id: string | undefined) => {
   // const queryClient = useQueryClient();
   return useQuery<ITweet[]>(
-    ["tweets", { userId: id }],
+    ["tweets", { userId: id }, "with replies"],
     async () => {
-      return getUserTweets(id);
+      return getUserTweetsWithReplies(id);
     },
     {
       refetchOnWindowFocus: false,
