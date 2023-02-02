@@ -11,11 +11,7 @@ export default async function Tweet(req: NextApiRequest, res: NextApiResponse) {
           id: req.query.id as string,
         },
         include: {
-          author: {
-            include: {
-              bookmarks: true,
-            },
-          },
+          author: true,
           likes: {
             include: {
               user: {
@@ -56,25 +52,6 @@ export default async function Tweet(req: NextApiRequest, res: NextApiResponse) {
               quoted_tweet: {
                 include: {
                   author: true,
-                },
-              },
-            },
-
-            orderBy: {
-              created_at: "desc",
-            },
-          },
-
-          comments: {
-            include: {
-              author: true,
-              likes: true,
-              media: true,
-              retweets: true,
-              quoted_tweet: {
-                include: {
-                  author: true,
-                  media: true,
                 },
               },
             },

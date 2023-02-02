@@ -116,7 +116,7 @@ export const TweetDetails = () => {
         in_reply_to_status_id={tweet?.id}
       />
       <div className={styles.comments}>
-        <Comments tweet={tweet?.comments} />
+        <Comments tweetId={tweet?.id} />
       </div>
     </div>
   );

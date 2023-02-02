@@ -8,6 +8,7 @@ import { BackArrowIcon } from "@/assets/back-arrow-icon";
 import { CloseIcon } from "@/assets/close-icon";
 import { FollowButton } from "@/components/elements/follow-button";
 import { IUser } from "@/features/profile";
+import { useInspectTweetImage } from "@/stores/use-inspect-tweet-images";
 
 import styles from "./styles/tweet-statistics-modal.module.scss";
 
@@ -51,7 +52,13 @@ export const TweetStatisticsModal = ({
 
         <div className={styles.people}>
           {authors?.map((author: IUser) => {
-            return <Author key={author?.id} author={author} />;
+            return (
+              <Author
+                key={author?.id}
+                author={author}
+                setIsModalOpen={setIsModalOpen}
+              />
+            );
           })}
         </div>
       </div>
@@ -59,9 +66,19 @@ export const TweetStatisticsModal = ({
   );
 };
 
-const Author = ({ author }: { author: IUser }) => {
+const Author = ({
+  author,
+  setIsModalOpen,
+}: {
+  author: IUser;
+  setIsModalOpen: (isModalOpen: boolean) => void;
+}) => {
   const { data: session } = useSession();
   const router = useRouter();
+
+  const closeTweetImageModal = useInspectTweetImage(
+    (state) => state.closeTweetImageModal,
+  );
 
   const isFollowing = author?.followers.some(
     (follower) => follower?.follower_id === session?.user?.id,
@@ -69,7 +86,11 @@ const Author = ({ author }: { author: IUser }) => {
 
   return (
     <div
-      onClick={() => router.push(`/${author?.id}`)}
+      onClick={() => {
+        router.push(`/${author?.id}`);
+        setIsModalOpen(false);
+        closeTweetImageModal();
+      }}
       className={styles.author}
     >
       <div className={styles.avatar}>
