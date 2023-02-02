@@ -86,9 +86,9 @@ export const Tweet = ({ tweet }: { tweet: ITweet }) => {
         )}
 
         <div className={styles.tweet}>
-          {tweet.text && (
+          {tweet?.text && (
             <div className={styles.text}>
-              <p>{tweet.text}</p>
+              <p>{tweet?.text}</p>
             </div>
           )}
           {tweet?.media && tweet?.media.length > 0 && (

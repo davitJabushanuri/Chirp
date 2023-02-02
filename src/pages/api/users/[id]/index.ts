@@ -31,6 +31,8 @@ export default async function User(req: NextApiRequest, res: NextApiResponse) {
               created_at: "desc",
             },
           },
+
+          pinned_tweet: true,
         },
       });
       res.status(200).json(user);

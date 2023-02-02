@@ -8,7 +8,7 @@ import styles from "./styles/pinned-tweet.module.scss";
 export const PinnedTweet = ({ userId }: { userId: string | undefined }) => {
   const { data: pinned_tweet, isSuccess } = usePinnedTweet(userId);
 
-  return isSuccess ? (
+  return isSuccess && pinned_tweet ? (
     <div className={styles.container}>
       <div className={styles.pin}>
         <span className={styles.icon}>

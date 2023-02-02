@@ -19,8 +19,8 @@ export const usePinTweet = () => {
       return action === "pin" ? pinTweet(tweetId, userId) : unpinTweet(userId);
     },
     {
-      onSuccess: (userId) => {
-        queryClient.invalidateQueries(["users", userId]);
+      onSuccess: () => {
+        queryClient.invalidateQueries(["tweets"]);
       },
       onError: () => {
         console.log("error");
