@@ -5,10 +5,12 @@ import { usePathname } from "next/navigation";
 
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
+import { Connect } from "@/features/connect";
 import { Tweet } from "@/features/tweets";
 
 import { useUserTweetsWithReplies } from "../hooks/use-user-tweets-with-replies";
 
+import { PinnedTweet } from "./pinned-tweet";
 import styles from "./styles/profile-tweets-and-replies.module.scss";
 
 export const ProfileTweetsAndReplies = () => {
@@ -41,6 +43,8 @@ export const ProfileTweetsAndReplies = () => {
 
   return (
     <div className={styles.container}>
+      <PinnedTweet userId={id} />
+
       {isSuccess && tweets?.length === 0 && (
         <div className={styles.noTweets}>
           {tweets[0]?.author?.id === session?.user?.id ? (
@@ -71,6 +75,8 @@ export const ProfileTweetsAndReplies = () => {
           })}
         </div>
       )}
+
+      <Connect />
     </div>
   );
 };

@@ -1,22 +1,21 @@
 "use client";
 
-import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
 
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
+import { Connect } from "@/features/connect";
 import { Tweet } from "@/features/tweets";
 import { ITweet } from "@/features/tweets";
 
 import { useUserTweets } from "../hooks/use-user-tweets";
 
+import { PinnedTweet } from "./pinned-tweet";
 import styles from "./styles/profile-tweets.module.scss";
 
 export const ProfileTweets = () => {
   const pathname = usePathname();
   const id = pathname?.split("/")[1];
-
-  // const { data: user, isLoading, isError, isSuccess } = useUser(id);
 
   const { data: tweets, isLoading, isError, isSuccess } = useUserTweets(id);
 
@@ -56,9 +55,7 @@ export const ProfileTweets = () => {
         </div>
       )} */}
 
-      {/* {isSuccess && user?.pinned_tweet && (
-        <PinnedTweet pinned_tweet={user?.pinned_tweet} />
-      )} */}
+      <PinnedTweet userId={id} />
 
       {isSuccess && tweets?.length > 0 && (
         <div className={styles.tweets}>
@@ -69,6 +66,8 @@ export const ProfileTweets = () => {
               </div>
             );
           })}
+
+          <Connect />
         </div>
       )}
     </div>

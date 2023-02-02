@@ -43,7 +43,6 @@ export const useCreateTweet = ({
     },
     {
       onSuccess: () => {
-        console.log("success");
         queryClient.invalidateQueries(["tweets"]);
         queryClient.invalidateQueries(["hashtags"]);
       },

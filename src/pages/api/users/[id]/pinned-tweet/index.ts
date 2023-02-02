@@ -15,17 +15,13 @@ export default async function UserTweets(
             id: req.query.id as string,
           },
         })
-        .tweets({
+        .pinned_tweet({
           include: {
             author: true,
             media: true,
             likes: true,
             retweets: true,
             comments: true,
-          },
-
-          orderBy: {
-            created_at: "desc",
           },
         });
       res.status(200).json(users);
