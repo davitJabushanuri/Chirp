@@ -1,0 +1,13 @@
+.container {
+  padding-bottom: calc(100vh - 4rem);
+
+  .trends {
+    border-bottom: 1px solid var(--clr-border);
+  }
+
+  .tweets {
+    .tweet {
+      border-bottom: 1px solid var(--clr-border);
+    }
+  }
+}

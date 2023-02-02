@@ -16,7 +16,7 @@
     padding: 0.4rem 0;
 
     .stats {
-      font-size: 0.7rem;
+      font-size: 12px;
       line-height: 1.7;
       color: var(--clr-tertiary);
       display: flex;
@@ -33,7 +33,7 @@
     }
 
     .title {
-      font-size: 0.9rem;
+      font-size: 14px;
       font-weight: 500;
       color: var(--clr-secondary);
     }
@@ -44,7 +44,7 @@
 .options {
   position: relative;
 
-  button {
+  .optionsButton {
     width: 33.5px;
     height: 33.5px;
     border-radius: 50%;

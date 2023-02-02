@@ -5,7 +5,7 @@ import { useHashtags } from "@/features/explore";
 import styles from "./styles/trends.module.scss";
 import Trend from "./trend";
 
-export const Trends = () => {
+export const Trends = ({ title = "Trends" }: { title?: string }) => {
   const { data: hashtags, isLoading, isError } = useHashtags();
 
   return (
@@ -20,9 +20,8 @@ export const Trends = () => {
         </div>
       ) : (
         <>
-          <h1>Trends</h1>
-
           <div className={styles.trends}>
+            <h1 className={styles.title}>{title}</h1>
             {hashtags.length > 0 &&
               hashtags?.map((hashtag, index) => {
                 return (
@@ -35,7 +34,6 @@ export const Trends = () => {
                 );
               })}
           </div>
-
           <button className={styles.showMore}>Show more</button>
         </>
       )}

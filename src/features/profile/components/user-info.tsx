@@ -129,7 +129,7 @@ export const UserInfo = ({ user }: { user: IUser }) => {
                   <WebsiteIcon />
                 </span>
                 <span className={styles.text}>
-                  <a href={`${user?.url}`}>{user?.url}</a>
+                  <a href={user?.url}>{user?.url}</a>
                 </span>
               </div>
             )}

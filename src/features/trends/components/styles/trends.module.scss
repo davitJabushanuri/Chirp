@@ -1,16 +1,14 @@
 .container {
-  background-color: var(--clr-trends-background);
-  border-radius: 1rem;
 
   .loading,
   .error {
     padding: 0.4rem;
   }
 
-  h1 {
-    padding: 1rem;
+  .title {
+    padding: 11px 15px;
     color: var(--clr-secondary);
-    font-size: 1.2rem;
+    font-size: 19px;
     font-weight: 700;
   }
 
@@ -21,9 +19,7 @@
     color: var(--clr-primary);
     background-color: transparent;
     cursor: pointer;
-    text-align: left;
-    font-size: 0.9rem;
-    border-radius: 0 0 1rem 1rem;
+    font-size: 14px;
 
     &:hover {
       background-color: var(--clr-trends-hover);

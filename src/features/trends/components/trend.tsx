@@ -33,7 +33,10 @@ const TrendOptions = () => {
 
   return (
     <div className={styles.options}>
-      <button onClick={() => setIsModalOpen(true)}>
+      <button
+        className={styles.optionsButton}
+        onClick={() => setIsModalOpen(true)}
+      >
         <DotIcon />
       </button>
       {isModalOpen && (
