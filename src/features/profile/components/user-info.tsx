@@ -4,6 +4,7 @@
 "use client";
 import dayjs from "dayjs";
 import { useSession } from "next-auth/react";
+import { usePathname, useRouter } from "next/navigation";
 
 import { DotIcon } from "@/assets/dot-icon";
 import { LocationIcon } from "@/assets/location-icon";
@@ -24,6 +25,9 @@ import styles from "./styles/user-info.module.scss";
 
 export const UserInfo = ({ user }: { user: IUser }) => {
   const { data: session } = useSession();
+  const router = useRouter();
+  const pathname = usePathname();
+
   const isFollowing = user?.followers?.some(
     (follower) => follower?.follower_id === session?.user?.id,
   );
@@ -143,14 +147,20 @@ export const UserInfo = ({ user }: { user: IUser }) => {
           </div>
 
           <div className={styles.stats}>
-            <div className={styles.stat}>
-              <span className={styles.number}>{user?.friends_count}</span>
+            <button
+              onClick={() => router.push(`${pathname}/following`)}
+              className={styles.stat}
+            >
+              <span className={styles.number}>{user?.following?.length}</span>
               <span className={styles.text}>Following</span>
-            </div>
-            <div className={styles.stat}>
-              <span className={styles.number}>{user?.followers_count}</span>
+            </button>
+            <button
+              onClick={() => router.push(`${pathname}/followers`)}
+              className={styles.stat}
+            >
+              <span className={styles.number}>{user?.followers?.length}</span>
               <span className={styles.text}>Followers</span>
-            </div>
+            </button>
           </div>
         </div>
       </div>

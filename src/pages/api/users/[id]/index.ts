@@ -10,6 +10,7 @@ export default async function User(req: NextApiRequest, res: NextApiResponse) {
         where: {
           id: req.query.id as string,
         },
+
         include: {
           followers: {
             include: {

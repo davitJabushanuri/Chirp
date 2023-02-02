@@ -125,33 +125,40 @@
         object-fit: cover;
       }
 
-      .chooseBanner {
+      .actions {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        cursor: pointer;
         display: flex;
-        justify-content: center;
-        align-items: center;
-        transition: all 0.15s ease-in-out;
-
-        &:hover {
-          background-color: var(--clr-trends-hover);
-        }
-
-        &:active {
-          background-color: var(--clr-trends-active);
-        }
+        gap: 1rem;
 
 
-        svg {
-          width: 21px;
-          height: 21px;
-          fill: var(--clr-secondary);
+        button {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          cursor: pointer;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          transition: all 0.15s ease-in-out;
+          background-color: var(--clr-action);
+
+          &:hover {
+            background-color: var(--clr-action-hover);
+          }
+
+          &:active {
+            background-color: var(--clr-action-active);
+          }
+
+
+          svg {
+            width: 21px;
+            height: 21px;
+            fill: var(--clr-secondary);
+          }
         }
       }
 
@@ -194,14 +201,14 @@
         justify-content: center;
         align-items: center;
         transition: all 0.15s ease-in-out;
-        background-color: var(--clr-border);
+        background-color: var(--clr-action);
 
         &:hover {
-          background-color: var(--clr-trends-hover);
+          background-color: var(--clr-action-hover);
         }
 
         &:active {
-          background-color: var(--clr-trends-active);
+          background-color: var(--clr-action-active);
         }
 
         svg {

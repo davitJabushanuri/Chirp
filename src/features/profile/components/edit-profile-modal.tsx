@@ -104,12 +104,8 @@ export const EditProfileModal = ({ user }: { user: IUser }) => {
         </div>
 
         <div className={styles.banner}>
-          {profile?.banner?.file ? (
+          {profile?.banner?.url && (
             <img src={profile?.banner?.url} alt="banner" />
-          ) : (
-            user?.profile_banner_url && (
-              <img src={user.profile_banner_url} alt="banner" />
-            )
           )}
 
           <input
@@ -119,12 +115,28 @@ export const EditProfileModal = ({ user }: { user: IUser }) => {
             ref={bannerInputRef}
             onChange={(e) => chooseImage(e, "banner")}
           />
-          <button
-            onClick={() => bannerInputRef.current?.click()}
-            className={styles.chooseBanner}
-          >
-            <CameraIcon />
-          </button>
+          <div className={styles.actions}>
+            <button
+              onClick={() => bannerInputRef.current?.click()}
+              className={styles.chooseBanner}
+            >
+              <CameraIcon />
+            </button>
+
+            {profile?.banner?.url && (
+              <button
+                onClick={() => {
+                  setProfile({
+                    ...profile,
+                    banner: { url: "", file: undefined },
+                  });
+                }}
+                className={styles.removeBanner}
+              >
+                <CloseIcon />
+              </button>
+            )}
+          </div>
         </div>
 
         <div className={styles.avatar}>
