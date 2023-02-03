@@ -32,6 +32,7 @@ export const postMedia = async ({
           tweet_id: tweetId,
           media_url: mediaUrl?.publicUrl,
           media_type: "image",
+          media_path: `image-${imagePath}`,
         });
       }
     });

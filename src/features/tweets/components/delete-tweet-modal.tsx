@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import { useDisableBodyScroll } from "@/hooks";
 
+import { deleteMedia } from "../api/delete-media";
 import { useDeleteTweet } from "../hooks/use-delete-tweet";
 import { ITweet } from "../types";
 
@@ -42,6 +43,8 @@ export const DeleteTweetModal = ({
               tweetId: tweet?.id,
             });
             setIsDeleteModalOpen(false);
+            if (tweet?.media?.length)
+              deleteMedia(tweet?.media?.map((m) => m.media_path));
           }}
           className={styles.delete}
         >

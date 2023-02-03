@@ -45,6 +45,7 @@ export interface ILike {
 
 export interface IMedia {
   id: string;
+  media_path: string;
   media_url: string;
   media_type: string;
   tweet_id: string;

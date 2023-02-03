@@ -123,6 +123,7 @@ model Media {
   id         String @id @default(cuid())
   media_url  String
   media_type String
+  media_path String
   tweet      Tweet  @relation(fields: [tweet_id], references: [id], onDelete: Cascade)
   tweet_id   String
 }

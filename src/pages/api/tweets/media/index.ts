@@ -4,15 +4,16 @@ import { prisma } from "@/lib/prisma";
 
 export default async function Media(req: NextApiRequest, res: NextApiResponse) {
   const { method } = req;
-  const { tweet_id, media_url, media_type } = req.body;
+  const { tweet_id, media_url, media_type, media_path } = req.body;
 
   if (method === "POST") {
     try {
       const media = await prisma.media.create({
         data: {
-          tweet_id: tweet_id as string,
-          media_url: media_url as string,
-          media_type: media_type as string,
+          tweet_id: tweet_id,
+          media_url: media_url,
+          media_type: media_type,
+          media_path: media_path,
         },
       });
       res.status(200).json(media);
