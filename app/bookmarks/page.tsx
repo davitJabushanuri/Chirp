@@ -1,17 +1,40 @@
 "use client";
+import { useSession } from "next-auth/react";
 
+import { LoadingSpinner } from "@/components/elements/loading-spinner";
+import { TryAgain } from "@/components/elements/try-again";
 import { BookmarksHeader } from "@/components/layout/header";
-import { Bookmarks } from "@/features/bookmarks";
+import { Bookmarks, useGetBookmarks } from "@/features/bookmarks";
 
 import styles from "./styles/bookmarks.module.scss";
 
 const BookmarksPage = () => {
+  const { data: session } = useSession();
+
+  const {
+    data: bookmarks,
+    isLoading,
+    isError,
+  } = useGetBookmarks(session?.user?.id);
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+
+  if (isError) {
+    return <TryAgain />;
+  }
+
   return (
     <div className={styles.container}>
-      <BookmarksHeader />
+      <BookmarksHeader
+        hasBookmarks={bookmarks?.length > 0}
+        username={session?.user?.email?.split("@")[0]}
+        userId={session?.user?.id}
+      />
 
       <div className={styles.bookmarks}>
-        <Bookmarks />
+        <Bookmarks bookmarks={bookmarks} />
       </div>
     </div>
   );
