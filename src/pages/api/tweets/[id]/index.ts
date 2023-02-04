@@ -60,6 +60,7 @@ export default async function Tweet(req: NextApiRequest, res: NextApiResponse) {
               created_at: "desc",
             },
           },
+          bookmarks: true,
         },
       });
       res.status(200).json(tweet);

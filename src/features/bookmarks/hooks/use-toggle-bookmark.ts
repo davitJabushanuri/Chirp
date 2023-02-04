@@ -3,13 +3,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AddToBookmarks } from "../api/add-to-bookmarks";
 import { RemoveFromBookmarks } from "../api/remove-from-bookmarks";
 
-export const useBookmark = ({
-  tweetAuthorId,
-  sessionOwnerId,
-}: {
-  tweetAuthorId: string | undefined;
-  sessionOwnerId: string | undefined;
-}) => {
+export const useToggleBookmark = () => {
   const queryClient = useQueryClient();
 
   return useMutation(
@@ -30,10 +24,8 @@ export const useBookmark = ({
     },
     {
       onSuccess: () => {
+        queryClient.invalidateQueries(["bookmarks"]);
         queryClient.invalidateQueries(["tweets"]);
-        queryClient.invalidateQueries(["users", sessionOwnerId]);
-        if (sessionOwnerId !== tweetAuthorId)
-          queryClient.invalidateQueries(["users", tweetAuthorId]);
       },
       onError: () => {
         console.log("error");

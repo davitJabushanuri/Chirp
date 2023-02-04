@@ -24,6 +24,7 @@ export default async function UserLikes(
                 likes: true,
                 retweets: true,
                 comments: true,
+                bookmarks: true,
               },
             },
           },

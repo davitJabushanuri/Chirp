@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { MessageIcon } from "@/assets/message-icon";
 import { Action, ActionsModal } from "@/components/elements/actions-modal";
 import { BASE_URL } from "@/config";
+import { useToggleBookmark } from "@/features/bookmarks";
 
 import {
   AddToBookmarksIcon,
@@ -13,7 +14,6 @@ import {
 } from "../../assets/bookmark-icon";
 import { CopyLinkIcon } from "../../assets/copy-link-icon";
 import { ShareIcon } from "../../assets/share-icon";
-import { useBookmark } from "../../hooks/use-bookmark";
 import { ITweet } from "../../types";
 
 import styles from "./styles/actions.module.scss";
@@ -31,10 +31,7 @@ export const ShareButton = ({ tweet }: { tweet: ITweet }) => {
     (bookmark) => bookmark?.user_id === session?.user?.id,
   );
 
-  const mutation = useBookmark({
-    tweetAuthorId: tweet?.author?.id,
-    sessionOwnerId: session?.user?.id,
-  });
+  const mutation = useToggleBookmark();
 
   return (
     <div className={styles.container}>

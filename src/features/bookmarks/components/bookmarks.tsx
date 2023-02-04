@@ -6,6 +6,7 @@ import { Tweet } from "@/features/tweets";
 
 import { useGetBookmarks } from "../hooks/use-get-bookmarks";
 
+import { NoBookmarks } from "./no-bookmarks";
 import styles from "./styles/bookmarks.module.scss";
 
 export const Bookmarks = () => {
@@ -27,13 +28,17 @@ export const Bookmarks = () => {
 
   return (
     <div className={styles.container}>
-      {bookmarks?.map((bookmark) => {
-        return (
-          <div key={bookmark.id} className={styles.tweetContainer}>
-            <Tweet tweet={bookmark?.tweet} />
-          </div>
-        );
-      })}
+      {bookmarks?.length === 0 ? (
+        <NoBookmarks />
+      ) : (
+        bookmarks?.map((bookmark) => {
+          return (
+            <div key={bookmark.id} className={styles.tweetContainer}>
+              <Tweet tweet={bookmark?.tweet} />
+            </div>
+          );
+        })
+      )}
     </div>
   );
 };
