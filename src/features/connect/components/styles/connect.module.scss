@@ -1,6 +1,4 @@
 .container {
-  background-color: var(--clr-connect-background);
-  border-radius: 1rem;
 
   .loading,
   .error {
@@ -18,14 +16,12 @@
   .showMore {
     width: 100%;
     border: none;
-    padding: 11px 15px;
+    padding: 15px;
     color: var(--clr-primary);
     background-color: transparent;
     cursor: pointer;
     text-align: left;
-    font-size: 0.9rem;
-
-    border-radius: 0 0 1rem 1rem;
+    font-size: 14px;
 
     &:hover {
       background-color: var(--clr-connect-hover);
