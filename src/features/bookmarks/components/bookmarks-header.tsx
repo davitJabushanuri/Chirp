@@ -6,6 +6,8 @@ import { DotIcon } from "@/assets/dot-icon";
 import { Action, ActionsModal } from "@/components/elements/actions-modal";
 import { BackButton } from "@/components/elements/back-button";
 
+import { useDeleteAllBookmarks } from "../hooks/use-delete-all-bookmarks";
+
 import styles from "./styles/bookmarks-header.module.scss";
 
 export const BookmarksHeader = ({
@@ -19,6 +21,8 @@ export const BookmarksHeader = ({
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
+  const mutation = useDeleteAllBookmarks();
 
   return (
     <div className={styles.container}>
@@ -67,7 +71,15 @@ export const BookmarksHeader = ({
                   This can’t be undone and you’ll remove all Tweets you’ve added
                   to your Bookmarks.
                 </p>
-                <button className={styles.clear}>Clear</button>
+                <button
+                  onClick={() => {
+                    mutation.mutate({ userId });
+                    setIsDeleteModalOpen(false);
+                  }}
+                  className={styles.clear}
+                >
+                  Clear
+                </button>
                 <button
                   onClick={() => {
                     setIsDeleteModalOpen(false);

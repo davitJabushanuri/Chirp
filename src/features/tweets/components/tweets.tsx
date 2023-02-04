@@ -19,8 +19,6 @@ export const Tweets = () => {
     return <TryAgain />;
   }
 
-  console.log(tweets);
-
   return (
     <div className={styles.container}>
       {isSuccess &&

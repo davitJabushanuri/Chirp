@@ -1,5 +1,5 @@
 export * from "./components/profile-header";
-export * from "./components/bookmarks-header";
+export * from "../../../features/bookmarks/components/bookmarks-header";
 export * from "./components/explore-heder";
 export * from "./components/home-header";
 export * from "./components/messages-header";

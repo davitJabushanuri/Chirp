@@ -3,8 +3,11 @@ import { useSession } from "next-auth/react";
 
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
-import { BookmarksHeader } from "@/components/layout/header";
-import { Bookmarks, useGetBookmarks } from "@/features/bookmarks";
+import {
+  Bookmarks,
+  BookmarksHeader,
+  useGetBookmarks,
+} from "@/features/bookmarks";
 
 import styles from "./styles/bookmarks.module.scss";
 

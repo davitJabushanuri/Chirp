@@ -37,4 +37,17 @@ export default async function UserLikes(
       res.status(500).json({ error: error.message });
     }
   }
+
+  if (method === "DELETE") {
+    try {
+      await prisma.bookmark.deleteMany({
+        where: {
+          user_id: req.query.id as string,
+        },
+      });
+      res.status(200).json({ message: "Bookmarks deleted" });
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  }
 }
