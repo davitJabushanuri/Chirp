@@ -1,11 +1,12 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useSession } from "next-auth/react";
-import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 import { CloseIcon } from "@/assets/close-icon";
-import Avatar from "@/assets/user_placeholder.png";
+import { useUser } from "@/features/profile";
 import { useHamburger } from "@/stores/use-hamburger";
 
 import { Bookmark } from "../assets/bookmark-icon";
@@ -19,7 +20,9 @@ export const HamburgerMenu = () => {
   const isHamburgerOpen = useHamburger((state) => state.isHamburgerOpen);
   const closeHamburger = useHamburger((state) => state.closeHamburger);
 
+  const router = useRouter();
   const { data: session } = useSession();
+  const { data: user } = useUser(session?.user?.id);
 
   return (
     <div
@@ -37,21 +40,41 @@ export const HamburgerMenu = () => {
 
         <div className={styles.profile}>
           <button className={styles.image}>
-            <Image src={Avatar} alt="user avatar" />
+            <img src={session?.user?.profile_image_url} alt="" />
           </button>
-          <p className={styles.name}>John</p>
-          <span className={styles.username}>@JohnDoe</span>
+          <p className={styles.name}>{session?.user?.name}</p>
+          <span className={styles.username}>
+            @{session?.user?.email?.split("@")[0]}
+          </span>
+          {
+            user && (
+
+           
           <div className={styles.stats}>
-            <span className={styles.following}>
-              <strong>155</strong> Following
+            <span
+              onClick={() => {
+                router.push(`/${session?.user?.id}/following`);
+                closeHamburger();
+              }}
+              className={styles.following}
+            >
+              <strong>{user?.following?.length}</strong> Following
             </span>
-            <span className={styles.followers}>
-              <strong>40</strong> Followers
+            <span
+              onClick={() => {
+                router.push(`/${session?.user?.id}/followers`);
+                closeHamburger();
+              }}
+              className={styles.followers}
+            >
+              <strong>{user?.followers?.length}</strong> Followers
             </span>
             <button className={styles.switchAccount}>
               <PlusIcon />
             </button>
           </div>
+           )
+          }
         </div>
 
         <nav>

@@ -177,10 +177,10 @@ model Message {
 }
 
 model Conversation {
-  id         String    @id @default(cuid())
-  senderId   String
-  receiverId String
-  users      User[]
-  messages   Message[]
-  createdAt  DateTime  @default(now())
+  id          String    @id @default(cuid())
+  sender_id   String
+  receiver_id String
+  users       User[]
+  messages    Message[]
+  created_at  DateTime  @default(now())
 }

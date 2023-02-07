@@ -11,7 +11,7 @@ import { useDeleteAllBookmarks } from "../hooks/use-delete-all-bookmarks";
 import styles from "./styles/bookmarks-header.module.scss";
 
 export const BookmarksHeader = ({
-  hasBookmarks,
+  hasBookmarks = false,
   username,
   userId,
 }: {

@@ -20,25 +20,23 @@ const BookmarksPage = () => {
     isError,
   } = useGetBookmarks(session?.user?.id);
 
-  if (isLoading) {
-    return <LoadingSpinner />;
-  }
-
-  if (isError) {
-    return <TryAgain />;
-  }
-
   return (
     <div className={styles.container}>
       <BookmarksHeader
-        hasBookmarks={bookmarks?.length > 0}
+        hasBookmarks={bookmarks ? bookmarks?.length > 0 : false}
         username={session?.user?.email?.split("@")[0]}
         userId={session?.user?.id}
       />
 
-      <div className={styles.bookmarks}>
-        <Bookmarks bookmarks={bookmarks} />
-      </div>
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : isError ? (
+        <TryAgain />
+      ) : (
+        <div className={styles.bookmarks}>
+          <Bookmarks bookmarks={bookmarks} />
+        </div>
+      )}
     </div>
   );
 };
