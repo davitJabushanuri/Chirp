@@ -8,6 +8,7 @@ export const ExploreHeader = () => {
   return (
     <div className={styles.container}>
       <HamburgerButton />
+
       <div className={styles.search}>
         <Search />
       </div>
