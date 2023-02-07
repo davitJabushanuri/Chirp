@@ -21,16 +21,18 @@
   .container {
     color: var(--clr-secondary);
     fill: var(--clr-secondary);
-    padding: 0.5rem;
+    padding: 8px;
+    display: grid;
+    place-items: center;
     border-radius: 100vmax;
 
     .icon {
-      width: 1.6rem;
-      height: 1.6rem;
+      width: 24.5px;
+      height: 24.5px;
     }
 
     span {
-      font-size: 1.2rem;
+      font-size: 19px;
       display: none;
     }
 
@@ -41,21 +43,22 @@
 
   @include mq("small") {
     .container {
-      padding: 0.7rem;
+      padding: 11px;
     }
   }
 
   @include mq("xx-large") {
-    padding: 0.2rem 0;
+    padding: 4px 0;
+
     .container {
-      padding-right: 1.4rem;
-      padding-left: 0.8rem;
+      padding: 11px;
       display: flex;
       align-items: center;
       justify-content: flex-start;
       gap: 1rem;
       display: flex;
       transition: all 0.2s ease-in-out;
+
       span {
         display: block;
       }
