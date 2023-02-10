@@ -1,51 +1,59 @@
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useSession } from "next-auth/react";
+import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import styles from "./styles/change-username.module.scss";
 
+const usernameSchema = z.object({
+  username: z
+    .string()
+    .min(4, { message: "Your username must be longer than 4 characters." })
+    .max(15, {
+      message: "Your username must be shorter than 15 characters.",
+    }),
+});
+
 export const ChangeUsername = () => {
   const { data: session } = useSession();
 
-  const schema = z.object({
-    username: z
-      .string()
-      .min(4, { message: "Your username must be longer than 4 characters." })
-      .max(15, {
-        message: "Your username must be shorter than 15 characters.",
-      }),
+  type UsernameSchema = z.infer<typeof usernameSchema>;
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<UsernameSchema>({
+    resolver: zodResolver(usernameSchema),
   });
-
-  const handleSubmit = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    const username = e.target.value;
-    console.log(username);
-
-    try {
-      const data = schema.parse({ username });
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Change Username</h1>
       <div className={styles.formContainer}>
-        <form>
+        <form onSubmit={handleSubmit((data) => console.log(data))}>
           <div className={styles.inputContainer}>
-            <label htmlFor="username">
+            <label
+              className={errors.username ? styles.error : ""}
+              htmlFor="username"
+            >
               <input
-                onChange={(e) => handleSubmit(e)}
-                type="text"
-                id="username"
+                defaultValue={session?.user?.username}
+                {...register("username", {
+                  onBlur: (e) => e.target.value.trim(),
+                })}
                 placeholder="Username"
               />
               <span>Username</span>
             </label>
           </div>
+          <span className={styles.errorMessage}>
+            {errors?.username && errors?.username?.message}
+          </span>
 
-          <button className={styles.submit}>Save</button>
+          <button type="submit" className={styles.submit}>
+            Save
+          </button>
         </form>
       </div>
     </div>
