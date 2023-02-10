@@ -7,7 +7,11 @@ export const BackButton = () => {
   const router = useRouter();
 
   return (
-    <button className={styles.container} onClick={() => router.back()}>
+    <button
+      className={styles.container}
+      onClick={() => router.back()}
+      title="Go Back"
+    >
       <LeftArrowIcon />
     </button>
   );

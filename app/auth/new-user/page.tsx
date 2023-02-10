@@ -1,7 +1,11 @@
+"use client";
+
+import { ChangeUsername } from "@/features/auth";
+
 const NewUser = () => {
   return (
     <div>
-      <button>Sign in with Google</button>
+      <ChangeUsername />
     </div>
   );
 };
