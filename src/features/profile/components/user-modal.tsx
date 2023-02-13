@@ -1,5 +1,76 @@
+/* eslint-disable @next/next/no-img-element */
+import { useSession } from "next-auth/react";
+import { usePathname, useRouter } from "next/navigation";
+
+import { FollowButton } from "@/components/elements/follow-button";
+
+import { IUser } from "../types";
+
 import styles from "./styles/user-modal.module.scss";
 
-export const UserModal = () => {
-  return <div className={styles.container}>this is a user modal</div>;
+export const UserModal = ({ user }: { user: IUser }) => {
+  const { data: session } = useSession();
+  const isFollowing = user?.followers?.some(
+    (follower) => follower.id === session?.user?.id,
+  );
+
+  const router = useRouter();
+  const pathname = usePathname();
+
+  return (
+    <div className={styles.container}>
+      <div className={styles.userInfo}>
+        <div className={styles.userImage}>
+          {user?.profile_image_url ? (
+            <img src={user?.profile_image_url} alt="" />
+          ) : (
+            <img src="/user_placeholder.png" alt="" />
+          )}
+        </div>
+
+        <h2 className={styles.name}>{user?.name}</h2>
+        <p className={styles.username}>@{user?.email?.split("@")[0]}</p>
+      </div>
+
+      <div className={styles.follow}>
+        <FollowButton
+          followerId={session?.user?.id}
+          isFollowing={isFollowing}
+          userId={user?.id}
+          username={user?.email?.split("@")[0]}
+        />
+      </div>
+
+      <div className={styles.userDetails}>
+        {user?.description && (
+          <p className={styles.description}>{user?.description}</p>
+        )}
+
+        <div className={styles.stats}>
+          <button
+            onClick={() => router.push(`${pathname}/following`)}
+            className={styles.stat}
+          >
+            <span className={styles.number}>
+              {user?.following?.length || 0}
+            </span>
+            <span className={styles.text}>Following</span>
+          </button>
+          <button
+            onClick={() => router.push(`${pathname}/followers`)}
+            className={styles.stat}
+          >
+            <span className={styles.number}>
+              {user?.followers?.length || 0}
+            </span>
+            <span className={styles.text}>Followers</span>
+          </button>
+        </div>
+
+        <div className={styles.followedBy}>
+          <p className={styles.followedByTitle}>Followed by</p>
+        </div>
+      </div>
+    </div>
+  );
 };

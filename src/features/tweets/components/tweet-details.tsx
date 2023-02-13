@@ -17,6 +17,7 @@ import styles from "./styles/tweet-details.module.scss";
 import { TweetActions } from "./tweet-actions";
 import { TweetCreationDate } from "./tweet-creation-date";
 import { TweetStatistics } from "./tweet-statistics";
+import { UserModal } from "@/features/profile";
 
 export const TweetDetails = () => {
   const router = useRouter();
@@ -59,6 +60,9 @@ export const TweetDetails = () => {
             </button>
           </div>
         )}
+
+        <UserModal user={tweet?.author} />
+
         <div className={styles.tweet}>
           {tweet?.text && <div className={styles.text}>{tweet?.text}</div>}
           {tweet?.media && tweet?.media.length > 0 && (
