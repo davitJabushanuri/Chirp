@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 
 import styles from "./styles/user.module.scss";
 
-export const User = ({
+export const UserAvatar = ({
   userId,
   userImage,
 }: {

@@ -7,7 +7,7 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-import { User } from "@/components/elements/user";
+import { UserAvatar } from "@/features/profile";
 import { useInspectTweetImage } from "@/stores/use-inspect-tweet-images";
 
 import { VerifiedIcon } from "../../../assets/verified-icon";
@@ -35,7 +35,7 @@ export const Tweet = ({ tweet }: { tweet: ITweet }) => {
       className={styles.container}
     >
       <div className={styles.avatar}>
-        <User
+        <UserAvatar
           userId={tweet?.author?.id}
           userImage={tweet?.author?.profile_image_url}
         />

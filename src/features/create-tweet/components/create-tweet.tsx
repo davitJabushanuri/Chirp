@@ -8,7 +8,7 @@ import { useRef, useState } from "react";
 import { CloseIcon } from "@/assets/close-icon";
 import { LocationIcon } from "@/assets/location-icon";
 import { VerifiedIcon } from "@/assets/verified-icon";
-import { User } from "@/components/elements/user";
+import { UserAvatar } from "@/features/profile";
 import { ITweet } from "@/features/tweets";
 import { QuotedTweet } from "@/features/tweets";
 
@@ -78,7 +78,7 @@ export const CreateTweet = ({
       <div className={styles.parentTweet}>
         {parent_tweet && (
           <div className={styles.avatar}>
-            <User
+            <UserAvatar
               userId={parent_tweet?.author?.id}
               userImage={parent_tweet?.author?.profile_image_url}
             />
@@ -131,7 +131,7 @@ export const CreateTweet = ({
       <div
         className={`${styles.container} ${isComment ? styles.hideActions : ""}`}
       >
-        <User
+        <UserAvatar
           userId={session?.user?.id}
           userImage={session?.user?.profile_image_url}
         />

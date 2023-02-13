@@ -6,6 +6,7 @@ import { useState } from "react";
 import { DotIcon } from "@/assets/dot-icon";
 import { SadFaceIcon } from "@/assets/sad-face-icon";
 import { Action, ActionsModal } from "@/components/elements/actions-modal";
+import { useUser } from "@/features/profile";
 import { ITweet } from "@/features/tweets";
 
 import { BlockIcon } from "../assets/block-icon";
@@ -20,7 +21,6 @@ import { usePinTweet } from "../hooks/use-pin-tweet";
 
 import { DeleteTweetModal } from "./delete-tweet-modal";
 import styles from "./styles/tweet-options.module.scss";
-import { useUser } from "@/features/profile";
 
 export const TweetOptions = ({ tweet }: { tweet: ITweet }) => {
   const { data: session } = useSession();

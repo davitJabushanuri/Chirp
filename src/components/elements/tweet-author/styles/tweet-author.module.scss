@@ -4,40 +4,6 @@
   gap: 1rem;
   margin-bottom: 1rem;
 
-  .userInfo {
-    .name {
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-
-      &:hover {
-        text-decoration: underline;
-      }
-
-      .text {
-        font-size: 14px;
-        font-weight: 500;
-        color: var(--clr-secondary);
-      }
-
-      .icon {
-        margin-left: 0.2rem;
-
-        svg {
-          width: 17.5px;
-          height: 17.5px;
-          fill: var(--clr-primary);
-        }
-      }
-    }
-
-    .username {
-      font-size: 14px;
-      color: var(--clr-tertiary);
-      cursor: pointer;
-    }
-  }
-
   .options {
     margin-left: auto;
   }
