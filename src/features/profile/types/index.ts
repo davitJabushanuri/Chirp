@@ -15,7 +15,7 @@ export interface IUser {
   url?: string;
   description?: string;
   protected?: boolean;
-  verified?: boolean;
+  verified: boolean;
   followers_count?: number;
   friends_count?: number;
   favorites_count?: number;

@@ -28,29 +28,6 @@
       align-items: center;
       gap: 0.2rem;
 
-      .name {
-        font-size: 14px;
-        color: var(--clr-secondary);
-        font-weight: 500;
-        cursor: pointer;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-
-        &:hover {
-          text-decoration: underline;
-        }
-      }
-
-      .username {
-        font-size: 14px;
-        color: var(--clr-tertiary);
-        cursor: pointer;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-
       .dot {
         margin-inline: 0.1rem;
         color: var(--clr-tertiary);

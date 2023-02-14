@@ -4,13 +4,16 @@
 /* eslint-disable @next/next/no-img-element */
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-import { UserAvatar } from "@/features/profile";
+import {
+  UserAvatar,
+  UserModalWrapper,
+  UserName,
+  UserScreenName,
+} from "@/features/profile";
 import { useInspectTweetImage } from "@/stores/use-inspect-tweet-images";
 
-import { VerifiedIcon } from "../../../assets/verified-icon";
 import { ITweet } from "../types";
 
 import { QuotedTweet } from "./quoted-tweet";
@@ -35,30 +38,32 @@ export const Tweet = ({ tweet }: { tweet: ITweet }) => {
       className={styles.container}
     >
       <div className={styles.avatar}>
-        <UserAvatar
-          userId={tweet?.author?.id}
-          userImage={tweet?.author?.profile_image_url}
-        />
+        <UserModalWrapper userId={tweet?.author?.id}>
+          <UserAvatar
+            userId={tweet?.author?.id}
+            userImage={tweet?.author?.profile_image_url}
+          />
+        </UserModalWrapper>
       </div>
+
       <div className={styles.content}>
         <div className={styles.header}>
           <div className={styles.user}>
-            <span onClick={(e) => e.stopPropagation()} className={styles.name}>
-              <Link href={`/${tweet?.author?.id}`}>{tweet?.author?.name}</Link>
-            </span>
+            <UserModalWrapper userId={tweet?.author?.id}>
+              <UserName
+                userId={tweet?.author?.id}
+                name={tweet?.author?.name}
+                isVerified={tweet?.author?.verified}
+              />
+            </UserModalWrapper>
 
-            <span className={styles.verified}>
-              {tweet?.author?.verified && <VerifiedIcon />}
-            </span>
+            <UserModalWrapper userId={tweet?.author?.id}>
+              <UserScreenName
+                userId={tweet?.author?.id}
+                screenName={tweet?.author?.email?.split("@")[0]}
+              />
+            </UserModalWrapper>
 
-            <span
-              onClick={(e) => e.stopPropagation()}
-              className={styles.username}
-            >
-              <Link href={`/${tweet?.author?.id}`}>
-                @{tweet?.author?.email?.split("@")[0]}
-              </Link>
-            </span>
             <span className={styles.dot}>·</span>
             <span className={styles.date}>
               {dayjs(tweet?.created_at).format("MMM D")}

@@ -4,7 +4,6 @@
 import { CloseIcon } from "@/assets/close-icon";
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
-import { TweetAuthor } from "@/components/elements/tweet-author";
 import { CreateTweetWrapper } from "@/features/create-tweet";
 import { useDisableBodyScroll } from "@/hooks";
 import { useInspectTweetImage } from "@/stores/use-inspect-tweet-images";
@@ -16,6 +15,7 @@ import { Comments } from "./comments";
 import { ImageCarousel } from "./image-carousel";
 import styles from "./styles/inspect-tweet-image-modal.module.scss";
 import { TweetActions } from "./tweet-actions";
+import { TweetAuthor } from "./tweet-author";
 import { TweetCreationDate } from "./tweet-creation-date";
 import { TweetStatistics } from "./tweet-statistics";
 

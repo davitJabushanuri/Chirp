@@ -15,7 +15,7 @@ export const FollowButton = ({
   username: string;
   userId: string;
   followerId: string;
-  isFollowing: boolean;
+  isFollowing: boolean | undefined;
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [text, setText] = useState<"Following" | "Unfollow">("Following");

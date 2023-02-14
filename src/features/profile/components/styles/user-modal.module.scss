@@ -1,6 +1,7 @@
 .container {
   position: absolute;
-  width: 100%;
+  left: 50%;
+  transform: translate(-50%, 5%);
   max-width: 320px;
   background-color: var(--clr-background);
   padding: 1rem;

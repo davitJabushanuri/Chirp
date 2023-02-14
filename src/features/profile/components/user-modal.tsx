@@ -1,21 +1,26 @@
 /* eslint-disable @next/next/no-img-element */
+
 import { useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
 
 import { FollowButton } from "@/components/elements/follow-button";
 
-import { IUser } from "../types";
+import { useUser } from "../hooks/use-user";
 
 import styles from "./styles/user-modal.module.scss";
 
-export const UserModal = ({ user }: { user: IUser }) => {
+export const UserModal = ({ userId }: { userId: string }) => {
   const { data: session } = useSession();
+  const { data: user } = useUser(userId);
+
   const isFollowing = user?.followers?.some(
     (follower) => follower.id === session?.user?.id,
   );
 
   const router = useRouter();
   const pathname = usePathname();
+
+  if (!user) return null;
 
   return (
     <div className={styles.container}>

@@ -1,25 +1,30 @@
 .container {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-
-  &:hover {
-    text-decoration: underline;
-  }
+  position: relative;
 
   .name {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--clr-secondary);
-  }
 
-  .verified {
-    margin-left: 0.2rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
 
-    svg {
-      width: 17.5px;
-      height: 17.5px;
-      fill: var(--clr-primary);
+    &:hover {
+      text-decoration: underline;
+    }
+
+    .name {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--clr-secondary);
+    }
+
+    .verified {
+      margin-left: 0.2rem;
+
+      svg {
+        width: 17.5px;
+        height: 17.5px;
+        fill: var(--clr-primary);
+      }
     }
   }
 }

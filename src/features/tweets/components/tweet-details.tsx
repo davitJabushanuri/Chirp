@@ -5,8 +5,8 @@ import { usePathname, useRouter } from "next/navigation";
 
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
-import { TweetAuthor } from "@/components/elements/tweet-author";
 import { CreateTweetWrapper } from "@/features/create-tweet";
+import { UserModal } from "@/features/profile";
 import { useInspectTweetImage } from "@/stores/use-inspect-tweet-images";
 
 import { useTweet } from "../hooks/use-tweet";
@@ -15,9 +15,9 @@ import { Comments } from "./comments";
 import { QuotedTweet } from "./quoted-tweet";
 import styles from "./styles/tweet-details.module.scss";
 import { TweetActions } from "./tweet-actions";
+import { TweetAuthor } from "./tweet-author";
 import { TweetCreationDate } from "./tweet-creation-date";
 import { TweetStatistics } from "./tweet-statistics";
-import { UserModal } from "@/features/profile";
 
 export const TweetDetails = () => {
   const router = useRouter();
