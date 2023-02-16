@@ -1,4 +1,6 @@
-import { useState } from "react";
+/* eslint-disable jsx-a11y/mouse-events-have-key-events */
+import { useRef, useState } from "react";
+
 import styles from "./styles/user-modal-wrapper.module.scss";
 import { UserModal } from "./user-modal";
 
@@ -9,23 +11,33 @@ export const UserModalWrapper = ({
   children: React.ReactNode;
   userId: string;
 }) => {
-  const [isUserModalOpen, setIsUserModalOpen] = useState(false);
+  const [showUserModal, setShowUserModal] = useState(false);
+  const timerRef = useRef<any>(null);
+
+  // TODO: refactor this method to show the modal only when the mouse is over the name for more than 1 second
+  const handleNameMouseEnter = () => {
+    timerRef.current = setTimeout(() => {
+      setShowUserModal(true);
+    }, 1000);
+  };
+
+  // TODO: refactor this method to hide the modal only when the mouse is not over the name for more than 1 second
+  const handleNameMouseLeave = () => {
+    setShowUserModal(false);
+    clearTimeout(timerRef.current);
+  };
 
   return (
     <div className={styles.container}>
       <div
-        onMouseEnter={() => {
-          setIsUserModalOpen(true);
-        }}
-        onMouseLeave={() => {
-          setIsUserModalOpen(false);
-        }}
+        onMouseEnter={handleNameMouseEnter}
+        onMouseLeave={handleNameMouseLeave}
         className={styles.childrenWrapper}
       >
         {children}
       </div>
 
-      {isUserModalOpen && <UserModal userId={userId} />}
+      {showUserModal && <UserModal userId={userId} />}
     </div>
   );
 };

@@ -1,5 +1,11 @@
 {
   "typescript.tsdk": "node_modules\\typescript\\lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
-  "cSpell.words": ["commitlint", "hookform", "spammy", "Toastify"]
+  "cSpell.words": [
+    "commitlint",
+    "hookform",
+    "noninteractive",
+    "spammy",
+    "Toastify"
+  ]
 }

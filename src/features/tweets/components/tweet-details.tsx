@@ -1,12 +1,12 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+// /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable @next/next/no-img-element */
 import { usePathname, useRouter } from "next/navigation";
 
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
 import { CreateTweetWrapper } from "@/features/create-tweet";
-import { UserModal } from "@/features/profile";
 import { useInspectTweetImage } from "@/stores/use-inspect-tweet-images";
 
 import { useTweet } from "../hooks/use-tweet";
@@ -60,8 +60,6 @@ export const TweetDetails = () => {
             </button>
           </div>
         )}
-
-        <UserModal user={tweet?.author} />
 
         <div className={styles.tweet}>
           {tweet?.text && <div className={styles.text}>{tweet?.text}</div>}
