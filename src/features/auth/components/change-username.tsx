@@ -39,9 +39,7 @@ export const ChangeUsername = () => {
             >
               <input
                 defaultValue={session?.user?.username}
-                {...register("username", {
-                  onBlur: (e) => e.target.value.trim(),
-                })}
+                {...register("username")}
                 placeholder="Username"
               />
               <span>Username</span>

@@ -79,10 +79,6 @@ export const UserModal = ({ userId }: { userId: string }) => {
             <span className={styles.text}>Followers</span>
           </button>
         </div>
-
-        <div className={styles.followedBy}>
-          <p className={styles.followedByTitle}>Followed by</p>
-        </div>
       </div>
     </div>
   );
