@@ -1,0 +1,33 @@
+.container {
+  height: 100%;
+  display: grid;
+  place-content: center;
+  padding: 30px;
+
+  .content {
+    max-width: 320px;
+
+    h1 {
+      font-size: 29px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    p {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--clr-tertiary);
+      margin-bottom: 30px;
+    }
+
+    button {
+      font-size: 16px;
+      font-weight: 700;
+      background-color: var(--clr-primary);
+      color: var(--clr-white);
+      height: 50px;
+      padding: 0 30px;
+      border-radius: 100vmax;
+    }
+  }
+}
