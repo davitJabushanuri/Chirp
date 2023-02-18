@@ -7,7 +7,8 @@ import { StartNewConversation } from "./start-new-conversation";
 import styles from "./styles/conversations.module.scss";
 
 export const Conversations = () => {
-  const [search, setSearch] = useState<string>("");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [isSearching, setIsSearching] = useState(false);
 
   const hasMessages = true;
 
@@ -33,8 +34,15 @@ export const Conversations = () => {
     <div className={styles.container}>
       {hasMessages ? (
         <>
-          <SearchConversations search={search} setSearch={setSearch} />
-          {search ? (
+          <div>
+            <SearchConversations
+              searchTerm={searchTerm}
+              setSearchTerm={setSearchTerm}
+              isSearching={isSearching}
+              setIsSearching={setIsSearching}
+            />
+          </div>
+          {isSearching ? (
             <div className={styles.searchResults}>
               <SearchResults />
             </div>
