@@ -22,7 +22,10 @@ export const SearchConversations = ({
     <div className={styles.container}>
       {isSearching && (
         <button
-          onClick={() => setIsSearching(false)}
+          onClick={() => {
+            setSearchTerm("");
+            setIsSearching(false);
+          }}
           className={styles.backButton}
         >
           <BackArrowIcon />

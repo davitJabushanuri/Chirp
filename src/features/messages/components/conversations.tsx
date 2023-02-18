@@ -44,7 +44,7 @@ export const Conversations = () => {
           </div>
           {isSearching ? (
             <div className={styles.searchResults}>
-              <SearchResults />
+              <SearchResults searchTerm={searchTerm} />
             </div>
           ) : (
             <div className={styles.conversations}>
