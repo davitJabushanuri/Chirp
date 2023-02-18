@@ -1,7 +1,8 @@
 import { useState } from "react";
 
+import { SearchIcon } from "@/assets/search-icon";
+
 import { SearchCloseIcon } from "../assets/search-close-icon";
-import { SearchIcon } from "../assets/search-icon";
 
 import styles from "./styles/search.module.scss";
 

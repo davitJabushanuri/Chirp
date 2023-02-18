@@ -1,8 +1,8 @@
 .container {
+  margin-top: 1rem;
   height: 100%;
-  display: grid;
-  place-content: center;
-  padding: 30px;
+  display: flex;
+  justify-content: center;
 
   .content {
     max-width: 320px;
@@ -17,7 +17,7 @@
       font-size: 14px;
       font-weight: 400;
       color: var(--clr-tertiary);
-      margin-bottom: 30px;
+      margin-bottom: 27px;
     }
 
     button {
@@ -28,6 +28,16 @@
       height: 50px;
       padding: 0 30px;
       border-radius: 100vmax;
+      cursor: pointer;
+      transition: background-color 0.2s ease-in-out;
+
+      &:hover {
+        background-color: var(--clr-primary-hover);
+      }
+
+      &:active {
+        background-color: var(--clr-primary-active);
+      }
     }
   }
 }
