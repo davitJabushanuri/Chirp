@@ -1,30 +1,25 @@
 .container {
-  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  display: grid;
+  grid-auto-flow: column;
 
   .name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--clr-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
-    display: flex;
-    align-items: center;
-    cursor: pointer;
+  .verified {
+    margin-left: 0.2rem;
 
-    &:hover {
-      text-decoration: underline;
-    }
-
-    .name {
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--clr-secondary);
-    }
-
-    .verified {
-      margin-left: 0.2rem;
-
-      svg {
-        width: 17.5px;
-        height: 17.5px;
-        fill: var(--clr-primary);
-      }
+    svg {
+      width: 17.5px;
+      height: 17.5px;
+      fill: var(--clr-primary);
     }
   }
 }

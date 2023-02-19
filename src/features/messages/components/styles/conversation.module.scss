@@ -1,0 +1,24 @@
+.container {
+  padding: 15px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 11px;
+
+  .info {
+    display: flex;
+    gap: 4px;
+
+    .dot {
+      color: var(--clr-tertiary);
+    }
+
+    .date {
+      font-size: 0.9rem;
+      color: var(--clr-tertiary);
+      cursor: pointer;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}

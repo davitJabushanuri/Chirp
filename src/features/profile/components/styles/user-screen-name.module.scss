@@ -1,5 +1,14 @@
 .container {
-  font-size: 14px;
-  color: var(--clr-tertiary);
+  overflow: hidden;
   cursor: pointer;
+  display: grid;
+  grid-auto-flow: column;
+
+  .username {
+    font-size: 14px;
+    color: var(--clr-tertiary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }

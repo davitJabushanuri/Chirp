@@ -16,19 +16,19 @@ export const UserName = ({
   const router = useRouter();
 
   return (
-    <div className={styles.container}>
-      <button
-        onClick={(e) => {
-          e.stopPropagation();
-          router.push(`/${userId}`);
-        }}
-        className={styles.name}
-      >
-        <span className={styles.name}>{name}</span>
+    <button
+      onClick={(e) => {
+        e.stopPropagation();
+        router.push(`/${userId}`);
+      }}
+      className={styles.container}
+    >
+      <span className={styles.name}>{name}</span>
+      {isVerified && (
         <span className={styles.verified}>
-          {isVerified && <VerifiedIcon />}
+          <VerifiedIcon />
         </span>
-      </button>
-    </div>
+      )}
+    </button>
   );
 };

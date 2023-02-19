@@ -1,4 +1,10 @@
+import { useSession } from "next-auth/react";
 import { useState } from "react";
+
+import { LoadingSpinner } from "@/components/elements/loading-spinner";
+import { TryAgain } from "@/components/elements/try-again";
+
+import { useGetConversations } from "../hooks/useGetConversations";
 
 import { Conversation } from "./conversation";
 import { SearchConversations } from "./search-conversations";
@@ -7,32 +13,25 @@ import { StartNewConversation } from "./start-new-conversation";
 import styles from "./styles/conversations.module.scss";
 
 export const Conversations = () => {
+  const { data: session } = useSession();
   const [searchTerm, setSearchTerm] = useState("");
   const [isSearching, setIsSearching] = useState(false);
 
-  const hasMessages = true;
+  const {
+    data: conversations,
+    isLoading,
+    isError,
+  } = useGetConversations(session?.user?.id);
 
-  const conversations = [
-    {
-      id: 1,
-      name: "John Doe",
-      lastMessage: "Hello",
-      lastMessageTime: "1:00 PM",
-      unreadMessages: 0,
-    },
+  console.log(conversations);
 
-    {
-      id: 2,
-      name: "Jane Doe",
-      lastMessage: "Hello",
-      lastMessageTime: "1:00 PM",
-      unreadMessages: 0,
-    },
-  ];
+  if (isLoading) return <LoadingSpinner />;
+
+  if (isError) return <TryAgain />;
 
   return (
     <div className={styles.container}>
-      {hasMessages ? (
+      {conversations && conversations?.length > 0 ? (
         <>
           <div>
             <SearchConversations
@@ -51,7 +50,7 @@ export const Conversations = () => {
               {conversations.map((conversation) => {
                 return (
                   <div className={styles.conversation} key={conversation.id}>
-                    <Conversation />
+                    <Conversation conversation={conversation} />
                   </div>
                 );
               })}

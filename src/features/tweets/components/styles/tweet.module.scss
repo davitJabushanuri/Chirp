@@ -19,48 +19,31 @@
   .header {
     margin-top: 4px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    gap: 4px;
 
-    .user {
-      display: grid;
-      grid-auto-flow: column;
-      align-items: center;
-      gap: 0.2rem;
+    .dot {
+      margin-inline: 0.1rem;
+      color: var(--clr-tertiary);
+    }
 
-      .dot {
-        margin-inline: 0.1rem;
-        color: var(--clr-tertiary);
+    .date {
+      font-size: 0.9rem;
+      color: var(--clr-tertiary);
+      cursor: pointer;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
 
-      }
-
-      .date {
-        font-size: 0.9rem;
-        color: var(--clr-tertiary);
-        cursor: pointer;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-
-        &:hover {
-          text-decoration: underline;
-        }
-      }
-
-      .verified {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        svg {
-          width: 1rem;
-          height: 1rem;
-          fill: var(--clr-blue);
-          cursor: pointer;
-
-        }
+      &:hover {
+        text-decoration: underline;
       }
     }
+
+    .options {
+      margin-left: auto;
+    }
+
   }
 
   .replying {

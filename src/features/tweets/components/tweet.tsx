@@ -48,27 +48,25 @@ export const Tweet = ({ tweet }: { tweet: ITweet }) => {
 
       <div className={styles.content}>
         <div className={styles.header}>
-          <div className={styles.user}>
-            <UserModalWrapper userId={tweet?.author?.id}>
-              <UserName
-                userId={tweet?.author?.id}
-                name={tweet?.author?.name}
-                isVerified={tweet?.author?.verified}
-              />
-            </UserModalWrapper>
+          <UserModalWrapper userId={tweet?.author?.id}>
+            <UserName
+              userId={tweet?.author?.id}
+              name={tweet?.author?.name}
+              isVerified={tweet?.author?.verified}
+            />
+          </UserModalWrapper>
 
-            <UserModalWrapper userId={tweet?.author?.id}>
-              <UserScreenName
-                userId={tweet?.author?.id}
-                screenName={tweet?.author?.email?.split("@")[0]}
-              />
-            </UserModalWrapper>
+          <UserModalWrapper userId={tweet?.author?.id}>
+            <UserScreenName
+              userId={tweet?.author?.id}
+              screenName={tweet?.author?.email?.split("@")[0]}
+            />
+          </UserModalWrapper>
 
-            <span className={styles.dot}>·</span>
-            <span className={styles.date}>
-              {dayjs(tweet?.created_at).format("MMM D")}
-            </span>
-          </div>
+          <span className={styles.dot}>·</span>
+          <span className={styles.date}>
+            {dayjs(tweet?.created_at).format("MMM D")}
+          </span>
 
           <div className={styles.options}>
             <TweetOptions tweet={tweet} />

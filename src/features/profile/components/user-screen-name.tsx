@@ -6,8 +6,8 @@ export const UserScreenName = ({
   userId,
   screenName,
 }: {
-  userId: string;
-  screenName: string;
+  userId: string | undefined;
+  screenName: string | undefined;
 }) => {
   const router = useRouter();
 
@@ -19,7 +19,7 @@ export const UserScreenName = ({
       }}
       className={styles.container}
     >
-      @{screenName}
+      <span className={styles.username}>@{screenName}</span>
     </button>
   );
 };
