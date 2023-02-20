@@ -23,8 +23,6 @@ export const Conversations = () => {
     isError,
   } = useGetConversations(session?.user?.id);
 
-  console.log(conversations);
-
   if (isLoading) return <LoadingSpinner />;
 
   if (isError) return <TryAgain />;

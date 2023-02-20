@@ -4,7 +4,9 @@ import { useSession } from "next-auth/react";
 import { useState } from "react";
 
 import { DotIcon } from "@/assets/dot-icon";
+import { ReportIcon } from "@/assets/report-icon";
 import { SadFaceIcon } from "@/assets/sad-face-icon";
+import { TrashIcon } from "@/assets/trash-icon";
 import { Action, ActionsModal } from "@/components/elements/actions-modal";
 import { useUser } from "@/features/profile";
 import { ITweet } from "@/features/tweets";
@@ -15,8 +17,6 @@ import { EmbedIcon } from "../assets/embed-icon";
 import { UnfollowIcon } from "../assets/follow-icon";
 import { MuteIcon } from "../assets/mute-icon";
 import { PinIcon } from "../assets/pin-icon";
-import { ReportIcon } from "../assets/report-icon";
-import { TrashIcon } from "../assets/trash-icon";
 import { usePinTweet } from "../hooks/use-pin-tweet";
 
 import { DeleteTweetModal } from "./delete-tweet-modal";

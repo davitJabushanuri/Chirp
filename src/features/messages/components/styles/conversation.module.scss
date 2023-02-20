@@ -1,80 +1,115 @@
 .container {
   position: relative;
-  padding: 8px;
+  padding: 6px;
   display: grid;
   grid-template-columns: auto 1fr;
+  gap: 11px;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
 
   &:hover {
     background-color: var(--clr-tweet-hover);
 
-    .info {
+    .content {
+      .info {
+        .options {
 
-      .options {
-        display: block;
+          .optionsButton {
+            display: flex;
+          }
+        }
       }
     }
   }
 
   .avatar {
-    padding: 7px;
+    padding: 9px 0 9px 9px;
   }
 
-  .info {
-    display: flex;
-    align-items: flex-start;
-    gap: 4px;
-
-    .user {
-      padding: 7px;
+  .content {
+    .info {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 4px;
 
-      .dot {
-        color: var(--clr-tertiary);
+      .user {
+        padding-top: 9px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+
+        .dot {
+          color: var(--clr-tertiary);
+        }
+
+        .date {
+          font-size: 0.9rem;
+          color: var(--clr-tertiary);
+          cursor: pointer;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
       }
 
-      .date {
-        font-size: 0.9rem;
+      .options {
+        position: relative;
+        margin-left: auto;
+        width: 32px;
+        height: 32px;
+
+        .optionsButton {
+          width: 32px;
+          height: 32px;
+          border-radius: 100vmax;
+          cursor: pointer;
+          fill: var(--clr-tertiary);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          transition: all 0.2s ease-in-out;
+          display: none;
+
+          &:hover {
+            background-color: var(--clr-options-hover);
+            fill: var(--clr-blue);
+          }
+
+          &:active {
+            background-color: var(--clr-options-active);
+            fill: var(--clr-blue);
+          }
+
+          svg {
+            width: 17px;
+            height: 17px;
+          }
+        }
+
+        .delete {
+          color: red;
+
+          svg {
+            fill: red;
+          }
+        }
+      }
+
+    }
+
+    .messageContainer {
+      overflow: hidden;
+      display: grid;
+      grid-auto-flow: column;
+      padding-right: 1rem;
+
+      .message {
+        font-size: 14px;
+        font-weight: 400;
         color: var(--clr-tertiary);
-        cursor: pointer;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-      }
-    }
-
-    .options {
-      position: relative;
-      margin-left: auto;
-      display: none;
-
-      .optionsButton {
-        width: 32px;
-        height: 32px;
-        border-radius: 100vmax;
-        cursor: pointer;
-        fill: var(--clr-tertiary);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transition: all 0.2s ease-in-out;
-
-        &:hover {
-          background-color: var(--clr-options-hover);
-          fill: var(--clr-blue);
-        }
-
-        &:active {
-          background-color: var(--clr-options-active);
-          fill: var(--clr-blue);
-        }
-
-        svg {
-          width: 17px;
-          height: 17px;
-        }
       }
     }
   }
