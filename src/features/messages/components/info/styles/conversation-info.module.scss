@@ -1,0 +1,16 @@
+.container {
+  height: 100vh;
+  height: 100dvh;
+
+  .members {
+    border-bottom: 1px solid var(--clr-border);
+
+    .member {
+      padding: 11px 15px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 8px;
+    }
+  }
+}

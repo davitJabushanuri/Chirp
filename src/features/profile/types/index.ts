@@ -10,7 +10,7 @@ export interface IUser {
   image?: string;
   role: string;
   username?: string;
-  screen_name?: string;
+  screen_name: string;
   location?: string;
   url?: string;
   description?: string;
