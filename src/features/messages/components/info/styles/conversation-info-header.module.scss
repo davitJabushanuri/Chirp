@@ -1,0 +1,16 @@
+.container {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-auto-flow: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 8px;
+
+  h1 {
+    font-size: 19px;
+    font-weight: 700;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
