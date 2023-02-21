@@ -1,25 +1,34 @@
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
 
-import { getConversation } from "../api/get-conversation";
-import { IMessage } from "../types";
+import { LoadingSpinner } from "@/components/elements/loading-spinner";
+import { TryAgain } from "@/components/elements/try-again";
 
+import { useGetConversation } from "../hooks/useGetConversation";
+
+import { ConversationHeader } from "./conversation-header";
 import styles from "./styles/messages.module.scss";
 
 export const Messages = () => {
-  const [messages, setMessages] = useState<IMessage[]>([]);
   const pathname = usePathname();
   const id = pathname?.split("/")[2];
 
-  useEffect(() => {
-    const fetchMessages = async () => {
-      const data = await getConversation(id);
+  const { data: conversation, isLoading, isError } = useGetConversation(id);
 
-      setMessages(data);
-    };
+  return (
+    <div className={styles.container}>
+      <ConversationHeader />
 
-    fetchMessages();
-  }, []);
-
-  return <div className={styles.container}></div>;
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : isError ? (
+        <TryAgain />
+      ) : (
+        <div className={styles.conversation}>
+          {conversation?.messages.map((message) => {
+            return <div key={message?.id}>{message?.text}</div>;
+          })}
+        </div>
+      )}
+    </div>
+  );
 };

@@ -1,16 +1,25 @@
-import supabase from "@/utils/supabaseClient";
+import axios from "axios";
 
 export const getConversation = async (id: string | undefined) => {
-  const { data, error } = await supabase
-    .from("Conversation")
-    .select("*")
-    .eq("id", id)
-    .order("created_at", { ascending: true });
-
-  if (error) {
-    console.log(error.message);
-    throw new Error(error.message);
+  try {
+    const { data } = await axios.get(`/api/messages/${id}`);
+    return data;
+  } catch (error: any) {
+    if (error.response) {
+      // The request was made and the server responded with a status code
+      // that falls out of the range of 2xx
+      console.log(error.response.data);
+      console.log(error.response.status);
+      console.log(error.response.headers);
+    } else if (error.request) {
+      // The request was made but no response was received
+      // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+      // http.ClientRequest in node.js
+      console.log(error.request);
+    } else {
+      // Something happened in setting up the request that triggered an Error
+      console.log("Error", error.message);
+    }
+    console.log(error.config);
   }
-
-  return data;
 };

@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 import { prisma } from "@/lib/prisma";
 
-export default async function Tweets(
+export default async function Messages(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {

@@ -8,6 +8,8 @@ import Trend from "./trend";
 export const Trends = ({ title = "Trends" }: { title?: string }) => {
   const { data: hashtags, isLoading, isError } = useHashtags();
 
+  if (hashtags && hashtags?.length <= 0) return null;
+
   return (
     <div className={styles.container}>
       {isLoading ? (
