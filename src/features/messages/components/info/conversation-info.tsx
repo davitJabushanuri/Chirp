@@ -1,5 +1,7 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import { useSession } from "next-auth/react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import { FollowButton } from "@/components/elements/follow-button";
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
@@ -18,10 +20,15 @@ import styles from "./styles/conversation-info.module.scss";
 
 export const ConversationInfo = () => {
   const pathname = usePathname();
+  const router = useRouter();
   const id = pathname?.split("/")[2];
   const { data: session } = useSession();
 
   const { data: conversation, isLoading, isError } = useGetConversation(id);
+
+  const sessionOwner = conversation?.users?.find(
+    (user) => user.id === session?.user.id,
+  );
 
   return (
     <div className={styles.container}>
@@ -36,7 +43,11 @@ export const ConversationInfo = () => {
             ?.filter((member) => member.id !== session?.user.id)
             ?.map((member) => {
               return (
-                <div className={styles.member} key={member.id}>
+                <div
+                  onClick={() => router.push(`/${member?.id}`)}
+                  className={styles.member}
+                  key={member.id}
+                >
                   <UserModalWrapper userId={member?.id}>
                     <UserAvatar
                       userId={member?.id}
@@ -52,13 +63,19 @@ export const ConversationInfo = () => {
                         isVerified={member?.verified}
                       />
                     </UserModalWrapper>
-
-                    <UserModalWrapper userId={member?.id}>
-                      <UserScreenName
-                        userId={member?.id}
-                        screenName={member?.screen_name}
-                      />
-                    </UserModalWrapper>
+                    <div className={styles.username}>
+                      <UserModalWrapper userId={member?.id}>
+                        <UserScreenName
+                          userId={member?.id}
+                          screenName={member?.screen_name}
+                        />
+                      </UserModalWrapper>
+                      {sessionOwner?.followers?.some(
+                        (follower) => follower.follower_id === member?.id,
+                      ) && (
+                        <span className={styles.followsYou}>Follows you</span>
+                      )}
+                    </div>
                   </div>
                   <FollowButton
                     followerId={session?.user?.id}

@@ -4,6 +4,7 @@
 
   .members {
     border-bottom: 1px solid var(--clr-border);
+    padding-bottom: 4px;
 
     .member {
       padding: 11px 15px;
@@ -11,6 +12,27 @@
       grid-template-columns: auto 1fr auto;
       align-items: center;
       gap: 8px;
+      cursor: pointer;
+      transition: background-color 0.2s ease-in-out;
+
+      &:hover {
+        background-color: var(--clr-tweet-hover);
+      }
+
+      .username {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+
+        .followsYou {
+          background-color: var(--clr-trends-hover);
+          padding: 2px 4px;
+          border-radius: 4px;
+          color: var(--clr-tertiary);
+          font-size: 10px;
+          white-space: nowrap;
+        }
+      }
     }
   }
 }

@@ -23,6 +23,7 @@ export default async function Conversation(
           users: {
             include: {
               followers: true,
+              following: true,
             },
           },
         },
