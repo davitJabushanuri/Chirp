@@ -2,7 +2,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import dayjs from "dayjs";
 import { useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
 
@@ -17,11 +16,11 @@ import { FollowButton } from "@/components/elements/follow-button";
 import { useEditProfile } from "@/stores/use-edit-profile";
 import { useInspectImage } from "@/stores/use-inspect-profile-image";
 
-import { CalendarIcon } from "../assets/calendar-icon";
 import { WebsiteIcon } from "../assets/website-icon";
 import { IUser } from "../types";
 
 import styles from "./styles/user-info.module.scss";
+import { UserJoinDate } from "./user-join-date";
 
 export const UserInfo = ({ user }: { user: IUser }) => {
   const { data: session } = useSession();
@@ -134,16 +133,7 @@ export const UserInfo = ({ user }: { user: IUser }) => {
               </div>
             )}
 
-            {user?.created_at && (
-              <div className={styles.joined}>
-                <span className={styles.icon}>
-                  <CalendarIcon />
-                </span>
-                <span className={styles.text}>
-                  Joined {dayjs(user?.created_at).format("MMMM YYYY")}
-                </span>
-              </div>
-            )}
+            {user?.created_at && <UserJoinDate date={user?.created_at} />}
           </div>
 
           <div className={styles.stats}>

@@ -8,6 +8,7 @@ export * from "./components/user-avatar";
 export * from "./components/user-name";
 export * from "./components/user-screen-name";
 export * from "./components/user-modal-wrapper";
+export * from "./components/user-join-date";
 export * from "./types";
 export * from "./hooks/use-follow";
 export * from "./hooks/use-user";

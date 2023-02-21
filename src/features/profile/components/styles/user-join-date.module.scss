@@ -1,0 +1,20 @@
+.container {
+  font-size: 0.875rem;
+  color: var(--clr-tertiary);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0.3rem;
+
+  .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 1.2rem;
+      height: 1.2rem;
+      fill: var(--clr-tertiary);
+    }
+  }
+}

@@ -20,7 +20,11 @@ export default async function Conversation(
               sender: true,
             },
           },
-          users: true,
+          users: {
+            include: {
+              followers: true,
+            },
+          },
         },
       });
       res.status(200).json(tweets);

@@ -1,0 +1,51 @@
+.container {
+  margin: 0 15px;
+  padding: 19px 15px;
+  padding-bottom: 4rem;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  border-bottom: 1px solid var(--clr-border);
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover {
+    background-color: var(--clr-tweet-hover);
+  }
+
+  .avatar {
+    button {
+      width: 61px;
+      height: 61px;
+    }
+  }
+
+  .username {
+    margin-top: 4px
+  }
+
+  .bio {
+    margin-top: 11px;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .stats {
+    margin-top: 11px;
+    color: var(--clr-tertiary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+
+    span {
+      font-size: 13px;
+    }
+  }
+
+  .followersInfo {
+    margin-top: 11px;
+    color: var(--clr-tertiary);
+    font-size: 13px;
+  }
+}

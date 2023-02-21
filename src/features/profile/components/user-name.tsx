@@ -9,9 +9,9 @@ export const UserName = ({
   name,
   isVerified = false,
 }: {
-  userId: string;
-  name: string;
-  isVerified: boolean;
+  userId: string | undefined;
+  name: string | undefined;
+  isVerified: boolean | undefined;
 }) => {
   const router = useRouter();
 

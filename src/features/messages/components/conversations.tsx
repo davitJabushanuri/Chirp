@@ -4,7 +4,7 @@ import { useState } from "react";
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
 
-import { useGetConversations } from "../hooks/useGetConversations";
+import { useGetConversations } from "../hooks/use-get-conversations";
 
 import { Conversation } from "./conversation";
 import { SearchConversations } from "./search-conversations";
