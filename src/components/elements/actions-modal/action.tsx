@@ -9,8 +9,8 @@ export const Action = ({
 }) => {
   return (
     <span className={styles.container}>
-      <span className={styles.icon}>{icon}</span>
-      <span className={styles.text}>{text}</span>
+      {icon && <span className={styles.icon}>{icon}</span>}
+      {text && <span className={styles.text}>{text}</span>}
     </span>
   );
 };

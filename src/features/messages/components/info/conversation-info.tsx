@@ -10,6 +10,7 @@ import { useGetConversation } from "../../hooks/use-get-conversation";
 
 import { ConversationInfoHeader } from "./conversation-info-header";
 import { ConversationMember } from "./conversation-member";
+import { ConversationNotifications } from "./conversation-notifications";
 import styles from "./styles/conversation-info.module.scss";
 
 export const ConversationInfo = () => {
@@ -23,28 +24,49 @@ export const ConversationInfo = () => {
     (user) => user.id === session?.user.id,
   );
 
+  const member = conversation?.users?.filter(
+    (user) => user.id !== session?.user.id,
+  )[0];
+
+  if (isLoading) {
+    return (
+      <>
+        <ConversationInfoHeader />
+        <LoadingSpinner />;
+      </>
+    );
+  }
+
+  if (isError) {
+    return (
+      <>
+        <ConversationInfoHeader />
+        <TryAgain />;
+      </>
+    );
+  }
+
   return (
     <div className={styles.container}>
       <ConversationInfoHeader />
-      {isLoading ? (
-        <LoadingSpinner />
-      ) : isError ? (
-        <TryAgain />
-      ) : (
-        <div className={styles.members}>
-          {conversation?.users
-            ?.filter((member) => member.id !== session?.user.id)
-            ?.map((member) => {
-              return (
-                <ConversationMember
-                  member={member}
-                  sessionOwner={sessionOwner || session?.user}
-                  key={member?.id}
-                />
-              );
-            })}
-        </div>
-      )}
+
+      <div className={styles.members}>
+        {conversation?.users
+          ?.filter((member) => member.id !== session?.user.id)
+          ?.map((member) => {
+            return (
+              <ConversationMember
+                member={member}
+                sessionOwner={sessionOwner || session?.user}
+                key={member?.id}
+              />
+            );
+          })}
+      </div>
+
+      <div className={styles.notifications}>
+        <ConversationNotifications member={member} />
+      </div>
     </div>
   );
 };
