@@ -7,7 +7,7 @@ import { TryAgain } from "@/components/elements/try-again";
 import { useGetConversation } from "../hooks/use-get-conversation";
 
 import { ConversationHeader } from "./conversation-header";
-import { ConversationMember } from "./conversation-member";
+import { ConversationMemberDetails } from "./conversation-member-details";
 import styles from "./styles/messages.module.scss";
 
 export const Messages = () => {
@@ -29,7 +29,7 @@ export const Messages = () => {
         <TryAgain />
       ) : (
         <div className={styles.conversation}>
-          <ConversationMember user={conversationMember} />
+          <ConversationMemberDetails user={conversationMember} />
           {conversation?.messages.map((message) => {
             return <div key={message?.id}>{message?.text}</div>;
           })}

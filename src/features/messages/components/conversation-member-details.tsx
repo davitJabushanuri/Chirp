@@ -10,9 +10,13 @@ import {
   UserScreenName,
 } from "@/features/profile";
 
-import styles from "./styles/conversation-member.module.scss";
+import styles from "./styles/conversation-member-details.module.scss";
 
-export const ConversationMember = ({ user }: { user: IUser | undefined }) => {
+export const ConversationMemberDetails = ({
+  user,
+}: {
+  user: IUser | undefined;
+}) => {
   const router = useRouter();
 
   return (
