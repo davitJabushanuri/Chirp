@@ -8,6 +8,7 @@ import { TryAgain } from "@/components/elements/try-again";
 
 import { useGetConversation } from "../../hooks/use-get-conversation";
 
+import { ConversationActions } from "./conversation-actions";
 import { ConversationInfoHeader } from "./conversation-info-header";
 import { ConversationMember } from "./conversation-member";
 import { ConversationNotifications } from "./conversation-notifications";
@@ -66,6 +67,10 @@ export const ConversationInfo = () => {
 
       <div className={styles.notifications}>
         <ConversationNotifications member={member} />
+      </div>
+
+      <div className={styles.actions}>
+        <ConversationActions member={member} />
       </div>
     </div>
   );
