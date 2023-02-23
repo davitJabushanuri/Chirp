@@ -9,20 +9,17 @@ export default async function Messages(
   const { method, body } = req;
 
   if (method === "POST") {
-    const { conversationId, message } = body;
+    const { text, conversationId, senderId, receiverId } = body;
     try {
-      const Message = await prisma.message.create({
+      await prisma.message.create({
         data: {
-          text: message.text,
-          image: message.image,
+          text: text,
           conversation_id: conversationId,
-          sender_id: message.sender_id,
-          receiver_id: message.receiver_id,
+          sender_id: senderId,
+          receiver_id: receiverId,
         },
       });
-      res
-        .status(200)
-        .json({ Message, message: "Message created successfully" });
+      res.status(200).json({ message: "Message created successfully" });
     } catch (error: any) {
       res.status(500).json({ error: error.message });
     }

@@ -5,7 +5,7 @@ import { IConversation } from "../types";
 
 export const useGetConversation = (id: string | undefined) => {
   return useQuery<IConversation>(
-    ["conversation", id],
+    ["conversations", id],
     async () => {
       return getConversation(id);
     },

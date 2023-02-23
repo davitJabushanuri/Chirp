@@ -1,19 +1,32 @@
 import axios from "axios";
 
-import { IMessage } from "../types";
+import { postMedia } from "@/features/create-tweet";
 
 export const createMessage = async ({
+  text,
+  files,
   conversationId,
-  message,
+  senderId,
+  receiverId,
 }: {
+  text: string;
+  files: File[];
   conversationId: string;
-  message: IMessage;
+  senderId: string;
+  receiverId: string;
 }) => {
   try {
     const { data } = await axios.post(`/api/messages/create`, {
+      text,
       conversationId,
-      message,
+      senderId,
+      receiverId,
     });
+
+    if (files.length > 0) {
+      await postMedia({ files, messageId: data.id, type: `message_id` });
+    }
+
     return data;
   } catch (error: any) {
     if (error.response) {

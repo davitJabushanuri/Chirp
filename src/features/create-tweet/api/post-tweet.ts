@@ -6,15 +6,15 @@ import { postMedia } from "./post-media";
 
 export const postTweet = async ({
   text,
-  userId,
   files,
+  userId,
   in_reply_to_screen_name,
   in_reply_to_status_id,
   quoted_tweet_id,
 }: {
   text: string;
-  userId: string;
   files: File[];
+  userId: string;
   in_reply_to_screen_name?: string | null;
   in_reply_to_status_id?: string | null;
   quoted_tweet_id?: string | null;
@@ -29,7 +29,7 @@ export const postTweet = async ({
     });
 
     if (files.length > 0) {
-      await postMedia({ files, tweetId: data.id, type: `tweet` });
+      await postMedia({ files, tweetId: data.id, type: `tweet_id` });
     }
 
     const hashtags = retrieveHashtagsFromTweet(text);

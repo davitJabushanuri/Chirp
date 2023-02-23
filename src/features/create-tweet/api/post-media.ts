@@ -6,12 +6,12 @@ import supabase from "@/utils/supabaseClient";
 export const postMedia = async ({
   files,
   tweetId,
-  type = `tweet`,
+  type = `tweet_id`,
   messageId,
 }: {
   files: File[];
-  tweetId: string;
-  type: `tweet` | `message`;
+  tweetId?: string;
+  type: `tweet_id` | `message_id`;
   messageId?: string;
 }) => {
   try {
@@ -33,8 +33,7 @@ export const postMedia = async ({
           .getPublicUrl(`image-${imagePath}`);
 
         await axios.post("/api/tweets/media", {
-          tweet_id:
-            type === `tweet` ? tweetId : type === `message` ? messageId : null,
+          [type]: type === `tweet_id` ? tweetId : messageId,
           media_url: mediaUrl?.publicUrl,
           media_type: "image",
           media_path: `image-${imagePath}`,

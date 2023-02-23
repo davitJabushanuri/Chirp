@@ -1,21 +1,29 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { createMessage } from "../api/create-message";
-import { IMessage } from "../types";
 
 export const useCreateMessage = () => {
   const queryClient = useQueryClient();
   return useMutation(
     ({
+      text,
+      files,
       conversationId,
-      message,
+      senderId,
+      receiverId,
     }: {
+      text: string;
+      files: File[];
       conversationId: string;
-      message: IMessage;
+      senderId: string;
+      receiverId: string;
     }) => {
       return createMessage({
+        text,
+        files,
         conversationId,
-        message,
+        senderId,
+        receiverId,
       });
     },
     {
