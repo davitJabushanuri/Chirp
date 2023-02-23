@@ -29,7 +29,7 @@ export const postTweet = async ({
     });
 
     if (files.length > 0) {
-      await postMedia({ files, tweetId: data.id });
+      await postMedia({ files, tweetId: data.id, type: `tweet` });
     }
 
     const hashtags = retrieveHashtagsFromTweet(text);
