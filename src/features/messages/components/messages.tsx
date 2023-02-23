@@ -9,6 +9,7 @@ import { useGetConversation } from "../hooks/use-get-conversation";
 import { ConversationHeader } from "./conversation-header";
 import { ConversationMemberDetails } from "./conversation-member-details";
 import { Message } from "./message";
+import { MessageInput } from "./message-input";
 import styles from "./styles/messages.module.scss";
 
 export const Messages = () => {
@@ -46,6 +47,9 @@ export const Messages = () => {
             return <Message message={message} key={message?.id} />;
           })}
         </div>
+      </div>
+      <div className={styles.input}>
+        <MessageInput />
       </div>
     </div>
   );

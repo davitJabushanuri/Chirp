@@ -12,4 +12,11 @@
       padding: 15px;
     }
   }
+
+  .input {
+    background-color: var(--clr-background);
+    border-top: 1px solid var(--clr-border);
+    padding: 6px 11px 4px;
+    z-index: 99999;
+  }
 }

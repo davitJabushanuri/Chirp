@@ -111,6 +111,7 @@
   --clr-conversation-actions-active: #{$light-conversation-actions-active};
   --clr-conversation-delete-hover: #{$light-conversation-delete-hover};
   --clr-conversation-delete-active: #{$light-conversation-delete-active};
+  --clr-message-input-background: #{$light-message-input-background};
 
 }
 
@@ -176,6 +177,7 @@
   --clr-conversation-actions-active: #{$dark-conversation-actions-active};
   --clr-conversation-delete-hover: #{$dark-conversation-delete-hover};
   --clr-conversation-delete-active: #{$dark-conversation-delete-active};
+  --clr-message-input-background: #{$dark-message-input-background};
 }
 
 .theme-dim {
@@ -240,6 +242,7 @@
   --clr-conversation-actions-active: #{$dim-conversation-actions-active};
   --clr-conversation-delete-hover: #{$dim-conversation-delete-hover};
   --clr-conversation-delete-active: #{$dim-conversation-delete-active};
+  --clr-message-input-background: #{$dim-message-input-background};
 }
 
 // PRIMARY COLORS

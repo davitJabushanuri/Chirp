@@ -6,15 +6,15 @@ import { useSession } from "next-auth/react";
 import { useRef, useState } from "react";
 
 import { CloseIcon } from "@/assets/close-icon";
+import { EmojiIcon } from "@/assets/emoji-icon";
+import { GifIcon } from "@/assets/gif-icon";
+import { ImageIcon } from "@/assets/image-icon";
 import { LocationIcon } from "@/assets/location-icon";
 import { VerifiedIcon } from "@/assets/verified-icon";
 import { UserAvatar } from "@/features/profile";
 import { ITweet } from "@/features/tweets";
 import { QuotedTweet } from "@/features/tweets";
 
-import { EmojiIcon } from "../assets/emoji-icon";
-import { GifIcon } from "../assets/gif-icon";
-import { ImageIcon } from "../assets/image-icon";
 import { PollIcon } from "../assets/poll-icon";
 import { ScheduleIcon } from "../assets/schedule-icon";
 import { useCreateTweet } from "../hooks/use-create-tweet";

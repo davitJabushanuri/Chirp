@@ -1,0 +1,49 @@
+.container {
+  background-color: var(--clr-message-input-background);
+  border-radius: 12px;
+  padding: 4px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+
+  button {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: var(--clr-primary-background);
+    }
+
+    svg {
+      width: 19px;
+      height: 19px;
+      fill: var(--clr-primary);
+    }
+  }
+
+  .actions {
+    display: flex;
+    align-items: center;
+  }
+
+  .input {
+    input {
+      width: 100%;
+      padding: 4px 11px;
+      font-size: 14px;
+
+      &::placeholder {
+        color: var(--clr-tertiary);
+      }
+    }
+  }
+
+  .send {
+    margin-left: auto;
+  }
+}
