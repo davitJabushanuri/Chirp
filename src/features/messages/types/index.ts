@@ -1,9 +1,11 @@
 import { IUser } from "@/features/profile";
+import { IMedia } from "@/features/tweets";
 
 export interface IMessage {
   id: string;
   text: string;
   image: string;
+  media: IMedia;
   created_at: string;
   sender: IUser;
   sender_id: string;

@@ -120,12 +120,14 @@ model Tweet {
 }
 
 model Media {
-  id         String @id @default(cuid())
+  id         String   @id @default(cuid())
   media_url  String
   media_type String
   media_path String
-  tweet      Tweet  @relation(fields: [tweet_id], references: [id], onDelete: Cascade)
-  tweet_id   String
+  tweet      Tweet?   @relation(fields: [tweet_id], references: [id], onDelete: Cascade)
+  tweet_id   String?
+  Message    Message? @relation(fields: [messageId], references: [id])
+  messageId  String?
 }
 
 model Like {
@@ -174,6 +176,7 @@ model Message {
   receiver_id     String
   conversation    Conversation @relation(fields: [conversation_id], references: [id])
   conversation_id String
+  media           Media[]
 }
 
 model Conversation {
