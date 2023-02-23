@@ -4,7 +4,7 @@ export interface IMessage {
   id: string;
   text: string;
   image: string;
-  created_at: Date;
+  created_at: string;
   sender: IUser;
   sender_id: string;
   receiver: IUser;

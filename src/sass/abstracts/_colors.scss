@@ -57,6 +57,12 @@ $light-signout-logout-active: #3F4347;
 $light-signout-cancel-hover: #E7E7E8;
 $light-signout-cancel-active: #CFD0D1;
 
+$light-message-background: #EFF3F4;
+$light-conversation-actions-hover: #E8F5FD;
+$light-conversation-actions-active: #D2EBFC;
+$light-conversation-delete-hover: #FEE8EA;
+$light-conversation-delete-active: #FDD3D5;
+
 ////////////////////////////////////////
 // DARK THEME
 ////////////////////////////////////////
@@ -117,6 +123,12 @@ $dark-signout-logout-active: #BFC2C3;
 $dark-signout-cancel-hover: #181919;
 $dark-signout-cancel-active: #303131;
 
+$dark-message-background: #2F3336;
+$dark-conversation-actions-hover: #031018;
+$dark-conversation-actions-active: #061F30;
+$dark-conversation-delete-hover: #190305;
+$dark-conversation-delete-active: #310709;
+
 ////////////////////////////////////////
 // DIM THEME
 ////////////////////////////////////////
@@ -176,6 +188,12 @@ $dim-signout-logout-hover: #D7DBDC;
 $dim-signout-logout-active: #BFC2C3;
 $dim-signout-cancel-hover: #2B3640;
 $dim-signout-cancel-active: #414B53;
+
+$dim-message-background: #3D5466;
+$dim-conversation-actions-hover: #162D3F;
+$dim-conversation-actions-active: #173952;
+$dim-conversation-delete-hover: #2C202C;
+$dim-conversation-delete-active: #42212B;
 
 ////////////////////////////////////////
 // COLORS

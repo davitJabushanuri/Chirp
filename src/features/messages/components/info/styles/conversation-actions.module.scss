@@ -13,7 +13,11 @@
     transition: background-color 0.2s ease-in-out;
 
     &:hover {
-      background-color: var(--clr-primary-background);
+      background-color: var(--clr-conversation-actions-hover);
+    }
+
+    &:active {
+      background-color: var(--clr-conversation-actions-active);
     }
   }
 
@@ -21,8 +25,11 @@
     color: var(--clr-red);
 
     &:hover {
-      background-color: #2C202C;
+      background-color: var(--clr-conversation-delete-hover);
+    }
 
+    &:active {
+      background-color: var(--clr-conversation-delete-active);
     }
   }
 }

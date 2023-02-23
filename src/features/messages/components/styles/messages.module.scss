@@ -1,1 +1,15 @@
-.container {}
+.container {
+  height: 100vh;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+
+  .conversation {
+    overflow-y: auto;
+    scroll-behavior: smooth;
+
+    .messages {
+      padding: 15px;
+    }
+  }
+}

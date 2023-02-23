@@ -8,6 +8,7 @@ import { useGetConversation } from "../hooks/use-get-conversation";
 
 import { ConversationHeader } from "./conversation-header";
 import { ConversationMemberDetails } from "./conversation-member-details";
+import { Message } from "./message";
 import styles from "./styles/messages.module.scss";
 
 export const Messages = () => {
@@ -19,22 +20,33 @@ export const Messages = () => {
     (user) => user?.id !== session?.user?.id,
   )[0];
 
+  if (isLoading)
+    return (
+      <>
+        <ConversationHeader />
+        <LoadingSpinner />
+      </>
+    );
+
+  if (isError)
+    return (
+      <>
+        <ConversationHeader />
+        <TryAgain />
+      </>
+    );
+
   return (
     <div className={styles.container}>
       <ConversationHeader />
-
-      {isLoading ? (
-        <LoadingSpinner />
-      ) : isError ? (
-        <TryAgain />
-      ) : (
-        <div className={styles.conversation}>
-          <ConversationMemberDetails user={conversationMember} />
+      <div className={styles.conversation}>
+        <ConversationMemberDetails user={conversationMember} />
+        <div className={styles.messages}>
           {conversation?.messages.map((message) => {
-            return <div key={message?.id}>{message?.text}</div>;
+            return <Message message={message} key={message?.id} />;
           })}
         </div>
-      )}
+      </div>
     </div>
   );
 };
