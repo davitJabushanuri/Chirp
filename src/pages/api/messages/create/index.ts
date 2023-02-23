@@ -11,7 +11,7 @@ export default async function Messages(
   if (method === "POST") {
     const { text, conversationId, senderId, receiverId } = body;
     try {
-      await prisma.message.create({
+      const message = await prisma.message.create({
         data: {
           text: text,
           conversation_id: conversationId,
@@ -19,7 +19,7 @@ export default async function Messages(
           receiver_id: receiverId,
         },
       });
-      res.status(200).json({ message: "Message created successfully" });
+      res.status(200).json(message);
     } catch (error: any) {
       res.status(500).json({ error: error.message });
     }

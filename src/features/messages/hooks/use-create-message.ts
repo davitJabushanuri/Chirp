@@ -12,11 +12,11 @@ export const useCreateMessage = () => {
       senderId,
       receiverId,
     }: {
-      text: string;
+      text: string | null;
       files: File[];
-      conversationId: string;
-      senderId: string;
-      receiverId: string;
+      conversationId: string | undefined;
+      senderId: string | undefined;
+      receiverId: string | undefined;
     }) => {
       return createMessage({
         text,
@@ -28,7 +28,7 @@ export const useCreateMessage = () => {
     },
     {
       onSuccess: () => {
-        queryClient.invalidateQueries(["messages"]);
+        queryClient.invalidateQueries(["conversations"]);
       },
     },
   );

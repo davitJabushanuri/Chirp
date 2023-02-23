@@ -5,7 +5,7 @@ export interface IMessage {
   id: string;
   text: string;
   image: string;
-  media: IMedia;
+  media: IMedia[];
   created_at: string;
   sender: IUser;
   sender_id: string;

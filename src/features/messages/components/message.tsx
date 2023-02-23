@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+
 import dayjs from "dayjs";
 import { useSession } from "next-auth/react";
 
@@ -8,13 +9,19 @@ import styles from "./styles/message.module.scss";
 
 export const Message = ({ message }: { message: IMessage }) => {
   const { data: session } = useSession();
-  const isSender = message?.sender_id !== session?.user?.id;
+  const isSender = message?.sender_id === session?.user?.id;
 
   return (
     <div className={`${styles.container} ${isSender ? styles.isSender : ""}`}>
-      {message?.image && (
-        <div className={styles.media}>
-          <img src={message?.image} alt="" />
+      {message?.media?.length > 0 && (
+        <div className={styles.mediaContainer}>
+          {message?.media?.map((media) => {
+            return (
+              <div key={media.id} className={styles.media}>
+                <img src={media?.media_url} alt="" />
+              </div>
+            );
+          })}
         </div>
       )}
 

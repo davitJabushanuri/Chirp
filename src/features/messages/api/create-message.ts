@@ -9,11 +9,11 @@ export const createMessage = async ({
   senderId,
   receiverId,
 }: {
-  text: string;
+  text: string | null;
   files: File[];
-  conversationId: string;
-  senderId: string;
-  receiverId: string;
+  conversationId: string | undefined;
+  senderId: string | undefined;
+  receiverId: string | undefined;
 }) => {
   try {
     const { data } = await axios.post(`/api/messages/create`, {
@@ -22,6 +22,8 @@ export const createMessage = async ({
       senderId,
       receiverId,
     });
+
+    console.log(data);
 
     if (files.length > 0) {
       await postMedia({ files, messageId: data.id, type: `message_id` });

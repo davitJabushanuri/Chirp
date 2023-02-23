@@ -49,7 +49,11 @@ export const Messages = () => {
         </div>
       </div>
       <div className={styles.input}>
-        <MessageInput />
+        <MessageInput
+          conversationId={conversation?.id}
+          senderId={session?.user?.id}
+          receiverId={conversationMember?.id}
+        />
       </div>
     </div>
   );

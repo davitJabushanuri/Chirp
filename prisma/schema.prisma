@@ -126,8 +126,8 @@ model Media {
   media_path String
   tweet      Tweet?   @relation(fields: [tweet_id], references: [id], onDelete: Cascade)
   tweet_id   String?
-  Message    Message? @relation(fields: [messageId], references: [id])
-  messageId  String?
+  Message    Message? @relation(fields: [message_id], references: [id])
+  message_id String?
 }
 
 model Like {

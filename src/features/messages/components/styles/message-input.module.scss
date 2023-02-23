@@ -29,6 +29,10 @@
   .actions {
     display: flex;
     align-items: center;
+
+    .fileInput {
+      display: none;
+    }
   }
 
   .input {

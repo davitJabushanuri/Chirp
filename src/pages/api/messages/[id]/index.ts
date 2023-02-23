@@ -18,6 +18,7 @@ export default async function Conversation(
             include: {
               receiver: true,
               sender: true,
+              media: true,
             },
           },
           users: {
