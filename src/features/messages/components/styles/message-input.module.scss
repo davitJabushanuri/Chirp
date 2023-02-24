@@ -1,53 +1,117 @@
 .container {
   background-color: var(--clr-message-input-background);
-  border-radius: 12px;
+  border-radius: 15px;
   padding: 4px;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
 
-  button {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: grid;
-    place-items: center;
-    transition: background-color 0.2s ease;
+  .mediaPreview {
+    padding: 4px 11px;
 
-    &:hover {
-      background-color: var(--clr-primary-background);
-    }
+    .imageContainer {
+      position: relative;
 
-    svg {
-      width: 19px;
-      height: 19px;
-      fill: var(--clr-primary);
-    }
-  }
+      img {
+        border-radius: 20px;
+        display: block;
+        max-height: 140px;
+        min-width: 140px;
+      }
 
-  .actions {
-    display: flex;
-    align-items: center;
+      .close {
+        position: absolute;
+        top: 0.3rem;
+        left: 0.3rem;
+        width: 30px;
+        height: 30px;
+        z-index: 9999;
+        cursor: pointer;
+        background-color: var(--clr-trends-background);
+        border-radius: 100vmax;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-    .fileInput {
-      display: none;
-    }
-  }
+        &:hover {
+          background-color: var(--clr-trends-hover);
+        }
 
-  .input {
-    input {
-      width: 100%;
-      padding: 4px 11px;
-      font-size: 14px;
+        &:active {
+          background-color: var(--clr-trends-active);
+        }
 
-      &::placeholder {
-        color: var(--clr-tertiary);
+        svg {
+          width: 18px;
+          height: 18px;
+          fill: var(--clr-light);
+        }
       }
     }
   }
 
-  .send {
-    margin-left: auto;
+  .inputContainer {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+
+    button {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      transition: background-color 0.2s ease;
+
+      &:hover {
+        background-color: var(--clr-primary-background);
+      }
+
+      svg {
+        width: 19px;
+        height: 19px;
+        fill: var(--clr-primary);
+      }
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+
+      .fileInput {
+        display: none;
+      }
+    }
+
+    .input {
+      input {
+        width: 100%;
+        padding: 4px 11px;
+        font-size: 14px;
+
+        &::placeholder {
+          color: var(--clr-tertiary);
+        }
+      }
+    }
+
+    .send {
+      margin-left: auto;
+
+      button {
+
+
+        &:disabled {
+          opacity: 0.5;
+          cursor: default;
+
+          &:hover {
+            background-color: transparent;
+          }
+
+          &:active {
+            background-color: transparent;
+          }
+        }
+      }
+    }
   }
 }

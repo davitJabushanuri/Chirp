@@ -1,8 +1,16 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
+import { IChosenImages } from "@/features/create-tweet";
+
 import { createMessage } from "../api/create-message";
 
-export const useCreateMessage = () => {
+export const useCreateMessage = ({
+  setText,
+  setChosenImages,
+}: {
+  setText: (text: string) => void;
+  setChosenImages: (chosenImages: IChosenImages[]) => void;
+}) => {
   const queryClient = useQueryClient();
   return useMutation(
     ({
@@ -29,6 +37,15 @@ export const useCreateMessage = () => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["conversations"]);
+      },
+
+      onError: (error) => {
+        console.log("error", error);
+      },
+
+      onSettled: () => {
+        setText("");
+        setChosenImages([]);
       },
     },
   );
