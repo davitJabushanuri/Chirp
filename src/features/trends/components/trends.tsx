@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
 import { useHashtags } from "@/features/explore";
@@ -36,7 +38,9 @@ export const Trends = ({ title = "Trends" }: { title?: string }) => {
                 );
               })}
           </div>
-          <button className={styles.showMore}>Show more</button>
+          <button className={styles.showMore}>
+            <Link href={`trends`}>Show more</Link>
+          </button>
         </>
       )}
     </div>
