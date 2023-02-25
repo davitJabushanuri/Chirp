@@ -1,4 +1,5 @@
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
@@ -39,7 +40,9 @@ export const Connect = () => {
               })}
           </div>
 
-          <button className={styles.showMore}>Show more</button>
+          <button className={styles.showMore}>
+            <Link href={`/people`}>Show more</Link>
+          </button>
         </>
       )}
     </div>

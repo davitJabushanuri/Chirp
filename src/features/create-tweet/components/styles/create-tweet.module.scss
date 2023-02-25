@@ -4,7 +4,7 @@
   padding: 0 1rem;
   display: grid;
   grid-template-columns: 3rem 1fr;
-  gap: 1rem;
+  gap: 11px;
 
   .avatar {
     display: grid;
@@ -123,139 +123,146 @@
   gap: 1rem;
 
   .tweet {
+    display: block;
 
     .text {
+
       .placeholder {
-        font-size: 1.2rem;
+        font-size: 19px;
         color: var(--clr-tertiary);
         cursor: text;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
       }
 
-      textarea {
-        margin-top: 1rem;
-        resize: none;
+      input {
+        padding: 11px 0;
         width: 100%;
-        height: 3rem;
-        font-size: 1.2rem;
+        font-size: 19px;
         color: var(--clr-secondary);
         border-bottom: 1px solid var(--clr-background);
+
+        &:focus {
+          border-bottom: 1px solid var(--clr-border);
+        }
 
         &::placeholder {
           color: var(--clr-tertiary);
         }
       }
+    }
 
-      .fileInput {
-        display: none;
-      }
+    .fileInput {
+      display: none;
+    }
 
-      .chosenImages {
-        margin-bottom: 11px;
-        display: grid;
+    .chosenImages {
+      margin-bottom: 11px;
+      display: grid;
 
-        .imageContainer {
-          position: relative;
-          max-height: 700px;
-          border-radius: 1rem;
-          overflow: hidden;
+      .imageContainer {
+        position: relative;
+        max-height: 700px;
+        border-radius: 1rem;
+        overflow: hidden;
 
-          img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .close {
+          position: absolute;
+          top: 0.3rem;
+          left: 0.3rem;
+          width: 30px;
+          height: 30px;
+          z-index: 9999;
+          cursor: pointer;
+          background-color: var(--clr-trends-background);
+          border-radius: 100vmax;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          &:hover {
+            background-color: var(--clr-trends-hover);
           }
 
-          .close {
-            position: absolute;
-            top: 0.3rem;
-            left: 0.3rem;
-            width: 30px;
-            height: 30px;
-            z-index: 9999;
-            cursor: pointer;
-            background-color: var(--clr-trends-background);
-            border-radius: 100vmax;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+          &:active {
+            background-color: var(--clr-trends-active);
+          }
 
-            &:hover {
-              background-color: var(--clr-trends-hover);
-            }
-
-            &:active {
-              background-color: var(--clr-trends-active);
-            }
-
-            svg {
-              width: 18px;
-              height: 18px;
-              fill: var(--clr-light);
-            }
+          svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--clr-light);
           }
         }
       }
+    }
 
-      .two {
-        grid-template-columns: 1fr 1fr;
-        gap: 0.6rem;
+    .two {
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
 
-        .imageContainer {
-          aspect-ratio: 0.85 / 1;
-        }
+      .imageContainer {
+        aspect-ratio: 0.85 / 1;
+      }
+    }
+
+    .three {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      grid-template-areas:
+        'first second'
+        'first third';
+      gap: 0.6rem;
+
+      .imageContainer:nth-of-type(1) {
+        grid-area: first;
+        aspect-ratio: 0.85 / 1;
       }
 
-      .three {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
-        grid-template-areas:
-          'first second'
-          'first third';
-        gap: 0.6rem;
-
-        .imageContainer:nth-of-type(1) {
-          grid-area: first;
-          aspect-ratio: 0.85 / 1;
-        }
-
-        .imageContainer:nth-of-type(2) {
-          grid-area: second;
-          aspect-ratio: 1.76 / 1;
-        }
-
-        .imageContainer:nth-of-type(3) {
-          grid-area: third;
-          aspect-ratio: 1.76 / 1;
-        }
+      .imageContainer:nth-of-type(2) {
+        grid-area: second;
+        aspect-ratio: 1.76 / 1;
       }
 
-      .four {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
-        grid-template-areas:
-          'first second'
-          'third fourth';
-        gap: 0.6rem;
+      .imageContainer:nth-of-type(3) {
+        grid-area: third;
+        aspect-ratio: 1.76 / 1;
+      }
+    }
 
-        .imageContainer:nth-of-type(1) {
-          grid-area: first;
-          aspect-ratio: 1.76 / 1;
-        }
+    .four {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      grid-template-areas:
+        'first second'
+        'third fourth';
+      gap: 0.6rem;
 
-        .imageContainer:nth-of-type(2) {
-          grid-area: second;
-          aspect-ratio: 1.76 / 1;
-        }
+      .imageContainer:nth-of-type(1) {
+        grid-area: first;
+        aspect-ratio: 1.76 / 1;
+      }
 
-        .imageContainer:nth-of-type(3) {
-          grid-area: third;
-          aspect-ratio: 1.76 / 1;
-        }
+      .imageContainer:nth-of-type(2) {
+        grid-area: second;
+        aspect-ratio: 1.76 / 1;
+      }
 
-        .imageContainer:nth-of-type(4) {
-          grid-area: fourth;
-          aspect-ratio: 1.76 / 1;
-        }
+      .imageContainer:nth-of-type(3) {
+        grid-area: third;
+        aspect-ratio: 1.76 / 1;
+      }
+
+      .imageContainer:nth-of-type(4) {
+        grid-area: fourth;
+        aspect-ratio: 1.76 / 1;
       }
     }
 
@@ -292,9 +299,12 @@
   .tweetButton {
     background-color: var(--clr-primary);
     border-radius: 100vmax;
-    padding: 0.425rem 1rem;
-    font-size: 0.9rem;
+    width: 72px;
+    height: 34px;
+    font-size: 14px;
     font-weight: 700;
+    display: grid;
+    place-items: center;
     cursor: pointer;
     color: var(--clr-light);
     margin-left: auto;
@@ -310,7 +320,6 @@
     &:disabled {
       opacity: 0.5;
       cursor: default;
-
     }
   }
 

@@ -27,9 +27,11 @@ export const Aside = () => {
               <Trends />
             </div>
           )}
-          <div className={styles.connect}>
-            <Connect />
-          </div>
+          {pathname !== `/people` && (
+            <div className={styles.connect}>
+              <Connect />
+            </div>
+          )}
         </>
       )}
       {!session && (

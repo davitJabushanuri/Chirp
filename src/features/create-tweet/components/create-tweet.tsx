@@ -51,8 +51,11 @@ export const CreateTweet = ({
     setChosenImages,
   });
 
-  const chooseImage = async (event: any) => {
-    const file = event.target.files[0];
+  const chooseImage = async (
+    event: React.ChangeEvent<HTMLInputElement>,
+    setChosenImages: (images: IChosenImages[]) => void,
+  ) => {
+    const file = event?.target?.files?.[0];
 
     // reset file input
     if (imageUploadRef.current) imageUploadRef.current.value = "";
@@ -141,50 +144,50 @@ export const CreateTweet = ({
             {isComment ? (
               <p className={styles.placeholder}>{placeholder}</p>
             ) : (
-              <textarea
+              <input
                 value={text}
                 onChange={(e) => setText(e.target.value)}
                 placeholder={placeholder || "What's happening?"}
               />
             )}
-            <input
-              className={styles.fileInput}
-              type="file"
-              onChange={chooseImage}
-              ref={imageUploadRef}
-            />
-            <div
-              className={`${styles.chosenImages} ${
-                chosenImages.length === 1
-                  ? styles.one
-                  : chosenImages.length === 2
-                  ? styles.two
-                  : chosenImages.length === 3
-                  ? styles.three
-                  : chosenImages.length === 4
-                  ? styles.four
-                  : ""
-              }`}
-            >
-              {chosenImages.map((image) => {
-                return (
-                  <div key={image.id} className={styles.imageContainer}>
-                    <button
-                      onClick={() => {
-                        setChosenImages(
-                          chosenImages.filter((img) => img.id !== image.id),
-                        );
-                      }}
-                      className={styles.close}
-                    >
-                      <CloseIcon />
-                    </button>
-                    <img src={image.url as string} alt="" />
-                  </div>
-                );
-              })}
-              {quoted_tweet && <QuotedTweet tweet={quoted_tweet} />}
-            </div>
+          </div>
+          <input
+            className={styles.fileInput}
+            type="file"
+            onChange={(e) => chooseImage(e, setChosenImages)}
+            ref={imageUploadRef}
+          />
+          <div
+            className={`${styles.chosenImages} ${
+              chosenImages.length === 1
+                ? styles.one
+                : chosenImages.length === 2
+                ? styles.two
+                : chosenImages.length === 3
+                ? styles.three
+                : chosenImages.length === 4
+                ? styles.four
+                : ""
+            }`}
+          >
+            {chosenImages.map((image) => {
+              return (
+                <div key={image.id} className={styles.imageContainer}>
+                  <button
+                    onClick={() => {
+                      setChosenImages(
+                        chosenImages.filter((img) => img.id !== image.id),
+                      );
+                    }}
+                    className={styles.close}
+                  >
+                    <CloseIcon />
+                  </button>
+                  <img src={image.url as string} alt="" />
+                </div>
+              );
+            })}
+            {quoted_tweet && <QuotedTweet tweet={quoted_tweet} />}
           </div>
 
           <div

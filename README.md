@@ -53,7 +53,7 @@ yarn dev
 
 ### Environment Variables
 
-Before running the development server, make sure to create `.env` and `.env.local` files in the root directory of the project and add the required environment variables. You can use the examples provided in the repository as a starting point: [.env.example](https://github.com/davitJabushanuri/Chirp/blob/main/.env.axample) and [.env.local.example.](https://github.com/davitJabushanuri/Chirp/blob/main/.env.local.example)
+Before running the development server, make sure to create `.env` and `.env.local` files in the root directory of the project and add the required environment variables. You can use the examples provided in the repository as a starting point: [.env.example](https://github.com/davitJabushanuri/Chirp/blob/main/.env.axample) and [.env.local.example](https://github.com/davitJabushanuri/Chirp/blob/main/.env.local.example).
 
 ```bash
 cp .env.example .env
@@ -79,7 +79,7 @@ This ensures that the local database is up-to-date with any changes made to the 
 ## Contributing
 
 - Missing something or found a bug? [Report here](https://github.com/davitJabushanuri/Chirp/issues).
-- Want to contribute? Check out our [contribution guide](https://github.com/davitJabushanuri/Chirp/blob/main/CONTRIBUTING.md)
+- Want to contribute? Check out our [contribution guide](https://github.com/davitJabushanuri/Chirp/blob/main/CONTRIBUTING.md).
 
 ## License
 
