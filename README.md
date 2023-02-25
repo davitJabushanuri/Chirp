@@ -42,11 +42,9 @@ Chirp users can:
 - 👥 Discover and follow other users, as well as inspect their profiles and tweets.
 - 📩 Send and receive direct messages
 
-## Quickstart
+### Development workflow
 
-## Development workflow
-
-We use [yarn](https://yarnpkg.com/) as our package manager, so make sure to [install](https://yarnpkg.com/getting-started/install) it first.
+Chirp uses [yarn](https://yarnpkg.com/) as a package manager, so make sure to [install](https://yarnpkg.com/getting-started/install) it first.
 
 ```bash
 git clone git@github.com:davitJabushanuri/Chirp.git
@@ -54,3 +52,30 @@ cd Chirp
 yarn install
 yarn dev
 ```
+
+#### Environment Variables
+
+Before running the development server, make sure to create `.env` and `.env.local` files in the root directory of the project and add the required environment variables. You can use the examples provided in the repository as a starting point: [.env.example](https://github.com/davitJabushanuri/Chirp/blob/main/.env.axample) and [.env.local.example.](https://github.com/davitJabushanuri/Chirp/blob/main/.env.local.example)
+
+```bash
+cp .env.example .env
+cp .env.local.example .env.local
+```
+
+#### Prisma
+
+<!-- format it -->
+
+Chirp uses [Prisma](https://www.prisma.io/) as an ORM to interact with the database. Before running the development server, make sure to generate the Prisma client by running:
+
+```bash
+yarn prisma generate
+```
+
+After generating the Prisma client, make sure to also push any changes to the database schema by running:
+
+```bash
+yarn prisma db push
+```
+
+This ensures that the local database is up-to-date with any changes made to the schema in the codebase.
