@@ -1,34 +1,56 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<a href="https://twitter-v2-sand.vercel.app/" target="_blank" rel="noopener">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="" />
+    <img alt="Chirp" src="" />
+  </picture>
+</a>
 
-## Getting Started
+<div align="center">
+  <h1>Chirp</h1>
+  <h3>A full-stack Twitter clone<br />built with Next.js, React Query,<br /> Prisma, PostgreSQL, and Supabase.</h3>
+  
+  <br />
+  <figure>
+    <img src="" alt="Demo" />
+    <figcaption>
+      <p align="center">
+        Chirp in action
+      </p>
+    </figcaption>
+  </figure>
+</div>
 
-First, run the development server:
+<br />
+
+## Intro
+
+### Features
+
+Chirp users can:
+
+- 📱 View the optimal layout for the interface depending on their device's screen size
+- 🎨 Tailor the interface to their preferences with custom themes and colors
+- 🔑 Sign in with Google
+- 🎨 Customize profile (upload profile and banner images, change name, add description, location, and website)
+- 👀 See what other users are tweeting about and inspect their activity such as likes, retweets, and comments.
+- 📷 Share their moments - create and upload tweets with up to 4 images.
+- 💬 Engage in conversation by replying to tweets
+- ❤️ Give their approval with a like, or take it back
+- 🔄 Retweet and quote tweets - Share a tweet with their followers by retweeting or quote it with their own thoughts and comments.
+- 🔖 Save tweets for later and organize them with bookmarks
+- 🔥 View trending hashtags and create their own by including them in their tweets
+- 👥 Discover and follow other users, as well as inspect their profiles and tweets.
+- 📩 Send and receive direct messages
+
+## Quickstart
+
+## Development workflow
+
+We use [yarn](https://yarnpkg.com/) as our package manager, so make sure to [install](https://yarnpkg.com/getting-started/install) it first.
 
 ```bash
-npm run dev
-# or
+git clone git@github.com:davitJabushanuri/Chirp.git
+cd Chirp
+yarn install
 yarn dev
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
