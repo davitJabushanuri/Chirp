@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import { useNewMessageStore } from "../../stores/use-new-message-store";
 
+import { Contacts } from "./contacts";
 import { NewMessageHeader } from "./new-message-header";
 import { SearchPeople } from "./search-people";
 import styles from "./styles/new-message-modal.module.scss";
@@ -23,7 +24,9 @@ export const NewMessageModal = () => {
         />
 
         {!searchQuery ? (
-          <div className={styles.conversations}>recent</div>
+          <div className={styles.conversations}>
+            <Contacts />
+          </div>
         ) : (
           <div className={styles.searchResults}>searchResults</div>
         )}

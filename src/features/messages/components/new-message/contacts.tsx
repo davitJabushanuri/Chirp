@@ -1,0 +1,36 @@
+import { useSession } from "next-auth/react";
+
+import { useGetConversations } from "../../hooks/use-get-conversations";
+
+import { Contact } from "./contact";
+
+export const Contacts = () => {
+  const { data: session } = useSession();
+
+  const {
+    data: conversations,
+    isLoading,
+    isError,
+  } = useGetConversations(session?.user?.id);
+
+  if (isLoading) return null;
+
+  if (isError) return null;
+
+  return (
+    <div>
+      {conversations.map((conversation) => {
+        return (
+          <Contact
+            key={conversation?.id}
+            user={
+              conversation?.users?.filter(
+                (user) => user?.id !== session?.user?.id,
+              )[0]
+            }
+          />
+        );
+      })}
+    </div>
+  );
+};
