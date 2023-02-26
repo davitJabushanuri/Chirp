@@ -1,4 +1,5 @@
 import { CloseIcon } from "@/assets/close-icon";
+
 import styles from "./styles/new-message-header.module.scss";
 
 export const NewMessageHeader = () => {

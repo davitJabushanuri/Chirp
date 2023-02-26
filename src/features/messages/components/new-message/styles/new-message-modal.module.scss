@@ -10,6 +10,7 @@
   place-items: center;
   background-color: var(--clr-modal-background);
   z-index: 1000;
+  overflow: auto;
 
   .modal {
     background-color: var(--clr-background);

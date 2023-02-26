@@ -1,0 +1,38 @@
+.container {
+  border-bottom: 1px solid var(--clr-border);
+
+  label {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+
+    &:focus-within {
+      .icon {
+        svg {
+          fill: var(--clr-primary);
+        }
+      }
+    }
+
+    .icon {
+      margin-left: 16px;
+      display: grid;
+      place-items: center;
+
+      svg {
+        width: 17px;
+        height: 17px;
+        fill: var(--clr-tertiary);
+      }
+    }
+
+    input {
+      padding: 11px;
+      font-size: 14px;
+
+      &::placeholder {
+        color: var(--clr-tertiary);
+      }
+    }
+  }
+}
