@@ -1,10 +1,13 @@
 import { Gear } from "@/assets/gear-icon";
 import { NewMessageIcon } from "@/assets/new-message-icon";
 import { HamburgerButton } from "@/components/elements/hamburger-button";
+import { useNewMessageStore } from "@/features/messages";
 
 import styles from "./styles/messages-header.module.scss";
 
 export const MessagesHeader = () => {
+  const openModal = useNewMessageStore((state) => state.openModal);
+
   return (
     <div className={styles.container}>
       <HamburgerButton />
@@ -15,7 +18,7 @@ export const MessagesHeader = () => {
           <Gear />
         </button>
 
-        <button className={styles.newMessage}>
+        <button onClick={openModal} className={styles.newMessage}>
           <NewMessageIcon />
         </button>
       </div>

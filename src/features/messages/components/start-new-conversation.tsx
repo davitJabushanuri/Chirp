@@ -1,3 +1,5 @@
+import { useNewMessageStore } from "../stores/use-new-message-store";
+
 import styles from "./styles/start-new-conversation.module.scss";
 
 export const StartNewConversation = ({
@@ -9,12 +11,14 @@ export const StartNewConversation = ({
   subtitle?: string;
   buttonText?: string;
 }) => {
+  const openModal = useNewMessageStore((state) => state.openModal);
+
   return (
     <div className={styles.container}>
       <div className={styles.content}>
         <h1>{title}</h1>
         <p>{subtitle}</p>
-        <button>{buttonText}</button>
+        <button onClick={openModal}>{buttonText}</button>
       </div>
     </div>
   );

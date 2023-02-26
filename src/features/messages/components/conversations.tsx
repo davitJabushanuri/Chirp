@@ -5,6 +5,7 @@ import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
 
 import { useGetConversations } from "../hooks/use-get-conversations";
+import { useNewMessageStore } from "../stores/use-new-message-store";
 
 import { Conversation } from "./conversation";
 import { NewMessageModal } from "./new-message/new-message-modal";
@@ -17,6 +18,8 @@ export const Conversations = () => {
   const { data: session } = useSession();
   const [searchTerm, setSearchTerm] = useState("");
   const [isSearching, setIsSearching] = useState(false);
+
+  const isModalOpen = useNewMessageStore((state) => state.isModalOpen);
 
   const {
     data: conversations,
@@ -64,7 +67,7 @@ export const Conversations = () => {
         />
       )}
 
-      <NewMessageModal />
+      {isModalOpen && <NewMessageModal />}
     </div>
   );
 };
