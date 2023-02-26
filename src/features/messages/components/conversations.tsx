@@ -7,6 +7,7 @@ import { TryAgain } from "@/components/elements/try-again";
 import { useGetConversations } from "../hooks/use-get-conversations";
 
 import { Conversation } from "./conversation";
+import { NewMessageModal } from "./new-message/new-message-modal";
 import { SearchConversations } from "./search-conversations";
 import { SearchResults } from "./search-results";
 import { StartNewConversation } from "./start-new-conversation";
@@ -62,6 +63,8 @@ export const Conversations = () => {
           buttonText={`Write a message`}
         />
       )}
+
+      <NewMessageModal />
     </div>
   );
 };

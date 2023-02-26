@@ -13,7 +13,7 @@ const TrendsPage = () => {
     return (
       <>
         <TrendsHeader />
-        <LoadingSpinner />;
+        <LoadingSpinner />
       </>
     );
   }
@@ -22,7 +22,7 @@ const TrendsPage = () => {
     return (
       <>
         <TrendsHeader />
-        <TryAgain />;
+        <TryAgain />
       </>
     );
   }
