@@ -8,7 +8,7 @@ import { iTrendProps } from "../types";
 
 import styles from "./styles/trend.module.scss";
 
-const Trend = ({ ranking = 1, title, tweets = 1 }: iTrendProps) => {
+export const Trend = ({ ranking = 1, title, tweets = 1 }: iTrendProps) => {
   return (
     <div className={styles.container}>
       <div className={styles.trend}>
@@ -25,8 +25,6 @@ const Trend = ({ ranking = 1, title, tweets = 1 }: iTrendProps) => {
     </div>
   );
 };
-
-export default Trend;
 
 const TrendOptions = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);

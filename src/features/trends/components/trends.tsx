@@ -5,7 +5,7 @@ import { TryAgain } from "@/components/elements/try-again";
 import { useHashtags } from "@/features/explore";
 
 import styles from "./styles/trends.module.scss";
-import Trend from "./trend";
+import { Trend } from "./trend";
 
 export const Trends = ({ title = "Trends" }: { title?: string }) => {
   const { data: hashtags, isLoading, isError } = useHashtags();

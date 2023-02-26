@@ -1,4 +1,3 @@
-import { useSession } from "next-auth/react";
 import Link from "next/link";
 
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
@@ -9,7 +8,6 @@ import { Person } from "./person";
 import styles from "./styles/connect.module.scss";
 
 export const Connect = () => {
-  const { data: session } = useSession();
   const { data: people, isLoading, isError } = useUsers();
 
   return (
@@ -26,18 +24,9 @@ export const Connect = () => {
         <>
           <h1>Who to follow</h1>
           <div className={styles.people}>
-            {people
-              ?.filter((person) => {
-                return (
-                  person.id !== session?.user?.id ||
-                  person.followers.some(
-                    (follower) => follower.id !== session?.user?.id,
-                  )
-                );
-              })
-              ?.map((person) => {
-                return <Person key={person.id} person={person} />;
-              })}
+            {people?.slice(0, 2).map((person) => {
+              return <Person key={person.id} person={person} />;
+            })}
           </div>
 
           <button className={styles.showMore}>
