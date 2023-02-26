@@ -4,7 +4,13 @@ import { useGetConversations } from "../../hooks/use-get-conversations";
 
 import { Contact } from "./contact";
 
-export const Contacts = () => {
+export const Contacts = ({
+  receiverId,
+  setReceiverId,
+}: {
+  receiverId: string | null;
+  setReceiverId: (id: string | null) => void;
+}) => {
   const { data: session } = useSession();
 
   const {
@@ -28,6 +34,8 @@ export const Contacts = () => {
                 (user) => user?.id !== session?.user?.id,
               )[0]
             }
+            receiverId={receiverId}
+            setReceiverId={setReceiverId}
           />
         );
       })}

@@ -1,8 +1,16 @@
 .container {
+  width: 100%;
   padding: 11px 15px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover {
+    background-color: var(--clr-tweet-hover);
+  }
 
   .following {
     margin-left: 22px;
+    margin-bottom: 2px;
     display: flex;
     align-items: center;
     gap: 11px;
@@ -24,7 +32,8 @@
 
   .user {
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
     gap: 11px;
 
     .avatar {
@@ -51,6 +60,14 @@
         font-size: 14px;
         font-weight: 400;
         color: var(--clr-tertiary);
+      }
+    }
+
+    .tick {
+      svg {
+        width: 17.5px;
+        height: 17.5px;
+        fill: var(--clr-primary);
       }
     }
   }

@@ -23,7 +23,11 @@ export default async function UserTweets(
                 receiver: true,
               },
             },
-            users: true,
+            users: {
+              include: {
+                followers: true,
+              },
+            },
           },
         });
       res.status(200).json(users);

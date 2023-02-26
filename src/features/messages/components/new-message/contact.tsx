@@ -1,19 +1,39 @@
 /* eslint-disable @next/next/no-img-element */
+import { useSession } from "next-auth/react";
+
+import { TickIcon } from "@/assets/tick-svg";
 import { IUser } from "@/features/profile";
 
 import { UserIcon } from "../../assets/user-icon";
 
 import styles from "./styles/contact.module.scss";
 
-export const Contact = ({ user }: { user: IUser }) => {
+export const Contact = ({
+  user,
+  receiverId,
+  setReceiverId,
+}: {
+  user: IUser;
+  receiverId: string | null;
+  setReceiverId: (id: string | null) => void;
+}) => {
+  const { data: session } = useSession();
+
   return (
-    <div className={styles.container}>
-      <div className={styles.following}>
-        <span className={styles.icon}>
-          <UserIcon />
-        </span>
-        <span className={styles.text}>Following</span>
-      </div>
+    <button
+      onClick={() => setReceiverId(receiverId === user?.id ? null : user?.id)}
+      className={styles.container}
+    >
+      {user?.followers?.some(
+        (follower) => follower?.follower_id === session?.user?.id,
+      ) && (
+        <div className={styles.following}>
+          <span className={styles.icon}>
+            <UserIcon />
+          </span>
+          <span className={styles.text}>Following</span>
+        </div>
+      )}
       <div className={styles.user}>
         <div className={styles.avatar}>
           {user?.profile_image_url ? (
@@ -26,7 +46,12 @@ export const Contact = ({ user }: { user: IUser }) => {
           <p className={styles.name}>{user?.name}</p>
           <span className={styles.username}>@{user?.screen_name}</span>
         </div>
+        {receiverId === user?.id && (
+          <div className={styles.tick}>
+            <TickIcon />
+          </div>
+        )}
       </div>
-    </div>
+    </button>
   );
 };
