@@ -33,7 +33,10 @@ export const ConversationMemberDetails = ({
         isVerified={user?.verified}
       />
       <div className={styles.username}>
-        <UserScreenName userId={user?.id} screenName={user?.screen_name} />
+        <UserScreenName
+          userId={user?.id}
+          screenName={user?.email?.split("@")[0]}
+        />
       </div>
       {user?.description && (
         <div className={styles.bio}>

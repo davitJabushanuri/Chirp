@@ -50,7 +50,10 @@ export const Conversation = ({
               userId={user?.id}
               isVerified={user?.verified}
             />
-            <UserScreenName screenName={user?.screen_name} userId={user?.id} />
+            <UserScreenName
+              screenName={user?.email?.split("@")[0]}
+              userId={user?.id}
+            />
             <span className={styles.dot}>·</span>
             <span className={styles.date}>
               {dayjs(lastMessage?.created_at).format("MMM D")}
