@@ -70,7 +70,10 @@ export const ConversationInfo = () => {
       </div>
 
       <div className={styles.actions}>
-        <ConversationActions member={member} />
+        <ConversationActions
+          member={member}
+          conversationId={conversation?.id}
+        />
       </div>
     </div>
   );

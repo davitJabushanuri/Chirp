@@ -13,6 +13,7 @@ import { Action, ActionsModal } from "@/components/elements/actions-modal";
 import { UserAvatar, UserName, UserScreenName } from "@/features/profile";
 
 import { SnoozeNotificationsIon } from "../assets/snooze-notifications-ion";
+import { useDeleteConversation } from "../hooks/use-delete-conversation";
 import { IConversation } from "../types";
 
 import styles from "./styles/conversation.module.scss";
@@ -30,6 +31,8 @@ export const Conversation = ({
     (user) => user.id !== session?.user?.id,
   )[0];
   const lastMessage = conversation?.messages[conversation?.messages.length - 1];
+
+  const mutation = useDeleteConversation();
 
   return (
     <div
@@ -53,7 +56,7 @@ export const Conversation = ({
               {dayjs(lastMessage?.created_at).format("MMM D")}
             </span>
           </div>
-          <div className={styles.options}>
+          <div onClick={(e) => e.stopPropagation()} className={styles.options}>
             <button
               className={styles.optionsButton}
               onClick={() => setIsModalOpen(true)}
@@ -78,7 +81,12 @@ export const Conversation = ({
                   <Action icon={<ReportIcon />} text={`Report conversation`} />
                 </button>
 
-                <button className={styles.delete}>
+                <button
+                  onClick={() => {
+                    mutation.mutate({ conversationId: conversation?.id });
+                  }}
+                  className={styles.delete}
+                >
                   <Action icon={<TrashIcon />} text={`Delete conversation`} />
                 </button>
               </ActionsModal>

@@ -126,7 +126,7 @@ model Media {
   media_path String
   tweet      Tweet?   @relation(fields: [tweet_id], references: [id], onDelete: Cascade)
   tweet_id   String?
-  Message    Message? @relation(fields: [message_id], references: [id])
+  Message    Message? @relation(fields: [message_id], references: [id], onDelete: Cascade)
   message_id String?
 }
 
@@ -170,11 +170,11 @@ model Message {
   text            String?
   image           String?
   created_at      DateTime     @default(now())
-  sender          User         @relation(name: "sender", fields: [sender_id], references: [id])
+  sender          User         @relation(name: "sender", fields: [sender_id], references: [id], onDelete: Cascade)
   sender_id       String
-  receiver        User         @relation(name: "receiver", fields: [receiver_id], references: [id])
+  receiver        User         @relation(name: "receiver", fields: [receiver_id], references: [id], onDelete: Cascade)
   receiver_id     String
-  conversation    Conversation @relation(fields: [conversation_id], references: [id])
+  conversation    Conversation @relation(fields: [conversation_id], references: [id], onDelete: Cascade)
   conversation_id String
   media           Media[]
 }
