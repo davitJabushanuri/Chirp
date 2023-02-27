@@ -58,33 +58,33 @@
       margin-bottom: 1rem;
 
       .image {
-        width: 2.6rem;
-        height: 2.6rem;
+        width: 38px;
+        height: 38px;
         border-radius: 50%;
         overflow: hidden;
         cursor: pointer;
-        margin-bottom: 0.8rem;
+        margin-bottom: 11px;
 
         &:hover {
           opacity: 0.8;
         }
 
-        img {
+        button {
           width: 100%;
           height: 100%;
-          border-radius: 50%;
         }
       }
 
       .name {
-        font-size: 1.1rem;
+        font-size: 16px;
         font-weight: 700;
         color: var(--clr-secondary);
+        margin-bottom: 4px;
       }
 
       .username {
         display: block;
-        font-size: 0.9rem;
+        font-size: 14px;
         color: var(--clr-tertiary);
         margin-bottom: 0.8rem;
       }

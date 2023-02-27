@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 import { CloseIcon } from "@/assets/close-icon";
-import { useUser } from "@/features/profile";
+import { UserAvatar, useUser } from "@/features/profile";
 import { useHamburger } from "@/stores/use-hamburger";
 
 import { Bookmark } from "../assets/bookmark-icon";
@@ -40,41 +40,40 @@ export const HamburgerMenu = () => {
 
         <div className={styles.profile}>
           <button className={styles.image}>
-            <img src={session?.user?.profile_image_url} alt="" />
+            <UserAvatar
+              userId={session?.user?.id}
+              userImage={session?.user?.profile_image_url}
+            />
           </button>
           <p className={styles.name}>{session?.user?.name}</p>
           <span className={styles.username}>
             @{session?.user?.email?.split("@")[0]}
           </span>
-          {
-            user && (
-
-           
-          <div className={styles.stats}>
-            <span
-              onClick={() => {
-                router.push(`/${session?.user?.id}/following`);
-                closeHamburger();
-              }}
-              className={styles.following}
-            >
-              <strong>{user?.following?.length}</strong> Following
-            </span>
-            <span
-              onClick={() => {
-                router.push(`/${session?.user?.id}/followers`);
-                closeHamburger();
-              }}
-              className={styles.followers}
-            >
-              <strong>{user?.followers?.length}</strong> Followers
-            </span>
-            <button className={styles.switchAccount}>
-              <PlusIcon />
-            </button>
-          </div>
-           )
-          }
+          {user && (
+            <div className={styles.stats}>
+              <span
+                onClick={() => {
+                  router.push(`/${session?.user?.id}/following`);
+                  closeHamburger();
+                }}
+                className={styles.following}
+              >
+                <strong>{user?.following?.length}</strong> Following
+              </span>
+              <span
+                onClick={() => {
+                  router.push(`/${session?.user?.id}/followers`);
+                  closeHamburger();
+                }}
+                className={styles.followers}
+              >
+                <strong>{user?.followers?.length}</strong> Followers
+              </span>
+              <button className={styles.switchAccount}>
+                <PlusIcon />
+              </button>
+            </div>
+          )}
         </div>
 
         <nav>

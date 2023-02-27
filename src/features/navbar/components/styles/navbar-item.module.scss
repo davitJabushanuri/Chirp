@@ -1,9 +1,7 @@
 @use "abstracts/media-query.scss" as *;
 
 .link {
-  width: fit-content;
-  text-decoration: none;
-  padding: 0.3rem 0;
+  padding: 4px 0;
   cursor: pointer;
 
   &:hover {
@@ -25,6 +23,7 @@
     display: grid;
     place-items: center;
     border-radius: 100vmax;
+    transition: all 0.2s ease-in-out;
 
     .icon {
       width: 24.5px;
@@ -43,7 +42,7 @@
 
   @include mq("small") {
     .container {
-      padding: 11px;
+      padding: 11px
     }
   }
 
@@ -55,12 +54,12 @@
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      gap: 1rem;
       display: flex;
       transition: all 0.2s ease-in-out;
 
       span {
         display: block;
+        padding: 0 1rem;
       }
 
       .icon {
