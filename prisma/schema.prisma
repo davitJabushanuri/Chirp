@@ -180,10 +180,8 @@ model Message {
 }
 
 model Conversation {
-  id          String    @id @default(cuid())
-  sender_id   String
-  receiver_id String
-  users       User[]
-  messages    Message[]
-  created_at  DateTime  @default(now())
+  id         String    @id @default(cuid())
+  users      User[]
+  messages   Message[]
+  created_at DateTime  @default(now())
 }

@@ -21,6 +21,7 @@ export default async function UserTweets(
               include: {
                 sender: true,
                 receiver: true,
+                media: true,
               },
             },
             users: {

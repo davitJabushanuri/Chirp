@@ -87,8 +87,14 @@ export const Conversation = ({
         </div>
 
         <div className={styles.messageContainer}>
-          {lastMessage?.image ? (
+          {lastMessage?.media?.length > 0 &&
+          lastMessage?.sender_id === session?.user?.id ? (
             <span className={styles.message}>You sent a photo</span>
+          ) : lastMessage?.media?.length > 0 &&
+            lastMessage?.receiver_id === session?.user?.id ? (
+            <span className={`${styles.message} ${styles.photo}`}>
+              Sent a photo
+            </span>
           ) : (
             <span className={styles.message}>{lastMessage?.text}</span>
           )}

@@ -111,6 +111,11 @@
         overflow: hidden;
         text-overflow: ellipsis;
       }
+
+      .photo {
+        color: var(--clr-secondary);
+        font-weight: 500;
+      }
     }
   }
 }

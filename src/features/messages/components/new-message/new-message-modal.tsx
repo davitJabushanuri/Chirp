@@ -1,7 +1,9 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
+import { useSession } from "next-auth/react";
 import { useState } from "react";
 
+import { useCreateConversation } from "../../hooks/use-create-conversation";
 import { useNewMessageStore } from "../../stores/use-new-message-store";
 
 import { Contacts } from "./contacts";
@@ -15,6 +17,8 @@ export const NewMessageModal = () => {
   const [receiverId, setReceiverId] = useState<string | null>(null);
 
   const closeModal = useNewMessageStore((state) => state.closeModal);
+  const { data: session } = useSession();
+  const mutation = useCreateConversation();
 
   return (
     <div onClick={closeModal} className={styles.container}>
@@ -38,6 +42,20 @@ export const NewMessageModal = () => {
             />
           </div>
         )}
+
+        <button
+          onClick={() => {
+            mutation.mutate({
+              senderId: session?.user?.id,
+              receiverId: receiverId,
+            });
+            closeModal();
+          }}
+          disabled={!receiverId}
+          className={styles.createConversation}
+        >
+          Next
+        </button>
       </div>
     </div>
   );
