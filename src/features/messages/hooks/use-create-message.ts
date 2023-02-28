@@ -37,6 +37,7 @@ export const useCreateMessage = ({
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["conversations"]);
+        queryClient.invalidateQueries(["media"]);
       },
 
       onError: (error) => {

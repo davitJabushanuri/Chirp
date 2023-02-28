@@ -1,13 +1,13 @@
 @use "abstracts/media-query.scss" as *;
 
 .container {
-  padding: 0.7rem;
-  height: 3rem;
-  width: 3rem;
+  height: 47px;
+  width: 47px;
   border-radius: 100vmax;
-  margin-bottom: 0.5rem;
   fill: var(--clr-logo);
   cursor: pointer;
+  display: grid;
+  place-items: center;
 
   &:hover {
     background-color: var(--clr-logo-hover);
@@ -17,8 +17,8 @@
     background-color: var(--clr-logo-active);
   }
 
-  @include mq("xx-large") {
-    height: 3.2rem;
-    width: 3.2rem;
+  svg {
+    height: 28px;
+    width: 28px;
   }
 }

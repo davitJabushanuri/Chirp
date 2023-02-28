@@ -1,22 +1,24 @@
 @use "abstracts/media-query.scss" as *;
 
-.link {
-  padding: 4px 0;
+.container {
+  width: 100%;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
 
   &:hover {
-    .container {
+    .navItem {
       background-color: var(--clr-nav-hover);
-    }
-
-    &:active {
-      .container {
-        background-color: var(--clr-nav-active);
-      }
     }
   }
 
-  .container {
+  &:active {
+    .navItem {
+      background-color: var(--clr-nav-active);
+    }
+  }
+
+  .navItem {
     color: var(--clr-secondary);
     fill: var(--clr-secondary);
     padding: 8px;
@@ -28,9 +30,15 @@
     .icon {
       width: 24.5px;
       height: 24.5px;
+
+      svg {
+        height: 100%;
+        width: 100%;
+        fill: var(--clr-secondary);
+      }
     }
 
-    span {
+    .text {
       font-size: 19px;
       display: none;
     }
@@ -41,30 +49,32 @@
   }
 
   @include mq("small") {
-    .container {
+    padding: 4px 6px;
+
+    .navItem {
       padding: 11px
     }
   }
 
+  @include mq("medium") {
+    padding: 4px 10px;
+
+
+  }
+
   @include mq("xx-large") {
+    justify-content: flex-start;
     padding: 4px 0;
 
-    .container {
+    .navItem {
       padding: 11px;
       display: flex;
       align-items: center;
-      justify-content: flex-start;
-      display: flex;
       transition: all 0.2s ease-in-out;
 
-      span {
+      .text {
         display: block;
         padding: 0 1rem;
-      }
-
-      .icon {
-        width: 1.5rem;
-        height: 1.5rem;
       }
     }
   }

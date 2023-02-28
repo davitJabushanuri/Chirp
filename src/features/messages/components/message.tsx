@@ -11,6 +11,8 @@ export const Message = ({ message }: { message: IMessage }) => {
   const { data: session } = useSession();
   const isSender = message?.sender_id === session?.user?.id;
 
+  // const { data: media, isLoading, isError } = useGetMedia(message?.id);
+
   return (
     <div className={`${styles.container} ${isSender ? styles.isSender : ""}`}>
       {message?.media?.length > 0 && (

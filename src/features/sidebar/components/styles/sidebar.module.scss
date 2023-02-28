@@ -8,20 +8,34 @@
   overflow-y: auto;
   display: none;
 
-  @include mq("small") {
+  .logo,
+  .tweetButton,
+  .user {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
+  }
+
+  .user {
+    margin-top: auto;
+  }
+
+  @include mq("small") {
+    display: grid;
+    grid-template-rows: min-content min-content min-content 1fr;
     border-right: 1px solid var(--clr-border);
-    padding: 0.2rem 0.3rem;
+    padding: 2px 4px;
   }
 
   @include mq("medium") {
-    padding: 0.2rem 0.8rem;
+    padding: 2px 11px;
   }
 
   @include mq("xx-large") {
-    padding: 0.2rem 2rem;
-    align-items: flex-start;
+
+    .logo,
+    .tweetButton,
+    .user {
+      justify-content: flex-start;
+    }
   }
 }

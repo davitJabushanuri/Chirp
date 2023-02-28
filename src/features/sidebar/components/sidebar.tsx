@@ -12,10 +12,22 @@ export const Sidebar = () => {
 
   return (
     <aside className={styles.container}>
-      <Logo />
-      <Navbar />
-      {session && <TweetButton />}
-      {session && <SessionOwnerButton />}
+      <div className={styles.logo}>
+        <Logo />
+      </div>
+      <div className={styles.navbar}>
+        <Navbar />
+      </div>
+      {session && (
+        <div className={styles.tweetButton}>
+          <TweetButton />
+        </div>
+      )}
+      {session && (
+        <div className={styles.user}>
+          <SessionOwnerButton />
+        </div>
+      )}
     </aside>
   );
 };

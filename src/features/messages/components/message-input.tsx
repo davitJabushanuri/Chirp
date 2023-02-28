@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { useRef, useState } from "react";
 
+import { CloseIcon } from "@/assets/close-icon";
 import { EmojiIcon } from "@/assets/emoji-icon";
 import { GifIcon } from "@/assets/gif-icon";
 import { ImageIcon } from "@/assets/image-icon";
@@ -10,7 +11,6 @@ import { SendIcon } from "../assets/send-icon";
 import { useCreateMessage } from "../hooks/use-create-message";
 
 import styles from "./styles/message-input.module.scss";
-import { CloseIcon } from "@/assets/close-icon";
 
 export const MessageInput = ({
   conversationId,
@@ -76,7 +76,11 @@ export const MessageInput = ({
         </div>
       )}
 
-      <div className={styles.inputContainer}>
+      <div
+        className={`${styles.inputContainer} ${
+          chosenImages?.length > 0 ? styles.active : ""
+        }`}
+      >
         {chosenImages?.length <= 0 && (
           <div className={styles.actions}>
             <button
