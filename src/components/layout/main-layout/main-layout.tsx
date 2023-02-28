@@ -4,9 +4,9 @@ import { useSession } from "next-auth/react";
 import { LoadingScreen } from "@/components/elements/loading-screen";
 import { Aside } from "@/components/layout/aside";
 import { AuthModalTrigger } from "@/features/auth";
-import { CreateTweetModal } from "@/features/create-tweet";
+import { CreateTweetModal, MobileTweetButton } from "@/features/create-tweet";
 import { HamburgerMenu, MobileNavbar } from "@/features/navbar";
-import { Sidebar, TweetButton } from "@/features/sidebar";
+import { Sidebar } from "@/features/sidebar";
 import { InspectTweetImageModal } from "@/features/tweets";
 import { useColor } from "@/stores/use-color";
 import { useCreateTweetModal } from "@/stores/use-create-tweet-modal";
@@ -45,9 +45,9 @@ const MainLayout = ({
             <ReactQueryWrapper>
               <div className="layout">
                 <MobileNavbar />
-                <div className="mobile-tweet-button">
-                  <TweetButton />
-                </div>
+
+                <MobileTweetButton />
+
                 <Sidebar />
                 <main>{children}</main>
                 <Aside />

@@ -7,7 +7,7 @@
 }
 
 *::-webkit-scrollbar-track {
-  background-color: var(--clr-background);
+  background-color: var(--clr-nav-hover);
   border-radius: 1rem;
 }
 
@@ -31,18 +31,8 @@ body {
     display: grid;
     grid-template-columns: 1fr;
 
-    .mobile-tweet-button {
-      position: fixed;
-      bottom: 4.2rem;
-      right: 1rem;
-    }
-
     @include mq("small") {
       grid-template-columns: min-content 1fr;
-
-      .mobile-tweet-button {
-        display: none;
-      }
 
       a {
         color: inherit;

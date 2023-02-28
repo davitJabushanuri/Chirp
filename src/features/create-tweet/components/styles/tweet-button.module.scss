@@ -1,11 +1,15 @@
+@use "abstracts/media-query" as *;
+
 .container {
+  margin-top: 1rem;
   background-color: var(--clr-primary);
+  width: 53px;
+  height: 53px;
+  display: grid;
+  place-items: center;
   border-radius: 100vmax;
-  padding: 0.425rem 1rem;
-  font-size: 0.9rem;
-  font-weight: 500;
   cursor: pointer;
-  color: var(--clr-light);
+  transition: background-color 0.2s ease-in-out;
 
   &:hover {
     background-color: var(--clr-primary-hover);
@@ -15,9 +19,36 @@
     background-color: var(--clr-primary-active);
   }
 
-  &:disabled {
-    opacity: 0.5;
-    cursor: default;
+  .icon {
+    display: grid;
+    place-items: center;
+  }
 
+  .text {
+    display: none;
+  }
+
+  svg {
+    width: 23px;
+    height: 23px;
+    fill: var(--clr-light);
+  }
+
+  @include mq("xx-large") {
+    width: 100%;
+    max-width: 227px;
+    height: 49px;
+
+    .icon {
+      display: none;
+    }
+
+    .text {
+      display: grid;
+      place-items: center;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--clr-light);
+    }
   }
 }

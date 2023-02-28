@@ -1,11 +1,18 @@
+import { useCreateTweetModal } from "@/stores/use-create-tweet-modal";
+
+import { PenIcon } from "../assets/pen-icon";
+
 import styles from "./styles/tweet-button.module.scss";
 
-const TweetButton = () => {
+export const TweetButton = () => {
+  const openModal = useCreateTweetModal((state) => state.openModal);
+
   return (
-    <button disabled className={styles.container}>
-      Tweet
+    <button onClick={() => openModal()} className={styles.container}>
+      <span className={styles.icon}>
+        <PenIcon />
+      </span>
+      <span className={styles.text}>Tweet</span>
     </button>
   );
 };
-
-export default TweetButton;
