@@ -9,8 +9,8 @@ import { useNewMessageStore } from "../stores/use-new-message-store";
 
 import { Conversation } from "./conversation";
 import { NewMessageModal } from "./new-message/new-message-modal";
+import { SearchConversationResults } from "./search-conversation-results";
 import { SearchConversations } from "./search-conversations";
-import { SearchResults } from "./search-results";
 import { StartNewConversation } from "./start-new-conversation";
 import styles from "./styles/conversations.module.scss";
 
@@ -45,7 +45,7 @@ export const Conversations = () => {
           </div>
           {isSearching ? (
             <div className={styles.searchResults}>
-              <SearchResults searchTerm={searchTerm} />
+              <SearchConversationResults searchTerm={searchTerm} />
             </div>
           ) : (
             <div className={styles.conversations}>

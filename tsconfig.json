@@ -23,7 +23,6 @@
         "name": "next"
       }
     ],
-
     "types": ["next", "next/types/global", "jest", "@testing-library/jest-dom"]
   },
   "include": [

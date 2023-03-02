@@ -1,5 +1,6 @@
 import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
+import { useEffect, useRef } from "react";
 
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
@@ -20,6 +21,17 @@ export const Messages = () => {
   const conversationMember = conversation?.users.filter(
     (user) => user?.id !== session?.user?.id,
   )[0];
+
+  const messageRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (messageRef.current) {
+      messageRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "end",
+      });
+    }
+  }, [conversation]);
 
   if (isLoading)
     return (
@@ -46,6 +58,7 @@ export const Messages = () => {
           {conversation?.messages.map((message) => {
             return <Message message={message} key={message?.id} />;
           })}
+          <div ref={messageRef}></div>
         </div>
       </div>
       <div className={styles.input}>
