@@ -7,9 +7,9 @@ import { TryAgain } from "@/components/elements/try-again";
 
 import { useGetConversation } from "../hooks/use-get-conversation";
 
+import { Conversation } from "./conversation";
 import { ConversationHeader } from "./conversation-header";
 import { ConversationMemberDetails } from "./conversation-member-details";
-import { Message } from "./message";
 import { MessageInput } from "./message-input";
 import styles from "./styles/messages.module.scss";
 
@@ -24,14 +24,19 @@ export const Messages = () => {
 
   const messageRef = useRef<HTMLInputElement>(null);
 
+  const scrollToBottom = () => {
+    messageRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "end",
+      inline: "nearest",
+    });
+  };
+
   useEffect(() => {
-    if (messageRef.current) {
-      messageRef.current.scrollIntoView({
-        behavior: "smooth",
-        block: "end",
-      });
-    }
-  }, [conversation]);
+    scrollToBottom();
+
+    return () => scrollToBottom();
+  }, [conversation?.messages]);
 
   if (isLoading)
     return (
@@ -55,11 +60,9 @@ export const Messages = () => {
       <div className={styles.conversation}>
         <ConversationMemberDetails user={conversationMember} />
         <div className={styles.messages}>
-          {conversation?.messages.map((message) => {
-            return <Message message={message} key={message?.id} />;
-          })}
-          <div ref={messageRef}></div>
+          <Conversation messages={conversation?.messages} />
         </div>
+        <div ref={messageRef}></div>
       </div>
       <div className={styles.input}>
         <MessageInput

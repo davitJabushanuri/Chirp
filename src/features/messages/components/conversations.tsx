@@ -7,7 +7,7 @@ import { TryAgain } from "@/components/elements/try-again";
 import { useGetConversations } from "../hooks/use-get-conversations";
 import { useNewMessageStore } from "../stores/use-new-message-store";
 
-import { Conversation } from "./conversation";
+import { ConversationCard } from "./conversation-card";
 import { NewMessageModal } from "./new-message/new-message-modal";
 import { SearchConversationResults } from "./search-conversation-results";
 import { SearchConversations } from "./search-conversations";
@@ -52,7 +52,7 @@ export const Conversations = () => {
               {conversations.map((conversation) => {
                 return (
                   <div className={styles.conversation} key={conversation.id}>
-                    <Conversation conversation={conversation} />
+                    <ConversationCard conversation={conversation} />
                   </div>
                 );
               })}

@@ -2,10 +2,16 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": [
+        "./src/*"
+      ]
     },
     "target": "ES2015",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -23,14 +29,24 @@
         "name": "next"
       }
     ],
-    "types": ["next", "next/types/global", "jest", "@testing-library/jest-dom"]
+    "types": [
+      "next",
+      "next/types/global",
+      "jest",
+      "@testing-library/jest-dom"
+    ]
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "@/types/*"
+    "@/types/*",
+    "C:\\Users\\Davit\\Desktop\\projects\\twitter-v2\\.next/types/**/*.ts"
   ],
-  "exclude": ["node_modules", "cypress", "./cypress.config.ts"]
+  "exclude": [
+    "node_modules",
+    "cypress",
+    "./cypress.config.ts"
+  ]
 }

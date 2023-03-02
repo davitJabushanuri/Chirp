@@ -7,11 +7,6 @@
 
   .conversation {
     overflow-y: auto;
-    scroll-behavior: smooth;
-
-    .messages {
-      padding: 15px;
-    }
   }
 
   .input {
