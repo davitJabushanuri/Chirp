@@ -9,7 +9,6 @@ export const Conversation = ({ messages }: { messages: IMessage[] }) => {
       {messages?.map((message) => {
         return <Message message={message} key={message?.id} />;
       })}
-      {/* <div ref={messageRef} /> */}
     </div>
   );
 };

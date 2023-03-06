@@ -59,10 +59,8 @@ export const Messages = () => {
       <ConversationHeader />
       <div className={styles.conversation}>
         <ConversationMemberDetails user={conversationMember} />
-        <div className={styles.messages}>
-          <Conversation messages={conversation?.messages} />
-        </div>
-        <div ref={messageRef}></div>
+        <Conversation messages={conversation?.messages} />
+        <div ref={messageRef} />
       </div>
       <div className={styles.input}>
         <MessageInput

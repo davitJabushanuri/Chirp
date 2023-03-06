@@ -24,7 +24,14 @@ export const SignOutModal = () => {
         </p>
 
         <div className={styles.buttons}>
-          <button onClick={() => signOut()} className={styles.signout}>
+          <button
+            onClick={() =>
+              signOut({
+                callbackUrl: "/",
+              })
+            }
+            className={styles.signout}
+          >
             Log out
           </button>
           <button onClick={() => router.back()} className={styles.cancel}>
