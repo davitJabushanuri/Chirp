@@ -2,49 +2,47 @@
   background-color: var(--clr-background);
   border: 1px solid var(--clr-border);
   border-radius: 1rem;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
 
   .title {
-    font-size: 1.2rem;
-    font-weight: 600;
+    padding: 11px 15px;
+    font-size: 19px;
+    font-weight: 700;
 
   }
 
   .description {
-    font-size: 0.8rem;
+    padding: 0 11px;
+    font-size: 12px;
     color: var(--clr-tertiary);
     line-height: 1.6;
   }
 
   .buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
+    padding: 15px 11px;
+    display: grid;
+    gap: 11px;
 
     button {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.6rem;
-      padding: 0.5rem;
+      display: grid;
+      grid-template-columns: auto auto;
+      place-content: center;
+      gap: 8px;
+      height: 38px;
       border-radius: 100vmax;
       background-color: var(--clr-light);
       color: var(--clr-dark);
       border: 1px solid var(--clr-auth-border);
-      font-size: 0.9rem;
-      font-weight: 600;
+      font-size: 14px;
+      font-weight: 500;
       cursor: pointer;
       transition: all 0.1s ease-in-out;
 
       &:hover {
-        background-color: var(--clr-nav-hover);
+        background-color: var(--clr-light-hover);
       }
 
       &:active {
-        background-color: var(--clr-nav-active);
+        background-color: var(--clr-light-active);
       }
 
       .icon {
@@ -53,13 +51,19 @@
           height: 1.2rem;
         }
       }
+
+      .text {
+        display: grid;
+        place-content: center;
+      }
     }
   }
 
   .terms {
-    font-size: 0.8rem;
+    padding: 0 11px 15px 11px;
+    font-size: 12px;
     color: var(--clr-tertiary);
-    line-height: 1.6;
+    line-height: 1.2;
 
     a {
       color: var(--clr-blue);

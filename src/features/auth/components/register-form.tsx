@@ -29,7 +29,7 @@ export const RegisterForm = () => {
         </button>
 
         <button className={styles.email}>
-          <span className={styles.text}>Sign up with Email</span>
+          <span className={styles.text}>Create account</span>
         </button>
       </div>
 
