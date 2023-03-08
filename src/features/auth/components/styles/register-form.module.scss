@@ -33,17 +33,18 @@
       border-radius: 100vmax;
       background-color: var(--clr-light);
       color: var(--clr-dark);
-      border: 1px solid var(--clr-border);
+      border: 1px solid var(--clr-auth-border);
       font-size: 0.9rem;
       font-weight: 600;
       cursor: pointer;
+      transition: all 0.1s ease-in-out;
 
       &:hover {
-        background-color: var(--clr-signout-logout-hover);
+        background-color: var(--clr-nav-hover);
       }
 
       &:active {
-        background-color: var(--clr-signout-logout-active);
+        background-color: var(--clr-nav-active);
       }
 
       .icon {
