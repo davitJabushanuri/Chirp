@@ -1,6 +1,8 @@
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
+import { useSession } from "next-auth/react";
 import { useState } from "react";
 
+import { useJoinTwitter } from "@/features/auth";
 import { useFollow } from "@/features/profile";
 
 import styles from "./styles/follow-button.module.scss";
@@ -17,6 +19,10 @@ export const FollowButton = ({
   followerId: string;
   isFollowing: boolean | undefined;
 }) => {
+  const { data: session } = useSession();
+
+  const setJoinTwitterData = useJoinTwitter((state) => state.setData);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [text, setText] = useState<"Following" | "Unfollow">("Following");
 
@@ -27,7 +33,13 @@ export const FollowButton = ({
       {isFollowing ? (
         <button
           onClick={() => {
-            setIsModalOpen(true);
+            if (!session) {
+              setJoinTwitterData({
+                isModalOpen: true,
+                action: "follow",
+                user: username,
+              });
+            } else setIsModalOpen(true);
           }}
           onMouseEnter={() => setText("Unfollow")}
           onMouseOut={() => setText("Following")}
@@ -37,12 +49,19 @@ export const FollowButton = ({
         </button>
       ) : (
         <button
-          onClick={() =>
-            mutation.mutate({
-              followerId,
-              userId,
-            })
-          }
+          onClick={() => {
+            if (!session) {
+              setJoinTwitterData({
+                isModalOpen: true,
+                action: "follow",
+                user: username,
+              });
+            } else
+              mutation.mutate({
+                followerId,
+                userId,
+              });
+          }}
           className={styles.follow}
         >
           Follow

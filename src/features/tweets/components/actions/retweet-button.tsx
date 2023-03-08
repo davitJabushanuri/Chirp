@@ -1,11 +1,12 @@
 import { useSession } from "next-auth/react";
 import { useState } from "react";
 
+import { RetweetIcon } from "@/assets/retweet-icon";
 import { Action, ActionsModal } from "@/components/elements/actions-modal";
+import { useJoinTwitter } from "@/features/auth";
 import { useCreateTweetModal } from "@/stores/use-create-tweet-modal";
 
 import { QuoteTweetIcon } from "../../assets/quote-tweet-icon";
-import { RetweetIcon } from "../../assets/retweet-icon";
 import { useRetweet } from "../../hooks/use-retweet";
 import { ITweet } from "../../types";
 
@@ -20,6 +21,8 @@ export const RetweetButton = ({ tweet }: { tweet: ITweet }) => {
   const openCreateTweetModal = useCreateTweetModal((state) => state.openModal);
   const setQuotedTweet = useCreateTweetModal((state) => state.setQuotedTweet);
 
+  const setJoinTwitterData = useJoinTwitter((state) => state.setData);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const retweetMutation = useRetweet(setIsModalOpen);
@@ -29,12 +32,12 @@ export const RetweetButton = ({ tweet }: { tweet: ITweet }) => {
       {isModalOpen && (
         <ActionsModal setIsModalOpen={setIsModalOpen}>
           <button
-            onClick={() =>
+            onClick={() => {
               retweetMutation.mutate({
                 tweetId: tweet?.id,
                 userId: session?.user?.id,
-              })
-            }
+              });
+            }}
           >
             <Action
               icon={<RetweetIcon />}
@@ -56,7 +59,13 @@ export const RetweetButton = ({ tweet }: { tweet: ITweet }) => {
       <button
         onClick={(e) => {
           e.stopPropagation();
-          setIsModalOpen(true);
+          if (!session) {
+            setJoinTwitterData({
+              isModalOpen: true,
+              action: "retweet",
+              user: tweet?.author?.name,
+            });
+          } else setIsModalOpen(true);
         }}
         className={`${styles.retweet} ${hasRetweeted ? styles.retweeted : ""}`}
       >

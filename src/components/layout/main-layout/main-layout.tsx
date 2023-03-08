@@ -3,7 +3,8 @@ import { useSession } from "next-auth/react";
 
 import { LoadingScreen } from "@/components/elements/loading-screen";
 import { Aside } from "@/components/layout/aside";
-import { AuthModalTrigger } from "@/features/auth";
+import { useJoinTwitter } from "@/features/auth";
+import { AuthModalTrigger, JoinTwitterModal } from "@/features/auth";
 import { CreateTweetModal, MobileTweetButton } from "@/features/create-tweet";
 import { HamburgerMenu, MobileNavbar } from "@/features/navbar";
 import { Sidebar } from "@/features/sidebar";
@@ -32,6 +33,9 @@ const MainLayout = ({
   const isTweetImageModalOpen = useInspectTweetImage(
     (state) => state.isTweetImageModalOpen,
   );
+  const isJoinTwitterModalOpen = useJoinTwitter(
+    (state) => state.data.isModalOpen,
+  );
 
   const { data: session, status } = useSession();
 
@@ -55,6 +59,7 @@ const MainLayout = ({
               {isTweetModalOpen && <CreateTweetModal />}
               {isHamburgerOpen && <HamburgerMenu />}
               {!session && <AuthModalTrigger />}
+              {isJoinTwitterModalOpen && <JoinTwitterModal />}
               {isTweetImageModalOpen && <InspectTweetImageModal />}
             </ReactQueryWrapper>
           </>

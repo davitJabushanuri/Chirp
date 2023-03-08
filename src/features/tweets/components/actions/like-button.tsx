@@ -1,6 +1,8 @@
 import { useSession } from "next-auth/react";
 
-import { HeartIcon, HeartIconActive } from "../../assets/heart-icon";
+import { HeartIcon, HeartIconActive } from "@/assets/heart-icon";
+import { useJoinTwitter } from "@/features/auth";
+
 import { useLike } from "../../hooks/use-like";
 import { ILike } from "../../types";
 
@@ -22,6 +24,8 @@ export const LikeButton = ({
   const { data: session } = useSession();
   const hasLiked = likes?.some((like) => like.user_id === session?.user?.id);
 
+  const setJoinTwitterData = useJoinTwitter((state) => state.setData);
+
   const mutation = useLike({
     tweetAuthorId,
     sessionOwnerId: session?.user?.id,
@@ -31,7 +35,13 @@ export const LikeButton = ({
     <button
       onClick={(e) => {
         e.stopPropagation();
-        if (!session) return;
+        if (!session) {
+          setJoinTwitterData({
+            isModalOpen: true,
+            action: "like",
+            user: "user",
+          });
+        }
         mutation.mutate({ tweetId: tweetId, userId: session?.user?.id });
       }}
       className={`${styles.container} ${styles.like} ${

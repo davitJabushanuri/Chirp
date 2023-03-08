@@ -3,6 +3,7 @@
 import { useSession } from "next-auth/react";
 import { useState } from "react";
 
+import { CommentIcon } from "@/assets/comment-icon";
 import { DotIcon } from "@/assets/dot-icon";
 import { ReportIcon } from "@/assets/report-icon";
 import { SadFaceIcon } from "@/assets/sad-face-icon";
@@ -12,7 +13,6 @@ import { useUser } from "@/features/profile";
 import { ITweet } from "@/features/tweets";
 
 import { BlockIcon } from "../assets/block-icon";
-import { CommentIcon } from "../assets/comment-icon";
 import { EmbedIcon } from "../assets/embed-icon";
 import { UnfollowIcon } from "../assets/follow-icon";
 import { MuteIcon } from "../assets/mute-icon";
