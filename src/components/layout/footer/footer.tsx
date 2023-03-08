@@ -10,7 +10,7 @@ export const Footer = () => {
       <FooterLink title="Accessibility" url="#" />
       <FooterLink title="Ads info" url="#" />
       <FooterLink title="More..." url="#" />
-      <span>© 2022 Twitter, Inc.</span>
+      <span>© 2023 Chirp, Inc.</span>
     </footer>
   );
 };

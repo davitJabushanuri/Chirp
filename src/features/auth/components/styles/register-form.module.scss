@@ -67,6 +67,11 @@
 
     a {
       color: var(--clr-blue);
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
 }
