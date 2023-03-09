@@ -1,11 +1,11 @@
-import { AuthModal } from "@/features/auth";
+import { SignIn } from "@/features/auth";
 
-const SignIn = async () => {
+const SignInPage = async () => {
   return (
     <div>
-      <AuthModal />
+      <SignIn />
     </div>
   );
 };
 
-export default SignIn;
+export default SignInPage;

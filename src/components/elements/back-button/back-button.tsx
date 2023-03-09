@@ -1,3 +1,5 @@
+"use client";
+
 import { useRouter } from "next/navigation";
 
 import { LeftArrowIcon } from "@/assets/left-arrow-icon";

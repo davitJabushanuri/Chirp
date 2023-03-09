@@ -6,74 +6,57 @@
   left: 0;
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  place-items: center;
   z-index: 9999;
-  animation: fadeIn 0.3s ease-in-out;
+  background-color: var(--clr-modal-background);
 
   .modal {
     background-color: var(--clr-background);
-    border-radius: 1rem;
     width: 100%;
     height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr;
 
     .actions {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.6rem 0.4rem;
+      padding: 9px;
 
       .logo {
+        width: 30px;
+        height: 30px;
+
         svg {
-          width: 2rem;
-          height: 2rem;
-          fill: var(--clr-light);
+          width: 100%;
+          height: 100%;
+          fill: var(--clr-logo);
         }
       }
 
       .close {
         border-radius: 50%;
+        cursor: pointer;
+        height: 32px;
+        width: 32px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
 
         &:hover {
-          background-color: var(--clr-trends-hover);
+          background-color: var(--clr-nav-hover);
         }
 
         &:active {
-          background-color: var(--clr-trends-active);
+          background-color: var(--clr-nav-active);
         }
 
-        .arrow,
-        .x {
-          cursor: pointer;
-          height: 2rem;
-          width: 2rem;
-          border-radius: 50%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-
-
-        }
-
-        .x {
-          display: none;
-        }
 
         svg {
-          width: 1.2rem;
-          height: 1.2rem;
+          width: 19px;
+          height: 19px;
           fill: var(--clr-secondary);
-        }
-
-        @include mq("medium") {
-          .arrow {
-            display: none;
-          }
-
-          .x {
-            display: flex;
-          }
         }
       }
 
@@ -83,36 +66,18 @@
       }
     }
 
+    .children {
+      margin: auto 0;
+      padding: 0 30px 46px;
+    }
+
     @include mq("medium") {
       max-width: 600px;
-      height: 640px;
-      // animation: slideIn 0.3s ease-in-out;
+      height: auto;
+      border-radius: 16px;
+      padding-bottom: 100px;
     }
   }
 
-  @include mq ("medium") {
-    background-color: var(--clr-modal-background);
-  }
-}
 
-@keyframes slideIn {
-  0% {
-    // opacity: 0;
-    transform: translateY(2rem);
-  }
-
-  100% {
-    // opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
 }
