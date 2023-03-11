@@ -1,4 +1,4 @@
-import { BookmarksClientPage } from "@/components/pages/bookmarks";
+import { BookmarksClientPage } from "./client";
 
 const BookmarksPage = () => {
   return <BookmarksClientPage />;

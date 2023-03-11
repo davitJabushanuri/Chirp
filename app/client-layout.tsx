@@ -17,7 +17,7 @@ import { useTheme } from "@/stores/use-theme";
 import NextAuthProvider from "@/utils/next-auth-provider";
 import ReactQueryWrapper from "@/utils/react-query";
 
-const MainLayout = ({
+export const ClientLayout = ({
   children,
   theme,
   color,
@@ -68,5 +68,3 @@ const MainLayout = ({
     </NextAuthProvider>
   );
 };
-
-export default MainLayout;

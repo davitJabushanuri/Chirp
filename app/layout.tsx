@@ -1,8 +1,9 @@
 import { cookies } from "next/headers";
 
-import MainLayout from "@/components/layout/main-layout/main-layout";
 import "./styles/layout.scss";
 import NextAuthProvider from "@/utils/next-auth-provider";
+
+import { ClientLayout } from "./client-layout";
 
 export const revalidate = 0;
 
@@ -23,9 +24,9 @@ export default async function RootLayout({
       lang="en"
     >
       <NextAuthProvider>
-        <MainLayout theme={theme?.value} color={color?.value}>
+        <ClientLayout theme={theme?.value} color={color?.value}>
           {children}
-        </MainLayout>
+        </ClientLayout>
       </NextAuthProvider>
     </html>
   );

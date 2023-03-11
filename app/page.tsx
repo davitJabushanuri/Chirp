@@ -1,4 +1,4 @@
-import { DefaultClientPage } from "@/components/pages/default";
+import { DefaultClientPage } from "./client";
 
 const DefaultPage = () => {
   return (

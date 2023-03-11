@@ -1,17 +1,10 @@
-"use client";
-
-import { MessagesHeader } from "@/components/layout/header";
-import { Conversations } from "@/features/messages";
-
-import styles from "./styles/messages.module.scss";
+import { MessagesClientPage } from "./client";
 
 const MessagesPage = () => {
-  return (
-    <div className={styles.container}>
-      <MessagesHeader />
-      <Conversations />
-    </div>
-  );
+  return <MessagesClientPage />;
 };
 
 export default MessagesPage;
+export const metadata = {
+  title: "Messages",
+};

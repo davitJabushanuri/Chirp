@@ -1,4 +1,4 @@
-import { ExploreClientPage } from "@/components/pages/explore";
+import { ExploreClientPage } from "./client";
 
 const ExplorePage = () => {
   return <ExploreClientPage />;

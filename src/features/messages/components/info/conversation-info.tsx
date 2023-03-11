@@ -33,7 +33,7 @@ export const ConversationInfo = () => {
     return (
       <>
         <ConversationInfoHeader />
-        <LoadingSpinner />;
+        <LoadingSpinner />
       </>
     );
   }
@@ -42,7 +42,7 @@ export const ConversationInfo = () => {
     return (
       <>
         <ConversationInfoHeader />
-        <TryAgain />;
+        <TryAgain />
       </>
     );
   }

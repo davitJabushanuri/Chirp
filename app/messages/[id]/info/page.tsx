@@ -1,13 +1,11 @@
-"use client";
-
-import { ConversationInfo } from "@/features/messages";
+import { ConversationInfoClientPage } from "./client";
 
 const ConversationInfoPage = () => {
-  return (
-    <div>
-      <ConversationInfo />
-    </div>
-  );
+  return <ConversationInfoClientPage />;
 };
 
 export default ConversationInfoPage;
+
+export const metadata = {
+  title: "Conversation info",
+};
