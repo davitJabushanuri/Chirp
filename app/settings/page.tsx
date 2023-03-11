@@ -28,3 +28,7 @@ const Settings = () => {
 };
 
 export default Settings;
+
+export const metadata = {
+  title: "Settings",
+};

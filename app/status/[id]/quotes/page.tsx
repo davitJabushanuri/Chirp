@@ -1,17 +1,11 @@
-"use client";
-
-import { TweetHeader } from "@/components/layout/header";
-import { TweetQuotes } from "@/features/tweets";
-
-import styles from "./styles/quotes.module.scss";
+import { TweetQuotesClientPage } from "./client";
 
 const Quotes = () => {
-  return (
-    <div className={styles.container}>
-      <TweetHeader />
-      <TweetQuotes />
-    </div>
-  );
+  return <TweetQuotesClientPage />;
 };
 
 export default Quotes;
+
+export const metadata = {
+  title: "Quote Tweets",
+};

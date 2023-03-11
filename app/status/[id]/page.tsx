@@ -4,11 +4,9 @@
 import { TweetHeader } from "@/components/layout/header";
 import { TweetDetails } from "@/features/tweets";
 
-import styles from "./styles/tweet-page.module.scss";
-
 const Tweet = () => {
   return (
-    <div className={styles.container}>
+    <div>
       <TweetHeader />
       <TweetDetails />
     </div>
