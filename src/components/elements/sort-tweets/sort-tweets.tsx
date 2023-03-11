@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 
 import { StarIcon } from "@/assets/star-icon";

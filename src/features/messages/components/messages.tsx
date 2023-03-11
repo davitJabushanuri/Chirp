@@ -1,3 +1,5 @@
+"use client";
+
 import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";

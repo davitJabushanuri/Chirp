@@ -1,4 +1,6 @@
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
+"use client";
+
 import { useRef, useState } from "react";
 
 import styles from "./styles/user-modal-wrapper.module.scss";

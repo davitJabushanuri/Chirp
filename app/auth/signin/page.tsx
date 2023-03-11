@@ -9,3 +9,7 @@ const SignInPage = async () => {
 };
 
 export default SignInPage;
+
+export const metadata = {
+  title: "Log in to Chirp",
+};

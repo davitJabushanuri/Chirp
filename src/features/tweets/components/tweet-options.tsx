@@ -1,5 +1,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
+"use client";
+
 import { useSession } from "next-auth/react";
 import { useState } from "react";
 

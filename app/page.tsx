@@ -1,16 +1,15 @@
-"use client";
+import { DefaultClientPage } from "@/components/pages/default";
 
-import { ExploreHeader } from "@/components/layout/header";
-import { Explore } from "@/features/explore";
-
-import styles from "./styles/landing-page.module.scss";
-
-export default function Home() {
+const DefaultPage = () => {
   return (
-    <div className={styles.container}>
-      <ExploreHeader />
-
-      <Explore />
+    <div>
+      <DefaultClientPage />
     </div>
   );
-}
+};
+
+export default DefaultPage;
+
+export const metadata = {
+  title: "Chirp",
+};

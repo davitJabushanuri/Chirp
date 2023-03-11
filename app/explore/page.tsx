@@ -1,16 +1,12 @@
-"use client";
-import { ExploreHeader } from "@/components/layout/header";
-import { Explore } from "@/features/explore";
-
-import styles from "./styles/explore.module.scss";
+import { ExploreClientPage } from "@/components/pages/explore";
 
 const ExplorePage = () => {
-  return (
-    <div className={styles.container}>
-      <ExploreHeader />
-      <Explore />
-    </div>
-  );
+  return <ExploreClientPage />;
 };
 
 export default ExplorePage;
+
+export const metadata = {
+  title: "Explore",
+  description: "The latest stories on Chirp - as told by Tweets.",
+};

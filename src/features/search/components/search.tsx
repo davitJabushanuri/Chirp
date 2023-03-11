@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 
 import { SearchIcon } from "@/assets/search-icon";

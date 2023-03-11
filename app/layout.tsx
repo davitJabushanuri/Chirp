@@ -30,3 +30,15 @@ export default async function RootLayout({
     </html>
   );
 }
+
+export const metadata = {
+  title: {
+    default: "Chirp",
+    template: "%s / Chirp",
+    absolute: "Chirp",
+  },
+
+  icons: {
+    icon: "/twitter-logo.svg",
+  },
+};

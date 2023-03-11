@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 
 import { Action, ActionsModal } from "@/components/elements/actions-modal";

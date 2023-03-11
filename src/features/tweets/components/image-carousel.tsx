@@ -1,7 +1,8 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable @next/next/no-img-element */
-// "use client";
+"use client";
+
 import { useState } from "react";
 
 import { useInspectTweetImage } from "@/stores/use-inspect-tweet-images";
