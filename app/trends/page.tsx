@@ -5,3 +5,7 @@ const TrendsPage = () => {
 };
 
 export default TrendsPage;
+
+export const metadata = {
+  title: "Trends",
+};

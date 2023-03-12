@@ -1,13 +1,12 @@
-"use client";
+import { MediaClientPage } from "./client";
 
-import { ProfileMedia } from "@/features/profile";
-
-const page = () => {
-  return (
-    <div>
-      <ProfileMedia />
-    </div>
-  );
+const MediaPage = () => {
+  return <MediaClientPage />;
 };
 
-export default page;
+export default MediaPage;
+
+// TODO: get user's name and username from the database and use it to set the title of the page
+export const metadata = {
+  title: "Media Tweets",
+};

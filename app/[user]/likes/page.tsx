@@ -1,13 +1,12 @@
-"use client";
-
-import { ProfileLikes } from "@/features/profile";
+import { LikesCLientPage } from "./client";
 
 const page = () => {
-  return (
-    <div>
-      <ProfileLikes />
-    </div>
-  );
+  return <LikesCLientPage />;
 };
 
 export default page;
+
+// TODO: get user's name and username from the database and use it to set the title of the page
+export const metadata = {
+  title: "Tweets liked by User",
+};

@@ -1,7 +1,11 @@
-"use client";
+import { FollowersClientPage } from "./client";
 
 const page = () => {
-  return <div>following</div>;
+  return <FollowersClientPage />;
 };
 
 export default page;
+
+export const metadata = {
+  title: "People following User",
+};

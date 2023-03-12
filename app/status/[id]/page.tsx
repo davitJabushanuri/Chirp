@@ -1,16 +1,13 @@
-/* eslint-disable no-restricted-imports */
-"use client";
+import { TweetClientPage } from "./client";
 
-import { TweetHeader } from "@/components/layout/header";
-import { TweetDetails } from "@/features/tweets";
-
-const Tweet = () => {
-  return (
-    <div>
-      <TweetHeader />
-      <TweetDetails />
-    </div>
-  );
+const TweetPage = () => {
+  return <TweetClientPage />;
 };
 
-export default Tweet;
+export default TweetPage;
+
+// * can't access the pathname from server components to get the id of the tweet and fetch tweet metadata from the database
+// TODO: find a way to get the pathname from server components
+export const metadata = {
+  title: "Tweet",
+};

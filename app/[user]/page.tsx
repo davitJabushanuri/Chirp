@@ -1,15 +1,12 @@
-"use client";
-
-import { ProfileTweets } from "@/features/profile";
-
-import styles from "./styles/profile.module.scss";
+import { ProfileClientPage } from "./client";
 
 const Profile = () => {
-  return (
-    <div className={styles.container}>
-      <ProfileTweets />
-    </div>
-  );
+  return <ProfileClientPage />;
 };
 
 export default Profile;
+
+// TODO: get name and username of the user from the database and use it to set the title of the page
+export const metadata = {
+  title: "Profile",
+};

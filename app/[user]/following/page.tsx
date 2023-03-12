@@ -1,7 +1,12 @@
-"use client";
+import { FollowingClientPage } from "./client";
 
-const page = () => {
-  return <div>following</div>;
+const FollowingPage = () => {
+  return <FollowingClientPage />;
 };
 
-export default page;
+export default FollowingPage;
+
+// TODO: get user's name and username from the database and use it to set the title of the page
+export const metadata = {
+  title: "People followed by User",
+};

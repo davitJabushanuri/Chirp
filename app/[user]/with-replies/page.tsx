@@ -1,13 +1,12 @@
-"use client";
+import { WithRepliesClientPage } from "./client";
 
-import { ProfileTweetsAndReplies } from "@/features/profile";
-
-const page = () => {
-  return (
-    <div>
-      <ProfileTweetsAndReplies />
-    </div>
-  );
+const WithRepliesPage = () => {
+  return <WithRepliesClientPage />;
 };
 
-export default page;
+export default WithRepliesPage;
+
+// TODO: get user's name and username from the database and use it to set the title of the page
+export const metadata = {
+  title: "Tweets with replies",
+};
