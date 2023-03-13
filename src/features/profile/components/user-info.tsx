@@ -8,10 +8,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { DotIcon } from "@/assets/dot-icon";
 import { LocationIcon } from "@/assets/location-icon";
 import { MessageIcon } from "@/assets/message-icon";
-import {
-  ReceivingNotificationsIcon,
-  ReceiveNotificationsIcon,
-} from "@/assets/notifications-icon";
+import { ReceiveNotificationsIcon } from "@/assets/notifications-icon";
 import { FollowButton } from "@/components/elements/follow-button";
 import { useEditProfile } from "@/stores/use-edit-profile";
 import { useInspectImage } from "@/stores/use-inspect-profile-image";
@@ -80,15 +77,21 @@ export const UserInfo = ({ user }: { user: IUser }) => {
             </button>
           ) : (
             <div className={styles.visitorActions}>
-              <button className={styles.options}>
-                <DotIcon />
-              </button>
-              <button className={styles.message}>
-                <MessageIcon />
-              </button>
-              <button className={styles.notifications}>
-                <ReceiveNotificationsIcon />
-              </button>
+              {session && (
+                <button className={styles.options}>
+                  <DotIcon />
+                </button>
+              )}
+              {session && (
+                <button className={styles.message}>
+                  <MessageIcon />
+                </button>
+              )}
+              {session && (
+                <button className={styles.notifications}>
+                  <ReceiveNotificationsIcon />
+                </button>
+              )}
 
               <FollowButton
                 followerId={session?.user?.id}
