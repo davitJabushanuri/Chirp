@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { MessageIcon } from "@/assets/message-icon";
 import { Action, ActionsModal } from "@/components/elements/actions-modal";
 import { BASE_URL } from "@/config";
+import { useJoinTwitter } from "@/features/auth";
 import { useToggleBookmark } from "@/features/bookmarks";
 
 import {
@@ -32,6 +33,8 @@ export const ShareButton = ({ tweet }: { tweet: ITweet }) => {
   const isBookmarked = tweet?.bookmarks?.some(
     (bookmark) => bookmark?.user_id === session?.user?.id,
   );
+
+  const setJoinTwitterData = useJoinTwitter((state) => state.setData);
 
   const mutation = useToggleBookmark();
 
@@ -65,7 +68,20 @@ export const ShareButton = ({ tweet }: { tweet: ITweet }) => {
             <Action icon={<ShareIcon />} text={`Share Tweet via ...`} />
           </button>
 
-          <button>
+          <button
+            onClick={() => {
+              if (!session) {
+                setJoinTwitterData({
+                  isModalOpen: true,
+                  action: "message",
+                  user: tweet?.author?.name,
+                });
+                setIsModalOpen(false);
+              } else {
+                console.log("DM");
+              }
+            }}
+          >
             <Action icon={<MessageIcon />} text={`Send via Direct Message`} />
           </button>
 
@@ -89,7 +105,7 @@ export const ShareButton = ({ tweet }: { tweet: ITweet }) => {
                 text={`Remove Tweet from Bookmarks`}
               />
             </button>
-          ) : (
+          ) : session ? (
             <button
               onClick={() => {
                 mutation.mutate({
@@ -103,7 +119,7 @@ export const ShareButton = ({ tweet }: { tweet: ITweet }) => {
             >
               <Action icon={<AddToBookmarksIcon />} text={`Bookmark`} />
             </button>
-          )}
+          ) : null}
         </ActionsModal>
       )}
       <button

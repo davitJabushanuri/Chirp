@@ -132,40 +132,55 @@ const TweetAuthorActions = ({
 };
 
 const TweetVisitorActions = ({ tweet }: { tweet: ITweet }) => {
+  const { data: session } = useSession();
+
   return (
     <>
-      <button>
-        <Action icon={<SadFaceIcon />} text={`Not interested in this Tweet`} />
-      </button>
+      {session && (
+        <button>
+          <Action
+            icon={<SadFaceIcon />}
+            text={`Not interested in this Tweet`}
+          />
+        </button>
+      )}
 
-      <button>
-        <Action
-          icon={<UnfollowIcon />}
-          text={`Unfollow @${tweet?.author?.email?.split("@")[0]}`}
-        />
-      </button>
+      {session && (
+        <button>
+          <Action
+            icon={<UnfollowIcon />}
+            text={`Unfollow @${tweet?.author?.email?.split("@")[0]}`}
+          />
+        </button>
+      )}
 
-      <button>
-        <Action
-          icon={<MuteIcon />}
-          text={`Mute @${tweet?.author?.email?.split("@")[0]}`}
-        />
-      </button>
+      {session && (
+        <button>
+          <Action
+            icon={<MuteIcon />}
+            text={`Mute @${tweet?.author?.email?.split("@")[0]}`}
+          />
+        </button>
+      )}
 
-      <button>
-        <Action
-          icon={<BlockIcon />}
-          text={`Block @${tweet?.author?.email?.split("@")[0]}`}
-        />
-      </button>
+      {session && (
+        <button>
+          <Action
+            icon={<BlockIcon />}
+            text={`Block @${tweet?.author?.email?.split("@")[0]}`}
+          />
+        </button>
+      )}
 
       <button>
         <Action icon={<EmbedIcon />} text={`Embed Tweet`} />
       </button>
 
-      <button>
-        <Action icon={<ReportIcon />} text={`Report Tweet`} />
-      </button>
+      {session && (
+        <button>
+          <Action icon={<ReportIcon />} text={`Report Tweet`} />
+        </button>
+      )}
     </>
   );
 };

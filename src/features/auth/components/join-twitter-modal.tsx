@@ -5,6 +5,7 @@ import { CloseIcon } from "@/assets/close-icon";
 import { CommentIconFill } from "@/assets/comment-icon";
 import { FollowIcon } from "@/assets/follow-icon";
 import { HeartIconActive } from "@/assets/heart-icon";
+import { MessageIcon } from "@/assets/message-icon";
 import { RetweetIcon } from "@/assets/retweet-icon";
 
 import { useJoinTwitter } from "../stores/useJoinTwitter";
@@ -61,6 +62,10 @@ export const JoinTwitterModal = () => {
               <span className={styles.follow}>
                 <FollowIcon />
               </span>
+            ) : data.action === `message` ? (
+              <span className={styles.comment}>
+                <MessageIcon />
+              </span>
             ) : null}
           </div>
 
@@ -75,6 +80,8 @@ export const JoinTwitterModal = () => {
                   ? `Like a Tweet to share the love.`
                   : data.action === `follow`
                   ? `Follow ${data.user} to see what they share on Twitter.`
+                  : data.action === `message`
+                  ? `Join Twitter now so you can share The New European - Think Without Borders’s Tweet privately.`
                   : null}
               </h1>
               <p className={styles.subtitle}>
