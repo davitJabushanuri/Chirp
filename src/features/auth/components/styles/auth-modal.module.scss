@@ -17,6 +17,7 @@
     height: 100%;
     display: grid;
     grid-template-rows: auto 1fr;
+    overflow: auto;
 
     .actions {
       display: flex;
@@ -68,16 +69,24 @@
     }
 
     .children {
-      margin: auto 0;
-      padding: 0 30px 46px;
+      padding: 0 30px;
+      display: grid;
+      align-items: center;
     }
 
     @include mq("medium") {
       max-width: 600px;
-      height: auto;
+      max-height: 650px;
       border-radius: 16px;
-      padding-bottom: 100px;
+
+      .children {
+        align-items: baseline;
+      }
     }
+  }
+
+  @include mq("medium") {
+    padding: 2rem;
   }
 
 

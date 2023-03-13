@@ -15,7 +15,7 @@ export const AuthModalTrigger = () => {
             <Link href={`/auth/signin`}>Log in</Link>
           </button>
           <button className={styles.signUp}>
-            <Link href={`/auth/signin`}>Sign up</Link>
+            <Link href={`/auth/signup`}>Sign up</Link>
           </button>
         </div>
       </div>

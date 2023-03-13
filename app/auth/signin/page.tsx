@@ -1,9 +1,9 @@
-import { SignIn } from "@/features/auth";
+import { SignInClientPage } from "./client";
 
 const SignInPage = async () => {
   return (
     <div>
-      <SignIn />
+      <SignInClientPage />
     </div>
   );
 };

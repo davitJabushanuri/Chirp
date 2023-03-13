@@ -8,4 +8,4 @@ export * from "./components/session-owner-modal";
 export * from "./components/change-username";
 export * from "./components/join-twitter-modal";
 export * from "./stores/useJoinTwitter";
-export * from "./components/pages/signin";
+export * from "./components/signup-form";
