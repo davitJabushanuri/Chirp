@@ -8,7 +8,6 @@
   height: 3.8rem;
   z-index: 1000;
   background-color: var(--clr-background);
-  border-top: 1px solid var(--clr-border);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -42,6 +41,7 @@
         font-weight: 600;
         font-size: 0.85rem;
         cursor: pointer;
+        transition: all 0.1s ease-in-out;
       }
 
       .signIn {
