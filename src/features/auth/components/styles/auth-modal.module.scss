@@ -73,6 +73,7 @@
       display: grid;
       place-content: center;
       grid-template-columns: min(100%, 300px);
+      padding-bottom: 2rem;
     }
 
     @include mq("medium") {

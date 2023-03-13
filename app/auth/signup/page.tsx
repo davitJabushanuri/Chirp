@@ -5,3 +5,7 @@ const SignUpPage = () => {
 };
 
 export default SignUpPage;
+
+export const metadata = {
+  title: "Sign up for Chirp",
+};
