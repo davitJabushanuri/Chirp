@@ -16,8 +16,9 @@
       padding: 11px 0;
 
       button {
-        padding: 8px 15px;
+        padding: 0 15px;
         width: 100%;
+        height: 38px;
         display: grid;
         grid-template-columns: auto auto;
         place-content: center;
@@ -131,15 +132,16 @@
       }
 
       .submit {
-        background-color: var(--clr-dark);
-        color: var(--clr-light);
+        background-color: var(--clr-secondary);
+        color: var(--clr-background);
+        border: none;
 
         &:hover {
-          background-color: var(--clr-dark-hover);
+          background-color: var(--clr-secondary-hover);
         }
 
         &:active {
-          background-color: var(--clr-dark-active);
+          background-color: var(--clr-secondary-active);
         }
       }
 
@@ -150,6 +152,14 @@
       button {
         background-color: var(--clr-background);
         color: var(--clr-secondary);
+
+        &:hover {
+          background-color: var(--clr-nav-hover);
+        }
+
+        &:active {
+          background-color: var(--clr-nav-active);
+        }
       }
     }
 
