@@ -1,185 +1,176 @@
 .container {
-  display: flex;
-  justify-content: center;
+  .title {
+    margin: 19px 0;
+    font-size: 29px;
+    font-weight: 600;
+  }
 
-  .loginForm {
-    width: 100%;
-    max-width: 300px;
-    overflow: auto;
+  .buttonContainer {
+    padding: 11px 0;
 
-    .title {
-      margin: 19px 0;
-      font-size: 29px;
-      font-weight: 600;
+    button {
+      padding: 0 15px;
+      width: 100%;
+      height: 38px;
+      display: grid;
+      grid-template-columns: auto auto;
+      place-content: center;
+      gap: 8px;
+      border: 1px solid var(--clr-auth-border);
+      background-color: var(--clr-light);
+      color: var(--clr-dark);
+      border-radius: 100vmax;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.20s ease-in-out;
+
+      &:hover {
+        background-color: var(--clr-auth-button-hover);
+      }
+
+      &:active {
+        background-color: var(--clr-auth-button-active);
+      }
+
+      .icon {
+        width: 19px;
+        height: 19px;
+
+        svg {
+          width: 100%;
+          height: 100%;
+          fill: var(--clr-dark);
+        }
+      }
+
+      .text {
+        display: grid;
+        place-content: center;
+      }
     }
+  }
 
-    .buttonContainer {
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    .line {
+      width: 100%;
+      height: 1px;
+      background-color: var(--clr-auth-border);
+    }
+  }
+
+
+  form {
+
+    .inputContainer {
       padding: 11px 0;
 
-      button {
-        padding: 0 15px;
+      label {
+        height: 55px;
+        border-radius: 0.2rem;
+        position: relative;
+        display: inline-block;
         width: 100%;
-        height: 38px;
-        display: grid;
-        grid-template-columns: auto auto;
-        place-content: center;
-        gap: 8px;
+        display: flex;
+        align-items: flex-end;
+        padding: 0.5rem;
+        cursor: text;
+        overflow: hidden;
         border: 1px solid var(--clr-auth-border);
-        background-color: var(--clr-light);
-        color: var(--clr-dark);
-        border-radius: 100vmax;
-        font-size: 14px;
-        font-weight: 500;
-        cursor: pointer;
-        transition: all 0.20s ease-in-out;
+        transition: all 0.2s ease-in-out;
 
-        &:hover {
-          background-color: var(--clr-auth-button-hover);
+        &:focus-within {
+          outline: 2px solid var(--clr-blue);
         }
 
-        &:active {
-          background-color: var(--clr-auth-button-active);
-        }
-
-        .icon {
-          width: 19px;
-          height: 19px;
-
-          svg {
-            width: 100%;
-            height: 100%;
-            fill: var(--clr-dark);
-          }
-        }
-
-        .text {
-          display: grid;
-          place-content: center;
-        }
-      }
-    }
-
-    .divider {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-
-      .line {
-        width: 100%;
-        height: 1px;
-        background-color: var(--clr-auth-border);
-      }
-    }
-
-
-    form {
-
-      .inputContainer {
-        padding: 11px 0;
-
-        label {
-          height: 55px;
-          border-radius: 0.2rem;
-          position: relative;
-          display: inline-block;
-          width: 100%;
+        span {
+          pointer-events: none;
+          position: absolute;
+          left: 0;
+          top: 0;
+          bottom: 0;
+          transition: 0.2s ease-in-out;
           display: flex;
-          align-items: flex-end;
+          align-items: center;
+          font-size: 1rem;
           padding: 0.5rem;
-          cursor: text;
-          overflow: hidden;
-          border: 1px solid var(--clr-auth-border);
-          transition: all 0.2s ease-in-out;
-
-          &:focus-within {
-            outline: 2px solid var(--clr-blue);
-          }
-
-          span {
-            pointer-events: none;
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            transition: 0.2s ease-in-out;
-            display: flex;
-            align-items: center;
-            font-size: 1rem;
-            padding: 0.5rem;
-            color: var(--clr-tertiary);
-          }
-
-          input {
-            width: 100%;
-
-            &::placeholder {
-              color: transparent;
-            }
-          }
-
-          input:focus+span {
-            font-size: 0.8rem;
-            transform: translateY(-0.6rem);
-            color: var(--clr-blue);
-          }
-
-          input:not(:placeholder-shown)+span {
-            transform: translateY(-0.6rem);
-            font-size: 0.8rem;
-          }
-
+          color: var(--clr-tertiary);
         }
 
-      }
+        input {
+          width: 100%;
 
-      .submit {
-        background-color: var(--clr-secondary);
-        color: var(--clr-background);
-        border: none;
-
-        &:hover {
-          background-color: var(--clr-secondary-hover);
+          &::placeholder {
+            color: transparent;
+          }
         }
 
-        &:active {
-          background-color: var(--clr-secondary-active);
+        input:focus+span {
+          font-size: 0.8rem;
+          transform: translateY(-0.6rem);
+          color: var(--clr-blue);
         }
+
+        input:not(:placeholder-shown)+span {
+          transform: translateY(-0.6rem);
+          font-size: 0.8rem;
+        }
+
       }
 
     }
 
+    .submit {
+      background-color: var(--clr-secondary);
+      color: var(--clr-background);
+      border: none;
 
-    .forgotPassword {
-      button {
-        background-color: var(--clr-background);
-        color: var(--clr-secondary);
+      &:hover {
+        background-color: var(--clr-secondary-hover);
+      }
 
-        &:hover {
-          background-color: var(--clr-nav-hover);
-        }
-
-        &:active {
-          background-color: var(--clr-nav-active);
-        }
+      &:active {
+        background-color: var(--clr-secondary-active);
       }
     }
 
-    .signUp {
-      margin-top: 38px;
-      font-size: 14px;
+  }
 
-      span {
-        color: var(--clr-tertiary);
+
+  .forgotPassword {
+    button {
+      background-color: var(--clr-background);
+      color: var(--clr-secondary);
+
+      &:hover {
+        background-color: var(--clr-nav-hover);
       }
 
-      a {
-        color: var(--clr-blue);
-        margin-left: 0.3rem;
-        cursor: pointer;
+      &:active {
+        background-color: var(--clr-nav-active);
+      }
+    }
+  }
 
-        &:hover {
-          text-decoration: underline;
-        }
+  .signUp {
+    margin-top: 38px;
+    font-size: 14px;
+
+    span {
+      color: var(--clr-tertiary);
+    }
+
+    a {
+      color: var(--clr-blue);
+      margin-left: 0.3rem;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
       }
     }
   }

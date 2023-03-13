@@ -71,7 +71,8 @@
     .children {
       padding: 0 30px;
       display: grid;
-      align-items: center;
+      place-content: center;
+      grid-template-columns: min(100%, 300px);
     }
 
     @include mq("medium") {
@@ -80,7 +81,7 @@
       border-radius: 16px;
 
       .children {
-        align-items: baseline;
+        align-content: baseline;
       }
     }
   }
