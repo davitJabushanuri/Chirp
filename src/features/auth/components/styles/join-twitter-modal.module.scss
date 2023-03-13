@@ -62,16 +62,42 @@
       justify-content: center;
     }
 
-    .iconContainer {
+    .icon {
       display: grid;
       place-items: center;
       padding: 15px 0;
 
-      .icon {
+      .comment,
+      .retweet,
+      .like,
+      .follow {
         svg {
           width: 46px;
           height: 46px;
-          fill: var(--clr-primary);
+        }
+      }
+
+      .comment {
+        svg {
+          fill: var(--clr-blue);
+        }
+      }
+
+      .retweet {
+        svg {
+          fill: var(--clr-green);
+        }
+      }
+
+      .like {
+        svg {
+          fill: var(--clr-rose);
+        }
+      }
+
+      .follow {
+        svg {
+          fill: var(--clr-blue);
         }
       }
     }
