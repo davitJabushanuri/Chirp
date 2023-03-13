@@ -11,6 +11,7 @@ import { RetweetIcon } from "@/assets/retweet-icon";
 import { useJoinTwitter } from "../stores/useJoinTwitter";
 
 import styles from "./styles/join-twitter-modal.module.scss";
+import { TwitterLogo } from "@/assets/twitter-logo";
 
 export const JoinTwitterModal = () => {
   const router = useRouter();
@@ -66,7 +67,11 @@ export const JoinTwitterModal = () => {
               <span className={styles.comment}>
                 <MessageIcon />
               </span>
-            ) : null}
+            ) : (
+              <span className={styles.comment}>
+                <TwitterLogo />
+              </span>
+            )}
           </div>
 
           <div className={styles.contentWrapper}>
@@ -82,7 +87,7 @@ export const JoinTwitterModal = () => {
                   ? `Follow ${data.user} to see what they share on Twitter.`
                   : data.action === `message`
                   ? `Join Twitter now so you can share The New European - Think Without Borders’s Tweet privately.`
-                  : null}
+                  : `Don’t miss what’s happening`}
               </h1>
               <p className={styles.subtitle}>
                 {data.action === `comment`
@@ -93,7 +98,7 @@ export const JoinTwitterModal = () => {
                   ? `Join Twitter now to let ${data.user} know you like their Tweet.`
                   : data.action === `follow`
                   ? `Sign up so you never miss their Tweets.`
-                  : null}
+                  : `People on Twitter are the first to know.`}
               </p>
 
               <div className={styles.buttons}>
