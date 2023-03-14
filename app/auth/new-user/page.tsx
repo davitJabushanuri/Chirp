@@ -1,13 +1,11 @@
-"use client";
+import { NewUserClientPage } from "./client";
 
-import { ChangeUsername } from "@/features/auth";
-
-const NewUser = () => {
-  return (
-    <div>
-      <ChangeUsername />
-    </div>
-  );
+const NewUserPage = () => {
+  return <NewUserClientPage />;
 };
 
-export default NewUser;
+export default NewUserPage;
+
+export const metadata = {
+  title: "Welcome to Chirp",
+};

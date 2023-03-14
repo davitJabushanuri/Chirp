@@ -7,11 +7,11 @@ import { FollowIcon } from "@/assets/follow-icon";
 import { HeartIconActive } from "@/assets/heart-icon";
 import { MessageIcon } from "@/assets/message-icon";
 import { RetweetIcon } from "@/assets/retweet-icon";
+import { TwitterLogo } from "@/assets/twitter-logo";
 
 import { useJoinTwitter } from "../stores/useJoinTwitter";
 
 import styles from "./styles/join-twitter-modal.module.scss";
-import { TwitterLogo } from "@/assets/twitter-logo";
 
 export const JoinTwitterModal = () => {
   const router = useRouter();
