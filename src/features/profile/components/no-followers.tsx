@@ -2,7 +2,13 @@ import Image from "next/image";
 
 import styles from "./styles/no-followers.module.scss";
 
-export const NoFollowers = () => {
+export const NoFollowers = ({
+  title,
+  subtitle,
+}: {
+  title: string;
+  subtitle: string;
+}) => {
   return (
     <div className={styles.container}>
       <div className={styles.content}>
@@ -12,11 +18,8 @@ export const NoFollowers = () => {
           width={1000}
           height={1000}
         />
-        <h1>Looking for followers?</h1>
-        <p>
-          When someone follows this account, they&apos;ll show up here. Tweeting
-          and interacting with others helps boost followers.
-        </p>
+        <h1>{title}</h1>
+        <p>{subtitle}</p>
       </div>
     </div>
   );
