@@ -1,5 +1,11 @@
 "use client";
 
+import { Followers } from "@/features/profile";
+
 export const FollowersClientPage = () => {
-  return <div>followers</div>;
+  return (
+    <div>
+      <Followers />
+    </div>
+  );
 };

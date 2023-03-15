@@ -23,6 +23,7 @@ export const UserInfo = ({ user }: { user: IUser }) => {
   const { data: session } = useSession();
   const router = useRouter();
   const pathname = usePathname();
+  const id = pathname?.split("/")[1];
 
   const isFollowing = user?.followers?.some(
     (follower) => follower?.follower_id === session?.user?.id,
@@ -141,14 +142,14 @@ export const UserInfo = ({ user }: { user: IUser }) => {
 
           <div className={styles.stats}>
             <button
-              onClick={() => router.push(`${pathname}/following`)}
+              onClick={() => router.push(`${id}/following`)}
               className={styles.stat}
             >
               <span className={styles.number}>{user?.following?.length}</span>
               <span className={styles.text}>Following</span>
             </button>
             <button
-              onClick={() => router.push(`${pathname}/followers`)}
+              onClick={() => router.push(`${id}/followers`)}
               className={styles.stat}
             >
               <span className={styles.number}>{user?.followers?.length}</span>
