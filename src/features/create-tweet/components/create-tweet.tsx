@@ -78,6 +78,8 @@ export const CreateTweet = ({
     }
   };
 
+  if (!session) return null;
+
   return (
     <>
       <div className={styles.parentTweet}>
