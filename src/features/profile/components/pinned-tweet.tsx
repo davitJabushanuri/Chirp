@@ -6,9 +6,11 @@ import { usePinnedTweet } from "../hooks/use-pinned-tweet";
 import styles from "./styles/pinned-tweet.module.scss";
 
 export const PinnedTweet = ({ userId }: { userId: string | undefined }) => {
-  const { data: pinned_tweet, isSuccess } = usePinnedTweet(userId);
+  const { data: pinnedTweet } = usePinnedTweet(userId);
 
-  return isSuccess && pinned_tweet ? (
+  if (!pinnedTweet) return null;
+
+  return (
     <div className={styles.container}>
       <div className={styles.pin}>
         <span className={styles.icon}>
@@ -16,7 +18,7 @@ export const PinnedTweet = ({ userId }: { userId: string | undefined }) => {
         </span>
         <span className={styles.text}>Pinned Tweet</span>
       </div>
-      <Tweet tweet={pinned_tweet} />
+      <Tweet tweet={pinnedTweet} />
     </div>
-  ) : null;
+  );
 };

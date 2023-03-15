@@ -7,6 +7,7 @@ import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
 import { Tweet } from "@/features/tweets";
 
+import { useUser } from "../hooks/use-user";
 import { useUserLikes } from "../hooks/use-user-likes";
 
 import styles from "./styles/profile-likes.module.scss";
@@ -17,6 +18,8 @@ export const ProfileLikes = () => {
   const id = pathname?.split("/")[1];
 
   const { data: likes, isLoading, isError, isSuccess } = useUserLikes(id);
+
+  const { data: user } = useUser(id);
 
   if (isLoading) {
     return (
@@ -48,7 +51,9 @@ export const ProfileLikes = () => {
             </div>
           ) : (
             <div>
-              <h1>user hasn&apos;t liked any tweets</h1>
+              <h1>
+                @{user?.email?.split("@")[0]} hasn&apos;t liked any tweets
+              </h1>
               <p>
                 <span>When they do, those Tweets will show up here.</span>
               </p>

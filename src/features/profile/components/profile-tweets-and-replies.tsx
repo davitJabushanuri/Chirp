@@ -8,6 +8,7 @@ import { TryAgain } from "@/components/elements/try-again";
 import { Connect } from "@/features/connect";
 import { Tweet } from "@/features/tweets";
 
+import { useUser } from "../hooks/use-user";
 import { useUserTweetsWithReplies } from "../hooks/use-user-tweets-with-replies";
 
 import { PinnedTweet } from "./pinned-tweet";
@@ -24,6 +25,8 @@ export const ProfileTweetsAndReplies = () => {
     isError,
     isSuccess,
   } = useUserTweetsWithReplies(id);
+
+  const { data: user } = useUser(id);
 
   if (isLoading) {
     return (
@@ -55,8 +58,7 @@ export const ProfileTweetsAndReplies = () => {
           ) : (
             <div>
               <h1>
-                @{tweets[0]?.author?.email?.split("@")[0]} hasn&apos;t tweeted
-                anything yet.
+                @{user?.email?.split("@")[0]} hasn&apos;t tweeted anything yet.
               </h1>
               <p>When they do, it&apos;ll show up here.</p>
             </div>

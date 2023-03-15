@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
@@ -8,6 +8,7 @@ import { Person } from "./person";
 import styles from "./styles/connect.module.scss";
 
 export const Connect = () => {
+  const router = useRouter();
   const { data: people, isLoading, isError } = useUsers();
 
   return (
@@ -24,13 +25,16 @@ export const Connect = () => {
         <>
           <h1>Who to follow</h1>
           <div className={styles.people}>
-            {people?.slice(0, 2).map((person) => {
+            {people?.slice(0, 3).map((person) => {
               return <Person key={person.id} person={person} />;
             })}
           </div>
 
-          <button className={styles.showMore}>
-            <Link href={`/people`}>Show more</Link>
+          <button
+            onClick={() => router.push(`/people`)}
+            className={styles.showMore}
+          >
+            Show more
           </button>
         </>
       )}

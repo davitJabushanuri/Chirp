@@ -8,6 +8,7 @@ import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
 import { Tweet } from "@/features/tweets";
 
+import { useUser } from "../hooks/use-user";
 import { useUserTweetsWithMedia } from "../hooks/use-user-tweets-with-media";
 
 import styles from "./styles/profile-media.module.scss";
@@ -23,6 +24,8 @@ export const ProfileMedia = () => {
     isError,
     isSuccess,
   } = useUserTweetsWithMedia(id);
+
+  const { data: user } = useUser(id);
 
   if (isLoading) {
     return (
@@ -56,7 +59,7 @@ export const ProfileMedia = () => {
           ) : (
             <div>
               <img src="/media-placeholder.png" alt="" />
-              <h1>user hasn&apos;t tweeted media</h1>
+              <h1>@{user?.email?.split("@")[0]} hasn&apos;t tweeted media</h1>
               <p>Once they do, those Tweets will show up here.</p>
             </div>
           )}

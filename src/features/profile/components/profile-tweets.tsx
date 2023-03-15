@@ -1,5 +1,6 @@
 "use client";
 
+import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
 
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
@@ -8,16 +9,19 @@ import { Connect } from "@/features/connect";
 import { Tweet } from "@/features/tweets";
 import { ITweet } from "@/features/tweets";
 
+import { useUser } from "../hooks/use-user";
 import { useUserTweets } from "../hooks/use-user-tweets";
 
 import { PinnedTweet } from "./pinned-tweet";
 import styles from "./styles/profile-tweets.module.scss";
 
 export const ProfileTweets = () => {
+  const { data: session } = useSession();
   const pathname = usePathname();
   const id = pathname?.split("/")[1];
 
   const { data: tweets, isLoading, isError, isSuccess } = useUserTweets(id);
+  const { data: user } = useUser(id);
 
   if (isLoading) {
     return (
@@ -37,7 +41,7 @@ export const ProfileTweets = () => {
 
   return (
     <div className={styles.container}>
-      {/* {isSuccess && tweets?.length === 0 && (
+      {isSuccess && tweets?.length === 0 && (
         <div className={styles.noTweets}>
           {user?.id === session?.user?.id ? (
             <div>
@@ -53,7 +57,7 @@ export const ProfileTweets = () => {
             </div>
           )}
         </div>
-      )} */}
+      )}
 
       <PinnedTweet userId={id} />
 
@@ -66,10 +70,9 @@ export const ProfileTweets = () => {
               </div>
             );
           })}
-
-          <Connect />
         </div>
       )}
+      <Connect />
     </div>
   );
 };

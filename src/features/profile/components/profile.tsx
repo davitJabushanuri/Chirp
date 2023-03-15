@@ -46,16 +46,12 @@ export const Profile = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div className={styles.container}>
-      {!isError && (
-        <>
-          <ProfileHeader user={user} />
-          <UserInfo user={user} />
-          <ProfileNavbar pathname={pathname} id={id} />
-          <div>{children}</div>
-          {isEditProfileModalOpen && <EditProfileModal user={user} />}
-          {isInspectModalOpen && <InspectImageModal />}
-        </>
-      )}
+      <ProfileHeader user={user} />
+      <UserInfo user={user} />
+      <ProfileNavbar pathname={pathname} id={id} />
+      <div>{children}</div>
+      {isEditProfileModalOpen && <EditProfileModal user={user} />}
+      {isInspectModalOpen && <InspectImageModal />}
     </div>
   );
 };
