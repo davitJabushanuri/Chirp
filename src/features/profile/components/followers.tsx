@@ -17,11 +17,21 @@ export const Followers = () => {
   const { data: followers, isLoading, isError } = useGetFollowers(id);
 
   if (isLoading) {
-    return <LoadingSpinner />;
+    return (
+      <>
+        <FollowersHeader />
+        <LoadingSpinner />
+      </>
+    );
   }
 
   if (isError) {
-    return <TryAgain />;
+    return (
+      <>
+        <FollowersHeader />
+        <TryAgain />
+      </>
+    );
   }
 
   return (
@@ -36,11 +46,11 @@ export const Followers = () => {
         />
       ) : (
         <div>
-          {followers?.map((follower) => {
+          {followers?.map((follow) => {
             return (
               <PersonDetails
-                key={follower?.follower?.id}
-                author={follower?.follower}
+                key={follow?.follower?.id}
+                author={follow?.follower}
               />
             );
           })}
