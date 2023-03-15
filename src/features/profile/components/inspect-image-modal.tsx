@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 "use client";
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
@@ -21,11 +22,10 @@ export const InspectImageModal = () => {
       <button className={styles.close}>
         <CloseIcon />
       </button>
-      <div
-        onClick={(e) => e.preventDefault()}
-        className={sourceType === "banner" ? styles.banner : styles.avatar}
-      >
-        {source && <img src={source} alt="" />}
+      <div className={sourceType === "banner" ? styles.banner : styles.avatar}>
+        {source && (
+          <img onClick={(e) => e.stopPropagation()} src={source} alt="" />
+        )}
       </div>
     </div>
   );
