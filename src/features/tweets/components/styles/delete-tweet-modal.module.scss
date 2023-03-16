@@ -49,6 +49,7 @@
     }
 
     .cancel {
+      color: var(--clr-secondary);
       border: 1px solid var(--clr-border);
 
       &:hover {
