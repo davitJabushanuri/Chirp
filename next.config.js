@@ -2,6 +2,15 @@
 /** @type {import('next').NextConfig} */
 const path = require("path");
 const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "hbrhodokmkprrksqwoph.supabase.co",
+      },
+    ],
+  },
+
   experimental: {
     appDir: true,
     scrollRestoration: true,
