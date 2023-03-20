@@ -8,7 +8,6 @@
   width: 100dvw;
   height: 100vh;
   height: 100dvh;
-  z-index: 999999999;
   display: none;
 
   .modalContainer {
@@ -28,6 +27,7 @@
       border-radius: 1rem;
       padding: 10px 0;
       animation: slideIn 0.2s ease-in-out;
+      z-index: 999;
     }
 
     button {

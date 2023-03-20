@@ -6,7 +6,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 import { CloseIcon } from "@/assets/close-icon";
-import { UserAvatar, useUser } from "@/features/profile";
+import { Avatar } from "@/components/designs/avatar";
+import { useUser } from "@/features/profile";
 import { useHamburger } from "@/stores/use-hamburger";
 
 import { Bookmark } from "../assets/bookmark-icon";
@@ -39,16 +40,38 @@ export const HamburgerMenu = () => {
         </div>
 
         <div className={styles.profile}>
-          <button className={styles.image}>
-            <UserAvatar
-              userId={session?.user?.id}
+          <button
+            onClick={() => {
+              router.push(`/${session?.user?.id}`);
+              closeHamburger();
+            }}
+            className={styles.image}
+          >
+            <Avatar
               userImage={session?.user?.profile_image_url}
+              width={38}
+              height={38}
             />
           </button>
-          <p className={styles.name}>{session?.user?.name}</p>
-          <span className={styles.username}>
+
+          <button
+            onClick={() => {
+              router.push(`/${session?.user?.id}`);
+              closeHamburger();
+            }}
+            className={styles.name}
+          >
+            {session?.user?.name}
+          </button>
+          <button
+            onClick={() => {
+              router.push(`/${session?.user?.id}`);
+              closeHamburger();
+            }}
+            className={styles.username}
+          >
             @{session?.user?.email?.split("@")[0]}
-          </span>
+          </button>
           {user && (
             <div className={styles.stats}>
               <span

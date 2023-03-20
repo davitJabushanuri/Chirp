@@ -58,20 +58,12 @@
       margin-bottom: 1rem;
 
       .image {
-        width: 38px;
-        height: 38px;
-        border-radius: 50%;
         overflow: hidden;
-        cursor: pointer;
         margin-bottom: 11px;
+        transition: opacity 0.2s;
 
         &:hover {
-          opacity: 0.8;
-        }
-
-        button {
-          width: 100%;
-          height: 100%;
+          opacity: 0.9;
         }
       }
 
@@ -80,6 +72,10 @@
         font-weight: 700;
         color: var(--clr-secondary);
         margin-bottom: 4px;
+
+        &:hover {
+          text-decoration: underline;
+        }
       }
 
       .username {

@@ -18,7 +18,7 @@ export const HamburgerButton = () => {
       {session ? (
         <button onClick={() => openHamburger()} className={styles.container}>
           <Avatar
-            userImage={session?.user?.user_profile_img}
+            userImage={session?.user?.profile_image_url}
             width={30}
             height={30}
           />
