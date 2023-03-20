@@ -2,30 +2,33 @@
 "use client";
 import { useRouter } from "next/navigation";
 
+import { Avatar } from "@/components/designs/avatar";
+
 import styles from "./styles/user.module.scss";
 
 export const UserAvatar = ({
   userId,
   userImage,
+  width = "46px",
+  height = "46px",
 }: {
-  userId: string | undefined;
+  userId?: string | undefined;
   userImage: string | undefined;
+  width?: string;
+  height?: string;
 }) => {
   const router = useRouter();
 
   return (
     <button
+      style={{ width, height }}
       onClick={(e) => {
         e.stopPropagation();
-        router.push(`/${userId}`);
+        if (userId) router.push(`/${userId}`);
       }}
       className={styles.container}
     >
-      {userImage ? (
-        <img src={userImage} alt="" />
-      ) : (
-        <img src="/user_placeholder.png" alt="" />
-      )}
+      <Avatar userImage={userImage} height={46} width={46} />
     </button>
   );
 };
