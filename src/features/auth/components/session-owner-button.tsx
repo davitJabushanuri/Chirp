@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { useSession } from "next-auth/react";
+import Image from "next/image";
 
 import { DotIcon } from "@/assets/dot-icon";
 import { useAuthModal } from "@/stores/use-auth-modal";
@@ -16,11 +17,12 @@ export const SessionOwnerButton = () => {
     <>
       <button onClick={() => openUserModal()} className={styles.container}>
         <div className={styles.avatar}>
-          {session?.user?.profile_image_url ? (
-            <img src={session?.user?.profile_image_url} alt="" />
-          ) : (
-            <img src="/user_placeholder.png" alt="" />
-          )}
+          <Image
+            src={session?.user?.profile_image_url || `/user_placeholder.png`}
+            alt=""
+            width={200}
+            height={200}
+          />
         </div>
         <div className={styles.userInfo}>
           {session?.user && (

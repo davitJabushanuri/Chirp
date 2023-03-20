@@ -1,10 +1,9 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
-
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 
 import { TwitterLogo } from "@/assets/twitter-logo";
+import { Avatar } from "@/components/designs/avatar";
 import { useHamburger } from "@/stores/use-hamburger";
 
 import styles from "./styles/hamburger-button.module.scss";
@@ -18,11 +17,11 @@ export const HamburgerButton = () => {
     <>
       {session ? (
         <button onClick={() => openHamburger()} className={styles.container}>
-          {session?.user?.profile_image_url ? (
-            <img src={session?.user?.profile_image_url} alt="avatar" />
-          ) : (
-            <img src="/user_placeholder.png" alt="avatar" />
-          )}
+          <Avatar
+            userImage={session?.user?.user_profile_img}
+            width={30}
+            height={30}
+          />
         </button>
       ) : (
         <div className={styles.logo}>

@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 // /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable @next/next/no-img-element */
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
@@ -79,7 +79,7 @@ export const TweetDetails = () => {
             >
               {tweet?.media?.slice(0, 4).map((media, index) => {
                 return (
-                  <img
+                  <Image
                     onClick={() => {
                       setImageIndex(index);
                       setTweetId(tweet?.id);
@@ -88,6 +88,8 @@ export const TweetDetails = () => {
                     key={media?.id}
                     src={media?.media_url}
                     alt=""
+                    width={1000}
+                    height={1000}
                   />
                 );
               })}

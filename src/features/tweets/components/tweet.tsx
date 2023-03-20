@@ -1,9 +1,8 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable @next/next/no-img-element */
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 import {
@@ -34,6 +33,8 @@ export const Tweet = ({ tweet }: { tweet: ITweet }) => {
 
   return (
     <div
+      role={"button"}
+      tabIndex={0}
       onClick={() => router.push(`/status/${tweet.id}`)}
       className={styles.container}
     >
@@ -110,7 +111,7 @@ export const Tweet = ({ tweet }: { tweet: ITweet }) => {
             >
               {tweet?.media?.slice(0, 4).map((media, index) => {
                 return (
-                  <img
+                  <Image
                     onClick={(e) => {
                       e.stopPropagation();
                       setImageIndex(index);
@@ -120,6 +121,8 @@ export const Tweet = ({ tweet }: { tweet: ITweet }) => {
                     key={media?.id}
                     src={media?.media_url}
                     alt=""
+                    width={500}
+                    height={500}
                   />
                 );
               })}

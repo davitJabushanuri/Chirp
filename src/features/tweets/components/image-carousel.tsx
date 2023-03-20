@@ -1,8 +1,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable @next/next/no-img-element */
 "use client";
-
+import Image from "next/image";
 import { useState } from "react";
 
 import { useInspectTweetImage } from "@/stores/use-inspect-tweet-images";
@@ -31,10 +30,12 @@ export const ImageCarousel = ({ images }: { images: IMedia[] | undefined }) => {
       />
       <div className={styles.imageContainer}>
         {images && (
-          <img
+          <Image
             onClick={(e) => e.stopPropagation()}
             src={images[activeSlide]?.media_url}
             alt=""
+            width={1000}
+            height={1000}
           />
         )}
       </div>

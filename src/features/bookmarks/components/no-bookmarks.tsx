@@ -1,4 +1,5 @@
-/* eslint-disable @next/next/no-img-element */
+import Image from "next/image";
+
 import styles from "./styles/no-bookmarks.module.scss";
 
 export const NoBookmarks = () => {
@@ -6,7 +7,12 @@ export const NoBookmarks = () => {
     <div className={styles.container}>
       <div className={styles.content}>
         <div className={styles.image}>
-          <img src="/no-bookmarks.png" alt="" />
+          <Image
+            src="/no-bookmarks.png"
+            alt="No bookmarks"
+            width={500}
+            height={500}
+          />
         </div>
         <h1>Save Tweets for later</h1>
         <p>
