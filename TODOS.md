@@ -15,7 +15,7 @@
 - [x] User can see all tweets
 - [x] User can post a tweet
 - [ ] User can edit a tweet
-- [ ] User can delete a tweet
+- [x] User can delete a tweet
 
 - ### Media
 
@@ -27,14 +27,14 @@
 
   - [x] User can reply to a tweet
   - [x] User can like a tweet
-  - [ ] User can retweet a tweet
+  - [x] User can retweet a tweet
   - [ ] User can report a tweet
 
 ## Profile
 
-- [ ] User can see who they follow
+- [x] User can see who they follow
 - [x] User can follow other users
-- [ ] User can see who follows them
+- [x] User can see who follows them
 - [x] User can see a timeline of tweets
 - [x] User can see a list of tweets they've liked
 - [ ] User can see a list of tweets they've retweeted
@@ -43,9 +43,9 @@
 
 ## Direct Messages
 
-- [ ] User can send a direct message to another user
-- [ ] User can see a list of direct messages
-- [ ] User can see a list of direct message conversations
+- [x] User can send a direct message to another user
+- [x] User can see a list of direct messages
+- [x] User can see a list of direct message conversations
 
 ## Admin
 
@@ -80,6 +80,4 @@
 
 ## Trends
 
-- [ ] User can see a list of trending topics
-- [ ] User can see a list of trending hashtags
-- [ ] User can see a list of trending users
+- [x] User can see a list of trending hashtags
