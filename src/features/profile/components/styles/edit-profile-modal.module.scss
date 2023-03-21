@@ -28,38 +28,9 @@
       gap: 1rem;
 
       .close {
-        width: 2rem;
-        height: 2rem;
-        border-radius: 50%;
-        cursor: pointer;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        &:hover {
-          background-color: var(--clr-trends-hover);
-        }
-
-        &:active {
-          background-color: var(--clr-trends-active);
-        }
-
-        .x,
-        .arrow {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
 
         .x {
           display: none;
-        }
-
-        svg {
-          width: 1.2rem;
-          height: 1.2rem;
-          fill: var(--clr-secondary);
         }
 
         @include mq("medium") {

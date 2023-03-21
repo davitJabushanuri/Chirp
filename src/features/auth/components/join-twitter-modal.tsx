@@ -1,13 +1,13 @@
 "use client";
 import { useRouter } from "next/navigation";
 
-import { CloseIcon } from "@/assets/close-icon";
 import { CommentIconFill } from "@/assets/comment-icon";
 import { FollowIcon } from "@/assets/follow-icon";
 import { HeartIconActive } from "@/assets/heart-icon";
 import { MessageIcon } from "@/assets/message-icon";
 import { RetweetIcon } from "@/assets/retweet-icon";
 import { TwitterLogo } from "@/assets/twitter-logo";
+import { CloseButton } from "@/components/designs/close-button";
 
 import { useJoinTwitter } from "../stores/useJoinTwitter";
 
@@ -41,7 +41,7 @@ export const JoinTwitterModal = () => {
               })
             }
           >
-            <CloseIcon />
+            <CloseButton />
           </button>
         </div>
 

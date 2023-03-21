@@ -30,30 +30,6 @@
 
     .close {
       padding: 9px;
-
-      button {
-        width: 32px;
-        height: 32px;
-        cursor: pointer;
-        transition: background-color 0.2s ease-in-out;
-        border-radius: 50%;
-        display: grid;
-        place-items: center;
-
-        &:hover {
-          background-color: var(--clr-nav-hover);
-        }
-
-        &:active {
-          background-color: var(--clr-nav-active);
-        }
-
-        svg {
-          width: 19px;
-          height: 19px;
-          fill: var(--clr-secondary);
-        }
-      }
     }
 
     .wrapper {

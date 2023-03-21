@@ -45,31 +45,6 @@
       gap: 1rem;
 
       .close {
-        border-radius: 50%;
-        overflow: hidden;
-        width: 2rem;
-        height: 2rem;
-        cursor: pointer;
-
-        &:hover {
-          background-color: var(--clr-nav-hover);
-        }
-
-        &:active {
-          background-color: var(--clr-nav-active);
-        }
-
-        .arrow {
-          display: grid;
-          place-items: center;
-
-          svg {
-            width: 19px;
-            height: 19px;
-            fill: var(--clr-secondary);
-          }
-        }
-
         .x {
           display: none;
         }
@@ -80,14 +55,7 @@
           }
 
           .x {
-            display: grid;
-            place-items: center;
-
-            svg {
-              width: 19px;
-              height: 19px;
-              fill: var(--clr-secondary);
-            }
+            display: block;
           }
         }
       }

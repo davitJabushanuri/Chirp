@@ -177,27 +177,13 @@
           position: absolute;
           top: 0.3rem;
           left: 0.3rem;
-          width: 30px;
-          height: 30px;
           z-index: 9999;
           cursor: pointer;
           background-color: var(--clr-trends-background);
-          border-radius: 100vmax;
-          display: flex;
-          align-items: center;
-          justify-content: center;
+          border-radius: 50%;
 
-          &:hover {
-            background-color: var(--clr-trends-hover);
-          }
-
-          &:active {
-            background-color: var(--clr-trends-active);
-          }
 
           svg {
-            width: 18px;
-            height: 18px;
             fill: var(--clr-light);
           }
         }

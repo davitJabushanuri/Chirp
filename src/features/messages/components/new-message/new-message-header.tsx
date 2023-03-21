@@ -1,4 +1,4 @@
-import { CloseIcon } from "@/assets/close-icon";
+import { CloseButton } from "@/components/designs/close-button";
 
 import { useNewMessageStore } from "../../stores/use-new-message-store";
 
@@ -10,7 +10,7 @@ export const NewMessageHeader = () => {
   return (
     <div className={styles.container}>
       <button onClick={closeModal} className={styles.close}>
-        <CloseIcon />
+        <CloseButton />
       </button>
 
       <h1>New message</h1>

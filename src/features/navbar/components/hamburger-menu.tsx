@@ -5,8 +5,8 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-import { CloseIcon } from "@/assets/close-icon";
 import { Avatar } from "@/components/designs/avatar";
+import { CloseButton } from "@/components/designs/close-button";
 import { useUser } from "@/features/profile";
 import { useHamburger } from "@/stores/use-hamburger";
 
@@ -34,8 +34,8 @@ export const HamburgerMenu = () => {
       <div onClick={(e) => e.stopPropagation()} className={styles.hamburger}>
         <div className={styles.actions}>
           <h1>Account info</h1>
-          <button className={styles.close} onClick={() => closeHamburger()}>
-            <CloseIcon />
+          <button onClick={() => closeHamburger()}>
+            <CloseButton />
           </button>
         </div>
 

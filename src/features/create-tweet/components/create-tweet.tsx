@@ -7,12 +7,12 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useRef, useState } from "react";
 
-import { CloseIcon } from "@/assets/close-icon";
 import { EmojiIcon } from "@/assets/emoji-icon";
 import { GifIcon } from "@/assets/gif-icon";
 import { ImageIcon } from "@/assets/image-icon";
 import { LocationIcon } from "@/assets/location-icon";
 import { VerifiedIcon } from "@/assets/verified-icon";
+import { CloseButton } from "@/components/designs/close-button";
 import { UserAvatar } from "@/features/profile";
 import { ITweet } from "@/features/tweets";
 import { QuotedTweet } from "@/features/tweets";
@@ -185,7 +185,7 @@ export const CreateTweet = ({
                     }}
                     className={styles.close}
                   >
-                    <CloseIcon />
+                    <CloseButton />
                   </button>
                   <Image
                     src={image.url as string}

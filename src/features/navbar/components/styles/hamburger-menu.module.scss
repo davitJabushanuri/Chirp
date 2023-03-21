@@ -27,30 +27,6 @@
         font-weight: 700;
         color: var(--clr-secondary);
       }
-
-      .close {
-        width: 2rem;
-        height: 2rem;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-
-        &:hover {
-          background-color: var(--clr-trends-hover);
-        }
-
-        &:active {
-          background-color: var(--clr-trends-active);
-        }
-
-        svg {
-          fill: var(--clr-secondary);
-          height: 1.2rem;
-          width: 1.2rem;
-        }
-      }
     }
 
     .profile {

@@ -1,9 +1,8 @@
 "use client";
-
 import { useRouter } from "next/navigation";
 
-import { CloseIcon } from "@/assets/close-icon";
 import { TwitterLogo } from "@/assets/twitter-logo";
+import { CloseButton } from "@/components/designs/close-button";
 
 import styles from "./styles/auth-modal.module.scss";
 
@@ -14,8 +13,8 @@ export const AuthModal = ({ children }: { children: React.ReactNode }) => {
     <div className={styles.container}>
       <div className={styles.modal}>
         <div className={styles.actions}>
-          <button onClick={() => router.back()} className={styles.close}>
-            <CloseIcon />
+          <button onClick={() => router.back()}>
+            <CloseButton />
           </button>
           <div className={styles.logo}>
             <TwitterLogo />

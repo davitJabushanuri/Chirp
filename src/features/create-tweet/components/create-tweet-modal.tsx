@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import { BackArrowIcon } from "@/assets/back-arrow-icon";
-import { CloseIcon } from "@/assets/close-icon";
+import { BackButton } from "@/components/designs/back-button";
+import { CloseButton } from "@/components/designs/close-button";
 import { useDisableBodyScroll } from "@/hooks";
 import { useCreateTweetModal } from "@/stores/use-create-tweet-modal";
 
@@ -32,10 +32,10 @@ export const CreateTweetModal = () => {
       <div onClick={(e) => e.stopPropagation()} className={styles.modal}>
         <button onClick={() => closeModal()} className={styles.close}>
           <span className={styles.arrow}>
-            <BackArrowIcon />
+            <BackButton />
           </span>
           <span className={styles.x}>
-            <CloseIcon />
+            <CloseButton />
           </span>
         </button>
         <CreateTweet

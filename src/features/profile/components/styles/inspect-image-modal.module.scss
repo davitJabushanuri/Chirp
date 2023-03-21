@@ -15,28 +15,8 @@
     position: absolute;
     top: 1rem;
     left: 1rem;
-    width: 2rem;
-    height: 2rem;
-    cursor: pointer;
     background-color: var(--clr-modal);
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    &:hover {
-      background-color: var(--clr-modal-hover);
-    }
-
-    &:active {
-      background-color: var(--clr-modal-active);
-    }
-
-    svg {
-      width: 21px;
-      height: 21px;
-      fill: var(--clr-light);
-    }
   }
 
   .banner {

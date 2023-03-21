@@ -2,8 +2,9 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
 import { useRef, useState } from "react";
 
-import { BackArrowIcon } from "@/assets/back-arrow-icon";
 import { CloseIcon } from "@/assets/close-icon";
+import { BackButton } from "@/components/designs/back-button";
+import { CloseButton } from "@/components/designs/close-button";
 import { useDisableBodyScroll } from "@/hooks";
 import { useEditProfile } from "@/stores/use-edit-profile";
 
@@ -85,10 +86,10 @@ export const EditProfileModal = ({ user }: { user: IUser }) => {
             className={styles.close}
           >
             <span className={styles.arrow}>
-              <BackArrowIcon />
+              <BackButton />
             </span>
             <span className={styles.x}>
-              <CloseIcon />
+              <CloseButton />
             </span>
           </button>
 

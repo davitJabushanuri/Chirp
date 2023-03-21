@@ -1,10 +1,10 @@
 import Image from "next/image";
 import { useRef, useState } from "react";
 
-import { CloseIcon } from "@/assets/close-icon";
 import { EmojiIcon } from "@/assets/emoji-icon";
 import { GifIcon } from "@/assets/gif-icon";
 import { ImageIcon } from "@/assets/image-icon";
+import { CloseButton } from "@/components/designs/close-button";
 import { IChosenImages } from "@/features/create-tweet";
 
 import { SendIcon } from "../assets/send-icon";
@@ -67,7 +67,7 @@ export const MessageInput = ({
                   }}
                   className={styles.close}
                 >
-                  <CloseIcon />
+                  <CloseButton />
                 </button>
                 <Image
                   src={image.url as string}

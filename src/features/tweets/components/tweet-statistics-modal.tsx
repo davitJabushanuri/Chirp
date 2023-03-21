@@ -1,8 +1,7 @@
-/* eslint-disable @next/next/no-img-element */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import { BackArrowIcon } from "@/assets/back-arrow-icon";
-import { CloseIcon } from "@/assets/close-icon";
+import { BackButton } from "@/components/designs/back-button";
+import { CloseButton } from "@/components/designs/close-button";
 import { PersonDetails } from "@/features/connect";
 import { IUser } from "@/features/profile";
 import { useInspectTweetImage } from "@/stores/use-inspect-tweet-images";
@@ -38,11 +37,11 @@ export const TweetStatisticsModal = ({
             className={styles.close}
           >
             <span className={styles.arrow}>
-              <BackArrowIcon />
+              <BackButton />
             </span>
 
             <span className={styles.x}>
-              <CloseIcon />
+              <CloseButton />
             </span>
           </button>
 
