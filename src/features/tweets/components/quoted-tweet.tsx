@@ -1,11 +1,12 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable @next/next/no-img-element */
 import dayjs from "dayjs";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 import { VerifiedIcon } from "@/assets/verified-icon";
+import { Avatar } from "@/components/designs/avatar";
 import { useInspectTweetImage } from "@/stores/use-inspect-tweet-images";
 
 import { ITweet } from "../types";
@@ -31,11 +32,11 @@ export const QuotedTweet = ({ tweet }: { tweet: ITweet }) => {
     >
       <div className={styles.userDetails}>
         <span className={styles.avatar}>
-          {tweet?.author?.profile_image_url ? (
-            <img src={tweet?.author?.profile_image_url} alt="" />
-          ) : (
-            <img src="/user_placeholder.png" alt="" />
-          )}
+          <Avatar
+            userImage={tweet?.author?.profile_image_url}
+            width={46}
+            height={46}
+          />
         </span>
 
         <span className={styles.name}>{tweet?.author?.name}</span>
@@ -74,7 +75,7 @@ export const QuotedTweet = ({ tweet }: { tweet: ITweet }) => {
               >
                 {tweet?.media?.slice(0, 4).map((media, index) => {
                   return (
-                    <img
+                    <Image
                       onClick={(e) => {
                         e.stopPropagation();
                         setImageIndex(index);
@@ -84,6 +85,8 @@ export const QuotedTweet = ({ tweet }: { tweet: ITweet }) => {
                       key={media?.id}
                       src={media?.media_url}
                       alt=""
+                      width={500}
+                      height={500}
                     />
                   );
                 })}

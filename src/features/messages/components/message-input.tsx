@@ -1,4 +1,4 @@
-/* eslint-disable @next/next/no-img-element */
+import Image from "next/image";
 import { useRef, useState } from "react";
 
 import { CloseIcon } from "@/assets/close-icon";
@@ -69,7 +69,12 @@ export const MessageInput = ({
                 >
                   <CloseIcon />
                 </button>
-                <img src={image.url as string} alt="" />
+                <Image
+                  src={image.url as string}
+                  alt=""
+                  width={100}
+                  height={100}
+                />
               </div>
             );
           })}

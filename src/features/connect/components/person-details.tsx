@@ -1,9 +1,9 @@
-/* eslint-disable @next/next/no-img-element */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
+import { Avatar } from "@/components/designs/avatar";
 import { FollowButton } from "@/components/elements/follow-button";
 import { IUser } from "@/features/profile";
 
@@ -25,11 +25,7 @@ export const PersonDetails = ({ author }: { author: IUser }) => {
       className={styles.container}
     >
       <div className={styles.avatar}>
-        {author?.profile_image_url ? (
-          <img src={author.profile_image_url} alt="avatar" />
-        ) : (
-          <img src="/user_placeholder.png" alt="" />
-        )}
+        <Avatar userImage={author?.profile_image_url} width={46} height={46} />
       </div>
 
       <div className={styles.info}>

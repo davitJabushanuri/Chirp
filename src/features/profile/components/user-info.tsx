@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable @next/next/no-img-element */
 "use client";
 import { useSession } from "next-auth/react";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 
 import { DotIcon } from "@/assets/dot-icon";
@@ -40,31 +40,40 @@ export const UserInfo = ({ user }: { user: IUser }) => {
     <div className={styles.container}>
       <div className={styles.banner}>
         {user?.profile_banner_url && (
-          <img
+          <Image
             onClick={() => {
               setSource(user?.profile_banner_url || "");
               setSourceType("banner");
               openInspectModal();
             }}
             src={user?.profile_banner_url}
-            alt=""
+            alt="banner"
+            width={500}
+            height={500}
           />
         )}
       </div>
       <div className={styles.info}>
         <div className={styles.avatar}>
           {user?.profile_image_url ? (
-            <img
+            <Image
               onClick={() => {
                 setSource(user?.profile_image_url || "");
                 setSourceType("avatar");
                 openInspectModal();
               }}
               src={user?.profile_image_url}
-              alt=""
+              alt="avatar"
+              width={100}
+              height={100}
             />
           ) : (
-            <img src="/user_placeholder.png" alt="" />
+            <Image
+              src="/user_placeholder.png"
+              alt=""
+              width={100}
+              height={100}
+            />
           )}
         </div>
 

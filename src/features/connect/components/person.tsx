@@ -4,6 +4,7 @@
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
+import { Avatar } from "@/components/designs/avatar";
 import { FollowButton } from "@/components/elements/follow-button";
 import { IUser } from "@/features/profile";
 
@@ -23,11 +24,7 @@ export const Person = ({ person }: { person: IUser }) => {
       className={styles.container}
     >
       <div className={styles.avatar}>
-        {person?.profile_image_url ? (
-          <img src={person?.profile_image_url} alt="" />
-        ) : (
-          <img src="/user_placeholder.png" alt="" />
-        )}
+        <Avatar userImage={person?.profile_image_url} width={46} height={46} />
       </div>
       <div className={styles.info}>
         <p className={styles.name}>{person?.name}</p>

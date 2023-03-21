@@ -1,11 +1,11 @@
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable @next/next/no-img-element */
-
+"use client";
 import { useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
 
+import { Avatar } from "@/components/designs/avatar";
 import { FollowButton } from "@/components/elements/follow-button";
 
 import { useUser } from "../hooks/use-user";
@@ -34,11 +34,11 @@ export const UserModal = ({ userId }: { userId: string }) => {
     >
       <div className={styles.userInfo}>
         <div className={styles.userImage}>
-          {user?.profile_image_url ? (
-            <img src={user?.profile_image_url} alt="" />
-          ) : (
-            <img src="/user_placeholder.png" alt="" />
-          )}
+          <Avatar
+            userImage={user?.profile_image_url}
+            width={100}
+            height={100}
+          />
         </div>
 
         <h2 className={styles.name}>{user?.name}</h2>

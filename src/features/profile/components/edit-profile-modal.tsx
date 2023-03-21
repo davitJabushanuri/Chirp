@@ -1,5 +1,5 @@
-/* eslint-disable @next/next/no-img-element */
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import Image from "next/image";
 import { useRef, useState } from "react";
 
 import { BackArrowIcon } from "@/assets/back-arrow-icon";
@@ -105,7 +105,12 @@ export const EditProfileModal = ({ user }: { user: IUser }) => {
 
         <div className={styles.banner}>
           {profile?.banner?.url && (
-            <img src={profile?.banner?.url} alt="banner" />
+            <Image
+              src={profile?.banner?.url}
+              alt="banner"
+              width={500}
+              height={500}
+            />
           )}
 
           <input
@@ -140,13 +145,18 @@ export const EditProfileModal = ({ user }: { user: IUser }) => {
         </div>
 
         <div className={styles.avatar}>
-          {profile?.avatar.file ? (
-            <img src={profile?.avatar?.url} alt="avatar" />
-          ) : user?.profile_image_url ? (
-            <img src={user.profile_image_url} alt="avatar" />
-          ) : (
-            <img src="/user_placeholder.png" alt="" />
-          )}
+          <Image
+            src={
+              profile?.avatar?.file
+                ? (profile?.avatar?.url as string)
+                : user?.profile_image_url
+                ? user?.profile_image_url
+                : `/user_placeholder.png`
+            }
+            alt="avatar"
+            width={100}
+            height={100}
+          />
 
           <input
             className={styles.avatarInput}

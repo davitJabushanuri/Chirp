@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-"use client";
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable @next/next/no-img-element */
+"use client";
+import Image from "next/image";
 
 import { CloseIcon } from "@/assets/close-icon";
 import { useDisableBodyScroll } from "@/hooks";
@@ -24,7 +24,13 @@ export const InspectImageModal = () => {
       </button>
       <div className={sourceType === "banner" ? styles.banner : styles.avatar}>
         {source && (
-          <img onClick={(e) => e.stopPropagation()} src={source} alt="" />
+          <Image
+            onClick={(e) => e.stopPropagation()}
+            src={source}
+            alt="avatar"
+            width={2000}
+            height={2000}
+          />
         )}
       </div>
     </div>

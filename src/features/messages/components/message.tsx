@@ -2,6 +2,7 @@
 
 import dayjs from "dayjs";
 import { useSession } from "next-auth/react";
+import Image from "next/image";
 
 import { IMessage } from "../types";
 
@@ -20,7 +21,7 @@ export const Message = ({ message }: { message: IMessage }) => {
           {message?.media?.map((media) => {
             return (
               <div key={media.id} className={styles.media}>
-                <img src={media?.media_url} alt="" />
+                <Image src={media?.media_url} alt="" height={500} width={500} />
               </div>
             );
           })}

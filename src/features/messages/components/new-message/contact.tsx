@@ -1,7 +1,7 @@
-/* eslint-disable @next/next/no-img-element */
 import { useSession } from "next-auth/react";
 
 import { TickIcon } from "@/assets/tick-svg";
+import { Avatar } from "@/components/designs/avatar";
 import { IUser } from "@/features/profile";
 
 import { UserIcon } from "../../assets/user-icon";
@@ -36,11 +36,7 @@ export const Contact = ({
       )}
       <div className={styles.user}>
         <div className={styles.avatar}>
-          {user?.profile_image_url ? (
-            <img src={user?.profile_image_url} alt="avatar" />
-          ) : (
-            <img src="/user_placeholder.png" alt="" />
-          )}
+          <Avatar userImage={user?.profile_image_url} width={38} height={38} />
         </div>
         <div className={styles.info}>
           <p className={styles.name}>{user?.name}</p>

@@ -5,7 +5,7 @@ import Link from "next/link";
 
 import { useAuthModal } from "@/stores/use-auth-modal";
 
-import styles from "./styles/user-modal.module.scss";
+import styles from "./styles/session-owner-modal.module.scss";
 
 export const SessionOwnerModal = () => {
   const { data: session } = useSession();

@@ -1,7 +1,6 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
-
 import { useSession } from "next-auth/react";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
@@ -49,7 +48,12 @@ export const ProfileMedia = () => {
         <div className={styles.noMedia}>
           {session?.user?.id === id ? (
             <div>
-              <img src="/media-placeholder.png" alt="" />
+              <Image
+                src="/media-placeholder.png"
+                alt=""
+                height={500}
+                width={500}
+              />
               <h1>Lights, camera ... attachments!</h1>
               <p>
                 When you send tweets with photos or videos in them, they will
@@ -58,7 +62,12 @@ export const ProfileMedia = () => {
             </div>
           ) : (
             <div>
-              <img src="/media-placeholder.png" alt="" />
+              <Image
+                src="/media-placeholder.png"
+                alt=""
+                width={500}
+                height={500}
+              />
               <h1>@{user?.email?.split("@")[0]} hasn&apos;t tweeted media</h1>
               <p>Once they do, those Tweets will show up here.</p>
             </div>
