@@ -5,6 +5,7 @@
     "commitlint",
     "hookform",
     "noninteractive",
+    "progressbar",
     "spammy",
     "supa",
     "Toastify"

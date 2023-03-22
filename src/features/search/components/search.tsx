@@ -3,6 +3,7 @@
 import { useState } from "react";
 
 import { SearchIcon } from "@/assets/search-icon";
+import { Progressbar } from "@/components/designs/progressbar";
 
 import { SearchCloseIcon } from "../assets/search-close-icon";
 
@@ -44,6 +45,7 @@ export const Search = () => {
             hello
           </button>
           <div className={styles.results}>
+            <Progressbar />
             <div className={styles.placeholder}>
               Try searching for people, topics, or keywords
             </div>
