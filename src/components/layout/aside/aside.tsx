@@ -22,11 +22,13 @@ export const Aside = () => {
               <Search />
             </div>
           )}
-          {pathname !== "/" && pathname !== "/explore" && (
-            <div className={styles.trends}>
-              <Trends />
-            </div>
-          )}
+          {pathname !== "/" &&
+            pathname !== "/explore" &&
+            pathname !== "/trends" && (
+              <div className={styles.trends}>
+                <Trends />
+              </div>
+            )}
           {pathname !== `/people` && (
             <div className={styles.connect}>
               <Connect />

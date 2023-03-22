@@ -1,4 +1,4 @@
-import { ILike, ITweet } from "../types";
+import { ITweet } from "../types";
 
 import { CommentButton } from "./actions/comment-button";
 import { LikeButton } from "./actions/like-button";
@@ -8,15 +8,10 @@ import styles from "./styles/tweet-actions.module.scss";
 
 export const TweetActions = ({
   tweet,
-  tweetId,
-  tweetAuthorId,
-  likes,
+
   showStats = false,
 }: {
   tweet: ITweet;
-  tweetId: string | undefined;
-  tweetAuthorId: string | undefined;
-  likes: ILike[] | undefined;
   showStats?: boolean | undefined;
 }) => {
   return (
@@ -27,13 +22,7 @@ export const TweetActions = ({
     >
       <CommentButton tweet={tweet} showStats={showStats} />
       <RetweetButton tweet={tweet} />
-      <LikeButton
-        smallIcons={false}
-        showStats={showStats}
-        tweetId={tweetId}
-        tweetAuthorId={tweetAuthorId}
-        likes={likes}
-      />
+      <LikeButton tweet={tweet} smallIcons={false} showStats={showStats} />
       <ShareButton tweet={tweet} />
     </div>
   );

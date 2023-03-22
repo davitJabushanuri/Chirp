@@ -4,30 +4,28 @@ import { HeartIcon, HeartIconActive } from "@/assets/heart-icon";
 import { useJoinTwitter } from "@/features/auth";
 
 import { useLike } from "../../hooks/use-like";
-import { ILike } from "../../types";
+import { ITweet } from "../../types";
 
 import styles from "./styles/actions.module.scss";
 
 export const LikeButton = ({
-  tweetId,
-  tweetAuthorId,
-  likes,
+  tweet,
   smallIcons = true,
   showStats = false,
 }: {
-  tweetId: string | undefined;
-  tweetAuthorId: string | undefined;
-  likes?: ILike[];
+  tweet?: ITweet;
   smallIcons?: boolean;
   showStats?: boolean;
 }) => {
   const { data: session } = useSession();
-  const hasLiked = likes?.some((like) => like.user_id === session?.user?.id);
+  const hasLiked = tweet?.likes?.some(
+    (like) => like.user_id === session?.user?.id,
+  );
 
   const setJoinTwitterData = useJoinTwitter((state) => state.setData);
 
   const mutation = useLike({
-    tweetAuthorId,
+    tweetAuthorId: tweet?.author?.id,
     sessionOwnerId: session?.user?.id,
   });
 
@@ -39,10 +37,10 @@ export const LikeButton = ({
           setJoinTwitterData({
             isModalOpen: true,
             action: "like",
-            user: "user",
+            user: tweet?.author?.name || "user",
           });
         }
-        mutation.mutate({ tweetId: tweetId, userId: session?.user?.id });
+        mutation.mutate({ tweetId: tweet?.id, userId: session?.user?.id });
       }}
       className={`${styles.container} ${styles.like} ${
         hasLiked ? styles.liked : ""
@@ -55,8 +53,8 @@ export const LikeButton = ({
       >
         {hasLiked ? <HeartIconActive /> : <HeartIcon />}
       </span>
-      {showStats && likes && likes?.length > 0 && (
-        <span className={styles.stats}>{likes?.length}</span>
+      {showStats && tweet?.likes && tweet?.likes?.length > 0 && (
+        <span className={styles.stats}>{tweet?.likes?.length}</span>
       )}
     </button>
   );

@@ -133,13 +133,7 @@ export const Tweet = ({ tweet }: { tweet: ITweet }) => {
         </div>
 
         <div className={styles.actions}>
-          <TweetActions
-            tweet={tweet}
-            tweetId={tweet?.id}
-            tweetAuthorId={tweet?.author?.id}
-            likes={tweet?.likes}
-            showStats={true}
-          />
+          <TweetActions tweet={tweet} showStats={true} />
         </div>
       </div>
     </div>
