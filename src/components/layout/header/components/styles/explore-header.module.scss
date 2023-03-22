@@ -1,22 +1,28 @@
 @use './abstracts/media-query' as *;
 
 .container {
-  background-color: var(--clr-background);
   z-index: 99;
+  background-color: var(--clr-background);
   position: sticky;
   top: 0;
   height: 50px;
   display: grid;
-  grid-template-columns: 2rem 1fr 2rem;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 1rem;
   padding: 0 0.5rem 0 1rem;
+
+  .back {
+    @include mq('small') {
+      display: none;
+    }
+  }
 
   .search {
     width: 100%;
 
     form {
-      height: 24px;
+      height: 26px;
     }
   }
 
@@ -48,7 +54,7 @@
   }
 
   @include mq('small') {
-    grid-template-columns: 1fr 2rem;
+    grid-template-columns: 1fr auto;
 
     .search {
       form {

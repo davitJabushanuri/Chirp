@@ -14,6 +14,7 @@ export const ExploreHeader = () => {
     <div className={styles.container}>
       {isResultsModalOpen ? (
         <button
+          className={styles.back}
           onClick={() => {
             closeResultsModal();
           }}

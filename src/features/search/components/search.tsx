@@ -39,7 +39,7 @@ export const Search = () => {
       </form>
 
       {isResultsModalOpen && (
-        <>
+        <div className={styles.modal}>
           <button
             onClick={() => closeResultsModal()}
             className={styles.underlay}
@@ -52,7 +52,7 @@ export const Search = () => {
               Try searching for people, topics, or keywords
             </div>
           </div>
-        </>
+        </div>
       )}
     </div>
   );
