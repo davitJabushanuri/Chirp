@@ -1,3 +1,5 @@
+@use './abstracts/media-query' as *;
+
 .container {
   position: relative;
 
@@ -84,18 +86,28 @@
   }
 
   .results {
-    position: absolute;
-    top: 40px;
+    position: fixed;
+    top: 50px;
     left: 0;
     width: 100%;
-    min-height: 100px;
-    max-height: 850px;
+    height: 100%;
     background-color: var(--clr-background);
-    box-shadow: 0 0 10px -4px var(--clr-tertiary);
-    border-radius: 8px;
-    z-index: -1;
-    margin-bottom: 2rem;
-    overflow: auto;
+
+    @include mq('small') {
+
+      position: absolute;
+      top: 40px;
+      left: 0;
+      width: 100%;
+      min-height: 100px;
+      max-height: 850px;
+      background-color: var(--clr-background);
+      box-shadow: 0 0 10px -4px var(--clr-tertiary);
+      border-radius: 8px;
+      z-index: -1;
+      margin-bottom: 2rem;
+      overflow: auto;
+    }
 
     .placeholder {
       padding: 19px 11px 11px;
