@@ -1,45 +1,47 @@
 "use client";
-
-import { useState } from "react";
-
 import { SearchIcon } from "@/assets/search-icon";
 import { Progressbar } from "@/components/designs/progressbar";
 
 import { SearchCloseIcon } from "../assets/search-close-icon";
+import { useSearch } from "../stores/use-search";
 
 import styles from "./styles/search.module.scss";
 
 export const Search = () => {
-  const [search, setSearch] = useState<string>("");
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const query = useSearch((state) => state.query);
+  const setQuery = useSearch((state) => state.setQuery);
+
+  const isResultsModalOpen = useSearch((state) => state.isResultsModalOpen);
+  const openResultsModal = useSearch((state) => state.openResultsModal);
+  const closeResultsModal = useSearch((state) => state.closeResultsModal);
 
   return (
     <div className={styles.container}>
       <form
         onFocus={() => {
-          setIsModalOpen(true);
+          openResultsModal();
         }}
       >
         <div className={styles.icon}>
           <SearchIcon />
         </div>
         <input
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
           type="text"
           placeholder="Search Twitter"
         />
-        {search && (
-          <button onClick={() => setSearch("")} className={styles.close}>
+        {query && (
+          <button onClick={() => setQuery("")} className={styles.close}>
             <SearchCloseIcon />
           </button>
         )}
       </form>
 
-      {isModalOpen && (
+      {isResultsModalOpen && (
         <>
           <button
-            onClick={() => setIsModalOpen(false)}
+            onClick={() => closeResultsModal()}
             className={styles.underlay}
           >
             hello
