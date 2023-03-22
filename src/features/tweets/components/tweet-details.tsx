@@ -5,6 +5,7 @@ import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
+import { NotFound } from "@/components/elements/not-found";
 import { TryAgain } from "@/components/elements/try-again";
 import { CreateTweetWrapper } from "@/features/create-tweet";
 import { useInspectTweetImage } from "@/stores/use-inspect-tweet-images";
@@ -40,6 +41,10 @@ export const TweetDetails = () => {
 
   if (isError) {
     return <TryAgain />;
+  }
+
+  if (!isLoading && !isError && !tweet) {
+    return <NotFound />;
   }
 
   return (
@@ -107,12 +112,7 @@ export const TweetDetails = () => {
           retweets={tweet?.retweets}
         />
         <div className={styles.tweetActions}>
-          <TweetActions
-            tweet={tweet}
-            tweetId={tweet?.id}
-            tweetAuthorId={tweet?.author?.id}
-            likes={tweet?.likes}
-          />
+          <TweetActions tweet={tweet} />
         </div>
       </div>
       <CreateTweetWrapper

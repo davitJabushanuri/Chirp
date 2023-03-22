@@ -88,13 +88,7 @@ export const InspectTweetImageModal = () => {
               <ImageCarousel images={tweet?.media} />
             </div>
             <div className={styles.tweetActions}>
-              <TweetActions
-                tweet={tweet}
-                tweetId={tweet?.id}
-                tweetAuthorId={tweet?.author?.id}
-                likes={tweet?.likes}
-                showStats={true}
-              />
+              <TweetActions tweet={tweet} showStats={true} />
             </div>
           </div>
           {isTweetDetailsOpen && (
@@ -118,12 +112,7 @@ export const InspectTweetImageModal = () => {
               </div>
 
               <div className={styles.tweetActions}>
-                <TweetActions
-                  tweet={tweet}
-                  tweetId={tweet?.id}
-                  tweetAuthorId={tweet?.author?.id}
-                  likes={tweet?.likes}
-                />
+                <TweetActions tweet={tweet} />
               </div>
 
               <CreateTweetWrapper
