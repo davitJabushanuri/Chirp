@@ -5,7 +5,7 @@
   position: sticky;
   top: 0;
   padding: 0 1.8rem 0 1.8rem;
-  height: 100dvh;
+  height: 100vh;
   height: 100dvh;
   overflow-y: scroll;
   scrollbar-width: none;
@@ -23,13 +23,14 @@
     background-color: var(--clr-background);
     position: sticky;
     top: 0;
-    padding: 0.4rem 0 0.250rem 0;
+    padding: 5px 0;
+    z-index: 2;
+    margin-bottom: 11px;
   }
 
-  .trends,
   .connect,
   .footer {
-    margin-top: 0.8rem;
+    margin-top: 15px;
   }
 
   .trends {

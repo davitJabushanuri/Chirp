@@ -10,10 +10,15 @@ import styles from "./styles/search.module.scss";
 
 export const Search = () => {
   const [search, setSearch] = useState<string>("");
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   return (
     <div className={styles.container}>
-      <form>
+      <form
+        onFocus={() => {
+          setIsModalOpen(true);
+        }}
+      >
         <div className={styles.icon}>
           <SearchIcon />
         </div>
@@ -29,6 +34,22 @@ export const Search = () => {
           </button>
         )}
       </form>
+
+      {isModalOpen && (
+        <>
+          <button
+            onClick={() => setIsModalOpen(false)}
+            className={styles.underlay}
+          >
+            hello
+          </button>
+          <div className={styles.results}>
+            <div className={styles.placeholder}>
+              Try searching for people, topics, or keywords
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };

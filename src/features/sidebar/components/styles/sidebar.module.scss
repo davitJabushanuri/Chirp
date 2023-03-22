@@ -1,13 +1,14 @@
 @use "abstracts/media-query.scss" as *;
 
 .container {
+  background-color: var(--clr-background);
   position: sticky;
   top: 0;
   height: 100vh;
   height: 100dvh;
   overflow-y: auto;
   display: none;
-  z-index: 999;
+  z-index: 99;
 
   .logo,
   .tweetButton,

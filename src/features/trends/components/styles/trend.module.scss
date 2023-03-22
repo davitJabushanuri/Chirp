@@ -50,6 +50,7 @@
     border-radius: 50%;
     display: grid;
     place-items: center;
+    z-index: -1;
 
     &:hover {
       background-color: var(--clr-options-hover);
