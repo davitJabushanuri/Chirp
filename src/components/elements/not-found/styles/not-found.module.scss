@@ -1,0 +1,24 @@
+.container {
+  padding: 38px 11px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+
+  p {
+    font-size: 14px;
+    color: var(--clr-tertiary);
+  }
+
+  button {
+    background-color: var(--clr-primary);
+    color: var(--clr-white);
+    height: 32px;
+    padding: 0 15px;
+    border: none;
+    border-radius: 100vmax;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+}
