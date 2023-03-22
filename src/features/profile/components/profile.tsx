@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
+import { UserNotFound } from "@/components/elements/user-not-found";
 import { ProfileHeader } from "@/components/layout/header";
 import { useEditProfile } from "@/stores/use-edit-profile";
 import { useInspectImage } from "@/stores/use-inspect-profile-image";
@@ -30,19 +31,29 @@ export const Profile = ({ children }: { children: React.ReactNode }) => {
 
   if (isLoading) {
     return (
-      <div className={styles.loading}>
+      <>
+        <ProfileHeader />
         <LoadingSpinner />
-      </div>
+      </>
     );
   }
 
   if (isError) {
     return (
-      <div className={styles.error}>
+      <>
+        <ProfileHeader />
         <TryAgain />
-      </div>
+      </>
     );
   }
+
+  if (!isLoading && !isError && !user)
+    return (
+      <>
+        <ProfileHeader />
+        <UserNotFound />
+      </>
+    );
 
   return (
     <div className={styles.container}>

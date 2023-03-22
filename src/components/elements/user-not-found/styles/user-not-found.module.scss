@@ -1,0 +1,19 @@
+.container {
+  max-width: 380px;
+  padding: 38px 19px;
+  margin: 30px auto;
+
+  h1 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    font-variant: var(--clr-secondary);
+  }
+
+  p {
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 28px;
+    color: var(--clr-tertiary);
+  }
+}

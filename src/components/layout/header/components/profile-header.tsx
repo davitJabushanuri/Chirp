@@ -6,7 +6,7 @@ import { IUser } from "@/features/profile";
 
 import styles from "./styles/profile-header.module.scss";
 
-export const ProfileHeader = ({ user }: { user: IUser }) => {
+export const ProfileHeader = ({ user }: { user?: IUser }) => {
   const pathname = usePathname();
   const path = pathname?.split("/")[2] || "";
 
@@ -16,7 +16,7 @@ export const ProfileHeader = ({ user }: { user: IUser }) => {
         <BackButton />
       </div>
       <div className={styles.user}>
-        <h2 className={styles.title}>{user?.name}</h2>
+        <h2 className={styles.title}>{user ? user?.name : `Profile`}</h2>
         {user?.tweets &&
           (path === "media" ? (
             <span className={styles.stats}>
