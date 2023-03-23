@@ -1,6 +1,9 @@
 "use client";
+import { useEffect } from "react";
+
 import { SearchIcon } from "@/assets/search-icon";
 import { Progressbar } from "@/components/designs/progressbar";
+import { useDebounce } from "@/hooks/use-debounce";
 
 import { SearchCloseIcon } from "../assets/search-close-icon";
 import { useSearch } from "../stores/use-search";
@@ -15,6 +18,16 @@ export const Search = () => {
   const openResultsModal = useSearch((state) => state.openResultsModal);
   const closeResultsModal = useSearch((state) => state.closeResultsModal);
 
+  const debounceValue = useDebounce(query, 500);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(e.target.value);
+  };
+
+  useEffect(() => {
+    console.log(query);
+  }, [debounceValue]);
+
   return (
     <div className={styles.container}>
       <form
@@ -27,7 +40,7 @@ export const Search = () => {
         </div>
         <input
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={handleChange}
           type="text"
           placeholder="Search Twitter"
         />
