@@ -13,7 +13,7 @@ export const PersonDetails = ({ author }: { author: IUser }) => {
   const { data: session } = useSession();
   const router = useRouter();
 
-  const isFollowing = author?.followers.some(
+  const isFollowing = author?.followers?.some(
     (follower) => follower?.follower_id === session?.user?.id,
   );
 

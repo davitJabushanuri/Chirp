@@ -1,10 +1,12 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 
+import { ITweet } from "@/features/tweets";
+
 import { getQueryTweets } from "./../api/get-query-tweets";
 
-export const useQueryTweets = (query: string) => {
+export const useQueryTweets = (query: string | undefined) => {
   const queryClient = useQueryClient();
-  return useQuery(
+  return useQuery<ITweet[]>(
     ["hashtag-tweets"],
     async () => {
       return getQueryTweets(query);

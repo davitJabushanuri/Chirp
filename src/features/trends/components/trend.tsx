@@ -48,7 +48,10 @@ const TrendOptions = () => {
     <div className={styles.options}>
       <button
         className={styles.optionsButton}
-        onClick={() => setIsModalOpen(true)}
+        onClick={(e) => {
+          e.stopPropagation();
+          setIsModalOpen(true);
+        }}
       >
         <DotIcon />
       </button>

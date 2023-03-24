@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const getQueryTweets = async (query: string) => {
+export const getQueryTweets = async (query: string | undefined) => {
   try {
     const { data } = await axios.get(`/api/search/tweets/${query}`);
     return data;
