@@ -6,6 +6,7 @@ import { getQueryPeople } from "../api/get-query-people";
 
 export const useQueryPeople = (query: string | undefined) => {
   const queryClient = useQueryClient();
+
   return useQuery<IUser[]>(
     ["hashtag-people"],
     async () => {

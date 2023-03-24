@@ -19,6 +19,7 @@ export default async function SearchTweets(
       where: {
         text: {
           contains: slug as string,
+          mode: "insensitive",
         },
       },
 

@@ -17,9 +17,20 @@ export default async function SearchPeople(
     const { slug } = req.query;
     const people = await prisma.user.findMany({
       where: {
-        email: {
-          contains: slug as string,
-        },
+        OR: [
+          {
+            screen_name: {
+              contains: slug as string,
+              mode: "insensitive",
+            },
+          },
+          {
+            name: {
+              contains: slug as string,
+              mode: "insensitive",
+            },
+          },
+        ],
       },
     });
 

@@ -17,7 +17,13 @@ export const SearchResults = () => {
 
   const people = useQueryPeople(query);
 
-  if (tweets.isLoading || people.isLoading) return <LoadingSpinner />;
+  if (
+    tweets.isLoading ||
+    tweets.isFetching ||
+    people.isLoading ||
+    people.isFetching
+  )
+    return <LoadingSpinner />;
 
   return (
     <div className={styles.container}>

@@ -6,6 +6,7 @@ import { getQueryTweets } from "./../api/get-query-tweets";
 
 export const useQueryTweets = (query: string | undefined) => {
   const queryClient = useQueryClient();
+
   return useQuery<ITweet[]>(
     ["hashtag-tweets"],
     async () => {
