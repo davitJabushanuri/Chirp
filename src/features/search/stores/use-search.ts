@@ -8,7 +8,7 @@ interface ISearchStore {
   closeResultsModal: () => void;
 }
 
-export const useSearch = create<ISearchStore>((set) => ({
+export const useSearchStore = create<ISearchStore>((set) => ({
   query: "",
   setQuery: (query: string) => set({ query }),
   isResultsModalOpen: false,

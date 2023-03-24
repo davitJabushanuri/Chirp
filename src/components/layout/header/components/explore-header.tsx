@@ -2,13 +2,15 @@
 import { Gear } from "@/assets/gear-icon";
 import { BackButton } from "@/components/designs/back-button";
 import { HamburgerButton } from "@/components/elements/hamburger-button";
-import { Search, useSearch } from "@/features/search";
+import { Search, useSearchStore } from "@/features/search";
 
 import styles from "./styles/explore-header.module.scss";
 
 export const ExploreHeader = () => {
-  const isResultsModalOpen = useSearch((state) => state.isResultsModalOpen);
-  const closeResultsModal = useSearch((state) => state.closeResultsModal);
+  const isResultsModalOpen = useSearchStore(
+    (state) => state.isResultsModalOpen,
+  );
+  const closeResultsModal = useSearchStore((state) => state.closeResultsModal);
 
   return (
     <div className={styles.container}>

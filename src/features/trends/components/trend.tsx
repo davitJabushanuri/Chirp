@@ -1,18 +1,31 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 import { DotIcon } from "@/assets/dot-icon";
 import { SadFaceIcon } from "@/assets/sad-face-icon";
 import { Action, ActionsModal } from "@/components/elements/actions-modal";
+import { useSearchStore } from "@/features/search";
 
 import { iTrendProps } from "../types";
 
 import styles from "./styles/trend.module.scss";
 
 export const Trend = ({ ranking = 1, title, tweets = 1 }: iTrendProps) => {
+  const router = useRouter();
+  const setQuery = useSearchStore((state) => state.setQuery);
+
   return (
-    <div className={styles.container}>
+    <div
+      onClick={() => {
+        setQuery(title);
+        router.push(`/search/${title.toLowerCase()}`);
+      }}
+      className={styles.container}
+    >
       <div className={styles.trend}>
         <div className={styles.stats}>
           <span>{ranking}</span> <span className={styles.dot}></span>
