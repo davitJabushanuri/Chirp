@@ -12,7 +12,6 @@ import styles from "./styles/aside.module.scss";
 export const Aside = () => {
   const { data: session } = useSession();
   const pathname = usePathname();
-  console.log(pathname?.split("/")[1]);
 
   return (
     <aside className={styles.container}>

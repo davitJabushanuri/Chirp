@@ -1,4 +1,6 @@
 .container {
+  padding-bottom: calc(100vh - 8rem);
+
   .tweets {
     .tweetContainer {
       border-bottom: 1px solid var(--clr-border);

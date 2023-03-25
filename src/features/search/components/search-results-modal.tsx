@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-"use client";
 import { useRouter } from "next/navigation";
 
 import { SearchIcon } from "@/assets/search-icon";
@@ -15,7 +14,13 @@ import { useSearchStore } from "../stores/use-search";
 
 import styles from "./styles/search-results-modal.module.scss";
 
-export const SearchResultsModal = ({ query }: { query: string }) => {
+export const SearchResultsModal = ({
+  query,
+  setQuery,
+}: {
+  query: string;
+  setQuery: (query: string) => void;
+}) => {
   const router = useRouter();
   const closeResultsModal = useSearchStore((state) => state.closeResultsModal);
 
@@ -35,8 +40,8 @@ export const SearchResultsModal = ({ query }: { query: string }) => {
         <div className={styles.results}>
           <button
             onClick={() => {
-              closeResultsModal();
               router.push(`/search/${query}`);
+              closeResultsModal();
             }}
             className={styles.link}
           >
@@ -49,8 +54,8 @@ export const SearchResultsModal = ({ query }: { query: string }) => {
                 return (
                   <button
                     onClick={() => {
-                      closeResultsModal();
                       router.push(`/search/${hashtag?.text}`);
+                      closeResultsModal();
                     }}
                     className={styles.hashtag}
                     key={hashtag?.id}
@@ -70,8 +75,9 @@ export const SearchResultsModal = ({ query }: { query: string }) => {
               return (
                 <div
                   onClick={() => {
-                    closeResultsModal();
                     router.push(`/${person?.id}`);
+                    closeResultsModal();
+                    setQuery("");
                   }}
                   className={styles.person}
                   key={person?.id}
@@ -99,8 +105,9 @@ export const SearchResultsModal = ({ query }: { query: string }) => {
 
           <button
             onClick={() => {
-              closeResultsModal();
               router.push(`/${query}`);
+              closeResultsModal();
+              setQuery("");
             }}
             className={styles.link}
           >

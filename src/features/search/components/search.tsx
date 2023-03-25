@@ -1,5 +1,5 @@
 "use client";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 
 import { SearchIcon } from "@/assets/search-icon";
@@ -12,12 +12,13 @@ import { SearchResultsModal } from "./search-results-modal";
 import styles from "./styles/search.module.scss";
 
 export const Search = () => {
-  // const query = useSearchStore((state) => state.query);
-  // const setQuery = useSearchStore((state) => state.setQuery);
+  const router = useRouter();
   const pathname = usePathname();
-  const [query, setQuery] = useState<string>("");
-  const search = pathname?.split("/")[1];
-  const searchTerm = pathname?.split("/")[2];
+  const [query, setQuery] = useState(
+    pathname?.split("/")[1] === "search"
+      ? decodeURIComponent(pathname?.split("/")[2])
+      : "",
+  );
 
   const isResultsModalOpen = useSearchStore(
     (state) => state.isResultsModalOpen,
@@ -37,18 +38,28 @@ export const Search = () => {
         onFocus={() => {
           openResultsModal();
         }}
+        onSubmit={(e) => {
+          e.preventDefault();
+          router.push(`/search/${query}`);
+          closeResultsModal();
+          setQuery("");
+        }}
       >
         <div className={styles.icon}>
           <SearchIcon />
         </div>
         <input
-          value={search ? searchTerm : query}
+          value={query}
           onChange={handleChange}
           type="text"
           placeholder="Search Twitter"
         />
         {query && (
-          <button onClick={() => setQuery("")} className={styles.close}>
+          <button
+            type="button"
+            onClick={() => setQuery("")}
+            className={styles.close}
+          >
             <SearchCloseIcon />
           </button>
         )}
@@ -63,7 +74,7 @@ export const Search = () => {
             hello
           </button>
           <div className={styles.results}>
-            <SearchResultsModal query={debounceValue} />
+            <SearchResultsModal query={debounceValue} setQuery={setQuery} />
           </div>
         </div>
       )}
