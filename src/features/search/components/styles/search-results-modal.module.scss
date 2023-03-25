@@ -1,8 +1,48 @@
 .container {
+  .progressbar {
+    height: 3px
+  }
+
   .placeholder {
     padding: 19px 11px 11px;
     font-size: 14px;
     color: var(--clr-tertiary);
     text-align: center;
+  }
+
+  .results {
+    .hashtag {
+      width: 100%;
+      padding: 11px 15px;
+      display: grid;
+      grid-template-columns: 53px 1fr;
+      align-items: center;
+      gap: 11px;
+      cursor: pointer;
+      transition: background-color 0.2s ease-in-out;
+
+      &:hover {
+        background-color: var(--clr-tweet-hover);
+      }
+
+      .icon {
+        height: 53px;
+        width: 53px;
+        display: grid;
+        place-items: center;
+
+        svg {
+          fill: var(--clr-secondary);
+          height: 27px;
+          width: 27px;
+        }
+      }
+
+      .text {
+        color: var(--clr-secondary);
+        font-size: 14px;
+        font-weight: 600;
+      }
+    }
   }
 }

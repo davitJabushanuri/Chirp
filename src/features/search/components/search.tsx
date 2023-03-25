@@ -1,9 +1,6 @@
 "use client";
-import axios from "axios";
-import { useEffect, useState } from "react";
 
 import { SearchIcon } from "@/assets/search-icon";
-import { IUser } from "@/features/profile";
 import { useDebounce } from "@/hooks";
 
 import { SearchCloseIcon } from "../assets/search-close-icon";
@@ -13,10 +10,6 @@ import { SearchResultsModal } from "./search-results-modal";
 import styles from "./styles/search.module.scss";
 
 export const Search = () => {
-  // const [people, setPeople] = useState<IUser[] | null>(null);
-  // const [loading, setLoading] = useState(false);
-  // const [isError, setIsError] = useState(false);
-
   const query = useSearchStore((state) => state.query);
   const setQuery = useSearchStore((state) => state.setQuery);
 
@@ -27,26 +20,6 @@ export const Search = () => {
   const closeResultsModal = useSearchStore((state) => state.closeResultsModal);
 
   const debounceValue = useDebounce(query, 800);
-
-  // useEffect(() => {
-  //   if (!debounceValue) return;
-
-  //   setLoading(true);
-  //   setIsError(false);
-  //   // fetch people
-  //   axios
-  //     .get(`/api/search/people/${debounceValue}`)
-  //     .then((res) => {
-  //       console.log(res.data);
-  //       setPeople(res.data);
-  //       setLoading(false);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //       setIsError(true);
-  //       setLoading(false);
-  //     });
-  // }, [debounceValue]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
