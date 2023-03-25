@@ -4,11 +4,11 @@ import { IUser } from "@/features/profile";
 
 import { getQueryPeople } from "../api/get-query-people";
 
-export const useQueryPeople = (query: string | undefined) => {
+export const useSearchPeople = (query: string | undefined) => {
   const queryClient = useQueryClient();
 
   return useQuery<IUser[]>(
-    ["hashtag-people", query],
+    ["search-people", query],
     async () => {
       return getQueryPeople(query);
     },

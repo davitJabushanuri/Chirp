@@ -2,13 +2,13 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { ITweet } from "@/features/tweets";
 
-import { getQueryTweets } from "./../api/get-query-tweets";
+import { getQueryTweets } from "../api/get-query-tweets";
 
-export const useQueryTweets = (query: string | undefined) => {
+export const useSearchTweets = (query: string | undefined) => {
   const queryClient = useQueryClient();
 
   return useQuery<ITweet[]>(
-    ["hashtag-tweets"],
+    ["search-tweets"],
     async () => {
       return getQueryTweets(query);
     },

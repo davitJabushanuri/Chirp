@@ -4,8 +4,8 @@ import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { PersonDetails } from "@/features/connect";
 import { Tweet } from "@/features/tweets";
 
-import { useQueryPeople } from "../hooks/use-query-people";
-import { useQueryTweets } from "../hooks/use-query-tweets";
+import { useSearchPeople } from "../hooks/use-search-people";
+import { useSearchTweets } from "../hooks/use-search-tweets";
 
 import styles from "./styles/search-results.module.scss";
 
@@ -13,9 +13,9 @@ export const SearchResults = () => {
   const pathname = usePathname();
   const query = pathname?.split("/")[2];
 
-  const tweets = useQueryTweets(query);
+  const tweets = useSearchTweets(query);
 
-  const people = useQueryPeople(query);
+  const people = useSearchPeople(query);
 
   if (
     tweets.isLoading ||

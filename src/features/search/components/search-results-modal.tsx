@@ -7,7 +7,8 @@ import { Progressbar } from "@/components/designs/progressbar";
 import { TryAgain } from "@/components/elements/try-again";
 import { UserName, UserScreenName } from "@/features/profile";
 
-import { useQueryPeople } from "../hooks/use-query-people";
+import { useSearchHashtags } from "../hooks/use-search-hashtags";
+import { useSearchPeople } from "../hooks/use-search-people";
 import { useSearchStore } from "../stores/use-search";
 
 import styles from "./styles/search-results-modal.module.scss";
@@ -16,7 +17,8 @@ export const SearchResultsModal = ({ query }: { query: string }) => {
   const router = useRouter();
   const closeResultsModal = useSearchStore((state) => state.closeResultsModal);
 
-  const { data: people, isFetching, isError } = useQueryPeople(query);
+  const { data: people, isFetching, isError } = useSearchPeople(query);
+  const hashtags = useSearchHashtags(query);
 
   if (isError) return <TryAgain />;
 
@@ -34,13 +36,32 @@ export const SearchResultsModal = ({ query }: { query: string }) => {
               closeResultsModal();
               router.push(`/search/${query}`);
             }}
-            className={styles.hashtag}
+            className={styles.link}
           >
-            <span className={styles.icon}>
-              <SearchIcon />
-            </span>
-            <span className={styles.text}>{query}</span>
+            Search for &quot;{query}&quot;
           </button>
+
+          {hashtags.isSuccess && (
+            <div className={styles.hashtags}>
+              {hashtags.data?.map((hashtag) => {
+                return (
+                  <button
+                    onClick={() => {
+                      closeResultsModal();
+                      router.push(`/search/${hashtag?.text}`);
+                    }}
+                    className={styles.hashtag}
+                    key={hashtag?.id}
+                  >
+                    <span className={styles.icon}>
+                      <SearchIcon />
+                    </span>
+                    <span className={styles.text}>{hashtag?.text}</span>
+                  </button>
+                );
+              })}
+            </div>
+          )}
 
           <div className={styles.people}>
             {people?.map((person) => {

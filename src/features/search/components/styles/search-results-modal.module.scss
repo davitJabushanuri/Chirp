@@ -60,5 +60,18 @@
         }
       }
     }
+
+    .link {
+      width: 100%;
+      padding: 15px;
+      font-size: 14px;
+      color: var(--clr-secondary);
+      cursor: pointer;
+      transition: background-color 0.2s ease-in-out;
+
+      &:hover {
+        background-color: var(--clr-tweet-hover);
+      }
+    }
   }
 }
