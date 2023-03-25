@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 import { SearchIcon } from "@/assets/search-icon";
 import { Avatar } from "@/components/designs/avatar";
@@ -24,15 +25,23 @@ export const SearchResultsModal = ({
   const router = useRouter();
   const closeResultsModal = useSearchStore((state) => state.closeResultsModal);
 
-  const { data: people, isFetching, isError } = useSearchPeople(query);
+  const { data: people, isFetching, isError, refetch } = useSearchPeople(query);
   const hashtags = useSearchHashtags(query);
+
+  useEffect(() => {
+    if (query) {
+      refetch();
+      hashtags.refetch();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [query]);
 
   if (isError) return <TryAgain />;
 
   return (
     <div className={styles.container}>
       <div className={styles.progressbar}>{isFetching && <Progressbar />}</div>
-      {!people ? (
+      {!query ? (
         <div className={styles.placeholder}>
           Try searching for people, topics, or keywords
         </div>
@@ -70,38 +79,40 @@ export const SearchResultsModal = ({
             </div>
           )}
 
-          <div className={styles.people}>
-            {people?.map((person) => {
-              return (
-                <div
-                  onClick={() => {
-                    router.push(`/${person?.id}`);
-                    closeResultsModal();
-                    setQuery("");
-                  }}
-                  className={styles.person}
-                  key={person?.id}
-                >
-                  <Avatar
-                    userImage={person?.profile_image_url}
-                    width={53}
-                    height={53}
-                  />
-                  <span className={styles.info}>
-                    <UserName
-                      isVerified={person?.verified}
-                      name={person?.name}
-                      userId={person?.id}
+          {people && people?.length > 0 && (
+            <div className={styles.people}>
+              {people?.map((person) => {
+                return (
+                  <div
+                    onClick={() => {
+                      router.push(`/${person?.id}`);
+                      closeResultsModal();
+                      setQuery("");
+                    }}
+                    className={styles.person}
+                    key={person?.id}
+                  >
+                    <Avatar
+                      userImage={person?.profile_image_url}
+                      width={53}
+                      height={53}
                     />
-                    <UserScreenName
-                      screenName={person?.email?.split("@")[0]}
-                      userId={person?.id}
-                    />
-                  </span>
-                </div>
-              );
-            })}
-          </div>
+                    <span className={styles.info}>
+                      <UserName
+                        isVerified={person?.verified}
+                        name={person?.name}
+                        userId={person?.id}
+                      />
+                      <UserScreenName
+                        screenName={person?.email?.split("@")[0]}
+                        userId={person?.id}
+                      />
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          )}
 
           <button
             onClick={() => {

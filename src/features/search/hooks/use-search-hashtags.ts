@@ -8,7 +8,7 @@ export const useSearchHashtags = (query: string | undefined) => {
   const queryClient = useQueryClient();
 
   return useQuery<IHashtag[]>(
-    ["search-hashtags", query],
+    ["search-hashtags"],
     async () => {
       return getQueryHashtags(query);
     },
