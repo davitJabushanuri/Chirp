@@ -8,7 +8,7 @@ export const useQueryPeople = (query: string | undefined) => {
   const queryClient = useQueryClient();
 
   return useQuery<IUser[]>(
-    ["hashtag-people"],
+    ["hashtag-people", query],
     async () => {
       return getQueryPeople(query);
     },
@@ -17,6 +17,7 @@ export const useQueryPeople = (query: string | undefined) => {
       onSuccess: (data) => {
         queryClient.setQueryData(["hashtag-people"], data);
       },
+      enabled: !!query,
     },
   );
 };
