@@ -45,15 +45,20 @@ export const SearchResultsModal = ({ query }: { query: string }) => {
           <div className={styles.people}>
             {people?.map((person) => {
               return (
-                <div key={person?.id}>
-                  <div className={styles.avatar}>
-                    <Avatar
-                      userImage={person?.profile_image_url}
-                      width={53}
-                      height={53}
-                    />
-                  </div>
-                  <div className={styles.info}>
+                <button
+                  onClick={() => {
+                    closeResultsModal();
+                    router.push(`/${person?.id}`);
+                  }}
+                  className={styles.person}
+                  key={person?.id}
+                >
+                  <Avatar
+                    userImage={person?.profile_image_url}
+                    width={53}
+                    height={53}
+                  />
+                  <span className={styles.info}>
                     <UserName
                       isVerified={person?.verified}
                       name={person?.name}
@@ -63,8 +68,8 @@ export const SearchResultsModal = ({ query }: { query: string }) => {
                       screenName={person?.email?.split("@")[0]}
                       userId={person?.id}
                     />
-                  </div>
-                </div>
+                  </span>
+                </button>
               );
             })}
           </div>

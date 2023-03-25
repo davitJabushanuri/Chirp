@@ -44,5 +44,21 @@
         font-weight: 600;
       }
     }
+
+    .people {
+      .person {
+        width: 100%;
+        padding: 11px 15px;
+        display: grid;
+        grid-template-columns: 53px 1fr;
+        gap: 11px;
+        transition: background-color 0.2s ease-in-out;
+        cursor: pointer;
+
+        &:hover {
+          background-color: var(--clr-tweet-hover);
+        }
+      }
+    }
   }
 }
