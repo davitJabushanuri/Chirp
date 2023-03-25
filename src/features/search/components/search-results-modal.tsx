@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 "use client";
 import { useRouter } from "next/navigation";
 
@@ -66,7 +68,7 @@ export const SearchResultsModal = ({ query }: { query: string }) => {
           <div className={styles.people}>
             {people?.map((person) => {
               return (
-                <button
+                <div
                   onClick={() => {
                     closeResultsModal();
                     router.push(`/${person?.id}`);
@@ -90,7 +92,7 @@ export const SearchResultsModal = ({ query }: { query: string }) => {
                       userId={person?.id}
                     />
                   </span>
-                </button>
+                </div>
               );
             })}
           </div>

@@ -1,4 +1,6 @@
 "use client";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
 
 import { SearchIcon } from "@/assets/search-icon";
 import { useDebounce } from "@/hooks";
@@ -10,8 +12,12 @@ import { SearchResultsModal } from "./search-results-modal";
 import styles from "./styles/search.module.scss";
 
 export const Search = () => {
-  const query = useSearchStore((state) => state.query);
-  const setQuery = useSearchStore((state) => state.setQuery);
+  // const query = useSearchStore((state) => state.query);
+  // const setQuery = useSearchStore((state) => state.setQuery);
+  const pathname = usePathname();
+  const [query, setQuery] = useState<string>("");
+  const search = pathname?.split("/")[1];
+  const searchTerm = pathname?.split("/")[2];
 
   const isResultsModalOpen = useSearchStore(
     (state) => state.isResultsModalOpen,
@@ -36,7 +42,7 @@ export const Search = () => {
           <SearchIcon />
         </div>
         <input
-          value={query}
+          value={search ? searchTerm : query}
           onChange={handleChange}
           type="text"
           placeholder="Search Twitter"
