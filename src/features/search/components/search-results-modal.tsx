@@ -25,10 +25,18 @@ export const SearchResultsModal = ({
   const router = useRouter();
   const closeResultsModal = useSearchStore((state) => state.closeResultsModal);
 
-  const { data: people, isFetching, isError, refetch } = useSearchPeople(query);
+  const {
+    data: people,
+    isFetching,
+    isError,
+    refetch,
+    isRefetching,
+  } = useSearchPeople(query);
   const hashtags = useSearchHashtags(query);
 
   useEffect(() => {
+    if (isRefetching || hashtags.isRefetching) return;
+
     if (query) {
       refetch();
       hashtags.refetch();
