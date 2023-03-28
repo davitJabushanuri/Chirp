@@ -13,7 +13,13 @@ export const SignUpForm = () => {
       <h1 className={styles.title}>Join Twitter today</h1>
 
       <div className={styles.buttonContainer}>
-        <button onClick={() => signIn("google")}>
+        <button
+          onClick={() =>
+            signIn("google", {
+              callbackUrl: "/home",
+            })
+          }
+        >
           <span className={styles.icon}>
             <GoogleLogo />
           </span>
@@ -22,7 +28,13 @@ export const SignUpForm = () => {
       </div>
 
       <div className={styles.buttonContainer}>
-        <button onClick={() => signIn("apple")}>
+        <button
+          onClick={() =>
+            signIn("apple", {
+              callbackUrl: "/home",
+            })
+          }
+        >
           <span className={styles.icon}>
             <AppleLogo />
           </span>

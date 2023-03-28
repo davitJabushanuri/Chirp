@@ -14,7 +14,13 @@ export const LoginForm = () => {
       <h1 className={styles.title}>Sign in to Twitter</h1>
 
       <div className={styles.buttonContainer}>
-        <button onClick={() => signIn("google")}>
+        <button
+          onClick={() =>
+            signIn("google", {
+              callbackUrl: "/home",
+            })
+          }
+        >
           <span className={styles.icon}>
             <GoogleLogo />
           </span>
@@ -23,7 +29,13 @@ export const LoginForm = () => {
       </div>
 
       <div className={styles.buttonContainer}>
-        <button onClick={() => signIn("apple")}>
+        <button
+          onClick={() =>
+            signIn("apple", {
+              callbackUrl: "/home",
+            })
+          }
+        >
           <span className={styles.icon}>
             <AppleLogo />
           </span>

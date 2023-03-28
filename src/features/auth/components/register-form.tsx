@@ -14,14 +14,28 @@ export const RegisterForm = () => {
       </p>
 
       <div className={styles.buttons}>
-        <button onClick={() => signIn("google")} className={styles.google}>
+        <button
+          onClick={() =>
+            signIn("google", {
+              callbackUrl: "/home",
+            })
+          }
+          className={styles.google}
+        >
           <span className={styles.icon}>
             <GoogleLogo />
           </span>
           <span className={styles.text}>Sign up with Google</span>
         </button>
 
-        <button onClick={() => signIn("apple")} className={styles.apple}>
+        <button
+          onClick={() =>
+            signIn("apple", {
+              callbackUrl: "/home",
+            })
+          }
+          className={styles.apple}
+        >
           <span className={styles.icon}>
             <AppleLogo />
           </span>
