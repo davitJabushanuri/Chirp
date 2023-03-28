@@ -1,0 +1,44 @@
+.container {
+  overflow-x: auto;
+  position: relative;
+
+  nav {
+    border-bottom: 1px solid var(--clr-border);
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(100px, 1fr);
+    overflow-x: auto;
+
+
+    .navItem {
+      padding: 0 15px;
+      height: 50px;
+      display: grid;
+      place-content: center;
+      grid-template-rows: 4px 1fr 4px;
+      cursor: pointer;
+      transition: background-color 0.2s ease-in-out;
+
+      &:hover {
+        background-color: var(--clr-nav-hover);
+      }
+
+      &.active {
+        background-color: var(--clr-nav-active);
+      }
+
+
+      .text {
+        display: grid;
+        place-items: center;
+      }
+
+      .border {
+        height: 4px;
+        width: 56px;
+        border-radius: 100vmax;
+        background-color: var(--clr-primary);
+      }
+    }
+  }
+}
