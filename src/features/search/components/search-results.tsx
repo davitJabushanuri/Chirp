@@ -35,25 +35,26 @@ export const SearchResults = () => {
         <NoResults query={query} />
       ) : (
         <div className={styles.results}>
-          <div className={styles.people}>
-            <h1>People</h1>
-            {people?.isSuccess &&
-              people?.data?.length > 0 &&
-              people?.data?.map((person) => {
+          {people?.isSuccess && people?.data?.length > 0 && (
+            <div className={styles.people}>
+              <h1>People</h1>
+              {people?.data?.map((person) => {
                 return <PersonDetails key={person?.id} author={person} />;
               })}
-          </div>
-          <div className={styles.tweets}>
-            {tweets?.isSuccess &&
-              tweets?.data?.length > 0 &&
-              tweets?.data?.map((tweet) => {
+            </div>
+          )}
+
+          {tweets?.isSuccess && tweets?.data?.length > 0 && (
+            <div className={styles.tweets}>
+              {tweets?.data?.map((tweet) => {
                 return (
                   <div key={tweet?.id} className={styles.tweetContainer}>
                     <Tweet tweet={tweet} />
                   </div>
                 );
               })}
-          </div>
+            </div>
+          )}
         </div>
       )}
     </div>

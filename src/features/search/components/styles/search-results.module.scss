@@ -1,6 +1,14 @@
 .container {
   padding-bottom: calc(100vh - 8rem);
 
+  .people {
+    h1 {
+      padding: 11px 15px;
+      font-size: 19px;
+      font-weight: 600;
+    }
+  }
+
   .tweets {
     .tweetContainer {
       border-bottom: 1px solid var(--clr-border);
