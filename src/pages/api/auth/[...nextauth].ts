@@ -19,13 +19,30 @@ export const authOptions: NextAuthOptions = {
   },
 
   callbacks: {
-    async signIn() {
+    async signIn({ profile, email, account, user, credentials }) {
+      console.log(
+        "profile",
+        profile,
+        "email",
+        email,
+        "account",
+        account,
+        "user",
+        user,
+        "credentials",
+        credentials,
+      );
       const isAllowedToSignIn = true;
       if (isAllowedToSignIn) {
         return true;
       } else {
         return false;
       }
+    },
+
+    async redirect({ url, baseUrl }) {
+      console.log("url", url, "baseUrl", baseUrl);
+      return baseUrl;
     },
 
     session: async ({ session, user }) => {
