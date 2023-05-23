@@ -7,9 +7,15 @@ export default async function Tweets(
   res: NextApiResponse,
 ) {
   const { method } = req;
+
   if (method === "GET") {
+    const page = Number(req.query.page) || 0;
+    const limit = Number(req.query.limit) || 10;
     try {
       const tweets = await prisma.tweet.findMany({
+        skip: page * limit,
+        take: limit,
+
         include: {
           author: {
             include: {

@@ -1,7 +1,7 @@
 import axios from "axios";
-export default async function getTweets() {
+export default async function getTweets(page = 0, limit = 10) {
   try {
-    const { data } = await axios.get(`/api/tweets`);
+    const { data } = await axios.get(`/api/tweets?page=${page}&limit=${limit}`);
     return data;
   } catch (error: any) {
     if (error.response) {
