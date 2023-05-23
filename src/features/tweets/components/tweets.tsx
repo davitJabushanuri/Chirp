@@ -5,11 +5,18 @@ import { TryAgain } from "@/components/elements/try-again";
 
 import { useTweets } from "../hooks/use-tweets";
 
-import styles from "./styles/tweets.module.scss";
-import { Tweet } from "./tweet";
+import { InfiniteTweets } from "./infinite-tweets";
 
 export const Tweets = () => {
-  const { data: tweets, isLoading, isError, isSuccess } = useTweets();
+  const {
+    data: tweets,
+    isLoading,
+    isError,
+    isSuccess,
+    isFetchingNextPage,
+    fetchNextPage,
+    hasNextPage,
+  } = useTweets();
 
   if (isLoading) {
     return <LoadingSpinner />;
@@ -20,14 +27,12 @@ export const Tweets = () => {
   }
 
   return (
-    <div className={styles.container}>
-      {isSuccess &&
-        tweets?.length > 0 &&
-        tweets?.map((tweet) => (
-          <div className={styles.tweetContainer} key={tweet.id}>
-            <Tweet tweet={tweet} />
-          </div>
-        ))}
-    </div>
+    <InfiniteTweets
+      tweets={tweets}
+      isSuccess={isSuccess}
+      isFetchingNextPage={isFetchingNextPage}
+      fetchNextPage={fetchNextPage}
+      hasNextPage={hasNextPage}
+    />
   );
 };
