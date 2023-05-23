@@ -67,10 +67,7 @@ export interface IBookmark {
   tweet: ITweet;
 }
 
-// export interface IPinnedTweet {
-//   id: string;
-//   user_id: string;
-//   tweet_id: string;
-//   user: IUser;
-//   tweet: ITweet;
-// }
+export interface IInfiniteTweets {
+  pages: { tweets: ITweet[]; nextId?: string | undefined }[];
+  pageParams: any;
+}

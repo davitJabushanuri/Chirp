@@ -1,20 +1,23 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 
-import getTweets from "../api/get-tweets";
-import { ITweet } from "../types";
+import { getTweets } from "../api/get-tweets";
 
 export const useTweets = () => {
-  const queryClient = useQueryClient();
-  return useQuery<ITweet[]>(
+  const data = useInfiniteQuery(
     ["tweets"],
-    async () => {
-      return getTweets();
-    },
+    ({ pageParam = "" }) =>
+      getTweets({
+        pageParam,
+        limit: 20,
+      }),
+
     {
-      refetchOnWindowFocus: false,
-      onSuccess: (data) => {
-        queryClient.setQueryData(["tweets"], data);
+      getNextPageParam: (lastPage) => {
+        return lastPage.nextId ?? false;
       },
+      refetchOnWindowFocus: false,
     },
   );
+
+  return data;
 };

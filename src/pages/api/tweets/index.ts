@@ -7,9 +7,19 @@ export default async function Tweets(
   res: NextApiResponse,
 ) {
   const { method } = req;
+
   if (method === "GET") {
+    const take = Number(req.query.limit) || 20;
+    const cursorQuery = (req.query.cursor as string) ?? undefined;
+    const skip = cursorQuery ? 1 : 0;
+    const cursor = cursorQuery ? { id: cursorQuery } : undefined;
+
     try {
       const tweets = await prisma.tweet.findMany({
+        skip,
+        take,
+        cursor,
+
         include: {
           author: {
             include: {
@@ -41,7 +51,14 @@ export default async function Tweets(
           created_at: "desc",
         },
       });
-      res.status(200).json(tweets);
+
+      const nextId =
+        tweets.length < take ? undefined : tweets[tweets.length - 1].id;
+
+      res.status(200).json({
+        tweets,
+        nextId,
+      });
     } catch (error: any) {
       res.status(500).json({ error: error.message });
     }
