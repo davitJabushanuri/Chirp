@@ -25,13 +25,13 @@ export const Explore = () => {
       <div className={styles?.scores}></div>
 
       <div className={styles.tweets}>
-        {tweets?.map((tweet) => {
+        {/* {tweets?.map((tweet) => {
           return (
             <div className={styles.tweet} key={tweet?.id}>
               <Tweet tweet={tweet} />
             </div>
           );
-        })}
+        })} */}
       </div>
     </div>
   );

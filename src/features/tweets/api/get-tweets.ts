@@ -1,7 +1,15 @@
 import axios from "axios";
-export default async function getTweets(page = 0, limit = 10) {
+export const getTweets = async ({
+  pageParam = "",
+  limit = 10,
+}: {
+  pageParam?: string;
+  limit?: number;
+}) => {
   try {
-    const { data } = await axios.get(`/api/tweets?page=${page}&limit=${limit}`);
+    const { data } = await axios.get(
+      `/api/tweets?cursor=${pageParam}&limit=${limit}`,
+    );
     return data;
   } catch (error: any) {
     if (error.response) {
@@ -21,4 +29,4 @@ export default async function getTweets(page = 0, limit = 10) {
     }
     console.log(error.config);
   }
-}
+};

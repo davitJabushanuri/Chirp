@@ -9,12 +9,15 @@ export default async function Tweets(
   const { method } = req;
 
   if (method === "GET") {
-    const page = Number(req.query.page) || 0;
-    const limit = Number(req.query.limit) || 10;
+    const take = Number(req.query.limit) || 10;
+    const cursorQuery = (req.query.cursor as string) ?? undefined;
+    const skip = cursorQuery ? 1 : 0;
+    const cursor = cursorQuery ? { id: cursorQuery } : undefined;
     try {
       const tweets = await prisma.tweet.findMany({
-        skip: page * limit,
-        take: limit,
+        skip,
+        take,
+        cursor,
 
         include: {
           author: {
@@ -47,7 +50,14 @@ export default async function Tweets(
           created_at: "desc",
         },
       });
-      res.status(200).json(tweets);
+
+      const nextId =
+        tweets.length < take ? undefined : tweets[tweets.length - 1].id;
+
+      res.status(200).json({
+        tweets,
+        nextId,
+      });
     } catch (error: any) {
       res.status(500).json({ error: error.message });
     }
