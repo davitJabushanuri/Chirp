@@ -1,7 +1,7 @@
 import axios from "axios";
 export const getTweets = async ({
   pageParam = "",
-  limit = 10,
+  limit = 20,
 }: {
   pageParam?: string;
   limit?: number;

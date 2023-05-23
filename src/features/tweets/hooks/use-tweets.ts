@@ -3,17 +3,21 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { getTweets } from "../api/get-tweets";
 
 export const useTweets = () => {
-  return useInfiniteQuery(
+  const data = useInfiniteQuery(
     ["tweets"],
     ({ pageParam = "" }) =>
       getTweets({
         pageParam,
-        limit: 10,
+        limit: 20,
       }),
+
     {
       getNextPageParam: (lastPage) => {
         return lastPage.nextId ?? false;
       },
+      refetchOnWindowFocus: false,
     },
   );
+
+  return data;
 };

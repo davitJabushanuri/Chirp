@@ -9,10 +9,11 @@ export default async function Tweets(
   const { method } = req;
 
   if (method === "GET") {
-    const take = Number(req.query.limit) || 10;
+    const take = Number(req.query.limit) || 20;
     const cursorQuery = (req.query.cursor as string) ?? undefined;
     const skip = cursorQuery ? 1 : 0;
     const cursor = cursorQuery ? { id: cursorQuery } : undefined;
+
     try {
       const tweets = await prisma.tweet.findMany({
         skip,
