@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { z } from "zod";
 
 import { prisma } from "@/lib/prisma";
 
@@ -66,42 +67,59 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
-  const { searchParams } = new URL(request.url);
+  const { tweet } = await request.json();
 
-  const text = searchParams.get("text");
-  const userId = searchParams.get("userId");
-  const in_reply_to_screen_name = searchParams.get("in_reply_to_screen_name");
-  const in_reply_to_status_id = searchParams.get("in_reply_to_status_id");
-  const quoted_tweet_id = searchParams.get("quoted_tweet_id");
+  const tweetSchema = z
+    .object({
+      text: z.string().min(1).max(280),
+      author_id: z.string().cuid(),
+      in_reply_to_screen_name: z.string().optional(),
+      in_reply_to_status_id: z.string().cuid().optional(),
+      quoted_tweet_id: z.string().cuid().optional(),
+    })
+    .strict();
+
+  const zod = tweetSchema.safeParse(tweet);
+
+  if (!zod.success) {
+    return NextResponse.json(
+      {
+        message: "Invalid request body",
+        error: zod.error.formErrors,
+      },
+      { status: 400 },
+    );
+  }
 
   try {
     await prisma.tweet.create({
       data: {
-        text,
-        userId,
-        in_reply_to_screen_name: in_reply_to_screen_name
-          ? in_reply_to_screen_name
-          : null,
-        in_reply_to_status_id: in_reply_to_status_id
-          ? in_reply_to_status_id
-          : null,
-        quoted_tweet_id: quoted_tweet_id ? quoted_tweet_id : null,
+        ...tweet,
       },
     });
 
     return NextResponse.json({
       message: "Tweet created successfully",
     });
-  } catch (error) {
-    return NextResponse.error();
+  } catch (error: any) {
+    return NextResponse.json(
+      {
+        message: "Something went wrong",
+        error: error.message,
+      },
+      { status: error.errorCode || 500 },
+    );
   }
 }
 
-export async function DELETE(request: Request, context: any) {
-  const { params } = context;
+export async function DELETE(request: Request) {
+  const { tweetId } = await request.json();
+  console.log(request.json());
+  console.log(tweetId);
+  const { searchParams } = new URL(request.url);
+  console.log(searchParams);
 
   try {
-    const { tweetId } = params;
     await prisma.tweet.delete({
       where: {
         id: tweetId,
@@ -111,6 +129,7 @@ export async function DELETE(request: Request, context: any) {
       message: "Tweet deleted successfully",
     });
   } catch (error) {
+    console.log(error);
     return NextResponse.error();
   }
 }
