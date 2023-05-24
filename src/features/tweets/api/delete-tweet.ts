@@ -4,7 +4,10 @@ export const deleteTweet = async (tweetId: string) => {
   try {
     const { data } = await axios.delete(`/api/tweets`, {
       data: {
-        tweetId,
+        id: tweetId,
+      },
+      headers: {
+        "Content-Type": "application/json",
       },
     });
     return data;

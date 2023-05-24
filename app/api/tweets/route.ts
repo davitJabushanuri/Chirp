@@ -112,17 +112,30 @@ export async function POST(request: Request) {
   }
 }
 
-export async function DELETE(request: Request) {
-  const { tweetId } = await request.json();
-  console.log(request.json());
-  console.log(tweetId);
-  const { searchParams } = new URL(request.url);
-  console.log(searchParams);
+export async function DELETE(request: Request, context: any) {
+  const searchParams = new URL(request.url);
+
+  const { id } = await request.json();
+  console.log(id);
+
+  const idSchema = z.string().cuid();
+
+  const zod = idSchema.safeParse({});
+
+  if (!zod.success) {
+    return NextResponse.json(
+      {
+        message: "Invalid request body",
+        error: zod.error.formErrors,
+      },
+      { status: 400 },
+    );
+  }
 
   try {
     await prisma.tweet.delete({
       where: {
-        id: tweetId,
+        id,
       },
     });
     return NextResponse.json({

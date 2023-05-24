@@ -13,7 +13,7 @@ export const useTweets = () => {
 
     {
       getNextPageParam: (lastPage) => {
-        return lastPage.nextId ?? false;
+        return lastPage?.nextId ?? false;
       },
       refetchOnWindowFocus: false,
     },
