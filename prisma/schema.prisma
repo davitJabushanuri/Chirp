@@ -109,8 +109,8 @@ model Tweet {
   possibly_sensitive      Boolean    @default(false)
   lang                    String     @default("en")
   created_at              DateTime   @default(now())
-  author                  User       @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId                  String
+  author                  User       @relation(fields: [author_id], references: [id], onDelete: Cascade)
+  author_id               String
   media                   Media[]
   likes                   Like[]
   retweets                Retweet[]
