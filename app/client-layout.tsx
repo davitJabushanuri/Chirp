@@ -41,7 +41,10 @@ export const ClientLayout = ({
 
   return (
     <NextAuthProvider>
-      <body className={`${currentTheme || theme} ${currentColor || color}`}>
+      <body
+        suppressHydrationWarning={true}
+        className={`${currentTheme || theme} ${currentColor || color}`}
+      >
         {status === "loading" ? (
           <LoadingScreen />
         ) : (
