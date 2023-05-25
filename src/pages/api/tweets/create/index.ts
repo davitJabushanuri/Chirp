@@ -20,7 +20,7 @@ export default async function CreateTweet(
       const tweet = await prisma.tweet.create({
         data: {
           text,
-          userId,
+          author_id: userId,
           in_reply_to_screen_name: in_reply_to_screen_name
             ? in_reply_to_screen_name
             : null,

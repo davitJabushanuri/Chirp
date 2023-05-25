@@ -4,16 +4,17 @@ import { getToken } from "next-auth/jwt";
 
 export async function middleware(req: NextRequest) {
   const token = await getToken({ req });
+  const isAuthenticated = !!token;
 
   const url = req.nextUrl.clone();
 
-  if (token) {
+  if (isAuthenticated) {
     if (url.pathname === "/" || url.pathname === "/auth/signin") {
       return NextResponse.redirect(new URL("/home", req.url));
     }
   }
 
-  if (!token) {
+  if (!isAuthenticated) {
     if (
       req.nextUrl.pathname.startsWith("/home") ||
       req.nextUrl.pathname.startsWith("/notifications") ||
@@ -23,6 +24,12 @@ export async function middleware(req: NextRequest) {
       url.pathname === "/auth/signout"
     ) {
       return NextResponse.redirect(new URL("/", req.url));
+    }
+  }
+
+  if (isAuthenticated && token?.role !== "ADMIN") {
+    if (url.pathname === "/admin") {
+      return NextResponse.redirect(new URL("/home", req.url));
     }
   }
 
@@ -37,6 +44,6 @@ export const config = {
     "/notifications/:path*",
     "/messages/:path*",
     "/bookmarks/:path*",
-    "/api/:path*",
+    "admin/:path*",
   ],
 };
