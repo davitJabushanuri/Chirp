@@ -44,6 +44,6 @@ export const config = {
     "/notifications/:path*",
     "/messages/:path*",
     "/bookmarks/:path*",
-    "admin/:path*",
+    "/admin/:path*",
   ],
 };
