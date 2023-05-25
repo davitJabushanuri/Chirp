@@ -43,6 +43,11 @@ model Session {
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
+enum UserRole {
+  ADMIN
+  USER
+}
+
 model User {
   id                 String         @id @default(cuid())
   name               String
@@ -56,7 +61,7 @@ model User {
   emailVerified      DateTime?
   image              String?
   password           String?
-  role               String         @default("user")
+  role               UserRole       @default(USER)
   created_at         DateTime       @default(now())
   followers_count    Int            @default(0)
   friends_count      Int            @default(0)

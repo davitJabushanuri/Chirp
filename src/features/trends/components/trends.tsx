@@ -8,7 +8,7 @@ import styles from "./styles/trends.module.scss";
 import { Trend } from "./trend";
 
 export const Trends = ({ title = "Trends" }: { title?: string }) => {
-  const { data: hashtags, isLoading, isError } = useHashtags();
+  const { data: hashtags, isLoading, isError, isSuccess } = useHashtags();
 
   if (hashtags && hashtags?.length <= 0) return null;
 
@@ -26,7 +26,7 @@ export const Trends = ({ title = "Trends" }: { title?: string }) => {
         <>
           <div className={styles.trends}>
             <h1 className={styles.title}>{title}</h1>
-            {hashtags.length > 0 &&
+            {isSuccess &&
               hashtags?.map((hashtag, index) => {
                 return (
                   <Trend

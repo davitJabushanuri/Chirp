@@ -15,7 +15,7 @@ export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
 
   session: {
-    strategy: "database",
+    strategy: "jwt",
   },
 
   callbacks: {
@@ -28,17 +28,36 @@ export const authOptions: NextAuthOptions = {
       }
     },
 
-    session: async ({ session, user }) => {
-      if (user) {
-        session.user.id = user?.id;
-        session.user.name = user?.name;
-        session.user.email = user?.email;
-        session.user.image = user?.image;
-        session.user.role = user?.role;
-        session.user.username = user?.screen_name;
-        session.user.profile_image_url = user?.profile_image_url;
+    session: async ({ session, token }) => {
+      if (token) {
+        session.user.id = token?.id;
+        session.user.name = token?.name;
+        session.user.email = token?.email;
+        session.user.role = token?.role;
+        session.user.username = token?.screen_name;
+        session.user.profile_image_url = token?.profile_image_url;
       }
       return session;
+    },
+
+    async jwt({ token, user }) {
+      const dbUser = await prisma.user.findFirst({
+        where: { email: token?.email },
+      });
+
+      if (!dbUser) {
+        token.id = user?.id;
+        return token;
+      }
+
+      return {
+        id: dbUser.id,
+        name: dbUser.name,
+        email: dbUser.email,
+        role: dbUser.role,
+        username: dbUser.screen_name,
+        profile_image_url: dbUser.profile_image_url,
+      };
     },
   },
 
