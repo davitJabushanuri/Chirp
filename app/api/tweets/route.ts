@@ -112,15 +112,12 @@ export async function POST(request: Request) {
   }
 }
 
-export async function DELETE(request: Request, context: any) {
-  const searchParams = new URL(request.url);
-
-  const { id } = await request.json();
-  console.log(id);
+export async function DELETE(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const id = searchParams.get("id") as string;
 
   const idSchema = z.string().cuid();
-
-  const zod = idSchema.safeParse({});
+  const zod = idSchema.safeParse(id);
 
   if (!zod.success) {
     return NextResponse.json(
@@ -141,8 +138,13 @@ export async function DELETE(request: Request, context: any) {
     return NextResponse.json({
       message: "Tweet deleted successfully",
     });
-  } catch (error) {
-    console.log(error);
-    return NextResponse.error();
+  } catch (error: any) {
+    return NextResponse.json(
+      {
+        message: "Something went wrong",
+        error: error.message,
+      },
+      { status: error.errorCode || 500 },
+    );
   }
 }
