@@ -1,17 +1,11 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import NextAuth, { type NextAuthOptions } from "next-auth";
+import NextAuth, { type AuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import TwitterProvider from "next-auth/providers/twitter";
 
-import {
-  GOOGLE_CLIENT_ID,
-  GOOGLE_CLIENT_SECRET,
-  TWITTER_CLIENT_ID,
-  TWITTER_CLIENT_SECRET,
-} from "@/config";
+import { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET } from "@/config";
 import { prisma } from "@/lib/prisma";
 
-export const authOptions: NextAuthOptions = {
+const authOptions: AuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
 
   session: {
@@ -75,13 +69,8 @@ export const authOptions: NextAuthOptions = {
       clientId: GOOGLE_CLIENT_ID,
       clientSecret: GOOGLE_CLIENT_SECRET,
     }),
-
-    TwitterProvider({
-      clientId: TWITTER_CLIENT_ID,
-      clientSecret: TWITTER_CLIENT_SECRET,
-      version: "2.0",
-    }),
   ],
 };
 
-export default NextAuth(authOptions);
+const handler = NextAuth(authOptions);
+export { handler as GET, handler as POST };
