@@ -6,6 +6,9 @@ import { prisma } from "@/lib/prisma";
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
 
+  const type = searchParams.get("type") || undefined;
+  const id = searchParams.get("id") || undefined;
+
   const cursorQuery = searchParams.get("cursor") || undefined;
   const take = Number(searchParams.get("limit")) || 20;
 
@@ -17,6 +20,12 @@ export async function GET(request: Request) {
       skip,
       take,
       cursor,
+
+      where: {
+        ...(type && {
+          [type]: id,
+        }),
+      },
 
       include: {
         author: {
@@ -97,6 +106,20 @@ export async function POST(request: Request) {
         ...tweet,
       },
     });
+
+    if (tweet.quoted_tweet_id) {
+      await prisma.tweet.update({
+        where: {
+          id: tweet.quoted_tweet_id,
+        },
+
+        data: {
+          quote_count: {
+            increment: 1,
+          },
+        },
+      });
+    }
 
     return NextResponse.json({
       message: "Tweet created successfully",
