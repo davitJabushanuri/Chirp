@@ -26,6 +26,12 @@ export async function POST(request: Request) {
   }
 
   try {
+    const tweet = await prisma.tweet.findUnique({
+      where: {
+        id: tweet_id,
+      },
+    });
+
     const like = await prisma.like.findFirst({
       where: {
         tweet_id,
@@ -39,6 +45,20 @@ export async function POST(request: Request) {
           id: like.id,
         },
       });
+
+      if (tweet && tweet.favorite_count > 0)
+        await prisma.tweet.update({
+          where: {
+            id: tweet_id,
+          },
+
+          data: {
+            favorite_count: {
+              decrement: 1,
+            },
+          },
+        });
+
       return NextResponse.json({ message: "Tweet unliked" });
     } else {
       await prisma.like.create({
@@ -55,6 +75,21 @@ export async function POST(request: Request) {
           },
         },
       });
+
+      if (tweet) {
+        await prisma.tweet.update({
+          where: {
+            id: tweet_id,
+          },
+
+          data: {
+            favorite_count: {
+              increment: 1,
+            },
+          },
+        });
+      }
+
       return NextResponse.json({ message: "Tweet liked" });
     }
   } catch (error: any) {
