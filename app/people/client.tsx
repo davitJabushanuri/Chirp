@@ -5,7 +5,7 @@ import { ConnectHeader, PersonDetails } from "@/features/connect";
 import { useUsers } from "@/features/profile";
 
 export const ConnectClientPage = () => {
-  const { data: people, isLoading, isError } = useUsers();
+  const { data: people, isLoading, isError, isSuccess } = useUsers();
 
   if (isLoading) {
     return (
@@ -41,13 +41,15 @@ export const ConnectClientPage = () => {
       >
         Suggested for you
       </h1>
-      {people?.map((person) => {
-        return (
-          <div key={person.id}>
-            <PersonDetails author={person} />
-          </div>
-        );
-      })}
+      {isSuccess &&
+        people.length > 0 &&
+        people?.map((person) => {
+          return (
+            <div key={person.id}>
+              <PersonDetails author={person} />
+            </div>
+          );
+        })}
     </div>
   );
 };

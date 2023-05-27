@@ -63,16 +63,8 @@ export async function POST(request: Request) {
     } else {
       await prisma.like.create({
         data: {
-          tweet: {
-            connect: {
-              id: tweet_id,
-            },
-          },
-          user: {
-            connect: {
-              id: user_id,
-            },
-          },
+          tweet_id,
+          user_id,
         },
       });
 
