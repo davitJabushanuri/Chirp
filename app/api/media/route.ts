@@ -5,7 +5,6 @@ import { prisma } from "@/lib/prisma";
 
 export async function POST(request: Request) {
   const { media } = await request.json();
-  console.log(media);
 
   const mediaSchema = z
     .object({
