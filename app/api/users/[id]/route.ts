@@ -65,4 +65,60 @@ export async function GET(
   }
 }
 
-export async function PUT(request: Request) {}
+export async function PUT(request: Request) {
+  const {
+    user_id,
+    name,
+    description,
+    location,
+    url,
+    profile_banner_url,
+    profile_image_url,
+  } = await request.json();
+
+  const userSchema = z
+    .object({
+      user_id: z.string().cuid(),
+      name: z.string().min(1).max(50),
+      description: z.string().max(160),
+      location: z.string().max(30),
+      url: z.string(),
+      profile_banner_url: z.string(),
+      profile_image_url: z.string(),
+    })
+    .strict();
+
+  const zod = userSchema.safeParse({
+    user_id,
+    name,
+    description,
+    location,
+    url,
+    profile_banner_url,
+    profile_image_url,
+  });
+
+  if (!zod.success) {
+    return NextResponse.json(zod.error, { status: 400 });
+  }
+
+  try {
+    const user = await prisma.user.update({
+      where: {
+        id: user_id,
+      },
+      data: {
+        name,
+        description,
+        location,
+        url,
+        profile_banner_url,
+        profile_image_url,
+      },
+    });
+
+    return NextResponse.json(user, { status: 200 });
+  } catch (error: any) {
+    return NextResponse.json(error.message, { status: 500 });
+  }
+}
