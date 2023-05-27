@@ -11,7 +11,7 @@ interface IModal {
   quoted_tweet: ITweet | null;
   setQuotedTweet: (tweet: ITweet | null) => void;
   in_reply_to_screen_name: string | null;
-  setScreenName: (screen_name: string | null) => void;
+  setScreenName: (screen_name: string | undefined) => void;
   in_reply_to_status_id: string | null;
   setStatusId: (status_id: string | null) => void;
   placeholder: string | null;

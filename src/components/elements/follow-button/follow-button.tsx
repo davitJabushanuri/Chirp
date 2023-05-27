@@ -16,7 +16,7 @@ export const FollowButton = ({
   followerId,
   isFollowing = false,
 }: {
-  username: string;
+  username: string | undefined;
   userId: string;
   followerId: string;
   isFollowing: boolean | undefined;

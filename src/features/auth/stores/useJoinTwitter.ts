@@ -4,12 +4,12 @@ interface IJoinTwitter {
   data: {
     isModalOpen: boolean;
     action: string;
-    user: string;
+    user?: string;
   };
   setData: (data: {
     isModalOpen: boolean;
     action: string;
-    user: string;
+    user?: string;
   }) => void;
 }
 

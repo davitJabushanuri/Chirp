@@ -29,6 +29,8 @@ export const Profile = ({ children }: { children: React.ReactNode }) => {
 
   const { data: user, isLoading, isError } = useUser(id);
 
+  console.log("user", user);
+
   if (isLoading) {
     return (
       <>
