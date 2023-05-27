@@ -5,15 +5,14 @@ import supabase from "@/utils/supabaseClient";
 
 export const postMedia = async ({
   files,
-  tweetId,
-  type = `tweet_id`,
-  messageId,
+  tweet_id,
+  message_id,
 }: {
   files: File[];
-  tweetId?: string;
-  type: `tweet_id` | `message_id`;
-  messageId?: string;
+  tweet_id?: string;
+  message_id?: string;
 }) => {
+  console.log(tweet_id, message_id);
   try {
     files.forEach(async (file) => {
       const imagePath = cuid();
@@ -32,11 +31,18 @@ export const postMedia = async ({
           .from("images")
           .getPublicUrl(`image-${imagePath}`);
 
-        await axios.post("/api/tweets/media", {
-          [type]: type === `tweet_id` ? tweetId : messageId,
+        const media = {
+          ...(tweet_id && { tweet_id }),
+          ...(message_id && { message_id }),
           media_url: mediaUrl?.publicUrl,
           media_type: "image",
           media_path: `image-${imagePath}`,
+        };
+
+        console.log(media);
+
+        await axios.post("/api/media", {
+          media,
         });
       }
     });

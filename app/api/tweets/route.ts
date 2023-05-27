@@ -101,7 +101,7 @@ export async function POST(request: Request) {
   }
 
   try {
-    await prisma.tweet.create({
+    const created_tweet = await prisma.tweet.create({
       data: {
         ...tweet,
       },
@@ -121,9 +121,7 @@ export async function POST(request: Request) {
       });
     }
 
-    return NextResponse.json({
-      message: "Tweet created successfully",
-    });
+    return NextResponse.json(created_tweet, { status: 200 });
   } catch (error: any) {
     return NextResponse.json(
       {
