@@ -14,8 +14,6 @@ export const Person = ({ person }: { person: IUser }) => {
   const { data: session } = useSession();
   const router = useRouter();
 
-  console.log("person", person.followers);
-
   const isFollowing = person?.followers?.some(
     (follower) => follower.follower_id === session?.user?.id,
   );
