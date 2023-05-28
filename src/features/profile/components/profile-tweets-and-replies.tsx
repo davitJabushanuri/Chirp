@@ -1,15 +1,14 @@
 "use client";
 
-import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
 import { Connect } from "@/features/connect";
-import { Tweet } from "@/features/tweets";
+import { InfiniteTweets, Tweet, useTweets } from "@/features/tweets";
 
 import { useUser } from "../hooks/use-user";
-import { useUserTweetsWithReplies } from "../hooks/use-user-tweets-with-replies";
 
 import { PinnedTweet } from "./pinned-tweet";
 import styles from "./styles/profile-tweets-and-replies.module.scss";
@@ -17,14 +16,22 @@ import styles from "./styles/profile-tweets-and-replies.module.scss";
 export const ProfileTweetsAndReplies = () => {
   const { data: session } = useSession();
   const pathname = usePathname();
-  const id = pathname?.split("/")[1];
+  const id = pathname?.split("/")[1] as string;
 
   const {
     data: tweets,
     isLoading,
     isError,
     isSuccess,
-  } = useUserTweetsWithReplies(id);
+    isFetchingNextPage,
+    fetchNextPage,
+    hasNextPage,
+  } = useTweets({
+    queryKey: ["tweets", id, "replies"],
+    type: "author_id",
+    id,
+    condition: "replies",
+  });
 
   const { data: user } = useUser(id);
 
@@ -48,7 +55,7 @@ export const ProfileTweetsAndReplies = () => {
     <div className={styles.container}>
       <PinnedTweet userId={id} />
 
-      {isSuccess && tweets?.length === 0 && (
+      {/* {isSuccess && tweets?.length === 0 && (
         <div className={styles.noTweets}>
           {tweets[0]?.author?.id === session?.user?.id ? (
             <div>
@@ -64,19 +71,15 @@ export const ProfileTweetsAndReplies = () => {
             </div>
           )}
         </div>
-      )}
+      )} */}
 
-      {isSuccess && tweets?.length > 0 && (
-        <div className={styles.tweets}>
-          {tweets?.map((tweet) => {
-            return (
-              <div className={styles.tweetContainer} key={tweet?.id}>
-                <Tweet tweet={tweet} />
-              </div>
-            );
-          })}
-        </div>
-      )}
+      <InfiniteTweets
+        tweets={tweets}
+        isFetchingNextPage={isFetchingNextPage}
+        fetchNextPage={fetchNextPage}
+        hasNextPage={hasNextPage}
+        isSuccess={isSuccess}
+      />
 
       <Connect />
     </div>

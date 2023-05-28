@@ -9,6 +9,8 @@ export async function GET(request: Request) {
   const type = searchParams.get("type") || undefined;
   const id = searchParams.get("id") || undefined;
 
+  const condition = searchParams.get("condition") || undefined;
+
   const cursorQuery = searchParams.get("cursor") || undefined;
   const take = Number(searchParams.get("limit")) || 20;
 
@@ -24,6 +26,20 @@ export async function GET(request: Request) {
       where: {
         ...(type && {
           [type]: id,
+        }),
+
+        ...(condition === "replies" && {
+          NOT: {
+            in_reply_to_status_id: null,
+            in_reply_to_screen_name: null,
+            in_reply_to_user_id: null,
+          },
+        }),
+
+        ...(condition === "media" && {
+          media: {
+            some: {},
+          },
         }),
       },
 
