@@ -5,7 +5,6 @@ import { ITweet } from "@/features/tweets";
 import { getPinnedTweet } from "../api/get-pinned-tweet";
 
 export const usePinnedTweet = (id: string | undefined) => {
-  // const queryClient = useQueryClient();
   return useQuery<ITweet>(
     ["tweets", { userId: id }, `pinned`],
     async () => {

@@ -26,9 +26,8 @@ export const ProfileMedia = () => {
     hasNextPage,
   } = useTweets({
     queryKey: ["tweets", id, "media"],
-    type: "author_id",
+    type: "user_media",
     id,
-    condition: "media",
   });
 
   const { data: user } = useUser(id);

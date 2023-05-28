@@ -17,7 +17,7 @@ export const Comments = ({ tweetId }: { tweetId: string }) => {
     isSuccess,
   } = useTweets({
     queryKey: ["tweets", tweetId, "comments"],
-    type: "in_reply_to_status_id",
+    type: "comments",
     id: tweetId,
   });
 

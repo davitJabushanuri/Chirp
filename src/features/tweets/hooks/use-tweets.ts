@@ -6,12 +6,10 @@ export const useTweets = ({
   queryKey,
   type,
   id,
-  condition,
 }: {
   queryKey?: string[];
   type?: string;
   id?: string;
-  condition?: string;
 }) => {
   const data = useInfiniteQuery(
     queryKey ?? ["tweets"],
@@ -21,7 +19,6 @@ export const useTweets = ({
         limit: 20,
         type,
         id,
-        condition,
       }),
 
     {

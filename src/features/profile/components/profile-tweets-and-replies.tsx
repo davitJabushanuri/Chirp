@@ -28,9 +28,8 @@ export const ProfileTweetsAndReplies = () => {
     hasNextPage,
   } = useTweets({
     queryKey: ["tweets", id, "replies"],
-    type: "author_id",
+    type: "user_replies",
     id,
-    condition: "replies",
   });
 
   const { data: user } = useUser(id);

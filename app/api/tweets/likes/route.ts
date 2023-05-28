@@ -21,25 +21,25 @@ export async function GET(request: Request) {
   }
 
   try {
-    const likes = await prisma.like.findMany({
+    const tweets = await prisma.tweet.findMany({
       where: {
-        user_id,
-      },
-
-      include: {
-        tweet: {
-          include: {
-            author: true,
-            media: true,
-            likes: true,
-            retweets: true,
-            comments: true,
+        likes: {
+          some: {
+            user_id,
           },
         },
       },
+
+      include: {
+        author: true,
+        media: true,
+        likes: true,
+        retweets: true,
+        comments: true,
+      },
     });
 
-    return NextResponse.json(likes, { status: 200 });
+    return NextResponse.json(tweets, { status: 200 });
   } catch (error: any) {
     return NextResponse.json(
       {

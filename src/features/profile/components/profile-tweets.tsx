@@ -28,7 +28,7 @@ export const ProfileTweets = () => {
     hasNextPage,
   } = useTweets({
     queryKey: ["tweets", id],
-    type: "author_id",
+    type: "user_tweets",
     id,
   });
   // const { data: user } = useUser(id);
