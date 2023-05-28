@@ -3,6 +3,40 @@ import { z } from "zod";
 
 import { prisma } from "@/lib/prisma";
 
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const user_id = searchParams.get("user_id") || undefined;
+
+  const userSchema = z.string().nonempty();
+  const zod = userSchema.safeParse(user_id);
+
+  if (!zod.success) {
+    return NextResponse.json({ error: zod.error }, { status: 400 });
+  }
+
+  try {
+    const user = await prisma.user
+      .findUnique({
+        where: {
+          id: user_id,
+        },
+      })
+      .pinned_tweet({
+        include: {
+          author: true,
+          media: true,
+          likes: true,
+          retweets: true,
+          comments: true,
+        },
+      });
+
+    return NextResponse.json(user, { status: 200 });
+  } catch (error: any) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+}
+
 export async function POST(request: Request) {
   const { tweet_id, user_id } = await request.json();
 

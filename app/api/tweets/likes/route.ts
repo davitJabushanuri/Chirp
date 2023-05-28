@@ -3,6 +3,54 @@ import { z } from "zod";
 
 import { prisma } from "@/lib/prisma";
 
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const user_id = searchParams.get("user_id") || undefined;
+
+  const userIdSchema = z.string().cuid();
+  const zod = userIdSchema.safeParse(user_id);
+
+  if (!zod.success) {
+    return NextResponse.json(
+      {
+        message: "Invalid request body",
+        error: zod.error.formErrors,
+      },
+      { status: 400 },
+    );
+  }
+
+  try {
+    const likes = await prisma.like.findMany({
+      where: {
+        user_id,
+      },
+
+      include: {
+        tweet: {
+          include: {
+            author: true,
+            media: true,
+            likes: true,
+            retweets: true,
+            comments: true,
+          },
+        },
+      },
+    });
+
+    return NextResponse.json(likes, { status: 200 });
+  } catch (error: any) {
+    return NextResponse.json(
+      {
+        message: "Something went wrong",
+        error: error.message,
+      },
+      { status: error.errorCode || 500 },
+    );
+  }
+}
+
 export async function POST(request: Request) {
   const { tweet_id, user_id } = await request.json();
 
