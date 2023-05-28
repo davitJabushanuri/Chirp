@@ -11,6 +11,7 @@ export const Bookmarks = ({ bookmarks }: { bookmarks: IBookmark[] }) => {
       {bookmarks?.length === 0 ? (
         <NoBookmarks />
       ) : (
+        bookmarks.length > 0 &&
         bookmarks?.map((bookmark) => {
           return (
             <div key={bookmark.id} className={styles.tweetContainer}>

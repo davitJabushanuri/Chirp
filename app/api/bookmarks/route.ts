@@ -3,6 +3,75 @@ import { z } from "zod";
 
 import { prisma } from "@/lib/prisma";
 
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const user_id = searchParams.get("user_id") as string;
+
+  const idSchema = z.string().cuid();
+  const zod = idSchema.safeParse(user_id);
+
+  if (!zod.success) {
+    return NextResponse.json(
+      {
+        message: "Invalid request body",
+        error: zod.error.formErrors,
+      },
+      { status: 400 },
+    );
+  }
+
+  try {
+    const bookmarks = await prisma.bookmark.findMany({
+      where: {
+        user_id,
+      },
+
+      orderBy: {
+        created_at: "desc",
+      },
+
+      select: {
+        id: true,
+        user_id: true,
+        tweet: {
+          select: {
+            id: true,
+            text: true,
+            author: {
+              select: {
+                id: true,
+                name: true,
+                email: true,
+                profile_image_url: true,
+              },
+            },
+
+            media: true,
+            likes: {
+              select: {
+                user_id: true,
+              },
+            },
+            retweets: {
+              select: {
+                user_id: true,
+              },
+            },
+            comments: true,
+            bookmarks: true,
+            quotes: true,
+            is_quote_status: true,
+          },
+        },
+      },
+    });
+
+    return NextResponse.json(bookmarks, { status: 200 });
+  } catch (error: any) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+}
+
 export async function POST(request: Request) {
   const { tweet_id, user_id } = await request.json();
 
@@ -43,11 +112,11 @@ export async function POST(request: Request) {
 
 export async function DELETE(request: Request) {
   const { searchParams } = new URL(request.url);
-  const id = searchParams.get("id") as string;
+  const user_id = searchParams.get("id") as string;
 
   const idSchema = z.string().cuid();
 
-  const zod = idSchema.safeParse(id);
+  const zod = idSchema.safeParse(user_id);
 
   if (!zod.success) {
     return NextResponse.json(
@@ -60,13 +129,13 @@ export async function DELETE(request: Request) {
   }
 
   try {
-    await prisma.bookmark.delete({
+    await prisma.bookmark.deleteMany({
       where: {
-        id,
+        user_id,
       },
     });
     return NextResponse.json({
-      message: "Bookmark removed",
+      message: "Bookmarks removed",
     });
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 });
