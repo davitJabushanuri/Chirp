@@ -26,6 +26,14 @@ export async function GET(request: Request) {
           in_reply_to_status_id: id,
         }),
 
+        ...(type === "bookmarks" && {
+          bookmarks: {
+            some: {
+              user_id: id,
+            },
+          },
+        }),
+
         ...(type === "user_tweets" && {
           author_id: id,
         }),
