@@ -112,11 +112,17 @@ export async function POST(request: Request) {
 
 export async function DELETE(request: Request) {
   const { searchParams } = new URL(request.url);
-  const user_id = searchParams.get("id") as string;
+  const bookmark_id = (searchParams.get("bookmark_id") as string) || undefined;
+  const user_id = (searchParams.get("user_id") as string) || undefined;
 
-  const idSchema = z.string().cuid();
+  const idSchema = z
+    .object({
+      user_id: z.string().cuid().optional(),
+      bookmark_id: z.string().cuid().optional(),
+    })
+    .strict();
 
-  const zod = idSchema.safeParse(user_id);
+  const zod = idSchema.safeParse({ user_id, bookmark_id });
 
   if (!zod.success) {
     return NextResponse.json(
@@ -128,16 +134,31 @@ export async function DELETE(request: Request) {
     );
   }
 
-  try {
-    await prisma.bookmark.deleteMany({
-      where: {
-        user_id,
-      },
-    });
-    return NextResponse.json({
-      message: "Bookmarks removed",
-    });
-  } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+  if (bookmark_id) {
+    try {
+      await prisma.bookmark.delete({
+        where: {
+          id: bookmark_id,
+        },
+      });
+      return NextResponse.json({
+        message: "Bookmark removed",
+      });
+    } catch (error: any) {
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+  } else if (user_id) {
+    try {
+      await prisma.bookmark.deleteMany({
+        where: {
+          user_id,
+        },
+      });
+      return NextResponse.json({
+        message: "Bookmarks removed",
+      });
+    } catch (error: any) {
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
   }
 }
