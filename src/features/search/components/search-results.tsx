@@ -1,4 +1,4 @@
-import { usePathname } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
@@ -11,8 +11,9 @@ import { NoResults } from "./no-results";
 import styles from "./styles/search-results.module.scss";
 
 export const SearchResults = () => {
-  const pathname = usePathname();
-  const query = decodeURIComponent(pathname?.split("/")[2] || "");
+  const searchParams = useSearchParams();
+  // const query = decodeURIComponent(pathname?.split("/")[2] || "");
+  const query = decodeURIComponent(searchParams?.get("query") || "");
 
   const tweets = useTweets({
     queryKey: ["search", query],

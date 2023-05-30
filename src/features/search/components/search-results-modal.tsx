@@ -48,7 +48,7 @@ export const SearchResultsModal = ({
         <div className={styles.results}>
           <button
             onClick={() => {
-              router.push(`/search/${query}`);
+              router.push(`/search?query=${query}`);
               closeResultsModal();
             }}
             className={styles.link}
@@ -62,7 +62,7 @@ export const SearchResultsModal = ({
                 return (
                   <button
                     onClick={() => {
-                      router.push(`/search/${hashtag?.text}`);
+                      router.push(`/search?query=${hashtag?.text}`);
                       closeResultsModal();
                     }}
                     className={styles.hashtag}
