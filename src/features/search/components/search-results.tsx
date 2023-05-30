@@ -16,7 +16,7 @@ export const SearchResults = () => {
   const query = decodeURIComponent(searchParams?.get("query") || "");
 
   const tweets = useTweets({
-    queryKey: ["search", query],
+    queryKey: ["tweets", "query: ", query],
     type: "search",
     id: query,
   });

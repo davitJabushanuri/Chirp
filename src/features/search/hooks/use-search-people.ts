@@ -8,7 +8,7 @@ export const useSearchPeople = (query: string | undefined) => {
   const queryClient = useQueryClient();
 
   return useQuery<IUser[]>(
-    ["people", query],
+    ["people", "query: ", query],
     async () => {
       return getQueryPeople(query);
     },
