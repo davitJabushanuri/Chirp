@@ -13,11 +13,10 @@ export const useCreateConversation = () => {
       senderId: string | undefined;
       receiverId: string | null | undefined;
     }) => {
-      const { data } = await axios.post(`/api/messages/conversation/create`, {
-        senderId,
-        receiverId,
+      const { data } = await axios.post(`/api/messages/conversations`, {
+        sender_id: senderId,
+        receiver_id: receiverId,
       });
-      console.log("data", data);
       return data;
     },
     {

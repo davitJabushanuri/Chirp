@@ -16,11 +16,11 @@ export const createMessage = async ({
   receiverId: string | undefined;
 }) => {
   try {
-    const { data } = await axios.post(`/api/messages/create`, {
+    const { data } = await axios.post(`/api/messages`, {
       text,
-      conversationId,
-      senderId,
-      receiverId,
+      conversation_id: conversationId,
+      sender_id: senderId,
+      receiver_id: receiverId,
     });
 
     if (files.length > 0) {
@@ -29,6 +29,6 @@ export const createMessage = async ({
 
     return data;
   } catch (error: any) {
-    return error.response.data;
+    return error.message;
   }
 };
