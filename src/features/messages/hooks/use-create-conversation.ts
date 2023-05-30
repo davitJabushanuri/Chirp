@@ -27,8 +27,6 @@ export const useCreateConversation = () => {
       onError: (error) => {
         console.log("error", error);
       },
-
-      onSettled: () => {},
     },
   );
 };
