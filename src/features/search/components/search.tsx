@@ -1,5 +1,5 @@
 "use client";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 import { SearchIcon } from "@/assets/search-icon";
@@ -14,9 +14,10 @@ import styles from "./styles/search.module.scss";
 export const Search = () => {
   const router = useRouter();
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   const [query, setQuery] = useState(
     pathname?.split("/")[1] === "search"
-      ? decodeURIComponent(pathname?.split("/")[2])
+      ? decodeURIComponent(searchParams?.get("query") || "")
       : "",
   );
 
@@ -26,7 +27,7 @@ export const Search = () => {
   const openResultsModal = useSearchStore((state) => state.openResultsModal);
   const closeResultsModal = useSearchStore((state) => state.closeResultsModal);
 
-  const debounceValue = useDebounce(query, 800);
+  const debounceValue = useDebounce(query, 500);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
@@ -40,7 +41,7 @@ export const Search = () => {
         }}
         onSubmit={(e) => {
           e.preventDefault();
-          router.push(`/search/${query}`);
+          router.push(`/search?query=${query}`);
           closeResultsModal();
           setQuery("");
         }}

@@ -3,8 +3,8 @@
 "use client";
 
 import dayjs from "dayjs";
-import { useSession } from "next-auth/react";
 import Image from "next/image";
+import { useSession } from "next-auth/react";
 import { useRef, useState } from "react";
 
 import { EmojiIcon } from "@/assets/emoji-icon";

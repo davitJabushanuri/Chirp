@@ -14,7 +14,7 @@ export const Explore = () => {
     isFetchingNextPage,
     fetchNextPage,
     hasNextPage,
-  } = useTweets();
+  } = useTweets({});
 
   if (isLoading) {
     return <LoadingSpinner />;

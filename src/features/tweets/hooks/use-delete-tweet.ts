@@ -13,8 +13,8 @@ export const useDeleteTweet = () => {
       onSuccess: () => {
         queryClient.invalidateQueries(["tweets"]);
       },
-      onError: () => {
-        console.log("error");
+      onError: (error) => {
+        console.log(error);
       },
     },
   );

@@ -1,9 +1,7 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 "use client";
-import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 import { DotIcon } from "@/assets/dot-icon";
 import { LocationIcon } from "@/assets/location-icon";
@@ -116,7 +114,7 @@ export const UserInfo = ({ user }: { user: IUser }) => {
         <div className={styles.user}>
           <div className={styles.name}>
             <h1>{user?.name}</h1>
-            <p>@{user?.username ?? user?.email?.split("@")[0]}</p>
+            <p>@{user?.email?.split("@")[0]}</p>
           </div>
 
           {user?.description && (
@@ -154,14 +152,14 @@ export const UserInfo = ({ user }: { user: IUser }) => {
               onClick={() => router.push(`${id}/following`)}
               className={styles.stat}
             >
-              <span className={styles.number}>{user?.following?.length}</span>
+              <span className={styles.number}>{user?._count?.following}</span>
               <span className={styles.text}>Following</span>
             </button>
             <button
               onClick={() => router.push(`${id}/followers`)}
               className={styles.stat}
             >
-              <span className={styles.number}>{user?.followers?.length}</span>
+              <span className={styles.number}>{user?._count?.followers}</span>
               <span className={styles.text}>Followers</span>
             </button>
           </div>

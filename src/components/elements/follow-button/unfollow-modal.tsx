@@ -10,7 +10,7 @@ export const UnfollowModal = ({
   followerId,
   setIsModalOpen,
 }: {
-  username: string;
+  username: string | undefined;
   userId: string;
   followerId: string;
   setIsModalOpen: (value: boolean) => void;

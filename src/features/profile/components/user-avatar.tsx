@@ -13,7 +13,7 @@ export const UserAvatar = ({
   height = "46px",
 }: {
   userId?: string | undefined;
-  userImage: string | undefined;
+  userImage: string | null;
   width?: string;
   height?: string;
 }) => {

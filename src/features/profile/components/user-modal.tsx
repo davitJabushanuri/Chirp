@@ -2,8 +2,8 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 "use client";
-import { useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 import { Avatar } from "@/components/designs/avatar";
 import { FollowButton } from "@/components/elements/follow-button";
@@ -17,7 +17,7 @@ export const UserModal = ({ userId }: { userId: string }) => {
   const { data: user } = useUser(userId);
 
   const isFollowing = user?.followers?.some(
-    (follower) => follower.id === session?.user?.id,
+    (follower) => follower?.follower_id === session?.user?.id,
   );
 
   const router = useRouter();

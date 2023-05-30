@@ -1,28 +1,34 @@
 "use client";
-import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
-import { Tweet } from "@/features/tweets";
+import { InfiniteTweets, useTweets } from "@/features/tweets";
 
 import { useUser } from "../hooks/use-user";
-import { useUserTweetsWithMedia } from "../hooks/use-user-tweets-with-media";
 
 import styles from "./styles/profile-media.module.scss";
 
 export const ProfileMedia = () => {
   const { data: session } = useSession();
   const pathname = usePathname();
-  const id = pathname?.split("/")[1];
+  const id = pathname?.split("/")[1] as string;
 
   const {
     data: tweets,
     isLoading,
     isError,
     isSuccess,
-  } = useUserTweetsWithMedia(id);
+    isFetchingNextPage,
+    fetchNextPage,
+    hasNextPage,
+  } = useTweets({
+    queryKey: ["tweets", id, "media"],
+    type: "user_media",
+    id,
+  });
 
   const { data: user } = useUser(id);
 
@@ -44,7 +50,7 @@ export const ProfileMedia = () => {
 
   return (
     <div className={styles.container}>
-      {isSuccess && tweets?.length === 0 && (
+      {/* {isSuccess && tweets?.length === 0 && (
         <div className={styles.noMedia}>
           {session?.user?.id === id ? (
             <div>
@@ -73,19 +79,15 @@ export const ProfileMedia = () => {
             </div>
           )}
         </div>
-      )}
+      )} */}
 
-      {isSuccess && tweets?.length > 0 && (
-        <div className={styles.tweets}>
-          {tweets?.map((tweet) => {
-            return (
-              <div className={styles.tweetContainer} key={tweet?.id}>
-                <Tweet tweet={tweet} />
-              </div>
-            );
-          })}
-        </div>
-      )}
+      <InfiniteTweets
+        tweets={tweets}
+        isFetchingNextPage={isFetchingNextPage}
+        fetchNextPage={fetchNextPage}
+        hasNextPage={hasNextPage}
+        isSuccess={isSuccess}
+      />
     </div>
   );
 };

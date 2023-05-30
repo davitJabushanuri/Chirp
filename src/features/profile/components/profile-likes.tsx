@@ -1,23 +1,34 @@
 "use client";
 
-import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
-import { Tweet } from "@/features/tweets";
+import { InfiniteTweets, useTweets } from "@/features/tweets";
 
 import { useUser } from "../hooks/use-user";
-import { useUserLikes } from "../hooks/use-user-likes";
 
 import styles from "./styles/profile-likes.module.scss";
 
 export const ProfileLikes = () => {
   const { data: session } = useSession();
   const pathname = usePathname();
-  const id = pathname?.split("/")[1];
+  const id = pathname?.split("/")[1] as string;
 
-  const { data: likes, isLoading, isError, isSuccess } = useUserLikes(id);
+  const {
+    data: tweets,
+    isLoading,
+    isError,
+    isSuccess,
+    isFetchingNextPage,
+    fetchNextPage,
+    hasNextPage,
+  } = useTweets({
+    queryKey: ["tweets", id, "likes"],
+    type: "user_likes",
+    id,
+  });
 
   const { data: user } = useUser(id);
 
@@ -39,7 +50,7 @@ export const ProfileLikes = () => {
 
   return (
     <div className={styles.container}>
-      {isSuccess && likes?.length === 0 && (
+      {/* {isSuccess && likes?.length === 0 && (
         <div className={styles.noLikes}>
           {session?.user?.id === id ? (
             <div>
@@ -60,17 +71,15 @@ export const ProfileLikes = () => {
             </div>
           )}
         </div>
-      )}
+      )} */}
 
-      {isSuccess &&
-        likes.length > 0 &&
-        likes?.map((like) => {
-          return (
-            <div className={styles.tweetContainer} key={like?.id}>
-              <Tweet tweet={like?.tweet} />
-            </div>
-          );
-        })}
+      <InfiniteTweets
+        tweets={tweets}
+        isFetchingNextPage={isFetchingNextPage}
+        fetchNextPage={fetchNextPage}
+        hasNextPage={hasNextPage}
+        isSuccess={isSuccess}
+      />
     </div>
   );
 };

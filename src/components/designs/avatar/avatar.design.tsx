@@ -7,7 +7,7 @@ export const Avatar = ({
   width = 46,
   height = 46,
 }: {
-  userImage: string | undefined;
+  userImage: string | null;
   width: number;
   height: number;
 }) => {

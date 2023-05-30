@@ -11,6 +11,7 @@ declare global {
 export const prisma =
   global.prisma ||
   new PrismaClient({
+    errorFormat: "minimal",
     log: [
       {
         emit: "event",

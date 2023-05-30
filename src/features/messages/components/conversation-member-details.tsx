@@ -25,7 +25,10 @@ export const ConversationMemberDetails = ({
       className={styles.container}
     >
       <div className={styles.avatar}>
-        <UserAvatar userId={user?.id} userImage={user?.profile_image_url} />
+        <UserAvatar
+          userId={user?.id}
+          userImage={user?.profile_image_url ?? ""}
+        />
       </div>
       <UserName
         userId={user?.id}
