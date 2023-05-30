@@ -34,6 +34,13 @@ export async function GET(request: Request) {
           },
         }),
 
+        ...(type === "search" && {
+          text: {
+            contains: id,
+            mode: "insensitive",
+          },
+        }),
+
         ...(type === "user_tweets" && {
           author_id: id,
         }),
