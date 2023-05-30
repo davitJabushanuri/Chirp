@@ -2,10 +2,29 @@
   padding-bottom: calc(100vh - 8rem);
 
   .people {
+    border-top: 1px solid var(--clr-border);
+    border-bottom: 1px solid var(--clr-border);
+
     h1 {
       padding: 11px 15px;
       font-size: 19px;
       font-weight: 600;
+    }
+
+    .viewAll {
+      padding: 15px;
+      width: 100%;
+      text-align: left;
+      border: none;
+      background: none;
+      cursor: pointer;
+      font-size: 14px;
+      color: var(--clr-primary);
+      font-weight: 300;
+
+      &:hover {
+        background-color: var(--clr-tweet-hover);
+      }
     }
   }
 
