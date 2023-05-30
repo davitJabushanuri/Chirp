@@ -1,19 +1,22 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
+
+import { IHashtag } from "@/features/explore";
+import { IUser } from "@/features/profile";
 
 import { getSearchResults } from "../api/get-search-results";
 
 export const useSearch = (query: string) => {
-  const queryClient = useQueryClient();
-  return useQuery(
-    ["search"],
+  return useQuery<{
+    people: IUser[];
+    hashtags: IHashtag[];
+  }>(
+    ["search", query],
     async () => {
       return getSearchResults(query);
     },
     {
       refetchOnWindowFocus: false,
-      onSuccess: (data) => {
-        queryClient.setQueryData(["search"], data);
-      },
+      enabled: !!query,
     },
   );
 };
