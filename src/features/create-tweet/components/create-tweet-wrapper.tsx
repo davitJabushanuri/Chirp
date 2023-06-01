@@ -10,7 +10,7 @@ export const CreateTweetWrapper = ({
   in_reply_to_status_id,
   isInspectModal = false,
 }: {
-  in_reply_to_screen_name: string | null;
+  in_reply_to_screen_name: string | undefined;
   in_reply_to_status_id: string | null;
   isInspectModal?: boolean;
 }) => {

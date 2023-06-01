@@ -9,8 +9,7 @@ import { Progressbar } from "@/components/designs/progressbar";
 import { TryAgain } from "@/components/elements/try-again";
 import { UserName, UserScreenName } from "@/features/profile";
 
-import { useSearchHashtags } from "../hooks/use-search-hashtags";
-import { useSearchPeople } from "../hooks/use-search-people";
+import { useSearch } from "../hooks/use-search";
 import { useSearchStore } from "../stores/use-search";
 
 import styles from "./styles/search-results-modal.module.scss";
@@ -25,21 +24,13 @@ export const SearchResultsModal = ({
   const router = useRouter();
   const closeResultsModal = useSearchStore((state) => state.closeResultsModal);
 
-  const {
-    data: people,
-    isFetching,
-    isError,
-    refetch,
-    isRefetching,
-  } = useSearchPeople(query);
-  const hashtags = useSearchHashtags(query);
+  const { data, isFetching, isError, refetch, isRefetching } = useSearch(query);
 
   useEffect(() => {
-    if (isRefetching || hashtags.isRefetching) return;
+    if (isRefetching) return;
 
     if (query) {
       refetch();
-      hashtags.refetch();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query]);
@@ -57,7 +48,7 @@ export const SearchResultsModal = ({
         <div className={styles.results}>
           <button
             onClick={() => {
-              router.push(`/search/${query}`);
+              router.push(`/search?query=${query}`);
               closeResultsModal();
             }}
             className={styles.link}
@@ -65,13 +56,13 @@ export const SearchResultsModal = ({
             Search for &quot;{query}&quot;
           </button>
 
-          {hashtags.isSuccess && (
+          {data?.hashtags && (
             <div className={styles.hashtags}>
-              {hashtags.data?.map((hashtag) => {
+              {data?.hashtags?.map((hashtag) => {
                 return (
                   <button
                     onClick={() => {
-                      router.push(`/search/${hashtag?.text}`);
+                      router.push(`/search?query=${hashtag?.text}`);
                       closeResultsModal();
                     }}
                     className={styles.hashtag}
@@ -87,9 +78,9 @@ export const SearchResultsModal = ({
             </div>
           )}
 
-          {people && people?.length > 0 && (
+          {data?.people && data?.people?.length > 0 && (
             <div className={styles.people}>
-              {people?.map((person) => {
+              {data?.people?.map((person) => {
                 return (
                   <div
                     onClick={() => {

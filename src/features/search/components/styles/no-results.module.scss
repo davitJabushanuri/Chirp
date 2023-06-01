@@ -9,6 +9,8 @@
 
     .image {
       margin-bottom: 30px;
+      max-width: 320px;
+      width: 100%;
 
       img {
         width: 100%;
@@ -22,6 +24,8 @@
       font-weight: 600;
       color: var(--clr-secondary);
       margin-bottom: 8px;
+      word-wrap: break-word;
+      word-break: break-all;
     }
 
     p {

@@ -1,6 +1,7 @@
 {
-  "name": "twitter",
-  "version": "1.3.1",
+  "name": "chirp",
+  "description": "Chirp is a social media app built with Next.js, Prisma, and Supabase",
+  "version": "1.4.0",
   "private": true,
   "engines": {
     "node": ">= 16.0.0",
@@ -48,7 +49,7 @@
     "sass": "^1.56.0",
     "sharp": "^0.31.3",
     "typescript": "^4.8.4",
-    "zod": "^3.20.6",
+    "zod": "^3.21.4",
     "zustand": "^4.1.4"
   },
   "devDependencies": {

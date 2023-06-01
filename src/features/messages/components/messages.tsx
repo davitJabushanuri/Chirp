@@ -1,7 +1,7 @@
 "use client";
 
-import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
+import { useSession } from "next-auth/react";
 import { useEffect, useRef } from "react";
 
 import { LoadingSpinner } from "@/components/elements/loading-spinner";

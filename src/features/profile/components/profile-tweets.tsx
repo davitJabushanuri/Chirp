@@ -1,16 +1,14 @@
 "use client";
 
-import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
 import { Connect } from "@/features/connect";
-import { Tweet } from "@/features/tweets";
-import { ITweet } from "@/features/tweets";
+import { InfiniteTweets, useTweets } from "@/features/tweets";
 
 import { useUser } from "../hooks/use-user";
-import { useUserTweets } from "../hooks/use-user-tweets";
 
 import { PinnedTweet } from "./pinned-tweet";
 import styles from "./styles/profile-tweets.module.scss";
@@ -18,10 +16,22 @@ import styles from "./styles/profile-tweets.module.scss";
 export const ProfileTweets = () => {
   const { data: session } = useSession();
   const pathname = usePathname();
-  const id = pathname?.split("/")[1];
+  const id = pathname?.split("/")[1] as string;
 
-  const { data: tweets, isLoading, isError, isSuccess } = useUserTweets(id);
-  const { data: user } = useUser(id);
+  const {
+    data: tweets,
+    isLoading,
+    isError,
+    isSuccess,
+    isFetchingNextPage,
+    fetchNextPage,
+    hasNextPage,
+  } = useTweets({
+    queryKey: ["tweets", id],
+    type: "user_tweets",
+    id,
+  });
+  // const { data: user } = useUser(id);
 
   if (isLoading) {
     return (
@@ -41,7 +51,7 @@ export const ProfileTweets = () => {
 
   return (
     <div className={styles.container}>
-      {isSuccess && tweets?.length === 0 && (
+      {/* {isSuccess && tweets?.length === 0 && (
         <div className={styles.noTweets}>
           {user?.id === session?.user?.id ? (
             <div>
@@ -57,11 +67,11 @@ export const ProfileTweets = () => {
             </div>
           )}
         </div>
-      )}
+      )} */}
 
       <PinnedTweet userId={id} />
 
-      {isSuccess && tweets?.length > 0 && (
+      {/* {isSuccess && tweets?.length > 0 && (
         <div className={styles.tweets}>
           {tweets?.map((tweet: ITweet) => {
             return (
@@ -71,7 +81,15 @@ export const ProfileTweets = () => {
             );
           })}
         </div>
-      )}
+      )} */}
+
+      <InfiniteTweets
+        tweets={tweets}
+        hasNextPage={hasNextPage}
+        fetchNextPage={fetchNextPage}
+        isFetchingNextPage={isFetchingNextPage}
+        isSuccess={isSuccess}
+      />
       <Connect />
     </div>
   );

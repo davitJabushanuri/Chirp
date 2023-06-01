@@ -8,7 +8,7 @@ export const UserJoinDate = ({
   date,
   showIcon = true,
 }: {
-  date: string | undefined;
+  date: Date | undefined;
   showIcon?: boolean;
 }) => {
   return (

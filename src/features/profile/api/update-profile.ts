@@ -1,3 +1,5 @@
+import axios from "axios";
+
 import { IProfile } from "./../types/index";
 import { postImage } from "./post-image";
 export const updateProfile = async (profile: IProfile, userId: string) => {
@@ -14,24 +16,18 @@ export const updateProfile = async (profile: IProfile, userId: string) => {
       avatarUrl = await postImage(profile?.avatar?.file, "avatars");
     }
 
-    const response = await fetch(`/api/users/${userId}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        userId,
-        name: profile?.name,
-        bio: profile?.bio,
-        location: profile?.location,
-        website: profile?.website,
-        banner: bannerUrl ? bannerUrl : profile?.banner?.url,
-        avatar: avatarUrl ? avatarUrl : profile?.avatar?.url,
-      }),
+    const { data } = await axios.put(`/api/users/${userId}`, {
+      user_id: userId,
+      name: profile?.name,
+      description: profile?.bio,
+      location: profile?.location,
+      url: profile?.website,
+      profile_banner_url: bannerUrl ? bannerUrl : profile?.banner?.url,
+      profile_image_url: avatarUrl ? avatarUrl : profile?.avatar?.url,
     });
-    const updatedProfile = await response.json();
-    return updatedProfile;
-  } catch (error) {
-    throw new Error("Failed to update profile");
+
+    return data;
+  } catch (error: any) {
+    return error.Message;
   }
 };

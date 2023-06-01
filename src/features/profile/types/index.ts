@@ -1,37 +1,20 @@
+import { User, Follows, Like } from "@prisma/client";
+
 import { ITweet } from "@/features/tweets";
 
 import { IBookmark } from "./../../tweets/types/index";
 
-export interface IUser {
-  id: string;
-  name: string;
-  email: string;
-  emailVerified?: Date;
-  image?: string;
-  role: string;
-  username?: string;
-  screen_name: string;
-  location?: string;
-  url?: string;
-  description?: string;
-  protected?: boolean;
-  verified: boolean;
-  followers_count?: number;
-  friends_count?: number;
-  favorites_count?: number;
-  statuses_count?: number;
-  profile_banner_url?: string;
-  profile_image_url?: string;
-  default_profile?: boolean;
-  default_profile_image?: boolean;
-  created_at: string;
-  updated_at: string;
+export interface IUser extends User {
   tweets: ITweet[];
   followers: IFollow[];
   following: IFollow[];
   likes: ILike[];
   bookmarks: IBookmark[];
   pinned_tweet: ITweet;
+  _count?: {
+    followers?: number;
+    following?: number;
+  };
 }
 
 export interface IProfile {
@@ -49,19 +32,12 @@ export interface IProfile {
   };
 }
 
-export interface IFollow {
-  id: string;
+export interface IFollow extends Follows {
   follower: IUser;
-  follower_id: string;
   following: IUser;
-  following_id: string;
 }
 
-export interface ILike {
-  id: string;
+export interface ILike extends Like {
   user: IUser;
-  user_id: string;
   tweet: ITweet;
-  tweet_id: string;
-  created_at: string;
 }

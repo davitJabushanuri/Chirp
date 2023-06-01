@@ -22,7 +22,7 @@ export const Trend = ({ ranking = 1, title, tweets = 1 }: iTrendProps) => {
     <div
       onClick={() => {
         setQuery(title);
-        router.push(`/search/${title.toLowerCase()}`);
+        router.push(`/search?query=${title.toLowerCase()}`);
       }}
       className={styles.container}
     >

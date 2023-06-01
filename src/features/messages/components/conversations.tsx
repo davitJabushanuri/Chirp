@@ -51,7 +51,7 @@ export const Conversations = () => {
             </div>
           ) : (
             <div className={styles.conversations}>
-              {conversations.map((conversation) => {
+              {conversations?.map((conversation) => {
                 return (
                   <div className={styles.conversation} key={conversation.id}>
                     <ConversationCard conversation={conversation} />
