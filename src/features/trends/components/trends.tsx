@@ -27,6 +27,7 @@ export const Trends = ({ title = "Trends" }: { title?: string }) => {
           <div className={styles.trends}>
             <h1 className={styles.title}>{title}</h1>
             {isSuccess &&
+              hashtags?.length > 0 &&
               hashtags?.map((hashtag, index) => {
                 return (
                   <Trend

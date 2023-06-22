@@ -6,6 +6,7 @@ import { useDisableBodyScroll } from "@/hooks";
 import { useCreateTweetModal } from "@/stores/use-create-tweet-modal";
 
 import { CreateTweet } from "./create-tweet";
+import { ReplyingToTweet } from "./replying-to-tweet";
 import styles from "./styles/create-tweet-modal.module.scss";
 
 export const CreateTweetModal = () => {
@@ -38,8 +39,9 @@ export const CreateTweetModal = () => {
             <CloseButton />
           </span>
         </button>
+        {parent_tweet && <ReplyingToTweet tweet={parent_tweet} />}
+
         <CreateTweet
-          parent_tweet={parent_tweet}
           quoted_tweet={quoted_tweet}
           in_reply_to_screen_name={in_reply_to_screen_name}
           in_reply_to_status_id={in_reply_to_status_id}
