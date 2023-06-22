@@ -1,14 +1,9 @@
 .container {
   position: relative;
   border-bottom: 1px solid var(--clr-border);
+  padding: 4px 11px;
 
-  .commentButton {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    pointer-events: visible;
+  .replyingTo {
+    margin-left: 75px;
   }
 }

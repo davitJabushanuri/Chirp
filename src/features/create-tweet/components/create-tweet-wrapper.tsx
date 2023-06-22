@@ -23,7 +23,7 @@ export const CreateTweetWrapper = ({
       <CreateTweet
         in_reply_to_screen_name={in_reply_to_screen_name}
         in_reply_to_status_id={in_reply_to_status_id}
-        placeholder={`Tweet your reply`}
+        placeholder={`Tweet your reply!`}
         isInspectModal={isInspectModal}
       />
     </div>

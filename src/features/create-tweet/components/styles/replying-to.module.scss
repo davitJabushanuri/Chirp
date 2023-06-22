@@ -1,8 +1,10 @@
 .container {
   p {
     color: var(--clr-tertiary);
+    overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    font-size: 14px;
 
     a {
       color: var(--clr-primary);
