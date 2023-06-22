@@ -7,11 +7,10 @@
   width: 100%;
   padding: 11px 15px;
   display: grid;
-  grid-template-columns: 3rem 1fr;
+  grid-template-columns: auto 1fr;
   gap: 11px;
 
   form {
-
     .text {
       input {
         padding: 11px 0;

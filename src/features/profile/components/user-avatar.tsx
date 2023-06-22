@@ -9,8 +9,8 @@ import styles from "./styles/user.module.scss";
 export const UserAvatar = ({
   userId,
   userImage,
-  width = "46px",
-  height = "46px",
+  width = "38px",
+  height = "38px",
 }: {
   userId?: string | undefined;
   userImage: string | null;
@@ -28,7 +28,7 @@ export const UserAvatar = ({
       }}
       className={styles.container}
     >
-      <Avatar userImage={userImage} height={46} width={46} />
+      <Avatar userImage={userImage} height={38} width={38} />
     </button>
   );
 };

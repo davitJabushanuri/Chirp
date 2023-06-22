@@ -75,6 +75,8 @@ export const CreateTweet = ({
       <UserAvatar
         userId={session?.user?.id}
         userImage={session?.user?.profile_image_url}
+        width={`38px`}
+        height={`38px`}
       />
 
       <form>

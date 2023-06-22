@@ -1,17 +1,17 @@
 .container {
-  padding: 0 1rem;
+  padding: 0 15px;
   display: grid;
-  grid-template-columns: 3rem 1fr;
+  grid-template-columns: auto 1fr;
   gap: 11px;
+  padding-bottom: 3px;
 
   .avatar {
     display: grid;
     place-items: center;
-    grid-template-rows: 3rem 1fr;
-    gap: 0.2rem;
+    grid-template-rows: auto 1fr;
+    gap: 4px;
 
     .divider {
-      padding: 0.2rem 0;
       width: 2px;
       min-height: 2rem;
       height: 100%;
@@ -20,27 +20,26 @@
   }
 
   .userDetails {
-    display: flex;
-    gap: 0.2rem;
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: start;
+    gap: 2px;
+
 
     .name {
       font-size: 14px;
       color: var(--clr-secondary);
       font-weight: 500;
-      cursor: pointer;
+      cursor: text;
       white-space: nowrap;
-      overflow: hidden;
       text-overflow: ellipsis;
-
-      &:hover {
-        text-decoration: underline;
-      }
+      overflow: hidden;
     }
 
     .username {
       font-size: 14px;
       color: var(--clr-tertiary);
-      cursor: pointer;
+      cursor: text;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -55,14 +54,11 @@
     .date {
       font-size: 0.9rem;
       color: var(--clr-tertiary);
-      cursor: pointer;
+      cursor: text;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
 
-      &:hover {
-        text-decoration: underline;
-      }
     }
 
     .verified {
@@ -82,6 +78,10 @@
 
   .tweet {
     margin-top: 0.2rem;
+  }
+
+  .replyingTo {
+    padding: 15px 0;
   }
 
 }
