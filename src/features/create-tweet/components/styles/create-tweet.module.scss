@@ -86,32 +86,6 @@
     margin-top: 0.2rem;
   }
 
-  .replying {
-    padding-top: 11px;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-    cursor: pointer;
-
-    .replyingTo {
-      color: var(--clr-tertiary);
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
-
-    .replyingToUsername {
-      color: var(--clr-primary);
-      cursor: pointer;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
-  }
-
-  .withoutQuotedTweet {
-    margin: 0 0 0 4rem;
-  }
-
 }
 
 .container {

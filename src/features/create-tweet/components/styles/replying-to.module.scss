@@ -1,0 +1,12 @@
+.container {
+  p {
+    color: var(--clr-tertiary);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    a {
+      color: var(--clr-primary);
+      cursor: pointer;
+    }
+  }
+}

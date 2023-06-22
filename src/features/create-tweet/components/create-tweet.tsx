@@ -1,7 +1,4 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 "use client";
-
 import dayjs from "dayjs";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
@@ -24,6 +21,7 @@ import { IChosenImages } from "../types";
 
 import Action from "./action";
 import styles from "./styles/create-tweet.module.scss";
+import { ReplyingTo } from "./replying-to";
 
 export const CreateTweet = ({
   parent_tweet,
@@ -119,21 +117,12 @@ export const CreateTweet = ({
               </div>
             </>
           )}
-
-          {in_reply_to_screen_name && !isComment && (
-            <div
-              className={`${styles.replying} ${
-                !parent_tweet ? styles.withoutQuotedTweet : ""
-              }`}
-            >
-              <span className={styles.replyingTo}>Replying to</span>
-              <span className={styles.replyingToUsername}>
-                @{in_reply_to_screen_name}
-              </span>
-            </div>
-          )}
         </div>
       </div>
+
+      {in_reply_to_screen_name && (
+        <ReplyingTo screen_name={in_reply_to_screen_name} />
+      )}
 
       <div
         className={`${styles.container} ${isComment ? styles.hideActions : ""}`}
