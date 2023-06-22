@@ -1,6 +1,5 @@
 "use client";
 import dayjs from "dayjs";
-import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { useRef, useState } from "react";
 
@@ -9,7 +8,6 @@ import { GifIcon } from "@/assets/gif-icon";
 import { ImageIcon } from "@/assets/image-icon";
 import { LocationIcon } from "@/assets/location-icon";
 import { VerifiedIcon } from "@/assets/verified-icon";
-import { CloseButton } from "@/components/designs/close-button";
 import { UserAvatar } from "@/features/profile";
 import { ITweet } from "@/features/tweets";
 import { QuotedTweet } from "@/features/tweets";
@@ -20,8 +18,8 @@ import { useCreateTweet } from "../hooks/use-create-tweet";
 import { IChosenImages } from "../types";
 
 import Action from "./action";
+import { ChosenImages } from "./chosen-images";
 import styles from "./styles/create-tweet.module.scss";
-import { ReplyingTo } from "./replying-to";
 
 export const CreateTweet = ({
   parent_tweet,
@@ -29,7 +27,6 @@ export const CreateTweet = ({
   in_reply_to_screen_name,
   in_reply_to_status_id,
   placeholder,
-  isComment = false,
   isInspectModal = false,
 }: {
   parent_tweet?: ITweet | null;
@@ -37,7 +34,6 @@ export const CreateTweet = ({
   in_reply_to_screen_name?: string | null;
   in_reply_to_status_id?: string | null;
   placeholder?: string | null;
-  isComment?: boolean;
   isInspectModal?: boolean;
 }) => {
   const { data: session } = useSession();
@@ -120,13 +116,7 @@ export const CreateTweet = ({
         </div>
       </div>
 
-      {in_reply_to_screen_name && (
-        <ReplyingTo screen_name={in_reply_to_screen_name} />
-      )}
-
-      <div
-        className={`${styles.container} ${isComment ? styles.hideActions : ""}`}
-      >
+      <div className={styles.container}>
         <UserAvatar
           userId={session?.user?.id}
           userImage={session?.user?.profile_image_url}
@@ -134,15 +124,11 @@ export const CreateTweet = ({
 
         <div className={styles.tweet}>
           <div className={styles.text}>
-            {isComment ? (
-              <p className={styles.placeholder}>{placeholder}</p>
-            ) : (
-              <input
-                value={text}
-                onChange={(e) => setText(e.target.value)}
-                placeholder={placeholder || "What's happening?"}
-              />
-            )}
+            <input
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+              placeholder={placeholder || "What's happening?"}
+            />
           </div>
           <input
             className={styles.fileInput}
@@ -150,49 +136,16 @@ export const CreateTweet = ({
             onChange={(e) => chooseImage(e, setChosenImages)}
             ref={imageUploadRef}
           />
-          <div
-            className={`${styles.chosenImages} ${
-              chosenImages.length === 1
-                ? styles.one
-                : chosenImages.length === 2
-                ? styles.two
-                : chosenImages.length === 3
-                ? styles.three
-                : chosenImages.length === 4
-                ? styles.four
-                : ""
-            }`}
-          >
-            {chosenImages.map((image) => {
-              return (
-                <div key={image.id} className={styles.imageContainer}>
-                  <button
-                    onClick={() => {
-                      setChosenImages(
-                        chosenImages.filter((img) => img.id !== image.id),
-                      );
-                    }}
-                    className={styles.close}
-                  >
-                    <CloseButton />
-                  </button>
-                  <Image
-                    src={image.url as string}
-                    alt=""
-                    width={1000}
-                    height={1000}
-                  />
-                </div>
-              );
-            })}
-            {quoted_tweet && <QuotedTweet tweet={quoted_tweet} />}
-          </div>
+          {chosenImages.length > 0 && (
+            <ChosenImages
+              chosenImages={chosenImages}
+              setChosenImages={setChosenImages}
+            />
+          )}
 
-          <div
-            className={`${styles.actions} ${
-              isComment ? styles.hideActions : ""
-            }`}
-          >
+          {quoted_tweet && <QuotedTweet tweet={quoted_tweet} />}
+
+          <div className={styles.actions}>
             <div className={styles.media}>
               <button
                 disabled={chosenImages.length >= 4}
@@ -228,11 +181,9 @@ export const CreateTweet = ({
             })
           }
           disabled={text.length === 0}
-          className={`${styles.tweetButton} ${
-            !isComment ? styles.isComment : ""
-          }`}
+          className={styles.tweetButton}
         >
-          {isComment ? `Reply` : `Tweet`}
+          Tweet
         </button>
       </div>
     </>
