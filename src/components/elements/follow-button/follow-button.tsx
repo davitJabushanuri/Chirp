@@ -11,15 +11,15 @@ import styles from "./styles/follow-button.module.scss";
 import { UnfollowModal } from "./unfollow-modal";
 
 export const FollowButton = ({
-  userId,
+  user_id,
   username,
-  followerId,
+  session_owner_id,
   isFollowing = false,
 }: {
   username: string | undefined;
-  userId: string;
-  followerId: string;
-  isFollowing: boolean | undefined;
+  user_id: string;
+  session_owner_id: string;
+  isFollowing?: boolean;
 }) => {
   const { data: session } = useSession();
 
@@ -28,7 +28,7 @@ export const FollowButton = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [text, setText] = useState<"Following" | "Unfollow">("Following");
 
-  const mutation = useFollow();
+  const mutation = useFollow("follow");
 
   return (
     <div className={styles.container}>
@@ -60,8 +60,8 @@ export const FollowButton = ({
               });
             } else
               mutation.mutate({
-                followerId,
-                userId,
+                user_id,
+                session_owner_id,
               });
           }}
           className={styles.follow}
@@ -73,8 +73,8 @@ export const FollowButton = ({
       {isModalOpen && (
         <UnfollowModal
           username={username}
-          userId={userId}
-          followerId={followerId}
+          user_id={user_id}
+          session_owner_id={session_owner_id}
           setIsModalOpen={setIsModalOpen}
         />
       )}

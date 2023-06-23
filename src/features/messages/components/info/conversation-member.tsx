@@ -47,16 +47,16 @@ export const ConversationMember = ({
             />
           </UserModalWrapper>
           {sessionOwner?.followers?.some(
-            (follower) => follower.follower_id === member?.id,
+            (follower) => follower.id === member?.id,
           ) && <span className={styles.followsYou}>Follows you</span>}
         </div>
       </div>
       <FollowButton
-        followerId={sessionOwner?.id}
-        userId={member?.id}
+        user_id={member?.id}
+        session_owner_id={sessionOwner?.id}
         username={member?.screen_name}
         isFollowing={member?.followers?.some(
-          (follower) => follower.follower_id === sessionOwner?.id,
+          (follower) => follower.id === sessionOwner?.id,
         )}
       />
     </div>

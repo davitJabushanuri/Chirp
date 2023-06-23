@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react";
 
 import { Avatar } from "@/components/designs/avatar";
 import { FollowButton } from "@/components/elements/follow-button";
-import { IUser } from "@/features/profile";
+import { following, IUser } from "@/features/profile";
 
 import styles from "./styles/person-details.module.scss";
 
@@ -13,9 +13,10 @@ export const PersonDetails = ({ author }: { author: IUser }) => {
   const { data: session } = useSession();
   const router = useRouter();
 
-  const isFollowing = author?.followers?.some(
-    (follower) => follower?.follower_id === session?.user?.id,
-  );
+  const isFollowing = following({
+    user: author,
+    session_owner_id: session?.user?.id,
+  });
 
   return (
     <div
@@ -39,8 +40,8 @@ export const PersonDetails = ({ author }: { author: IUser }) => {
 
           <div onClick={(e) => e.stopPropagation()} className={styles.follow}>
             <FollowButton
-              followerId={session?.user?.id}
-              userId={author?.id}
+              user_id={author?.id}
+              session_owner_id={session?.user?.id}
               isFollowing={isFollowing}
               username={author?.email?.split("@")[0]}
             />

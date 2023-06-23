@@ -25,7 +25,7 @@ export const Contact = ({
       className={styles.container}
     >
       {user?.followers?.some(
-        (follower) => follower?.follower_id === session?.user?.id,
+        (follower) => follower?.id === session?.user?.id,
       ) && (
         <div className={styles.following}>
           <span className={styles.icon}>

@@ -9,6 +9,7 @@ import { Avatar } from "@/components/designs/avatar";
 import { FollowButton } from "@/components/elements/follow-button";
 
 import { useUser } from "../hooks/use-user";
+import { following } from "../utils/following";
 
 import styles from "./styles/user-modal.module.scss";
 
@@ -16,14 +17,15 @@ export const UserModal = ({ userId }: { userId: string }) => {
   const { data: session } = useSession();
   const { data: user } = useUser(userId);
 
-  const isFollowing = user?.followers?.some(
-    (follower) => follower?.follower_id === session?.user?.id,
-  );
-
   const router = useRouter();
   const pathname = usePathname();
 
   if (!user) return null;
+
+  const isFollowing = following({
+    user,
+    session_owner_id: session?.user?.id,
+  });
 
   return (
     <div
@@ -47,9 +49,9 @@ export const UserModal = ({ userId }: { userId: string }) => {
 
       <div className={styles.follow}>
         <FollowButton
-          followerId={session?.user?.id}
+          user_id={user?.id}
+          session_owner_id={session?.user?.id}
           isFollowing={isFollowing}
-          userId={user?.id}
           username={user?.email?.split("@")[0]}
         />
       </div>
