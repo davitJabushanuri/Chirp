@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
 import { getFollows } from "../api/get-follows";
-import { IFollow } from "../types";
+import { IUser } from "../types";
 
 export const useGetFollows = ({
   id,
@@ -10,7 +10,7 @@ export const useGetFollows = ({
   id: string | undefined;
   type: string | undefined;
 }) => {
-  return useQuery<IFollow[]>(
+  return useQuery<IUser[]>(
     ["users", id, type],
     async () => {
       return getFollows(id, type);

@@ -23,15 +23,7 @@ export async function GET(request: Request) {
             id: user_id,
           },
         })
-        .followers({
-          include: {
-            follower: {
-              include: {
-                followers: true,
-              },
-            },
-          },
-        });
+        .followers();
       return NextResponse.json(followers, { status: 200 });
     } else if (type === "following") {
       const following = await prisma.user
@@ -40,15 +32,7 @@ export async function GET(request: Request) {
             id: user_id,
           },
         })
-        .following({
-          include: {
-            following: {
-              include: {
-                followers: true,
-              },
-            },
-          },
-        });
+        .following();
 
       return NextResponse.json(following, { status: 200 });
     }
@@ -74,35 +58,28 @@ export async function POST(request: Request) {
   }
 
   try {
-    const isFollowing = await prisma.follows.findUnique({
+    await prisma.user.update({
       where: {
-        follower_id_following_id: {
-          follower_id,
-          following_id,
+        id: following_id,
+      },
+
+      data: {
+        followers: {
+          set: {
+            id: follower_id,
+          },
         },
       },
     });
 
-    if (isFollowing) {
-      await prisma.follows.delete({
-        where: {
-          follower_id_following_id: {
-            follower_id,
-            following_id,
-          },
-        },
-      });
-      return NextResponse.json("Unfollowed", { status: 200 });
-    } else {
-      await prisma.follows.create({
-        data: {
-          follower_id,
-          following_id,
-        },
-      });
-
-      return NextResponse.json("Followed", { status: 200 });
-    }
+    return NextResponse.json(
+      {
+        message: "Followed",
+      },
+      {
+        status: 200,
+      },
+    );
   } catch (error: any) {
     return NextResponse.json(error.message, { status: 500 });
   }
