@@ -94,7 +94,11 @@ export const Tweet = ({ tweet }: { tweet: ITweet }) => {
             </div>
           )}
 
-          {tweet?.quoted_tweet && <QuotedTweet tweet={tweet?.quoted_tweet} />}
+          {tweet?.quoted_tweet && (
+            <div className={styles.quotedTweet}>
+              <QuotedTweet tweet={tweet?.quoted_tweet} />
+            </div>
+          )}
         </div>
 
         <div className={styles.actions}>

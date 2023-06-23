@@ -81,6 +81,15 @@
       border-radius: 15px;
       margin-top: 11px;
     }
+
+    .quotedTweet {
+      border-radius: 15px;
+      transition: all 0.2s ease-in-out;
+
+      &:hover {
+        backdrop-filter: brightness(1.1);
+      }
+    }
   }
 
   .actions {

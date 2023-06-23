@@ -1,4 +1,5 @@
     .container {
+      display: block;
       margin-top: 11px;
       overflow: hidden;
       border-radius: 1rem;
@@ -62,7 +63,7 @@
 
       .text {
         font-size: 14px;
-        padding: 0 11px;
+        margin: 0 11px 11px;
       }
 
       .media {

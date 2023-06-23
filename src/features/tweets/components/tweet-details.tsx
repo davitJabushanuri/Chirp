@@ -62,7 +62,11 @@ export const TweetDetails = () => {
             </div>
           )}
 
-          {tweet?.quoted_tweet && <QuotedTweet tweet={tweet?.quoted_tweet} />}
+          {tweet?.quoted_tweet && (
+            <div className={styles.quotedTweet}>
+              <QuotedTweet tweet={tweet?.quoted_tweet} />
+            </div>
+          )}
         </div>
 
         <TweetCreationDate date={tweet?.created_at} />

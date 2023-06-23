@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import Link from "next/link";
 
 import { VerifiedIcon } from "@/assets/verified-icon";
 import { UserAvatar } from "@/features/profile";
@@ -10,7 +11,11 @@ import { TweetMedia } from "./tweet-media";
 
 export const QuotedTweet = ({ tweet }: { tweet: ITweet }) => {
   return (
-    <div className={styles.container}>
+    <Link
+      onClick={(e) => e.stopPropagation()}
+      href={`/status/${tweet?.id}`}
+      className={styles.container}
+    >
       <div className={styles.userDetails}>
         <span className={styles.avatar}>
           <UserAvatar
@@ -45,6 +50,6 @@ export const QuotedTweet = ({ tweet }: { tweet: ITweet }) => {
           </div>
         )}
       </div>
-    </div>
+    </Link>
   );
 };
