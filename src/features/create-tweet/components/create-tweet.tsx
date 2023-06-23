@@ -100,7 +100,11 @@ export const CreateTweet = ({
           />
         )}
 
-        {quoted_tweet && <QuotedTweet tweet={quoted_tweet} />}
+        {quoted_tweet && (
+          <div className={styles.quotedTweet}>
+            <QuotedTweet tweet={quoted_tweet} />
+          </div>
+        )}
 
         <div className={styles.actions}>
           <div className={styles.media}>

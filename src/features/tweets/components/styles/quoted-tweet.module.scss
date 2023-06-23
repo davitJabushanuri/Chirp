@@ -1,4 +1,5 @@
     .container {
+      margin-top: 11px;
       overflow: hidden;
       border-radius: 1rem;
       border: 1px solid var(--clr-border);
@@ -55,7 +56,6 @@
             height: 1rem;
             fill: var(--clr-blue);
             cursor: pointer;
-
           }
         }
       }
@@ -63,5 +63,11 @@
       .text {
         font-size: 14px;
         padding: 0 11px;
+      }
+
+      .media {
+        overflow: hidden;
+        border-radius: 0 0 15px 15px;
+        margin-top: 11px;
       }
     }

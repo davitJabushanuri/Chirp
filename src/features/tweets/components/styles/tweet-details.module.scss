@@ -37,98 +37,15 @@
     .tweet {
 
       .text {
-        font-size: 1.375rem;
-        line-height: 1.5;
+        font-size: 16px;
       }
 
-      .images {
-        position: relative;
-        margin-top: 0.8rem;
-        width: 100%;
-        height: 100%;
-        border-radius: 1rem;
+      .media {
         overflow: hidden;
-        display: grid;
-
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          cursor: pointer;
-        }
-      }
-    }
-
-    .one {
-      grid-template-columns: 1fr;
-
-      img {
-        object-fit: contain;
-        width: auto;
-        border-radius: 1rem;
-      }
-    }
-
-    .two {
-      grid-template-columns: 1fr 1fr;
-      gap: 0.2rem;
-
-      img {
-        aspect-ratio: 0.85 / 1;
-      }
-    }
-
-    .three {
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
-      grid-template-areas:
-        'first second'
-        'first third';
-      gap: 0.2rem;
-
-      img:nth-of-type(1) {
-        grid-area: first;
-        aspect-ratio: 0.85 / 1;
+        border-radius: 15px;
+        margin-top: 14px;
       }
 
-      img:nth-of-type(2) {
-        grid-area: second;
-        aspect-ratio: 1.76 / 1;
-      }
-
-      img:nth-of-type(3) {
-        grid-area: third;
-        aspect-ratio: 1.76 / 1;
-      }
-    }
-
-    .four {
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
-      grid-template-areas:
-        'first second'
-        'third fourth';
-      gap: 0.2rem;
-
-      img:nth-of-type(1) {
-        grid-area: first;
-        aspect-ratio: 1.76 / 1;
-      }
-
-      img:nth-of-type(2) {
-        grid-area: second;
-        aspect-ratio: 1.76 / 1;
-      }
-
-      img:nth-of-type(3) {
-        grid-area: third;
-        aspect-ratio: 1.76 / 1;
-      }
-
-      img:nth-of-type(4) {
-        grid-area: fourth;
-        aspect-ratio: 1.76 / 1;
-      }
     }
 
     .tweetActions {
