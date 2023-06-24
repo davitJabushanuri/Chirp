@@ -1,9 +1,8 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
+import { ReplyingTo } from "@/features/create-tweet";
 import {
   UserAvatar,
   UserModalWrapper,
@@ -22,15 +21,8 @@ import { TweetOptions } from "./tweet-options";
 dayjs.extend(relativeTime);
 
 export const Tweet = ({ tweet }: { tweet: ITweet }) => {
-  const router = useRouter();
-
   return (
-    <div
-      role={"button"}
-      tabIndex={0}
-      onClick={() => router.push(`/status/${tweet.id}`)}
-      className={styles.container}
-    >
+    <Link href={`/status/${tweet.id}`} className={styles.container}>
       <div className={styles.avatar}>
         <UserModalWrapper userId={tweet?.author?.id}>
           <UserAvatar
@@ -41,7 +33,7 @@ export const Tweet = ({ tweet }: { tweet: ITweet }) => {
       </div>
 
       <div className={styles.content}>
-        <div className={styles.header}>
+        <div className={styles.user_details}>
           <UserModalWrapper userId={tweet?.author?.id}>
             <UserName
               userId={tweet?.author?.id}
@@ -49,36 +41,28 @@ export const Tweet = ({ tweet }: { tweet: ITweet }) => {
               isVerified={tweet?.author?.verified}
             />
           </UserModalWrapper>
+          <div className={styles.username_time}>
+            <UserModalWrapper userId={tweet?.author?.id}>
+              <UserScreenName
+                userId={tweet?.author?.id}
+                screenName={tweet?.author?.email?.split("@")[0]}
+              />
+            </UserModalWrapper>
 
-          <UserModalWrapper userId={tweet?.author?.id}>
-            <UserScreenName
-              userId={tweet?.author?.id}
-              screenName={tweet?.author?.email?.split("@")[0]}
-            />
-          </UserModalWrapper>
-
-          <span className={styles.dot}>·</span>
-          <span className={styles.date}>
-            {dayjs(tweet?.created_at).format("MMM D")}
-          </span>
-
-          <div className={styles.options}>
-            <TweetOptions tweet={tweet} />
+            <span className={styles.dot}>·</span>
+            <span className={styles.date}>
+              {dayjs(tweet?.created_at).format("MMM D")}
+            </span>
           </div>
         </div>
 
+        <div className={styles.options}>
+          <TweetOptions tweet={tweet} />
+        </div>
+
         {tweet?.in_reply_to_status_id && (
-          <div className={styles.replying}>
-            <span className={styles.replyingTo}>Replying to</span>
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                router.push(`/${tweet?.in_reply_to_screen_name}`);
-              }}
-              className={styles.replyingToUsername}
-            >
-              @{tweet?.in_reply_to_screen_name}
-            </button>
+          <div className={styles.replyingTo}>
+            <ReplyingTo screen_name={tweet?.in_reply_to_screen_name} />
           </div>
         )}
 
@@ -105,6 +89,6 @@ export const Tweet = ({ tweet }: { tweet: ITweet }) => {
           <TweetActions tweet={tweet} showStats={true} />
         </div>
       </div>
-    </div>
+    </Link>
   );
 };

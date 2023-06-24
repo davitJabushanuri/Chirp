@@ -1,76 +1,65 @@
 .container {
-  padding: 0 0.5rem 0 1rem;
+  position: relative;
   display: grid;
-  gap: 0.5rem;
-  grid-template-columns: 3rem 1fr;
+  gap: 11px;
+  grid-template-columns: auto 1fr;
   cursor: pointer;
-  max-width: 100%;
   transition: all 0.2s ease-in-out;
 
   &:hover {
     background-color: var(--clr-tweet-hover);
   }
 
-
   .avatar {
-    margin-top: 11px;
+    margin: 11px 0 0 15px;
+    width: 38px;
   }
 
-  .header {
-    margin-top: 4px;
+
+  .user_details {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 2px;
+    white-space: nowrap;
+    margin: 11px 50px 2px 0;
 
-    .dot {
-      margin-inline: 0.1rem;
-      color: var(--clr-tertiary);
-    }
+    .username_time {
+      display: flex;
 
-    .date {
-      font-size: 0.9rem;
-      color: var(--clr-tertiary);
-      cursor: pointer;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      .dot {
+        margin-inline: 2px;
+        color: var(--clr-tertiary);
+      }
 
-      &:hover {
-        text-decoration: underline;
+      .date {
+        font-size: 0.9rem;
+        color: var(--clr-tertiary);
+        cursor: pointer;
+
+        &:hover {
+          text-decoration: underline;
+        }
       }
     }
 
-    .options {
-      margin-left: auto;
-    }
 
+    @media screen and (max-width: 360px) {
+      flex-wrap: wrap;
+    }
   }
 
-  .replying {
-    font-size: 14px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 0.2rem;
-    flex-wrap: wrap;
-    margin-bottom: 0.2rem;
+  .options {
+    position: absolute;
+    top: 4px;
+    right: 8px;
+  }
 
-
-    .replyingTo {
-      color: var(--clr-tertiary);
-    }
-
-    .replyingToUsername {
-      color: var(--clr-primary);
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
+  .replyingTo {
+    margin: 0 15px 2px 0;
   }
 
   .tweet {
-    padding-right: 0.5rem;
+    padding-right: 15px;
 
     .text {
       font-size: 14px;
@@ -94,5 +83,6 @@
 
   .actions {
     max-width: 400px;
+    margin-right: 8px;
   }
 }
