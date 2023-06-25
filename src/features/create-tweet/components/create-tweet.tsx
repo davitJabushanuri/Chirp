@@ -13,6 +13,7 @@ import { PollIcon } from "../assets/poll-icon";
 import { ScheduleIcon } from "../assets/schedule-icon";
 import { useCreateTweet } from "../hooks/use-create-tweet";
 import { IChosenImages } from "../types";
+import { resizeTextarea } from "../utils/resize-textarea";
 
 import Action from "./action";
 import { ChosenImages } from "./chosen-images";
@@ -23,7 +24,7 @@ export const CreateTweet = ({
   quoted_tweet,
   in_reply_to_screen_name,
   in_reply_to_status_id,
-  placeholder,
+  placeholder = "What's happening?",
   isInspectModal = false,
 }: {
   quoted_tweet?: ITweet | null;
@@ -79,10 +80,19 @@ export const CreateTweet = ({
 
       <form>
         <div className={styles.text}>
-          <input
+          <textarea
+            contentEditable="true"
+            aria-multiline="true"
+            aria-label="Tweet text"
+            aria-autocomplete="list"
+            spellCheck="true"
+            tabIndex={0}
             value={text}
-            onChange={(e) => setText(e.target.value)}
-            placeholder={placeholder || "What's happening?"}
+            onChange={(e) => {
+              setText(e.target.value);
+              resizeTextarea(e.target);
+            }}
+            placeholder={placeholder as string}
           />
         </div>
         <input
