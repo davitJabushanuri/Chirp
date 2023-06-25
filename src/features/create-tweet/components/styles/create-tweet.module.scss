@@ -26,16 +26,13 @@
         font-size: 19px;
         color: var(--clr-secondary);
 
-
         &::placeholder {
           color: var(--clr-tertiary);
         }
       }
     }
 
-    .fileInput {
-      display: none;
-    }
+
 
     .quotedTweet {
       margin: 8px 0
@@ -47,11 +44,32 @@
       grid-template-columns: 1fr 72px;
       gap: 11px;
 
-      .media {
+      .tweet_actions {
         transform: translateX(-8px);
         display: flex;
         align-items: center;
         flex-wrap: wrap;
+
+        .media {
+          &:disabled {
+            opacity: 0.5;
+            cursor: default;
+
+            &:hover {
+              div {
+                background-color: none
+              }
+            }
+
+            &:active {
+              background-color: var(--clr-primary);
+            }
+          }
+
+          .fileInput {
+            display: none;
+          }
+        }
 
         .hide {
           display: none;
@@ -97,9 +115,7 @@
     }
 
 
-    .hideActions {
-      display: none;
-    }
+
   }
 
 

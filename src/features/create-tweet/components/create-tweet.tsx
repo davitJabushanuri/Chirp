@@ -36,7 +36,6 @@ export const CreateTweet = ({
   const { data: session } = useSession();
 
   const [text, setText] = useState("");
-  const imageUploadRef = useRef<HTMLInputElement>(null);
   const [chosenImages, setChosenImages] = useState<IChosenImages[]>([]);
 
   const mutation = useCreateTweet({
@@ -44,29 +43,32 @@ export const CreateTweet = ({
     setChosenImages,
   });
 
-  const chooseImage = async (
-    event: React.ChangeEvent<HTMLInputElement>,
-    setChosenImages: (images: IChosenImages[]) => void,
-  ) => {
-    const file = event?.target?.files?.[0];
+  const chooseImages = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event?.target?.files;
 
-    // reset file input
-    if (imageUploadRef.current) imageUploadRef.current.value = "";
-
-    if (file) {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        setChosenImages([
-          ...chosenImages,
-          {
-            url: reader.result,
-            id: Math.random(),
-            file: file,
-          },
-        ]);
-      };
+    if (files) {
+      for (const file of files) {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+          const image = new Image();
+          image.src = reader.result as string;
+          console.log(image.width);
+          setChosenImages((prev) => {
+            return [
+              ...prev,
+              {
+                url: reader.result,
+                id: Math.random(),
+                file: file,
+              },
+            ];
+          });
+        };
+      }
     }
+
+    event.target.value = "";
   };
 
   const textAreaRef = useRef<HTMLTextAreaElement>();
@@ -102,21 +104,11 @@ export const CreateTweet = ({
             spellCheck="true"
             tabIndex={0}
             value={text}
-            onChange={(e) => {
-              setText(e.target.value);
-              resizeTextarea(e.target);
-            }}
+            onChange={(e) => setText(e.target.value)}
             placeholder={placeholder as string}
           />
         </div>
-        <input
-          className={styles.fileInput}
-          type="file"
-          onChange={(e) => chooseImage(e, setChosenImages)}
-          ref={imageUploadRef}
-          accept="image/*"
-          max={4}
-        />
+
         {chosenImages.length > 0 && (
           <ChosenImages
             chosenImages={chosenImages}
@@ -131,14 +123,31 @@ export const CreateTweet = ({
         )}
 
         <div className={styles.actions}>
-          <div className={styles.media}>
+          <div className={styles.tweet_actions}>
             <button
+              className={styles.media}
+              aria-label="Add photos or video"
               type="button"
+              title="Media"
+              tabIndex={0}
               disabled={chosenImages.length >= 4}
-              onClick={() => imageUploadRef.current?.click()}
             >
-              <Action icon={<ImageIcon />} />
+              <label htmlFor="media">
+                <Action icon={<ImageIcon />} />
+
+                <input
+                  id="media"
+                  className={styles.fileInput}
+                  tabIndex={-1}
+                  type="file"
+                  onChange={(e) => chooseImages(e)}
+                  accept="image/jpeg,image/png,image/webp,image/gif,video/mp4,video/quicktime"
+                  max={4}
+                  multiple
+                />
+              </label>
             </button>
+
             <Action icon={<GifIcon />} />
             {!isInspectModal && (
               <span className={styles.hide}>
