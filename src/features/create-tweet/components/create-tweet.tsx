@@ -1,6 +1,7 @@
 "use client";
 import { useSession } from "next-auth/react";
 import { useCallback, useLayoutEffect, useRef, useState } from "react";
+import { toast } from "react-toastify";
 
 import { EmojiIcon } from "@/assets/emoji-icon";
 import { GifIcon } from "@/assets/gif-icon";
@@ -47,13 +48,16 @@ export const CreateTweet = ({
     const files = event?.target?.files;
 
     if (files) {
+      if (files?.length + chosenImages.length > 4) {
+        return toast("Please choose either 1 GIF or upto 4 photos.");
+      }
+
       for (const file of files) {
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = () => {
           const image = new Image();
           image.src = reader.result as string;
-          console.log(image.width);
           setChosenImages((prev) => {
             return [
               ...prev,
@@ -61,6 +65,8 @@ export const CreateTweet = ({
                 url: reader.result,
                 id: Math.random(),
                 file: file,
+                width: image.width,
+                height: image.height,
               },
             ];
           });
@@ -144,6 +150,7 @@ export const CreateTweet = ({
                   accept="image/jpeg,image/png,image/webp,image/gif,video/mp4,video/quicktime"
                   max={4}
                   multiple
+                  disabled={chosenImages.length >= 4}
                 />
               </label>
             </button>

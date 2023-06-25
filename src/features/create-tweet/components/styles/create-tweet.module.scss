@@ -54,16 +54,6 @@
           &:disabled {
             opacity: 0.5;
             cursor: default;
-
-            &:hover {
-              div {
-                background-color: none
-              }
-            }
-
-            &:active {
-              background-color: var(--clr-primary);
-            }
           }
 
           .fileInput {
