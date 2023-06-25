@@ -4,6 +4,7 @@
       overflow: hidden;
       border-radius: 1rem;
       border: 1px solid var(--clr-border);
+      cursor: default;
 
       .userDetails {
         padding: 11px 11px 4px;
@@ -66,6 +67,12 @@
       .text {
         font-size: 14px;
         margin: 0 11px 11px;
+        word-break: break-all;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 6px;
+
       }
 
       .media {

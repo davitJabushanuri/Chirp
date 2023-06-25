@@ -8,7 +8,6 @@ import { ImageIcon } from "@/assets/image-icon";
 import { LocationIcon } from "@/assets/location-icon";
 import { UserAvatar } from "@/features/profile";
 import { ITweet } from "@/features/tweets";
-import { QuotedTweet } from "@/features/tweets";
 
 import { PollIcon } from "../assets/poll-icon";
 import { ScheduleIcon } from "../assets/schedule-icon";
@@ -17,6 +16,7 @@ import { IChosenImages } from "../types";
 
 import Action from "./action";
 import { ChosenImages } from "./chosen-images";
+import { CreateTweetQuote } from "./create-tweet-quote";
 import styles from "./styles/create-tweet.module.scss";
 
 export const CreateTweet = ({
@@ -102,7 +102,7 @@ export const CreateTweet = ({
 
         {quoted_tweet && (
           <div className={styles.quotedTweet}>
-            <QuotedTweet tweet={quoted_tweet} />
+            <CreateTweetQuote tweet={quoted_tweet} />
           </div>
         )}
 

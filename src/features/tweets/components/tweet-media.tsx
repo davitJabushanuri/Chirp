@@ -9,9 +9,11 @@ import styles from "./styles/tweet-media.module.scss";
 export const TweetMedia = ({
   media,
   tweetId,
+  links = true,
 }: {
   media: IMedia[];
   tweetId: string;
+  links?: boolean;
 }) => {
   const setImageIndex = useInspectTweetImage((state) => state.setImageIndex);
   const openTweetImageModal = useInspectTweetImage(
@@ -37,16 +39,19 @@ export const TweetMedia = ({
         return (
           <Image
             onClick={(e) => {
-              e.stopPropagation();
-              setImageIndex(index);
-              setTweetId(tweetId);
-              openTweetImageModal();
+              if (links) {
+                e.stopPropagation();
+                setImageIndex(index);
+                setTweetId(tweetId);
+                openTweetImageModal();
+              }
             }}
             key={media?.id}
             src={media?.media_url}
             alt="Image"
             width={500}
             height={500}
+            className={links ? "" : styles.noLinks}
           />
         );
       })}
