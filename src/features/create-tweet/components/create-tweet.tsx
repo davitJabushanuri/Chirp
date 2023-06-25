@@ -1,6 +1,6 @@
 "use client";
 import { useSession } from "next-auth/react";
-import { useRef, useState } from "react";
+import { useCallback, useLayoutEffect, useRef, useState } from "react";
 
 import { EmojiIcon } from "@/assets/emoji-icon";
 import { GifIcon } from "@/assets/gif-icon";
@@ -69,6 +69,18 @@ export const CreateTweet = ({
     }
   };
 
+  const textAreaRef = useRef<HTMLTextAreaElement>();
+
+  const inputRef = useCallback((textArea: HTMLTextAreaElement) => {
+    resizeTextarea(textArea);
+    textAreaRef.current = textArea;
+  }, []);
+
+  useLayoutEffect(() => {
+    if (!textAreaRef.current) return;
+    resizeTextarea(textAreaRef.current);
+  }, [text]);
+
   if (!session) return null;
 
   return (
@@ -81,6 +93,8 @@ export const CreateTweet = ({
       <form>
         <div className={styles.text}>
           <textarea
+            ref={inputRef}
+            style={{ height: "0" }}
             contentEditable="true"
             aria-multiline="true"
             aria-label="Tweet text"
