@@ -12,7 +12,7 @@ export const BackButton = () => {
     <button
       className={styles.container}
       onClick={() => router.back()}
-      title="Go Back"
+      title="Back"
     >
       <LeftArrowIcon />
     </button>

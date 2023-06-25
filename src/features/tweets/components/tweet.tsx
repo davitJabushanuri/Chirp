@@ -1,6 +1,7 @@
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 import { ReplyingTo } from "@/features/create-tweet";
 import {
@@ -21,8 +22,20 @@ import { TweetOptions } from "./tweet-options";
 dayjs.extend(relativeTime);
 
 export const Tweet = ({ tweet }: { tweet: ITweet }) => {
+  const router = useRouter();
+
   return (
-    <Link href={`/status/${tweet.id}`} className={styles.container}>
+    <div
+      onClick={() => router.push(`/status/${tweet.id}`)}
+      tabIndex={0}
+      role="link"
+      onKeyDown={(e) => {
+        if (e.key === "Enter") {
+          router.push(`/status/${tweet.id}`);
+        }
+      }}
+      className={styles.container}
+    >
       <div className={styles.avatar}>
         <UserModalWrapper userId={tweet?.author?.id}>
           <UserAvatar
@@ -89,6 +102,6 @@ export const Tweet = ({ tweet }: { tweet: ITweet }) => {
           <TweetActions tweet={tweet} showStats={true} />
         </div>
       </div>
-    </Link>
+    </div>
   );
 };

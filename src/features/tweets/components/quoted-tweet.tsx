@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 import { VerifiedIcon } from "@/assets/verified-icon";
 import { UserAvatar } from "@/features/profile";
@@ -10,10 +10,17 @@ import styles from "./styles/quoted-tweet.module.scss";
 import { TweetMedia } from "./tweet-media";
 
 export const QuotedTweet = ({ tweet }: { tweet: ITweet }) => {
+  const router = useRouter();
   return (
-    <Link
-      onClick={(e) => e.stopPropagation()}
-      href={`/status/${tweet?.id}`}
+    <div
+      onClick={() => router.push(`/status/${tweet?.id}`)}
+      tabIndex={0}
+      role="link"
+      onKeyDown={(e) => {
+        if (e.key === "Enter") {
+          router.push(`/status/${tweet?.id}`);
+        }
+      }}
       className={styles.container}
     >
       <div className={styles.userDetails}>
@@ -50,6 +57,6 @@ export const QuotedTweet = ({ tweet }: { tweet: ITweet }) => {
           </div>
         )}
       </div>
-    </Link>
+    </div>
   );
 };

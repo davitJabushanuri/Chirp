@@ -25,6 +25,7 @@
 
     .username_time {
       display: flex;
+      align-items: center;
 
       .dot {
         margin-inline: 2px;
@@ -32,7 +33,7 @@
       }
 
       .date {
-        font-size: 0.9rem;
+        font-size: 14px;
         color: var(--clr-tertiary);
         cursor: pointer;
 
