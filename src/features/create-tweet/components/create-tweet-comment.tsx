@@ -5,9 +5,9 @@ import { UserAvatar } from "@/features/profile";
 import { ITweet } from "@/features/tweets";
 
 import { ReplyingTo } from "./replying-to";
-import styles from "./styles/replying-to-tweet.module.scss";
+import styles from "./styles/create-tweet-comment.module.scss";
 
-export const ReplyingToTweet = ({ tweet }: { tweet: ITweet | null }) => {
+export const CreateTweetComment = ({ tweet }: { tweet: ITweet | null }) => {
   return (
     <div className={styles.container}>
       <div className={styles.avatar}>
@@ -39,7 +39,9 @@ export const ReplyingToTweet = ({ tweet }: { tweet: ITweet | null }) => {
         </div>
 
         <div className={styles.replyingTo}>
-          <ReplyingTo screen_name={tweet?.author?.email?.split("@")[0]} />
+          {tweet?.author?.email && (
+            <ReplyingTo screen_name={tweet?.author?.email?.split("@")[0]} />
+          )}
         </div>
       </div>
     </div>

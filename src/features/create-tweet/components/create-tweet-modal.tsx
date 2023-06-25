@@ -1,12 +1,10 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import { BackButton } from "@/components/designs/back-button";
 import { CloseButton } from "@/components/designs/close-button";
 import { useDisableBodyScroll } from "@/hooks";
 import { useCreateTweetModal } from "@/stores/use-create-tweet-modal";
 
 import { CreateTweet } from "./create-tweet";
-import { ReplyingToTweet } from "./replying-to-tweet";
+import { CreateTweetComment } from "./create-tweet-comment";
 import styles from "./styles/create-tweet-modal.module.scss";
 
 export const CreateTweetModal = () => {
@@ -28,9 +26,26 @@ export const CreateTweetModal = () => {
       onClick={() => {
         closeModal();
       }}
+      tabIndex={-1}
+      role="button"
+      onKeyDown={(e) => {
+        if (e.key === "Escape") {
+          closeModal();
+        }
+      }}
       className={styles.container}
     >
-      <div onClick={(e) => e.stopPropagation()} className={styles.modal}>
+      <div
+        onClick={(e) => e.stopPropagation()}
+        role="button"
+        tabIndex={-1}
+        onKeyDown={(e) => {
+          if (e.key === "Escape") {
+            closeModal();
+          }
+        }}
+        className={styles.modal}
+      >
         <button onClick={() => closeModal()} className={styles.close}>
           <span className={styles.arrow}>
             <BackButton />
@@ -39,7 +54,7 @@ export const CreateTweetModal = () => {
             <CloseButton />
           </span>
         </button>
-        {parent_tweet && <ReplyingToTweet tweet={parent_tweet} />}
+        {parent_tweet && <CreateTweetComment tweet={parent_tweet} />}
 
         <CreateTweet
           quoted_tweet={quoted_tweet}

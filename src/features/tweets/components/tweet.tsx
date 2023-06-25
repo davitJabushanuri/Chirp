@@ -1,6 +1,5 @@
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 import { ReplyingTo } from "@/features/create-tweet";
