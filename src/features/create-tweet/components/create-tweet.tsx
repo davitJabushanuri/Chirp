@@ -1,7 +1,6 @@
 "use client";
 import { useSession } from "next-auth/react";
 import { useCallback, useLayoutEffect, useRef, useState } from "react";
-import { toast } from "react-toastify";
 
 import { EmojiIcon } from "@/assets/emoji-icon";
 import { GifIcon } from "@/assets/gif-icon";
@@ -14,6 +13,7 @@ import { PollIcon } from "../assets/poll-icon";
 import { ScheduleIcon } from "../assets/schedule-icon";
 import { useCreateTweet } from "../hooks/use-create-tweet";
 import { IChosenImages } from "../types";
+import { chooseImages } from "../utils/chooseImages";
 import { resizeTextarea } from "../utils/resize-textarea";
 
 import Action from "./action";
@@ -44,39 +44,6 @@ export const CreateTweet = ({
     setChosenImages,
   });
 
-  const chooseImages = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const files = event?.target?.files;
-
-    if (files) {
-      if (files?.length + chosenImages.length > 4) {
-        return toast("Please choose either 1 GIF or upto 4 photos.");
-      }
-
-      for (const file of files) {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => {
-          const image = new Image();
-          image.src = reader.result as string;
-          setChosenImages((prev) => {
-            return [
-              ...prev,
-              {
-                url: reader.result,
-                id: Math.random(),
-                file: file,
-                width: image.width,
-                height: image.height,
-              },
-            ];
-          });
-        };
-      }
-    }
-
-    event.target.value = "";
-  };
-
   const textAreaRef = useRef<HTMLTextAreaElement>();
 
   const inputRef = useCallback((textArea: HTMLTextAreaElement) => {
@@ -93,10 +60,12 @@ export const CreateTweet = ({
 
   return (
     <div className={styles.container}>
-      <UserAvatar
-        userId={session?.user?.id}
-        userImage={session?.user?.profile_image_url}
-      />
+      <div className={styles.avatar}>
+        <UserAvatar
+          userId={session?.user?.id}
+          userImage={session?.user?.profile_image_url}
+        />
+      </div>
 
       <form>
         <div className={styles.text}>
@@ -115,11 +84,13 @@ export const CreateTweet = ({
           />
         </div>
 
-        {chosenImages.length > 0 && (
-          <ChosenImages
-            chosenImages={chosenImages}
-            setChosenImages={setChosenImages}
-          />
+        {chosenImages && (
+          <div className={styles.chosen_images}>
+            <ChosenImages
+              chosenImages={chosenImages}
+              setChosenImages={setChosenImages}
+            />
+          </div>
         )}
 
         {quoted_tweet && (
@@ -146,7 +117,13 @@ export const CreateTweet = ({
                   className={styles.fileInput}
                   tabIndex={-1}
                   type="file"
-                  onChange={(e) => chooseImages(e)}
+                  onChange={(e) =>
+                    chooseImages({
+                      event: e,
+                      chosenImagesLength: chosenImages.length,
+                      setChosenImages,
+                    })
+                  }
                   accept="image/jpeg,image/png,image/webp,image/gif,video/mp4,video/quicktime"
                   max={4}
                   multiple
