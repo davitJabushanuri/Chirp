@@ -13,13 +13,14 @@ import { PollIcon } from "../assets/poll-icon";
 import { ScheduleIcon } from "../assets/schedule-icon";
 import { useCreateTweet } from "../hooks/use-create-tweet";
 import { IChosenImages } from "../types";
-import { chooseImages } from "../utils/chooseImages";
+import { chooseImages } from "../utils/choose-images";
 import { resizeTextarea } from "../utils/resize-textarea";
 
 import Action from "./action";
 import { ChosenImages } from "./chosen-images";
 import { CreateTweetQuote } from "./create-tweet-quote";
 import styles from "./styles/create-tweet.module.scss";
+import { TextProgressBar } from "./text-progress-bar";
 
 export const CreateTweet = ({
   quoted_tweet,
@@ -45,6 +46,7 @@ export const CreateTweet = ({
   });
 
   const textAreaRef = useRef<HTMLTextAreaElement>();
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const inputRef = useCallback((textArea: HTMLTextAreaElement) => {
     resizeTextarea(textArea);
@@ -108,28 +110,32 @@ export const CreateTweet = ({
               title="Media"
               tabIndex={0}
               disabled={chosenImages.length >= 4}
+              onClick={() => {
+                if (fileInputRef.current) {
+                  fileInputRef.current.click();
+                }
+              }}
             >
-              <label htmlFor="media">
-                <Action icon={<ImageIcon />} />
+              <Action icon={<ImageIcon />} />
 
-                <input
-                  id="media"
-                  className={styles.fileInput}
-                  tabIndex={-1}
-                  type="file"
-                  onChange={(e) =>
-                    chooseImages({
-                      event: e,
-                      chosenImagesLength: chosenImages.length,
-                      setChosenImages,
-                    })
-                  }
-                  accept="image/jpeg,image/png,image/webp,image/gif,video/mp4,video/quicktime"
-                  max={4}
-                  multiple
-                  disabled={chosenImages.length >= 4}
-                />
-              </label>
+              <input
+                ref={fileInputRef}
+                id="media"
+                className={styles.fileInput}
+                tabIndex={-1}
+                type="file"
+                onChange={(e) =>
+                  chooseImages({
+                    event: e,
+                    chosenImagesLength: chosenImages.length,
+                    setChosenImages,
+                  })
+                }
+                accept="image/jpeg,image/png,image/webp,image/gif,video/mp4,video/quicktime"
+                max={4}
+                multiple
+                disabled={chosenImages.length >= 4}
+              />
             </button>
 
             <Action icon={<GifIcon />} />
@@ -146,6 +152,8 @@ export const CreateTweet = ({
             )}
             <Action icon={<LocationIcon />} />
           </div>
+
+          <TextProgressBar progress={text.length} />
           <button
             type="button"
             onClick={() =>
@@ -158,7 +166,7 @@ export const CreateTweet = ({
                 quoted_tweet_id: quoted_tweet ? quoted_tweet.id : null,
               })
             }
-            disabled={text.length === 0}
+            disabled={text.length === 0 && chosenImages.length === 0}
             className={styles.tweetButton}
           >
             Tweet
