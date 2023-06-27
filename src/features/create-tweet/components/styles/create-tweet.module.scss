@@ -43,12 +43,14 @@
     }
 
     .actions {
-      display: grid;
+      display: flex;
       align-items: center;
-      grid-template-columns: 1fr 72px;
+
       gap: 11px;
+      flex-wrap: wrap;
 
       .tweet_actions {
+        flex-grow: 1;
         transform: translateX(-8px);
         display: flex;
         align-items: center;
@@ -74,35 +76,42 @@
         }
       }
 
-      .tweetButton {
-        background-color: var(--clr-primary);
-        border-radius: 100vmax;
-        height: 34px;
-        font-size: 14px;
-        font-weight: 700;
-        cursor: pointer;
-        color: var(--clr-light);
-        display: grid;
-        place-items: center;
+      .buttons {
+        display: flex;
+        align-items: center;
+        gap: 11px;
 
-        &:hover {
-          background-color: var(--clr-primary-hover);
-        }
-
-        &:active {
-          background-color: var(--clr-primary-active);
-        }
-
-        &:disabled {
-          opacity: 0.5;
-          cursor: default;
+        .tweetButton {
+          background-color: var(--clr-primary);
+          border-radius: 100vmax;
+          height: 34px;
+          width: 72px;
+          font-size: 14px;
+          font-weight: 700;
+          cursor: pointer;
+          color: var(--clr-light);
+          display: grid;
+          place-items: center;
 
           &:hover {
-            background-color: var(--clr-primary);
+            background-color: var(--clr-primary-hover);
           }
 
           &:active {
-            background-color: var(--clr-primary);
+            background-color: var(--clr-primary-active);
+          }
+
+          &:disabled {
+            opacity: 0.5;
+            cursor: default;
+
+            &:hover {
+              background-color: var(--clr-primary);
+            }
+
+            &:active {
+              background-color: var(--clr-primary);
+            }
           }
         }
       }

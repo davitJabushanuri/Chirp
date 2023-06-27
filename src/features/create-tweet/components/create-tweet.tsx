@@ -153,24 +153,26 @@ export const CreateTweet = ({
             <Action icon={<LocationIcon />} />
           </div>
 
-          <TextProgressBar progress={text.length} />
-          <button
-            type="button"
-            onClick={() =>
-              mutation.mutate({
-                text: text,
-                userId: session?.user?.id,
-                files: chosenImages.map((img) => img.file),
-                in_reply_to_screen_name,
-                in_reply_to_status_id,
-                quoted_tweet_id: quoted_tweet ? quoted_tweet.id : null,
-              })
-            }
-            disabled={text.length === 0 && chosenImages.length === 0}
-            className={styles.tweetButton}
-          >
-            Tweet
-          </button>
+          <div className={styles.buttons}>
+            <TextProgressBar progress={text.length} />
+            <button
+              type="button"
+              onClick={() =>
+                mutation.mutate({
+                  text: text,
+                  userId: session?.user?.id,
+                  files: chosenImages.map((img) => img.file),
+                  in_reply_to_screen_name,
+                  in_reply_to_status_id,
+                  quoted_tweet_id: quoted_tweet ? quoted_tweet.id : null,
+                })
+              }
+              disabled={text.length === 0 && chosenImages.length === 0}
+              className={styles.tweetButton}
+            >
+              Tweet
+            </button>
+          </div>
         </div>
       </form>
     </div>
