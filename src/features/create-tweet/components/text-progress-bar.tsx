@@ -1,59 +1,72 @@
 import styles from "./styles/text-progress-bar.module.scss";
 
-export const TextProgressBar = ({
-  progress,
-  radius = 10,
-  strokeWidth = 2,
-  trackColor = "#38444D",
-  progressColor = "#1D9BF0",
-}: {
-  progress: number;
-  radius?: number;
-  strokeWidth?: number;
-  trackColor?: string;
-  progressColor?: string;
-}) => {
-  const circumference = 2 * Math.PI * radius;
-  const normalizedProgress = Math.min(progress / 280, 1);
-  const dashOffset = circumference - normalizedProgress * circumference;
-
-  const remainingChars = 280 - progress;
+export const TextProgressBar = ({ progress }: { progress: number }) => {
+  const max = 280;
+  const remainingChars = max - progress;
   const showRemainingChars = progress >= 260;
+
+  const sqSize = 20;
+  const strokeWidth = showRemainingChars ? 1 : 2;
+  const radius = (sqSize - strokeWidth) / 2;
+  const viewBox = `0 0 ${sqSize} ${sqSize}`;
+
+  const dashArray = radius * Math.PI * 2;
+  const normalizedProgress = Math.min(progress / max, 1);
+  const dashOffset = dashArray - dashArray * normalizedProgress;
+
+  const progressColor =
+    remainingChars > 20
+      ? "var(--clr-primary)"
+      : remainingChars <= 20 && remainingChars > 0
+      ? "#ffd400"
+      : remainingChars <= 0 && remainingChars > -10
+      ? "#F4212E"
+      : `transparent`;
+
+  const trackColor =
+    remainingChars > -10 ? "var(--clr-trends-background)" : `transparent`;
 
   return (
     <div className={styles.container} role="progressbar">
-      <svg height="100%" viewBox={`0 0 ${radius * 2} ${radius * 2}`}>
-        <circle
-          cx={radius}
-          cy={radius}
-          r={radius - strokeWidth / 2}
-          fill="none"
-          stroke={trackColor}
-          strokeWidth={strokeWidth}
-        />
-        <circle
-          cx={radius}
-          cy={radius}
-          r={radius - strokeWidth / 2}
-          fill="none"
-          stroke={progressColor}
-          strokeWidth={strokeWidth}
-          strokeDasharray={`${circumference} ${circumference}`}
-          strokeDashoffset={dashOffset}
-          strokeLinecap="round"
-        />
+      <div
+        className={`${styles.progressbar} ${
+          remainingChars <= 20 ? styles.warning : ""
+        }`}
+      >
+        <svg viewBox={viewBox}>
+          <circle
+            cx={sqSize / 2}
+            cy={sqSize / 2}
+            r={radius}
+            fill="none"
+            stroke={trackColor}
+            strokeWidth={`${strokeWidth}px`}
+          />
+          <circle
+            className={styles.progressCircle}
+            cx={sqSize / 2}
+            cy={sqSize / 2}
+            r={radius}
+            fill="none"
+            stroke={progressColor}
+            strokeWidth={`${strokeWidth}px`}
+            strokeDasharray={`${dashArray} ${dashArray}`}
+            strokeDashoffset={dashOffset}
+            strokeLinecap="round"
+            transform={`rotate(-90 ${sqSize / 2} ${sqSize / 2})`}
+          />
+        </svg>
 
         {showRemainingChars && (
-          <text
-            x={radius}
-            y={radius}
-            textAnchor="middle"
-            dominantBaseline="middle"
+          <span
+            className={`${styles.text} ${
+              remainingChars <= 0 ? styles.danger : ""
+            }`}
           >
             {remainingChars}
-          </text>
+          </span>
         )}
-      </svg>
+      </div>
     </div>
   );
 };

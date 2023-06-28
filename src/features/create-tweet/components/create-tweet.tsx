@@ -154,7 +154,7 @@ export const CreateTweet = ({
           </div>
 
           <div className={styles.buttons}>
-            <TextProgressBar progress={text.length} />
+            {text.length > 0 && <TextProgressBar progress={text.length} />}
             <button
               type="button"
               onClick={() =>
