@@ -123,7 +123,7 @@ export async function POST(request: Request) {
 
   const tweetSchema = z
     .object({
-      text: z.string().min(1).max(280),
+      text: z.string().min(0).max(280),
       author_id: z.string().cuid(),
       in_reply_to_screen_name: z.string().optional(),
       in_reply_to_status_id: z.string().cuid().optional(),
