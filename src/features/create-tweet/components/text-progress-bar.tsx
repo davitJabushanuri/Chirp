@@ -27,14 +27,16 @@ export const TextProgressBar = ({ progress }: { progress: number }) => {
     remainingChars > -10 ? "var(--clr-trends-background)" : `transparent`;
 
   return (
-    <div className={styles.container} role="progressbar">
+    <div className={styles.container}>
       <div
         className={`${styles.progressbar} ${
           remainingChars <= 20 ? styles.warning : ""
         }`}
       >
-        <svg viewBox={viewBox}>
+        <svg viewBox={viewBox} role="progressbar">
           <circle
+            role="presentation"
+            data-testid="track-circle"
             cx={sqSize / 2}
             cy={sqSize / 2}
             r={radius}
@@ -43,6 +45,8 @@ export const TextProgressBar = ({ progress }: { progress: number }) => {
             strokeWidth={`${strokeWidth}px`}
           />
           <circle
+            role="presentation"
+            data-testid="progress-circle"
             className={styles.progressCircle}
             cx={sqSize / 2}
             cy={sqSize / 2}
@@ -59,6 +63,7 @@ export const TextProgressBar = ({ progress }: { progress: number }) => {
 
         {showRemainingChars && (
           <span
+            data-testid="remaining-chars"
             className={`${styles.text} ${
               remainingChars <= 0 ? styles.danger : ""
             }`}

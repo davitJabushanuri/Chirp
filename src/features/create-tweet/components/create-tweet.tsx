@@ -167,7 +167,10 @@ export const CreateTweet = ({
                   quoted_tweet_id: quoted_tweet ? quoted_tweet.id : null,
                 })
               }
-              disabled={text.length === 0 && chosenImages.length === 0}
+              disabled={
+                (text.length === 0 || text.length > 280) &&
+                chosenImages.length === 0
+              }
               className={styles.tweetButton}
             >
               Tweet
