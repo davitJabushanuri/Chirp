@@ -4,6 +4,7 @@ import { VerifiedIcon } from "@/assets/verified-icon";
 import { UserAvatar } from "@/features/profile";
 import { ITweet } from "@/features/tweets";
 
+import { CreateTweetQuote } from "./create-tweet-quote";
 import { ReplyingTo } from "./replying-to";
 import styles from "./styles/create-tweet-comment.module.scss";
 
@@ -38,11 +39,17 @@ export const CreateTweetComment = ({ tweet }: { tweet: ITweet | null }) => {
           {tweet?.text && <div className={styles.text}>{tweet?.text}</div>}
         </div>
 
-        <div className={styles.replyingTo}>
-          {tweet?.author?.email && (
+        {tweet?.quoted_tweet && (
+          <div className={styles.quoted_tweet}>
+            <CreateTweetQuote tweet={tweet?.quoted_tweet} />
+          </div>
+        )}
+
+        {tweet?.author?.email && (
+          <div className={styles.replyingTo}>
             <ReplyingTo screen_name={tweet?.author?.email?.split("@")[0]} />
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </div>
   );
