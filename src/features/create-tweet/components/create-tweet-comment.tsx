@@ -36,7 +36,9 @@ export const CreateTweetComment = ({ tweet }: { tweet: ITweet | null }) => {
           </span>
         </div>
         <div className={styles.tweet}>
-          {tweet?.text && <div className={styles.text}>{tweet?.text}</div>}
+          {tweet?.text && (
+            <p className={styles.text}>{decodeURIComponent(tweet?.text)}</p>
+          )}
         </div>
 
         {tweet?.quoted_tweet && (

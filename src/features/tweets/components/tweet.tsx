@@ -81,7 +81,7 @@ export const Tweet = ({ tweet }: { tweet: ITweet }) => {
         <div className={styles.tweet}>
           {tweet?.text && (
             <div className={styles.text}>
-              <p>{tweet?.text}</p>
+              <p>{decodeURIComponent(tweet?.text)}</p>
             </div>
           )}
           {tweet?.media?.length > 0 && (

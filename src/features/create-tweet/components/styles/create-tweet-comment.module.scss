@@ -78,6 +78,10 @@
 
   .tweet {
     margin-top: 0.2rem;
+
+    .text {
+      white-space: pre-wrap;
+    }
   }
 
   .replyingTo {

@@ -12,7 +12,6 @@ import styles from "./styles/search-results.module.scss";
 
 export const SearchResults = () => {
   const searchParams = useSearchParams();
-  // const query = decodeURIComponent(pathname?.split("/")[2] || "");
   const query = decodeURIComponent(searchParams?.get("query") || "");
 
   const tweets = useTweets({

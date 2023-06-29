@@ -43,7 +43,6 @@
       }
     }
 
-
     @media screen and (max-width: 360px) {
       flex-wrap: wrap;
     }
@@ -64,6 +63,7 @@
 
     .text {
       font-size: 14px;
+      white-space: pre-wrap;
     }
 
     .media {

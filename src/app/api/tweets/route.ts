@@ -121,9 +121,11 @@ export async function GET(request: Request) {
 export async function POST(request: Request) {
   const { tweet } = await request.json();
 
+  tweet.text = encodeURIComponent(tweet?.text);
+
   const tweetSchema = z
     .object({
-      text: z.string().min(0).max(280),
+      text: z.string(),
       author_id: z.string().cuid(),
       in_reply_to_screen_name: z.string().optional(),
       in_reply_to_status_id: z.string().cuid().optional(),

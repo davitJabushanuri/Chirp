@@ -39,7 +39,7 @@ export const CreateTweetQuote = ({ tweet }: { tweet: ITweet }) => {
       <div className={styles.tweet}>
         {tweet?.text && (
           <p className={styles.text}>
-            {tweet?.text}{" "}
+            {decodeURIComponent(tweet?.text)}{" "}
             {tweet?.quoted_tweet && (
               <span>{`chirp.com/${
                 tweet.author?.email?.split("@")[0]

@@ -159,7 +159,7 @@ export const CreateTweet = ({
               type="button"
               onClick={() =>
                 mutation.mutate({
-                  text: text,
+                  text: text.trim(),
                   userId: session?.user?.id,
                   files: chosenImages.map((img) => img.file),
                   in_reply_to_screen_name,
