@@ -73,8 +73,8 @@ model User {
   sessions           Session[]
   tweets             Tweet[]
   likes              Like[]
-  followers          Follows[]      @relation("following")
-  following          Follows[]      @relation("follower")
+  followers          User[]         @relation(name: "Followers")
+  following          User[]         @relation(name: "Followers")
   retweets           Retweet[]
   bookmarks          Bookmark[]
   sent_messages      Message[]      @relation("receiver")
@@ -82,16 +82,6 @@ model User {
   conversations      Conversation[]
   pinned_tweet       Tweet?         @relation("pinned_tweet", fields: [pinned_tweet_id], references: [id])
   pinned_tweet_id    String?
-}
-
-model Follows {
-  follower     User     @relation("follower", fields: [follower_id], references: [id])
-  follower_id  String
-  following    User     @relation("following", fields: [following_id], references: [id])
-  following_id String
-  created_at   DateTime @default(now())
-
-  @@id([follower_id, following_id])
 }
 
 model Tweet {

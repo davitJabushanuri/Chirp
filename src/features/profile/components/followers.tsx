@@ -53,13 +53,8 @@ export const Followers = () => {
         />
       ) : (
         <div>
-          {followers?.map((follow) => {
-            return (
-              <PersonDetails
-                key={follow?.follower?.id}
-                author={follow?.follower}
-              />
-            );
+          {followers?.map((follower) => {
+            return <PersonDetails key={follower?.id} author={follower} />;
           })}
         </div>
       )}

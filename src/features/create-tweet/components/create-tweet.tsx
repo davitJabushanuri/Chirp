@@ -1,51 +1,43 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 "use client";
-
-import dayjs from "dayjs";
-import Image from "next/image";
 import { useSession } from "next-auth/react";
-import { useRef, useState } from "react";
+import { useCallback, useLayoutEffect, useRef, useState } from "react";
 
 import { EmojiIcon } from "@/assets/emoji-icon";
 import { GifIcon } from "@/assets/gif-icon";
 import { ImageIcon } from "@/assets/image-icon";
 import { LocationIcon } from "@/assets/location-icon";
-import { VerifiedIcon } from "@/assets/verified-icon";
-import { CloseButton } from "@/components/designs/close-button";
 import { UserAvatar } from "@/features/profile";
 import { ITweet } from "@/features/tweets";
-import { QuotedTweet } from "@/features/tweets";
 
 import { PollIcon } from "../assets/poll-icon";
 import { ScheduleIcon } from "../assets/schedule-icon";
 import { useCreateTweet } from "../hooks/use-create-tweet";
 import { IChosenImages } from "../types";
+import { chooseImages } from "../utils/choose-images";
+import { resizeTextarea } from "../utils/resize-textarea";
 
 import Action from "./action";
+import { ChosenImages } from "./chosen-images";
+import { CreateTweetQuote } from "./create-tweet-quote";
 import styles from "./styles/create-tweet.module.scss";
+import { TextProgressBar } from "./text-progress-bar";
 
 export const CreateTweet = ({
-  parent_tweet,
   quoted_tweet,
   in_reply_to_screen_name,
   in_reply_to_status_id,
-  placeholder,
-  isComment = false,
+  placeholder = "What's happening?",
   isInspectModal = false,
 }: {
-  parent_tweet?: ITweet | null;
   quoted_tweet?: ITweet | null;
   in_reply_to_screen_name?: string | null;
   in_reply_to_status_id?: string | null;
   placeholder?: string | null;
-  isComment?: boolean;
   isInspectModal?: boolean;
 }) => {
   const { data: session } = useSession();
 
   const [text, setText] = useState("");
-  const imageUploadRef = useRef<HTMLInputElement>(null);
   const [chosenImages, setChosenImages] = useState<IChosenImages[]>([]);
 
   const mutation = useCreateTweet({
@@ -53,199 +45,139 @@ export const CreateTweet = ({
     setChosenImages,
   });
 
-  const chooseImage = async (
-    event: React.ChangeEvent<HTMLInputElement>,
-    setChosenImages: (images: IChosenImages[]) => void,
-  ) => {
-    const file = event?.target?.files?.[0];
+  const textAreaRef = useRef<HTMLTextAreaElement>();
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
-    // reset file input
-    if (imageUploadRef.current) imageUploadRef.current.value = "";
+  const inputRef = useCallback((textArea: HTMLTextAreaElement) => {
+    resizeTextarea(textArea);
+    textAreaRef.current = textArea;
+  }, []);
 
-    if (file) {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        setChosenImages([
-          ...chosenImages,
-          {
-            url: reader.result,
-            id: Math.random(),
-            file: file,
-          },
-        ]);
-      };
-    }
-  };
+  useLayoutEffect(() => {
+    if (!textAreaRef.current) return;
+    resizeTextarea(textAreaRef.current);
+  }, [text]);
 
   if (!session) return null;
 
   return (
-    <>
-      <div className={styles.parentTweet}>
-        {parent_tweet && (
-          <div className={styles.avatar}>
-            <UserAvatar
-              userId={parent_tweet?.author?.id}
-              userImage={parent_tweet?.author?.profile_image_url}
-            />
-            <div className={styles.divider}></div>
-          </div>
-        )}
-        <div className={styles.content}>
-          {parent_tweet && (
-            <>
-              <div className={styles.userDetails}>
-                <span className={styles.name}>
-                  {parent_tweet?.author?.name}
-                </span>
-
-                <span className={styles.verified}>
-                  {parent_tweet?.author?.verified && <VerifiedIcon />}
-                </span>
-
-                <span className={styles.username}>
-                  @{parent_tweet?.author?.email?.split("@")[0]}
-                </span>
-                <span className={styles.dot}>·</span>
-                <span className={styles.date}>
-                  {dayjs(parent_tweet?.created_at).format("MMM D")}
-                </span>
-              </div>
-              <div className={styles.tweet}>
-                {parent_tweet?.text && (
-                  <div className={styles.text}>{parent_tweet?.text}</div>
-                )}
-              </div>
-            </>
-          )}
-
-          {in_reply_to_screen_name && !isComment && (
-            <div
-              className={`${styles.replying} ${
-                !parent_tweet ? styles.withoutQuotedTweet : ""
-              }`}
-            >
-              <span className={styles.replyingTo}>Replying to</span>
-              <span className={styles.replyingToUsername}>
-                @{in_reply_to_screen_name}
-              </span>
-            </div>
-          )}
-        </div>
-      </div>
-
-      <div
-        className={`${styles.container} ${isComment ? styles.hideActions : ""}`}
-      >
+    <div className={styles.container}>
+      <div className={styles.avatar}>
         <UserAvatar
           userId={session?.user?.id}
           userImage={session?.user?.profile_image_url}
         />
+      </div>
 
-        <div className={styles.tweet}>
-          <div className={styles.text}>
-            {isComment ? (
-              <p className={styles.placeholder}>{placeholder}</p>
-            ) : (
-              <input
-                value={text}
-                onChange={(e) => setText(e.target.value)}
-                placeholder={placeholder || "What's happening?"}
-              />
-            )}
-          </div>
-          <input
-            className={styles.fileInput}
-            type="file"
-            onChange={(e) => chooseImage(e, setChosenImages)}
-            ref={imageUploadRef}
+      <form>
+        <div className={styles.text}>
+          <textarea
+            ref={inputRef}
+            style={{ height: "0" }}
+            contentEditable="true"
+            aria-multiline="true"
+            aria-label="Tweet text"
+            aria-autocomplete="list"
+            spellCheck="true"
+            tabIndex={0}
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            placeholder={placeholder as string}
           />
-          <div
-            className={`${styles.chosenImages} ${
-              chosenImages.length === 1
-                ? styles.one
-                : chosenImages.length === 2
-                ? styles.two
-                : chosenImages.length === 3
-                ? styles.three
-                : chosenImages.length === 4
-                ? styles.four
-                : ""
-            }`}
-          >
-            {chosenImages.map((image) => {
-              return (
-                <div key={image.id} className={styles.imageContainer}>
-                  <button
-                    onClick={() => {
-                      setChosenImages(
-                        chosenImages.filter((img) => img.id !== image.id),
-                      );
-                    }}
-                    className={styles.close}
-                  >
-                    <CloseButton />
-                  </button>
-                  <Image
-                    src={image.url as string}
-                    alt=""
-                    width={1000}
-                    height={1000}
-                  />
-                </div>
-              );
-            })}
-            {quoted_tweet && <QuotedTweet tweet={quoted_tweet} />}
+        </div>
+
+        {chosenImages && (
+          <div className={styles.chosen_images}>
+            <ChosenImages
+              chosenImages={chosenImages}
+              setChosenImages={setChosenImages}
+            />
+          </div>
+        )}
+
+        {quoted_tweet && (
+          <div className={styles.quotedTweet}>
+            <CreateTweetQuote tweet={quoted_tweet} />
+          </div>
+        )}
+
+        <div className={styles.actions}>
+          <div className={styles.tweet_actions}>
+            <button
+              className={styles.media}
+              aria-label="Add photos or video"
+              type="button"
+              title="Media"
+              tabIndex={0}
+              disabled={chosenImages.length >= 4}
+              onClick={() => {
+                if (fileInputRef.current) {
+                  fileInputRef.current.click();
+                }
+              }}
+            >
+              <Action icon={<ImageIcon />} />
+
+              <input
+                ref={fileInputRef}
+                id="media"
+                className={styles.fileInput}
+                tabIndex={-1}
+                type="file"
+                onChange={(e) =>
+                  chooseImages({
+                    event: e,
+                    chosenImagesLength: chosenImages.length,
+                    setChosenImages,
+                  })
+                }
+                accept="image/jpeg,image/png,image/webp,image/gif,video/mp4,video/quicktime"
+                max={4}
+                multiple
+                disabled={chosenImages.length >= 4}
+              />
+            </button>
+
+            <Action icon={<GifIcon />} />
+            {!isInspectModal && (
+              <span className={styles.hide}>
+                <Action icon={<PollIcon />} />
+              </span>
+            )}
+            <Action icon={<EmojiIcon />} />
+            {!isInspectModal && (
+              <span className={styles.hide}>
+                <Action icon={<ScheduleIcon />} />
+              </span>
+            )}
+            <Action icon={<LocationIcon />} />
           </div>
 
-          <div
-            className={`${styles.actions} ${
-              isComment ? styles.hideActions : ""
-            }`}
-          >
-            <div className={styles.media}>
-              <button
-                disabled={chosenImages.length >= 4}
-                onClick={() => imageUploadRef.current?.click()}
-              >
-                <Action icon={<ImageIcon />} />
-              </button>
-              <Action icon={<GifIcon />} />
-              {!isInspectModal && (
-                <span className={styles.hide}>
-                  <Action icon={<PollIcon />} />
-                </span>
-              )}
-              <Action icon={<EmojiIcon />} />
-              {!isInspectModal && (
-                <span className={styles.hide}>
-                  <Action icon={<ScheduleIcon />} />
-                </span>
-              )}
-              <Action icon={<LocationIcon />} />
-            </div>
+          <div className={styles.buttons}>
+            {text.length > 0 && <TextProgressBar progress={text.length} />}
+            <button
+              type="button"
+              onClick={() =>
+                mutation.mutate({
+                  text: text.trim(),
+                  userId: session?.user?.id,
+                  files: chosenImages.map((img) => img.file),
+                  in_reply_to_screen_name,
+                  in_reply_to_status_id,
+                  quoted_tweet_id: quoted_tweet ? quoted_tweet.id : null,
+                })
+              }
+              disabled={
+                (text.length === 0 || text.length > 280) &&
+                chosenImages.length === 0
+              }
+              className={styles.tweetButton}
+            >
+              Tweet
+            </button>
           </div>
         </div>
-        <button
-          onClick={() =>
-            mutation.mutate({
-              text: text,
-              userId: session?.user?.id,
-              files: chosenImages.map((img) => img.file),
-              in_reply_to_screen_name,
-              in_reply_to_status_id,
-              quoted_tweet_id: quoted_tweet ? quoted_tweet.id : null,
-            })
-          }
-          disabled={text.length === 0}
-          className={`${styles.tweetButton} ${
-            !isComment ? styles.isComment : ""
-          }`}
-        >
-          {isComment ? `Reply` : `Tweet`}
-        </button>
-      </div>
-    </>
+      </form>
+    </div>
   );
 };

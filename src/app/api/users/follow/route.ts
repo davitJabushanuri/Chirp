@@ -23,15 +23,7 @@ export async function GET(request: Request) {
             id: user_id,
           },
         })
-        .followers({
-          include: {
-            follower: {
-              include: {
-                followers: true,
-              },
-            },
-          },
-        });
+        .followers();
       return NextResponse.json(followers, { status: 200 });
     } else if (type === "following") {
       const following = await prisma.user
@@ -40,15 +32,7 @@ export async function GET(request: Request) {
             id: user_id,
           },
         })
-        .following({
-          include: {
-            following: {
-              include: {
-                followers: true,
-              },
-            },
-          },
-        });
+        .following();
 
       return NextResponse.json(following, { status: 200 });
     }
@@ -57,52 +41,92 @@ export async function GET(request: Request) {
   }
 }
 
-export async function POST(request: Request) {
-  const { follower_id, following_id } = await request.json();
+export async function PUT(request: Request) {
+  const { user_id, session_owner_id } = await request.json();
 
   const followerIdSchema = z
     .object({
-      follower_id: z.string().cuid(),
-      following_id: z.string().cuid(),
+      user_id: z.string().cuid(),
+      session_owner_id: z.string().cuid(),
     })
     .strict();
 
-  const zod = followerIdSchema.safeParse({ follower_id, following_id });
+  const zod = followerIdSchema.safeParse({ user_id, session_owner_id });
 
   if (!zod.success) {
     return NextResponse.json(zod.error, { status: 400 });
   }
 
   try {
-    const isFollowing = await prisma.follows.findUnique({
+    await prisma.user.update({
       where: {
-        follower_id_following_id: {
-          follower_id,
-          following_id,
+        id: user_id,
+      },
+
+      data: {
+        followers: {
+          connect: {
+            id: session_owner_id,
+          },
         },
       },
     });
 
-    if (isFollowing) {
-      await prisma.follows.delete({
-        where: {
-          follower_id_following_id: {
-            follower_id,
-            following_id,
+    return NextResponse.json(
+      {
+        message: "Followed",
+      },
+      {
+        status: 200,
+      },
+    );
+  } catch (error: any) {
+    return NextResponse.json(error.message, { status: 500 });
+  }
+}
+
+export async function DELETE(request: Request) {
+  const { searchParams } = new URL(request.url);
+
+  const user_id = searchParams.get("user_id") || undefined;
+  const session_owner_id = searchParams.get("session_owner_id") || undefined;
+
+  const followerIdSchema = z
+    .object({
+      user_id: z.string().cuid(),
+      session_owner_id: z.string().cuid(),
+    })
+    .strict();
+
+  const zod = followerIdSchema.safeParse({ user_id, session_owner_id });
+
+  if (!zod.success) {
+    return NextResponse.json(zod.error, { status: 400 });
+  }
+
+  try {
+    await prisma.user.update({
+      where: {
+        id: user_id,
+      },
+
+      data: {
+        followers: {
+          disconnect: {
+            id: session_owner_id,
           },
         },
-      });
-      return NextResponse.json("Unfollowed", { status: 200 });
-    } else {
-      await prisma.follows.create({
-        data: {
-          follower_id,
-          following_id,
-        },
-      });
+      },
+    });
 
-      return NextResponse.json("Followed", { status: 200 });
-    }
+    return NextResponse.json(
+      {
+        message: "Unfollowed",
+      },
+      {
+        status: 200,
+      },
+    );
   } catch (error: any) {
     return NextResponse.json(error.message, { status: 500 });
   }

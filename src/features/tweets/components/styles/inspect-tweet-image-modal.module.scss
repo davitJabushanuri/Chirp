@@ -129,7 +129,8 @@ $modal: var(--clr-modal);
       padding: 0.8rem 0.5rem 0 1rem;
     }
 
-    .tweetText {
+    .text {
+      white-space: pre-wrap;
       padding: 0 1rem;
     }
 

@@ -54,13 +54,8 @@ export const Following = () => {
         />
       ) : (
         <div>
-          {following?.map((follow) => {
-            return (
-              <PersonDetails
-                key={follow?.following?.id}
-                author={follow?.following}
-              />
-            );
+          {following?.map((following) => {
+            return <PersonDetails key={following?.id} author={following} />;
           })}
         </div>
       )}

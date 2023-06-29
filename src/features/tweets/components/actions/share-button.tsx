@@ -2,8 +2,7 @@
 
 import { useSession } from "next-auth/react";
 import { useState } from "react";
-import { ToastContainer, toast, Slide } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 import { MessageIcon } from "@/assets/message-icon";
 import { Action, ActionsModal } from "@/components/elements/actions-modal";
@@ -40,18 +39,6 @@ export const ShareButton = ({ tweet }: { tweet: ITweet }) => {
 
   return (
     <div className={styles.container}>
-      <ToastContainer
-        position="bottom-center"
-        autoClose={4000}
-        hideProgressBar={true}
-        transition={Slide}
-        closeButton={false}
-        closeOnClick={false}
-        className={styles.toastContainer}
-        toastClassName={styles.toast}
-        bodyClassName={styles.toastBody}
-      />
-
       {isModalOpen && (
         <ActionsModal setIsModalOpen={setIsModalOpen}>
           <button

@@ -1,151 +1,30 @@
 @use './abstracts/media-query' as *;
 
-.parentTweet {
-  padding: 0 1rem;
-  display: grid;
-  grid-template-columns: 3rem 1fr;
-  gap: 11px;
 
-  .avatar {
-    display: grid;
-    place-items: center;
-    grid-template-rows: 3rem 1fr;
-    gap: 0.2rem;
-
-    .divider {
-      padding: 0.2rem 0;
-      width: 2px;
-      min-height: 2rem;
-      height: 100%;
-      background-color: var(--clr-border);
-    }
-  }
-
-  .userDetails {
-    display: flex;
-    gap: 0.2rem;
-
-    .name {
-      font-size: 14px;
-      color: var(--clr-secondary);
-      font-weight: 500;
-      cursor: pointer;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-
-    .username {
-      font-size: 14px;
-      color: var(--clr-tertiary);
-      cursor: pointer;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .dot {
-      margin-inline: 0.1rem;
-      color: var(--clr-tertiary);
-
-    }
-
-    .date {
-      font-size: 0.9rem;
-      color: var(--clr-tertiary);
-      cursor: pointer;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-
-    .verified {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      svg {
-        width: 1rem;
-        height: 1rem;
-        fill: var(--clr-blue);
-        cursor: pointer;
-
-      }
-    }
-  }
-
-  .tweet {
-    margin-top: 0.2rem;
-  }
-
-  .replying {
-    padding-top: 11px;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-    cursor: pointer;
-
-    .replyingTo {
-      color: var(--clr-tertiary);
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
-
-    .replyingToUsername {
-      color: var(--clr-primary);
-      cursor: pointer;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
-  }
-
-  .withoutQuotedTweet {
-    margin: 0 0 0 4rem;
-  }
-
-}
 
 .container {
   position: relative;
-  width: 100%;
-  padding: 0 15px 11px 15px;
+  padding: 11px 15px;
   display: grid;
-  grid-template-columns: 3rem 1fr;
-  gap: 1rem;
+  grid-template-columns: auto 1fr;
+  gap: 11px;
 
-  .tweet {
-    display: block;
-
+  form {
     .text {
+      max-height: 690px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      margin: 11px 0;
 
-      .placeholder {
-        font-size: 19px;
-        color: var(--clr-tertiary);
-        cursor: text;
+      textarea {
+        resize: none;
         overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-      }
-
-      input {
-        padding: 11px 0;
+        user-select: text;
+        white-space: pre-wrap;
+        overflow-wrap: break-word;
         width: 100%;
         font-size: 19px;
         color: var(--clr-secondary);
-        border-bottom: 1px solid var(--clr-background);
-
-        &:focus {
-          border-bottom: 1px solid var(--clr-border);
-        }
 
         &::placeholder {
           color: var(--clr-tertiary);
@@ -153,118 +32,40 @@
       }
     }
 
-    .fileInput {
-      display: none;
-    }
-
-    .chosenImages {
+    .chosen_images {
       margin-bottom: 11px;
-      display: grid;
-
-      .imageContainer {
-        position: relative;
-        max-height: 700px;
-        border-radius: 1rem;
-        overflow: hidden;
-
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-
-        .close {
-          position: absolute;
-          top: 0.3rem;
-          left: 0.3rem;
-          z-index: 9999;
-          cursor: pointer;
-          background-color: var(--clr-trends-background);
-          border-radius: 50%;
-
-
-          svg {
-            fill: var(--clr-light);
-          }
-        }
-      }
-    }
-
-    .two {
-      grid-template-columns: 1fr 1fr;
-      gap: 0.6rem;
-
-      .imageContainer {
-        aspect-ratio: 0.85 / 1;
-      }
-    }
-
-    .three {
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
-      grid-template-areas:
-        'first second'
-        'first third';
-      gap: 0.6rem;
-
-      .imageContainer:nth-of-type(1) {
-        grid-area: first;
-        aspect-ratio: 0.85 / 1;
-      }
-
-      .imageContainer:nth-of-type(2) {
-        grid-area: second;
-        aspect-ratio: 1.76 / 1;
-      }
-
-      .imageContainer:nth-of-type(3) {
-        grid-area: third;
-        aspect-ratio: 1.76 / 1;
-      }
-    }
-
-    .four {
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
-      grid-template-areas:
-        'first second'
-        'third fourth';
-      gap: 0.6rem;
-
-      .imageContainer:nth-of-type(1) {
-        grid-area: first;
-        aspect-ratio: 1.76 / 1;
-      }
-
-      .imageContainer:nth-of-type(2) {
-        grid-area: second;
-        aspect-ratio: 1.76 / 1;
-      }
-
-      .imageContainer:nth-of-type(3) {
-        grid-area: third;
-        aspect-ratio: 1.76 / 1;
-      }
-
-      .imageContainer:nth-of-type(4) {
-        grid-area: fourth;
-        aspect-ratio: 1.76 / 1;
-      }
     }
 
 
+
+    .quotedTweet {
+      margin: 8px 0
+    }
 
     .actions {
-      transform: translateX(-8px);
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
 
-      .media {
+      gap: 11px;
+      flex-wrap: wrap;
+
+      .tweet_actions {
+        flex-grow: 1;
+        transform: translateX(-8px);
         display: flex;
         align-items: center;
         flex-wrap: wrap;
+
+        .media {
+          &:disabled {
+            opacity: 0.5;
+            cursor: default;
+          }
+
+          .fileInput {
+            display: none;
+          }
+        }
 
         .hide {
           display: none;
@@ -275,51 +76,50 @@
         }
       }
 
+      .buttons {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+
+        .tweetButton {
+          background-color: var(--clr-primary);
+          border-radius: 100vmax;
+          height: 34px;
+          width: 72px;
+          font-size: 14px;
+          font-weight: 700;
+          cursor: pointer;
+          color: var(--clr-light);
+          display: grid;
+          place-items: center;
+
+          &:hover {
+            background-color: var(--clr-primary-hover);
+          }
+
+          &:active {
+            background-color: var(--clr-primary-active);
+          }
+
+          &:disabled {
+            opacity: 0.5;
+            cursor: default;
+
+            &:hover {
+              background-color: var(--clr-primary);
+            }
+
+            &:active {
+              background-color: var(--clr-primary);
+            }
+          }
+        }
+      }
     }
 
-    .hideActions {
-      display: none;
-    }
+
+
   }
 
-  .tweetButton {
-    background-color: var(--clr-primary);
-    border-radius: 100vmax;
-    width: 72px;
-    height: 34px;
-    font-size: 14px;
-    font-weight: 700;
-    display: grid;
-    place-items: center;
-    cursor: pointer;
-    color: var(--clr-light);
-    margin-left: auto;
 
-    &:hover {
-      background-color: var(--clr-primary-hover);
-    }
-
-    &:active {
-      background-color: var(--clr-primary-active);
-    }
-
-    &:disabled {
-      opacity: 0.5;
-      cursor: default;
-    }
-  }
-
-  .isComment {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    margin: 11px 15px;
-  }
-
-}
-
-.hideActions {
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  padding: 1rem;
 }

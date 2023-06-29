@@ -1,4 +1,4 @@
-import { User, Follows, Like } from "@prisma/client";
+import { User, Like } from "@prisma/client";
 
 import { ITweet } from "@/features/tweets";
 
@@ -6,8 +6,8 @@ import { IBookmark } from "./../../tweets/types/index";
 
 export interface IUser extends User {
   tweets: ITweet[];
-  followers: IFollow[];
-  following: IFollow[];
+  followers: User[];
+  following: User[];
   likes: ILike[];
   bookmarks: IBookmark[];
   pinned_tweet: ITweet;
@@ -30,11 +30,6 @@ export interface IProfile {
     url: string | undefined;
     file: File | undefined;
   };
-}
-
-export interface IFollow extends Follows {
-  follower: IUser;
-  following: IUser;
 }
 
 export interface ILike extends Like {

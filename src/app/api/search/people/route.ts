@@ -37,9 +37,7 @@ export async function GET(request: Request) {
       take: 3,
 
       include: {
-        followers: {
-          include: { follower: true },
-        },
+        followers: true,
       },
     });
 

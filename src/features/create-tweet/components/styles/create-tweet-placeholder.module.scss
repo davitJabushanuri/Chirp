@@ -1,0 +1,42 @@
+.container {
+  width: 100%;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 38px 1fr auto;
+  align-items: center;
+  justify-content: start;
+  gap: 11px;
+  padding: 11px 15px;
+
+  .avatar {
+    cursor: pointer;
+    transition: opacity 0.2s ease-in-out;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  .text {
+    font-size: 19px;
+    color: var(--clr-tertiary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: text;
+  }
+
+  .button {
+    width: 72px;
+    height: 34px;
+    border-radius: 100vmax;
+    background-color: var(--clr-primary);
+    color: var(--clr-white);
+    display: grid;
+    place-items: center;
+    font-size: 14px;
+    font-weight: 700;
+    opacity: 0.5;
+    cursor: default;
+  }
+}

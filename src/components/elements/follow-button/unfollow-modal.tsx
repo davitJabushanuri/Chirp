@@ -6,16 +6,16 @@ import styles from "./styles/unfollow-modal.module.scss";
 
 export const UnfollowModal = ({
   username = "user",
-  userId,
-  followerId,
+  user_id,
+  session_owner_id,
   setIsModalOpen,
 }: {
   username: string | undefined;
-  userId: string;
-  followerId: string;
+  user_id: string;
+  session_owner_id: string;
   setIsModalOpen: (value: boolean) => void;
 }) => {
-  const mutation = useFollow();
+  const mutation = useFollow("unfollow");
 
   return (
     <div
@@ -34,8 +34,8 @@ export const UnfollowModal = ({
         <button
           onClick={() => {
             mutation.mutate({
-              followerId,
-              userId,
+              user_id,
+              session_owner_id,
             });
           }}
           className={styles.unfollow}
