@@ -4,8 +4,8 @@ import styles from "./styles/avatar.module.scss";
 
 export const Avatar = ({
   userImage,
-  width = 46,
-  height = 46,
+  width = 38,
+  height = 38,
 }: {
   userImage: string | null;
   width: number;

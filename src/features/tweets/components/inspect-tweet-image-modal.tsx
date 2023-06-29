@@ -96,7 +96,11 @@ export const InspectTweetImageModal = () => {
               <div className={styles.tweetAuthor}>
                 <TweetAuthor tweet={tweet} />
               </div>
-              <div className={styles.tweetText}>{tweet?.text}</div>
+              {tweet?.text && (
+                <div className={styles.text}>
+                  {decodeURIComponent(tweet?.text)}
+                </div>
+              )}
 
               <div className={styles.tweetDate}>
                 <TweetCreationDate date={tweet?.created_at} />

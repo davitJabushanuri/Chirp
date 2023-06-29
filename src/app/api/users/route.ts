@@ -34,11 +34,7 @@ export async function GET(request: Request) {
         profile_image_url: true,
         following: true,
 
-        followers: {
-          select: {
-            follower_id: true,
-          },
-        },
+        followers: true,
       },
     });
 

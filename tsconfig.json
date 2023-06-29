@@ -2,26 +2,21 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./src/*"
-      ]
+      "@/*": ["./src/*"]
     },
-    "target": "ES2015",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "target": "ES2022",
+    "lib": ["dom", "dom.iterable", "ES2022"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "noImplicitAny": true,
     "jsx": "preserve",
     "incremental": true,
     "plugins": [
@@ -31,6 +26,7 @@
     ],
     "types": [
       "next",
+      "node",
       "next/types/global",
       "jest",
       "@testing-library/jest-dom"
@@ -42,11 +38,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "@/types/*",
-    "C:\\Users\\Davit\\Desktop\\projects\\twitter-v2\\.next/types/**/*.ts"
+    "jest.setup.mjs"
   ],
-  "exclude": [
-    "node_modules",
-    "cypress",
-    "./cypress.config.ts"
-  ]
+  "exclude": ["node_modules", "cypress", "./cypress.config.ts"]
 }

@@ -1,14 +1,22 @@
 .container {
   position: relative;
   border-bottom: 1px solid var(--clr-border);
+  padding: 4px 0 11px;
 
-  .commentButton {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    pointer-events: visible;
+  .createTweet {
+    .replyingTo {
+      margin-left: 65px;
+    }
   }
+}
+
+@keyframes slideDown {
+  0% {
+    height: 60px;
+  }
+
+  100% {
+    height: auto;
+  }
+
 }

@@ -1,5 +1,7 @@
 "use client";
 import { useSession } from "next-auth/react";
+import { ToastContainer, Slide } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import { LoadingScreen } from "@/components/elements/loading-screen";
 import { Aside } from "@/components/layout/aside";
@@ -14,8 +16,9 @@ import { useCreateTweetModal } from "@/stores/use-create-tweet-modal";
 import { useHamburger } from "@/stores/use-hamburger";
 import { useInspectTweetImage } from "@/stores/use-inspect-tweet-images";
 import { useTheme } from "@/stores/use-theme";
-import NextAuthProvider from "@/utils/next-auth-provider";
 import ReactQueryWrapper from "@/utils/react-query";
+
+import styles from "./styles/toast.module.scss";
 
 export const ClientLayout = ({
   children,
@@ -40,34 +43,40 @@ export const ClientLayout = ({
   const { data: session, status } = useSession();
 
   return (
-    <NextAuthProvider>
-      <body
-        suppressHydrationWarning={true}
-        className={`${currentTheme || theme} ${currentColor || color}`}
-      >
-        {status === "loading" ? (
-          <LoadingScreen />
-        ) : (
-          <>
-            <ReactQueryWrapper>
-              <div className="layout">
-                <MobileNavbar />
+    <body
+      suppressHydrationWarning={true}
+      className={`${currentTheme || theme} ${currentColor || color}`}
+    >
+      {status === "loading" ? (
+        <LoadingScreen />
+      ) : (
+        <ReactQueryWrapper>
+          <div className="layout">
+            <MobileNavbar />
 
-                <MobileTweetButton />
+            <MobileTweetButton />
 
-                <Sidebar />
-                <main>{children}</main>
-                <Aside />
-              </div>
-              {isTweetModalOpen && <CreateTweetModal />}
-              {isHamburgerOpen && <HamburgerMenu />}
-              {!session && <AuthModalTrigger />}
-              {isJoinTwitterModalOpen && <JoinTwitterModal />}
-              {isTweetImageModalOpen && <InspectTweetImageModal />}
-            </ReactQueryWrapper>
-          </>
-        )}
-      </body>
-    </NextAuthProvider>
+            <Sidebar />
+            <main>{children}</main>
+            <Aside />
+          </div>
+          <ToastContainer
+            position="bottom-center"
+            autoClose={4000}
+            hideProgressBar={true}
+            transition={Slide}
+            closeButton={false}
+            closeOnClick={false}
+            className={styles.container}
+            toastClassName={styles.toast}
+          />
+          {isTweetModalOpen && <CreateTweetModal />}
+          {isHamburgerOpen && <HamburgerMenu />}
+          {!session && <AuthModalTrigger />}
+          {isJoinTwitterModalOpen && <JoinTwitterModal />}
+          {isTweetImageModalOpen && <InspectTweetImageModal />}
+        </ReactQueryWrapper>
+      )}
+    </body>
   );
 };

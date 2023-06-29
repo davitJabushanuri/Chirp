@@ -13,6 +13,7 @@ import { useInspectImage } from "@/stores/use-inspect-profile-image";
 
 import { WebsiteIcon } from "../assets/website-icon";
 import { IUser } from "../types";
+import { following } from "../utils/following";
 
 import styles from "./styles/user-info.module.scss";
 import { UserJoinDate } from "./user-join-date";
@@ -23,9 +24,11 @@ export const UserInfo = ({ user }: { user: IUser }) => {
   const pathname = usePathname();
   const id = pathname?.split("/")[1];
 
-  const isFollowing = user?.followers?.some(
-    (follower) => follower?.follower_id === session?.user?.id,
-  );
+  const isFollowing = following({
+    user: user,
+    session_owner_id: session?.user?.id,
+  });
+
   const openEditProfileModal = useEditProfile(
     (state) => state.openEditProfileModal,
   );
@@ -102,8 +105,8 @@ export const UserInfo = ({ user }: { user: IUser }) => {
               )}
 
               <FollowButton
-                followerId={session?.user?.id}
-                userId={user?.id}
+                user_id={user?.id}
+                session_owner_id={session?.user?.id}
                 isFollowing={isFollowing}
                 username={user?.email?.split("@")[0]}
               />

@@ -39,16 +39,8 @@ export async function GET(
         location: true,
         url: true,
         verified: true,
-        followers: {
-          select: {
-            follower_id: true,
-          },
-        },
-        following: {
-          select: {
-            follower_id: true,
-          },
-        },
+        followers: true,
+        following: true,
 
         _count: {
           select: {

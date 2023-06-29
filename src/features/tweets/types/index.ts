@@ -1,4 +1,4 @@
-import { Tweet, Like, Media, Retweet, Bookmark } from "@prisma/client";
+import type { Tweet, Like, Media, Retweet, Bookmark } from "@prisma/client";
 
 import { IUser } from "@/features/profile";
 

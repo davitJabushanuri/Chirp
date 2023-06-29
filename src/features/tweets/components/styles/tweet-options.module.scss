@@ -2,14 +2,13 @@
   position: relative;
 
   .optionsButton {
-    width: 32px;
-    height: 32px;
+    width: 33.5px;
+    height: 33.5px;
     border-radius: 100vmax;
     cursor: pointer;
     fill: var(--clr-tertiary);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    place-items: center;
 
     &:hover {
       background-color: var(--clr-options-hover);
@@ -22,8 +21,8 @@
     }
 
     svg {
-      width: 17px;
-      height: 17px;
+      width: 17.5px;
+      height: 17.5px;
     }
   }
 }

@@ -1,0 +1,14 @@
+.container {
+
+  p {
+    color: var(--clr-tertiary);
+    font-size: 14px;
+    word-wrap: break-word;
+    word-break: break-all;
+
+    a {
+      color: var(--clr-primary);
+      cursor: pointer;
+    }
+  }
+}

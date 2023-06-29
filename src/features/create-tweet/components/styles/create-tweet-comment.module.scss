@@ -1,0 +1,91 @@
+.container {
+  padding: 0 15px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 11px;
+  padding-bottom: 3px;
+
+  .avatar {
+    display: grid;
+    place-items: center;
+    grid-template-rows: auto 1fr;
+    gap: 4px;
+
+    .divider {
+      width: 2px;
+      min-height: 2rem;
+      height: 100%;
+      background-color: var(--clr-border);
+    }
+  }
+
+  .userDetails {
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: start;
+    gap: 2px;
+
+
+    .name {
+      font-size: 14px;
+      color: var(--clr-secondary);
+      font-weight: 500;
+      cursor: text;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+
+    .username {
+      font-size: 14px;
+      color: var(--clr-tertiary);
+      cursor: text;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .dot {
+      margin-inline: 0.1rem;
+      color: var(--clr-tertiary);
+
+    }
+
+    .date {
+      font-size: 0.9rem;
+      color: var(--clr-tertiary);
+      cursor: text;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+    }
+
+    .verified {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      svg {
+        width: 1rem;
+        height: 1rem;
+        fill: var(--clr-blue);
+        cursor: pointer;
+
+      }
+    }
+  }
+
+  .tweet {
+    margin-top: 0.2rem;
+
+    .text {
+      white-space: pre-wrap;
+    }
+  }
+
+  .replyingTo {
+    padding: 15px 0;
+  }
+
+}
