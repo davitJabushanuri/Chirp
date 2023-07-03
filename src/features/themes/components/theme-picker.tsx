@@ -1,15 +1,47 @@
 "use client";
 import { setCookie } from "cookies-next";
+import { useState } from "react";
 
 import { TickIcon } from "@/assets/tick-svg";
 
 import styles from "./styles/theme-picker.module.scss";
 
-export const ThemePicker = ({ theme }: { theme: string | undefined }) => {
+enum ITheme {
+  LIGHT = "theme-light",
+  DIM = "theme-dim",
+  DARK = "theme-dark",
+  DEFAULT = "theme-light",
+}
+
+export const ThemePicker = ({
+  theme = "theme-light",
+}: {
+  theme?: string | undefined;
+}) => {
+  if (!Object.values(ITheme).includes(theme as ITheme)) {
+    theme = ITheme.DEFAULT;
+  }
+
+  const [currentTheme, setCurrentTheme] = useState(theme as ITheme);
+
+  const handleThemeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    document.documentElement.className =
+      document.documentElement.className.replace(/\btheme-\S+/g, "");
+
+    document.documentElement.classList.add(e.target.value);
+
+    setCookie("theme", e.target.value, {
+      maxAge: 60 * 60 * 24 * 365,
+    });
+
+    setCurrentTheme(e.target.value as ITheme);
+    console.log("currentTheme", currentTheme);
+  };
+
   return (
-    <fieldset className={styles.container}>
+    <fieldset data-testid={`fieldset`} className={styles.container}>
       <legend>Background</legend>
-      <ul className={styles.themes}>
+      <ul role="radiogroup" className={styles.themes}>
         <li className={styles.radio_wrapper}>
           <input
             aria-label="Light"
@@ -17,19 +49,10 @@ export const ThemePicker = ({ theme }: { theme: string | undefined }) => {
             id="theme-light"
             value="theme-light"
             name="theme"
-            onChange={(e) => {
-              document.documentElement.className =
-                document.documentElement.className.replace(/\btheme-\S+/g, "");
-
-              document.documentElement.classList.add("theme-light");
-
-              setCookie("theme", e.target.value, {
-                maxAge: 60 * 60 * 24 * 365,
-              });
-            }}
-            aria-checked={theme === "theme-light"}
-            tabIndex={theme === "theme-light" ? 0 : -1}
-            defaultChecked={theme === "theme-light"}
+            onChange={handleThemeChange}
+            aria-checked={currentTheme === "theme-light"}
+            defaultChecked={currentTheme === "theme-light"}
+            tabIndex={currentTheme === "theme-light" ? 0 : -1}
           />
 
           <label className={styles.theme_light} htmlFor="theme-light">
@@ -51,19 +74,10 @@ export const ThemePicker = ({ theme }: { theme: string | undefined }) => {
             id="theme-dim"
             value="theme-dim"
             name="theme"
-            onChange={(e) => {
-              document.documentElement.className =
-                document.documentElement.className.replace(/\btheme-\S+/g, "");
-
-              document.documentElement.classList.add("theme-dim");
-
-              setCookie("theme", e.target.value, {
-                maxAge: 60 * 60 * 24 * 365,
-              });
-            }}
-            aria-checked={theme === "theme-dim"}
-            tabIndex={theme === "theme-dim" ? 0 : -1}
-            defaultChecked={theme === "theme-dim"}
+            onChange={handleThemeChange}
+            aria-checked={currentTheme === "theme-dim"}
+            defaultChecked={currentTheme === "theme-dim"}
+            tabIndex={currentTheme === "theme-dim" ? 0 : -1}
           />
 
           <label className={styles.theme_dim} htmlFor="theme-dim">
@@ -85,19 +99,10 @@ export const ThemePicker = ({ theme }: { theme: string | undefined }) => {
             id="theme-dark"
             value="theme-dark"
             name="theme"
-            onChange={(e) => {
-              document.documentElement.className =
-                document.documentElement.className.replace(/\btheme-\S+/g, "");
-
-              document.documentElement.classList.add("theme-dark");
-
-              setCookie("theme", e.target.value, {
-                maxAge: 60 * 60 * 24 * 365,
-              });
-            }}
-            aria-checked={theme === "theme-dark"}
-            tabIndex={theme === "theme-dark" ? 0 : -1}
-            defaultChecked={theme === "theme-dark"}
+            onChange={handleThemeChange}
+            aria-checked={currentTheme === "theme-dark"}
+            defaultChecked={currentTheme === "theme-dark"}
+            tabIndex={currentTheme === "theme-dark" ? 0 : -1}
           />
 
           <label className={styles.theme_dark} htmlFor="theme-dark">

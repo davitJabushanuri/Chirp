@@ -1,14 +1,13 @@
 import { cookies } from "next/headers";
 
 import { ColorPicker } from "@/components/elements/color-picker";
-import { SettingsHeader } from "@/components/layout/header";
 import { ThemePicker } from "@/features/themes";
 
 import styles from "./styles/settings.module.scss";
 
 const Settings = () => {
   const nextCookies = cookies();
-  const theme = nextCookies.get("theme");
+  const theme = nextCookies.get("theme")?.value;
   const color = nextCookies.get("color");
 
   return (
@@ -21,7 +20,7 @@ const Settings = () => {
           These settings affect all the Twitter accounts on this browser.
         </h2>
         <ColorPicker color={color?.value} />
-        <ThemePicker theme={theme?.value ?? "theme-light"} />
+        <ThemePicker theme={theme} />
       </div>
     </div>
   );
