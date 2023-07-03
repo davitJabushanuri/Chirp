@@ -1,3 +1,5 @@
+"use client";
+
 import { useRouter } from "next/navigation";
 
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
