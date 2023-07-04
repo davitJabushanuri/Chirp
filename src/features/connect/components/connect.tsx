@@ -28,7 +28,7 @@ export const Connect = () => {
           <h1>Who to follow</h1>
           <div className={styles.people}>
             {people.length > 0 &&
-              people?.slice(0, 3).map((person) => {
+              people?.slice(0, 3)?.map((person) => {
                 return <Person key={person.id} person={person} />;
               })}
           </div>

@@ -35,7 +35,6 @@ export const ThemePicker = ({
     });
 
     setCurrentTheme(e.target.value as ITheme);
-    console.log("currentTheme", currentTheme);
   };
 
   return (
