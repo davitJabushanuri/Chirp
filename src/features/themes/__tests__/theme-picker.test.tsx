@@ -1,7 +1,8 @@
-import { render, screen, fireEvent, act } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import { ThemePicker } from "../components/theme-picker";
+import { act } from "react-dom/test-utils";
 
 describe("ThemePicker", () => {
   it("renders", () => {
@@ -37,26 +38,26 @@ describe("ThemePicker", () => {
     expect(lightTheme).toBeChecked();
   });
 
-  it("should change the theme when the user clicks on a radio input", () => {
+  it("should change the theme when the user clicks on a radio input", async () => {
     render(<ThemePicker theme="theme-dark" />);
 
-    const lightTheme = screen.getByLabelText("Default");
-    const dimTheme = screen.getByLabelText("Dim");
-    const darkTheme = screen.getByLabelText("Lights out");
+    const lightTheme = await screen.findByLabelText("Default");
+    const dimTheme = await screen.findByLabelText("Dim");
+    const darkTheme = await screen.findByLabelText("Lights out");
 
-    fireEvent.click(lightTheme);
+    await userEvent.click(lightTheme);
     expect(document.documentElement).toHaveClass("theme-light");
     expect(lightTheme).toBeChecked();
     expect(dimTheme).not.toBeChecked();
     expect(darkTheme).not.toBeChecked();
 
-    fireEvent.click(dimTheme);
+    await userEvent.click(dimTheme);
     expect(document.documentElement).toHaveClass("theme-dim");
     expect(lightTheme).not.toBeChecked();
     expect(dimTheme).toBeChecked();
     expect(darkTheme).not.toBeChecked();
 
-    fireEvent.click(darkTheme);
+    await userEvent.click(darkTheme);
     expect(document.documentElement).toHaveClass("theme-dark");
     expect(lightTheme).not.toBeChecked();
     expect(dimTheme).not.toBeChecked();

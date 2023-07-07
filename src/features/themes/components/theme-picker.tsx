@@ -2,9 +2,8 @@
 import { setCookie } from "cookies-next";
 import { useState } from "react";
 
-import { TickIcon } from "@/assets/tick-svg";
-
 import styles from "./styles/theme-picker.module.scss";
+import { Theme } from "./theme";
 
 enum ITheme {
   LIGHT = "theme-light",
@@ -41,80 +40,26 @@ export const ThemePicker = ({
     <fieldset data-testid={`fieldset`} className={styles.container}>
       <legend>Background</legend>
       <ul role="radiogroup" className={styles.themes}>
-        <li className={styles.radio_wrapper}>
-          <input
-            aria-label="Light"
-            type="radio"
-            id="theme-light"
-            value="theme-light"
-            name="theme"
-            onChange={handleThemeChange}
-            aria-checked={currentTheme === "theme-light"}
-            defaultChecked={currentTheme === "theme-light"}
-            tabIndex={currentTheme === "theme-light" ? 0 : -1}
-          />
+        <Theme
+          value="theme-light"
+          label="Default"
+          checked={currentTheme === "theme-light"}
+          onChange={handleThemeChange}
+        />
 
-          <label className={styles.theme_light} htmlFor="theme-light">
-            <span className={styles.circle}>
-              <span className={styles.tick}>
-                <TickIcon />
-              </span>
-            </span>
-            <span aria-hidden="true" className={styles.text}>
-              Default
-            </span>
-          </label>
-        </li>
+        <Theme
+          value="theme-dim"
+          label="Dim"
+          checked={currentTheme === "theme-dim"}
+          onChange={handleThemeChange}
+        />
 
-        <li className={styles.radio_wrapper}>
-          <input
-            aria-label="Dim"
-            type="radio"
-            id="theme-dim"
-            value="theme-dim"
-            name="theme"
-            onChange={handleThemeChange}
-            aria-checked={currentTheme === "theme-dim"}
-            defaultChecked={currentTheme === "theme-dim"}
-            tabIndex={currentTheme === "theme-dim" ? 0 : -1}
-          />
-
-          <label className={styles.theme_dim} htmlFor="theme-dim">
-            <span className={styles.circle}>
-              <span className={styles.tick}>
-                <TickIcon />
-              </span>
-            </span>
-            <span aria-hidden="true" className={styles.text}>
-              Dim
-            </span>
-          </label>
-        </li>
-
-        <li className={styles.radio_wrapper}>
-          <input
-            aria-label="Lights out"
-            type="radio"
-            id="theme-dark"
-            value="theme-dark"
-            name="theme"
-            onChange={handleThemeChange}
-            aria-checked={currentTheme === "theme-dark"}
-            defaultChecked={currentTheme === "theme-dark"}
-            tabIndex={currentTheme === "theme-dark" ? 0 : -1}
-          />
-
-          <label className={styles.theme_dark} htmlFor="theme-dark">
-            <span className={styles.circle}>
-              <span className={styles.tick}>
-                <TickIcon />
-              </span>
-            </span>
-            <span aria-hidden="true" className={styles.text}>
-              Lights out
-            </span>
-          </label>
-        </li>
+        <Theme
+          value="theme-dark"
+          label="Lights out"
+          checked={currentTheme === "theme-dark"}
+          onChange={handleThemeChange}
+        />
       </ul>
     </fieldset>
   );
