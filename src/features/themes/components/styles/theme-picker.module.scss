@@ -1,0 +1,22 @@
+@use "./abstracts/media-query" as *;
+
+.container {
+  legend {
+    color: var(--clr-tertiary);
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 4px;
+    line-height: 1.6;
+  }
+
+  .themes {
+    background-color: var(--clr-trends-background);
+    border-radius: 15px;
+    padding: 4px 12px;
+    display: grid;
+
+    @include mq("medium") {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}

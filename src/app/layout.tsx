@@ -18,15 +18,13 @@ export default async function RootLayout({
 
   return (
     <html
-      className={`${theme?.value || "theme-light"} ${
-        color?.value || "color-blue"
+      className={`${theme?.value ?? "theme-light"} ${
+        color?.value ?? "color-blue"
       }`}
       lang="en"
     >
       <NextAuthProvider>
-        <ClientLayout theme={theme?.value} color={color?.value}>
-          {children}
-        </ClientLayout>
+        <ClientLayout>{children}</ClientLayout>
       </NextAuthProvider>
     </html>
   );

@@ -11,26 +11,14 @@ import { CreateTweetModal, MobileTweetButton } from "@/features/create-tweet";
 import { HamburgerMenu, MobileNavbar } from "@/features/navbar";
 import { Sidebar } from "@/features/sidebar";
 import { InspectTweetImageModal } from "@/features/tweets";
-import { useColor } from "@/stores/use-color";
 import { useCreateTweetModal } from "@/stores/use-create-tweet-modal";
 import { useHamburger } from "@/stores/use-hamburger";
 import { useInspectTweetImage } from "@/stores/use-inspect-tweet-images";
-import { useTheme } from "@/stores/use-theme";
 import ReactQueryWrapper from "@/utils/react-query";
 
 import styles from "./styles/toast.module.scss";
 
-export const ClientLayout = ({
-  children,
-  theme,
-  color,
-}: {
-  children: React.ReactNode;
-  theme: string | undefined;
-  color: string | undefined;
-}) => {
-  const currentTheme = useTheme((state) => state.theme);
-  const currentColor = useColor((state) => state.color);
+export const ClientLayout = ({ children }: { children: React.ReactNode }) => {
   const isTweetModalOpen = useCreateTweetModal((state) => state.isModalOpen);
   const isHamburgerOpen = useHamburger((state) => state.isHamburgerOpen);
   const isTweetImageModalOpen = useInspectTweetImage(
@@ -43,10 +31,7 @@ export const ClientLayout = ({
   const { data: session, status } = useSession();
 
   return (
-    <body
-      suppressHydrationWarning={true}
-      className={`${currentTheme || theme} ${currentColor || color}`}
-    >
+    <body suppressHydrationWarning={true}>
       {status === "loading" ? (
         <LoadingScreen />
       ) : (
