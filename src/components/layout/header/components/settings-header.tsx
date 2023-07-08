@@ -1,3 +1,5 @@
+"use client";
+
 import { HamburgerButton } from "@/components/elements/hamburger-button";
 
 import styles from "./styles/settings-header.module.scss";
