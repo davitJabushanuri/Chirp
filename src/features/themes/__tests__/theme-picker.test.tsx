@@ -1,8 +1,31 @@
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import { ThemePicker } from "../components/theme-picker";
-import { act } from "react-dom/test-utils";
+
+const consoleError = console.error;
+let mockConsoleError: jest.SpyInstance;
+beforeAll(() => {
+  mockConsoleError = jest
+    .spyOn(console, "error")
+    .mockImplementation((...args) => {
+      const message = typeof args[0] === "string" ? args[0] : "";
+      if (
+        message.includes(
+          "When testing, code that causes React state updates should be wrapped into act(...)",
+        ) ||
+        message.includes("antd")
+      ) {
+        return;
+      }
+
+      return consoleError.call(console, args);
+    });
+});
+
+afterAll(() => {
+  mockConsoleError.mockRestore();
+});
 
 describe("ThemePicker", () => {
   it("renders", () => {
@@ -46,6 +69,7 @@ describe("ThemePicker", () => {
     const darkTheme = await screen.findByLabelText("Lights out");
 
     await userEvent.click(lightTheme);
+
     expect(document.documentElement).toHaveClass("theme-light");
     expect(lightTheme).toBeChecked();
     expect(dimTheme).not.toBeChecked();
