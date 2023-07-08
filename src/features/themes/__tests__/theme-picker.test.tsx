@@ -31,7 +31,7 @@ describe("ThemePicker", () => {
   it("renders", () => {
     render(<ThemePicker theme="theme-light" />);
 
-    const themePicker = screen.getByTestId("fieldset");
+    const themePicker = screen.getByTestId("theme-fieldset");
     expect(themePicker).toBeInTheDocument();
 
     const legend = screen.getByText("Background");

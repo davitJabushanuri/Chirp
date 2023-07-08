@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 
-import { ColorPicker } from "@/components/elements/color-picker";
+import { ColorPicker } from "@/features/color-picker";
 import { ThemePicker } from "@/features/themes";
 
 import styles from "./styles/settings.module.scss";
