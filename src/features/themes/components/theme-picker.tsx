@@ -24,6 +24,8 @@ export const ThemePicker = ({
   const [currentTheme, setCurrentTheme] = useState(theme as ITheme);
 
   const handleThemeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!Object.values(ITheme).includes(e.target.value as ITheme)) return;
+
     document.documentElement.className =
       document.documentElement.className.replace(/\btheme-\S+/g, "");
 
