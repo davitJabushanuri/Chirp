@@ -1,0 +1,83 @@
+.container {
+  width: 45px;
+  height: 45px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+
+  label {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 25px;
+      height: 25px;
+      fill: var(--clr-light);
+      display: none;
+    }
+
+    input[type="radio"]:checked + svg {
+      display: block;
+    }
+  }
+}
+
+.color-blue {
+  label {
+    background-color: var(--clr-blue);
+  }
+
+  &:hover {
+  }
+}
+
+.color-yellow {
+  label {
+    background-color: var(--clr-yellow);
+  }
+
+  &:hover {
+  }
+}
+
+.color-rose {
+  label {
+    background-color: var(--clr-rose);
+  }
+
+  &:hover {
+  }
+}
+
+.color-violet {
+  label {
+    background-color: var(--clr-violet);
+  }
+
+  &:hover {
+  }
+}
+
+.color-orange {
+  label {
+    background-color: var(--clr-orange);
+  }
+
+  &:hover {
+  }
+}
+
+.color-green {
+  label {
+    background-color: var(--clr-green);
+  }
+
+  &:hover {
+  }
+}

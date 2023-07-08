@@ -1,0 +1,26 @@
+@use "./abstracts/media-query" as *;
+
+.container {
+  margin-bottom: 12px;
+
+  legend {
+    color: var(--clr-tertiary);
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 4px;
+    line-height: 1.6;
+  }
+
+  .colors {
+    background-color: var(--clr-trends-background);
+    border-radius: 15px;
+    padding: 8px 12px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    place-items: center;
+
+    @include mq("medium") {
+      grid-template-columns: repeat(6, 1fr);
+    }
+  }
+}
