@@ -41,16 +41,52 @@
   .theme-light {
     background-color: var(--clr-light);
     color: var(--clr-dark);
+
+    &:hover {
+      .circle {
+        background-color: var(--clr-light-hover);
+      }
+    }
+
+    &:active {
+      .circle {
+        background-color: var(--clr-light-active);
+      }
+    }
   }
 
   .theme-dim {
     background-color: var(--clr-dim);
     color: var(--clr-light);
+
+    &:hover {
+      .circle {
+        background-color: var(--clr-dim-hover);
+      }
+    }
+
+    &:active {
+      .circle {
+        background-color: var(--clr-dim-active);
+      }
+    }
   }
 
   .theme-dark {
     background-color: var(--clr-dark);
     color: var(--clr-light);
+
+    &:hover {
+      .circle {
+        background-color: var(--clr-dark-hover);
+      }
+    }
+
+    &:active {
+      .circle {
+        background-color: var(--clr-dark-active);
+      }
+    }
   }
 
   input[type="radio"] {

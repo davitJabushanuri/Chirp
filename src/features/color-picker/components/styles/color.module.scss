@@ -1,0 +1,123 @@
+$color-blue: #1d9bf0;
+$color-yellow: #ffd400;
+$color-rose: #f91880;
+$color-violet: #7856ff;
+$color-orange: #ff7a00;
+$color-green: #00ba7c;
+
+.container {
+  width: 45px;
+  height: 45px;
+  display: grid;
+  place-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
+
+  &:has(input:focus-visible) {
+    outline: 2px solid var(--clr-primary-disabled);
+  }
+
+  label {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    display: grid;
+    place-content: center;
+
+    svg {
+      width: 25px;
+      height: 25px;
+      fill: var(--clr-light);
+      display: none;
+    }
+
+    input[type="radio"]:checked + svg {
+      display: block;
+    }
+  }
+}
+
+.color-blue {
+  label {
+    background-color: var(--clr-blue);
+  }
+
+  &:hover {
+    background-color: rgba($color: $color-blue, $alpha: 0.2);
+  }
+
+  &:active {
+    background-color: rgba($color: $color-blue, $alpha: 0.3);
+  }
+}
+
+.color-yellow {
+  label {
+    background-color: var(--clr-yellow);
+  }
+
+  &:hover {
+    background-color: rgba($color: $color-yellow, $alpha: 0.2);
+  }
+
+  &:active {
+    background-color: rgba($color: $color-yellow, $alpha: 0.3);
+  }
+}
+
+.color-rose {
+  label {
+    background-color: var(--clr-rose);
+  }
+
+  &:hover {
+    background-color: rgba($color: $color-rose, $alpha: 0.2);
+  }
+
+  &:active {
+    background-color: rgba($color: $color-rose, $alpha: 0.3);
+  }
+}
+
+.color-violet {
+  label {
+    background-color: var(--clr-violet);
+  }
+
+  &:hover {
+    background-color: rgba($color: $color-violet, $alpha: 0.2);
+  }
+
+  &:active {
+    background-color: rgba($color: $color-violet, $alpha: 0.3);
+  }
+}
+
+.color-orange {
+  label {
+    background-color: var(--clr-orange);
+  }
+
+  &:hover {
+    background-color: rgba($color: $color-orange, $alpha: 0.2);
+  }
+
+  &:active {
+    background-color: rgba($color: $color-orange, $alpha: 0.3);
+  }
+}
+
+.color-green {
+  label {
+    background-color: var(--clr-green);
+  }
+
+  &:hover {
+    background-color: rgba($color: $color-green, $alpha: 0.2);
+  }
+
+  &:active {
+    background-color: rgba($color: $color-green, $alpha: 0.3);
+  }
+}
