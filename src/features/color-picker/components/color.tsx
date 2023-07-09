@@ -28,6 +28,7 @@ const Color = ({
           aria-checked={checked}
           defaultChecked={checked}
           tabIndex={checked ? 0 : -1}
+          data-testid={`${value}`}
         />
 
         <TickIcon />

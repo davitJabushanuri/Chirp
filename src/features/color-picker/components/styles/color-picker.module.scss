@@ -16,6 +16,7 @@
     border-radius: 15px;
     padding: 8px 12px;
     display: grid;
+    gap: 8px;
     grid-template-columns: repeat(3, 1fr);
     place-items: center;
 
