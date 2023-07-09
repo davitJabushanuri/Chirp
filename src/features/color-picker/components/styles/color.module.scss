@@ -12,7 +12,11 @@ $color-green: #00ba7c;
   place-content: center;
   border-radius: 50%;
   cursor: pointer;
-  transition: all 0.15s ease-in-out;
+  transition: background-color 0.15s ease-in-out;
+
+  &:has(input:focus-visible) {
+    outline: 2px solid var(--clr-primary-disabled);
+  }
 
   label {
     height: 40px;
