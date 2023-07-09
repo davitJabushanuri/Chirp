@@ -31,7 +31,7 @@ describe("ThemePicker", () => {
   it("renders", () => {
     render(<ThemePicker theme="theme-light" />);
 
-    const themePicker = screen.getByTestId("fieldset");
+    const themePicker = screen.getByTestId("theme-fieldset");
     expect(themePicker).toBeInTheDocument();
 
     const legend = screen.getByText("Background");
@@ -47,21 +47,21 @@ describe("ThemePicker", () => {
     expect(darkTheme).toBeInTheDocument();
   });
 
-  it("should render with the light theme selected by default if no theme is provided", () => {
+  it("it should render with the light theme selected by default if no theme is provided", () => {
     render(<ThemePicker />);
 
     const lightTheme = screen.getByLabelText("Default");
     expect(lightTheme).toBeChecked();
   });
 
-  it("should set the theme to theme-light if an invalid theme is provided", () => {
+  it("it should set the theme to theme-light if an invalid theme is provided", () => {
     render(<ThemePicker theme="invalid-theme" />);
 
     const lightTheme = screen.getByLabelText("Default");
     expect(lightTheme).toBeChecked();
   });
 
-  it("should change the theme when the user clicks on a radio input", async () => {
+  it("it should change the theme when the user clicks on a radio input", async () => {
     render(<ThemePicker theme="theme-dark" />);
 
     const lightTheme = await screen.findByLabelText("Default");
@@ -88,7 +88,7 @@ describe("ThemePicker", () => {
     expect(darkTheme).toBeChecked();
   });
 
-  it("should change the theme when the user presses arrow keys", async () => {
+  it("it should change the theme when the user presses arrow keys", async () => {
     render(<ThemePicker theme="theme-light" />);
 
     const lightTheme = screen.getByLabelText("Default");

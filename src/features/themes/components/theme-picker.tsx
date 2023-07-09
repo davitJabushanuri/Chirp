@@ -39,9 +39,13 @@ export const ThemePicker = ({
   };
 
   return (
-    <fieldset data-testid={`fieldset`} className={styles.container}>
+    <fieldset
+      aria-label="Theme Options"
+      data-testid={`theme-fieldset`}
+      className={styles.container}
+    >
       <legend>Background</legend>
-      <ul role="radiogroup" className={styles.themes}>
+      <ul className={styles.themes}>
         <Theme
           value="theme-light"
           label="Default"
