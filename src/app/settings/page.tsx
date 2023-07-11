@@ -1,6 +1,7 @@
 import { cookies } from "next/headers";
 
 import { ColorPicker } from "@/features/color-picker";
+import { FontSizeCustomization } from "@/features/font-size-customization";
 import { ThemePicker } from "@/features/themes";
 
 import styles from "./styles/settings.module.scss";
@@ -19,6 +20,7 @@ const Settings = () => {
         <h2 className={styles.subheading}>
           These settings affect all the Twitter accounts on this browser.
         </h2>
+        <FontSizeCustomization />
         <ColorPicker color={color} />
         <ThemePicker theme={theme} />
       </div>

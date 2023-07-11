@@ -1,0 +1,29 @@
+.container {
+  margin-bottom: 12px;
+
+  legend {
+    color: var(--clr-tertiary);
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 4px;
+    line-height: 1.6;
+  }
+
+  .slider {
+    background-color: var(--clr-trends-background);
+    padding: 15px;
+    border-radius: 15px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 15px;
+
+    .small {
+      font-size: 13px;
+    }
+
+    .large {
+      font-size: 20px;
+    }
+  }
+}
