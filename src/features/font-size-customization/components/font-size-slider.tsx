@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 
+import { SliderDot } from "./slider-dot";
 import styles from "./styles/font-size-slider.module.scss";
 
 export const FontSizeSlider = () => {
@@ -13,6 +14,7 @@ export const FontSizeSlider = () => {
   return (
     <div className={styles.container}>
       <input
+        aria-label="Font size"
         type="range"
         min={0}
         max={4}
@@ -24,23 +26,37 @@ export const FontSizeSlider = () => {
           }%, var(--clr-primary-disabled) ${(fontSize / 4) * 100}%)`,
         }}
       />
-      <div className={styles.dots}>
-        {[0, 1, 2, 3, 4].map((value, index) => (
-          <button
-            aria-hidden="true"
-            key={value}
-            className={`${styles.dot}`}
-            onClick={() => setFontSize(value)}
-            tabIndex={-1}
-          >
-            <span
-              className={
-                fontSize >= index ? styles.primaryColor : styles.secondaryColor
-              }
-            ></span>
-          </button>
-        ))}
-      </div>
+
+      <SliderDot
+        value={0}
+        fontSize={fontSize}
+        setFontSize={setFontSize}
+        title={`Extra small`}
+      />
+      <SliderDot
+        value={1}
+        fontSize={fontSize}
+        setFontSize={setFontSize}
+        title={`Small`}
+      />
+      <SliderDot
+        value={2}
+        fontSize={fontSize}
+        setFontSize={setFontSize}
+        title={`Default`}
+      />
+      <SliderDot
+        value={3}
+        fontSize={fontSize}
+        setFontSize={setFontSize}
+        title={`Large`}
+      />
+      <SliderDot
+        value={4}
+        fontSize={fontSize}
+        setFontSize={setFontSize}
+        title={`Extra large`}
+      />
     </div>
   );
 };
