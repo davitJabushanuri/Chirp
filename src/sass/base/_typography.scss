@@ -1,4 +1,62 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700;800;900&display=swap");
+@use "./font-size.scss" as *;
 
-$ff-base: "Roboto", sans-serif;
-$ff-icons: "Material Icons", sans-serif;
+:root {
+  --ff-base: "Roboto", sans-serif;
+  --ff-icons: "Material Icons", sans-serif;
+
+  .font-size-xs {
+    --fs-h1: #{$xs-h1};
+    --fs-h2: #{$xs-h2};
+    --fs-h3: #{$xs-h3};
+
+    --fs-large: #{$xs-large};
+    --fs-medium: #{$xs-medium};
+    --fs-sm: #{$xs-sm};
+    --fs-xs: #{$xs-xs};
+  }
+
+  .font-size-sm {
+    --fs-h1: #{$sm-h1};
+    --fs-h2: #{$sm-h2};
+    --fs-h3: #{$sm-h3};
+
+    --fs-large: #{$sm-large};
+    --fs-medium: #{$sm-medium};
+    --fs-sm: #{$sm-sm};
+    --fs-xs: #{$sm-xs};
+  }
+
+  .font-size-md {
+    --fs-h1: #{$md-h1};
+    --fs-h2: #{$md-h2};
+    --fs-h3: #{$md-h3};
+
+    --fs-large: #{$md-large};
+    --fs-medium: #{$md-medium};
+    --fs-sm: #{$md-sm};
+    --fs-xs: #{$md-xs};
+  }
+
+  .font-size-lg {
+    --fs-h1: #{$lg-h1};
+    --fs-h2: #{$lg-h2};
+    --fs-h3: #{$lg-h3};
+
+    --fs-large: #{$lg-large};
+    --fs-medium: #{$lg-medium};
+    --fs-sm: #{$lg-sm};
+    --fs-xs: #{$lg-xs};
+  }
+
+  .font-size-xl {
+    --fs-h1: #{$xl-h1};
+    --fs-h2: #{$xl-h2};
+    --fs-h3: #{$xl-h3};
+
+    --fs-large: #{$xl-large};
+    --fs-medium: #{$xl-medium};
+    --fs-sm: #{$xl-sm};
+    --fs-xs: #{$xl-xs};
+  }
+}
