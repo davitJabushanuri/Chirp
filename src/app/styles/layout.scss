@@ -1,7 +1,6 @@
 @use "main.scss";
 @use "abstracts/media-query" as *;
 
-
 *::-webkit-scrollbar {
   width: 11px;
 }
@@ -11,12 +10,10 @@
   border-radius: 1rem;
 }
 
-
 *::-webkit-scrollbar-thumb {
   background-color: var(--clr-nav-active);
   border-radius: 1rem;
 }
-
 
 body {
   min-height: 100vh;
@@ -25,8 +22,6 @@ body {
   color: var(--clr-secondary);
   overflow-y: scroll;
   overflow-x: hidden;
-
-
 
   .layout {
     margin: 0 auto;

@@ -1,62 +1,87 @@
+@use "./font-size" as *;
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700;800;900&display=swap");
-@use "./font-size.scss" as *;
 
 :root {
   --ff-base: "Roboto", sans-serif;
   --ff-icons: "Material Icons", sans-serif;
+}
 
-  .font-size-xs {
-    --fs-h1: #{$xs-h1};
-    --fs-h2: #{$xs-h2};
-    --fs-h3: #{$xs-h3};
+.font-size-xs {
+  --fs-kilo: #{$xs-kilo};
 
-    --fs-large: #{$xs-large};
-    --fs-medium: #{$xs-medium};
-    --fs-sm: #{$xs-sm};
-    --fs-xs: #{$xs-xs};
-  }
+  --fs-h1: #{$xs-h1};
+  --fs-h2: #{$xs-h2};
+  --fs-h3: #{$xs-h3};
 
-  .font-size-sm {
-    --fs-h1: #{$sm-h1};
-    --fs-h2: #{$sm-h2};
-    --fs-h3: #{$sm-h3};
+  --fs-base: #{$xs-base};
 
-    --fs-large: #{$sm-large};
-    --fs-medium: #{$sm-medium};
-    --fs-sm: #{$sm-sm};
-    --fs-xs: #{$sm-xs};
-  }
+  --fs-large: #{$xs-large};
+  --fs-milli: #{$xs-milli};
+  --fs-micro: #{$xs-micro};
+  --fs-nano: #{$xs-nano};
+  --fs-pico: #{$xs-pico};
+}
 
-  .font-size-md {
-    --fs-h1: #{$md-h1};
-    --fs-h2: #{$md-h2};
-    --fs-h3: #{$md-h3};
+.font-size-sm {
+  --fs-kilo: #{$sm-kilo};
 
-    --fs-large: #{$md-large};
-    --fs-medium: #{$md-medium};
-    --fs-sm: #{$md-sm};
-    --fs-xs: #{$md-xs};
-  }
+  --fs-h1: #{$sm-h1};
+  --fs-h2: #{$sm-h2};
+  --fs-h3: #{$sm-h3};
 
-  .font-size-lg {
-    --fs-h1: #{$lg-h1};
-    --fs-h2: #{$lg-h2};
-    --fs-h3: #{$lg-h3};
+  --fs-base: #{$sm-base};
 
-    --fs-large: #{$lg-large};
-    --fs-medium: #{$lg-medium};
-    --fs-sm: #{$lg-sm};
-    --fs-xs: #{$lg-xs};
-  }
+  --fs-large: #{$sm-large};
+  --fs-milli: #{$sm-milli};
+  --fs-micro: #{$sm-micro};
+  --fs-nano: #{$sm-nano};
+  --fs-pico: #{$sm-pico};
+}
 
-  .font-size-xl {
-    --fs-h1: #{$xl-h1};
-    --fs-h2: #{$xl-h2};
-    --fs-h3: #{$xl-h3};
+.font-size-md {
+  --fs-kilo: #{$md-kilo};
 
-    --fs-large: #{$xl-large};
-    --fs-medium: #{$xl-medium};
-    --fs-sm: #{$xl-sm};
-    --fs-xs: #{$xl-xs};
-  }
+  --fs-h1: #{$md-h1};
+  --fs-h2: #{$md-h2};
+  --fs-h3: #{$md-h3};
+
+  --fs-base: #{$md-base};
+
+  --fs-large: #{$md-large};
+  --fs-milli: #{$md-milli};
+  --fs-micro: #{$md-micro};
+  --fs-nano: #{$md-nano};
+  --fs-pico: #{$md-pico};
+}
+
+.font-size-lg {
+  --fs-kilo: #{$lg-kilo};
+
+  --fs-h1: #{$lg-h1};
+  --fs-h2: #{$lg-h2};
+  --fs-h3: #{$lg-h3};
+
+  --fs-base: #{$lg-base};
+
+  --fs-large: #{$lg-large};
+  --fs-milli: #{$lg-milli};
+  --fs-micro: #{$lg-micro};
+  --fs-nano: #{$lg-nano};
+  --fs-pico: #{$lg-pico};
+}
+
+.font-size-xl {
+  --fs-kilo: #{$xl-kilo};
+
+  --fs-h1: #{$xl-h1};
+  --fs-h2: #{$xl-h2};
+  --fs-h3: #{$xl-h3};
+
+  --fs-base: #{$xl-base};
+
+  --fs-large: #{$xl-large};
+  --fs-milli: #{$xl-milli};
+  --fs-micro: #{$xl-micro};
+  --fs-nano: #{$xl-nano};
+  --fs-pico: #{$xl-pico};
 }
