@@ -1,6 +1,4 @@
-@use './abstracts/media-query' as *;
-
-
+@use "./abstracts/media-query" as *;
 
 .container {
   position: relative;
@@ -23,7 +21,7 @@
         white-space: pre-wrap;
         overflow-wrap: break-word;
         width: 100%;
-        font-size: 19px;
+        font-size: var(--fs-h2);
         color: var(--clr-secondary);
 
         &::placeholder {
@@ -36,10 +34,8 @@
       margin-bottom: 11px;
     }
 
-
-
     .quotedTweet {
-      margin: 8px 0
+      margin: 8px 0;
     }
 
     .actions {
@@ -86,7 +82,7 @@
           border-radius: 100vmax;
           height: 34px;
           width: 72px;
-          font-size: 14px;
+          font-size: var(--fs-milli);
           font-weight: 700;
           cursor: pointer;
           color: var(--clr-light);
@@ -116,10 +112,5 @@
         }
       }
     }
-
-
-
   }
-
-
 }

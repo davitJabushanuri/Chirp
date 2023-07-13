@@ -5,7 +5,7 @@
   grid-auto-flow: column;
 
   .name {
-    font-size: 14px;
+    font-size: var(--fs-milli);
     font-weight: 500;
     color: var(--clr-secondary);
     white-space: nowrap;

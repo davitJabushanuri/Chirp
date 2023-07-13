@@ -1,22 +1,23 @@
 .container {
-
   button {
-    padding: 7px 15px;
+    padding: 0.5em 1em;
     border-radius: 100vmax;
-    font-size: 13px;
-    font-weight: 600;
+    font-size: var(--fs-micro);
+    font-weight: var(--fw-500);
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all 0.1s ease-in-out;
   }
 
   .following {
     color: var(--clr-secondary);
     border: 1px solid var(--clr-border);
-    width: 90px;
 
     &:hover {
+      color: var(--clr-red);
+      border: 1px solid var(--clr-red);
       background-color: var(--clr-background-hover);
     }
 

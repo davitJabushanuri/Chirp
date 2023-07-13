@@ -1,4 +1,4 @@
-@use './abstracts/media-query' as *;
+@use "./abstracts/media-query" as *;
 
 .container {
   position: relative;
@@ -10,7 +10,7 @@
     background-color: var(--clr-search-background);
     border: 1px solid var(--clr-search-background);
     color: var(--clr-secondary);
-    font-size: 14px;
+    font-size: var(--fs-milli);
     border-radius: 100vmax;
     padding: 0 9px 0 15px;
 
@@ -71,7 +71,7 @@
       }
     }
 
-    @include mq('small') {
+    @include mq("small") {
       height: 40px !important;
     }
   }
@@ -96,7 +96,7 @@
       height: 100%;
       background-color: var(--clr-background);
 
-      @include mq('small') {
+      @include mq("small") {
         position: absolute;
         top: 40px;
         left: 0;

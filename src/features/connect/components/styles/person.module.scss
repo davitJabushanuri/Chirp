@@ -13,8 +13,6 @@
     background-color: var(--clr-connect-active);
   }
 
-
-
   .avatar {
     width: 46px;
     height: 46px;
@@ -34,24 +32,22 @@
     text-overflow: ellipsis;
 
     .name {
-      font-size: 14px;
+      font-size: var(--fs-milli);
       font-weight: 700;
       color: var(--clr-secondary);
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
-
     }
 
     .username {
-      font-size: 14px;
+      font-size: var(--fs-milli);
       color: var(--clr-tertiary);
       overflow: hidden;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
-
   }
 
   .follow {

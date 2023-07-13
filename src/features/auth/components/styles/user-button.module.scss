@@ -48,13 +48,13 @@
       flex-direction: column;
 
       .name {
-        font-size: 14px;
+        font-size: var(--fs-micro);
         font-weight: 500;
         color: var(--clr-secondary);
       }
 
       .username {
-        font-size: 14px;
+        font-size: var(--fs-micro);
         color: var(--clr-tertiary);
       }
     }

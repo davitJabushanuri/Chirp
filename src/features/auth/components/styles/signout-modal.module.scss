@@ -36,13 +36,13 @@
     }
 
     .title {
-      font-size: 1.2rem;
+      font-size: var(--fs-h2);
+      font-weight: var(--fs-500);
       color: var(--clr-secondary);
-      font-weight: 600;
     }
 
     .description {
-      font-size: 0.925rem;
+      font-size: var(--fs-milli);
       color: var(--clr-tertiary);
       line-height: 1.6;
     }
@@ -57,7 +57,7 @@
       button {
         width: 100%;
         color: var(--clr-background);
-        font-size: 0.9rem;
+        font-size: var(--fs-milli);
         font-weight: 500;
         border-radius: 100vmax;
         border: 1px solid var(--clr-auth-border);
@@ -94,7 +94,6 @@
           background-color: var(--clr-signout-cancel-active);
         }
       }
-
     }
 
     @include mq("small") {

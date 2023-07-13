@@ -16,7 +16,7 @@
     padding: 0.4rem 0;
 
     .stats {
-      font-size: 12px;
+      font-size: var(--fs-nano);
       line-height: 1.7;
       color: var(--clr-tertiary);
       display: flex;
@@ -33,13 +33,12 @@
     }
 
     .title {
-      font-size: 14px;
-      font-weight: 500;
+      font-size: var(--fs-milli);
+      font-weight: var(--fw-500);
       color: var(--clr-secondary);
     }
   }
 }
-
 
 .options {
   position: relative;

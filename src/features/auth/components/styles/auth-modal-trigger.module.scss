@@ -1,4 +1,4 @@
-@use './abstracts/media-query' as *;
+@use "./abstracts/media-query" as *;
 
 .container {
   position: fixed;
@@ -38,8 +38,8 @@
         align-items: center;
         justify-content: center;
         border-radius: 100vmax;
-        font-weight: 600;
-        font-size: 0.85rem;
+        font-weight: var(--fw-500);
+        font-size: var(--fs-micro);
         cursor: pointer;
         transition: all 0.1s ease-in-out;
       }
@@ -73,16 +73,14 @@
     }
   }
 
-
-  @include mq('small') {
+  @include mq("small") {
     background-color: var(--clr-blue);
 
     .content {
       .buttons {
-
         button {
           padding: 0.5rem;
-          font-size: 0.9rem;
+          font-size: var(--fs-milli);
         }
 
         .signIn {
@@ -113,10 +111,9 @@
         }
       }
     }
-
   }
 
-  @include mq('medium') {
+  @include mq("medium") {
     height: 4.25rem;
 
     .content {
@@ -133,18 +130,17 @@
         margin-left: 60px;
 
         h1 {
-          font-size: 1.375rem;
-          font-weight: 700;
+          font-size: var(--fs-h2);
+          font-weight: var(--fw-500);
           letter-spacing: 0.8px;
         }
 
         p {
-          font-size: 0.875rem;
+          font-size: var(--fs-micro);
           font-weight: 400;
         }
       }
     }
-
   }
 
   @include mq("large") {
@@ -156,7 +152,6 @@
   @include mq("x-large") {
     .content {
       max-width: 1100px;
-
     }
   }
 

@@ -20,8 +20,8 @@
     }
 
     h1 {
-      font-size: 29px;
-      font-weight: 600;
+      font-size: var(--fs-kilo);
+      font-weight: var(--fw-600);
       color: var(--clr-secondary);
       margin-bottom: 8px;
       word-wrap: break-word;
@@ -29,7 +29,7 @@
     }
 
     p {
-      font-size: 14px;
+      font-size: var(--fs-milli);
       color: var(--clr-tertiary);
       margin-bottom: 30px;
       line-height: 1.4;

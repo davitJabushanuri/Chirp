@@ -39,7 +39,7 @@
     }
 
     .text {
-      font-size: 19px;
+      font-size: var(--fs-h2);
       display: none;
     }
 
@@ -52,14 +52,12 @@
     padding: 4px 6px;
 
     .navItem {
-      padding: 11px
+      padding: 11px;
     }
   }
 
   @include mq("medium") {
     padding: 4px 10px;
-
-
   }
 
   @include mq("xx-large") {

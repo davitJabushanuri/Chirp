@@ -24,8 +24,6 @@
     &:active {
       background-color: var(--clr-nav-active);
     }
-
-
   }
 }
 
@@ -36,7 +34,7 @@
     align-items: center;
     gap: 0.8rem;
     padding: 0.8rem 1rem;
-    font-size: 14px;
+    font-size: var(--fs-milli);
     font-weight: 500;
     cursor: pointer;
 

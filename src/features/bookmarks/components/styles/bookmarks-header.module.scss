@@ -1,4 +1,4 @@
-@use './abstracts/media-query' as *;
+@use "./abstracts/media-query" as *;
 
 .container {
   background-color: var(--clr-background);
@@ -17,13 +17,13 @@
     gap: 0.2rem;
 
     .title {
-      font-size: 1rem;
-      font-weight: 600;
+      font-size: var(--fs-h2);
+      font-weight: var(--fw-500);
       color: var(--clr-secondary);
     }
 
     p {
-      font-size: 12px;
+      font-size: var(--fs-nano);
       font-weight: 400;
       color: var(--clr-tertiary);
     }
@@ -79,14 +79,14 @@
         opacity: 1;
 
         h1 {
-          font-size: 19px;
-          font-weight: 700;
+          font-size: var(--fs-h2);
+          font-weight: var(--fw-500);
           color: var(--clr-secondary);
           margin-bottom: 11px;
         }
 
         p {
-          font-size: 15px;
+          font-size: var(--fs-milli);
           font-weight: 400;
           color: var(--clr-tertiary);
           margin-bottom: 30px;
@@ -97,7 +97,7 @@
           height: 42px;
           border-radius: 100vmax;
           text-align: center;
-          font-size: 14px;
+          font-size: var(--fs-micro);
           font-weight: 700;
           color: var(--clr-white);
           background-color: var(--clr-red);
@@ -125,7 +125,7 @@
     }
   }
 
-  @include mq('small') {
+  @include mq("small") {
     padding: 0 1rem;
 
     .backButton {
@@ -133,11 +133,9 @@
     }
 
     .user {
-
       .title {
-        font-size: 19px;
+        font-size: var(--fs-h2);
       }
     }
   }
-
 }

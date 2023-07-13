@@ -2,7 +2,7 @@
   .noResults {
     margin-top: 2rem;
     text-align: center;
-    font-size: 14px;
+    font-size: var(--fs-milli);
     color: var(--clr-tertiary);
   }
 }

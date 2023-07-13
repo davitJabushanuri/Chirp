@@ -21,12 +21,12 @@
   }
 
   .username {
-    margin-top: 4px
+    margin-top: 4px;
   }
 
   .bio {
     margin-top: 15px;
-    font-size: 14px;
+    font-size: var(--fs-base);
     line-height: 1.4;
   }
 
@@ -39,13 +39,13 @@
     gap: 4px;
 
     span {
-      font-size: 13px;
+      font-size: var(--fs-micro);
     }
   }
 
   .followersInfo {
     margin-top: 11px;
     color: var(--clr-tertiary);
-    font-size: 13px;
+    font-size: var(--fs-micro);
   }
 }

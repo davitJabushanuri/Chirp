@@ -15,7 +15,6 @@
     width: 38px;
   }
 
-
   .user_details {
     display: flex;
     align-items: center;
@@ -33,7 +32,7 @@
       }
 
       .date {
-        font-size: 14px;
+        font-size: var(--fs-milli);
         color: var(--clr-tertiary);
         cursor: pointer;
 
@@ -62,7 +61,7 @@
     padding-right: 15px;
 
     .text {
-      font-size: 14px;
+      font-size: var(--fs-milli);
       white-space: pre-wrap;
     }
 

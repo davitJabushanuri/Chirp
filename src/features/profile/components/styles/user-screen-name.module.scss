@@ -5,7 +5,7 @@
   grid-auto-flow: column;
 
   .username {
-    font-size: 14px;
+    font-size: var(--fs-milli);
     color: var(--clr-tertiary);
     white-space: nowrap;
     overflow: hidden;

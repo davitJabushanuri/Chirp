@@ -26,13 +26,12 @@
 }
 
 .stats {
-  font-size: 12px;
+  font-size: var(--fs-nano);
   color: var(--clr-tertiary);
 }
 
 .comment {
   &:hover {
-
     .icon {
       background-color: var(--clr-comment-hover);
 
@@ -60,8 +59,6 @@
     }
   }
 }
-
-
 
 .retweet {
   &:hover {
@@ -110,7 +107,6 @@
 
   &:active {
     .icon {
-
       background-color: var(--clr-heart-active);
 
       svg {
@@ -122,8 +118,6 @@
       color: var(--clr-rose);
     }
   }
-
-
 }
 
 .share {

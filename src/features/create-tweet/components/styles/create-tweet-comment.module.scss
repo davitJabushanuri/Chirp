@@ -25,9 +25,8 @@
     justify-content: start;
     gap: 2px;
 
-
     .name {
-      font-size: 14px;
+      font-size: var(--fs-milli);
       color: var(--clr-secondary);
       font-weight: 500;
       cursor: text;
@@ -37,7 +36,7 @@
     }
 
     .username {
-      font-size: 14px;
+      font-size: var(--fs-milli);
       color: var(--clr-tertiary);
       cursor: text;
       white-space: nowrap;
@@ -48,17 +47,15 @@
     .dot {
       margin-inline: 0.1rem;
       color: var(--clr-tertiary);
-
     }
 
     .date {
-      font-size: 0.9rem;
+      font-size: var(--fs-milli);
       color: var(--clr-tertiary);
       cursor: text;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-
     }
 
     .verified {
@@ -71,7 +68,6 @@
         height: 1rem;
         fill: var(--clr-blue);
         cursor: pointer;
-
       }
     }
   }
@@ -87,5 +83,4 @@
   .replyingTo {
     padding: 15px 0;
   }
-
 }

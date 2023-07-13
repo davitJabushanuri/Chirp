@@ -1,77 +1,76 @@
-    .container {
-      display: block;
-      margin-top: 11px;
+.container {
+  display: block;
+  margin-top: 11px;
+  overflow: hidden;
+  border-radius: 1rem;
+  border: 1px solid var(--clr-border);
+
+  .userDetails {
+    padding: 11px 11px 4px;
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    place-content: start;
+    gap: 2px;
+    margin-bottom: 4px;
+
+    .avatar {
+      margin-right: 4px;
+    }
+
+    .name {
+      font-size: var(--fs-milli);
+      font-weight: var(--fw-500);
+      color: var(--clr-secondary);
+      white-space: nowrap;
       overflow: hidden;
-      border-radius: 1rem;
-      border: 1px solid var(--clr-border);
+      text-overflow: ellipsis;
+    }
 
-      .userDetails {
-        padding: 11px 11px 4px;
-        display: grid;
-        grid-auto-flow: column;
-        align-items: center;
-        place-content: start;
-        gap: 2px;
-        margin-bottom: 4px;
+    .username {
+      font-size: var(--fs-milli);
+      color: var(--clr-tertiary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
 
-        .avatar {
-          margin-right: 4px;
-        }
+    .dot {
+      margin-inline: 0.1rem;
+      color: var(--clr-tertiary);
+    }
 
-        .name {
-          font-size: 14px;
-          color: var(--clr-secondary);
-          font-weight: 500;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
+    .date {
+      font-size: var(--fs-milli);
+      color: var(--clr-tertiary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
 
-        .username {
-          font-size: 14px;
-          color: var(--clr-tertiary);
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
+    .verified {
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-        .dot {
-          margin-inline: 0.1rem;
-          color: var(--clr-tertiary);
-
-        }
-
-        .date {
-          font-size: 0.9rem;
-          color: var(--clr-tertiary);
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
-
-        .verified {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-
-          svg {
-            width: 1rem;
-            height: 1rem;
-            fill: var(--clr-blue);
-            cursor: pointer;
-          }
-        }
-      }
-
-      .text {
-        white-space: pre-wrap;
-        font-size: 14px;
-        margin: 0 11px 11px;
-      }
-
-      .media {
-        overflow: hidden;
-        border-radius: 0 0 15px 15px;
-        margin-top: 11px;
+      svg {
+        width: 1rem;
+        height: 1rem;
+        fill: var(--clr-blue);
+        cursor: pointer;
       }
     }
+  }
+
+  .text {
+    white-space: pre-wrap;
+    font-size: var(--fs-milli);
+    margin: 0 11px 11px;
+  }
+
+  .media {
+    overflow: hidden;
+    border-radius: 0 0 15px 15px;
+    margin-top: 11px;
+  }
+}

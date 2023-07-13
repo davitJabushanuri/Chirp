@@ -1,5 +1,4 @@
 .container {
-
   .loading,
   .error {
     padding: 4rem 0;
@@ -9,8 +8,8 @@
     padding: 11px 15px;
     padding-bottom: 0.6rem;
     color: var(--clr-secondary);
-    font-size: 19px;
-    font-weight: 700;
+    font-size: var(--fs-h2);
+    font-weight: var(--fw-700);
   }
 
   .showMore {
@@ -21,7 +20,7 @@
     background-color: transparent;
     cursor: pointer;
     text-align: left;
-    font-size: 14px;
+    font-size: var(--fs-milli);
 
     &:hover {
       background-color: var(--clr-connect-hover);

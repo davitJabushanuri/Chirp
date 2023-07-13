@@ -3,7 +3,7 @@
 
   legend {
     color: var(--clr-tertiary);
-    font-size: 13px;
+    font-size: var(--fs-micro);
     font-weight: 500;
     margin-bottom: 4px;
     line-height: 1.6;
@@ -19,11 +19,11 @@
     gap: 15px;
 
     .small {
-      font-size: 13px;
+      font-size: var(--fs-micro);
     }
 
     .large {
-      font-size: 20px;
+      font-size: var(--fs-h2);
     }
   }
 }

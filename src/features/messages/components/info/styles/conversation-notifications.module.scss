@@ -1,8 +1,8 @@
 .container {
   h1 {
     padding: 11px 15px;
-    font-size: 19px;
-    font-weight: 700;
+    font-size: var(--fs-h2);
+    font-weight: var(--fw-700);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -16,8 +16,8 @@
     gap: 11px;
 
     span {
-      font-size: 14px;
-      font-weight: 400;
+      font-size: var(--fs-milli);
+      font-weight: var(--fw-500);
     }
   }
 }
@@ -47,7 +47,7 @@
       width: 34px;
       height: 14px;
       display: block;
-      background: #9A9999;
+      background: #9a9999;
       border-radius: 8px;
       transition: background 0.2s ease;
     }
@@ -80,19 +80,19 @@
     }
   }
 
-
-  input:checked+.toggle:before {
+  input:checked + .toggle:before {
     background: var(--clr-primary-disabled);
   }
 
-  input:checked+.toggle span {
+  input:checked + .toggle span {
     background: var(--clr-primary);
     transform: translateX(20px);
-    transition: all 0.2s cubic-bezier(0.8, 0.4, 0.3, 1.25), background 0.15s ease;
+    transition: all 0.2s cubic-bezier(0.8, 0.4, 0.3, 1.25),
+      background 0.15s ease;
     box-shadow: 0 3px 8px rgba(79, 46, 220, 0.2);
   }
 
-  input:checked+.toggle span:before {
+  input:checked + .toggle span:before {
     transform: scale(1);
     opacity: 0;
     transition: all 0.4s ease;

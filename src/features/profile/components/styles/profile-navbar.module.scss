@@ -1,11 +1,11 @@
-@use 'abstracts/media-query' as *;
+@use "abstracts/media-query" as *;
 
 .container {
   display: grid;
   border-bottom: 1px solid var(--clr-border);
   overflow-x: auto;
 
-  @include mq('small') {
+  @include mq("small") {
     grid-template-columns: 2fr 3fr 2fr 2fr;
   }
 
@@ -30,8 +30,8 @@
   span {
     position: relative;
     padding: 1rem 0;
-    font-size: 0.825rem;
-    font-weight: 500;
+    font-size: var(--fs-micro);
+    font-weight: var(--fw-500);
     color: var(--clr-tertiary);
     border-bottom: 2px solid transparent;
 
@@ -57,6 +57,4 @@
       display: block;
     }
   }
-
-
 }
