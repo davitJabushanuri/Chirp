@@ -7,11 +7,12 @@
     .heading {
       text-align: center;
       font-size: var(--fs-h2);
-      font-weight: 700;
+      font-weight: var(--fw-700);
       margin-bottom: 0.8rem;
     }
 
     .subheading {
+      font-size: var(--fs-milli);
       text-align: center;
       color: var(--clr-tertiary);
       margin-bottom: 1.2rem;

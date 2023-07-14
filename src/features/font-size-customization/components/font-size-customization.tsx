@@ -1,14 +1,13 @@
-import { cookies } from "next/headers";
-
 import { FontSizeSlider } from "./font-size-slider";
 import styles from "./styles/font-size-customization.module.scss";
 
-export const FontSizeCustomization = () => {
-  const nextCookies = cookies();
-  const fontSize = nextCookies.get("font-size")?.value;
-
+export const FontSizeCustomization = ({
+  fontSize,
+}: {
+  fontSize?: string | undefined;
+}) => {
   return (
-    <div className={styles.container}>
+    <div data-testid={`font-size-customization`} className={styles.container}>
       <legend>Font size</legend>
       <div className={styles.slider}>
         <span className={styles.small}>Aa</span>

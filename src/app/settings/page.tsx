@@ -10,6 +10,7 @@ const Settings = () => {
   const nextCookies = cookies();
   const theme = nextCookies.get("theme")?.value;
   const color = nextCookies.get("color")?.value;
+  const fontSize = nextCookies.get("font-size")?.value;
 
   return (
     <div className={styles.container}>
@@ -20,7 +21,7 @@ const Settings = () => {
         <h2 className={styles.subheading}>
           These settings affect all the Twitter accounts on this browser.
         </h2>
-        <FontSizeCustomization />
+        <FontSizeCustomization fontSize={fontSize} />
         <ColorPicker color={color} />
         <ThemePicker theme={theme} />
       </div>

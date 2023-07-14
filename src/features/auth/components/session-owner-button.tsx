@@ -1,6 +1,5 @@
-/* eslint-disable @next/next/no-img-element */
-import { useSession } from "next-auth/react";
 import Image from "next/image";
+import { useSession } from "next-auth/react";
 
 import { DotIcon } from "@/assets/dot-icon";
 import { useAuthModal } from "@/stores/use-auth-modal";

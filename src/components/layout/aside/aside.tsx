@@ -1,5 +1,5 @@
-import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 import { Footer } from "@/components/layout/footer";
 import { RegisterForm } from "@/features/auth";

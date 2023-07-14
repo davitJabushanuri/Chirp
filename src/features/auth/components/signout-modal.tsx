@@ -1,5 +1,5 @@
-import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { signOut } from "next-auth/react";
 
 import { TwitterLogo } from "@/assets/twitter-logo";
 import { useDisableBodyScroll } from "@/hooks";

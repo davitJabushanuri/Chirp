@@ -61,6 +61,7 @@ export const FontSizeSlider = ({
             (fontSizeIndex / 4) * 100
           }%, var(--clr-primary-disabled) ${(fontSizeIndex / 4) * 100}%)`,
         }}
+        data-testid={`font-size-slider`}
       />
 
       <SliderDot

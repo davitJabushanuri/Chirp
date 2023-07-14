@@ -1,5 +1,5 @@
-import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 import { BellActive, Bell } from "../assets/bell-icon";
 import { Bookmark, BookmarkActive } from "../assets/bookmark-icon";
