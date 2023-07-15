@@ -4,10 +4,9 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 import { SearchIcon } from "@/assets/search-icon";
-import { Avatar } from "@/components/designs/avatar";
 import { Progressbar } from "@/components/designs/progressbar";
 import { TryAgain } from "@/components/elements/try-again";
-import { UserName, UserScreenName } from "@/features/profile";
+import { Avatar, UserName, UserScreenName } from "@/features/profile";
 
 import { useSearch } from "../hooks/use-search";
 import { useSearchStore } from "../stores/use-search";
@@ -91,20 +90,14 @@ export const SearchResultsModal = ({
                     className={styles.person}
                     key={person?.id}
                   >
-                    <Avatar
-                      userImage={person?.profile_image_url}
-                      width={53}
-                      height={53}
-                    />
+                    <Avatar userImage={person?.profile_image_url} />
                     <span className={styles.info}>
                       <UserName
                         isVerified={person?.verified}
                         name={person?.name}
-                        userId={person?.id}
                       />
                       <UserScreenName
                         screenName={person?.email?.split("@")[0]}
-                        userId={person?.id}
                       />
                     </span>
                   </div>

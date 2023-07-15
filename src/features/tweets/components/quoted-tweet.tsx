@@ -1,8 +1,13 @@
 import dayjs from "dayjs";
 import { useRouter } from "next/navigation";
 
-import { VerifiedIcon } from "@/assets/verified-icon";
-import { UserAvatar } from "@/features/profile";
+import { EllipsisWrapper } from "@/components/elements/ellipsis-wrapper";
+import {
+  Avatar,
+  UserModalWrapper,
+  UserName,
+  UserScreenName,
+} from "@/features/profile";
 
 import { ITweet } from "../types";
 
@@ -24,24 +29,26 @@ export const QuotedTweet = ({ tweet }: { tweet: ITweet }) => {
       className={styles.container}
     >
       <div className={styles.userDetails}>
-        <span className={styles.avatar}>
-          <UserAvatar
-            userId={tweet?.author?.id}
-            userImage={tweet?.author?.profile_image_url}
-            height={19}
-            width={19}
-          />
-        </span>
+        <UserModalWrapper userId={tweet?.author?.id}>
+          <span className={styles.avatar}>
+            <Avatar userImage={tweet?.author?.profile_image_url} />
+          </span>
+        </UserModalWrapper>
 
-        <span className={styles.name}>{tweet?.author?.name}</span>
+        <UserModalWrapper userId={tweet?.author?.id}>
+          <EllipsisWrapper>
+            <UserName
+              name={tweet?.author?.name}
+              isVerified={tweet?.author.verified}
+            />
+          </EllipsisWrapper>
+        </UserModalWrapper>
 
-        <span className={styles.verified}>
-          {tweet?.author?.verified && <VerifiedIcon />}
-        </span>
-
-        <span className={styles.username}>
-          @{tweet?.author?.email?.split("@")[0]}
-        </span>
+        <UserModalWrapper userId={tweet?.author?.id}>
+          <EllipsisWrapper>
+            <UserScreenName screenName={tweet?.author?.email?.split("@")[0]} />
+          </EllipsisWrapper>
+        </UserModalWrapper>
         <span className={styles.dot}>·</span>
         <span className={styles.date}>
           {dayjs(tweet?.created_at).format("MMM D")}

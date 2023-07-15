@@ -16,7 +16,12 @@
     margin-bottom: 4px;
 
     .avatar {
-      margin-right: 4px;
+      width: var(--quoted-tweet-avatar-width);
+
+      * {
+        width: 100%;
+        height: 100%;
+      }
     }
 
     .name {

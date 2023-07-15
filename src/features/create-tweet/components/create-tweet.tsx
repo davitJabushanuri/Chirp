@@ -6,7 +6,7 @@ import { EmojiIcon } from "@/assets/emoji-icon";
 import { GifIcon } from "@/assets/gif-icon";
 import { ImageIcon } from "@/assets/image-icon";
 import { LocationIcon } from "@/assets/location-icon";
-import { UserAvatar } from "@/features/profile";
+import { Avatar, LinkToProfile } from "@/features/profile";
 import { ITweet } from "@/features/tweets";
 
 import { PollIcon } from "../assets/poll-icon";
@@ -63,10 +63,9 @@ export const CreateTweet = ({
   return (
     <div className={styles.container}>
       <div className={styles.avatar}>
-        <UserAvatar
-          userId={session?.user?.id}
-          userImage={session?.user?.profile_image_url}
-        />
+        <LinkToProfile userId={session?.user?.id}>
+          <Avatar userImage={session?.user?.profile_image_url} />
+        </LinkToProfile>
       </div>
 
       <form>

@@ -7,7 +7,7 @@
   padding: 0 1.8rem 0 1.8rem;
   height: 100vh;
   height: 100dvh;
-  overflow-y: scroll;
+  overflow-y: auto;
   scrollbar-width: none;
   /* Firefox */
   -ms-overflow-style: none;
@@ -45,7 +45,6 @@
   .connect {
     background-color: var(--clr-connect-background);
     border-radius: 1rem;
-    overflow: hidden;
   }
 
   .registerForm {

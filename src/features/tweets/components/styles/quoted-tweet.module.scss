@@ -1,7 +1,6 @@
 .container {
   display: block;
   margin-top: 11px;
-  overflow: hidden;
   border-radius: 1rem;
   border: 1px solid var(--clr-border);
 
@@ -15,24 +14,10 @@
     margin-bottom: 4px;
 
     .avatar {
-      margin-right: 4px;
-    }
-
-    .name {
-      font-size: var(--fs-milli);
-      font-weight: var(--fw-500);
-      color: var(--clr-secondary);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .username {
-      font-size: var(--fs-milli);
-      color: var(--clr-tertiary);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      > * {
+        width: var(--quoted-tweet-avatar-width);
+        height: var(--quoted-tweet-avatar-width);
+      }
     }
 
     .dot {
@@ -46,19 +31,6 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-    }
-
-    .verified {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      svg {
-        width: 1rem;
-        height: 1rem;
-        fill: var(--clr-blue);
-        cursor: pointer;
-      }
     }
   }
 

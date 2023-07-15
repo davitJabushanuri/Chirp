@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 
 import { TwitterLogo } from "@/assets/twitter-logo";
-import { Avatar } from "@/components/designs/avatar";
+import { Avatar } from "@/features/profile";
 import { useHamburger } from "@/stores/use-hamburger";
 
 import styles from "./styles/hamburger-button.module.scss";
@@ -17,11 +17,7 @@ export const HamburgerButton = () => {
     <>
       {session ? (
         <button onClick={() => openHamburger()} className={styles.container}>
-          <Avatar
-            userImage={session?.user?.profile_image_url}
-            width={30}
-            height={30}
-          />
+          <Avatar userImage={session?.user?.profile_image_url} />
         </button>
       ) : (
         <div className={styles.logo}>

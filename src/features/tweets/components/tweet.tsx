@@ -2,9 +2,11 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { useRouter } from "next/navigation";
 
+import { EllipsisWrapper } from "@/components/elements/ellipsis-wrapper";
 import { ReplyingTo } from "@/features/create-tweet";
 import {
-  UserAvatar,
+  Avatar,
+  LinkToProfile,
   UserModalWrapper,
   UserName,
   UserScreenName,
@@ -37,28 +39,34 @@ export const Tweet = ({ tweet }: { tweet: ITweet }) => {
     >
       <div className={styles.avatar}>
         <UserModalWrapper userId={tweet?.author?.id}>
-          <UserAvatar
-            userId={tweet?.author?.id}
-            userImage={tweet?.author?.profile_image_url}
-          />
+          <LinkToProfile userId={tweet?.author?.id}>
+            <Avatar userImage={tweet?.author?.profile_image_url} />
+          </LinkToProfile>
         </UserModalWrapper>
       </div>
 
       <div className={styles.content}>
         <div className={styles.user_details}>
           <UserModalWrapper userId={tweet?.author?.id}>
-            <UserName
-              userId={tweet?.author?.id}
-              name={tweet?.author?.name}
-              isVerified={tweet?.author?.verified}
-            />
+            <LinkToProfile userId={tweet?.author?.id}>
+              <EllipsisWrapper>
+                <UserName
+                  name={tweet?.author?.name}
+                  isVerified={tweet?.author?.verified}
+                />
+              </EllipsisWrapper>
+            </LinkToProfile>
           </UserModalWrapper>
+
           <div className={styles.username_time}>
             <UserModalWrapper userId={tweet?.author?.id}>
-              <UserScreenName
-                userId={tweet?.author?.id}
-                screenName={tweet?.author?.email?.split("@")[0]}
-              />
+              <LinkToProfile userId={tweet?.author?.id}>
+                <EllipsisWrapper>
+                  <UserScreenName
+                    screenName={tweet?.author?.email?.split("@")[0]}
+                  />
+                </EllipsisWrapper>
+              </LinkToProfile>
             </UserModalWrapper>
 
             <span className={styles.dot}>·</span>

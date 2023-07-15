@@ -10,7 +10,12 @@ import { PinIcon } from "@/assets/pin-icon";
 import { ReportIcon } from "@/assets/report-icon";
 import { TrashIcon } from "@/assets/trash-icon";
 import { Action, ActionsModal } from "@/components/elements/actions-modal";
-import { UserAvatar, UserName, UserScreenName } from "@/features/profile";
+import {
+  Avatar,
+  LinkToProfile,
+  UserName,
+  UserScreenName,
+} from "@/features/profile";
 
 import { SnoozeNotificationsIon } from "../assets/snooze-notifications-ion";
 import { useDeleteConversation } from "../hooks/use-delete-conversation";
@@ -40,20 +45,19 @@ export const ConversationCard = ({
       className={styles.container}
     >
       <div className={styles.avatar}>
-        <UserAvatar userId={user?.id} userImage={user?.profile_image_url} />
+        <LinkToProfile userId={user?.id}>
+          <Avatar userImage={user?.profile_image_url} />
+        </LinkToProfile>
       </div>
       <div className={styles.content}>
         <div className={styles.info}>
           <div className={styles.user}>
-            <UserName
-              name={user?.name}
-              userId={user?.id}
-              isVerified={user?.verified}
-            />
-            <UserScreenName
-              screenName={user?.email?.split("@")[0]}
-              userId={user?.id}
-            />
+            <LinkToProfile userId={user?.id}>
+              <UserName name={user?.name} isVerified={user?.verified} />
+            </LinkToProfile>
+            <LinkToProfile userId={user?.id}>
+              <UserScreenName screenName={user?.email?.split("@")[0]} />
+            </LinkToProfile>
             <span className={styles.dot}>·</span>
             <span className={styles.date}>
               {dayjs(lastMessage?.created_at).format("MMM D")}
