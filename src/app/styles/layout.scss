@@ -31,6 +31,10 @@ body {
     @include mq("small") {
       grid-template-columns: min-content 1fr;
 
+      main {
+        border-left: 1px solid var(--clr-border);
+      }
+
       a {
         color: inherit;
         text-decoration: none;

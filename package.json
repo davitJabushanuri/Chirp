@@ -54,6 +54,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.2.0",
     "@commitlint/config-conventional": "^17.2.0",
+    "@faker-js/faker": "^8.0.2",
     "@supabase/supabase-js": "^2.26.0",
     "@tanstack/eslint-plugin-query": "^4.29.9",
     "@testing-library/cypress": "^9.0.0",
