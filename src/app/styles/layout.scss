@@ -28,8 +28,12 @@ body {
     display: grid;
     grid-template-columns: 1fr;
 
+    main {
+      max-width: 600px;
+    }
+
     @include mq("small") {
-      grid-template-columns: auto 1fr;
+      grid-template-columns: auto auto;
 
       main {
         border-left: 1px solid var(--clr-border);
@@ -50,17 +54,17 @@ body {
     }
 
     @include mq("large") {
-      grid-template-columns: auto 1fr 340px;
-      max-width: 1020px;
+      grid-template-columns: auto auto 1fr;
+      max-width: 1070px;
     }
 
     @include mq("x-large") {
-      grid-template-columns: auto 1fr 400px;
-      max-width: 1120px;
+      grid-template-columns: auto auto 1fr;
+      max-width: 1100px;
     }
 
     @include mq("xx-large") {
-      grid-template-columns: 275px 1fr 400px;
+      grid-template-columns: 275px auto 1fr;
       max-width: 1265px;
     }
   }
