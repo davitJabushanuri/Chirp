@@ -25,8 +25,14 @@ export const PersonDetails = ({ author }: { author: IUser }) => {
   });
 
   return (
-    <button
+    <div
+      role="button"
       tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === "Enter") {
+          router.push(`/${author?.id}`);
+        }
+      }}
       onClick={() => {
         router.push(`/${author?.id}`);
       }}
@@ -70,6 +76,6 @@ export const PersonDetails = ({ author }: { author: IUser }) => {
           </div>
         )}
       </div>
-    </button>
+    </div>
   );
 };

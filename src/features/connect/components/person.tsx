@@ -25,7 +25,14 @@ export const Person = ({ person }: { person: IUser }) => {
   });
 
   return (
-    <button
+    <div
+      tabIndex={0}
+      role="button"
+      onKeyDown={(e) => {
+        if (e.key === "Enter") {
+          router.push(`/${person?.id}`);
+        }
+      }}
       onClick={() => router.push(`/${person?.id}`)}
       className={styles.container}
     >
@@ -57,6 +64,6 @@ export const Person = ({ person }: { person: IUser }) => {
         isFollowing={isFollowing}
         username={person?.email?.split("@")[0]}
       />
-    </button>
+    </div>
   );
 };
