@@ -1,11 +1,12 @@
-import Image from "next/image";
 import { useSession } from "next-auth/react";
 
 import { DotIcon } from "@/assets/dot-icon";
+import { EllipsisWrapper } from "@/components/elements/ellipsis-wrapper";
+import { Avatar, UserName, UserScreenName } from "@/features/profile";
 import { useAuthModal } from "@/stores/use-auth-modal";
 
 import { SessionOwnerModal } from "./session-owner-modal";
-import styles from "./styles/user-button.module.scss";
+import styles from "./styles/session-owner-button.module.scss";
 
 export const SessionOwnerButton = () => {
   const { data: session } = useSession();
@@ -14,24 +15,26 @@ export const SessionOwnerButton = () => {
 
   return (
     <>
-      <button onClick={() => openUserModal()} className={styles.container}>
+      <button
+        aria-label="Account menu"
+        tabIndex={0}
+        onClick={() => openUserModal()}
+        className={styles.container}
+      >
         <div className={styles.avatar}>
-          <Image
-            src={session?.user?.profile_image_url || `/user_placeholder.png`}
-            alt=""
-            width={200}
-            height={200}
-          />
+          <Avatar userImage={session?.user?.profile_image_url} />
         </div>
         <div className={styles.userInfo}>
-          {session?.user && (
-            <span className={styles.name}>{session?.user?.name}</span>
-          )}
-          {session?.user && (
-            <span className={styles.username}>
-              @{session?.user?.email?.split("@")[0]}
-            </span>
-          )}
+          <EllipsisWrapper>
+            <UserName
+              name={session?.user?.name}
+              isVerified={session?.user?.verified}
+            />
+          </EllipsisWrapper>
+
+          <EllipsisWrapper>
+            <UserScreenName screenName={session?.user?.email?.split("@")[0]} />
+          </EllipsisWrapper>
         </div>
         <div className={styles.options}>
           <DotIcon />

@@ -25,7 +25,7 @@ dayjs.updateLocale("en", {
   },
 });
 
-export const CreateDate = ({ date }: { date: Date }) => {
+export const CreateDate = ({ date }: { date: Date | undefined }) => {
   const created = dayjs(date);
   const day = 24 * 60 * 60 * 1000;
   const isMoreThan24Hours = Date.now() - created.valueOf() < day;

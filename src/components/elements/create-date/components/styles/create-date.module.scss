@@ -1,6 +1,7 @@
 .container {
   font-size: var(--fs-milli);
   color: var(--clr-tertiary);
+  white-space: nowrap;
 
   &:hover {
     text-decoration: underline;
