@@ -1,7 +1,6 @@
-import dayjs from "dayjs";
-import relativeTime from "dayjs/plugin/relativeTime";
 import { useRouter } from "next/navigation";
 
+import { CreateDate } from "@/components/elements/create-date";
 import { EllipsisWrapper } from "@/components/elements/ellipsis-wrapper";
 import { ReplyingTo } from "@/features/create-tweet";
 import {
@@ -19,8 +18,6 @@ import styles from "./styles/tweet.module.scss";
 import { TweetActions } from "./tweet-actions";
 import { TweetMedia } from "./tweet-media";
 import { TweetOptions } from "./tweet-options";
-
-dayjs.extend(relativeTime);
 
 export const Tweet = ({ tweet }: { tweet: ITweet }) => {
   const router = useRouter();
@@ -53,6 +50,7 @@ export const Tweet = ({ tweet }: { tweet: ITweet }) => {
                 <UserName
                   name={tweet?.author?.name}
                   isVerified={tweet?.author?.verified}
+                  hover={true}
                 />
               </EllipsisWrapper>
             </LinkToProfile>
@@ -60,7 +58,7 @@ export const Tweet = ({ tweet }: { tweet: ITweet }) => {
 
           <div className={styles.username_time}>
             <UserModalWrapper userId={tweet?.author?.id}>
-              <LinkToProfile userId={tweet?.author?.id}>
+              <LinkToProfile userId={tweet?.author?.id} tabIndex={-1}>
                 <EllipsisWrapper>
                   <UserScreenName
                     screenName={tweet?.author?.email?.split("@")[0]}
@@ -70,9 +68,8 @@ export const Tweet = ({ tweet }: { tweet: ITweet }) => {
             </UserModalWrapper>
 
             <span className={styles.dot}>·</span>
-            <span className={styles.date}>
-              {dayjs(tweet?.created_at).format("MMM D")}
-            </span>
+
+            <CreateDate date={tweet?.created_at} />
           </div>
         </div>
 

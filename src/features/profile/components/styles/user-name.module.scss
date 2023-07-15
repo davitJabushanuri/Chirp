@@ -3,3 +3,9 @@
   font-weight: var(--fw-500);
   color: var(--clr-secondary);
 }
+
+.hover {
+  &:hover {
+    text-decoration: underline;
+  }
+}

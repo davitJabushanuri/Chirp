@@ -10,6 +10,7 @@ import { PinIcon } from "@/assets/pin-icon";
 import { ReportIcon } from "@/assets/report-icon";
 import { TrashIcon } from "@/assets/trash-icon";
 import { Action, ActionsModal } from "@/components/elements/actions-modal";
+import { EllipsisWrapper } from "@/components/elements/ellipsis-wrapper";
 import {
   Avatar,
   LinkToProfile,
@@ -53,10 +54,15 @@ export const ConversationCard = ({
         <div className={styles.info}>
           <div className={styles.user}>
             <LinkToProfile userId={user?.id}>
-              <UserName name={user?.name} isVerified={user?.verified} />
+              <EllipsisWrapper>
+                <UserName name={user?.name} isVerified={user?.verified} />
+              </EllipsisWrapper>
             </LinkToProfile>
+
             <LinkToProfile userId={user?.id}>
-              <UserScreenName screenName={user?.email?.split("@")[0]} />
+              <EllipsisWrapper>
+                <UserScreenName screenName={user?.email?.split("@")[0]} />
+              </EllipsisWrapper>
             </LinkToProfile>
             <span className={styles.dot}>·</span>
             <span className={styles.date}>

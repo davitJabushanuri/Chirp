@@ -1,6 +1,6 @@
-import dayjs from "dayjs";
 import { useRouter } from "next/navigation";
 
+import { CreateDate } from "@/components/elements/create-date";
 import { EllipsisWrapper } from "@/components/elements/ellipsis-wrapper";
 import {
   Avatar,
@@ -50,9 +50,7 @@ export const QuotedTweet = ({ tweet }: { tweet: ITweet }) => {
           </EllipsisWrapper>
         </UserModalWrapper>
         <span className={styles.dot}>·</span>
-        <span className={styles.date}>
-          {dayjs(tweet?.created_at).format("MMM D")}
-        </span>
+        <CreateDate date={tweet?.created_at} />
       </div>
 
       <div className={styles.tweet}>

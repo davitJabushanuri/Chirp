@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import { useRouter } from "next/navigation";
 
+import { EllipsisWrapper } from "@/components/elements/ellipsis-wrapper";
 import { FollowButton } from "@/components/elements/follow-button";
 import {
   Avatar,
@@ -33,11 +34,15 @@ export const ConversationMember = ({
 
       <div className={styles.name}>
         <UserModalWrapper userId={member?.id}>
-          <UserName name={member?.name} isVerified={member?.verified} />
+          <EllipsisWrapper>
+            <UserName name={member?.name} isVerified={member?.verified} />
+          </EllipsisWrapper>
         </UserModalWrapper>
         <div className={styles.username}>
           <UserModalWrapper userId={member?.id}>
-            <UserScreenName screenName={member?.screen_name} />
+            <EllipsisWrapper>
+              <UserScreenName screenName={member?.screen_name} />
+            </EllipsisWrapper>
           </UserModalWrapper>
           {sessionOwner?.followers?.some(
             (follower) => follower.id === member?.id,

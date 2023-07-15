@@ -1,5 +1,5 @@
-import dayjs from "dayjs";
-
+import { CreateDate } from "@/components/elements/create-date";
+import { EllipsisWrapper } from "@/components/elements/ellipsis-wrapper";
 import { Avatar, UserName, UserScreenName } from "@/features/profile";
 import { TweetMedia } from "@/features/tweets";
 import { ITweet } from "@/features/tweets";
@@ -14,17 +14,19 @@ export const CreateTweetQuote = ({ tweet }: { tweet: ITweet }) => {
           <Avatar userImage={tweet?.author?.profile_image_url} />
         </span>
 
-        <UserName
-          name={tweet?.author?.name}
-          isVerified={tweet?.author?.verified}
-        />
+        <EllipsisWrapper>
+          <UserName
+            name={tweet?.author?.name}
+            isVerified={tweet?.author?.verified}
+          />
+        </EllipsisWrapper>
 
-        <UserScreenName screenName={tweet?.author?.email?.split("@")[0]} />
+        <EllipsisWrapper>
+          <UserScreenName screenName={tweet?.author?.email?.split("@")[0]} />
+        </EllipsisWrapper>
 
         <span className={styles.dot}>·</span>
-        <span className={styles.date}>
-          {dayjs(tweet?.created_at).format("MMM D")}
-        </span>
+        <CreateDate date={tweet?.created_at} />
       </div>
 
       <div className={styles.tweet}>

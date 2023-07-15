@@ -5,6 +5,7 @@ import { useEffect } from "react";
 
 import { SearchIcon } from "@/assets/search-icon";
 import { Progressbar } from "@/components/designs/progressbar";
+import { EllipsisWrapper } from "@/components/elements/ellipsis-wrapper";
 import { TryAgain } from "@/components/elements/try-again";
 import { Avatar, UserName, UserScreenName } from "@/features/profile";
 
@@ -92,13 +93,18 @@ export const SearchResultsModal = ({
                   >
                     <Avatar userImage={person?.profile_image_url} />
                     <span className={styles.info}>
-                      <UserName
-                        isVerified={person?.verified}
-                        name={person?.name}
-                      />
-                      <UserScreenName
-                        screenName={person?.email?.split("@")[0]}
-                      />
+                      <EllipsisWrapper>
+                        <UserName
+                          isVerified={person?.verified}
+                          name={person?.name}
+                        />
+                      </EllipsisWrapper>
+
+                      <EllipsisWrapper>
+                        <UserScreenName
+                          screenName={person?.email?.split("@")[0]}
+                        />
+                      </EllipsisWrapper>
                     </span>
                   </div>
                 );

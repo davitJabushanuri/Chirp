@@ -32,7 +32,9 @@ export const ConversationMemberDetails = ({
         </LinkToProfile>
       </div>
       <LinkToProfile userId={user?.id}>
-        <UserName name={user?.name} isVerified={user?.verified} />
+        <EllipsisWrapper>
+          <UserName name={user?.name} isVerified={user?.verified} />
+        </EllipsisWrapper>
       </LinkToProfile>
       <div className={styles.username}>
         <LinkToProfile userId={user?.id}>

@@ -46,7 +46,11 @@ export const Person = ({ person }: { person: IUser }) => {
         <UserModalWrapper userId={person?.id}>
           <LinkToProfile userId={person?.id}>
             <EllipsisWrapper>
-              <UserName name={person?.name} isVerified={person?.verified} />
+              <UserName
+                name={person?.name}
+                isVerified={person?.verified}
+                hover={true}
+              />
             </EllipsisWrapper>
           </LinkToProfile>
         </UserModalWrapper>

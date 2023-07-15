@@ -1,3 +1,4 @@
+import { EllipsisWrapper } from "@/components/elements/ellipsis-wrapper";
 import {
   Avatar,
   LinkToProfile,
@@ -22,16 +23,22 @@ export const TweetAuthor = ({ tweet }: { tweet: ITweet }) => {
       <div className={styles.userInfo}>
         <UserModalWrapper userId={tweet?.author?.id}>
           <LinkToProfile userId={tweet?.author?.id}>
-            <UserName
-              name={tweet?.author?.name}
-              isVerified={tweet?.author?.verified}
-            />
+            <EllipsisWrapper>
+              <UserName
+                name={tweet?.author?.name}
+                isVerified={tweet?.author?.verified}
+              />
+            </EllipsisWrapper>
           </LinkToProfile>
         </UserModalWrapper>
 
         <UserModalWrapper userId={tweet?.author?.id}>
           <LinkToProfile userId={tweet?.author?.id}>
-            <UserScreenName screenName={tweet?.author?.email?.split("@")[0]} />
+            <EllipsisWrapper>
+              <UserScreenName
+                screenName={tweet?.author?.email?.split("@")[0]}
+              />
+            </EllipsisWrapper>
           </LinkToProfile>
         </UserModalWrapper>
       </div>

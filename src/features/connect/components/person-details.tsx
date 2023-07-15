@@ -50,7 +50,11 @@ export const PersonDetails = ({ author }: { author: IUser }) => {
             <UserModalWrapper userId={author?.id}>
               <LinkToProfile userId={author?.id}>
                 <EllipsisWrapper>
-                  <UserName name={author?.name} isVerified={author?.verified} />
+                  <UserName
+                    name={author?.name}
+                    isVerified={author?.verified}
+                    hover={true}
+                  />
                 </EllipsisWrapper>
               </LinkToProfile>
             </UserModalWrapper>
