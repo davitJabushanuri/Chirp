@@ -1,0 +1,9 @@
+.container {
+  cursor: pointer;
+
+  &:focus-visible {
+    span {
+      text-decoration: underline;
+    }
+  }
+}
