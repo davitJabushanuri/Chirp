@@ -34,7 +34,8 @@ export const FollowButton = ({
     <div className={styles.container}>
       {isFollowing ? (
         <button
-          onClick={() => {
+          onClick={(e) => {
+            e.stopPropagation();
             if (!session) {
               setJoinTwitterData({
                 isModalOpen: true,
@@ -51,7 +52,8 @@ export const FollowButton = ({
         </button>
       ) : (
         <button
-          onClick={() => {
+          onClick={(e) => {
+            e.stopPropagation();
             if (!session) {
               setJoinTwitterData({
                 isModalOpen: true,

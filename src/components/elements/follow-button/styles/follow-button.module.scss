@@ -24,6 +24,10 @@
     &:active {
       background-color: var(--clr-background-active);
     }
+
+    &:focus-visible {
+      outline: 2px solid var(--clr-secondary);
+    }
   }
 
   .follow {
@@ -36,6 +40,11 @@
 
     &:active {
       background-color: var(--clr-secondary-active);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--clr-secondary);
+      background-color: var(--clr-secondary-hover);
     }
   }
 }
