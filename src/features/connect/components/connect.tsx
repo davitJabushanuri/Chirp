@@ -34,8 +34,9 @@ export const Connect = () => {
           </div>
 
           <button
-            onClick={() => router.push(`/people`)}
             className={styles.showMore}
+            onClick={() => router.push(`/people`)}
+            tabIndex={0}
           >
             Show more
           </button>

@@ -1,47 +1,34 @@
 .container {
+  width: 100%;
   display: grid;
   grid-template-columns: 46px 1fr;
-  gap: 0.6rem;
-  padding: 11px 16px;
+  gap: 12px;
+  padding: 0.75em 1em;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
 
   &:hover {
-    background-color: var(--clr-connect-hover);
+    background-color: var(--clr-tweet-hover);
   }
 
   &:active {
-    background-color: var(--clr-connect-active);
+    background-color: var(--clr-quoted-tweet);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--clr-primary-disabled);
+    background-color: var(--clr-tweet-hover);
+  }
+
+  &:focus-within {
+    background-color: var(--clr-tweet-hover);
   }
 
   .info {
-    .primary {
+    .user_details {
       display: flex;
       align-items: center;
       justify-content: space-between;
-
-      .name {
-        display: flex;
-        flex-direction: column;
-
-        .fullName {
-          font-size: var(--fs-milli);
-          font-weight: 500;
-          color: var(--clr-secondary);
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
-
-        .username {
-          font-size: var(--fs-milli);
-          font-weight: 400;
-          color: var(--clr-tertiary);
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
-      }
     }
 
     .secondary {

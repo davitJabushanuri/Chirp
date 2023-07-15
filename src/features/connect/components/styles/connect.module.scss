@@ -5,8 +5,7 @@
   }
 
   h1 {
-    padding: 11px 15px;
-    padding-bottom: 0.6rem;
+    padding: 0.75em 1em;
     color: var(--clr-secondary);
     font-size: var(--fs-h2);
     font-weight: var(--fw-700);
@@ -14,13 +13,12 @@
 
   .showMore {
     width: 100%;
-    border: none;
-    padding: 15px;
+    padding: 1em;
     color: var(--clr-primary);
-    background-color: transparent;
     cursor: pointer;
-    text-align: left;
     font-size: var(--fs-milli);
+    border-radius: 0 0 1rem 1rem;
+    outline-offset: -2px;
 
     &:hover {
       background-color: var(--clr-connect-hover);
@@ -28,6 +26,11 @@
 
     &:active {
       background-color: var(--clr-connect-active);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--clr-primary-disabled);
+      background-color: var(--clr-connect-hover);
     }
   }
 }
