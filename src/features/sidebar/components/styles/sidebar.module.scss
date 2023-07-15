@@ -23,11 +23,11 @@
   @include mq("small") {
     display: grid;
     grid-template-rows: min-content min-content min-content 1fr;
-    padding: 2px 4px;
+    padding: 4px;
   }
 
   @include mq("medium") {
-    padding: 2px 11px;
+    padding: 4px 0.5em;
   }
 
   @include mq("xx-large") {

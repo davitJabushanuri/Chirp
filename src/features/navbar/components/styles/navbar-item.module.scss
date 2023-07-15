@@ -1,10 +1,10 @@
 @use "abstracts/media-query.scss" as *;
 
 .container {
-  width: 100%;
   cursor: pointer;
   display: flex;
   justify-content: center;
+  padding: 4px 0;
 
   &:hover {
     .navItem {
@@ -18,22 +18,27 @@
     }
   }
 
+  &:focus-visible {
+    .navItem {
+      background-color: var(--clr-nav-hover);
+      outline: 2px solid var(--clr-secondary);
+    }
+  }
+
   .navItem {
+    padding: 0.75em;
     color: var(--clr-secondary);
     fill: var(--clr-secondary);
-    padding: 8px;
-    display: grid;
-    place-items: center;
     border-radius: 100vmax;
-    transition: all 0.2s ease-in-out;
+    display: grid;
+    transition: all 0.1s ease-in-out;
 
     .icon {
-      width: 24.5px;
-      height: 24.5px;
+      display: grid;
 
       svg {
-        height: 100%;
-        width: 100%;
+        height: var(--nav-icon-size);
+        width: var(--nav-icon-size);
         fill: var(--clr-secondary);
       }
     }
@@ -44,35 +49,26 @@
     }
 
     .active {
-      font-weight: 500;
+      font-weight: var(--fw-600);
     }
   }
 
   @include mq("small") {
-    padding: 4px 6px;
-
-    .navItem {
-      padding: 11px;
-    }
   }
 
   @include mq("medium") {
-    padding: 4px 10px;
   }
 
   @include mq("xx-large") {
     justify-content: flex-start;
-    padding: 4px 0;
 
     .navItem {
-      padding: 11px;
-      display: flex;
-      align-items: center;
-      transition: all 0.2s ease-in-out;
+      grid-template-columns: auto 1fr;
 
       .text {
-        display: block;
-        padding: 0 1rem;
+        display: grid;
+        align-items: center;
+        padding: 0 0.75em;
       }
     }
   }
