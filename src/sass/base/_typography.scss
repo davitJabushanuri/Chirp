@@ -31,6 +31,11 @@
   --fs-micro: #{$xs-micro};
   --fs-nano: #{$xs-nano};
   --fs-pico: #{$xs-pico};
+
+  --verified-icon-width: 1.09375rem;
+  --avatar-width: 2.25rem;
+  --quoted-tweet-avatar-width: 1.125rem;
+  --hamburger-avatar-width: 1.8125rem;
 }
 
 .font-size-sm {
@@ -47,6 +52,11 @@
   --fs-micro: #{$sm-micro};
   --fs-nano: #{$sm-nano};
   --fs-pico: #{$sm-pico};
+
+  --verified-icon-width: 1.09375rem;
+  --avatar-width: 2.375rem;
+  --quoted-tweet-avatar-width: 1.875rem;
+  --hamburger-avatar-width: 1.875rem;
 }
 
 .font-size-md {
@@ -63,6 +73,11 @@
   --fs-micro: #{$md-micro};
   --fs-nano: #{$md-nano};
   --fs-pico: #{$md-pico};
+
+  --verified-icon-width: 1.171875rem;
+  --avatar-width: 2.5rem;
+  --quoted-tweet-avatar-width: 1.25rem;
+  --hamburger-avatar-width: 2rem;
 }
 
 .font-size-lg {
@@ -79,6 +94,11 @@
   --fs-micro: #{$lg-micro};
   --fs-nano: #{$lg-nano};
   --fs-pico: #{$lg-pico};
+
+  --verified-icon-width: 1.328125rem;
+  --avatar-width: 2.75rem;
+  --quoted-tweet-avatar-width: 1.375rem;
+  --hamburger-avatar-width: 2.1875rem;
 }
 
 .font-size-xl {
@@ -95,4 +115,9 @@
   --fs-micro: #{$xl-micro};
   --fs-nano: #{$xl-nano};
   --fs-pico: #{$xl-pico};
+
+  --verified-icon-width: 1.40625rem;
+  --avatar-width: 3rem;
+  --quoted-tweet-avatar-width: 1.5rem;
+  --hamburger-avatar-width: 2.375rem;
 }
