@@ -3,6 +3,7 @@
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "cSpell.words": [
     "commitlint",
+    "DDTHH",
     "hookform",
     "noninteractive",
     "progressbar",

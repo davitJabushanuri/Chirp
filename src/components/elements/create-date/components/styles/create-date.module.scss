@@ -1,0 +1,8 @@
+.container {
+  font-size: var(--fs-milli);
+  color: var(--clr-tertiary);
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
