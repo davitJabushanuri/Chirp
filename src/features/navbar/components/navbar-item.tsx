@@ -1,7 +1,5 @@
 import Link from "next/link";
 
-import { INavItemProps } from "../types";
-
 import styles from "./styles/navbar-item.module.scss";
 
 const NavItem = ({
@@ -10,7 +8,13 @@ const NavItem = ({
   path,
   isActive,
   aria_label,
-}: INavItemProps) => {
+}: {
+  icon: React.ReactNode;
+  title: string;
+  path: string;
+  isActive: boolean;
+  aria_label: string;
+}) => {
   return (
     <Link
       className={styles.container}
