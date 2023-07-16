@@ -28,10 +28,6 @@ body {
     display: grid;
     grid-template-columns: 1fr;
 
-    main {
-      max-width: 600px;
-    }
-
     @include mq("small") {
       grid-template-columns: auto auto;
 
@@ -54,17 +50,16 @@ body {
     }
 
     @include mq("large") {
-      grid-template-columns: auto auto 1fr;
-      max-width: 1070px;
-    }
-
-    @include mq("x-large") {
-      grid-template-columns: auto auto 1fr;
+      grid-template-columns: auto 600px 1fr;
       max-width: 1100px;
     }
 
+    @include mq("x-large") {
+      grid-template-columns: auto 600px 1fr;
+    }
+
     @include mq("xx-large") {
-      grid-template-columns: 275px auto 1fr;
+      grid-template-columns: 275px 600px 1fr;
       max-width: 1265px;
     }
   }
