@@ -12,9 +12,8 @@ export const MobileNavbar = () => {
   const pathname = usePathname();
 
   return (
-    <div className={styles.container}>
+    <nav className={styles.container}>
       <NavItem
-        aria_label="Home"
         icon={
           pathname === `/` || pathname === `/home` ? <HomeActive /> : <Home />
         }
@@ -24,7 +23,6 @@ export const MobileNavbar = () => {
       />
 
       <NavItem
-        aria_label="Explore"
         icon={pathname === `/explore` ? <SearchActive /> : <Search />}
         title={`Explore`}
         path={`explore`}
@@ -32,7 +30,6 @@ export const MobileNavbar = () => {
       />
 
       <NavItem
-        aria_label="Notifications"
         icon={pathname === `/notifications` ? <BellActive /> : <Bell />}
         title={`Notifications`}
         path={`notifications`}
@@ -40,12 +37,11 @@ export const MobileNavbar = () => {
       />
 
       <NavItem
-        aria_label="Messages"
         icon={pathname === `/messages` ? <EnvelopeActive /> : <Envelope />}
         title={`Messages`}
         path={`messages`}
         isActive={pathname === `/messages`}
       />
-    </div>
+    </nav>
   );
 };

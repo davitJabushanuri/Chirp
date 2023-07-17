@@ -20,7 +20,6 @@ export const Navbar = () => {
     <nav aria-label="Primary" className={styles.container}>
       {session && (
         <NavItem
-          aria_label="Home"
           icon={pathname === `/home` ? <HomeActive /> : <Home />}
           title={`Home`}
           path={`home`}
@@ -29,7 +28,6 @@ export const Navbar = () => {
       )}
 
       <NavItem
-        aria_label="Explore"
         icon={pathname === `/explore` ? <HashtagActive /> : <Hashtag />}
         title={`Explore`}
         path={`explore`}
@@ -38,7 +36,6 @@ export const Navbar = () => {
 
       {session && (
         <NavItem
-          aria_label="Notifications"
           icon={pathname === `/notifications` ? <BellActive /> : <Bell />}
           title={`Notifications`}
           path={`notifications`}
@@ -48,7 +45,6 @@ export const Navbar = () => {
 
       {session && (
         <NavItem
-          aria_label="Messages"
           icon={pathname === `/messages` ? <EnvelopeActive /> : <Envelope />}
           title={`Messages`}
           path={`messages`}
@@ -58,7 +54,6 @@ export const Navbar = () => {
 
       {session && (
         <NavItem
-          aria_label="Bookmarks"
           icon={pathname === `/bookmarks` ? <BookmarkActive /> : <Bookmark />}
           title={`Bookmarks`}
           path={`bookmarks`}
@@ -68,7 +63,6 @@ export const Navbar = () => {
 
       {session && (
         <NavItem
-          aria_label="Profile"
           icon={
             pathname === `/${session?.user?.id}` ? <UserActive /> : <User />
           }
@@ -79,7 +73,6 @@ export const Navbar = () => {
       )}
 
       <NavItem
-        aria_label="Settings"
         icon={pathname === `/settings` ? <GearActive /> : <Gear />}
         title={`Settings`}
         path={`settings`}

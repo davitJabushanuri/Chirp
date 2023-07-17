@@ -1,6 +1,7 @@
 @use "abstracts/media-query.scss" as *;
 
 .container {
+  position: relative;
   cursor: pointer;
   display: flex;
   justify-content: center;

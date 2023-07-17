@@ -7,19 +7,23 @@ const NavItem = ({
   title,
   path,
   isActive,
-  aria_label,
 }: {
   icon: React.ReactNode;
   title: string;
   path: string;
   isActive: boolean;
-  aria_label: string;
 }) => {
   return (
     <Link
+      title={title}
       className={styles.container}
       href={`/${path}`}
-      aria-label={aria_label}
+      aria-label={title}
+      style={
+        {
+          "--nav-tooltip": title,
+        } as React.CSSProperties
+      }
     >
       <div className={styles.navItem}>
         <span className={styles.icon}>{icon}</span>

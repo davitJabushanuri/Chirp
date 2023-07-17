@@ -4,19 +4,19 @@
     padding: 4rem 0;
   }
 
-  h1 {
-    padding: 0.75em 1em;
+  h2 {
     color: var(--clr-secondary);
     font-size: var(--fs-h2);
     font-weight: var(--fw-700);
+    padding: 0.75rem 1rem;
   }
 
   .showMore {
-    width: 100%;
+    display: block;
     padding: 1em;
     color: var(--clr-primary);
     cursor: pointer;
-    font-size: var(--fs-milli);
+    font-size: var(--fs-base);
     border-radius: 0 0 1rem 1rem;
     outline-offset: -2px;
 

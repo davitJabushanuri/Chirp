@@ -11,7 +11,7 @@ export const Sidebar = () => {
   const { data: session } = useSession();
 
   return (
-    <aside className={styles.container}>
+    <header className={styles.container}>
       <div className={styles.logo}>
         <Logo />
       </div>
@@ -28,6 +28,6 @@ export const Sidebar = () => {
           <SessionOwnerButton />
         </div>
       )}
-    </aside>
+    </header>
   );
 };

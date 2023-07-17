@@ -13,7 +13,7 @@ export const Trends = ({ title = "Trends" }: { title?: string }) => {
   if (hashtags && hashtags?.length <= 0) return null;
 
   return (
-    <div className={styles.container}>
+    <section aria-label="Timeline: Trending now" className={styles.container}>
       {isLoading ? (
         <div className={styles.loading}>
           <LoadingSpinner />
@@ -25,7 +25,7 @@ export const Trends = ({ title = "Trends" }: { title?: string }) => {
       ) : (
         <>
           <div className={styles.trends}>
-            <h1 className={styles.title}>{title}</h1>
+            <h2>{title}</h2>
             {isSuccess &&
               hashtags?.length > 0 &&
               hashtags?.map((hashtag, index) => {
@@ -39,11 +39,11 @@ export const Trends = ({ title = "Trends" }: { title?: string }) => {
                 );
               })}
           </div>
-          <button className={styles.showMore}>
-            <Link href={`trends`}>Show more</Link>
-          </button>
+          <Link href={`trends`} className={styles.showMore}>
+            Show more
+          </Link>
         </>
       )}
-    </div>
+    </section>
   );
 };

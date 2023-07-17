@@ -1,9 +1,7 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 "use client";
-
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { Tooltip } from "react-tooltip";
 
 import { DotIcon } from "@/assets/dot-icon";
 import { SadFaceIcon } from "@/assets/sad-face-icon";
@@ -20,6 +18,14 @@ export const Trend = ({ ranking = 1, title, tweets = 1 }: iTrendProps) => {
 
   return (
     <div
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === "Enter") {
+          setQuery(title);
+          router.push(`/search?query=${title.toLowerCase()}`);
+        }
+      }}
       onClick={() => {
         setQuery(title);
         router.push(`/search?query=${title.toLowerCase()}`);
@@ -47,14 +53,26 @@ const TrendOptions = () => {
   return (
     <div className={styles.options}>
       <button
+        aria-expanded={isModalOpen}
+        aria-haspopup="menu"
+        aria-label="More"
+        tabIndex={0}
         className={styles.optionsButton}
+        onKeyDown={(e) => {
+          e.stopPropagation();
+        }}
         onClick={(e) => {
           e.stopPropagation();
           setIsModalOpen(true);
         }}
+        data-tooltip-id="trends-option-tooltip"
+        data-tooltip-content={`More `}
+        data-tooltip-delay-show={500}
       >
         <DotIcon />
       </button>
+
+      <Tooltip id="trends-option-tooltip" place="bottom" />
       {isModalOpen && (
         <ActionsModal setIsModalOpen={setIsModalOpen}>
           <button
