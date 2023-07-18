@@ -1,6 +1,8 @@
 import { cookies } from "next/headers";
+import Link from "next/link";
 
 import { VerifiedIcon } from "@/assets/verified-icon";
+import { EllipsisWrapper } from "@/components/elements/ellipsis-wrapper";
 import { ColorPicker } from "@/features/color-picker";
 import { FontSizeCustomization } from "@/features/font-size-customization";
 import { Avatar } from "@/features/profile";
@@ -30,16 +32,24 @@ const Settings = () => {
           </div>
           <div className={styles.content}>
             <div className={styles.user_details}>
-              <div className={styles.name}>Twitter</div>
+              <EllipsisWrapper>
+                <span className={styles.name}>Twitter</span>
+              </EllipsisWrapper>
+
               <VerifiedIcon />
-              <div className={styles.username}>@Twitter</div>
-              <div className={styles.time}>15m</div>
+
+              <EllipsisWrapper>
+                <span className={styles.username}>@Twitter</span>
+              </EllipsisWrapper>
+
+              <span className={styles.dot}>·</span>
+              <span className={styles.time}>15m</span>
             </div>
-            <div className={styles.tweet_text}>
-              At the heart of Twitter are short messages called Tweets - just
-              like this one - which can include photos, videos, links, text, and
-              hashtags, and mentions like {`@Twitter`}.
-            </div>
+            <p className={styles.tweet_text}>
+              At the heart of Twitter are short messages called Tweets — just
+              like this one — which can include photos, videos, links, text,
+              hashtags, and mentions like <Link href="#">@Twitter</Link>.
+            </p>
           </div>
         </article>
 

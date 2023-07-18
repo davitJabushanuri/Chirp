@@ -17,5 +17,64 @@
       color: var(--clr-tertiary);
       margin-bottom: 1.2rem;
     }
+
+    .tweet {
+      padding: 1em;
+      margin: 1em;
+      border: 1px solid var(--clr-border);
+      border-radius: 12px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 12px;
+      pointer-events: none;
+      margin-bottom: 1em;
+
+      .content {
+        .user_details {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+
+          @media (max-width: 320px) {
+            flex-wrap: wrap;
+          }
+
+          .name {
+            font-size: var(--fs-milli);
+            font-weight: var(--fw-700);
+            color: var(--clr-secondary);
+          }
+
+          .username {
+            font-size: var(--fs-milli);
+            color: var(--clr-tertiary);
+          }
+
+          .dot {
+            color: var(--clr-tertiary);
+          }
+
+          .time {
+            font-size: var(--fs-milli);
+            color: var(--clr-tertiary);
+          }
+        }
+
+        .tweet_text {
+          margin-top: 0.2rem;
+          font-size: var(--fs-milli);
+          color: var(--clr-secondary);
+
+          a {
+            color: var(--clr-primary);
+            text-decoration: none;
+
+            &:focus-visible {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
   }
 }
