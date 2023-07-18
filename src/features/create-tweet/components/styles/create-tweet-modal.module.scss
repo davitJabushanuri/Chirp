@@ -13,20 +13,19 @@
   background-color: var(--clr-background);
 
   .modal {
-    overflow: auto;
+    position: relative;
     background-color: var(--clr-background);
     border-radius: 1rem;
     width: 100%;
     max-width: 600px;
-    position: relative;
     padding-top: 50px;
+    overflow: auto;
 
     .close {
       position: absolute;
       top: 8px;
       left: 8px;
       border-radius: 50%;
-
 
       .x {
         display: none;
@@ -44,14 +43,13 @@
     }
 
     @include mq("medium") {
-      max-width: 600px;
-      max-height: 700px;
       height: fit-content;
+      max-height: 700px;
       animation: slideIn 0.3s ease-in-out;
     }
   }
 
-  @include mq ("medium") {
+  @include mq("medium") {
     background-color: var(--clr-modal-background);
     padding-top: 50px;
   }
