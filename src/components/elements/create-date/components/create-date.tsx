@@ -1,6 +1,7 @@
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import updateLocale from "dayjs/plugin/updateLocale";
+import Link from "next/link";
 
 import styles from "./styles/create-date.module.scss";
 
@@ -31,13 +32,15 @@ export const CreateDate = ({ date }: { date: Date | undefined }) => {
   const isMoreThan24Hours = Date.now() - created.valueOf() < day;
 
   return (
-    <time
-      title={created.format("h:mm A · MMM D, YYYY")}
-      aria-label={created.format("MMM D")}
+    <Link
       className={styles.container}
-      dateTime={created.format("YYYY-MM-DDTHH:mm:ssZ")}
+      href={`#`}
+      aria-label={created.format("MMM D")}
+      data-title={created.format("h:mm A · MMM D, YYYY")}
     >
-      {isMoreThan24Hours ? created.fromNow(true) : created.format("MMM D")}
-    </time>
+      <time dateTime={created.format("YYYY-MM-DDTHH:mm:ssZ")}>
+        {isMoreThan24Hours ? created.fromNow(true) : created.format("MMM D")}
+      </time>
+    </Link>
   );
 };
