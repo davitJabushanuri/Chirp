@@ -1,20 +1,23 @@
 $delay: 0.5s;
 
-@mixin tooltip($position: bottom) {
+@mixin tooltip($position: bottom, $offset: 0) {
+  position: relative;
+
   &::after {
     content: attr(data-title);
     position: absolute;
 
     @if $position == bottom {
       top: 100%;
+      margin-top: $offset;
     }
 
     @if $position == top {
       bottom: 100%;
+      margin-bottom: $offset;
     }
 
     left: 50%;
-    margin-top: 1px;
     transform: translateX(-50%);
     background-color: var(--clr-tertiary);
     font-size: var(--fs-pico);

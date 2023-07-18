@@ -1,4 +1,5 @@
 @use "abstracts/media-query.scss" as *;
+@use "abstracts/tooltips.scss" as *;
 
 .container {
   margin-bottom: 11px;
@@ -7,7 +8,8 @@
   cursor: pointer;
   display: flex;
   justify-content: center;
-  transition: all 0.1s linear;
+  transition: all 0.2s linear;
+  @include tooltip(top, 4px);
 
   &:hover {
     background-color: var(--clr-nav-hover);
@@ -33,6 +35,7 @@
   @include mq("xx-large") {
     width: 100%;
     align-items: center;
+    @include hide-tooltip();
 
     .userInfo {
       margin: 0 11px;

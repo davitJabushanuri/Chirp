@@ -20,6 +20,7 @@ export const SessionOwnerButton = () => {
         tabIndex={0}
         onClick={() => openUserModal()}
         className={styles.container}
+        data-title="Accounts"
       >
         <div className={styles.avatar}>
           <Avatar userImage={session?.user?.profile_image_url} />

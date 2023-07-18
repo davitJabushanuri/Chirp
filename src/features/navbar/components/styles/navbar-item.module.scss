@@ -7,7 +7,7 @@
   display: flex;
   justify-content: center;
   padding: 4px 0;
-  @include tooltip(bottom);
+  @include tooltip(bottom, 2px);
 
   &:hover {
     .navItem {
