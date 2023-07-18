@@ -24,6 +24,7 @@ $delay: 0.5s;
     font-size: var(--fs-pico);
     border-radius: 0.1rem;
     padding: 0.3em;
+    white-space: nowrap;
     opacity: 0;
     z-index: 1;
     transition: opacity 0.2 ease-in-out;
