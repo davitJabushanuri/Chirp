@@ -31,6 +31,9 @@ export const LikeButton = ({
 
   return (
     <button
+      aria-label={hasLiked ? "Unlike" : "Like"}
+      data-title={hasLiked ? "Unlike" : "Like"}
+      tabIndex={0}
       onClick={(e) => {
         e.stopPropagation();
         if (!session) {

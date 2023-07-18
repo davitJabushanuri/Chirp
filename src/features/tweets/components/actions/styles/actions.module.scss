@@ -1,3 +1,5 @@
+@use "abstracts/tooltips" as *;
+
 .container {
   position: relative;
 }
@@ -8,8 +10,10 @@
 .share {
   display: flex;
   align-items: center;
-  gap: 0.1rem;
+  gap: 4px;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  @include tooltip(bottom, 4px);
 }
 
 .icon {
@@ -18,6 +22,7 @@
   align-items: center;
   justify-content: center;
   padding: 0.5rem;
+  outline-offset: -2px;
 
   svg {
     fill: var(--clr-tertiary);
@@ -58,6 +63,21 @@
       color: var(--clr-blue);
     }
   }
+
+  &:focus-visible {
+    .icon {
+      outline: 2px solid var(--clr-blue);
+      background-color: var(--clr-comment-hover);
+
+      svg {
+        fill: var(--clr-blue);
+      }
+    }
+
+    .stats {
+      color: var(--clr-blue);
+    }
+  }
 }
 
 .retweet {
@@ -78,6 +98,21 @@
   &:active {
     .icon {
       background-color: var(--clr-retweet-active);
+
+      svg {
+        fill: var(--clr-green);
+      }
+    }
+
+    .stats {
+      color: var(--clr-green);
+    }
+  }
+
+  &:focus-visible {
+    .icon {
+      outline: 2px solid var(--clr-green);
+      background-color: var(--clr-retweet-hover);
 
       svg {
         fill: var(--clr-green);
@@ -118,6 +153,21 @@
       color: var(--clr-rose);
     }
   }
+
+  &:focus-visible {
+    .icon {
+      outline: 2px solid var(--clr-rose);
+      background-color: var(--clr-heart-hover);
+
+      svg {
+        fill: var(--clr-rose);
+      }
+    }
+
+    .stats {
+      color: var(--clr-rose);
+    }
+  }
 }
 
 .share {
@@ -134,6 +184,17 @@
   &:active {
     .icon {
       background-color: var(--clr-comment-active);
+
+      svg {
+        fill: var(--clr-blue);
+      }
+    }
+  }
+
+  &:focus-visible {
+    .icon {
+      outline: 2px solid var(--clr-blue);
+      background-color: var(--clr-comment-hover);
 
       svg {
         fill: var(--clr-blue);

@@ -4,14 +4,31 @@
   gap: 11px;
   grid-template-columns: auto 1fr;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  transition: background-color 0.2s linear;
+  outline-offset: -2px;
 
   &:hover {
     background-color: var(--clr-tweet-hover);
   }
 
-  .avatar {
-    margin: 11px 0 0 15px;
+  &:focus-visible {
+    outline: 2px solid var(--clr-primary-disabled);
+    background-color: var(--clr-tweet-hover);
+  }
+
+  &:focus-within {
+    background-color: var(--clr-tweet-hover);
+  }
+
+  .left {
+    .avatar {
+      margin: 11px 0 0 15px;
+      border-radius: 100vmax;
+
+      &:has(:focus-visible) {
+        outline: 2px solid var(--clr-primary-disabled);
+      }
+    }
   }
 
   .user_details {

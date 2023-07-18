@@ -34,12 +34,14 @@ export const Tweet = ({ tweet }: { tweet: ITweet }) => {
       }}
       className={styles.container}
     >
-      <div className={styles.avatar}>
-        <UserModalWrapper userId={tweet?.author?.id}>
-          <LinkToProfile userId={tweet?.author?.id}>
-            <Avatar userImage={tweet?.author?.profile_image_url} />
-          </LinkToProfile>
-        </UserModalWrapper>
+      <div className={styles.left}>
+        <div className={styles.avatar}>
+          <UserModalWrapper userId={tweet?.author?.id}>
+            <LinkToProfile userId={tweet?.author?.id}>
+              <Avatar userImage={tweet?.author?.profile_image_url} />
+            </LinkToProfile>
+          </UserModalWrapper>
+        </div>
       </div>
 
       <div className={styles.content}>
@@ -69,7 +71,9 @@ export const Tweet = ({ tweet }: { tweet: ITweet }) => {
 
             <span className={styles.dot}>·</span>
 
-            <CreateDate date={tweet?.created_at} />
+            <div className={styles.date}>
+              <CreateDate date={tweet?.created_at} />
+            </div>
           </div>
         </div>
 

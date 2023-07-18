@@ -31,11 +31,26 @@ export const TweetOptions = ({ tweet }: { tweet: ITweet }) => {
 
   return (
     <div
+      onKeyDown={(e) => {
+        e.stopPropagation();
+      }}
       onClick={(e) => {
         e.stopPropagation();
       }}
       className={styles.container}
     >
+      <button
+        aria-expanded={isActionsModalOpen}
+        aria-haspopup="menu"
+        aria-label="More"
+        data-title="More"
+        tabIndex={0}
+        onClick={() => setIsActionsModalOpen(true)}
+        className={styles.optionsButton}
+      >
+        <DotIcon />
+      </button>
+
       {isActionsModalOpen && (
         <ActionsModal setIsModalOpen={setIsActionsModalOpen}>
           {tweet?.author?.id === session?.user?.id ? (
@@ -49,12 +64,6 @@ export const TweetOptions = ({ tweet }: { tweet: ITweet }) => {
           )}
         </ActionsModal>
       )}
-      <button
-        onClick={() => setIsActionsModalOpen(true)}
-        className={styles.optionsButton}
-      >
-        <DotIcon />
-      </button>
 
       {isDeleteModalOpen && (
         <DeleteTweetModal

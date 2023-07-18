@@ -1,3 +1,5 @@
+@use "abstracts/tooltips" as *;
+
 .container {
   position: relative;
 
@@ -9,6 +11,7 @@
     fill: var(--clr-tertiary);
     display: grid;
     place-items: center;
+    @include tooltip(bottom, 4px);
 
     &:hover {
       background-color: var(--clr-options-hover);
@@ -17,6 +20,12 @@
 
     &:active {
       background-color: var(--clr-options-active);
+      fill: var(--clr-blue);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--clr-primary-disabled);
+      background-color: var(--clr-options-hover);
       fill: var(--clr-blue);
     }
 
