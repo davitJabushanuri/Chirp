@@ -15,15 +15,10 @@ const NavItem = ({
 }) => {
   return (
     <Link
-      title={title}
       className={styles.container}
       href={`/${path}`}
       aria-label={title}
-      style={
-        {
-          "--nav-tooltip": title,
-        } as React.CSSProperties
-      }
+      data-title={title}
     >
       <div className={styles.navItem}>
         <span className={styles.icon}>{icon}</span>
