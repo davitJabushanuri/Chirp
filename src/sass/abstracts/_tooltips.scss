@@ -1,0 +1,45 @@
+$delay: 0.5s;
+
+@mixin tooltip($position: bottom) {
+  &::after {
+    content: attr(data-title);
+    position: absolute;
+
+    @if $position == bottom {
+      top: 100%;
+    }
+
+    @if $position == top {
+      bottom: 100%;
+    }
+
+    left: 50%;
+    margin-top: 1px;
+    transform: translateX(-50%);
+    background-color: var(--clr-tertiary);
+    font-size: var(--fs-pico);
+    border-radius: 0.1rem;
+    padding: 0.3em;
+    opacity: 0;
+    z-index: 1;
+    transition: opacity 0.2 ease-in-out;
+  }
+
+  &:hover::after {
+    opacity: 0.9;
+    transition-delay: $delay;
+    -moz-transition-delay: $delay;
+    -webkit-transition-delay: $delay;
+    -o-transition-delay: $delay;
+  }
+
+  &:focus-visible::after {
+    opacity: 0.9;
+  }
+}
+
+@mixin hide-tooltip {
+  &::after {
+    content: none;
+  }
+}
