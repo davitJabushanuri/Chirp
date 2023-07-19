@@ -7,4 +7,5 @@ export interface INavItemProps {
   title: string;
   path: string;
   isActive: boolean;
+  aria_label: string;
 }

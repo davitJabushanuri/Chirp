@@ -1,0 +1,16 @@
+@use "abstracts/tooltips" as *;
+
+.container {
+  font-size: var(--fs-milli);
+  color: var(--clr-tertiary);
+  white-space: nowrap;
+  @include tooltip(bottom, 2px);
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    text-decoration: underline;
+  }
+}

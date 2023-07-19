@@ -1,3 +1,3 @@
-export const loginWithPassword = async (email: string, password: string) => {
+export const loginWithPassword = async () => {
   return null;
 };

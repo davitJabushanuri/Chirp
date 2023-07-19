@@ -1,7 +1,4 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 "use client";
-
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -20,6 +17,14 @@ export const Trend = ({ ranking = 1, title, tweets = 1 }: iTrendProps) => {
 
   return (
     <div
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === "Enter") {
+          setQuery(title);
+          router.push(`/search?query=${title.toLowerCase()}`);
+        }
+      }}
       onClick={() => {
         setQuery(title);
         router.push(`/search?query=${title.toLowerCase()}`);
@@ -47,7 +52,15 @@ const TrendOptions = () => {
   return (
     <div className={styles.options}>
       <button
+        aria-expanded={isModalOpen}
+        aria-haspopup="menu"
+        aria-label="More"
+        data-title="More"
+        tabIndex={0}
         className={styles.optionsButton}
+        onKeyDown={(e) => {
+          e.stopPropagation();
+        }}
         onClick={(e) => {
           e.stopPropagation();
           setIsModalOpen(true);
@@ -55,6 +68,7 @@ const TrendOptions = () => {
       >
         <DotIcon />
       </button>
+
       {isModalOpen && (
         <ActionsModal setIsModalOpen={setIsModalOpen}>
           <button

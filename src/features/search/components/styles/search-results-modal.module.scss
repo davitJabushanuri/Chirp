@@ -1,11 +1,11 @@
 .container {
   .progressbar {
-    height: 3px
+    height: 3px;
   }
 
   .placeholder {
     padding: 19px 11px 11px;
-    font-size: 14px;
+    font-size: var(--fs-milli);
     color: var(--clr-tertiary);
     text-align: center;
   }
@@ -40,7 +40,7 @@
 
       .text {
         color: var(--clr-secondary);
-        font-size: 14px;
+        font-size: var(--fs-milli);
         font-weight: 600;
       }
     }
@@ -64,7 +64,7 @@
     .link {
       width: 100%;
       padding: 15px;
-      font-size: 14px;
+      font-size: var(--fs-milli);
       color: var(--clr-secondary);
       cursor: pointer;
       transition: background-color 0.2s ease-in-out;

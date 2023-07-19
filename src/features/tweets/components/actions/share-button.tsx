@@ -109,7 +109,13 @@ export const ShareButton = ({ tweet }: { tweet: ITweet }) => {
           ) : null}
         </ActionsModal>
       )}
+
       <button
+        aria-expanded={isModalOpen}
+        aria-haspopup="menu"
+        aria-label="Share Tweet"
+        data-title="Share"
+        tabIndex={0}
         onClick={(e) => {
           e.stopPropagation();
           setIsModalOpen(true);

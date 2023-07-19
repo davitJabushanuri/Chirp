@@ -19,7 +19,6 @@
     height: 100%;
     padding-bottom: 2rem;
 
-
     .header {
       padding: 1rem;
       display: flex;
@@ -28,7 +27,6 @@
       gap: 1rem;
 
       .close {
-
         .x {
           display: none;
         }
@@ -45,8 +43,8 @@
       }
 
       h2 {
-        font-size: 1.2rem;
-        font-weight: 600;
+        font-size: var(--fs-h2);
+        font-weight: var(--fw-600);
         color: var(--clr-secondary);
       }
 
@@ -56,8 +54,8 @@
         border-radius: 100vmax;
         background-color: var(--clr-secondary);
         color: var(--clr-background);
-        font-size: 13px;
-        font-weight: 600;
+        font-size: var(--fs-micro);
+        font-weight: var(--fw-600);
         cursor: pointer;
         transition: all 0.2s ease-in-out;
 
@@ -104,7 +102,6 @@
         display: flex;
         gap: 1rem;
 
-
         button {
           width: 40px;
           height: 40px;
@@ -123,7 +120,6 @@
           &:active {
             background-color: var(--clr-action-active);
           }
-
 
           svg {
             width: 21px;
@@ -201,8 +197,6 @@
       gap: 1.6rem;
     }
 
-
-
     @include mq("medium") {
       max-width: 600px;
       height: fit-content;
@@ -210,7 +204,7 @@
     }
   }
 
-  @include mq ("medium") {
+  @include mq("medium") {
     background-color: var(--clr-modal-background);
     padding-top: 4rem;
   }
@@ -268,7 +262,7 @@
       transition: 0.2s ease-in-out;
       display: flex;
       align-items: center;
-      font-size: 1rem;
+      font-size: var(--fs-base);
       padding: 0.5rem;
       color: var(--clr-tertiary);
     }
@@ -281,35 +275,33 @@
       }
     }
 
-    input:focus+span {
-      font-size: 0.8rem;
+    input:focus + span {
+      font-size: var(--fs-nano);
       transform: translateY(-0.6rem);
       color: var(--clr-primary);
     }
 
-    input:not(:placeholder-shown)+span {
+    input:not(:placeholder-shown) + span {
       transform: translateY(-0.6rem);
-      font-size: 0.8rem;
+      font-size: var(--fs-nano);
     }
-
   }
 
   .isError {
-    outline: 1px solid #F4212E;
+    outline: 1px solid #f4212e;
 
     &:focus-within {
-      outline: 2px solid #F4212E;
+      outline: 2px solid #f4212e;
 
       span {
-        color: #F4212E;
+        color: #f4212e;
       }
     }
   }
 
   .error {
-    color: #F4212E;
-    font-size: 12px;
+    color: #f4212e;
+    font-size: var(--fs-nano);
     margin-left: 0.5rem;
   }
-
 }

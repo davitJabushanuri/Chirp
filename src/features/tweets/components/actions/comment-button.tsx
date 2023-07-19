@@ -31,6 +31,9 @@ export const CommentButton = ({
 
   return (
     <button
+      aria-label="Reply"
+      data-title="Reply"
+      tabIndex={0}
       onClick={(e) => {
         e.stopPropagation();
 

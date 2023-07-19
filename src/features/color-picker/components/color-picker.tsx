@@ -12,7 +12,6 @@ enum IColor {
   VIOLET = "color-violet",
   ORANGE = "color-orange",
   GREEN = "color-green",
-  DEFAULT = "color-blue",
 }
 
 export const ColorPicker = ({
@@ -21,7 +20,7 @@ export const ColorPicker = ({
   color?: string | undefined;
 }) => {
   if (!Object.values(IColor).includes(color as IColor)) {
-    color = IColor.DEFAULT;
+    color = IColor.BLUE;
   }
 
   const [currentColor, setCurrentColor] = useState(color as IColor);

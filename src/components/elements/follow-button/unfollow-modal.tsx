@@ -24,7 +24,7 @@ export const UnfollowModal = ({
       }}
       className={styles.container}
     >
-      <div className={styles.modal}>
+      <div onClick={(e) => e.stopPropagation()} className={styles.modal}>
         <h1>Unfollow @{username}?</h1>
         <p>
           Their Tweets will no longer show up in your home timeline. You can
@@ -37,6 +37,7 @@ export const UnfollowModal = ({
               user_id,
               session_owner_id,
             });
+            setIsModalOpen(false);
           }}
           className={styles.unfollow}
         >

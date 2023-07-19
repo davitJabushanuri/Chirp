@@ -17,13 +17,13 @@
     }
 
     .number {
-      font-size: 13px;
-      font-weight: 700;
+      font-size: var(--fs-micro);
+      font-weight: var(--fw-700);
       color: var(--clr-secondary);
     }
 
     .text {
-      font-size: 13px;
+      font-size: var(--fs-micro);
       color: var(--clr-tertiary);
     }
   }

@@ -66,8 +66,8 @@ $avatar-top: calc(-1 * #{$avatar-size} / 2 - #{$avatar-border});
         border-radius: 100vmax;
         padding: 0 1rem;
         height: 2rem;
-        font-size: 14px;
-        font-weight: 600;
+        font-size: var(--fs-milli);
+        font-weight: var(--fw-600);
         cursor: pointer;
         display: flex;
         align-items: center;
@@ -115,7 +115,6 @@ $avatar-top: calc(-1 * #{$avatar-size} / 2 - #{$avatar-border});
           }
         }
       }
-
     }
 
     .user {
@@ -126,20 +125,20 @@ $avatar-top: calc(-1 * #{$avatar-size} / 2 - #{$avatar-border});
 
       .name {
         h1 {
-          font-size: 1.2rem;
-          font-weight: 600;
+          font-size: var(--fs-h2);
+          font-weight: var(--fw-600);
           color: var(--clr-secondary);
           margin-bottom: 0.2rem;
         }
 
         p {
-          font-size: 0.875rem;
+          font-size: var(--fs-micro);
           color: var(--clr-tertiary);
         }
       }
 
       .bio {
-        font-size: 14px;
+        font-size: var(--fs-milli);
       }
 
       .locationAndJoined {
@@ -149,7 +148,7 @@ $avatar-top: calc(-1 * #{$avatar-size} / 2 - #{$avatar-border});
         .location,
         .website,
         .joined {
-          font-size: 0.875rem;
+          font-size: var(--fs-milli);
           color: var(--clr-tertiary);
           margin-right: 1rem;
           display: flex;
@@ -201,12 +200,12 @@ $avatar-top: calc(-1 * #{$avatar-size} / 2 - #{$avatar-border});
           .number {
             font-weight: 500;
             color: var(--clr-secondary);
-            font-size: 0.850rem;
+            font-size: var(--fs-milli);
           }
 
           .text {
             color: var(--clr-tertiary);
-            font-size: 0.825rem;
+            font-size: var(--fs-micro);
           }
         }
       }

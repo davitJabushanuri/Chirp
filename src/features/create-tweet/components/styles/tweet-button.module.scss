@@ -1,15 +1,16 @@
 @use "abstracts/media-query" as *;
+@use "abstracts/tooltips.scss" as *;
 
 .container {
-  margin-top: 15px;
+  margin: 1em 0;
   background-color: var(--clr-primary);
-  width: 53px;
-  height: 53px;
   display: grid;
   place-items: center;
   border-radius: 100vmax;
   cursor: pointer;
+  padding: 0.75em;
   transition: background-color 0.2s ease-in-out;
+  @include tooltip(bottom, 4px);
 
   &:hover {
     background-color: var(--clr-primary-hover);
@@ -17,6 +18,11 @@
 
   &:active {
     background-color: var(--clr-primary-active);
+  }
+
+  &:focus-visible {
+    background-color: var(--clr-primary-hover);
+    outline: 2px solid var(--clr-secondary);
   }
 
   .icon {
@@ -29,15 +35,16 @@
   }
 
   svg {
-    width: 23px;
-    height: 23px;
+    width: var(--nav-icon-size);
+    height: var(--nav-icon-size);
     fill: var(--clr-light);
   }
 
   @include mq("xx-large") {
     width: 100%;
-    max-width: 227px;
-    height: 49px;
+    max-width: 230px;
+    padding: 1em;
+    @include hide-tooltip();
 
     .icon {
       display: none;
@@ -46,8 +53,8 @@
     .text {
       display: grid;
       place-items: center;
-      font-size: 16px;
-      font-weight: 700;
+      font-size: var(--fs-large);
+      font-weight: var(--fw-700);
       color: var(--clr-light);
     }
   }

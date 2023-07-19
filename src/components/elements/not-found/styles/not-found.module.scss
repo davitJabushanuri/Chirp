@@ -6,7 +6,7 @@
   gap: 2rem;
 
   p {
-    font-size: 14px;
+    font-size: var(--xs-milli);
     color: var(--clr-tertiary);
   }
 
@@ -17,8 +17,8 @@
     padding: 0 15px;
     border: none;
     border-radius: 100vmax;
-    font-size: 14px;
-    font-weight: 600;
+    font-size: var(--xs-milli);
+    font-weight: var(--fw-600);
     cursor: pointer;
   }
 }

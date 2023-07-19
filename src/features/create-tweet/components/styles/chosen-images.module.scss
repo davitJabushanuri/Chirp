@@ -4,7 +4,7 @@
 
   .imageContainer {
     position: relative;
-    max-height: 700px;
+    // max-height: 700px;
     border-radius: 1rem;
     overflow: hidden;
 
@@ -37,8 +37,8 @@
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   grid-template-areas:
-    'first second'
-    'first third';
+    "first second"
+    "first third";
   gap: 11px;
 
   .imageContainer:nth-of-type(1) {
@@ -61,8 +61,8 @@
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   grid-template-areas:
-    'first second'
-    'third fourth';
+    "first second"
+    "third fourth";
   gap: 11px;
 
   .imageContainer:nth-of-type(1) {

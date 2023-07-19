@@ -1,13 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
-import { Avatar } from "@/components/designs/avatar";
 import { CloseButton } from "@/components/designs/close-button";
-import { useUser } from "@/features/profile";
+import { Avatar, useUser } from "@/features/profile";
 import { useHamburger } from "@/stores/use-hamburger";
 
 import { Bookmark } from "../assets/bookmark-icon";
@@ -47,11 +46,7 @@ export const HamburgerMenu = () => {
             }}
             className={styles.image}
           >
-            <Avatar
-              userImage={session?.user?.profile_image_url}
-              width={38}
-              height={38}
-            />
+            <Avatar userImage={session?.user?.profile_image_url} />
           </button>
 
           <button

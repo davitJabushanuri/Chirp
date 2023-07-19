@@ -28,7 +28,7 @@
 
     input {
       padding: 11px;
-      font-size: 14px;
+      font-size: var(--fs-milli);
 
       &::placeholder {
         color: var(--clr-tertiary);

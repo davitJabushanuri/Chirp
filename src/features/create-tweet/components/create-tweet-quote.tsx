@@ -1,39 +1,32 @@
-import dayjs from "dayjs";
-
-import { VerifiedIcon } from "@/assets/verified-icon";
-import { Avatar } from "@/components/designs/avatar";
+import { CreateDate } from "@/components/elements/create-date";
+import { EllipsisWrapper } from "@/components/elements/ellipsis-wrapper";
+import { Avatar, UserName, UserScreenName } from "@/features/profile";
 import { TweetMedia } from "@/features/tweets";
 import { ITweet } from "@/features/tweets";
 
 import styles from "./styles/create-tweet-quote.module.scss";
 
 export const CreateTweetQuote = ({ tweet }: { tweet: ITweet }) => {
-  console.log(tweet);
-
   return (
     <div className={styles.container}>
       <div className={styles.userDetails}>
         <span className={styles.avatar}>
-          <Avatar
-            userImage={tweet?.author?.profile_image_url}
-            height={19}
-            width={19}
+          <Avatar userImage={tweet?.author?.profile_image_url} />
+        </span>
+
+        <EllipsisWrapper>
+          <UserName
+            name={tweet?.author?.name}
+            isVerified={tweet?.author?.verified}
           />
-        </span>
+        </EllipsisWrapper>
 
-        <span className={styles.name}>{tweet?.author?.name}</span>
+        <EllipsisWrapper>
+          <UserScreenName screenName={tweet?.author?.email?.split("@")[0]} />
+        </EllipsisWrapper>
 
-        <span className={styles.verified}>
-          {tweet?.author?.verified && <VerifiedIcon />}
-        </span>
-
-        <span className={styles.username}>
-          @{tweet?.author?.email?.split("@")[0]}
-        </span>
         <span className={styles.dot}>·</span>
-        <span className={styles.date}>
-          {dayjs(tweet?.created_at).format("MMM D")}
-        </span>
+        <CreateDate date={tweet?.created_at} />
       </div>
 
       <div className={styles.tweet}>
@@ -41,9 +34,9 @@ export const CreateTweetQuote = ({ tweet }: { tweet: ITweet }) => {
           <p className={styles.text}>
             {decodeURIComponent(tweet?.text)}{" "}
             {tweet?.quoted_tweet && (
-              <span>{`chirp.com/${
-                tweet.author?.email?.split("@")[0]
-              }/s...`}</span>
+              <span>{`chirp.com/${tweet.author?.email?.split(
+                "@",
+              )[0]}/s...`}</span>
             )}
           </p>
         )}

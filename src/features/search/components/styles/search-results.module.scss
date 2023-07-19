@@ -7,8 +7,8 @@
 
     h1 {
       padding: 11px 15px;
-      font-size: 19px;
-      font-weight: 600;
+      font-size: var(--fs-h2);
+      font-weight: var(--fw-600);
     }
 
     .viewAll {
@@ -18,7 +18,7 @@
       border: none;
       background: none;
       cursor: pointer;
-      font-size: 14px;
+      font-size: var(--fs-milli);
       color: var(--clr-primary);
       font-weight: 300;
 

@@ -18,7 +18,7 @@
   }
 
   .text {
-    font-size: 19px;
+    font-size: var(--fs-h2);
     color: var(--clr-tertiary);
     overflow: hidden;
     text-overflow: ellipsis;
@@ -34,7 +34,7 @@
     color: var(--clr-white);
     display: grid;
     place-items: center;
-    font-size: 14px;
+    font-size: var(--fs-milli);
     font-weight: 700;
     opacity: 0.5;
     cursor: default;

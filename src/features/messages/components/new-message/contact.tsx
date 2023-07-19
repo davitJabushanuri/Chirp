@@ -1,8 +1,7 @@
 import { useSession } from "next-auth/react";
 
 import { TickIcon } from "@/assets/tick-svg";
-import { Avatar } from "@/components/designs/avatar";
-import { IUser } from "@/features/profile";
+import { Avatar, IUser } from "@/features/profile";
 
 import { UserIcon } from "../../assets/user-icon";
 
@@ -36,7 +35,7 @@ export const Contact = ({
       )}
       <div className={styles.user}>
         <div className={styles.avatar}>
-          <Avatar userImage={user?.profile_image_url} width={38} height={38} />
+          <Avatar userImage={user?.profile_image_url} />
         </div>
         <div className={styles.info}>
           <p className={styles.name}>{user?.name}</p>

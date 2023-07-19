@@ -17,14 +17,14 @@
     }
 
     h1 {
-      font-size: 30px;
-      font-weight: 700;
+      font-size: var(--fs-kilo);
+      font-weight: var(--fw-700);
       color: var(--clr-secondary);
       margin-bottom: 11px;
     }
 
     p {
-      font-size: 15px;
+      font-size: var(--fs-milli);
       color: var(--clr-tertiary);
     }
   }

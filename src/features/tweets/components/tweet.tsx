@@ -1,10 +1,11 @@
-import dayjs from "dayjs";
-import relativeTime from "dayjs/plugin/relativeTime";
 import { useRouter } from "next/navigation";
 
+import { CreateDate } from "@/components/elements/create-date";
+import { EllipsisWrapper } from "@/components/elements/ellipsis-wrapper";
 import { ReplyingTo } from "@/features/create-tweet";
 import {
-  UserAvatar,
+  Avatar,
+  LinkToProfile,
   UserModalWrapper,
   UserName,
   UserScreenName,
@@ -17,8 +18,6 @@ import styles from "./styles/tweet.module.scss";
 import { TweetActions } from "./tweet-actions";
 import { TweetMedia } from "./tweet-media";
 import { TweetOptions } from "./tweet-options";
-
-dayjs.extend(relativeTime);
 
 export const Tweet = ({ tweet }: { tweet: ITweet }) => {
   const router = useRouter();
@@ -35,36 +34,46 @@ export const Tweet = ({ tweet }: { tweet: ITweet }) => {
       }}
       className={styles.container}
     >
-      <div className={styles.avatar}>
-        <UserModalWrapper userId={tweet?.author?.id}>
-          <UserAvatar
-            userId={tweet?.author?.id}
-            userImage={tweet?.author?.profile_image_url}
-          />
-        </UserModalWrapper>
+      <div className={styles.left}>
+        <div className={styles.avatar}>
+          <UserModalWrapper userId={tweet?.author?.id}>
+            <LinkToProfile userId={tweet?.author?.id}>
+              <Avatar userImage={tweet?.author?.profile_image_url} />
+            </LinkToProfile>
+          </UserModalWrapper>
+        </div>
       </div>
 
       <div className={styles.content}>
         <div className={styles.user_details}>
           <UserModalWrapper userId={tweet?.author?.id}>
-            <UserName
-              userId={tweet?.author?.id}
-              name={tweet?.author?.name}
-              isVerified={tweet?.author?.verified}
-            />
+            <LinkToProfile userId={tweet?.author?.id}>
+              <EllipsisWrapper>
+                <UserName
+                  name={tweet?.author?.name}
+                  isVerified={tweet?.author?.verified}
+                  hover={true}
+                />
+              </EllipsisWrapper>
+            </LinkToProfile>
           </UserModalWrapper>
+
           <div className={styles.username_time}>
             <UserModalWrapper userId={tweet?.author?.id}>
-              <UserScreenName
-                userId={tweet?.author?.id}
-                screenName={tweet?.author?.email?.split("@")[0]}
-              />
+              <LinkToProfile userId={tweet?.author?.id} tabIndex={-1}>
+                <EllipsisWrapper>
+                  <UserScreenName
+                    screenName={tweet?.author?.email?.split("@")[0]}
+                  />
+                </EllipsisWrapper>
+              </LinkToProfile>
             </UserModalWrapper>
 
             <span className={styles.dot}>·</span>
-            <span className={styles.date}>
-              {dayjs(tweet?.created_at).format("MMM D")}
-            </span>
+
+            <div className={styles.date}>
+              <CreateDate date={tweet?.created_at} />
+            </div>
           </div>
         </div>
 

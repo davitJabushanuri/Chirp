@@ -1,13 +1,10 @@
 @use "abstracts/media-query.scss" as *;
 
 .container {
-  height: 47px;
-  width: 47px;
+  padding: 0.75em;
   border-radius: 100vmax;
-  fill: var(--clr-logo);
   cursor: pointer;
-  display: grid;
-  place-items: center;
+  transition: all 0.1s ease-in-out;
 
   &:hover {
     background-color: var(--clr-logo-hover);
@@ -17,8 +14,14 @@
     background-color: var(--clr-logo-active);
   }
 
+  &:has(:focus-visible) {
+    outline: 2px solid var(--clr-secondary);
+    background-color: var(--clr-logo-hover);
+  }
+
   svg {
-    height: 28px;
-    width: 28px;
+    height: var(--logo-size);
+    width: var(--logo-size);
+    fill: var(--clr-logo);
   }
 }

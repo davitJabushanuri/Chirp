@@ -1,4 +1,4 @@
-@use './abstracts/media-query' as *;
+@use "./abstracts/media-query" as *;
 
 .container {
   position: fixed;
@@ -10,7 +10,6 @@
   z-index: 100;
   display: grid;
   place-items: center;
-
 
   .modal {
     background-color: var(--clr-background);
@@ -26,7 +25,6 @@
       background-color: var(--clr-background);
       border-radius: 0 1rem 1rem 0;
     }
-
 
     &::-webkit-scrollbar-thumb {
       background-color: var(--clr-nav-active);
@@ -49,7 +47,7 @@
           display: none;
         }
 
-        @include mq('medium') {
+        @include mq("medium") {
           .arrow {
             display: none;
           }
@@ -61,8 +59,8 @@
       }
 
       .title {
-        font-size: clamp(1rem, 2vw, 19px);
-        font-weight: 600;
+        font-size: var(--fs-h2);
+        font-weight: var(--fw-600);
       }
     }
 
@@ -70,14 +68,10 @@
       padding-bottom: calc(100% - 4rem);
     }
 
-
-
-
-    @include mq('medium') {
+    @include mq("medium") {
       width: 600px;
       max-height: 600px;
       border-radius: 1rem;
     }
   }
-
 }

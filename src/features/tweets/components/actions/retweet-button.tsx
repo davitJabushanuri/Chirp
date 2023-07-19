@@ -58,7 +58,13 @@ export const RetweetButton = ({ tweet }: { tweet: ITweet }) => {
           </button>
         </ActionsModal>
       )}
+
       <button
+        aria-expanded={isModalOpen}
+        aria-haspopup="menu"
+        aria-label={hasRetweeted ? "Undo retweet" : "Retweet"}
+        data-title={hasRetweeted ? "Undo retweet" : "Retweet"}
+        tabIndex={0}
         onClick={(e) => {
           e.stopPropagation();
           if (!session) {

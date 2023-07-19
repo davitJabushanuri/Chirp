@@ -15,12 +15,13 @@ export default async function RootLayout({
   const nextCookies = cookies();
   const theme = nextCookies.get("theme");
   const color = nextCookies.get("color");
+  const fontSize = nextCookies.get("font-size");
 
   return (
     <html
       className={`${theme?.value ?? "theme-light"} ${
         color?.value ?? "color-blue"
-      }`}
+      } ${fontSize?.value ?? "font-size-md"}`}
       lang="en"
     >
       <NextAuthProvider>

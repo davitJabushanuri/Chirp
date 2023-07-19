@@ -20,14 +20,13 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font-size: 11px;
+      font-size: var(--fs-pico);
       font-weight: 300;
       color: var(--clr-tertiary);
     }
 
     .danger {
-      color: #F4212E;
-
+      color: #f4212e;
     }
   }
 

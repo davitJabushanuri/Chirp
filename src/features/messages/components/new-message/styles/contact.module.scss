@@ -24,7 +24,7 @@
     }
 
     .text {
-      font-size: 12px;
+      font-size: var(--fs-nano);
       font-weight: 700;
       color: var(--clr-tertiary);
     }
@@ -51,13 +51,13 @@
 
     .info {
       .name {
-        font-size: 14px;
+        font-size: var(--fs-nano);
         font-weight: 500;
         color: var(--clr-secondary);
       }
 
       .username {
-        font-size: 14px;
+        font-size: var(--fs-nano);
         font-weight: 400;
         color: var(--clr-tertiary);
       }

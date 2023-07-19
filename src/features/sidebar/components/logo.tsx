@@ -6,10 +6,10 @@ import styles from "./styles/logo.module.scss";
 
 export const Logo = () => {
   return (
-    <Link href={`/`}>
-      <div className={styles.container}>
+    <h1 className={styles.container}>
+      <Link href={`/home`} aria-label="Twitter">
         <LogoIcon />
-      </div>
-    </Link>
+      </Link>
+    </h1>
   );
 };

@@ -1,0 +1,10 @@
+.container {
+  display: grid;
+  grid-auto-flow: column;
+
+  span {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}

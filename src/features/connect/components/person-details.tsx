@@ -1,11 +1,17 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 
-import { Avatar } from "@/components/designs/avatar";
+import { EllipsisWrapper } from "@/components/elements/ellipsis-wrapper";
 import { FollowButton } from "@/components/elements/follow-button";
-import { following, IUser } from "@/features/profile";
+import {
+  Avatar,
+  following,
+  IUser,
+  LinkToProfile,
+  UserModalWrapper,
+  UserName,
+  UserScreenName,
+} from "@/features/profile";
 
 import styles from "./styles/person-details.module.scss";
 
@@ -20,32 +26,52 @@ export const PersonDetails = ({ author }: { author: IUser }) => {
 
   return (
     <div
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === "Enter") {
+          router.push(`/${author?.id}`);
+        }
+      }}
       onClick={() => {
         router.push(`/${author?.id}`);
       }}
       className={styles.container}
     >
       <div className={styles.avatar}>
-        <Avatar userImage={author?.profile_image_url} width={46} height={46} />
+        <UserModalWrapper userId={author?.id}>
+          <Avatar userImage={author?.profile_image_url} />
+        </UserModalWrapper>
       </div>
 
       <div className={styles.info}>
-        <div className={styles.primary}>
+        <div className={styles.user_details}>
           <div className={styles.name}>
-            <span className={styles.fullName}>{author?.name}</span>
-            <span className={styles.username}>
-              @{author?.email?.split("@")[0]}
-            </span>
+            <UserModalWrapper userId={author?.id}>
+              <LinkToProfile userId={author?.id}>
+                <EllipsisWrapper>
+                  <UserName
+                    name={author?.name}
+                    isVerified={author?.verified}
+                    hover={true}
+                  />
+                </EllipsisWrapper>
+              </LinkToProfile>
+            </UserModalWrapper>
+
+            <UserModalWrapper userId={author?.id}>
+              <EllipsisWrapper>
+                <UserScreenName screenName={author?.email?.split("@")[0]} />
+              </EllipsisWrapper>
+            </UserModalWrapper>
           </div>
 
-          <div onClick={(e) => e.stopPropagation()} className={styles.follow}>
-            <FollowButton
-              user_id={author?.id}
-              session_owner_id={session?.user?.id}
-              isFollowing={isFollowing}
-              username={author?.email?.split("@")[0]}
-            />
-          </div>
+          <FollowButton
+            user_id={author?.id}
+            session_owner_id={session?.user?.id}
+            isFollowing={isFollowing}
+            username={author?.email?.split("@")[0]}
+          />
         </div>
 
         {author?.description && (

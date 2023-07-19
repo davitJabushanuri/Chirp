@@ -1,0 +1,54 @@
+$delay: 0.5s;
+
+@mixin tooltip($position: bottom, $offset: 0) {
+  position: relative;
+
+  &::after {
+    content: attr(data-title);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--clr-tertiary);
+    color: var(--clr-secondary);
+    font-size: var(--fs-pico);
+    border-radius: 0.1rem;
+    padding: 0.3em;
+    white-space: nowrap;
+    z-index: 1;
+    pointer-events: none;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s ease-out;
+    will-change: opacity, visibility;
+
+    @if $position == bottom {
+      top: 100%;
+      margin-top: $offset;
+    }
+
+    @if $position == top {
+      bottom: 100%;
+      margin-bottom: $offset;
+    }
+  }
+
+  &:hover::after {
+    visibility: visible;
+    opacity: 0.9;
+    transition-delay: $delay;
+    -moz-transition-delay: $delay;
+    -webkit-transition-delay: $delay;
+    -o-transition-delay: $delay;
+  }
+
+  &:focus-visible::after {
+    visibility: visible;
+    opacity: 0.9;
+  }
+}
+
+@mixin hide-tooltip {
+  &::after {
+    content: none;
+  }
+}

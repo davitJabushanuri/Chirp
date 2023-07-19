@@ -1,6 +1,5 @@
-@use './abstracts/media-query' as *;
-
-
+@use "./abstracts/media-query" as *;
+@use "./abstracts/tooltips" as *;
 
 .container {
   position: relative;
@@ -8,38 +7,49 @@
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 11px;
+  height: 100%;
 
-  form {
-    .text {
-      max-height: 690px;
-      overflow-y: auto;
-      overflow-x: hidden;
-      margin: 11px 0;
-
-      textarea {
-        resize: none;
-        overflow: hidden;
-        user-select: text;
-        white-space: pre-wrap;
-        overflow-wrap: break-word;
-        width: 100%;
-        font-size: 19px;
-        color: var(--clr-secondary);
-
-        &::placeholder {
-          color: var(--clr-tertiary);
-        }
+  .left {
+    .avatar {
+      border-radius: 100vmax;
+      &:has(:focus-visible) {
+        outline: 2px solid var(--clr-primary-disabled);
       }
     }
+  }
 
-    .chosen_images {
-      margin-bottom: 11px;
-    }
+  form {
+    .content {
+      overflow: auto;
 
+      .text {
+        max-height: 690px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        margin: 11px 0;
 
+        textarea {
+          resize: none;
+          user-select: text;
+          white-space: pre-wrap;
+          overflow-wrap: break-word;
+          width: 100%;
+          font-size: var(--fs-h2);
+          color: var(--clr-secondary);
 
-    .quotedTweet {
-      margin: 8px 0
+          &::placeholder {
+            color: var(--clr-tertiary);
+          }
+        }
+      }
+
+      .chosen_images {
+        margin-bottom: 11px;
+      }
+
+      .quotedTweet {
+        margin: 8px 0;
+      }
     }
 
     .actions {
@@ -56,7 +66,14 @@
         align-items: center;
         flex-wrap: wrap;
 
-        .media {
+        .action {
+          border-radius: 100vmax;
+          @include tooltip(bottom, 4px);
+
+          &:focus-visible {
+            outline: 2px solid var(--clr-primary-disabled);
+          }
+
           &:disabled {
             opacity: 0.5;
             cursor: default;
@@ -86,7 +103,7 @@
           border-radius: 100vmax;
           height: 34px;
           width: 72px;
-          font-size: 14px;
+          font-size: var(--fs-milli);
           font-weight: 700;
           cursor: pointer;
           color: var(--clr-light);
@@ -99,6 +116,10 @@
 
           &:active {
             background-color: var(--clr-primary-active);
+          }
+
+          &:focus-visible {
+            outline: 2px solid var(--clr-primary-disabled);
           }
 
           &:disabled {
@@ -116,10 +137,5 @@
         }
       }
     }
-
-
-
   }
-
-
 }

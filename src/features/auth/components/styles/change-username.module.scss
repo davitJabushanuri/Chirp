@@ -2,7 +2,7 @@
   padding: 11px 15px;
 
   .title {
-    font-size: 19px;
+    font-size: var(--fs-h2);
     font-weight: 500;
     margin-bottom: 1rem;
   }
@@ -42,7 +42,7 @@
             transition: 0.2s ease-in-out;
             display: flex;
             align-items: center;
-            font-size: 1rem;
+            font-size: var(--fs-base);
             padding: 0.5rem;
             color: var(--clr-tertiary);
           }
@@ -55,17 +55,16 @@
             }
           }
 
-          input:focus+span {
-            font-size: 0.8rem;
+          input:focus + span {
+            font-size: var(--fs-nano);
             transform: translateY(-0.6rem);
             color: var(--clr-blue);
           }
 
-          input:not(:placeholder-shown)+span {
+          input:not(:placeholder-shown) + span {
             transform: translateY(-0.6rem);
-            font-size: 0.8rem;
+            font-size: var(--fs-nano);
           }
-
         }
 
         .error {
@@ -81,16 +80,15 @@
             color: var(--clr-red);
           }
 
-          input:focus+span {
+          input:focus + span {
             color: var(--clr-red);
           }
         }
-
       }
 
       .errorMessage {
         color: var(--clr-red);
-        font-size: 12px;
+        font-size: var(--fs-nano);
         padding: 4px;
       }
 
@@ -102,8 +100,8 @@
         border: none;
         border-radius: 100vmax;
         padding: 0.4rem 0.9rem;
-        font-size: 14px;
-        font-weight: 500;
+        font-size: var(--fs-nano);
+        font-weight: var(--fw-500);
         cursor: pointer;
 
         &:hover {

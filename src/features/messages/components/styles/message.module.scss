@@ -23,7 +23,7 @@
     background-color: var(--clr-message-background);
     border-radius: 20px 20px 20px 4px;
     padding: 11px 15px;
-    font-size: 14px;
+    font-size: var(--fs-milli);
   }
 
   .info {
@@ -33,7 +33,7 @@
     align-items: center;
     gap: 5px;
     color: var(--clr-tertiary);
-    font-size: 12px;
+    font-size: var(--fs-nano);
   }
 }
 

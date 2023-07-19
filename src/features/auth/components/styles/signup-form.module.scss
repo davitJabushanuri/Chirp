@@ -1,8 +1,8 @@
 .container {
   .title {
     margin: 19px 0;
-    font-size: 29px;
-    font-weight: 600;
+    font-size: var(--fs-kilo);
+    font-weight: var(--fw-500);
   }
 
   .buttonContainer {
@@ -20,10 +20,10 @@
       background-color: var(--clr-light);
       color: var(--clr-dark);
       border-radius: 100vmax;
-      font-size: 14px;
+      font-size: var(--fs-micro);
       font-weight: 500;
       cursor: pointer;
-      transition: all 0.20s ease-in-out;
+      transition: all 0.2s ease-in-out;
 
       &:hover {
         background-color: var(--clr-auth-button-hover);
@@ -80,7 +80,7 @@
   }
 
   .terms {
-    font-size: 12px;
+    font-size: var(--fs-nano);
     color: var(--clr-secondary);
 
     a {
@@ -90,12 +90,11 @@
 
   .login {
     margin-top: 32px;
-    font-size: 14px;
+    font-size: var(--fs-micro);
     color: var(--clr-secondary);
 
     a {
       color: var(--clr-blue);
     }
   }
-
 }

@@ -23,8 +23,8 @@
       padding: 1rem;
 
       h1 {
-        font-size: 1.1rem;
-        font-weight: 700;
+        font-size: var(--fs-h2);
+        font-weight: var(--fw-500);
         color: var(--clr-secondary);
       }
     }
@@ -44,8 +44,8 @@
       }
 
       .name {
-        font-size: 16px;
-        font-weight: 700;
+        font-size: var(--fs-base);
+        font-weight: var(--fw-700);
         color: var(--clr-secondary);
         margin-bottom: 4px;
 
@@ -56,7 +56,7 @@
 
       .username {
         display: block;
-        font-size: 14px;
+        font-size: var(--fs-milli);
         color: var(--clr-tertiary);
         margin-bottom: 0.8rem;
       }
@@ -65,7 +65,7 @@
         display: flex;
         align-items: center;
         gap: 1rem;
-        font-size: 0.8rem;
+        font-size: var(--fs-nano);
         color: var(--clr-tertiary);
 
         span {
@@ -77,11 +77,10 @@
         }
 
         strong {
-          font-size: 0.9rem;
-          font-weight: 700;
+          font-size: var(--fs-milli);
+          font-weight: var(--fw-700);
           color: var(--clr-secondary);
         }
-
       }
     }
 
@@ -94,8 +93,8 @@
         display: flex;
         align-items: center;
         gap: 1rem;
-        font-size: 1.3rem;
-        font-weight: 500;
+        font-size: var(--fs-h2);
+        font-weight: var(--fw-500);
         color: var(--clr-secondary);
         cursor: pointer;
 
@@ -145,9 +144,7 @@
   100% {
     transform: translateX(0);
   }
-
 }
-
 
 @keyframes fadeIn {
   0% {
@@ -157,5 +154,4 @@
   100% {
     opacity: 1;
   }
-
 }

@@ -12,7 +12,6 @@
   grid-template-columns: 1fr auto;
   gap: 1rem;
 
-
   .userInfo {
     .userImage {
       width: 46px;
@@ -33,7 +32,7 @@
     }
 
     .username {
-      font-size: 14px;
+      font-size: var(--fs-milli);
       color: var(--clr-tertiary);
     }
   }
@@ -57,12 +56,12 @@
         .number {
           font-weight: 500;
           color: var(--clr-secondary);
-          font-size: 0.850rem;
+          font-size: var(--fs-milli);
         }
 
         .text {
           color: var(--clr-tertiary);
-          font-size: 0.825rem;
+          font-size: var(--fs-milli);
         }
       }
     }

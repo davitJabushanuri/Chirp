@@ -7,12 +7,10 @@
   padding: 8px;
 
   h1 {
-    font-size: 19px;
-    font-weight: 700;
+    font-size: var(--fs-h2);
+    font-weight: var(--fw-500);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
-
-
 }

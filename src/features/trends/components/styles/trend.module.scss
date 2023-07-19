@@ -1,3 +1,5 @@
+@use "abstracts/tooltips" as *;
+
 .container {
   padding: 0.2rem 0.6rem 0.2rem 1rem;
   display: flex;
@@ -12,11 +14,17 @@
     background-color: var(--clr-trends-active);
   }
 
+  &:focus-visible {
+    outline: 2px solid var(--clr-primary-disabled);
+    background-color: var(--clr-trends-hover);
+    outline-offset: -2px;
+  }
+
   .trend {
     padding: 0.4rem 0;
 
     .stats {
-      font-size: 12px;
+      font-size: var(--fs-nano);
       line-height: 1.7;
       color: var(--clr-tertiary);
       display: flex;
@@ -33,13 +41,12 @@
     }
 
     .title {
-      font-size: 14px;
-      font-weight: 500;
+      font-size: var(--fs-milli);
+      font-weight: var(--fw-500);
       color: var(--clr-secondary);
     }
   }
 }
-
 
 .options {
   position: relative;
@@ -50,13 +57,13 @@
     border-radius: 50%;
     display: grid;
     place-items: center;
-    z-index: -1;
+    @include tooltip(bottom, 2px);
 
     &:hover {
       background-color: var(--clr-options-hover);
 
       svg {
-        fill: var(--clr-blue);
+        fill: var(--clr-primary);
       }
     }
 
@@ -64,7 +71,17 @@
       background-color: var(--clr-options-active);
 
       svg {
-        fill: var(--clr-blue);
+        fill: var(--clr-primary);
+      }
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--clr-primary-disabled);
+      background-color: var(--clr-options-hover);
+      outline-offset: -2px;
+
+      svg {
+        fill: var(--clr-primary);
       }
     }
 

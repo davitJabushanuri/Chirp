@@ -1,5 +1,7 @@
+import { EllipsisWrapper } from "@/components/elements/ellipsis-wrapper";
 import {
-  UserAvatar,
+  Avatar,
+  LinkToProfile,
   UserModalWrapper,
   UserName,
   UserScreenName,
@@ -13,26 +15,31 @@ export const TweetAuthor = ({ tweet }: { tweet: ITweet }) => {
   return (
     <div className={styles.container}>
       <UserModalWrapper userId={tweet?.author?.id}>
-        <UserAvatar
-          userId={tweet?.author?.id}
-          userImage={tweet?.author?.profile_image_url}
-        />
+        <LinkToProfile userId={tweet?.author?.id}>
+          <Avatar userImage={tweet?.author?.profile_image_url} />
+        </LinkToProfile>
       </UserModalWrapper>
 
       <div className={styles.userInfo}>
         <UserModalWrapper userId={tweet?.author?.id}>
-          <UserName
-            userId={tweet?.author?.id}
-            name={tweet?.author?.name}
-            isVerified={tweet?.author?.verified}
-          />
+          <LinkToProfile userId={tweet?.author?.id}>
+            <EllipsisWrapper>
+              <UserName
+                name={tweet?.author?.name}
+                isVerified={tweet?.author?.verified}
+              />
+            </EllipsisWrapper>
+          </LinkToProfile>
         </UserModalWrapper>
 
         <UserModalWrapper userId={tweet?.author?.id}>
-          <UserScreenName
-            userId={tweet?.author?.id}
-            screenName={tweet?.author?.email?.split("@")[0]}
-          />
+          <LinkToProfile userId={tweet?.author?.id}>
+            <EllipsisWrapper>
+              <UserScreenName
+                screenName={tweet?.author?.email?.split("@")[0]}
+              />
+            </EllipsisWrapper>
+          </LinkToProfile>
         </UserModalWrapper>
       </div>
 
