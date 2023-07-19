@@ -4,8 +4,8 @@
   align-items: center;
   gap: 0.8rem;
   padding: 11px 15px;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-500);
   cursor: pointer;
 
   .icon {
@@ -25,5 +25,4 @@
   &:active {
     background-color: var(--clr-trends-active);
   }
-
 }

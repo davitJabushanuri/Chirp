@@ -4,16 +4,16 @@
   margin: 30px auto;
 
   h1 {
-    font-size: 24px;
-    font-weight: 700;
+    font-size: var(--fs-h1);
+    font-weight: var(--fs-700);
     margin-bottom: 8px;
     font-variant: var(--clr-secondary);
   }
 
   p {
-    font-size: 14px;
-    font-weight: 400;
-    margin-bottom: 28px;
+    font-size: var(--fs-milli);
+    font-weight: var(--fw-500);
     color: var(--clr-tertiary);
+    margin-bottom: 28px;
   }
 }

@@ -14,7 +14,12 @@ export const TweetButton = () => {
   if (!session) return null;
 
   return (
-    <button onClick={() => openModal()} className={styles.container}>
+    <button
+      aria-label="Tweet"
+      data-title="Tweet"
+      onClick={() => openModal()}
+      className={styles.container}
+    >
       <span className={styles.icon}>
         <PenIcon />
       </span>

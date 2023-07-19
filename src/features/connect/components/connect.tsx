@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
@@ -10,11 +10,14 @@ import { Person } from "./person";
 import styles from "./styles/connect.module.scss";
 
 export const Connect = () => {
-  const router = useRouter();
   const { data: people, isLoading, isError } = useUsers();
 
   return (
-    <div className={styles.container}>
+    <section
+      aria-label="Who to follow"
+      role="complementary"
+      className={styles.container}
+    >
       {isLoading ? (
         <div className={styles.loading}>
           <LoadingSpinner />
@@ -25,7 +28,7 @@ export const Connect = () => {
         </div>
       ) : (
         <>
-          <h1>Who to follow</h1>
+          <h2>Who to follow</h2>
           <div className={styles.people}>
             {people.length > 0 &&
               people?.slice(0, 3)?.map((person) => {
@@ -33,14 +36,11 @@ export const Connect = () => {
               })}
           </div>
 
-          <button
-            onClick={() => router.push(`/people`)}
-            className={styles.showMore}
-          >
+          <Link className={styles.showMore} href={`/people`}>
             Show more
-          </button>
+          </Link>
         </>
       )}
-    </div>
+    </section>
   );
 };

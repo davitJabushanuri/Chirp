@@ -12,7 +12,7 @@ export const MobileNavbar = () => {
   const pathname = usePathname();
 
   return (
-    <div className={styles.container}>
+    <nav className={styles.container}>
       <NavItem
         icon={
           pathname === `/` || pathname === `/home` ? <HomeActive /> : <Home />
@@ -42,6 +42,6 @@ export const MobileNavbar = () => {
         path={`messages`}
         isActive={pathname === `/messages`}
       />
-    </div>
+    </nav>
   );
 };

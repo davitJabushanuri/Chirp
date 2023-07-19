@@ -9,7 +9,6 @@ enum ITheme {
   LIGHT = "theme-light",
   DIM = "theme-dim",
   DARK = "theme-dark",
-  DEFAULT = "theme-light",
 }
 
 export const ThemePicker = ({
@@ -18,7 +17,7 @@ export const ThemePicker = ({
   theme?: string | undefined;
 }) => {
   if (!Object.values(ITheme).includes(theme as ITheme)) {
-    theme = ITheme.DEFAULT;
+    theme = ITheme.LIGHT;
   }
 
   const [currentTheme, setCurrentTheme] = useState(theme as ITheme);

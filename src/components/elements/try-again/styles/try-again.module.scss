@@ -6,19 +6,19 @@
   padding: 1rem;
 
   h2 {
-    font-size: 14px;
+    font-size: var(--fs-milli);
     color: var(--clr-tertiary);
     text-align: center;
   }
 
   button {
-    padding: 0.480rem 1rem;
+    padding: 0.48em 1em;
     border: none;
     border-radius: 100vmax;
     background-color: var(--clr-primary);
     color: var(--clr-light);
-    font-size: 14px;
-    font-weight: 500;
+    font-size: var(--fs-milli);
+    font-weight: var(--fw-500);
     cursor: pointer;
     display: flex;
     align-items: center;

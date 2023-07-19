@@ -1,25 +1,24 @@
 .container {
-
   .loading,
   .error {
     padding: 0.4rem;
   }
 
-  .title {
-    padding: 11px 15px;
+  h2 {
     color: var(--clr-secondary);
-    font-size: 19px;
-    font-weight: 700;
+    font-size: var(--fs-h2);
+    font-weight: var(--fw-700);
+    padding: 0.75rem 1rem;
   }
 
   .showMore {
-    width: 100%;
-    border: none;
-    padding: 1rem;
+    display: block;
+    padding: 1em;
     color: var(--clr-primary);
-    background-color: transparent;
     cursor: pointer;
-    font-size: 14px;
+    font-size: var(--fs-base);
+    border-radius: 0 0 1rem 1rem;
+    outline-offset: -2px;
 
     &:hover {
       background-color: var(--clr-trends-hover);
@@ -27,6 +26,11 @@
 
     &:active {
       background-color: var(--clr-trends-active);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--clr-primary-disabled);
+      background-color: var(--clr-trends-hover);
     }
   }
 }

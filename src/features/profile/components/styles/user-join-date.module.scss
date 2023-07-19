@@ -1,5 +1,5 @@
 .container {
-  font-size: 0.875rem;
+  font-size: var(--fs-milli);
   color: var(--clr-tertiary);
   display: flex;
   align-items: flex-end;

@@ -1,7 +1,6 @@
-import dayjs from "dayjs";
-
-import { VerifiedIcon } from "@/assets/verified-icon";
-import { UserAvatar } from "@/features/profile";
+import { CreateDate } from "@/components/elements/create-date";
+import { EllipsisWrapper } from "@/components/elements/ellipsis-wrapper";
+import { Avatar, UserName, UserScreenName } from "@/features/profile";
 import { ITweet } from "@/features/tweets";
 
 import { CreateTweetQuote } from "./create-tweet-quote";
@@ -12,28 +11,25 @@ export const CreateTweetComment = ({ tweet }: { tweet: ITweet | null }) => {
   return (
     <div className={styles.container}>
       <div className={styles.avatar}>
-        <UserAvatar
-          userId={tweet?.author?.id}
-          userImage={tweet?.author?.profile_image_url as string}
-        />
+        <Avatar userImage={tweet?.author?.profile_image_url as string} />
         <div className={styles.divider}></div>
       </div>
 
       <div className={styles.content}>
         <div className={styles.userDetails}>
-          <span className={styles.name}>{tweet?.author?.name}</span>
+          <EllipsisWrapper>
+            <UserName
+              name={tweet?.author?.name}
+              isVerified={tweet?.author?.verified}
+            />
+          </EllipsisWrapper>
 
-          <span className={styles.verified}>
-            {tweet?.author?.verified && <VerifiedIcon />}
-          </span>
+          <EllipsisWrapper>
+            <UserScreenName screenName={tweet?.author?.email?.split("@")[0]} />
+          </EllipsisWrapper>
 
-          <span className={styles.username}>
-            @{tweet?.author?.email?.split("@")[0]}
-          </span>
           <span className={styles.dot}>·</span>
-          <span className={styles.date}>
-            {dayjs(tweet?.created_at).format("MMM D")}
-          </span>
+          <CreateDate date={tweet?.created_at} />
         </div>
         <div className={styles.tweet}>
           {tweet?.text && (

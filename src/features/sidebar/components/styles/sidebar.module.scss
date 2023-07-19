@@ -8,7 +8,6 @@
   height: 100dvh;
   overflow-y: auto;
   display: none;
-  z-index: 99;
 
   .logo,
   .tweetButton,
@@ -24,16 +23,14 @@
   @include mq("small") {
     display: grid;
     grid-template-rows: min-content min-content min-content 1fr;
-    border-right: 1px solid var(--clr-border);
-    padding: 2px 4px;
+    padding: 4px;
   }
 
   @include mq("medium") {
-    padding: 2px 11px;
+    padding: 4px 0.5em;
   }
 
   @include mq("xx-large") {
-
     .logo,
     .tweetButton,
     .user {

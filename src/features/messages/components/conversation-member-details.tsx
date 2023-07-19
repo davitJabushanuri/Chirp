@@ -1,10 +1,12 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import { useRouter } from "next/navigation";
 
+import { EllipsisWrapper } from "@/components/elements/ellipsis-wrapper";
 import {
+  Avatar,
   IUser,
-  UserAvatar,
+  LinkToProfile,
   UserJoinDate,
   UserName,
   UserScreenName,
@@ -25,21 +27,21 @@ export const ConversationMemberDetails = ({
       className={styles.container}
     >
       <div className={styles.avatar}>
-        <UserAvatar
-          userId={user?.id}
-          userImage={user?.profile_image_url ?? ""}
-        />
+        <LinkToProfile userId={user?.id}>
+          <Avatar userImage={user?.profile_image_url ?? ""} />
+        </LinkToProfile>
       </div>
-      <UserName
-        userId={user?.id}
-        name={user?.name}
-        isVerified={user?.verified}
-      />
+      <LinkToProfile userId={user?.id}>
+        <EllipsisWrapper>
+          <UserName name={user?.name} isVerified={user?.verified} />
+        </EllipsisWrapper>
+      </LinkToProfile>
       <div className={styles.username}>
-        <UserScreenName
-          userId={user?.id}
-          screenName={user?.email?.split("@")[0]}
-        />
+        <LinkToProfile userId={user?.id}>
+          <EllipsisWrapper>
+            <UserScreenName screenName={user?.email?.split("@")[0]} />
+          </EllipsisWrapper>
+        </LinkToProfile>
       </div>
       {user?.description && (
         <div className={styles.bio}>

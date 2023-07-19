@@ -14,15 +14,15 @@
     }
 
     h1 {
-      font-size: 29px;
-      font-weight: 900;
+      font-size: var(--fs-kilo);
+      font-weight: var(--fw-900);
       letter-spacing: 0.8px;
       color: var(--clr-secondary);
       margin-bottom: 8px;
     }
 
     p {
-      font-size: 14px;
+      font-size: var(-fs-milli);
       color: var(--clr-tertiary);
     }
   }

@@ -1,4 +1,4 @@
-import { Avatar } from "@/components/designs/avatar";
+import { Avatar } from "@/features/profile";
 
 import styles from "./styles/create-tweet-placeholder.module.scss";
 
@@ -15,7 +15,7 @@ export const CreateTweetPlaceholder = ({
       className={styles.container}
     >
       <span className={styles.avatar}>
-        <Avatar userImage={image} height={38} width={38} />
+        <Avatar userImage={image} />
       </span>
       <span className={styles.text}>Tweet your reply!</span>
       <span className={styles.button}>Reply</span>

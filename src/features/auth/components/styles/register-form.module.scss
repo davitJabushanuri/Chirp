@@ -5,14 +5,13 @@
 
   .title {
     padding: 11px 15px;
-    font-size: 19px;
-    font-weight: 700;
-
+    font-size: var(--fs-h3);
+    font-weight: var(--fs-700);
   }
 
   .description {
     padding: 0 11px;
-    font-size: 12px;
+    font-size: var(--fs-nano);
     color: var(--clr-tertiary);
     line-height: 1.6;
   }
@@ -32,7 +31,7 @@
       background-color: var(--clr-light);
       color: var(--clr-dark);
       border: 1px solid var(--clr-auth-border);
-      font-size: 14px;
+      font-size: var(--fs-micro);
       font-weight: 500;
       cursor: pointer;
       transition: all 0.1s ease-in-out;
@@ -61,7 +60,7 @@
 
   .terms {
     padding: 0 11px 15px 11px;
-    font-size: 12px;
+    font-size: var(--fs-nano);
     color: var(--clr-tertiary);
     line-height: 1.2;
 

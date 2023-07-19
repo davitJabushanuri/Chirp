@@ -5,12 +5,12 @@
 import { usePathname, useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 
-import { Avatar } from "@/components/designs/avatar";
 import { FollowButton } from "@/components/elements/follow-button";
 
 import { useUser } from "../hooks/use-user";
 import { following } from "../utils/following";
 
+import { Avatar } from "./avatar";
 import styles from "./styles/user-modal.module.scss";
 
 export const UserModal = ({ userId }: { userId: string }) => {
@@ -36,11 +36,7 @@ export const UserModal = ({ userId }: { userId: string }) => {
     >
       <div className={styles.userInfo}>
         <div className={styles.userImage}>
-          <Avatar
-            userImage={user?.profile_image_url}
-            width={100}
-            height={100}
-          />
+          <Avatar userImage={user?.profile_image_url} />
         </div>
 
         <h2 className={styles.name}>{user?.name}</h2>

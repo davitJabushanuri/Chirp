@@ -1,18 +1,13 @@
 "use client";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useSession } from "next-auth/react";
 
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
 import { InfiniteTweets, useTweets } from "@/features/tweets";
 
-import { useUser } from "../hooks/use-user";
-
 import styles from "./styles/profile-media.module.scss";
 
 export const ProfileMedia = () => {
-  const { data: session } = useSession();
   const pathname = usePathname();
   const id = pathname?.split("/")[1] as string;
 
@@ -29,8 +24,6 @@ export const ProfileMedia = () => {
     type: "user_media",
     id,
   });
-
-  const { data: user } = useUser(id);
 
   if (isLoading) {
     return (

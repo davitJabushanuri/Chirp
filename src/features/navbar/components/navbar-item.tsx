@@ -1,16 +1,24 @@
-import { useRouter } from "next/navigation";
-
-import { INavItemProps } from "../types";
+import Link from "next/link";
 
 import styles from "./styles/navbar-item.module.scss";
 
-const NavItem = ({ icon, title, path, isActive }: INavItemProps) => {
-  const router = useRouter();
-
+const NavItem = ({
+  icon,
+  title,
+  path,
+  isActive,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  path: string;
+  isActive: boolean;
+}) => {
   return (
-    <button
-      onClick={() => router.push(`/${path}`)}
+    <Link
       className={styles.container}
+      href={`/${path}`}
+      aria-label={title}
+      data-title={title}
     >
       <div className={styles.navItem}>
         <span className={styles.icon}>{icon}</span>
@@ -18,7 +26,7 @@ const NavItem = ({ icon, title, path, isActive }: INavItemProps) => {
           {title}
         </span>
       </div>
-    </button>
+    </Link>
   );
 };
 

@@ -24,12 +24,10 @@
     .text {
       display: grid;
       place-items: center;
-      font-size: 14px;
-      font-weight: 500;
+      font-size: var(--fs-milli);
+      font-weight: var(--fw-500);
       color: var(--clr-tertiary);
     }
-
-
 
     .line {
       background-color: transparent;
@@ -38,7 +36,7 @@
     }
 
     .placeholder {
-      height: 4px
+      height: 4px;
     }
   }
 

@@ -1,4 +1,138 @@
+@use "./font-size" as *;
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700;800;900&display=swap");
 
-$ff-base: "Roboto", sans-serif;
-$ff-icons: "Material Icons", sans-serif;
+:root {
+  --ff-base: "Roboto", sans-serif;
+  --ff-icons: "Material Icons", sans-serif;
+
+  // font weights
+  --fw-100: 100;
+  --fw-200: 200;
+  --fw-300: 300;
+  --fw-400: 400;
+  --fw-500: 500;
+  --fw-600: 600;
+  --fw-700: 700;
+  --fw-800: 800;
+  --fw-900: 900;
+}
+
+.font-size-xs {
+  --fs-kilo: #{$xs-kilo};
+
+  --fs-h1: #{$xs-h1};
+  --fs-h2: #{$xs-h2};
+  --fs-h3: #{$xs-h3};
+
+  --fs-base: #{$xs-base};
+
+  --fs-large: #{$xs-large};
+  --fs-milli: #{$xs-milli};
+  --fs-micro: #{$xs-micro};
+  --fs-nano: #{$xs-nano};
+  --fs-pico: #{$xs-pico};
+
+  --verified-icon-width: 1.09375rem;
+  --avatar-width: 2.25rem;
+  --quoted-tweet-avatar-width: 1.125rem;
+  --hamburger-avatar-width: 1.8125rem;
+
+  --nav-icon-size: 1.53125rem; // 24.5px
+  --logo-size: 1.75rem; //28px
+}
+
+.font-size-sm {
+  --fs-kilo: #{$sm-kilo};
+
+  --fs-h1: #{$sm-h1};
+  --fs-h2: #{$sm-h2};
+  --fs-h3: #{$sm-h3};
+
+  --fs-base: #{$sm-base};
+
+  --fs-large: #{$sm-large};
+  --fs-milli: #{$sm-milli};
+  --fs-micro: #{$sm-micro};
+  --fs-nano: #{$sm-nano};
+  --fs-pico: #{$sm-pico};
+
+  --verified-icon-width: 1.09375rem;
+  --avatar-width: 2.375rem;
+  --quoted-tweet-avatar-width: 1.875rem;
+  --hamburger-avatar-width: 1.875rem;
+
+  --nav-icon-size: 1.53125rem; // 24.5px
+  --logo-size: 1.75rem; //28px
+}
+
+.font-size-md {
+  --fs-kilo: #{$md-kilo};
+
+  --fs-h1: #{$md-h1};
+  --fs-h2: #{$md-h2};
+  --fs-h3: #{$md-h3};
+
+  --fs-base: #{$md-base};
+
+  --fs-large: #{$md-large};
+  --fs-milli: #{$md-milli};
+  --fs-micro: #{$md-micro};
+  --fs-nano: #{$md-nano};
+  --fs-pico: #{$md-pico};
+
+  --verified-icon-width: 1.171875rem;
+  --avatar-width: 2.5rem;
+  --quoted-tweet-avatar-width: 1.25rem;
+  --hamburger-avatar-width: 2rem;
+
+  --nav-icon-size: 1.65625rem; // 26.5px
+  --logo-size: 1.875rem; //30px
+}
+
+.font-size-lg {
+  --fs-kilo: #{$lg-kilo};
+
+  --fs-h1: #{$lg-h1};
+  --fs-h2: #{$lg-h2};
+  --fs-h3: #{$lg-h3};
+
+  --fs-base: #{$lg-base};
+
+  --fs-large: #{$lg-large};
+  --fs-milli: #{$lg-milli};
+  --fs-micro: #{$lg-micro};
+  --fs-nano: #{$lg-nano};
+  --fs-pico: #{$lg-pico};
+
+  --verified-icon-width: 1.328125rem;
+  --avatar-width: 2.75rem;
+  --quoted-tweet-avatar-width: 1.375rem;
+  --hamburger-avatar-width: 2.1875rem;
+
+  --nav-icon-size: 1.859375rem; // 29.75px
+  --logo-size: 2.125rem; //34px
+}
+
+.font-size-xl {
+  --fs-kilo: #{$xl-kilo};
+
+  --fs-h1: #{$xl-h1};
+  --fs-h2: #{$xl-h2};
+  --fs-h3: #{$xl-h3};
+
+  --fs-base: #{$xl-base};
+
+  --fs-large: #{$xl-large};
+  --fs-milli: #{$xl-milli};
+  --fs-micro: #{$xl-micro};
+  --fs-nano: #{$xl-nano};
+  --fs-pico: #{$xl-pico};
+
+  --verified-icon-width: 1.40625rem;
+  --avatar-width: 3rem;
+  --quoted-tweet-avatar-width: 1.5rem;
+  --hamburger-avatar-width: 2.375rem;
+
+  --nav-icon-size: 1.96875rem; // 31.5px
+  --logo-size: 2.25rem; //36px
+}

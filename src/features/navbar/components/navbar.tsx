@@ -1,5 +1,5 @@
-import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 import { BellActive, Bell } from "../assets/bell-icon";
 import { Bookmark, BookmarkActive } from "../assets/bookmark-icon";
@@ -17,7 +17,7 @@ export const Navbar = () => {
   const { data: session } = useSession();
 
   return (
-    <div className={styles.container}>
+    <nav aria-label="Primary" className={styles.container}>
       {session && (
         <NavItem
           icon={pathname === `/home` ? <HomeActive /> : <Home />}
@@ -78,6 +78,6 @@ export const Navbar = () => {
         path={`settings`}
         isActive={pathname === `/settings`}
       />
-    </div>
+    </nav>
   );
 };

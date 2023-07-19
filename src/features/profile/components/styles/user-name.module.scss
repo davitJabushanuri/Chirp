@@ -1,25 +1,11 @@
 .container {
-  overflow: hidden;
-  cursor: pointer;
-  display: grid;
-  grid-auto-flow: column;
+  font-size: var(--fs-milli);
+  font-weight: var(--fw-500);
+  color: var(--clr-secondary);
+}
 
-  .name {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--clr-secondary);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .verified {
-    margin-left: 0.2rem;
-
-    svg {
-      width: 17.5px;
-      height: 17.5px;
-      fill: var(--clr-primary);
-    }
+.hover {
+  &:hover {
+    text-decoration: underline;
   }
 }

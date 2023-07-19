@@ -17,13 +17,13 @@
 
   --clr-blue: #1d9bf0;
   --clr-blue-hover: #1a8cd8;
-  --clr-blue-active: #177CC0;
+  --clr-blue-active: #177cc0;
   --clr-yellow: #ffd400;
   --clr-rose: #f91880;
   --clr-violet: #7856ff;
   --clr-orange: #ff7a00;
   --clr-green: #00ba7c;
-  --clr-red: #F4212E;
+  --clr-red: #f4212e;
 
   --clr-modal-background: rgba(91, 112, 131, 0.4);
   --clr-modal: rgb(32, 33, 38);
@@ -38,15 +38,15 @@
   --clr-action-hover: rgba(22, 25, 27, 0.6);
   --clr-action-active: rgba(35, 37, 40, 0.7);
 
-  --clr-login-hover: #34A5F2;
-  --clr-login-active: #4AAFF3;
-  --clr-login-border: #6CBEF5;
+  --clr-login-hover: #34a5f2;
+  --clr-login-active: #4aaff3;
+  --clr-login-border: #6cbef5;
 
-  --clr-signup-hover: #D7DBDC;
-  --clr-signup-active: #BFC2C3;
+  --clr-signup-hover: #d7dbdc;
+  --clr-signup-active: #bfc2c3;
 
-  --clr-auth-button-hover: #E6E6E6;
-  --clr-auth-button-active: #CCCCCC;
+  --clr-auth-button-hover: #e6e6e6;
+  --clr-auth-button-active: #cccccc;
 }
 
 .theme-light {
@@ -56,6 +56,7 @@
   --clr-primary-hover: #{$light-primary-hover};
   --clr-primary-active: #{$light-primary-active};
   --clr-primary-disabled: #{$light-primary-disabled};
+  --clr-primary-opacity: #{$light-primary-opacity};
 
   --clr-secondary: #{$light-secondary};
   --clr-secondary-hover: #{$light-secondary-hover};
@@ -112,9 +113,6 @@
   --clr-conversation-delete-hover: #{$light-conversation-delete-hover};
   --clr-conversation-delete-active: #{$light-conversation-delete-active};
   --clr-message-input-background: #{$light-message-input-background};
-
-
-
 }
 
 .theme-dark {
@@ -124,6 +122,7 @@
   --clr-primary-hover: #{$dark-primary-hover};
   --clr-primary-active: #{$dark-primary-active};
   --clr-primary-disabled: #{$dark-primary-disabled};
+  --clr-primary-opacity: #{$dark-primary-opacity};
 
   --clr-secondary: #{$dark-secondary};
   --clr-secondary-hover: #{$dark-secondary-hover};
@@ -189,6 +188,7 @@
   --clr-primary-hover: #{$dim-primary-hover};
   --clr-primary-active: #{$dim-primary-active};
   --clr-primary-disabled: #{$dim-primary-disabled};
+  --clr-primary-opacity: #{$dim-primary-opacity};
 
   --clr-secondary: #{$dim-secondary};
   --clr-secondary-hover: #{$dim-secondary-hover};
@@ -255,7 +255,6 @@
   --clr-primary-active: #{$blue-primary-active};
   --clr-primary-disabled: #{$blue-primary-disabled};
   --clr-primary-background: #{$blue-primary-background};
-
 }
 
 .color-yellow {

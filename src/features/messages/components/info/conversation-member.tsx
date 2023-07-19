@@ -2,10 +2,11 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import { useRouter } from "next/navigation";
 
+import { EllipsisWrapper } from "@/components/elements/ellipsis-wrapper";
 import { FollowButton } from "@/components/elements/follow-button";
 import {
+  Avatar,
   IUser,
-  UserAvatar,
   UserModalWrapper,
   UserName,
   UserScreenName,
@@ -28,23 +29,20 @@ export const ConversationMember = ({
       className={styles.container}
     >
       <UserModalWrapper userId={member?.id}>
-        <UserAvatar userId={member?.id} userImage={member?.profile_image_url} />
+        <Avatar userImage={member?.profile_image_url} />
       </UserModalWrapper>
 
       <div className={styles.name}>
         <UserModalWrapper userId={member?.id}>
-          <UserName
-            userId={member?.id}
-            name={member?.name}
-            isVerified={member?.verified}
-          />
+          <EllipsisWrapper>
+            <UserName name={member?.name} isVerified={member?.verified} />
+          </EllipsisWrapper>
         </UserModalWrapper>
         <div className={styles.username}>
           <UserModalWrapper userId={member?.id}>
-            <UserScreenName
-              userId={member?.id}
-              screenName={member?.screen_name}
-            />
+            <EllipsisWrapper>
+              <UserScreenName screenName={member?.screen_name} />
+            </EllipsisWrapper>
           </UserModalWrapper>
           {sessionOwner?.followers?.some(
             (follower) => follower.id === member?.id,

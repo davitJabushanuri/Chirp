@@ -1,18 +1,14 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useSession } from "next-auth/react";
 
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
 import { InfiniteTweets, useTweets } from "@/features/tweets";
 
-import { useUser } from "../hooks/use-user";
-
 import styles from "./styles/profile-likes.module.scss";
 
 export const ProfileLikes = () => {
-  const { data: session } = useSession();
   const pathname = usePathname();
   const id = pathname?.split("/")[1] as string;
 
@@ -29,8 +25,6 @@ export const ProfileLikes = () => {
     type: "user_likes",
     id,
   });
-
-  const { data: user } = useUser(id);
 
   if (isLoading) {
     return (

@@ -1,7 +1,6 @@
 "use client";
-
-import { signIn } from "next-auth/react";
 import Link from "next/link";
+import { signIn } from "next-auth/react";
 
 import { AppleLogo } from "../assets/apple-logo";
 import { GoogleLogo } from "../assets/google-logo";

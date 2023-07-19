@@ -1,8 +1,6 @@
-/* eslint-disable @next/next/no-img-element */
-
 import dayjs from "dayjs";
-import { useSession } from "next-auth/react";
 import Image from "next/image";
+import { useSession } from "next-auth/react";
 
 import { IMessage } from "../types";
 

@@ -1,7 +1,6 @@
 @use "main.scss";
 @use "abstracts/media-query" as *;
 
-
 *::-webkit-scrollbar {
   width: 11px;
 }
@@ -11,12 +10,10 @@
   border-radius: 1rem;
 }
 
-
 *::-webkit-scrollbar-thumb {
   background-color: var(--clr-nav-active);
   border-radius: 1rem;
 }
-
 
 body {
   min-height: 100vh;
@@ -26,15 +23,17 @@ body {
   overflow-y: scroll;
   overflow-x: hidden;
 
-
-
   .layout {
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr;
 
     @include mq("small") {
-      grid-template-columns: min-content 1fr;
+      grid-template-columns: auto auto;
+
+      main {
+        border-left: 1px solid var(--clr-border);
+      }
 
       a {
         color: inherit;
@@ -51,17 +50,16 @@ body {
     }
 
     @include mq("large") {
-      grid-template-columns: min-content 1fr 340px;
-      max-width: 1020px;
+      grid-template-columns: auto 600px 1fr;
+      max-width: 1100px;
     }
 
     @include mq("x-large") {
-      grid-template-columns: min-content 1fr 400px;
-      max-width: 1120px;
+      grid-template-columns: auto 600px 1fr;
     }
 
     @include mq("xx-large") {
-      grid-template-columns: 275px 1fr 400px;
+      grid-template-columns: 275px 600px 1fr;
       max-width: 1265px;
     }
   }

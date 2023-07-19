@@ -30,7 +30,7 @@ export const UserModalWrapper = ({
   };
 
   return (
-    <div className={styles.container}>
+    <div tabIndex={-1} className={styles.container}>
       <div
         onMouseEnter={handleNameMouseEnter}
         onMouseLeave={handleNameMouseLeave}

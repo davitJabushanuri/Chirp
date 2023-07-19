@@ -18,7 +18,13 @@ export const SortTweets = () => {
           <SortActions />
         </ActionsModal>
       )}
+
       <button
+        aria-expanded={isModalOpen}
+        aria-haspopup="menu"
+        aria-label="Sort Tweets"
+        data-title="Sort Tweets"
+        tabIndex={0}
         onClick={() => setIsModalOpen(true)}
         className={styles.sortButton}
       >

@@ -1,4 +1,4 @@
-@use './abstracts/media-query' as *;
+@use "./abstracts/media-query" as *;
 
 .container {
   background-color: var(--clr-background);
@@ -19,24 +19,15 @@
     gap: 0.2rem;
 
     .title {
-      font-size: 19px;
-      font-weight: 600;
+      font-size: var(--fs-h2);
+      font-weight: var(--fw-500);
       color: var(--clr-secondary);
     }
 
     .stats {
       color: var(--clr-tertiary);
-      font-size: 12px;
+      font-size: var(--fs-nano);
       width: max-content;
     }
   }
-
-
-
-  @include mq('small') {
-    .title {
-      font-size: 1.2rem;
-    }
-  }
-
 }

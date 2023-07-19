@@ -6,7 +6,7 @@ import { EmojiIcon } from "@/assets/emoji-icon";
 import { GifIcon } from "@/assets/gif-icon";
 import { ImageIcon } from "@/assets/image-icon";
 import { LocationIcon } from "@/assets/location-icon";
-import { UserAvatar } from "@/features/profile";
+import { Avatar, LinkToProfile } from "@/features/profile";
 import { ITweet } from "@/features/tweets";
 
 import { PollIcon } from "../assets/poll-icon";
@@ -62,52 +62,55 @@ export const CreateTweet = ({
 
   return (
     <div className={styles.container}>
-      <div className={styles.avatar}>
-        <UserAvatar
-          userId={session?.user?.id}
-          userImage={session?.user?.profile_image_url}
-        />
+      <div className={styles.left}>
+        <div className={styles.avatar}>
+          <LinkToProfile userId={session?.user?.id}>
+            <Avatar userImage={session?.user?.profile_image_url} />
+          </LinkToProfile>
+        </div>
       </div>
 
       <form>
-        <div className={styles.text}>
-          <textarea
-            ref={inputRef}
-            style={{ height: "0" }}
-            contentEditable="true"
-            aria-multiline="true"
-            aria-label="Tweet text"
-            aria-autocomplete="list"
-            spellCheck="true"
-            tabIndex={0}
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-            placeholder={placeholder as string}
-          />
-        </div>
-
-        {chosenImages && (
-          <div className={styles.chosen_images}>
-            <ChosenImages
-              chosenImages={chosenImages}
-              setChosenImages={setChosenImages}
+        <div className={styles.content}>
+          <div className={styles.text}>
+            <textarea
+              ref={inputRef}
+              style={{ height: "0" }}
+              contentEditable="true"
+              aria-multiline="true"
+              aria-label="Tweet text"
+              aria-autocomplete="list"
+              spellCheck="true"
+              tabIndex={0}
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+              placeholder={placeholder as string}
             />
           </div>
-        )}
 
-        {quoted_tweet && (
-          <div className={styles.quotedTweet}>
-            <CreateTweetQuote tweet={quoted_tweet} />
-          </div>
-        )}
+          {chosenImages && (
+            <div className={styles.chosen_images}>
+              <ChosenImages
+                chosenImages={chosenImages}
+                setChosenImages={setChosenImages}
+              />
+            </div>
+          )}
+
+          {quoted_tweet && (
+            <div className={styles.quotedTweet}>
+              <CreateTweetQuote tweet={quoted_tweet} />
+            </div>
+          )}
+        </div>
 
         <div className={styles.actions}>
           <div className={styles.tweet_actions}>
             <button
-              className={styles.media}
-              aria-label="Add photos or video"
               type="button"
-              title="Media"
+              className={styles.action}
+              aria-label="Add photos or video"
+              data-title="Media"
               tabIndex={0}
               disabled={chosenImages.length >= 4}
               onClick={() => {
@@ -138,25 +141,72 @@ export const CreateTweet = ({
               />
             </button>
 
-            <Action icon={<GifIcon />} />
+            <button
+              type="button"
+              className={styles.action}
+              aria-label="Add a GIF"
+              data-title="GIF"
+              tabIndex={0}
+            >
+              <Action icon={<GifIcon />} />
+            </button>
+
             {!isInspectModal && (
               <span className={styles.hide}>
-                <Action icon={<PollIcon />} />
+                <button
+                  type="button"
+                  className={styles.action}
+                  aria-label="Add poll"
+                  data-title="Poll"
+                  tabIndex={0}
+                >
+                  <Action icon={<PollIcon />} />
+                </button>
               </span>
             )}
-            <Action icon={<EmojiIcon />} />
+
+            <button
+              type="button"
+              className={styles.action}
+              aria-label="Add emoji"
+              data-title="Emoji"
+              aria-haspopup="menu"
+              tabIndex={0}
+            >
+              <Action icon={<EmojiIcon />} />
+            </button>
+
             {!isInspectModal && (
               <span className={styles.hide}>
-                <Action icon={<ScheduleIcon />} />
+                <button
+                  type="button"
+                  className={styles.action}
+                  aria-label="Schedule Tweet"
+                  data-title="Schedule"
+                  tabIndex={0}
+                >
+                  <Action icon={<ScheduleIcon />} />
+                </button>
               </span>
             )}
-            <Action icon={<LocationIcon />} />
+
+            <button
+              type="button"
+              className={styles.action}
+              aria-label="Tag Location"
+              data-title="Location"
+              tabIndex={0}
+            >
+              <Action icon={<LocationIcon />} />
+            </button>
           </div>
 
           <div className={styles.buttons}>
             {text.length > 0 && <TextProgressBar progress={text.length} />}
             <button
               type="button"
+              aria-label="Add Tweet"
+              tabIndex={0}
               onClick={() =>
                 mutation.mutate({
                   text: text.trim(),

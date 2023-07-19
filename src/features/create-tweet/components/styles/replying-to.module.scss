@@ -1,8 +1,7 @@
 .container {
-
   p {
     color: var(--clr-tertiary);
-    font-size: 14px;
+    font-size: var(--fs-milli);
     word-wrap: break-word;
     word-break: break-all;
 

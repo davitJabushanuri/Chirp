@@ -1,8 +1,8 @@
 .container {
   .title {
     margin: 19px 0;
-    font-size: 29px;
-    font-weight: 600;
+    font-size: var(--fs-kilo);
+    font-weight: var(--fw-500);
   }
 
   .buttonContainer {
@@ -20,10 +20,10 @@
       background-color: var(--clr-light);
       color: var(--clr-dark);
       border-radius: 100vmax;
-      font-size: 14px;
+      font-size: var(--fs-micro);
       font-weight: 500;
       cursor: pointer;
-      transition: all 0.20s ease-in-out;
+      transition: all 0.2s ease-in-out;
 
       &:hover {
         background-color: var(--clr-auth-button-hover);
@@ -63,9 +63,7 @@
     }
   }
 
-
   form {
-
     .inputContainer {
       padding: 11px 0;
 
@@ -96,7 +94,7 @@
           transition: 0.2s ease-in-out;
           display: flex;
           align-items: center;
-          font-size: 1rem;
+          font-size: var(--fs-base);
           padding: 0.5rem;
           color: var(--clr-tertiary);
         }
@@ -109,19 +107,17 @@
           }
         }
 
-        input:focus+span {
-          font-size: 0.8rem;
+        input:focus + span {
+          font-size: var(--fs-nano);
           transform: translateY(-0.6rem);
           color: var(--clr-blue);
         }
 
-        input:not(:placeholder-shown)+span {
+        input:not(:placeholder-shown) + span {
           transform: translateY(-0.6rem);
-          font-size: 0.8rem;
+          font-size: var(--fs-nano);
         }
-
       }
-
     }
 
     .submit {
@@ -137,9 +133,7 @@
         background-color: var(--clr-secondary-active);
       }
     }
-
   }
-
 
   .forgotPassword {
     button {
@@ -158,7 +152,7 @@
 
   .signUp {
     margin-top: 38px;
-    font-size: 14px;
+    font-size: var(--fs-micro);
 
     span {
       color: var(--clr-tertiary);

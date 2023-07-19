@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import dayjs from "dayjs";
-import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 import { useState } from "react";
 
 import { DotIcon } from "@/assets/dot-icon";
@@ -10,7 +10,13 @@ import { PinIcon } from "@/assets/pin-icon";
 import { ReportIcon } from "@/assets/report-icon";
 import { TrashIcon } from "@/assets/trash-icon";
 import { Action, ActionsModal } from "@/components/elements/actions-modal";
-import { UserAvatar, UserName, UserScreenName } from "@/features/profile";
+import { EllipsisWrapper } from "@/components/elements/ellipsis-wrapper";
+import {
+  Avatar,
+  LinkToProfile,
+  UserName,
+  UserScreenName,
+} from "@/features/profile";
 
 import { SnoozeNotificationsIon } from "../assets/snooze-notifications-ion";
 import { useDeleteConversation } from "../hooks/use-delete-conversation";
@@ -40,20 +46,24 @@ export const ConversationCard = ({
       className={styles.container}
     >
       <div className={styles.avatar}>
-        <UserAvatar userId={user?.id} userImage={user?.profile_image_url} />
+        <LinkToProfile userId={user?.id}>
+          <Avatar userImage={user?.profile_image_url} />
+        </LinkToProfile>
       </div>
       <div className={styles.content}>
         <div className={styles.info}>
           <div className={styles.user}>
-            <UserName
-              name={user?.name}
-              userId={user?.id}
-              isVerified={user?.verified}
-            />
-            <UserScreenName
-              screenName={user?.email?.split("@")[0]}
-              userId={user?.id}
-            />
+            <LinkToProfile userId={user?.id}>
+              <EllipsisWrapper>
+                <UserName name={user?.name} isVerified={user?.verified} />
+              </EllipsisWrapper>
+            </LinkToProfile>
+
+            <LinkToProfile userId={user?.id}>
+              <EllipsisWrapper>
+                <UserScreenName screenName={user?.email?.split("@")[0]} />
+              </EllipsisWrapper>
+            </LinkToProfile>
             <span className={styles.dot}>·</span>
             <span className={styles.date}>
               {dayjs(lastMessage?.created_at).format("MMM D")}

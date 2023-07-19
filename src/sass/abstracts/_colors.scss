@@ -1,12 +1,14 @@
 ////////////////////////////////////////
 // LIGHT THEME
 ////////////////////////////////////////
+
 $light-background: #ffffff;
 
 $light-primary: #1d9bf0;
 $light-primary-hover: #1a8cd8;
 $light-primary-active: #177cc0;
 $light-primary-disabled: #8ecdf8;
+$light-primary-opacity: rgba(29, 155, 240, 0.1);
 
 $light-secondary: #0f1419;
 $light-secondary-hover: #0a0d10;
@@ -33,14 +35,14 @@ $light-options-active: #d2ebfc;
 
 $light-tweet-hover: #f7f7f7;
 
-$light-comment-hover: #E1EEF6;
-$light-comment-active: #D2EBFC;
+$light-comment-hover: #e1eef6;
+$light-comment-active: #d2ebfc;
 
-$light-heart-hover: #F7E0EB;
-$light-heart-active: #FED1E6;
+$light-heart-hover: #f7e0eb;
+$light-heart-active: #fed1e6;
 
-$light-retweet-hover: #DEF1EB;
-$light-retweet-active: #CCF1E5;
+$light-retweet-hover: #def1eb;
+$light-retweet-active: #ccf1e5;
 
 $light-search-background: #eff3f4;
 
@@ -52,17 +54,17 @@ $light-border: #eff3f4;
 $light-auth-border: #cfd9de;
 
 $light-signout-background: #999999;
-$light-signout-logout-hover: #272C30;
-$light-signout-logout-active: #3F4347;
-$light-signout-cancel-hover: #E7E7E8;
-$light-signout-cancel-active: #CFD0D1;
+$light-signout-logout-hover: #272c30;
+$light-signout-logout-active: #3f4347;
+$light-signout-cancel-hover: #e7e7e8;
+$light-signout-cancel-active: #cfd0d1;
 
-$light-message-background: #EFF3F4;
-$light-conversation-actions-hover: #E8F5FD;
-$light-conversation-actions-active: #D2EBFC;
-$light-conversation-delete-hover: #FEE8EA;
-$light-conversation-delete-active: #FDD3D5;
-$light-message-input-background: #EFF3F4;
+$light-message-background: #eff3f4;
+$light-conversation-actions-hover: #e8f5fd;
+$light-conversation-actions-active: #d2ebfc;
+$light-conversation-delete-hover: #fee8ea;
+$light-conversation-delete-active: #fdd3d5;
+$light-message-input-background: #eff3f4;
 
 ////////////////////////////////////////
 // DARK THEME
@@ -74,6 +76,7 @@ $dark-primary: #1d9bf0;
 $dark-primary-hover: #1a8cd8;
 $dark-primary-active: #177cc0;
 $dark-primary-disabled: #8ecdf8;
+$dark-primary-opacity: rgba(29, 155, 240, 0.1);
 
 $dark-secondary: #e7e9ea;
 $dark-secondary-hover: #f0f1f1;
@@ -100,13 +103,13 @@ $dark-options-active: #061f30;
 
 $dark-tweet-hover: #080808;
 
-$dark-comment-hover: #0A171F;
-$dark-comment-active: #061F30;
+$dark-comment-hover: #0a171f;
+$dark-comment-active: #061f30;
 
 $dark-heart-hover: #200914;
-$dark-heart-active: #32051A;
+$dark-heart-active: #32051a;
 
-$dark-retweet-hover: #071A14;
+$dark-retweet-hover: #071a14;
 $dark-retweet-active: #002519;
 
 $dark-search-background: #202327;
@@ -118,15 +121,15 @@ $dark-logo-active: #061f30;
 $dark-border: #2f3336;
 $dark-auth-border: #333639;
 
-$dark-signout-background: #242D34;
-$dark-signout-logout-hover: #D7DBDC;
-$dark-signout-logout-active: #BFC2C3;
+$dark-signout-background: #242d34;
+$dark-signout-logout-hover: #d7dbdc;
+$dark-signout-logout-active: #bfc2c3;
 $dark-signout-cancel-hover: #181919;
 $dark-signout-cancel-active: #303131;
 
-$dark-message-background: #2F3336;
+$dark-message-background: #2f3336;
 $dark-conversation-actions-hover: #031018;
-$dark-conversation-actions-active: #061F30;
+$dark-conversation-actions-active: #061f30;
 $dark-conversation-delete-hover: #190305;
 $dark-conversation-delete-active: #310709;
 $dark-message-input-background: #202327;
@@ -141,10 +144,11 @@ $dim-primary: #1d9bf0;
 $dim-primary-hover: #1a8cd8;
 $dim-primary-active: #177cc0;
 $dim-primary-disabled: #8ecdf8;
+$dim-primary-opacity: rgba(29, 155, 240, 0.1);
 
 $dim-secondary: #f7f9f9;
-$dim-secondary-hover: #D7DBDC;
-$dim-secondary-active: #BFC2C3;
+$dim-secondary-hover: #d7dbdc;
+$dim-secondary-active: #bfc2c3;
 
 $dim-tertiary: #808d9a;
 
@@ -167,14 +171,14 @@ $dim-options-active: #173952;
 
 $dim-tweet-hover: #1c2732;
 
-$dim-comment-hover: #1C3345;
+$dim-comment-hover: #1c3345;
 $dim-comment-active: #173952;
 
-$dim-heart-hover: #32253A;
-$dim-heart-active: #431F3C;
+$dim-heart-hover: #32253a;
+$dim-heart-active: #431f3c;
 
-$dim-retweet-hover: #19363A;
-$dim-retweet-active: #113F3B;
+$dim-retweet-hover: #19363a;
+$dim-retweet-active: #113f3b;
 
 $dim-search-background: #2c3640;
 
@@ -185,17 +189,17 @@ $dim-logo-active: #173952;
 $dim-border: #38444d;
 $dim-auth-border: #425364;
 
-$dim-signout-background: #31404E;
-$dim-signout-logout-hover: #D7DBDC;
-$dim-signout-logout-active: #BFC2C3;
-$dim-signout-cancel-hover: #2B3640;
-$dim-signout-cancel-active: #414B53;
+$dim-signout-background: #31404e;
+$dim-signout-logout-hover: #d7dbdc;
+$dim-signout-logout-active: #bfc2c3;
+$dim-signout-cancel-hover: #2b3640;
+$dim-signout-cancel-active: #414b53;
 
-$dim-message-background: #3D5466;
-$dim-conversation-actions-hover: #162D3F;
+$dim-message-background: #3d5466;
+$dim-conversation-actions-hover: #162d3f;
 $dim-conversation-actions-active: #173952;
-$dim-conversation-delete-hover: #2C202C;
-$dim-conversation-delete-active: #42212B;
+$dim-conversation-delete-hover: #2c202c;
+$dim-conversation-delete-active: #42212b;
 $dim-message-input-background: #273340;
 
 ////////////////////////////////////////
@@ -209,39 +213,37 @@ $blue-primary-active: #177cc0;
 $blue-primary-disabled: #8ecdf8;
 $blue-primary-background: #173952;
 
-
 // yellow
-$yellow-primary: #FFD400;
-$yellow-primary-hover: #E6BF00;
-$yellow-primary-active: #CCAA00;
-$yellow-primary-disabled: #897A16;
+$yellow-primary: #ffd400;
+$yellow-primary-hover: #e6bf00;
+$yellow-primary-active: #ccaa00;
+$yellow-primary-disabled: #897a16;
 $yellow-primary-background: #444422;
 
-
 // rose
-$rose-primary: #F91880;
-$rose-primary-hover: #E01673;
-$rose-primary-active: #C71366;
-$rose-primary-disabled: #861C55;
+$rose-primary: #f91880;
+$rose-primary-hover: #e01673;
+$rose-primary-active: #c71366;
+$rose-primary-disabled: #861c55;
 $rose-primary-background: #431f3c;
 
 // purple
 $violet-primary: #7856ff;
-$violet-primary-hover: #6C4DE6;
-$violet-primary-active: #6045CC;
-$violet-primary-disabled: #463B95;
+$violet-primary-hover: #6c4de6;
+$violet-primary-active: #6045cc;
+$violet-primary-disabled: #463b95;
 $violet-primary-background: #292a55;
 
 // orange
-$orange-primary: #FF7A00;
-$orange-primary-hover: #E66E00;
-$orange-primary-active: #CC6200;
-$orange-primary-disabled: #894D16;
+$orange-primary: #ff7a00;
+$orange-primary-hover: #e66e00;
+$orange-primary-active: #cc6200;
+$orange-primary-disabled: #894d16;
 $orange-primary-background: #443222;
 
 // green
-$green-primary: #00BA7C;
-$green-primary-hover: #00A770;
+$green-primary: #00ba7c;
+$green-primary-hover: #00a770;
 $green-primary-active: #009563;
-$green-primary-disabled: #0B6D53;
+$green-primary-disabled: #0b6d53;
 $green-primary-background: #113f3b;

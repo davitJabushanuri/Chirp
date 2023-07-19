@@ -8,9 +8,7 @@ export const HomeHeader = () => {
     <div className={styles.container}>
       <HamburgerButton />
 
-      <a href="#home" className={styles.home}>
-        Home
-      </a>
+      <h2 className={styles.home}>Home</h2>
 
       <div className={styles.star}>
         <SortTweets />

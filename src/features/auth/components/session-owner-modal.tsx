@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import { useSession } from "next-auth/react";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 
 import { useAuthModal } from "@/stores/use-auth-modal";
 

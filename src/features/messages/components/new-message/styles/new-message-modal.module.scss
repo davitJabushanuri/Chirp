@@ -1,4 +1,4 @@
-@use 'abstracts/media-query' as *;
+@use "abstracts/media-query" as *;
 
 .container {
   position: fixed;
@@ -18,7 +18,7 @@
     width: 100%;
     height: 100%;
 
-    @include mq ("medium") {
+    @include mq("medium") {
       max-width: 600px;
       max-height: 650px;
       border-radius: 1rem;
@@ -30,8 +30,8 @@
       right: 15px;
       background-color: var(--clr-secondary);
       color: var(--clr-background);
-      font-size: 13px;
-      font-weight: 700;
+      font-size: var(--fs-micro);
+      font-weight: var(--fw-700);
       padding: 7px 15px;
       border-radius: 100vmax;
       cursor: pointer;

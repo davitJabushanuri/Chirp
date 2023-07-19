@@ -6,9 +6,8 @@
     background-color: var(--clr-primary);
     color: var(--clr-secondary);
     box-shadow: none;
-    font-size: 14px;
+    font-size: var(--fs-micro);
     min-width: fit-content;
     min-height: fit-content;
   }
-
 }
