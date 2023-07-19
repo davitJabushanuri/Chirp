@@ -18,8 +18,6 @@ const Settings = () => {
 
   return (
     <div className={styles.container}>
-      {/* <SettingsHeader /> */}
-
       <div className={styles.settings}>
         <h1 className={styles.heading}>Customize your view</h1>
         <h2 className={styles.subheading}>

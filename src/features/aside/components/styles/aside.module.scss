@@ -1,0 +1,56 @@
+@use "abstracts/media-query.scss" as *;
+
+.container {
+  display: none;
+  position: sticky;
+  top: 0;
+  padding: 0 1.8rem 0 1.8rem;
+  height: 100vh;
+  height: 100dvh;
+  overflow-y: auto;
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* Internet Explorer 10+ */
+
+  padding-bottom: 6rem;
+
+  &::-webkit-scrollbar {
+    /* WebKit */
+    width: 0;
+    height: 0;
+  }
+
+  .search {
+    background-color: var(--clr-background);
+    position: sticky;
+    top: 0;
+    padding: 5px 0;
+    z-index: 2;
+    margin-bottom: 11px;
+  }
+
+  .connect,
+  .footer {
+    margin-top: 15px;
+  }
+
+  .trends {
+    margin-top: 11px;
+    background-color: var(--clr-trends-background);
+    border-radius: 1rem;
+  }
+
+  .connect {
+    background-color: var(--clr-connect-background);
+    border-radius: 1rem;
+  }
+
+  .registerForm {
+    padding-top: 1rem;
+  }
+
+  @include mq("large") {
+    display: block;
+  }
+}

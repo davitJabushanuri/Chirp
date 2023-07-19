@@ -1,0 +1,65 @@
+@use './abstracts/media-query' as *;
+
+.container {
+  z-index: 99;
+  background-color: var(--clr-background);
+  position: sticky;
+  top: 0;
+  height: 50px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 0.5rem 0 1rem;
+
+  .back {
+    @include mq('small') {
+      display: none;
+    }
+  }
+
+  .search {
+    width: 100%;
+
+    form {
+      height: 26px;
+    }
+  }
+
+  .options {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background-color: var(--clr-trends-hover);
+    }
+
+    &:active {
+      background-color: var(--clr-trends-active);
+    }
+
+    svg {
+      width: 19px;
+      height: 19px;
+      fill: var(--clr-secondary);
+    }
+  }
+
+  @include mq('small') {
+    grid-template-columns: 1fr auto;
+
+    .search {
+      form {
+        height: 100%;
+      }
+    }
+  }
+}

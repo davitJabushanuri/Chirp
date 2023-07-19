@@ -1,5 +1,5 @@
 "use client";
-import { MessagesHeader } from "@/components/layout/header";
+import { MessagesHeader } from "@/features/header";
 import { Conversations } from "@/features/messages";
 
 import styles from "./styles/messages.module.scss";

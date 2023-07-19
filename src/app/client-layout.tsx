@@ -4,7 +4,7 @@ import { ToastContainer, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { LoadingScreen } from "@/components/elements/loading-screen";
-import { Aside } from "@/components/layout/aside";
+import { Aside } from "@/features/aside";
 import { useJoinTwitter } from "@/features/auth";
 import { AuthModalTrigger, JoinTwitterModal } from "@/features/auth";
 import { CreateTweetModal, MobileTweetButton } from "@/features/create-tweet";

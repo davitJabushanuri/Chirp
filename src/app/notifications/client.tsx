@@ -1,5 +1,6 @@
 "use client";
-import { NotificationsHeader } from "@/components/layout/header";
+
+import { NotificationsHeader } from "@/features/header";
 
 export const NotificationsClientPage = () => {
   return (

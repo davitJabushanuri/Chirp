@@ -1,6 +1,6 @@
 "use client";
 
-import { TweetHeader } from "@/components/layout/header";
+import { TweetHeader } from "@/features/header";
 import { TweetDetails } from "@/features/tweets";
 
 export const TweetClientPage = () => {
