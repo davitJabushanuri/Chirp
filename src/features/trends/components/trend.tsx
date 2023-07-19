@@ -1,7 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { Tooltip } from "react-tooltip";
 
 import { DotIcon } from "@/assets/dot-icon";
 import { SadFaceIcon } from "@/assets/sad-face-icon";
@@ -56,6 +55,7 @@ const TrendOptions = () => {
         aria-expanded={isModalOpen}
         aria-haspopup="menu"
         aria-label="More"
+        data-title="More"
         tabIndex={0}
         className={styles.optionsButton}
         onKeyDown={(e) => {
@@ -65,14 +65,10 @@ const TrendOptions = () => {
           e.stopPropagation();
           setIsModalOpen(true);
         }}
-        data-tooltip-id="trends-option-tooltip"
-        data-tooltip-content={`More `}
-        data-tooltip-delay-show={500}
       >
         <DotIcon />
       </button>
 
-      <Tooltip id="trends-option-tooltip" place="bottom" />
       {isModalOpen && (
         <ActionsModal setIsModalOpen={setIsModalOpen}>
           <button
