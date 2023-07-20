@@ -12,11 +12,19 @@ export const HamburgerButton = () => {
   const { data: session } = useSession();
 
   const openHamburger = useHamburger((state) => state.openHamburger);
+  const isHamburgerOpen = useHamburger((state) => state.isHamburgerOpen);
 
   return (
     <>
       {session ? (
-        <button onClick={() => openHamburger()} className={styles.container}>
+        <button
+          aria-expanded={isHamburgerOpen}
+          aria-haspopup="menu"
+          aria-label={`Profile menu ${session?.user?.name}`}
+          tabIndex={0}
+          onClick={() => openHamburger()}
+          className={styles.container}
+        >
           <Avatar userImage={session?.user?.profile_image_url} />
         </button>
       ) : (

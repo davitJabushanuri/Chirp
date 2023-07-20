@@ -1,10 +1,10 @@
 @use "abstracts/media-query" as *;
 
 .container {
-  height: var(--hamburger-avatar-width);
-  width: var(--hamburger-avatar-width);
+  width: var(--logo-size);
+  height: var(--logo-size);
 
-  * {
+  div {
     width: 100%;
     height: 100%;
   }
@@ -15,9 +15,9 @@
 }
 
 .logo {
-  width: 2rem;
-  height: 2rem;
-  padding: 4px;
+  width: var(--logo-size);
+  height: var(--logo-size);
+  padding: 5px;
   border-radius: 50%;
   overflow: hidden;
   cursor: pointer;
