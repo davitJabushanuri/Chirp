@@ -12,14 +12,13 @@ $delay: 0.5s;
     color: var(--clr-secondary);
     font-size: var(--fs-pico);
     border-radius: 0.1rem;
-    padding: 0.3em;
+    padding: 0.2em;
     white-space: nowrap;
     z-index: 1;
     pointer-events: none;
     visibility: hidden;
     opacity: 0;
     transition: opacity 0.2s ease-out;
-    will-change: opacity, visibility;
 
     @if $position == bottom {
       top: 100%;

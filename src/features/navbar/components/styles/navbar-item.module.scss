@@ -7,7 +7,7 @@
   display: flex;
   justify-content: center;
   padding: 4px 0;
-  @include tooltip(bottom, 2px);
+  @include tooltip(top, 2px);
 
   &:hover {
     .navItem {
@@ -26,10 +26,6 @@
       background-color: var(--clr-nav-hover);
       outline: 2px solid var(--clr-secondary);
     }
-  }
-
-  @include mq("xx-large") {
-    @include hide-tooltip();
   }
 
   .navItem {
@@ -61,12 +57,14 @@
   }
 
   @include mq("small") {
-  }
-
-  @include mq("medium") {
+    &::after {
+      bottom: unset;
+      top: 100%;
+    }
   }
 
   @include mq("xx-large") {
+    @include hide-tooltip();
     justify-content: flex-start;
 
     .navItem {

@@ -1,13 +1,14 @@
 @use "abstracts/media-query" as *;
+@use "abstracts/tooltips.scss" as *;
 
 .container {
+  @include tooltip(top, 4px);
   position: fixed;
-  bottom: 70px;
-  right: 20px;
+  bottom: 5em;
+  right: 1em;
+  padding: 1em;
   z-index: 9999;
   background-color: var(--clr-primary);
-  width: 53px;
-  height: 53px;
   display: grid;
   place-items: center;
   border-radius: 50%;
@@ -22,9 +23,14 @@
     background-color: var(--clr-primary-active);
   }
 
+  &:focus-visible {
+    background-color: var(--clr-primary-hover);
+    outline: 2px solid var(--clr-secondary);
+  }
+
   svg {
-    width: 23px;
-    height: 23px;
+    width: var(--nav-icon-size);
+    height: var(--nav-icon-size);
     fill: var(--clr-light);
   }
 

@@ -14,7 +14,13 @@ export const MobileTweetButton = () => {
   if (!session) return null;
 
   return (
-    <button onClick={() => openModal()} className={styles.container}>
+    <button
+      aria-label="Compose a Tweet"
+      data-title="Tweet"
+      tabIndex={0}
+      onClick={() => openModal()}
+      className={styles.container}
+    >
       <PenIcon />
     </button>
   );
