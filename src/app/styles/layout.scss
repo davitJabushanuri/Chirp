@@ -29,7 +29,7 @@ body {
     grid-template-columns: 1fr;
 
     @include mq("small") {
-      grid-template-columns: auto auto;
+      grid-template-columns: min-content auto;
 
       main {
         border-left: 1px solid var(--clr-border);
@@ -50,12 +50,12 @@ body {
     }
 
     @include mq("large") {
-      grid-template-columns: auto 600px 1fr;
+      grid-template-columns: min-content 600px 1fr;
       max-width: 1100px;
     }
 
     @include mq("x-large") {
-      grid-template-columns: auto 600px 1fr;
+      grid-template-columns: min-content 600px 1fr;
     }
 
     @include mq("xx-large") {
