@@ -8,7 +8,7 @@ export const HomeHeader = () => {
     <div className={styles.container}>
       <HamburgerButton />
 
-      <h2 className={styles.home}>Home</h2>
+      <h2>Home</h2>
 
       <div className={styles.star}>
         <SortTweets />

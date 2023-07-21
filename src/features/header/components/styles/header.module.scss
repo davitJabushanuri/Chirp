@@ -1,4 +1,4 @@
-@use './abstracts/media-query' as *;
+@use "./abstracts/media-query" as *;
 
 .container {
   background-color: var(--clr-background);
@@ -8,10 +8,4 @@
   position: sticky;
   top: 0;
   height: 50px;
-
-  display: grid;
-  grid-template-columns: 2rem 1fr;
-  gap: 1rem;
-  align-items: center;
-
 }

@@ -19,6 +19,9 @@ $delay: 0.5s;
     visibility: hidden;
     opacity: 0;
     transition: opacity 0.2s ease-out;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     @if $position == bottom {
       top: 100%;
