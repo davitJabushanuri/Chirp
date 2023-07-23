@@ -2,8 +2,14 @@
   font-size: var(--fs-milli);
   font-weight: var(--fw-500);
   color: var(--clr-secondary);
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-auto-flow: column;
+
+  span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
 .hover {
