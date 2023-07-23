@@ -1,4 +1,6 @@
 "use client";
+import Link from "next/link";
+
 import { Gear } from "@/assets/gear-icon";
 import { BackButton } from "@/components/designs/back-button";
 import { HamburgerButton } from "@/components/elements/hamburger-button";
@@ -10,29 +12,37 @@ export const ExploreHeader = () => {
   const isResultsModalOpen = useSearchStore(
     (state) => state.isResultsModalOpen,
   );
-  const closeResultsModal = useSearchStore((state) => state.closeResultsModal);
 
   return (
     <div className={styles.container}>
-      {isResultsModalOpen ? (
-        <button
-          className={styles.back}
-          onClick={() => {
-            closeResultsModal();
-          }}
-        >
-          <BackButton />
-        </button>
-      ) : (
-        <HamburgerButton />
-      )}
+      {isResultsModalOpen ? <CloseSearchResultsModal /> : <HamburgerButton />}
 
-      <div className={styles.search}>
-        <Search />
-      </div>
-      <button className={styles.options}>
+      <Search />
+
+      <Link
+        href={`/settings/explore`}
+        aria-label="Settings"
+        data-title="Settings"
+        className={styles.options}
+      >
         <Gear />
-      </button>
+      </Link>
     </div>
+  );
+};
+
+const CloseSearchResultsModal = () => {
+  const closeResultsModal = useSearchStore((state) => state.closeResultsModal);
+  return (
+    <button
+      aria-label="Back"
+      tabIndex={0}
+      className={styles.back}
+      onClick={() => {
+        closeResultsModal();
+      }}
+    >
+      <BackButton />
+    </button>
   );
 };

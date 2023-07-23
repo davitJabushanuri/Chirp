@@ -2,6 +2,8 @@
   font-size: var(--fs-milli);
   font-weight: var(--fw-500);
   color: var(--clr-secondary);
+  display: flex;
+  align-items: center;
 }
 
 .hover {

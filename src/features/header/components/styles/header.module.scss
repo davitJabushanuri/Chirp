@@ -7,5 +7,9 @@
   z-index: 99;
   position: sticky;
   top: 0;
-  height: 50px;
+  height: calc(var(--avatar-width) + var(--fs-nano));
+
+  > div {
+    height: 100%;
+  }
 }

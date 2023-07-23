@@ -1,12 +1,14 @@
 "use client";
 
 import { Explore } from "@/features/explore";
-import { ExploreHeader } from "@/features/header";
+import { ExploreHeader, Header } from "@/features/header";
 
 export const ExploreClientPage = () => {
   return (
     <div>
-      <ExploreHeader />
+      <Header>
+        <ExploreHeader />
+      </Header>
       <Explore />
     </div>
   );
