@@ -1,16 +1,18 @@
-import { Gear } from "@/assets/gear-icon";
 import { HamburgerButton } from "@/components/elements/hamburger-button";
 
+import { HeaderHeading } from "./header-heading";
+import { HeaderSettings } from "./header-settings";
 import styles from "./styles/notifications-header.module.scss";
 
 export const NotificationsHeader = () => {
   return (
     <div className={styles.container}>
       <HamburgerButton />
-      <h2 className={styles.title}>Notifications</h2>
-      <button className={styles.options}>
-        <Gear />
-      </button>
+      <HeaderHeading title="Notifications" />
+
+      <div className={styles.options}>
+        <HeaderSettings href={`/settings/notifications`} ariaLabel="Settings" />
+      </div>
     </div>
   );
 };
