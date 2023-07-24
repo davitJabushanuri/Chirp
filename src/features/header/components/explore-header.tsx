@@ -1,11 +1,10 @@
 "use client";
-import Link from "next/link";
 
-import { Gear } from "@/assets/gear-icon";
 import { BackButton } from "@/components/designs/back-button";
 import { HamburgerButton } from "@/components/elements/hamburger-button";
 import { Search, useSearchStore } from "@/features/search";
 
+import { HeaderSettings } from "./header-settings";
 import styles from "./styles/explore-header.module.scss";
 
 export const ExploreHeader = () => {
@@ -19,14 +18,7 @@ export const ExploreHeader = () => {
 
       <Search />
 
-      <Link
-        href={`/settings/explore`}
-        aria-label="Settings"
-        data-title="Settings"
-        className={styles.options}
-      >
-        <Gear />
-      </Link>
+      <HeaderSettings href={`/settings/explore`} ariaLabel="Settings" />
     </div>
   );
 };
