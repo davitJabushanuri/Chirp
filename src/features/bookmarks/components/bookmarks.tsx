@@ -3,6 +3,7 @@ import { useSession } from "next-auth/react";
 
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
+import { Header } from "@/features/header";
 import { InfiniteTweets, useTweets } from "@/features/tweets";
 
 import { BookmarksHeader } from "./bookmarks-header";
@@ -29,11 +30,13 @@ export const Bookmarks = () => {
   if (isLoading) {
     return (
       <>
-        <BookmarksHeader
-          hasBookmarks={false}
-          username={session?.user?.email?.split("@")[0]}
-          userId={session?.user?.id}
-        />
+        <Header>
+          <BookmarksHeader
+            hasBookmarks={false}
+            username={session?.user?.email?.split("@")[0]}
+            userId={session?.user?.id}
+          />
+        </Header>
         <LoadingSpinner />
       </>
     );
@@ -42,11 +45,13 @@ export const Bookmarks = () => {
   if (isError) {
     return (
       <>
-        <BookmarksHeader
-          hasBookmarks={false}
-          username={session?.user?.email?.split("@")[0]}
-          userId={session?.user?.id}
-        />
+        <Header>
+          <BookmarksHeader
+            hasBookmarks={false}
+            username={session?.user?.email?.split("@")[0]}
+            userId={session?.user?.id}
+          />
+        </Header>
         <TryAgain />
       </>
     );
@@ -54,13 +59,15 @@ export const Bookmarks = () => {
 
   return (
     <div className={styles.container}>
-      <BookmarksHeader
-        hasBookmarks={
-          bookmarks ? bookmarks?.pages[0]?.tweets?.length > 0 : false
-        }
-        username={session?.user?.email?.split("@")[0]}
-        userId={session?.user?.id}
-      />
+      <Header>
+        <BookmarksHeader
+          hasBookmarks={
+            bookmarks ? bookmarks?.pages[0]?.tweets?.length > 0 : false
+          }
+          username={session?.user?.email?.split("@")[0]}
+          userId={session?.user?.id}
+        />
+      </Header>
 
       {isSuccess && bookmarks?.pages[0]?.tweets?.length === 0 ? (
         <NoBookmarks />
