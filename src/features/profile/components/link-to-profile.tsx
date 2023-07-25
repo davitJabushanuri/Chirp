@@ -12,7 +12,12 @@ export const LinkToProfile = ({
   children: React.ReactNode;
 }) => {
   return (
-    <Link className={styles.container} tabIndex={tabIndex} href={`/${userId}`}>
+    <Link
+      onClick={(e) => e.stopPropagation()}
+      className={styles.container}
+      tabIndex={tabIndex}
+      href={`/${userId}`}
+    >
       {children}
     </Link>
   );
