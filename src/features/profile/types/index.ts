@@ -14,6 +14,8 @@ export interface IUser extends User {
   _count?: {
     followers?: number;
     following?: number;
+    tweets?: number;
+    likes?: number;
   };
 }
 

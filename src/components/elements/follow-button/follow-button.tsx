@@ -1,5 +1,4 @@
 "use client";
-
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
 import { useSession } from "next-auth/react";
 import { useState } from "react";
