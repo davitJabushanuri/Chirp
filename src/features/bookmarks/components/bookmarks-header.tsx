@@ -38,7 +38,7 @@ export const BookmarksHeader = ({
         <HeaderHeading title={"Bookmarks"} />
         {username && (
           <EllipsisWrapper>
-            <p>@{username}</p>
+            <span>@{username}</span>
           </EllipsisWrapper>
         )}
       </div>

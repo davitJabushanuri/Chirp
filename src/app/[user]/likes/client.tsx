@@ -1,10 +1,11 @@
 "use client";
 
-import { ProfileLikes } from "@/features/profile";
+import { IUser, Profile, ProfileLikes } from "@/features/profile";
 
-export const LikesCLientPage = () => {
+export const LikesCLientPage = ({ user }: { user: IUser }) => {
   return (
     <div>
+      <Profile user={user} />
       <ProfileLikes />
     </div>
   );

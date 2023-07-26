@@ -3,6 +3,10 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   border-bottom: 1px solid var(--clr-border);
+  position: sticky;
+  top: 53px;
+  background-color: var(--clr-background);
+  z-index: 2;
 
   button {
     padding: 0 15px;

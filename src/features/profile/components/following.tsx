@@ -8,7 +8,6 @@ import { PersonDetails } from "@/features/connect";
 import { useGetFollows } from "../hooks/use-get-follows";
 import { useUser } from "../hooks/use-user";
 
-import { FollowersHeader } from "./followers-header";
 import { NoFollowers } from "./no-followers";
 
 export const Following = () => {
@@ -26,27 +25,15 @@ export const Following = () => {
   const { data: user } = useUser(id);
 
   if (isLoading) {
-    return (
-      <>
-        <FollowersHeader />
-        <LoadingSpinner />
-      </>
-    );
+    return <LoadingSpinner />;
   }
 
   if (isError) {
-    return (
-      <>
-        <FollowersHeader />
-        <TryAgain />
-      </>
-    );
+    return <TryAgain />;
   }
 
   return (
     <div>
-      <FollowersHeader />
-
       {following?.length === 0 ? (
         <NoFollowers
           title={`@${user?.email?.split("@")[0]} isn’t following anyone`}

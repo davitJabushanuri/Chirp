@@ -22,6 +22,8 @@ const getUserData = async () => {
         _count: {
           select: {
             tweets: true,
+            followers: true,
+            following: true,
           },
         },
       },

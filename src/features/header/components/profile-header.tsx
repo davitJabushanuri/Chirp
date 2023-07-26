@@ -1,4 +1,5 @@
 import { BackButton } from "@/components/elements/back-button";
+import { EllipsisWrapper } from "@/components/elements/ellipsis-wrapper";
 import { HeaderHeading } from "@/features/header";
 
 import styles from "./styles/profile-header.module.scss";
@@ -16,7 +17,9 @@ export const ProfileHeader = ({
 
       <div className={styles.user}>
         <HeaderHeading title={heading || "Profile"} />
-        <span>{stats}</span>
+        <EllipsisWrapper>
+          <span>{stats}</span>
+        </EllipsisWrapper>
       </div>
     </div>
   );
