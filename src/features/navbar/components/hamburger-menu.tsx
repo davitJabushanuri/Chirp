@@ -1,3 +1,4 @@
+"use client";
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
@@ -23,6 +24,8 @@ export const HamburgerMenu = () => {
   const router = useRouter();
   const { data: session } = useSession();
   const { data: user } = useUser(session?.user?.id);
+
+  if (!isHamburgerOpen) return null;
 
   return (
     <div

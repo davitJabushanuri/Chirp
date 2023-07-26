@@ -1,3 +1,4 @@
+"use client";
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import { CloseIcon } from "@/assets/close-icon";
@@ -19,7 +20,9 @@ import { TweetCreationDate } from "./tweet-creation-date";
 import { TweetStatistics } from "./tweet-statistics";
 
 export const InspectTweetImageModal = () => {
-  useDisableBodyScroll();
+  const isTweetImageModalOpen = useInspectTweetImage(
+    (state) => state.isTweetImageModalOpen,
+  );
 
   const closeTweetImageModal = useInspectTweetImage(
     (state) => state.closeTweetImageModal,
@@ -38,6 +41,10 @@ export const InspectTweetImageModal = () => {
   const tweetId = useInspectTweetImage((state) => state.tweetId);
 
   const { data: tweet, isLoading, isError } = useTweet(tweetId);
+
+  useDisableBodyScroll();
+
+  if (!isTweetImageModalOpen) return null;
 
   return (
     <div className={styles.container}>

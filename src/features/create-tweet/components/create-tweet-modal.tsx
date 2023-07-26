@@ -1,3 +1,5 @@
+"use client";
+
 import { BackButton } from "@/components/designs/back-button";
 import { CloseButton } from "@/components/designs/close-button";
 import { useDisableBodyScroll } from "@/hooks";
@@ -8,6 +10,8 @@ import { CreateTweetComment } from "./create-tweet-comment";
 import styles from "./styles/create-tweet-modal.module.scss";
 
 export const CreateTweetModal = () => {
+  const isTweetModalOpen = useCreateTweetModal((state) => state.isModalOpen);
+
   const parent_tweet = useCreateTweetModal((state) => state.parent_tweet);
   const quoted_tweet = useCreateTweetModal((state) => state.quoted_tweet);
   const in_reply_to_screen_name = useCreateTweetModal(
@@ -20,6 +24,8 @@ export const CreateTweetModal = () => {
   const closeModal = useCreateTweetModal((state) => state.closeModal);
 
   useDisableBodyScroll();
+
+  if (!isTweetModalOpen) return null;
 
   return (
     <div

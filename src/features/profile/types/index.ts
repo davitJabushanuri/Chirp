@@ -1,8 +1,7 @@
 import { User, Like } from "@prisma/client";
 
 import { ITweet } from "@/features/tweets";
-
-import { IBookmark } from "./../../tweets/types/index";
+import { IBookmark } from "@/features/tweets";
 
 export interface IUser extends User {
   tweets: ITweet[];

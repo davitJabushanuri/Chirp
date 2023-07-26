@@ -1,8 +1,8 @@
 "use client";
-import { useEffect } from "react";
+import { useCallback } from "react";
 
 export const useDisableBodyScroll = () => {
-  useEffect(() => {
+  useCallback(() => {
     document.body.style.overflowY = "hidden";
     document.body.style.paddingRight = "11px";
     return () => {
