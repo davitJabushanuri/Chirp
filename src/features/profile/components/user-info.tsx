@@ -1,12 +1,14 @@
 "use client";
 import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
 
 import { DotIcon } from "@/assets/dot-icon";
 import { LocationIcon } from "@/assets/location-icon";
 import { MessageIcon } from "@/assets/message-icon";
 import { ReceiveNotificationsIcon } from "@/assets/notifications-icon";
+import { EllipsisWrapper } from "@/components/elements/ellipsis-wrapper";
 import { FollowButton } from "@/components/elements/follow-button";
 import { useEditProfile } from "@/stores/use-edit-profile";
 import { useInspectImage } from "@/stores/use-inspect-profile-image";
@@ -20,7 +22,6 @@ import { UserJoinDate } from "./user-join-date";
 
 export const UserInfo = ({ user }: { user: IUser }) => {
   const { data: session } = useSession();
-  const router = useRouter();
   const pathname = usePathname();
   const id = pathname?.split("/")[1];
 
@@ -41,65 +42,84 @@ export const UserInfo = ({ user }: { user: IUser }) => {
     <div className={styles.container}>
       <div className={styles.banner}>
         {user?.profile_banner_url && (
-          <Image
+          <button
+            className={styles.bannerButton}
+            aria-hidden="true"
+            tabIndex={-1}
             onClick={() => {
               setSource(user?.profile_banner_url || "");
               setSourceType("banner");
               openInspectModal();
             }}
-            src={user?.profile_banner_url}
-            alt="banner"
-            width={500}
-            height={500}
-          />
+          >
+            <Image
+              src={user?.profile_banner_url}
+              alt="banner"
+              fill={true}
+              draggable={true}
+            />
+          </button>
         )}
       </div>
       <div className={styles.info}>
         <div className={styles.avatar}>
-          {user?.profile_image_url ? (
+          <button
+            className={styles.avatarButton}
+            aria-label="Inspect profile picture"
+            onClick={() => {
+              setSource(user?.profile_image_url || "");
+              setSourceType("avatar");
+              openInspectModal();
+            }}
+          >
             <Image
-              onClick={() => {
-                setSource(user?.profile_image_url || "");
-                setSourceType("avatar");
-                openInspectModal();
-              }}
-              src={user?.profile_image_url}
+              src={user?.profile_image_url || "/user_placeholder.png"}
               alt="avatar"
-              width={100}
-              height={100}
+              draggable={true}
+              fill={true}
             />
-          ) : (
-            <Image
-              src="/user_placeholder.png"
-              alt=""
-              width={100}
-              height={100}
-            />
-          )}
+          </button>
         </div>
 
         <div className={styles.editProfile}>
           {session?.user?.id === user?.id ? (
             <button
+              aria-expanded="false"
+              aria-haspopup="menu"
+              aria-label="Edit profile"
               onClick={() => openEditProfileModal()}
-              className={styles.editProfile}
+              className={styles.editProfileButton}
             >
               Edit Profile
             </button>
           ) : (
             <div className={styles.visitorActions}>
               {session && (
-                <button className={styles.options}>
+                <button
+                  aria-expanded="false"
+                  aria-haspopup="menu"
+                  aria-label="More"
+                  data-title="More"
+                  className={styles.options}
+                >
                   <DotIcon />
                 </button>
               )}
               {session && (
-                <button className={styles.message}>
+                <button
+                  aria-label="Message"
+                  data-title="Message"
+                  className={styles.message}
+                >
                   <MessageIcon />
                 </button>
               )}
               {session && (
-                <button className={styles.notifications}>
+                <button
+                  aria-label="Turn on Tweet notifications"
+                  data-title="Notify"
+                  className={styles.notifications}
+                >
                   <ReceiveNotificationsIcon />
                 </button>
               )}
@@ -116,8 +136,13 @@ export const UserInfo = ({ user }: { user: IUser }) => {
 
         <div className={styles.user}>
           <div className={styles.name}>
-            <h1>{user?.name}</h1>
-            <p>@{user?.email?.split("@")[0]}</p>
+            <EllipsisWrapper>
+              <h2>{user?.name}</h2>
+            </EllipsisWrapper>
+
+            <EllipsisWrapper>
+              <span>@{user?.email?.split("@")[0]}</span>
+            </EllipsisWrapper>
           </div>
 
           {user?.description && (
@@ -128,22 +153,23 @@ export const UserInfo = ({ user }: { user: IUser }) => {
 
           <div className={styles.locationAndJoined}>
             {user?.location && (
-              <div className={styles.location}>
-                <span className={styles.icon}>
-                  <LocationIcon />
-                </span>
+              <div className={styles.location} role="presentation">
+                <LocationIcon />
                 <span className={styles.text}>{user?.location}</span>
               </div>
             )}
 
             {user?.url && (
               <div className={styles.website}>
-                <span className={styles.icon}>
-                  <WebsiteIcon />
-                </span>
-                <span className={styles.text}>
-                  <a href={user?.url}>{user?.url}</a>
-                </span>
+                <WebsiteIcon />
+                <a
+                  className={styles.text}
+                  href={user?.url}
+                  target="_blank"
+                  rel="noopener noreferrer nofollow"
+                >
+                  {user?.url}
+                </a>
               </div>
             )}
 
@@ -151,20 +177,14 @@ export const UserInfo = ({ user }: { user: IUser }) => {
           </div>
 
           <div className={styles.stats}>
-            <button
-              onClick={() => router.push(`${id}/following`)}
-              className={styles.stat}
-            >
+            <Link href={`${id}/following`} className={styles.stat}>
               <span className={styles.number}>{user?._count?.following}</span>
-              <span className={styles.text}>Following</span>
-            </button>
-            <button
-              onClick={() => router.push(`${id}/followers`)}
-              className={styles.stat}
-            >
+              Following
+            </Link>
+            <Link href={`${id}/followers`} className={styles.stat}>
               <span className={styles.number}>{user?._count?.followers}</span>
-              <span className={styles.text}>Followers</span>
-            </button>
+              Followers
+            </Link>
           </div>
         </div>
       </div>

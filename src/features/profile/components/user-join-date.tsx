@@ -13,11 +13,7 @@ export const UserJoinDate = ({
 }) => {
   return (
     <div className={styles.container}>
-      {showIcon && (
-        <span className={styles.icon}>
-          <CalendarIcon />
-        </span>
-      )}
+      {showIcon && <CalendarIcon />}
       <span className={styles.text}>
         Joined {dayjs(date).format("MMMM YYYY")}
       </span>
