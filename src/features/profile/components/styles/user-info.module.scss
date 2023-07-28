@@ -215,6 +215,11 @@ $avatar-top: calc(-1 * #{$avatar-size} / 2 - #{$avatar-border});
             text-decoration: underline;
             text-decoration-color: var(--clr-secondary);
           }
+
+          &:focus-visible {
+            text-decoration: underline;
+            text-decoration-color: var(--clr-secondary);
+          }
         }
         .number {
           font-weight: var(--fw-700);
