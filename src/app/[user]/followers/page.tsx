@@ -86,5 +86,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: `People following ${user?.name?.split(
       " ",
     )[0]} (@${user?.email?.split("@")[0]})`,
+    description: user?.description,
   };
 }

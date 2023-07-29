@@ -80,6 +80,8 @@ export const metadata = {
     absolute: "Chirp",
   },
 
+  description: "Chirp is a social media platform for sharing your thoughts.",
+
   icons: {
     icon: "/twitter-logo.svg",
   },

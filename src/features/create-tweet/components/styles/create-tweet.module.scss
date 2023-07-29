@@ -29,6 +29,7 @@
         margin: 11px 0;
 
         textarea {
+          overflow: hidden;
           resize: none;
           user-select: text;
           white-space: pre-wrap;

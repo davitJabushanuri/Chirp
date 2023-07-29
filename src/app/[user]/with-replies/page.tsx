@@ -92,5 +92,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: `Tweets with replies by ${user?.name?.split(
       " ",
     )[0]} (@${user?.email?.split("@")[0]})`,
+    description: user?.description,
   };
 }
