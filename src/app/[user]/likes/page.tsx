@@ -1,43 +1,20 @@
 import { Metadata } from "next";
-import { headers } from "next/headers";
 
 import { UserNotFound } from "@/components/elements/user-not-found";
 import { Header, ProfileHeader } from "@/features/header";
-import { prisma } from "@/lib/prisma";
+import { Profile, ProfileLikes, getUserMetadata } from "@/features/profile";
 
-import { LikesCLientPage } from "./client";
-
-const getUserData = async () => {
-  const headerList = headers();
-  const pathname = headerList.get("x-invoke-path") || "";
-  const id = pathname?.split("/")[1] || "";
-
-  try {
-    const user = await prisma.user.findUnique({
-      where: {
-        id: id,
-      },
-
-      include: {
-        _count: {
-          select: {
-            likes: true,
-            followers: true,
-            following: true,
-          },
-        },
-      },
-    });
-
-    return user;
-  } catch (error) {
-    console.log(error);
-    return null;
-  }
-};
-
-const page = async () => {
-  const user = await getUserData();
+const page = async ({
+  params,
+}: {
+  params: {
+    user: string;
+  };
+}) => {
+  const user = await getUserMetadata({
+    user_id: params.user,
+    type: "likes",
+  });
 
   if (!user)
     return (
@@ -57,15 +34,25 @@ const page = async () => {
           stats={`${user?._count?.likes} Likes`}
         />
       </Header>
-      <LikesCLientPage user={user as any} />
+      <Profile user={user as any} />
+      <ProfileLikes />
     </>
   );
 };
 
 export default page;
 
-export async function generateMetadata(): Promise<Metadata> {
-  const user = await getUserData();
+export async function generateMetadata({
+  params,
+}: {
+  params: {
+    user: string;
+  };
+}): Promise<Metadata> {
+  const user = await getUserMetadata({
+    user_id: params.user,
+    type: "likes",
+  });
 
   if (!user)
     return {

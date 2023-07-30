@@ -1,58 +1,49 @@
 import { Metadata } from "next";
-import { headers } from "next/headers";
 
 import { UserNotFound } from "@/components/elements/user-not-found";
 import { Header, ProfileHeader } from "@/features/header";
-import { prisma } from "@/lib/prisma";
+import {
+  Profile,
+  ProfileTweetsAndReplies,
+  getUserMetadata,
+} from "@/features/profile";
 
-import { WithRepliesClientPage } from "./client";
+export async function generateMetadata({
+  params,
+}: {
+  params: {
+    user: string;
+  };
+}): Promise<Metadata> {
+  const user = await getUserMetadata({
+    user_id: params.user,
+    type: "tweets",
+  });
 
-const getUserData = async () => {
-  const headerList = headers();
-  const pathname = headerList.get("x-invoke-path") || "";
-  const id = pathname?.split("/")[1] || "";
+  if (!user)
+    return {
+      title: "User not found",
+    };
 
-  try {
-    const user = await prisma.user.findUnique({
-      where: {
-        id: id,
-      },
+  return {
+    title: `Tweets with replies by ${user?.name?.split(
+      " ",
+    )[0]} (@${user?.email?.split("@")[0]})`,
+    description: user?.description,
+  };
+}
 
-      include: {
-        _count: {
-          select: {
-            tweets: {
-              where: {
-                OR: [
-                  {
-                    in_reply_to_screen_name: {
-                      not: null,
-                    },
-                  },
-                  {
-                    in_reply_to_status_id: {
-                      not: null,
-                    },
-                  },
-                ],
-              },
-            },
-            followers: true,
-            following: true,
-          },
-        },
-      },
-    });
-
-    return user;
-  } catch (error) {
-    console.log(error);
-    return null;
-  }
-};
-
-const WithRepliesPage = async () => {
-  const user = await getUserData();
+const WithRepliesPage = async ({
+  params,
+}: {
+  params: {
+    user: string;
+  };
+}) => {
+  const user = await getUserMetadata({
+    user_id: params.user,
+    type: "tweets",
+  });
 
   if (!user)
     return (
@@ -72,26 +63,10 @@ const WithRepliesPage = async () => {
           stats={`${user?._count?.tweets} Tweets`}
         />
       </Header>
-
-      <WithRepliesClientPage user={user as any} />
+      <Profile user={user as any} />
+      <ProfileTweetsAndReplies />
     </>
   );
 };
 
 export default WithRepliesPage;
-
-export async function generateMetadata(): Promise<Metadata> {
-  const user = await getUserData();
-
-  if (!user)
-    return {
-      title: "User not found",
-    };
-
-  return {
-    title: `Tweets with replies by ${user?.name?.split(
-      " ",
-    )[0]} (@${user?.email?.split("@")[0]})`,
-    description: user?.description,
-  };
-}

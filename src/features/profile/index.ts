@@ -18,3 +18,4 @@ export * from "./hooks/use-user";
 export * from "./hooks/use-users";
 export * from "./utils/following";
 export * from "./components/followers-header";
+export * from "./api/get-user-metadata";

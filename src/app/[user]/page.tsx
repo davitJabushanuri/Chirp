@@ -1,43 +1,43 @@
 import { Metadata } from "next";
-import { headers } from "next/headers";
 
 import { UserNotFound } from "@/components/elements/user-not-found";
 import { Header, ProfileHeader } from "@/features/header";
-import { prisma } from "@/lib/prisma";
+import { Profile, ProfileTweets, getUserMetadata } from "@/features/profile";
 
-import { ClientUserPage } from "./client";
+export async function generateMetadata({
+  params,
+}: {
+  params: {
+    user: string;
+  };
+}): Promise<Metadata> {
+  const user = await getUserMetadata({
+    user_id: params.user,
+    type: "tweets",
+  });
 
-const getUserData = async () => {
-  const headerList = headers();
-  const pathname = headerList.get("x-invoke-path") || "";
-  const id = pathname?.split("/")[1] || "";
+  if (!user)
+    return {
+      title: "User not found",
+    };
 
-  try {
-    const user = await prisma.user.findUnique({
-      where: {
-        id: id,
-      },
+  return {
+    title: `${user?.name?.split(" ")[0]} (@${user?.email?.split("@")[0]})`,
+    description: user?.description,
+  };
+}
 
-      include: {
-        _count: {
-          select: {
-            tweets: true,
-            followers: true,
-            following: true,
-          },
-        },
-      },
-    });
-
-    return user;
-  } catch (error) {
-    console.log(error);
-    return null;
-  }
-};
-
-const ProfilePage = async () => {
-  const user = await getUserData();
+const ProfilePage = async ({
+  params,
+}: {
+  params: {
+    user: string;
+  };
+}) => {
+  const user = await getUserMetadata({
+    user_id: params.user,
+    type: "tweets",
+  });
 
   if (!user)
     return (
@@ -57,23 +57,10 @@ const ProfilePage = async () => {
           stats={`${user?._count?.tweets} Tweets`}
         />
       </Header>
-      <ClientUserPage user={user as any} />
+      <Profile user={user as any} />
+      <ProfileTweets />
     </>
   );
 };
 
 export default ProfilePage;
-
-export async function generateMetadata(): Promise<Metadata> {
-  const user = await getUserData();
-
-  if (!user)
-    return {
-      title: "User not found",
-    };
-
-  return {
-    title: `${user?.name?.split(" ")[0]} (@${user?.email?.split("@")[0]})`,
-    description: user?.description,
-  };
-}

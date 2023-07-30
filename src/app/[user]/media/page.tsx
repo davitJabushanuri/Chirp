@@ -1,49 +1,20 @@
 import { Metadata } from "next";
-import { headers } from "next/headers";
 
 import { UserNotFound } from "@/components/elements/user-not-found";
 import { Header, ProfileHeader } from "@/features/header";
-import { prisma } from "@/lib/prisma";
+import { Profile, ProfileMedia, getUserMetadata } from "@/features/profile";
 
-import { MediaClientPage } from "./client";
-
-const getUserData = async () => {
-  const headerList = headers();
-  const pathname = headerList.get("x-invoke-path") || "";
-  const id = pathname?.split("/")[1] || "";
-
-  try {
-    const user = await prisma.user.findUnique({
-      where: {
-        id: id,
-      },
-
-      include: {
-        _count: {
-          select: {
-            tweets: {
-              where: {
-                media: {
-                  some: {},
-                },
-              },
-            },
-            followers: true,
-            following: true,
-          },
-        },
-      },
-    });
-
-    return user;
-  } catch (error) {
-    console.log(error);
-    return null;
-  }
-};
-
-const MediaPage = async () => {
-  const user = await getUserData();
+const MediaPage = async ({
+  params,
+}: {
+  params: {
+    user: string;
+  };
+}) => {
+  const user = await getUserMetadata({
+    user_id: params.user,
+    type: "media",
+  });
 
   if (!user)
     return (
@@ -63,15 +34,25 @@ const MediaPage = async () => {
           stats={`${user?._count?.tweets} Photos & videos`}
         />
       </Header>
-      <MediaClientPage user={user as any} />
+      <Profile user={user as any} />
+      <ProfileMedia />
     </>
   );
 };
 
 export default MediaPage;
 
-export async function generateMetadata(): Promise<Metadata> {
-  const user = await getUserData();
+export async function generateMetadata({
+  params,
+}: {
+  params: {
+    user: string;
+  };
+}): Promise<Metadata> {
+  const user = await getUserMetadata({
+    user_id: params.user,
+    type: "media",
+  });
 
   if (!user)
     return {
