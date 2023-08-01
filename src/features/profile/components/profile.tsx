@@ -21,18 +21,6 @@ export const Profile = ({ user }: { user: IUser }) => {
     (state) => state.isInspectModalOpen,
   );
 
-  // const { data: user, isLoading, isError } = useUser(id);
-
-  // if (isLoading) {
-  //   return <LoadingSpinner />;
-  // }
-
-  // if (isError) {
-  //   return <TryAgain />;
-  // }
-
-  // if (!isLoading && !isError && !user) return <UserNotFound />;
-
   return (
     <div className={styles.container}>
       <UserInfo user={user} />

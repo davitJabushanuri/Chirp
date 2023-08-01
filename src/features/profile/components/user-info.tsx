@@ -177,11 +177,11 @@ export const UserInfo = ({ user }: { user: IUser }) => {
           </div>
 
           <div className={styles.stats}>
-            <Link href={`${id}/following`} className={styles.stat}>
+            <Link href={`/${id}/following`} className={styles.stat}>
               <span className={styles.number}>{user?._count?.following}</span>
               Following
             </Link>
-            <Link href={`${id}/followers`} className={styles.stat}>
+            <Link href={`/${id}/followers`} className={styles.stat}>
               <span className={styles.number}>{user?._count?.followers}</span>
               Followers
             </Link>
