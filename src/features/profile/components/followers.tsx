@@ -7,7 +7,7 @@ import { PersonDetails } from "@/features/connect";
 
 import { useGetFollows } from "../hooks/use-get-follows";
 
-import { FollowersHeader } from "./followers-header";
+import { FollowsNavigation } from "./follows-navigation";
 import { NoFollowers } from "./no-followers";
 
 export const Followers = () => {
@@ -26,7 +26,7 @@ export const Followers = () => {
   if (isLoading) {
     return (
       <>
-        <FollowersHeader />
+        <FollowsNavigation />
         <LoadingSpinner />
       </>
     );
@@ -35,7 +35,7 @@ export const Followers = () => {
   if (isError) {
     return (
       <>
-        <FollowersHeader />
+        <FollowsNavigation />
         <TryAgain />
       </>
     );
@@ -43,7 +43,7 @@ export const Followers = () => {
 
   return (
     <div>
-      <FollowersHeader />
+      <FollowsNavigation />
 
       {followers?.length === 0 ? (
         <NoFollowers
