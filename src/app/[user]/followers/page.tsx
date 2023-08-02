@@ -2,7 +2,11 @@ import { Metadata } from "next";
 
 import { UserNotFound } from "@/components/elements/user-not-found";
 import { Header, ProfileHeader } from "@/features/header";
-import { Followers, getUserMetadata } from "@/features/profile";
+import {
+  Followers,
+  FollowsNavigation,
+  getUserMetadata,
+} from "@/features/profile";
 
 const page = async ({
   params,
@@ -33,6 +37,7 @@ const page = async ({
           stats={user?.email?.split("@")[0]}
         />
       </Header>
+      <FollowsNavigation />
       <Followers />
     </>
   );

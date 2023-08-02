@@ -15,7 +15,7 @@ export const Following = () => {
   const id = pathname?.split("/")[1];
 
   const {
-    data: following,
+    data: follows,
     isLoading,
     isError,
   } = useGetFollows({
@@ -34,15 +34,15 @@ export const Following = () => {
 
   return (
     <div>
-      {following?.length === 0 ? (
+      {follows?.length === 0 ? (
         <NoFollowers
           title={`@${user?.email?.split("@")[0]} isn’t following anyone`}
           subtitle="Once they follow accounts, they’ll show up here."
         />
       ) : (
         <div>
-          {following?.map((following) => {
-            return <PersonDetails key={following?.id} author={following} />;
+          {follows?.map((user) => {
+            return <PersonDetails key={user?.id} author={user} />;
           })}
         </div>
       )}

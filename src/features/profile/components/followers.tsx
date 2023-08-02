@@ -7,7 +7,6 @@ import { PersonDetails } from "@/features/connect";
 
 import { useGetFollows } from "../hooks/use-get-follows";
 
-import { FollowsNavigation } from "./follows-navigation";
 import { NoFollowers } from "./no-followers";
 
 export const Followers = () => {
@@ -24,27 +23,15 @@ export const Followers = () => {
   });
 
   if (isLoading) {
-    return (
-      <>
-        <FollowsNavigation />
-        <LoadingSpinner />
-      </>
-    );
+    return <LoadingSpinner />;
   }
 
   if (isError) {
-    return (
-      <>
-        <FollowsNavigation />
-        <TryAgain />
-      </>
-    );
+    return <TryAgain />;
   }
 
   return (
     <div>
-      <FollowsNavigation />
-
       {followers?.length === 0 ? (
         <NoFollowers
           title="Looking for followers?"
@@ -53,8 +40,8 @@ export const Followers = () => {
         />
       ) : (
         <div>
-          {followers?.map((follower) => {
-            return <PersonDetails key={follower?.id} author={follower} />;
+          {followers?.map((user) => {
+            return <PersonDetails key={user?.id} author={user} />;
           })}
         </div>
       )}

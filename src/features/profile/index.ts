@@ -17,5 +17,5 @@ export * from "./hooks/use-follow";
 export * from "./hooks/use-user";
 export * from "./hooks/use-users";
 export * from "./utils/following";
-export * from "./components/followers-header";
+export * from "./components/follows-navigation";
 export * from "./api/get-user-metadata";

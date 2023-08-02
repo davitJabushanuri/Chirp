@@ -3,8 +3,8 @@ import { Metadata } from "next";
 import { UserNotFound } from "@/components/elements/user-not-found";
 import { Header, ProfileHeader } from "@/features/header";
 import {
-  FollowersHeader,
   Following,
+  FollowsNavigation,
   getUserMetadata,
 } from "@/features/profile";
 
@@ -37,7 +37,7 @@ const FollowingPage = async ({
           stats={`@${user?.email?.split("@")[0]}`}
         />
       </Header>
-      <FollowersHeader />
+      <FollowsNavigation />
       <Following />
     </>
   );
