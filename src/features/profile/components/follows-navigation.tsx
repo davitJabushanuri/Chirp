@@ -1,8 +1,9 @@
 "use client";
-import { setCookie, getCookie, deleteCookie } from "cookies-next";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
+
+import { UseFocusOnActiveTab } from "../hooks/use-focus-on-active-tab";
+import { handleNavigationInteraction } from "../utils/handle-navigation-interaction";
 
 import styles from "./styles/follows-navigation.module.scss";
 
@@ -21,7 +22,7 @@ export const FollowsNavigation = () => {
   );
 };
 
-const FollowsTab = ({
+export const FollowsTab = ({
   path,
   id,
   text,
@@ -30,48 +31,20 @@ const FollowsTab = ({
   id: string;
   text: string;
 }) => {
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLAnchorElement>) => {
-    if (e.key === "ArrowRight") {
-      if (!e.currentTarget.nextElementSibling) {
-        (
-          e.currentTarget?.parentElement?.firstElementChild as HTMLElement
-        )?.focus();
-      } else (e.currentTarget.nextElementSibling as HTMLElement)?.focus();
-    }
-    if (e.key === "ArrowLeft") {
-      if (!e.currentTarget.previousElementSibling) {
-        (
-          e.currentTarget?.parentElement?.lastElementChild as HTMLElement
-        )?.focus();
-      } else (e.currentTarget.previousElementSibling as HTMLElement)?.focus();
-    }
-
-    if (e.key === "Enter") {
-      if (e.currentTarget.ariaSelected === "true") {
-        return;
-      }
-
-      e.currentTarget.click();
-      setCookie("followers-nav-item-id", text.toLowerCase());
-    }
-  };
-
-  useEffect(() => {
-    const tab = getCookie("followers-nav-item-id");
-
-    if (tab) {
-      const element = document.querySelector(`[href="/${id}/${tab}"]`);
-
-      if (element) {
-        (element as HTMLElement).focus();
-        deleteCookie("followers-nav-item-id");
-      }
-    }
-  }, [id]);
+  UseFocusOnActiveTab({
+    cookieName: "followers-path",
+    path: `/${id}/${text.toLowerCase()}`,
+  });
 
   return (
     <Link
-      onKeyDown={handleKeyDown}
+      onKeyDown={(e) =>
+        handleNavigationInteraction({
+          e,
+          path: `/${id}/${text.toLowerCase()}`,
+          cookieName: "followers-path",
+        })
+      }
       aria-selected={path === text.toLowerCase() ? true : false}
       role="tab"
       replace={true}

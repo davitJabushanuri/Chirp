@@ -34,7 +34,7 @@ const page = async ({
       <Header>
         <ProfileHeader
           heading={user?.name}
-          stats={user?.email?.split("@")[0]}
+          stats={`@${user?.email?.split("@")[0]}`}
         />
       </Header>
       <FollowsNavigation />
