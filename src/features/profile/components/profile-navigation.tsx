@@ -1,5 +1,5 @@
 import { NavigationTab } from "./navigation-tab";
-import styles from "./styles/profile-navbar.module.scss";
+import styles from "./styles/profile-navigation.module.scss";
 
 export const ProfileNavigation = ({
   pathname,
@@ -9,11 +9,7 @@ export const ProfileNavigation = ({
   id: string | null;
 }) => {
   return (
-    <nav
-      aria-label="Profile timelines"
-      aria-live="polite"
-      className={styles.nav}
-    >
+    <nav aria-label="Profile timelines" aria-live="polite">
       <div className={styles.container} role="tablist">
         <NavigationTab
           text="Tweets"
