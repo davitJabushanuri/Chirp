@@ -1,15 +1,11 @@
 import { render, screen } from "@testing-library/react";
 
-import { FollowsNavigation } from "../components/follows-navigation";
+import {
+  FollowsNavigation,
+  FollowsTab,
+} from "../components/follows-navigation";
 
 describe("FollowsNavigation", () => {
-  const url = `https://twitter-v2-sand.vercel.app/clj8wmhx7000eu5d8luqe5cva/following`;
-  Object.defineProperty(window, "location", {
-    value: new URL(url),
-  });
-
-  window.location.href = url;
-
   it("renders the Followers and Following tabs", () => {
     render(<FollowsNavigation />);
 
@@ -18,12 +14,15 @@ describe("FollowsNavigation", () => {
   });
 
   it("sets the active tab based on the current path", () => {
-    render(<FollowsNavigation />);
+    render(<FollowsTab id="123" path="followers" text="Followers" />);
 
     expect(screen.getByRole("tab", { name: "Followers" })).toHaveAttribute(
       "aria-selected",
-      "false",
+      "true",
     );
+
+    render(<FollowsTab id="123" path="following" text="Following" />);
+
     expect(screen.getByRole("tab", { name: "Following" })).toHaveAttribute(
       "aria-selected",
       "true",
