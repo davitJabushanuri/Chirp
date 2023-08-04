@@ -1,60 +1,22 @@
 @use "abstracts/media-query" as *;
 
+.nav {
+  overflow: hidden;
+}
+
 .container {
-  display: grid;
   border-bottom: 1px solid var(--clr-border);
-  overflow-x: auto;
+  overflow: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  // move items with touch
+  scroll-snap-type: x mandatory;
+  // snap to items
+  scroll-behavior: smooth;
+  // smooth scrolling
+  -webkit-overflow-scrolling: touch;
 
   @include mq("small") {
     grid-template-columns: 2fr 3fr 2fr 2fr;
-  }
-
-  .navItem {
-    width: 100%;
-    padding: 0 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease-in-out;
-    cursor: pointer;
-
-    &:hover {
-      background-color: var(--clr-nav-hover);
-    }
-
-    &:active {
-      background-color: var(--clr-nav-active);
-    }
-  }
-
-  span {
-    position: relative;
-    padding: 1rem 0;
-    font-size: var(--fs-micro);
-    font-weight: var(--fw-500);
-    color: var(--clr-tertiary);
-    border-bottom: 2px solid transparent;
-
-    p {
-      padding: 0 0.4rem;
-    }
-
-    .border {
-      position: absolute;
-      bottom: 0;
-      height: 4px;
-      width: 100%;
-      border-radius: 100vmax;
-      background-color: var(--clr-primary);
-      display: none;
-    }
-  }
-
-  .active {
-    color: var(--clr-secondary);
-
-    .border {
-      display: block;
-    }
   }
 }

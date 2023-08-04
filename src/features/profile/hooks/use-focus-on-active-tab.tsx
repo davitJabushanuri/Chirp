@@ -1,15 +1,9 @@
 import { deleteCookie, getCookie } from "cookies-next";
 import { useEffect } from "react";
 
-export const UseFocusOnActiveTab = ({
-  cookieName,
-  path,
-}: {
-  cookieName: string;
-  path: string;
-}) => {
+export const UseFocusOnActiveTab = ({ path }: { path: string }) => {
   useEffect(() => {
-    const tab = getCookie(cookieName);
+    const tab = getCookie("tab");
 
     if (tab) {
       const element = document.querySelector(
@@ -18,10 +12,10 @@ export const UseFocusOnActiveTab = ({
 
       if (element) {
         element.focus();
-        deleteCookie(cookieName);
+        deleteCookie("tab");
       }
     }
 
     return () => {};
-  }, [cookieName, path]);
+  }, [path]);
 };

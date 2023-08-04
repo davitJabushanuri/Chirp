@@ -7,7 +7,7 @@ import { useInspectImage } from "@/stores/use-inspect-profile-image";
 
 import { EditProfileModal } from "./edit-profile-modal";
 import { InspectImageModal } from "./inspect-image-modal";
-import { ProfileNavbar } from "./profile-navbar";
+import { ProfileNavigation } from "./profile-navigation";
 import styles from "./styles/profile.module.scss";
 import { UserInfo } from "./user-info";
 
@@ -24,7 +24,7 @@ export const Profile = ({ user }: { user: IUser }) => {
   return (
     <div className={styles.container}>
       <UserInfo user={user} />
-      <ProfileNavbar pathname={pathname} id={id} />
+      <ProfileNavigation pathname={pathname} id={id} />
       {isEditProfileModalOpen && <EditProfileModal user={user} />}
       {isInspectModalOpen && <InspectImageModal />}
     </div>

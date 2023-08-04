@@ -3,11 +3,9 @@ import { setCookie } from "cookies-next";
 export const handleNavigationInteraction = ({
   e,
   path,
-  cookieName,
 }: {
   e: React.KeyboardEvent<HTMLAnchorElement>;
   path: string;
-  cookieName: string;
 }) => {
   if (e.key === "ArrowRight") {
     if (!e.currentTarget.nextElementSibling) {
@@ -30,6 +28,6 @@ export const handleNavigationInteraction = ({
     }
 
     e.currentTarget.click();
-    setCookie(cookieName, path);
+    setCookie("tab", path);
   }
 };
