@@ -16,9 +16,13 @@ import { TweetMedia } from "./tweet-media";
 
 export const QuotedTweet = ({ tweet }: { tweet: ITweet }) => {
   const router = useRouter();
+
   return (
     <div
-      onClick={() => router.push(`/status/${tweet?.id}`)}
+      onClick={(e) => {
+        e.stopPropagation();
+        router.push(`/status/${tweet?.id}`);
+      }}
       tabIndex={0}
       role="link"
       onKeyDown={(e) => {
@@ -30,9 +34,9 @@ export const QuotedTweet = ({ tweet }: { tweet: ITweet }) => {
     >
       <div className={styles.userDetails}>
         <UserModalWrapper userId={tweet?.author?.id}>
-          <span className={styles.avatar}>
+          <div className={styles.avatar}>
             <Avatar userImage={tweet?.author?.profile_image_url} />
-          </span>
+          </div>
         </UserModalWrapper>
 
         <UserModalWrapper userId={tweet?.author?.id}>
@@ -50,7 +54,7 @@ export const QuotedTweet = ({ tweet }: { tweet: ITweet }) => {
           </EllipsisWrapper>
         </UserModalWrapper>
         <span className={styles.dot}>·</span>
-        <CreateDate date={tweet?.created_at} />
+        <CreateDate date={tweet?.created_at} focus={false} hover={false} />
       </div>
 
       <div className={styles.tweet}>

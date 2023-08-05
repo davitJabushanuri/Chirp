@@ -1,11 +1,8 @@
-import { usePathname, useRouter } from "next/navigation";
+"use client";
 
-import { LoadingSpinner } from "@/components/elements/loading-spinner";
-import { NotFound } from "@/components/elements/not-found";
-import { TryAgain } from "@/components/elements/try-again";
-import { CreateTweetWrapper } from "@/features/create-tweet";
+import { CreateTweetWrapper, ReplyingTo } from "@/features/create-tweet";
 
-import { useTweet } from "../hooks/use-tweet";
+import { ITweet } from "../types";
 
 import { Comments } from "./comments";
 import { QuotedTweet } from "./quoted-tweet";
@@ -16,42 +13,13 @@ import { TweetCreationDate } from "./tweet-creation-date";
 import { TweetMedia } from "./tweet-media";
 import { TweetStatistics } from "./tweet-statistics";
 
-export const TweetDetails = () => {
-  const router = useRouter();
-  const pathname = usePathname();
-  const id = pathname?.split(`/`)[2] || ``;
-
-  const { data: tweet, isLoading, isError } = useTweet(id);
-
-  if (isLoading) {
-    return <LoadingSpinner />;
-  }
-
-  if (isError) {
-    return <TryAgain />;
-  }
-
-  if (!isLoading && !isError && !tweet) {
-    return <NotFound />;
-  }
-
+export const TweetDetails = ({ tweet }: { tweet: ITweet }) => {
   return (
     <div className={styles.container}>
       <div className={styles.tweetDetails}>
         <TweetAuthor tweet={tweet} />
         {tweet?.in_reply_to_status_id && (
-          <div className={styles.replying}>
-            <span className={styles.replyingTo}>Replying to</span>
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                router.push(`/${tweet?.in_reply_to_screen_name}`);
-              }}
-              className={styles.replyingToUsername}
-            >
-              @{tweet?.in_reply_to_screen_name}
-            </button>
-          </div>
+          <ReplyingTo screen_name={tweet?.in_reply_to_screen_name} />
         )}
 
         <div className={styles.tweet}>
@@ -71,7 +39,7 @@ export const TweetDetails = () => {
           )}
         </div>
 
-        <TweetCreationDate date={tweet?.created_at} />
+        <TweetCreationDate date={tweet?.created_at} link={tweet?.id} />
         <TweetStatistics
           retweet_count={tweet?.retweets?.length}
           quote_count={tweet?.quotes?.length}
