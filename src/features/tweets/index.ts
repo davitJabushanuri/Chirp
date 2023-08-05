@@ -9,3 +9,4 @@ export * from "./components/tweet-quotes";
 export * from "./components/tweet-media";
 export * from "./hooks/use-tweets";
 export * from "./types";
+export * from "./api/get-tweet-metadata";
