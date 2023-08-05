@@ -3,6 +3,11 @@
   margin-top: 11px;
   border-radius: 1rem;
   border: 1px solid var(--clr-border);
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 2px solid var(--clr-primary-disabled);
+  }
 
   .userDetails {
     padding: 11px 11px 4px;
@@ -14,6 +19,8 @@
     margin-bottom: 4px;
 
     .avatar {
+      margin-right: 4px;
+
       > * {
         width: var(--quoted-tweet-avatar-width);
         height: var(--quoted-tweet-avatar-width);

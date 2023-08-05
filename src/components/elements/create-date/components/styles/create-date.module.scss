@@ -5,7 +5,9 @@
   color: var(--clr-tertiary);
   white-space: nowrap;
   @include tooltip(bottom, 2px);
+}
 
+.hover {
   &:hover {
     text-decoration: underline;
   }

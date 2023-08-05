@@ -1,11 +1,20 @@
 .container {
-  p {
+  span {
     color: var(--clr-tertiary);
     font-size: var(--fs-milli);
     word-wrap: break-word;
     word-break: break-all;
 
     a {
+      color: var(--clr-primary);
+      cursor: pointer;
+
+      &:focus-visible {
+        text-decoration: underline;
+      }
+    }
+
+    .username {
       color: var(--clr-primary);
       cursor: pointer;
     }

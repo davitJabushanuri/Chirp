@@ -1,9 +1,8 @@
 import { Metadata } from "next";
 
-import { NotFound } from "@/components/elements/not-found";
+import { TryAgain } from "@/components/elements/try-again";
 import { TweetHeader } from "@/features/header";
 import { TweetDetails, getTweetMetadata } from "@/features/tweets";
-import { TryAgain } from "@/components/elements/try-again";
 
 export async function generateMetadata({
   params,

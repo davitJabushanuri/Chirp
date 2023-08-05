@@ -35,7 +35,7 @@ export const CreateTweetWrapper = ({
         >
           {in_reply_to_screen_name && (
             <div className={styles.replyingTo}>
-              <ReplyingTo screen_name={in_reply_to_screen_name} />
+              <ReplyingTo screen_name={in_reply_to_screen_name} link={false} />
             </div>
           )}
 

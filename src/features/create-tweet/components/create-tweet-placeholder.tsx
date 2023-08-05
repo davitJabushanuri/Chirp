@@ -12,6 +12,7 @@ export const CreateTweetPlaceholder = ({
   return (
     <button
       onClick={() => setIsPlaceholder(false)}
+      onFocus={() => setIsPlaceholder(false)}
       className={styles.container}
     >
       <span className={styles.avatar}>
