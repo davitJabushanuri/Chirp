@@ -51,7 +51,7 @@ const Settings = () => {
         </article>
 
         <FontSizeCustomization fontSize={fontSize} />
-        <ColorPicker color={color} />
+        <ColorPicker />
         <ThemePicker />
       </div>
     </div>
