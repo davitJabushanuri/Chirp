@@ -12,7 +12,6 @@ import styles from "./styles/settings.module.scss";
 
 const Settings = () => {
   const nextCookies = cookies();
-  const theme = nextCookies.get("theme")?.value;
   const color = nextCookies.get("color")?.value;
   const fontSize = nextCookies.get("font-size")?.value;
 
@@ -53,7 +52,7 @@ const Settings = () => {
 
         <FontSizeCustomization fontSize={fontSize} />
         <ColorPicker color={color} />
-        <ThemePicker theme={theme} />
+        <ThemePicker />
       </div>
     </div>
   );

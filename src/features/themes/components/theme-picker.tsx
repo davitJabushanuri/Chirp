@@ -1,5 +1,5 @@
 "use client";
-import { setCookie } from "cookies-next";
+import { getCookie, setCookie } from "cookies-next";
 import { useState } from "react";
 
 import styles from "./styles/theme-picker.module.scss";
@@ -11,16 +11,17 @@ enum ITheme {
   DARK = "theme-dark",
 }
 
-export const ThemePicker = ({
-  theme = "theme-light",
-}: {
-  theme?: string | undefined;
-}) => {
-  if (!Object.values(ITheme).includes(theme as ITheme)) {
-    theme = ITheme.LIGHT;
-  }
+export const ThemePicker = () => {
+  const theme = getCookie("theme");
 
-  const [currentTheme, setCurrentTheme] = useState(theme as ITheme);
+  const prefersDarkMode =
+    typeof window !== "undefined"
+      ? window.matchMedia("(prefers-color-scheme: dark)").matches
+      : false;
+
+  const [currentTheme, setCurrentTheme] = useState(
+    theme ?? (prefersDarkMode ? "theme-dark" : "theme-light"),
+  );
 
   const handleThemeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!Object.values(ITheme).includes(e.target.value as ITheme)) return;
@@ -34,7 +35,7 @@ export const ThemePicker = ({
       maxAge: 60 * 60 * 24 * 365,
     });
 
-    setCurrentTheme(e.target.value as ITheme);
+    setCurrentTheme(e.target.value);
   };
 
   return (

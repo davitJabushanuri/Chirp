@@ -30,9 +30,9 @@ export default async function RootLayout({
 
   return (
     <html
-      className={`${theme?.value ?? "theme-light"} ${
-        color?.value ?? "color-blue"
-      } ${fontSize?.value ?? "font-size-md"}`}
+      className={`${theme?.value ?? ""} ${color?.value ?? ""} ${
+        fontSize?.value ?? ""
+      }`}
       lang="en"
     >
       <body suppressHydrationWarning={true}>
