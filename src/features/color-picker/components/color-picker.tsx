@@ -15,11 +15,9 @@ enum IColor {
 }
 
 export const ColorPicker = () => {
-  const color = getCookie("color");
+  const color = getCookie("color") ?? "color-blue";
 
-  const [currentColor, setCurrentColor] = useState(
-    (color as IColor) ?? "color-blue",
-  );
+  const [currentColor, setCurrentColor] = useState(color as IColor);
 
   const handleColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!Object.values(IColor).includes(e.target.value as IColor)) return;

@@ -1,4 +1,3 @@
-import { cookies } from "next/headers";
 import Link from "next/link";
 
 import { VerifiedIcon } from "@/assets/verified-icon";
@@ -11,10 +10,6 @@ import { ThemePicker } from "@/features/themes";
 import styles from "./styles/settings.module.scss";
 
 const Settings = () => {
-  const nextCookies = cookies();
-  const color = nextCookies.get("color")?.value;
-  const fontSize = nextCookies.get("font-size")?.value;
-
   return (
     <div className={styles.container}>
       <div className={styles.settings}>
@@ -50,7 +45,7 @@ const Settings = () => {
           </div>
         </article>
 
-        <FontSizeCustomization fontSize={fontSize} />
+        <FontSizeCustomization />
         <ColorPicker />
         <ThemePicker />
       </div>
