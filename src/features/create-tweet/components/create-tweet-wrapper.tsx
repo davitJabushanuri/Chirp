@@ -20,6 +20,8 @@ export const CreateTweetWrapper = ({
 
   const [isPlaceholder, setIsPlaceholder] = useState<boolean>(true);
 
+  if (!session) return null;
+
   return (
     <div className={styles.container}>
       {isPlaceholder ? (
