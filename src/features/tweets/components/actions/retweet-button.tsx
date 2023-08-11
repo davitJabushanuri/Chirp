@@ -14,7 +14,13 @@ import { ITweet } from "../../types";
 
 import styles from "./styles/actions.module.scss";
 
-export const RetweetButton = ({ tweet }: { tweet: ITweet }) => {
+export const RetweetButton = ({
+  tweet,
+  showStats,
+}: {
+  tweet: ITweet;
+  showStats: boolean;
+}) => {
   const { data: session } = useSession();
   const hasRetweeted = tweet?.retweets?.some(
     (retweet) => retweet?.user_id === session?.user?.id,
@@ -80,7 +86,7 @@ export const RetweetButton = ({ tweet }: { tweet: ITweet }) => {
         <span className={styles.icon}>
           <RetweetIcon />
         </span>
-        {tweet && tweet?.retweets?.length > 0 && (
+        {showStats && tweet && tweet?.retweets?.length > 0 && (
           <span className={styles.stats}>{tweet?.retweets?.length}</span>
         )}
       </button>
