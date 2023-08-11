@@ -4,6 +4,7 @@ import { VerifiedIcon } from "@/assets/verified-icon";
 import { EllipsisWrapper } from "@/components/elements/ellipsis-wrapper";
 import { ColorPicker } from "@/features/color-picker";
 import { FontSizeCustomization } from "@/features/font-size-customization";
+import { Header, SettingsHeader } from "@/features/header";
 import { Avatar } from "@/features/profile";
 import { ThemePicker } from "@/features/themes";
 
@@ -12,6 +13,10 @@ import styles from "./styles/settings.module.scss";
 const Settings = () => {
   return (
     <div className={styles.container}>
+      <Header>
+        <SettingsHeader />
+      </Header>
+
       <div className={styles.settings}>
         <h1 className={styles.heading}>Customize your view</h1>
         <h2 className={styles.subheading}>
