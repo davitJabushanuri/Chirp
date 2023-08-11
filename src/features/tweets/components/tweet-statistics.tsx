@@ -1,90 +1,70 @@
 "use client";
-
-import { usePathname, useRouter } from "next/navigation";
-import { useState } from "react";
-
-import { ILike, IRetweet } from "../types";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import styles from "./styles/tweet-statistics.module.scss";
-import { TweetStatisticsModal } from "./tweet-statistics-modal";
 
 export const TweetStatistics = ({
   retweet_count = 0,
   quote_count = 0,
-  likes,
-  retweets,
+  likes_count = 0,
+  bookmarks_count = 0,
 }: {
   retweet_count: number | undefined;
   quote_count: number | undefined;
-  likes: ILike[] | undefined;
-  retweets: IRetweet[] | undefined;
+  likes_count: number | undefined;
+  bookmarks_count: number | undefined;
 }) => {
-  const router = useRouter();
   const pathname = usePathname();
-  const isVisible = retweet_count > 0 || quote_count > 0 || likes?.length;
+  const tweetId = pathname.split(`/`)[2];
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [title, setTitle] = useState<string>("");
+  const isVisible =
+    retweet_count > 0 ||
+    quote_count > 0 ||
+    likes_count > 0 ||
+    bookmarks_count > 0;
+
+  if (!isVisible) return null;
 
   return (
     <div
+      role="group"
       className={`${styles.container} ${isVisible ? styles.show : styles.hide}`}
     >
-      {/* retweets */}
       {retweet_count > 0 && (
-        <button
-          onClick={() => {
-            setTitle("retweets");
-            setIsModalOpen(true);
-          }}
-          className={styles.statistic}
-        >
+        <Link href={`/status/${tweetId}/retweets`} className={styles.statistic}>
           <span className={styles.number}>{retweet_count}</span>
           <span className={styles.text}>
             {retweet_count === 1 ? `Retweet` : `Retweets`}
           </span>
-        </button>
+        </Link>
       )}
 
-      {/* quote tweets */}
       {quote_count > 0 && (
-        <button
-          onClick={() => {
-            router?.push(`${pathname}/quotes`);
-          }}
-          className={styles.statistic}
-        >
+        <Link href={`/status/${tweetId}/quotes`} className={styles.statistic}>
           <span className={styles.number}>{quote_count}</span>
           <span className={styles.text}>
             {quote_count === 1 ? `Quote Tweet` : `Quote Tweets`}
           </span>
-        </button>
+        </Link>
       )}
 
-      {/* likes */}
-      {likes && likes.length > 0 && (
-        <button
-          onClick={() => {
-            setTitle("likes");
-            setIsModalOpen(true);
-          }}
-          className={styles.statistic}
-        >
-          <span className={styles.number}>{likes?.length}</span>
+      {likes_count > 0 && (
+        <Link href={`/status/${tweetId}/likes`} className={styles.statistic}>
+          <span className={styles.number}>{likes_count}</span>
           <span className={styles.text}>
-            {likes?.length === 1 ? `Like` : `Likes`}
+            {likes_count === 1 ? `Like` : `Likes`}
           </span>
-        </button>
+        </Link>
       )}
 
-      {isModalOpen && (
-        <TweetStatisticsModal
-          authors={(title === "likes" ? likes : retweets)?.map(
-            (item) => item?.user,
-          )}
-          title={title}
-          setIsModalOpen={setIsModalOpen}
-        />
+      {bookmarks_count > 0 && (
+        <div className={styles.statistic}>
+          <span className={styles.number}>{bookmarks_count}</span>
+          <span className={styles.text}>
+            {bookmarks_count === 1 ? `Bookmark` : `Bookmarks`}
+          </span>
+        </div>
       )}
     </div>
   );

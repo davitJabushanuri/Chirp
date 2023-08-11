@@ -11,11 +11,6 @@
     align-items: center;
     gap: 0.3rem;
 
-    &:hover {
-      cursor: pointer;
-      text-decoration: underline;
-    }
-
     .number {
       font-size: var(--fs-micro);
       font-weight: var(--fw-700);
@@ -27,12 +22,16 @@
       color: var(--clr-tertiary);
     }
   }
-}
 
-.show {
-  display: flex;
-}
+  a {
+    cursor: pointer;
 
-.hide {
-  display: none;
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &:focus-visible {
+      text-decoration: underline;
+    }
+  }
 }
