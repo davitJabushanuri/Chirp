@@ -115,10 +115,10 @@ export const InspectTweetImageModal = () => {
 
               <div className={styles.tweetStatistics}>
                 <TweetStatistics
-                  retweet_count={tweet?.retweets?.length}
-                  quote_count={tweet?.quotes?.length}
-                  likes={tweet?.likes}
-                  retweets={tweet?.retweets}
+                  retweet_count={tweet?._count?.retweets}
+                  quote_count={tweet?._count?.quotes}
+                  likes_count={tweet?._count?.likes}
+                  bookmarks_count={tweet?._count?.bookmarks}
                 />
               </div>
 

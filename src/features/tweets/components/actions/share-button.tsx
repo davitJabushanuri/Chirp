@@ -116,6 +116,9 @@ export const ShareButton = ({ tweet }: { tweet: ITweet }) => {
         aria-label="Share Tweet"
         data-title="Share"
         tabIndex={0}
+        onKeyDown={(e) => {
+          e.stopPropagation();
+        }}
         onClick={(e) => {
           e.stopPropagation();
           setIsModalOpen(true);

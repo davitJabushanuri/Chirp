@@ -34,6 +34,9 @@ export const LikeButton = ({
       aria-label={hasLiked ? "Unlike" : "Like"}
       data-title={hasLiked ? "Unlike" : "Like"}
       tabIndex={0}
+      onKeyDown={(e) => {
+        e.stopPropagation();
+      }}
       onClick={(e) => {
         e.stopPropagation();
         if (!session) {
