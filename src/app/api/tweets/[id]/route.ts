@@ -52,6 +52,25 @@ export async function GET(
           },
         },
 
+        retweets: {
+          select: {
+            user_id: true,
+          },
+        },
+
+        likes: {
+          select: {
+            user_id: true,
+          },
+        },
+
+        bookmarks: {
+          select: {
+            id: true,
+            user_id: true,
+          },
+        },
+
         _count: {
           select: {
             retweets: true,
