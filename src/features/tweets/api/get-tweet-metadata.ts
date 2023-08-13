@@ -8,57 +8,14 @@ export const getTweetMetadata = async ({ tweet_id }: { tweet_id: string }) => {
       where: {
         id: tweet_id,
       },
-      include: {
-        author: true,
-        likes: {
-          include: {
-            user: {
-              include: {
-                followers: true,
-              },
-            },
-          },
-          orderBy: {
-            created_at: "desc",
-          },
-        },
-        media: true,
-        retweets: {
-          include: {
-            user: {
-              include: {
-                followers: true,
-              },
-            },
-          },
-          orderBy: {
-            created_at: "desc",
-          },
-        },
-        quoted_tweet: {
-          include: {
-            author: true,
-            media: true,
-          },
-        },
 
-        quotes: {
-          include: {
-            likes: true,
-            retweets: true,
-            author: true,
-            quoted_tweet: {
-              include: {
-                author: true,
-              },
-            },
-          },
-
-          orderBy: {
-            created_at: "desc",
+      select: {
+        text: true,
+        author: {
+          select: {
+            name: true,
           },
         },
-        bookmarks: true,
       },
     });
 
