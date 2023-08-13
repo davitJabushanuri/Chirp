@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 
-import { TryAgain } from "@/components/elements/try-again";
 import { TweetHeader } from "@/features/header";
 import { TweetDetails, getTweetMetadata } from "@/features/tweets";
 
@@ -28,25 +27,11 @@ export async function generateMetadata({
   };
 }
 
-const TweetPage = async ({
-  params,
-}: {
-  params: {
-    id: string;
-  };
-}) => {
-  const tweet = await getTweetMetadata({
-    tweet_id: params.id,
-  });
-
-  if (!tweet) {
-    return <TryAgain />;
-  }
-
+const TweetPage = () => {
   return (
     <>
       <TweetHeader />
-      <TweetDetails tweet={tweet as any} />
+      <TweetDetails />
     </>
   );
 };

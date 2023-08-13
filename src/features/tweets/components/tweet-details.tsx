@@ -1,8 +1,11 @@
 "use client";
+import { usePathname } from "next/navigation";
 
+import { LoadingSpinner } from "@/components/elements/loading-spinner";
+import { TryAgain } from "@/components/elements/try-again";
 import { CreateTweetWrapper, ReplyingTo } from "@/features/create-tweet";
 
-import { ITweet } from "../types";
+import { useTweet } from "../hooks/use-tweet";
 
 import { Comments } from "./comments";
 import { QuotedTweet } from "./quoted-tweet";
@@ -13,7 +16,16 @@ import { TweetCreationDate } from "./tweet-creation-date";
 import { TweetMedia } from "./tweet-media";
 import { TweetStatistics } from "./tweet-statistics";
 
-export const TweetDetails = ({ tweet }: { tweet: ITweet }) => {
+export const TweetDetails = () => {
+  const pathname = usePathname();
+  const tweetId = pathname.split(`/`)[2];
+
+  const { data: tweet, isLoading, isError } = useTweet(tweetId);
+
+  if (isLoading) return <LoadingSpinner />;
+
+  if (isError) return <TryAgain />;
+
   return (
     <div className={styles.container}>
       <div className={styles.tweetDetails}>
@@ -41,10 +53,10 @@ export const TweetDetails = ({ tweet }: { tweet: ITweet }) => {
 
         <TweetCreationDate date={tweet?.created_at} link={tweet?.id} />
         <TweetStatistics
-          retweet_count={tweet?.retweets?.length}
-          quote_count={tweet?.quotes?.length}
-          likes={tweet?.likes}
-          retweets={tweet?.retweets}
+          retweet_count={tweet?._count?.retweets}
+          quote_count={tweet?._count?.quotes}
+          likes_count={tweet?._count?.likes}
+          bookmarks_count={tweet?._count?.bookmarks}
         />
         <div className={styles.tweetActions}>
           <TweetActions tweet={tweet} />
@@ -54,9 +66,7 @@ export const TweetDetails = ({ tweet }: { tweet: ITweet }) => {
         in_reply_to_screen_name={tweet?.author?.email?.split(`@`)[0]}
         in_reply_to_status_id={tweet?.id}
       />
-      <div className={styles.comments}>
-        <Comments tweetId={tweet?.id} />
-      </div>
+      <Comments tweetId={tweet?.id} />
     </div>
   );
 };
