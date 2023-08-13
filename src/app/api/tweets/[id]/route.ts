@@ -34,57 +34,32 @@ export async function GET(
       where: {
         id,
       },
-      include: {
-        author: true,
-        likes: {
-          include: {
-            user: {
-              include: {
-                followers: true,
-              },
-            },
-          },
-          orderBy: {
-            created_at: "desc",
-          },
-        },
+
+      select: {
+        id: true,
+        text: true,
+        author_id: true,
+        created_at: true,
+
         media: true,
-        retweets: {
-          include: {
-            user: {
-              include: {
-                followers: true,
-              },
-            },
-          },
-          orderBy: {
-            created_at: "desc",
-          },
-        },
-        quoted_tweet: {
-          include: {
-            author: true,
-            media: true,
+
+        author: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+            profile_image_url: true,
           },
         },
 
-        quotes: {
-          include: {
-            likes: true,
+        _count: {
+          select: {
             retweets: true,
-            author: true,
-            quoted_tweet: {
-              include: {
-                author: true,
-              },
-            },
-          },
-
-          orderBy: {
-            created_at: "desc",
+            quotes: true,
+            bookmarks: true,
+            likes: true,
           },
         },
-        bookmarks: true,
       },
     });
 
