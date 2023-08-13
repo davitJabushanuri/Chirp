@@ -26,11 +26,8 @@ export const RetweetButton = ({
     (retweet) => retweet?.user_id === session?.user?.id,
   );
 
-  const openCreateTweetModal = useCreateTweetModal((state) => state.openModal);
-  const setQuotedTweet = useCreateTweetModal((state) => state.setQuotedTweet);
-
+  const setData = useCreateTweetModal((state) => state.setData);
   const setJoinTwitterData = useJoinTwitter((state) => state.setData);
-
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const retweetMutation = useRetweet(setIsModalOpen);
@@ -55,8 +52,13 @@ export const RetweetButton = ({
 
           <button
             onClick={() => {
-              setQuotedTweet(tweet);
-              openCreateTweetModal();
+              setData({
+                in_reply_to_screen_name: null,
+                in_reply_to_status_id: null,
+                parent_tweet: null,
+                quoted_tweet: tweet,
+                placeholder: "Add a comment!",
+              });
               setIsModalOpen(false);
             }}
           >
@@ -71,6 +73,9 @@ export const RetweetButton = ({
         aria-label={hasRetweeted ? "Undo retweet" : "Retweet"}
         data-title={hasRetweeted ? "Undo retweet" : "Retweet"}
         tabIndex={0}
+        onKeyDown={(e) => {
+          e.stopPropagation();
+        }}
         onClick={(e) => {
           e.stopPropagation();
           if (!session) {

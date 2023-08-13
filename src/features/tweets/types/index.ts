@@ -21,6 +21,7 @@ export interface ITweet extends Tweet {
     quotes: number;
     likes: number;
     bookmarks: number;
+    comments: number;
   };
 }
 

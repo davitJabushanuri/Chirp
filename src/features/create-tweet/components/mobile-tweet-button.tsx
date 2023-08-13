@@ -18,7 +18,10 @@ export const MobileTweetButton = () => {
       aria-label="Compose a Tweet"
       data-title="Tweet"
       tabIndex={0}
-      onClick={() => openModal()}
+      onClick={(e) => {
+        e.stopPropagation();
+        openModal();
+      }}
       className={styles.container}
     >
       <PenIcon />

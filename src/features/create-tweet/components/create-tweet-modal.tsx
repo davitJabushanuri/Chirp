@@ -11,16 +11,7 @@ import styles from "./styles/create-tweet-modal.module.scss";
 
 export const CreateTweetModal = () => {
   const isTweetModalOpen = useCreateTweetModal((state) => state.isModalOpen);
-
-  const parent_tweet = useCreateTweetModal((state) => state.parent_tweet);
-  const quoted_tweet = useCreateTweetModal((state) => state.quoted_tweet);
-  const in_reply_to_screen_name = useCreateTweetModal(
-    (state) => state.in_reply_to_screen_name,
-  );
-  const in_reply_to_status_id = useCreateTweetModal(
-    (state) => state.in_reply_to_status_id,
-  );
-  const placeholder = useCreateTweetModal((state) => state.placeholder);
+  const data = useCreateTweetModal((state) => state.data);
   const closeModal = useCreateTweetModal((state) => state.closeModal);
 
   useDisableBodyScroll();
@@ -60,13 +51,13 @@ export const CreateTweetModal = () => {
             <CloseButton />
           </span>
         </button>
-        {parent_tweet && <CreateTweetComment tweet={parent_tweet} />}
+        {data.parent_tweet && <CreateTweetComment tweet={data.parent_tweet} />}
 
         <CreateTweet
-          quoted_tweet={quoted_tweet}
-          in_reply_to_screen_name={in_reply_to_screen_name}
-          in_reply_to_status_id={in_reply_to_status_id}
-          placeholder={placeholder}
+          quoted_tweet={data.quoted_tweet}
+          in_reply_to_screen_name={data.in_reply_to_screen_name}
+          in_reply_to_status_id={data.in_reply_to_status_id}
+          placeholder={data.placeholder}
         />
       </div>
     </div>

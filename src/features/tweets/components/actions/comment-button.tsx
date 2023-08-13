@@ -1,3 +1,4 @@
+"use client";
 import { useSession } from "next-auth/react";
 
 import { CommentIcon } from "@/assets/comment-icon";
@@ -17,16 +18,7 @@ export const CommentButton = ({
 }) => {
   const { data: session } = useSession();
 
-  const setParentTweet = useCreateTweetModal((state) => state.setParentTweet);
-
-  const setScreenName = useCreateTweetModal((state) => state.setScreenName);
-
-  const setStatusId = useCreateTweetModal((state) => state.setStatusId);
-
-  const setPlaceholder = useCreateTweetModal((state) => state.setPlaceholder);
-
-  const openModal = useCreateTweetModal((state) => state.openModal);
-
+  const setData = useCreateTweetModal((state) => state.setData);
   const setJoinTwitterData = useJoinTwitter((state) => state.setData);
 
   return (
@@ -34,6 +26,9 @@ export const CommentButton = ({
       aria-label="Reply"
       data-title="Reply"
       tabIndex={0}
+      onKeyDown={(e) => {
+        e.stopPropagation();
+      }}
       onClick={(e) => {
         e.stopPropagation();
 
@@ -44,11 +39,14 @@ export const CommentButton = ({
             user: tweet?.author?.name,
           });
         } else {
-          setParentTweet(tweet);
-          setScreenName(tweet?.author?.email?.split("@")[0]);
-          setStatusId(tweet?.id);
-          setPlaceholder(`Tweet your reply`);
-          openModal();
+          setData({
+            quoted_tweet: null,
+            parent_tweet: tweet,
+            in_reply_to_screen_name:
+              tweet?.author?.email?.split("@")[0] ?? null,
+            in_reply_to_status_id: tweet?.id,
+            placeholder: `Tweet your reply`,
+          });
         }
       }}
       className={`${styles.container} ${styles.comment}`}
@@ -56,8 +54,8 @@ export const CommentButton = ({
       <span className={`${styles.icon}`}>
         <CommentIcon />
       </span>
-      {showStats && tweet?.comments?.length > 0 && (
-        <span className={styles.stats}>{tweet?.comments?.length}</span>
+      {showStats && tweet?._count?.comments > 0 && (
+        <span className={styles.stats}>{tweet?._count?.comments}</span>
       )}
     </button>
   );
