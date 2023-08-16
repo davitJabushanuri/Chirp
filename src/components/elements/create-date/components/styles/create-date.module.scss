@@ -5,6 +5,10 @@
   color: var(--clr-tertiary);
   white-space: nowrap;
   @include tooltip(bottom, 2px);
+
+  time {
+    color: var(--clr-tertiary);
+  }
 }
 
 .hover {

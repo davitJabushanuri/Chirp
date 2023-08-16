@@ -1,4 +1,5 @@
-export * from "./components/profile";
+export * from "./components/profile-info";
+export * from "./components/profile-navigation";
 export * from "./components/user-modal";
 export * from "./components/profile-likes";
 export * from "./components/profile-media";

@@ -2,13 +2,7 @@
 
 import { prisma } from "@/lib/prisma";
 
-export const getUserMetadata = async ({
-  user_id,
-  type,
-}: {
-  user_id: string;
-  type?: string;
-}) => {
+export const getUserMetadata = async ({ user_id }: { user_id: string }) => {
   try {
     const user = await prisma.user.findUnique({
       where: {
@@ -16,41 +10,14 @@ export const getUserMetadata = async ({
       },
 
       include: {
-        ...(type === "tweets" && {
-          _count: {
-            select: {
-              tweets: true,
-              followers: true,
-              following: true,
-            },
+        _count: {
+          select: {
+            tweets: true,
+            likes: true,
+            followers: true,
+            following: true,
           },
-        }),
-
-        ...(type === "media" && {
-          _count: {
-            select: {
-              tweets: {
-                where: {
-                  media: {
-                    some: {},
-                  },
-                },
-              },
-              followers: true,
-              following: true,
-            },
-          },
-        }),
-
-        ...(type === "likes" && {
-          _count: {
-            select: {
-              likes: true,
-              followers: true,
-              following: true,
-            },
-          },
-        }),
+        },
       },
     });
 
