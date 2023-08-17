@@ -24,10 +24,7 @@ export const LikeButton = ({
 
   const setJoinTwitterData = useJoinTwitter((state) => state.setData);
 
-  const mutation = useLike({
-    tweetAuthorId: tweet?.author?.id,
-    sessionOwnerId: session?.user?.id,
-  });
+  const mutation = useLike();
 
   return (
     <button

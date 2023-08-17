@@ -27,11 +27,21 @@ export async function generateMetadata({
   };
 }
 
-const TweetPage = () => {
+const TweetPage = async ({
+  params,
+}: {
+  params: {
+    id: string;
+  };
+}) => {
+  const initialTweet = await getTweetMetadata({
+    tweet_id: params.id,
+  });
+
   return (
     <>
       <TweetHeader />
-      <TweetDetails />
+      <TweetDetails initialTweet={initialTweet as any} />
     </>
   );
 };

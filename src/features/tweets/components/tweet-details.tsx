@@ -4,23 +4,36 @@ import { usePathname } from "next/navigation";
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
 import { CreateTweetWrapper, ReplyingTo } from "@/features/create-tweet";
+import {
+  ITweet,
+  Comments,
+  QuotedTweet,
+  TweetActions,
+  TweetAuthor,
+  TweetCreationDate,
+  TweetMedia,
+  TweetStatistics,
+  useTweet,
+} from "@/features/tweets";
 
-import { useTweet } from "../hooks/use-tweet";
-
-import { Comments } from "./comments";
-import { QuotedTweet } from "./quoted-tweet";
 import styles from "./styles/tweet-details.module.scss";
-import { TweetActions } from "./tweet-actions";
-import { TweetAuthor } from "./tweet-author";
-import { TweetCreationDate } from "./tweet-creation-date";
-import { TweetMedia } from "./tweet-media";
-import { TweetStatistics } from "./tweet-statistics";
 
-export const TweetDetails = () => {
+export const TweetDetails = ({
+  initialTweet,
+}: {
+  initialTweet: ITweet | undefined;
+}) => {
   const pathname = usePathname();
   const tweetId = pathname.split(`/`)[2];
 
-  const { data: tweet, isLoading, isError } = useTweet(tweetId);
+  const {
+    data: tweet,
+    isLoading,
+    isError,
+  } = useTweet({
+    id: tweetId,
+    initialData: initialTweet,
+  });
 
   if (isLoading) return <LoadingSpinner />;
 
