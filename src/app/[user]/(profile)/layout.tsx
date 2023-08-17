@@ -3,6 +3,7 @@ import {
   ProfileNavigation,
   ProfileInfo,
   getUserMetadata,
+  IUser,
 } from "@/features/profile";
 
 export default async function ProfileLayout({
@@ -26,7 +27,7 @@ export default async function ProfileLayout({
           stats={`${user?._count?.tweets} Tweets`}
         />
       </Header>
-      <ProfileInfo user={user as any} />
+      <ProfileInfo initialUser={user as IUser} />
       <ProfileNavigation />
       {children}
     </div>

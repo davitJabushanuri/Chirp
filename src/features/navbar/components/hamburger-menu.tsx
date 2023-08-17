@@ -23,7 +23,7 @@ export const HamburgerMenu = () => {
 
   const router = useRouter();
   const { data: session } = useSession();
-  const { data: user } = useUser(session?.user?.id);
+  const { data: user } = useUser({ id: session?.user?.id });
 
   if (!isHamburgerOpen) return null;
 

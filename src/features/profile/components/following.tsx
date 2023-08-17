@@ -22,7 +22,7 @@ export const Following = () => {
     id,
     type: "following",
   });
-  const { data: user } = useUser(id);
+  const { data: user } = useUser({ id });
 
   if (isLoading) {
     return <LoadingSpinner />;
