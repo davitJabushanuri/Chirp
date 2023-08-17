@@ -1,10 +1,5 @@
 import { Header, ProfileHeader } from "@/features/header";
-import {
-  ProfileNavigation,
-  ProfileInfo,
-  getUserMetadata,
-  IUser,
-} from "@/features/profile";
+import { getUserMetadata, IUser, Profile } from "@/features/profile";
 
 export default async function ProfileLayout({
   children,
@@ -27,8 +22,7 @@ export default async function ProfileLayout({
           stats={`${user?._count?.tweets} Tweets`}
         />
       </Header>
-      <ProfileInfo initialUser={user as IUser} />
-      <ProfileNavigation />
+      <Profile initialUser={user as IUser} />
       {children}
     </div>
   );

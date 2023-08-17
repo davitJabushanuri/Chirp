@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
 
 import { DotIcon } from "@/assets/dot-icon";
@@ -10,13 +9,10 @@ import { MessageIcon } from "@/assets/message-icon";
 import { ReceiveNotificationsIcon } from "@/assets/notifications-icon";
 import { EllipsisWrapper } from "@/components/elements/ellipsis-wrapper";
 import { FollowButton } from "@/components/elements/follow-button";
-import { LoadingSpinner } from "@/components/elements/loading-spinner";
-import { TryAgain } from "@/components/elements/try-again";
 import { useEditProfile } from "@/stores/use-edit-profile";
 import { useInspectImage } from "@/stores/use-inspect-profile-image";
 
 import { WebsiteIcon } from "../assets/website-icon";
-import { useUser } from "../hooks/use-user";
 import { IUser } from "../types";
 import { following } from "../utils/following";
 
@@ -25,19 +21,8 @@ import { InspectImageModal } from "./inspect-image-modal";
 import styles from "./styles/user-info.module.scss";
 import { UserJoinDate } from "./user-join-date";
 
-export const ProfileInfo = ({ initialUser }: { initialUser: IUser }) => {
+export const ProfileInfo = ({ user, id }: { user: IUser; id: string }) => {
   const { data: session } = useSession();
-  const pathname = usePathname();
-  const id = pathname?.split("/")[1];
-
-  const {
-    data: user,
-    isLoading,
-    isError,
-  } = useUser({
-    id,
-    initialData: initialUser,
-  });
 
   const openEditProfileModal = useEditProfile(
     (state) => state.openEditProfileModal,
@@ -58,14 +43,6 @@ export const ProfileInfo = ({ initialUser }: { initialUser: IUser }) => {
     user: user,
     session_owner_id: session?.user?.id,
   });
-
-  if (isLoading) {
-    return <LoadingSpinner />;
-  }
-
-  if (isError) {
-    return <TryAgain />;
-  }
 
   return (
     <div className={styles.container}>

@@ -1,13 +1,15 @@
 "use client";
-import { usePathname } from "next/navigation";
 
 import { NavigationTab } from "./navigation-tab";
 import styles from "./styles/profile-navigation.module.scss";
 
-export const ProfileNavigation = () => {
-  const pathname = usePathname();
-  const id = pathname?.split("/")[1] || "";
-
+export const ProfileNavigation = ({
+  id,
+  pathname,
+}: {
+  id: string;
+  pathname: string;
+}) => {
   return (
     <nav aria-label="Profile timelines" aria-live="polite">
       <div className={styles.container} role="tablist">
