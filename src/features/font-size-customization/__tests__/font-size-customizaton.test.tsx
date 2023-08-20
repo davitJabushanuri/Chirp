@@ -35,28 +35,8 @@ describe("FontSizeCustomization", () => {
     expect(screen.getByRole("slider")).toBeInTheDocument();
   });
 
-  it("should render a slider with a value", () => {
-    const FONT_SIZES = [
-      "font-size-xs",
-      "font-size-sm",
-      "font-size-md",
-      "font-size-lg",
-      "font-size-xl",
-    ] as const;
-
-    render(<FontSizeCustomization fontSize="font-size-xs" />);
-    expect(screen.getByRole("slider")).toHaveValue(
-      `${FONT_SIZES.indexOf("font-size-xs")}`,
-    );
-  });
-
-  it("should render a slider with a default value if invalid font size is provided", () => {
-    render(<FontSizeCustomization fontSize="invalid" />);
-    expect(screen.getByRole("slider")).toHaveValue(`2`);
-  });
-
   it("should update the slider value when the slider is moved", () => {
-    render(<FontSizeCustomization fontSize="font-size-xs" />);
+    render(<FontSizeCustomization />);
 
     const slider = screen.getByTestId("font-size-slider");
     expect(screen.getByRole("slider")).toHaveValue(`0`);
@@ -88,7 +68,7 @@ describe("FontSizeCustomization", () => {
   });
 
   it("should update the slider value when the dots are clicked", async () => {
-    render(<FontSizeCustomization fontSize="font-size-xs" />);
+    render(<FontSizeCustomization />);
 
     const xs = screen.getByTitle("Extra small");
     const sm = screen.getByTitle("Small");
