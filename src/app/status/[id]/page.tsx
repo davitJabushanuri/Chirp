@@ -1,13 +1,49 @@
-import { TweetClientPage } from "./client";
+import { Metadata } from "next";
 
-const TweetPage = () => {
-  return <TweetClientPage />;
+import { TweetHeader } from "@/features/header";
+import { TweetDetails, getTweetMetadata } from "@/features/tweets";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: {
+    id: string;
+  };
+}): Promise<Metadata> {
+  const tweet = await getTweetMetadata({
+    tweet_id: params.id,
+  });
+
+  if (!tweet)
+    return {
+      title: "Tweet",
+    };
+
+  return {
+    title: `${tweet?.author?.name} on Chirp: "${decodeURIComponent(
+      tweet?.text as string,
+    )}"`,
+    description: decodeURIComponent(tweet?.text as string),
+  };
+}
+
+const TweetPage = async ({
+  params,
+}: {
+  params: {
+    id: string;
+  };
+}) => {
+  const initialTweet = await getTweetMetadata({
+    tweet_id: params.id,
+  });
+
+  return (
+    <>
+      <TweetHeader />
+      <TweetDetails initialTweet={initialTweet as any} />
+    </>
+  );
 };
 
 export default TweetPage;
-
-// * can't access the pathname from server components to get the id of the tweet and fetch tweet metadata from the database
-// TODO: find a way to get the pathname from server components
-export const metadata = {
-  title: "Tweet",
-};

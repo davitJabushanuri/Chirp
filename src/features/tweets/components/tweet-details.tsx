@@ -1,57 +1,50 @@
-import { usePathname, useRouter } from "next/navigation";
+"use client";
+import { usePathname } from "next/navigation";
 
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
-import { NotFound } from "@/components/elements/not-found";
 import { TryAgain } from "@/components/elements/try-again";
-import { CreateTweetWrapper } from "@/features/create-tweet";
+import { CreateTweetWrapper, ReplyingTo } from "@/features/create-tweet";
+import {
+  ITweet,
+  Comments,
+  QuotedTweet,
+  TweetActions,
+  TweetAuthor,
+  TweetCreationDate,
+  TweetMedia,
+  TweetStatistics,
+  useTweet,
+} from "@/features/tweets";
 
-import { useTweet } from "../hooks/use-tweet";
-
-import { Comments } from "./comments";
-import { QuotedTweet } from "./quoted-tweet";
 import styles from "./styles/tweet-details.module.scss";
-import { TweetActions } from "./tweet-actions";
-import { TweetAuthor } from "./tweet-author";
-import { TweetCreationDate } from "./tweet-creation-date";
-import { TweetMedia } from "./tweet-media";
-import { TweetStatistics } from "./tweet-statistics";
 
-export const TweetDetails = () => {
-  const router = useRouter();
+export const TweetDetails = ({
+  initialTweet,
+}: {
+  initialTweet: ITweet | undefined;
+}) => {
   const pathname = usePathname();
-  const id = pathname?.split(`/`)[2] || ``;
+  const tweetId = pathname.split(`/`)[2];
 
-  const { data: tweet, isLoading, isError } = useTweet(id);
+  const {
+    data: tweet,
+    isLoading,
+    isError,
+  } = useTweet({
+    id: tweetId,
+    initialData: initialTweet,
+  });
 
-  if (isLoading) {
-    return <LoadingSpinner />;
-  }
+  if (isLoading) return <LoadingSpinner />;
 
-  if (isError) {
-    return <TryAgain />;
-  }
-
-  if (!isLoading && !isError && !tweet) {
-    return <NotFound />;
-  }
+  if (isError) return <TryAgain />;
 
   return (
     <div className={styles.container}>
       <div className={styles.tweetDetails}>
         <TweetAuthor tweet={tweet} />
         {tweet?.in_reply_to_status_id && (
-          <div className={styles.replying}>
-            <span className={styles.replyingTo}>Replying to</span>
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                router.push(`/${tweet?.in_reply_to_screen_name}`);
-              }}
-              className={styles.replyingToUsername}
-            >
-              @{tweet?.in_reply_to_screen_name}
-            </button>
-          </div>
+          <ReplyingTo screen_name={tweet?.in_reply_to_screen_name} />
         )}
 
         <div className={styles.tweet}>
@@ -71,12 +64,12 @@ export const TweetDetails = () => {
           )}
         </div>
 
-        <TweetCreationDate date={tweet?.created_at} />
+        <TweetCreationDate date={tweet?.created_at} link={tweet?.id} />
         <TweetStatistics
-          retweet_count={tweet?.retweets?.length}
-          quote_count={tweet?.quotes?.length}
-          likes={tweet?.likes}
-          retweets={tweet?.retweets}
+          retweet_count={tweet?._count?.retweets}
+          quote_count={tweet?._count?.quotes}
+          likes_count={tweet?._count?.likes}
+          bookmarks_count={tweet?._count?.bookmarks}
         />
         <div className={styles.tweetActions}>
           <TweetActions tweet={tweet} />
@@ -86,9 +79,7 @@ export const TweetDetails = () => {
         in_reply_to_screen_name={tweet?.author?.email?.split(`@`)[0]}
         in_reply_to_status_id={tweet?.id}
       />
-      <div className={styles.comments}>
-        <Comments tweetId={tweet?.id} />
-      </div>
+      <Comments tweetId={tweet?.id} />
     </div>
   );
 };

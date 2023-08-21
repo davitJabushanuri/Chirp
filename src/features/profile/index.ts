@@ -1,4 +1,6 @@
 export * from "./components/profile";
+export * from "./components/profile-info";
+export * from "./components/profile-navigation";
 export * from "./components/user-modal";
 export * from "./components/profile-likes";
 export * from "./components/profile-media";
@@ -17,3 +19,5 @@ export * from "./hooks/use-follow";
 export * from "./hooks/use-user";
 export * from "./hooks/use-users";
 export * from "./utils/following";
+export * from "./components/follows-navigation";
+export * from "./api/get-user-metadata";

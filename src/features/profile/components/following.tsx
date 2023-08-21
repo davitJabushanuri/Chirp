@@ -8,7 +8,6 @@ import { PersonDetails } from "@/features/connect";
 import { useGetFollows } from "../hooks/use-get-follows";
 import { useUser } from "../hooks/use-user";
 
-import { FollowersHeader } from "./followers-header";
 import { NoFollowers } from "./no-followers";
 
 export const Following = () => {
@@ -16,46 +15,34 @@ export const Following = () => {
   const id = pathname?.split("/")[1];
 
   const {
-    data: following,
+    data: follows,
     isLoading,
     isError,
   } = useGetFollows({
     id,
     type: "following",
   });
-  const { data: user } = useUser(id);
+  const { data: user } = useUser({ id });
 
   if (isLoading) {
-    return (
-      <>
-        <FollowersHeader />
-        <LoadingSpinner />
-      </>
-    );
+    return <LoadingSpinner />;
   }
 
   if (isError) {
-    return (
-      <>
-        <FollowersHeader />
-        <TryAgain />
-      </>
-    );
+    return <TryAgain />;
   }
 
   return (
     <div>
-      <FollowersHeader />
-
-      {following?.length === 0 ? (
+      {follows?.length === 0 ? (
         <NoFollowers
           title={`@${user?.email?.split("@")[0]} isn’t following anyone`}
           subtitle="Once they follow accounts, they’ll show up here."
         />
       ) : (
         <div>
-          {following?.map((following) => {
-            return <PersonDetails key={following?.id} author={following} />;
+          {follows?.map((user) => {
+            return <PersonDetails key={user?.id} author={user} />;
           })}
         </div>
       )}

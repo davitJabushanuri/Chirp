@@ -1,9 +1,18 @@
+@use "abstracts/tooltips" as *;
+
 .container {
   padding: 1rem 0;
   font-size: var(--fs-milli);
   color: var(--clr-tertiary);
   border-bottom: 1px solid var(--clr-border);
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
+
+  a {
+    cursor: pointer;
+    @include tooltip(bottom, 2px);
+
+    &:focus-visible,
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }

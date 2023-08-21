@@ -29,7 +29,7 @@ afterAll(() => {
 
 describe("ColorPicker", () => {
   it("should render the color picker", () => {
-    render(<ColorPicker color="color-blue" />);
+    render(<ColorPicker />);
 
     expect(screen.getByTestId("color-fieldset")).toBeInTheDocument();
     expect(screen.getByText("Color")).toBeInTheDocument();
@@ -37,26 +37,8 @@ describe("ColorPicker", () => {
     expect(screen.getAllByRole("radio")).toHaveLength(6);
   });
 
-  it("should render the color picker with the default color if color is not provided", () => {
-    render(<ColorPicker />);
-
-    expect(screen.getByTestId("color-blue")).toBeChecked();
-  });
-
-  it("should render the color picker with the default color if an invalid color is provided", () => {
-    render(<ColorPicker color="color-invalid" />);
-
-    expect(screen.getByTestId("color-blue")).toBeChecked();
-  });
-
-  it("should render the color picker with the provided color", () => {
-    render(<ColorPicker color="color-yellow" />);
-
-    expect(screen.getByTestId("color-yellow")).toBeChecked();
-  });
-
   it("should change the color when a color is selected", async () => {
-    render(<ColorPicker color="color-yellow" />);
+    render(<ColorPicker />);
 
     await userEvent.click(screen.getByTestId("color-blue"));
     expect(screen.getByTestId("color-blue")).toBeChecked();
@@ -78,7 +60,7 @@ describe("ColorPicker", () => {
   });
 
   it("should change color when the user presses arrow keys", async () => {
-    render(<ColorPicker color="color-yellow" />);
+    render(<ColorPicker />);
 
     await userEvent.tab();
 

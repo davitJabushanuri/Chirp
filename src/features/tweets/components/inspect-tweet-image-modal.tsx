@@ -1,3 +1,4 @@
+"use client";
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import { CloseIcon } from "@/assets/close-icon";
@@ -19,7 +20,9 @@ import { TweetCreationDate } from "./tweet-creation-date";
 import { TweetStatistics } from "./tweet-statistics";
 
 export const InspectTweetImageModal = () => {
-  useDisableBodyScroll();
+  const isTweetImageModalOpen = useInspectTweetImage(
+    (state) => state.isTweetImageModalOpen,
+  );
 
   const closeTweetImageModal = useInspectTweetImage(
     (state) => state.closeTweetImageModal,
@@ -37,7 +40,17 @@ export const InspectTweetImageModal = () => {
 
   const tweetId = useInspectTweetImage((state) => state.tweetId);
 
-  const { data: tweet, isLoading, isError } = useTweet(tweetId);
+  const {
+    data: tweet,
+    isLoading,
+    isError,
+  } = useTweet({
+    id: tweetId,
+  });
+
+  useDisableBodyScroll();
+
+  if (!isTweetImageModalOpen) return null;
 
   return (
     <div className={styles.container}>
@@ -108,10 +121,10 @@ export const InspectTweetImageModal = () => {
 
               <div className={styles.tweetStatistics}>
                 <TweetStatistics
-                  retweet_count={tweet?.retweets?.length}
-                  quote_count={tweet?.quotes?.length}
-                  likes={tweet?.likes}
-                  retweets={tweet?.retweets}
+                  retweet_count={tweet?._count?.retweets}
+                  quote_count={tweet?._count?.quotes}
+                  likes_count={tweet?._count?.likes}
+                  bookmarks_count={tweet?._count?.bookmarks}
                 />
               </div>
 

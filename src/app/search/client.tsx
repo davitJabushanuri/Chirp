@@ -1,6 +1,6 @@
 "use client";
 
-import { ExploreHeader } from "@/components/layout/header";
+import { ExploreHeader } from "@/features/header";
 import { SearchResults } from "@/features/search";
 
 export const SearchClientPage = () => {

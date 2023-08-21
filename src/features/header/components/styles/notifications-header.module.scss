@@ -1,0 +1,13 @@
+@use "./abstracts/media-query" as *;
+
+.container {
+  background-color: var(--clr-background);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-inline: 1rem;
+
+  .options {
+    margin-left: auto;
+  }
+}

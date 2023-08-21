@@ -1,0 +1,37 @@
+.container {
+  margin-inline: auto;
+  padding: 4em 2em;
+  display: grid;
+  place-items: center;
+
+  span {
+    font-size: var(--fs-milli);
+    font-weight: var(--fw-400);
+    color: var(--clr-tertiary);
+    margin-bottom: 2em;
+  }
+
+  a {
+    background-color: var(--clr-primary);
+    color: var(--clr-secondary);
+    font-size: var(--fs-milli);
+    font-weight: var(--fw-700);
+    padding: 0.6em 1em;
+    border-radius: 100vmax;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+
+    &:hover {
+      background-color: var(--clr-primary-hover);
+    }
+
+    &:active {
+      background-color: var(--clr-primary-active);
+    }
+
+    &:focus-visible {
+      background-color: var(--clr-primary-hover);
+      outline: 2px solid var(--clr-primary-disabled);
+    }
+  }
+}

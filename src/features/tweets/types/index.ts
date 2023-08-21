@@ -16,6 +16,13 @@ export interface ITweet extends Tweet {
   comments: ITweet[];
   bookmarks: IBookmark[];
   pinned_by_users: IUser[];
+  _count: {
+    retweets: number;
+    quotes: number;
+    likes: number;
+    bookmarks: number;
+    comments: number;
+  };
 }
 
 export interface ILike extends Like {

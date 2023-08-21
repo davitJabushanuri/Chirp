@@ -1,0 +1,12 @@
+@use "abstracts/media-query" as *;
+
+.container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-inline: 1em;
+
+  .star {
+    margin-left: auto;
+  }
+}

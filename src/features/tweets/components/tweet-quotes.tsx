@@ -12,7 +12,13 @@ export const TweetQuotes = () => {
   const pathname = usePathname();
   const tweetId = pathname?.split(`/`)[2] || ``;
 
-  const { data: tweet, isLoading, isError } = useTweet(tweetId);
+  const {
+    data: tweet,
+    isLoading,
+    isError,
+  } = useTweet({
+    id: tweetId,
+  });
 
   if (isLoading) {
     return <LoadingSpinner />;

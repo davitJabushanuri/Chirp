@@ -1,12 +1,17 @@
 @use "abstracts/media-query" as *;
 
 .container {
-  height: var(--hamburger-avatar-width);
-  width: var(--hamburger-avatar-width);
+  width: var(--logo-size);
+  height: var(--logo-size);
+  border-radius: 100vmax;
 
-  * {
+  div {
     width: 100%;
     height: 100%;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--clr-primary-disabled);
   }
 
   @include mq("small") {
@@ -15,10 +20,10 @@
 }
 
 .logo {
-  width: 2rem;
-  height: 2rem;
-  padding: 4px;
-  border-radius: 50%;
+  width: var(--logo-size);
+  height: var(--logo-size);
+  padding: 5px;
+  border-radius: 100vmax;
   overflow: hidden;
   cursor: pointer;
   display: grid;
@@ -30,6 +35,10 @@
 
   &:active {
     background-color: var(--clr-logo-active);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--clr-primary-disabled);
   }
 
   @include mq("small") {

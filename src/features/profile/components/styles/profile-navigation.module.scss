@@ -1,0 +1,5 @@
+.container {
+  display: grid;
+  grid-auto-flow: column;
+  border-bottom: 1px solid var(--clr-border);
+}

@@ -1,7 +1,7 @@
 "use client";
 
-import { ExploreHeader } from "@/components/layout/header";
 import { Explore } from "@/features/explore";
+import { ExploreHeader } from "@/features/header";
 
 export const DefaultClientPage = () => {
   return (

@@ -1,0 +1,26 @@
+import { BackButton } from "@/components/elements/back-button";
+import { EllipsisWrapper } from "@/components/elements/ellipsis-wrapper";
+import { HeaderHeading } from "@/features/header";
+
+import styles from "./styles/profile-header.module.scss";
+
+export const ProfileHeader = ({
+  heading,
+  stats,
+}: {
+  heading: string | undefined;
+  stats: string | undefined;
+}) => {
+  return (
+    <div className={styles.container}>
+      <BackButton />
+
+      <div className={styles.user}>
+        <HeaderHeading title={heading || "Profile"} />
+        <EllipsisWrapper>
+          <span>{stats}</span>
+        </EllipsisWrapper>
+      </div>
+    </div>
+  );
+};

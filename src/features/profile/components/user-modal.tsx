@@ -15,7 +15,7 @@ import styles from "./styles/user-modal.module.scss";
 
 export const UserModal = ({ userId }: { userId: string }) => {
   const { data: session } = useSession();
-  const { data: user } = useUser(userId);
+  const { data: user } = useUser({ id: userId });
 
   const router = useRouter();
   const pathname = usePathname();

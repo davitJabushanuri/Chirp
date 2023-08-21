@@ -5,6 +5,6 @@ export default async function getTweet(id: string | undefined) {
     const { data } = await axios.get(`/api/tweets/${id}`);
     return data;
   } catch (error: any) {
-    return error.response.data;
+    console.error(error);
   }
 }

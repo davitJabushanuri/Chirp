@@ -5,17 +5,15 @@
 
   .sortButton {
     fill: var(--clr-secondary);
-    height: 2rem;
-    width: 2rem;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    border-radius: 100vmax;
+    display: grid;
+    place-content: center;
+    padding: 0.5em;
     @include tooltip(bottom, 4px);
 
     svg {
-      width: 19px;
-      height: 19px;
+      width: var(--fs-milli);
+      height: var(--nav-milli);
       fill: var(--clr-secondary);
     }
 

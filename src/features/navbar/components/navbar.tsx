@@ -14,6 +14,7 @@ import styles from "./styles/navbar.module.scss";
 
 export const Navbar = () => {
   const pathname = usePathname();
+  const path = pathname?.split("/")[1];
   const { data: session } = useSession();
 
   return (
@@ -63,12 +64,10 @@ export const Navbar = () => {
 
       {session && (
         <NavItem
-          icon={
-            pathname === `/${session?.user?.id}` ? <UserActive /> : <User />
-          }
+          icon={path === `${session?.user?.id}` ? <UserActive /> : <User />}
           title={`Profile`}
           path={session?.user?.id}
-          isActive={pathname === `/${session?.user?.id}`}
+          isActive={path === `${session?.user?.id}`}
         />
       )}
 

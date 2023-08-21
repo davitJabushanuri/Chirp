@@ -26,7 +26,7 @@ export const CreateTweetQuote = ({ tweet }: { tweet: ITweet }) => {
         </EllipsisWrapper>
 
         <span className={styles.dot}>·</span>
-        <CreateDate date={tweet?.created_at} />
+        <CreateDate date={tweet?.created_at} focus={false} hover={false} />
       </div>
 
       <div className={styles.tweet}>

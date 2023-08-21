@@ -12,9 +12,9 @@ export const UserName = ({
   hover?: boolean | undefined;
 }) => {
   return (
-    <span className={`${styles.container} ${hover ? styles.hover : ""}`}>
-      {name && name}
+    <div className={`${styles.container} ${hover ? styles.hover : ""}`}>
+      {name && <span>{name}</span>}
       {isVerified && <VerifiedIcon />}
-    </span>
+    </div>
   );
 };
