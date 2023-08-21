@@ -45,10 +45,6 @@ const page = async ({
 
 export default page;
 
-export const metadata = {
-  title: "People following User",
-};
-
 export async function generateMetadata({
   params,
 }: {
