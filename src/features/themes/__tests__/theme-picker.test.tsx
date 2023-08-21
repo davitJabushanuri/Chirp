@@ -29,7 +29,7 @@ afterAll(() => {
 
 describe("ThemePicker", () => {
   it("renders", () => {
-    render(<ThemePicker theme="theme-light" />);
+    render(<ThemePicker />);
 
     const themePicker = screen.getByTestId("theme-fieldset");
     expect(themePicker).toBeInTheDocument();
@@ -54,15 +54,8 @@ describe("ThemePicker", () => {
     expect(lightTheme).toBeChecked();
   });
 
-  it("it should set the theme to theme-light if an invalid theme is provided", () => {
-    render(<ThemePicker theme="invalid-theme" />);
-
-    const lightTheme = screen.getByLabelText("Default");
-    expect(lightTheme).toBeChecked();
-  });
-
   it("it should change the theme when the user clicks on a radio input", async () => {
-    render(<ThemePicker theme="theme-dark" />);
+    render(<ThemePicker />);
 
     const lightTheme = await screen.findByLabelText("Default");
     const dimTheme = await screen.findByLabelText("Dim");
@@ -89,7 +82,7 @@ describe("ThemePicker", () => {
   });
 
   it("it should change the theme when the user presses arrow keys", async () => {
-    render(<ThemePicker theme="theme-light" />);
+    render(<ThemePicker />);
 
     const lightTheme = screen.getByLabelText("Default");
     const dimTheme = screen.getByLabelText("Dim");

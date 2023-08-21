@@ -1,10 +1,14 @@
 @use "abstracts/media-query.scss" as *;
 
 .container {
-  padding: 0.75em;
   border-radius: 100vmax;
   cursor: pointer;
   transition: all 0.1s ease-in-out;
+
+  a {
+    padding: 0.75em;
+    display: grid;
+  }
 
   &:hover {
     background-color: var(--clr-logo-hover);

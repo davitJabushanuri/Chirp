@@ -14,9 +14,15 @@ import { useJoinTwitter } from "../stores/useJoinTwitter";
 import styles from "./styles/join-twitter-modal.module.scss";
 
 export const JoinTwitterModal = () => {
+  const isJoinTwitterModalOpen = useJoinTwitter(
+    (state) => state.data.isModalOpen,
+  );
+
   const router = useRouter();
   const data = useJoinTwitter((state) => state.data);
   const setJoinTwitterData = useJoinTwitter((state) => state.setData);
+
+  if (!isJoinTwitterModalOpen) return null;
 
   return (
     <div className={styles.container}>

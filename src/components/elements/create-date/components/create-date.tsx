@@ -26,14 +26,23 @@ dayjs.updateLocale("en", {
   },
 });
 
-export const CreateDate = ({ date }: { date: Date | undefined }) => {
+export const CreateDate = ({
+  date,
+  focus = true,
+  hover = true,
+}: {
+  date: Date | undefined;
+  focus?: boolean;
+  hover?: boolean;
+}) => {
   const created = dayjs(date);
   const day = 24 * 60 * 60 * 1000;
   const isMoreThan24Hours = Date.now() - created.valueOf() < day;
 
   return (
     <Link
-      className={styles.container}
+      className={`${styles.container} ${hover ? styles.hover : ""}`}
+      tabIndex={focus ? 0 : -1}
       href={`#`}
       aria-label={created.format("MMM D")}
       data-title={created.format("h:mm A · MMM D, YYYY")}

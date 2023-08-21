@@ -72,9 +72,15 @@ module.exports = {
     "@typescript-eslint/no-explicit-any": ["off"],
 
     // React testing library
-    "testing-library/await-async-query": "error",
-    "testing-library/no-await-sync-query": "error",
+    "testing-library/await-async-queries": "error",
+    "testing-library/no-await-sync-queries": "error",
     "testing-library/no-debugging-utils": "warn",
     "testing-library/no-dom-import": "off",
+    "testing-library/no-await-sync-events": [
+      "error",
+      {
+        eventModules: ["fire-event"],
+      },
+    ],
   },
 };

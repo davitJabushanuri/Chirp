@@ -3,18 +3,14 @@
   color: var(--clr-tertiary);
   display: flex;
   align-items: flex-end;
-  justify-content: center;
-  gap: 0.3rem;
 
-  .icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  svg {
+    width: var(--fs-h3);
+    height: var(--fs-h3);
+    fill: var(--clr-tertiary);
+  }
 
-    svg {
-      width: 1.2rem;
-      height: 1.2rem;
-      fill: var(--clr-tertiary);
-    }
+  .text {
+    margin-left: 4px;
   }
 }

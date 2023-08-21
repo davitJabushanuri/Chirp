@@ -35,8 +35,8 @@
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   grid-template-areas:
-    'first second'
-    'first third';
+    "first second"
+    "first third";
   gap: 2px;
 
   img:nth-of-type(1) {
@@ -59,8 +59,8 @@
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   grid-template-areas:
-    'first second'
-    'third fourth';
+    "first second"
+    "third fourth";
   gap: 2px;
 
   img:nth-of-type(1) {

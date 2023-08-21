@@ -1,20 +1,77 @@
 @use "./font-size" as *;
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700;800;900&display=swap");
+
+@font-face {
+  font-family: "TwitterChirp";
+  src: url("/fonts/Chirp-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TwitterChirp";
+  src: url("/fonts/Chirp-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TwitterChirp";
+  src: url("/fonts/Chirp-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TwitterChirp";
+  src: url("/fonts/Chirp-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TwitterChirp";
+  src: url("/fonts/Chirp-Heavy.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
 
 :root {
-  --ff-base: "Roboto", sans-serif;
+  --ff-base: "TwitterChirp", sans-serif;
   --ff-icons: "Material Icons", sans-serif;
 
   // font weights
-  --fw-100: 100;
-  --fw-200: 200;
   --fw-300: 300;
   --fw-400: 400;
   --fw-500: 500;
-  --fw-600: 600;
   --fw-700: 700;
   --fw-800: 800;
-  --fw-900: 900;
+
+  --fs-kilo: #{$md-kilo};
+
+  --fs-h1: #{$md-h1};
+  --fs-h2: #{$md-h2};
+  --fs-h3: #{$md-h3};
+
+  --fs-base: #{$md-base};
+
+  --fs-large: #{$md-large};
+  --fs-milli: #{$md-milli};
+  --fs-micro: #{$md-micro};
+  --fs-nano: #{$md-nano};
+  --fs-pico: #{$md-pico};
+
+  --verified-icon-width: 1.171875rem; // 18.75px
+  --avatar-width: 2.5rem; // 40px
+  --quoted-tweet-avatar-width: 1.25rem;
+  --hamburger-avatar-width: 2rem;
+
+  --nav-icon-size: 1.65625rem; // 26.5px
+  --logo-size: 1.875rem; //30px
 }
 
 .font-size-xs {
@@ -80,8 +137,8 @@
   --fs-nano: #{$md-nano};
   --fs-pico: #{$md-pico};
 
-  --verified-icon-width: 1.171875rem;
-  --avatar-width: 2.5rem;
+  --verified-icon-width: 1.171875rem; // 18.75px
+  --avatar-width: 2.5rem; // 40px
   --quoted-tweet-avatar-width: 1.25rem;
   --hamburger-avatar-width: 2rem;
 
@@ -104,8 +161,8 @@
   --fs-nano: #{$lg-nano};
   --fs-pico: #{$lg-pico};
 
-  --verified-icon-width: 1.328125rem;
-  --avatar-width: 2.75rem;
+  --verified-icon-width: 1.328125rem; // 21.25px
+  --avatar-width: 2.75rem; // 44px
   --quoted-tweet-avatar-width: 1.375rem;
   --hamburger-avatar-width: 2.1875rem;
 
@@ -128,8 +185,8 @@
   --fs-nano: #{$xl-nano};
   --fs-pico: #{$xl-pico};
 
-  --verified-icon-width: 1.40625rem;
-  --avatar-width: 3rem;
+  --verified-icon-width: 1.40625rem; // 22.5px
+  --avatar-width: 3rem; // 48px
   --quoted-tweet-avatar-width: 1.5rem;
   --hamburger-avatar-width: 2.375rem;
 

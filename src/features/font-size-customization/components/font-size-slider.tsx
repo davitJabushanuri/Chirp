@@ -1,17 +1,9 @@
 "use client";
-import { setCookie } from "cookies-next";
+import { getCookie, setCookie } from "cookies-next";
 import { useState } from "react";
 
 import { SliderDot } from "./slider-dot";
 import styles from "./styles/font-size-slider.module.scss";
-
-enum IFontSizes {
-  "font-size-xs",
-  "font-size-sm",
-  "font-size-md",
-  "font-size-lg",
-  "font-size-xl",
-}
 
 const FONT_SIZES = [
   "font-size-xs",
@@ -21,17 +13,11 @@ const FONT_SIZES = [
   "font-size-xl",
 ] as const;
 
-export const FontSizeSlider = ({
-  fontSize = "font-size-md",
-}: {
-  fontSize?: string | undefined;
-}) => {
-  if (!Object.values(IFontSizes).includes(fontSize)) {
-    fontSize = "font-size-md";
-  }
+export const FontSizeSlider = () => {
+  const fontSize = getCookie("font-size") ?? "font-size-md";
 
   const [fontSizeIndex, setFontSizeIndex] = useState<number>(
-    FONT_SIZES.indexOf((fontSize as any) ?? 2),
+    FONT_SIZES.indexOf(fontSize as any) ?? 2,
   );
 
   const handleFontSizeChange = (fs: number) => {

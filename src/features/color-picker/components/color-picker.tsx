@@ -1,5 +1,5 @@
 "use client";
-import { setCookie } from "cookies-next";
+import { getCookie, setCookie } from "cookies-next";
 import { useState } from "react";
 
 import Color from "./color";
@@ -14,14 +14,8 @@ enum IColor {
   GREEN = "color-green",
 }
 
-export const ColorPicker = ({
-  color = "color-blue",
-}: {
-  color?: string | undefined;
-}) => {
-  if (!Object.values(IColor).includes(color as IColor)) {
-    color = IColor.BLUE;
-  }
+export const ColorPicker = () => {
+  const color = getCookie("color") ?? "color-blue";
 
   const [currentColor, setCurrentColor] = useState(color as IColor);
 

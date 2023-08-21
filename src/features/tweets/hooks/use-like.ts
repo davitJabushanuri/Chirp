@@ -2,13 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { toggleLike } from "../api/toggle-like";
 
-export const useLike = ({
-  tweetAuthorId,
-  sessionOwnerId,
-}: {
-  tweetAuthorId: string | undefined;
-  sessionOwnerId: string | undefined;
-}) => {
+export const useLike = () => {
   const queryClient = useQueryClient();
 
   return useMutation(
@@ -18,9 +12,6 @@ export const useLike = ({
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["tweets"]);
-        queryClient.invalidateQueries(["users", sessionOwnerId]);
-        if (sessionOwnerId !== tweetAuthorId)
-          queryClient.invalidateQueries(["users", tweetAuthorId]);
       },
       onError: () => {
         console.log("error");

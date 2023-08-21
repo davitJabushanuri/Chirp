@@ -29,12 +29,14 @@
         margin: 11px 0;
 
         textarea {
+          overflow: hidden;
           resize: none;
           user-select: text;
           white-space: pre-wrap;
           overflow-wrap: break-word;
           width: 100%;
           font-size: var(--fs-h2);
+          font-weight: var(--fw-400);
           color: var(--clr-secondary);
 
           &::placeholder {

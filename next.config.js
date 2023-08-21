@@ -14,6 +14,7 @@ const nextConfig = {
   experimental: {
     appDir: true,
     scrollRestoration: true,
+    serverActions: true,
   },
   sassOptions: {
     includePaths: [path.join(__dirname, "src/sass")],

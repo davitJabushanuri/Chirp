@@ -86,7 +86,7 @@ const TweetAuthorActions = ({
   setIsDeleteModalOpen: (value: boolean) => void;
 }) => {
   const { data: session } = useSession();
-  const { data: user } = useUser(session?.user?.id);
+  const { data: user } = useUser({ id: session?.user?.id });
   const pinMutation = usePinTweet();
 
   return (

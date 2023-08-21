@@ -12,7 +12,6 @@ export const postMedia = async ({
   tweet_id?: string;
   message_id?: string;
 }) => {
-  console.log(tweet_id, message_id);
   try {
     files.forEach(async (file) => {
       const imagePath = cuid();
@@ -38,8 +37,6 @@ export const postMedia = async ({
           media_type: "image",
           media_path: `image-${imagePath}`,
         };
-
-        console.log(media);
 
         await axios.post("/api/media", {
           media,

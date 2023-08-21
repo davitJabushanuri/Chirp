@@ -28,10 +28,8 @@ export const useFollow = (type: "follow" | "unfollow") => {
         console.log("error");
       },
 
-      onSettled: ({ user_id, session_owner_id }) => {
-        queryClient.invalidateQueries(["users", user_id]);
-        queryClient.invalidateQueries(["users", session_owner_id]);
-        queryClient.invalidateQueries(["tweets"]);
+      onSettled: () => {
+        queryClient.invalidateQueries(["users"]);
       },
     },
   );

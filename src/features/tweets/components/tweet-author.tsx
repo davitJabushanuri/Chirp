@@ -15,7 +15,7 @@ export const TweetAuthor = ({ tweet }: { tweet: ITweet }) => {
   return (
     <div className={styles.container}>
       <UserModalWrapper userId={tweet?.author?.id}>
-        <LinkToProfile userId={tweet?.author?.id}>
+        <LinkToProfile tabIndex={-1} userId={tweet?.author?.id}>
           <Avatar userImage={tweet?.author?.profile_image_url} />
         </LinkToProfile>
       </UserModalWrapper>
@@ -27,13 +27,14 @@ export const TweetAuthor = ({ tweet }: { tweet: ITweet }) => {
               <UserName
                 name={tweet?.author?.name}
                 isVerified={tweet?.author?.verified}
+                hover={true}
               />
             </EllipsisWrapper>
           </LinkToProfile>
         </UserModalWrapper>
 
         <UserModalWrapper userId={tweet?.author?.id}>
-          <LinkToProfile userId={tweet?.author?.id}>
+          <LinkToProfile tabIndex={-1} userId={tweet?.author?.id}>
             <EllipsisWrapper>
               <UserScreenName
                 screenName={tweet?.author?.email?.split("@")[0]}

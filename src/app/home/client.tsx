@@ -1,6 +1,6 @@
 "use client";
-import { HomeHeader } from "@/components/layout/header";
 import { CreateTweet } from "@/features/create-tweet";
+import { Header, HomeHeader } from "@/features/header";
 import { Tweets } from "@/features/tweets";
 
 import styles from "./styles/home.module.scss";
@@ -8,7 +8,9 @@ import styles from "./styles/home.module.scss";
 export const HomeClientPage = () => {
   return (
     <div className={styles.container}>
-      <HomeHeader />
+      <Header>
+        <HomeHeader />
+      </Header>
       <div className={styles.createTweet}>
         <CreateTweet />
       </div>

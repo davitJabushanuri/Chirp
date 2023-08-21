@@ -17,7 +17,6 @@ export const useRetweet = (setIsModalOpen: (isModalOpen: boolean) => void) => {
 
       onSuccess: () => {
         QueryClient.invalidateQueries(["tweets"]);
-        QueryClient.invalidateQueries(["users"]);
       },
 
       onError: (error: any) => {

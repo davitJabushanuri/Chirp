@@ -1,30 +1,20 @@
-@use "./abstracts/media-query" as *;
+@use "abstracts/media-query" as *;
+@use "abstracts/tooltips" as *;
 
 .container {
   background-color: var(--clr-background);
-  z-index: 99;
-  position: sticky;
-  top: 0;
-  height: 50px;
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 0 0.5rem;
+  padding-inline: 1em;
 
   .user {
     display: flex;
     flex-direction: column;
     gap: 0.2rem;
 
-    .title {
-      font-size: var(--fs-h2);
-      font-weight: var(--fw-500);
-      color: var(--clr-secondary);
-    }
-
-    p {
+    span {
       font-size: var(--fs-nano);
-      font-weight: 400;
       color: var(--clr-tertiary);
     }
   }
@@ -38,24 +28,30 @@
     }
 
     .options {
-      width: 32px;
-      height: 32px;
       cursor: pointer;
       display: grid;
       place-items: center;
-      border-radius: 50%;
+      border-radius: 100vmax;
+      padding: 0.5em;
+      transition: all 0.1s ease-in-out;
+      @include tooltip(bottom, 4px);
 
       &:hover {
-        background-color: var(--clr-nav-hover);
+        background-color: var(--clr-trends-hover);
       }
 
       &:active {
-        background-color: var(--clr-nav-active);
+        background-color: var(--clr-trends-active);
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--clr-secondary);
+        background-color: var(--clr-trends-hover);
       }
 
       svg {
-        width: 19px;
-        height: 19px;
+        width: var(--fs-h2);
+        height: var(--fs-h2);
         fill: var(--clr-secondary);
       }
     }

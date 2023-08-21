@@ -1,3 +1,5 @@
+// !TODO - move tooltip to opposite side if it's too close to the edge of the screen
+
 $delay: 0.5s;
 
 @mixin tooltip($position: bottom, $offset: 0) {
@@ -9,17 +11,16 @@ $delay: 0.5s;
     left: 50%;
     transform: translateX(-50%);
     background-color: var(--clr-tertiary);
-    color: var(--clr-secondary);
+    color: var(--clr-light);
     font-size: var(--fs-pico);
-    border-radius: 0.1rem;
-    padding: 0.3em;
+    border-radius: 4px;
+    padding: 0.2em 0.3em;
     white-space: nowrap;
     z-index: 1;
     pointer-events: none;
     visibility: hidden;
     opacity: 0;
     transition: opacity 0.2s ease-out;
-    will-change: opacity, visibility;
 
     @if $position == bottom {
       top: 100%;

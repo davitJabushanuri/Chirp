@@ -1,68 +1,40 @@
 "use client";
-
 import { usePathname } from "next/navigation";
 
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
-import { UserNotFound } from "@/components/elements/user-not-found";
-import { ProfileHeader } from "@/components/layout/header";
-import { useEditProfile } from "@/stores/use-edit-profile";
-import { useInspectImage } from "@/stores/use-inspect-profile-image";
+import {
+  IUser,
+  ProfileInfo,
+  ProfileNavigation,
+  useUser,
+} from "@/features/profile";
 
-import { useUser } from "../hooks/use-user";
-
-import { EditProfileModal } from "./edit-profile-modal";
-import { InspectImageModal } from "./inspect-image-modal";
-import { ProfileNavbar } from "./profile-navbar";
-import styles from "./styles/profile.module.scss";
-import { UserInfo } from "./user-info";
-
-export const Profile = ({ children }: { children: React.ReactNode }) => {
+export const Profile = ({ initialUser }: { initialUser: IUser }) => {
   const pathname = usePathname();
-  const id = pathname?.split("/")[1] || "";
-  const isEditProfileModalOpen = useEditProfile(
-    (state) => state.isEditProfileModalOpen,
-  );
-  const isInspectModalOpen = useInspectImage(
-    (state) => state.isInspectModalOpen,
-  );
+  const id = pathname?.split("/")[1];
 
-  const { data: user, isLoading, isError } = useUser(id);
+  const {
+    data: user,
+    isLoading,
+    isError,
+  } = useUser({
+    id,
+    initialData: initialUser,
+  });
 
   if (isLoading) {
-    return (
-      <>
-        <ProfileHeader />
-        <LoadingSpinner />
-      </>
-    );
+    return <LoadingSpinner />;
   }
 
   if (isError) {
-    return (
-      <>
-        <ProfileHeader />
-        <TryAgain />
-      </>
-    );
+    return <TryAgain />;
   }
 
-  if (!isLoading && !isError && !user)
-    return (
-      <>
-        <ProfileHeader />
-        <UserNotFound />
-      </>
-    );
-
   return (
-    <div className={styles.container}>
-      <ProfileHeader user={user} />
-      <UserInfo user={user} />
-      <ProfileNavbar pathname={pathname} id={id} />
-      <div>{children}</div>
-      {isEditProfileModalOpen && <EditProfileModal user={user} />}
-      {isInspectModalOpen && <InspectImageModal />}
-    </div>
+    <>
+      <ProfileInfo user={user} id={id} />
+      <ProfileNavigation id={id} pathname={pathname} />
+    </>
   );
 };

@@ -7,6 +7,8 @@ import { useState } from "react";
 import { DotIcon } from "@/assets/dot-icon";
 import { Action, ActionsModal } from "@/components/elements/actions-modal";
 import { BackButton } from "@/components/elements/back-button";
+import { EllipsisWrapper } from "@/components/elements/ellipsis-wrapper";
+import { HeaderHeading } from "@/features/header";
 
 import { useDeleteAllBookmarks } from "../hooks/use-delete-all-bookmarks";
 
@@ -33,13 +35,21 @@ export const BookmarksHeader = ({
       </div>
 
       <div className={styles.user}>
-        <h2 className={styles.title}>Bookmarks</h2>
-        {username && <p>@{username}</p>}
+        <HeaderHeading title={"Bookmarks"} />
+        {username && (
+          <EllipsisWrapper>
+            <span>@{username}</span>
+          </EllipsisWrapper>
+        )}
       </div>
 
       {hasBookmarks && (
         <div className={styles.optionsContainer}>
           <button
+            aria-expanded={isModalOpen}
+            aria-haspopup="menu"
+            aria-label="More"
+            data-title="More"
             onClick={() => {
               setIsModalOpen(true);
             }}

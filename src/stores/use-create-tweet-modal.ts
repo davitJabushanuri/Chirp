@@ -2,41 +2,45 @@ import { create } from "zustand";
 
 import { ITweet } from "@/features/tweets";
 
+interface IData {
+  parent_tweet: ITweet | null;
+  quoted_tweet: ITweet | null;
+  in_reply_to_screen_name: string | null;
+  in_reply_to_status_id: string | null;
+  placeholder: string | null;
+}
+
 interface IModal {
   isModalOpen: boolean;
   openModal: () => void;
   closeModal: () => void;
-  parent_tweet: ITweet | null;
-  setParentTweet: (tweet: ITweet | null) => void;
-  quoted_tweet: ITweet | null;
-  setQuotedTweet: (tweet: ITweet | null) => void;
-  in_reply_to_screen_name: string | null;
-  setScreenName: (screen_name: string | undefined) => void;
-  in_reply_to_status_id: string | null;
-  setStatusId: (status_id: string | null) => void;
-  placeholder: string | null;
-  setPlaceholder: (placeholder: string | null) => void;
+  data: IData;
+  setData: (data: IData) => void;
 }
 
 export const useCreateTweetModal = create<IModal>((set) => ({
   isModalOpen: false,
   openModal: () => set({ isModalOpen: true }),
   closeModal: () => {
-    set({ isModalOpen: false });
-    set({ parent_tweet: null });
-    set({ quoted_tweet: null });
-    set({ in_reply_to_screen_name: null });
-    set({ in_reply_to_status_id: null });
-    set({ placeholder: `What's happening?` });
+    set({
+      isModalOpen: false,
+      data: {
+        parent_tweet: null,
+        quoted_tweet: null,
+        in_reply_to_screen_name: null,
+        in_reply_to_status_id: null,
+        placeholder: `What's happening?`,
+      },
+    });
   },
-  parent_tweet: null,
-  setParentTweet: (tweet) => set({ parent_tweet: tweet }),
-  quoted_tweet: null,
-  setQuotedTweet: (tweet) => set({ quoted_tweet: tweet }),
-  in_reply_to_screen_name: null,
-  setScreenName: (screen_name) => set({ in_reply_to_screen_name: screen_name }),
-  in_reply_to_status_id: null,
-  setStatusId: (status_id) => set({ in_reply_to_status_id: status_id }),
-  placeholder: `What's happening?`,
-  setPlaceholder: (placeholder) => set({ placeholder: placeholder }),
+
+  data: {
+    parent_tweet: null,
+    quoted_tweet: null,
+    in_reply_to_screen_name: null,
+    in_reply_to_status_id: null,
+    placeholder: `What's happening?`,
+  },
+
+  setData: (data) => set({ data, isModalOpen: true }),
 }));

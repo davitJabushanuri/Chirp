@@ -2,10 +2,16 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": [
+        "./src/*"
+      ]
     },
     "target": "ES2022",
-    "lib": ["dom", "dom.iterable", "ES2022"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "ES2022"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -36,9 +42,13 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts",
     "@/types/*",
-    "jest.setup.mjs"
+    "jest.setup.mjs",
+    ".next/types/**/*.ts"
   ],
-  "exclude": ["node_modules", "cypress", "./cypress.config.ts"]
+  "exclude": [
+    "node_modules",
+    "cypress",
+    "./cypress.config.ts"
+  ]
 }

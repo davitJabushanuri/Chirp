@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { LogoIcon } from "../assets/logo";
+import { LogoIcon } from "../assets/logo-icon";
 
 import styles from "./styles/logo.module.scss";
 

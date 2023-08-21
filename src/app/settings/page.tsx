@@ -1,24 +1,21 @@
-import { cookies } from "next/headers";
 import Link from "next/link";
 
 import { VerifiedIcon } from "@/assets/verified-icon";
 import { EllipsisWrapper } from "@/components/elements/ellipsis-wrapper";
 import { ColorPicker } from "@/features/color-picker";
 import { FontSizeCustomization } from "@/features/font-size-customization";
+import { Header, SettingsHeader } from "@/features/header";
 import { Avatar } from "@/features/profile";
 import { ThemePicker } from "@/features/themes";
 
 import styles from "./styles/settings.module.scss";
 
 const Settings = () => {
-  const nextCookies = cookies();
-  const theme = nextCookies.get("theme")?.value;
-  const color = nextCookies.get("color")?.value;
-  const fontSize = nextCookies.get("font-size")?.value;
-
   return (
     <div className={styles.container}>
-      {/* <SettingsHeader /> */}
+      <Header>
+        <SettingsHeader />
+      </Header>
 
       <div className={styles.settings}>
         <h1 className={styles.heading}>Customize your view</h1>
@@ -53,9 +50,9 @@ const Settings = () => {
           </div>
         </article>
 
-        <FontSizeCustomization fontSize={fontSize} />
-        <ColorPicker color={color} />
-        <ThemePicker theme={theme} />
+        <FontSizeCustomization />
+        <ColorPicker />
+        <ThemePicker />
       </div>
     </div>
   );
