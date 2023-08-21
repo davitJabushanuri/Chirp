@@ -41,7 +41,9 @@ export const getUserMetadata = async ({
             select: {
               tweets: {
                 where: {
-                  media: {},
+                  media: {
+                    some: {},
+                  },
                 },
               },
             },
