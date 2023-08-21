@@ -40,7 +40,13 @@ export const InspectTweetImageModal = () => {
 
   const tweetId = useInspectTweetImage((state) => state.tweetId);
 
-  const { data: tweet, isLoading, isError } = useTweet(tweetId);
+  const {
+    data: tweet,
+    isLoading,
+    isError,
+  } = useTweet({
+    id: tweetId,
+  });
 
   useDisableBodyScroll();
 

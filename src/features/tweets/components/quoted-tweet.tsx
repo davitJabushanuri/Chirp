@@ -26,6 +26,7 @@ export const QuotedTweet = ({ tweet }: { tweet: ITweet }) => {
       tabIndex={0}
       role="link"
       onKeyDown={(e) => {
+        e.stopPropagation();
         if (e.key === "Enter") {
           router.push(`/status/${tweet?.id}`);
         }
