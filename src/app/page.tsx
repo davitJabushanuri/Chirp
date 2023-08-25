@@ -1,9 +1,13 @@
-import { DefaultClientPage } from "./client";
+import { Explore } from "@/features/explore";
+import { ExploreHeader, Header } from "@/features/header";
 
 const DefaultPage = () => {
   return (
     <div>
-      <DefaultClientPage />
+      <Header>
+        <ExploreHeader />
+      </Header>
+      <Explore />
     </div>
   );
 };
