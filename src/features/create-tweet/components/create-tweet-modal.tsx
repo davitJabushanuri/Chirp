@@ -10,13 +10,10 @@ import { CreateTweetComment } from "./create-tweet-comment";
 import styles from "./styles/create-tweet-modal.module.scss";
 
 export const CreateTweetModal = () => {
-  const isTweetModalOpen = useCreateTweetModal((state) => state.isModalOpen);
   const data = useCreateTweetModal((state) => state.data);
   const closeModal = useCreateTweetModal((state) => state.closeModal);
 
   useDisableBodyScroll();
-
-  if (!isTweetModalOpen) return null;
 
   return (
     <div

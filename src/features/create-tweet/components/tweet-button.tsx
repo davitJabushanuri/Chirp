@@ -17,7 +17,9 @@ export const TweetButton = () => {
     <button
       aria-label="Tweet"
       data-title="Tweet"
-      onClick={() => openModal()}
+      onClick={() => {
+        openModal();
+      }}
       className={styles.container}
     >
       <span className={styles.icon}>

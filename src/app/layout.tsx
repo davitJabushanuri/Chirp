@@ -6,17 +6,16 @@ import "react-toastify/dist/ReactToastify.css";
 import "./styles/layout.scss";
 import { Aside } from "@/features/aside";
 import { AuthModalTrigger, JoinTwitterModal } from "@/features/auth";
-import { CreateTweetModal, MobileTweetButton } from "@/features/create-tweet";
+import { MobileTweetButton } from "@/features/create-tweet";
 import { HamburgerMenu, MobileNavbar } from "@/features/navbar";
 import { Sidebar } from "@/features/sidebar";
 import { InspectTweetImageModal } from "@/features/tweets";
 import NextAuthProvider from "@/utils/next-auth-provider";
 import ReactQueryWrapper from "@/utils/react-query";
 
+import { ComposeTweet } from "./compose-tweet";
 import styles from "./styles/toast.module.scss";
 import "./styles/layout.scss";
-
-export const revalidate = 0;
 
 export default async function RootLayout({
   children,
@@ -60,11 +59,11 @@ export default async function RootLayout({
                 toastClassName={styles.toast}
               />
 
-              {<CreateTweetModal />}
-              {<HamburgerMenu />}
-              {<AuthModalTrigger />}
-              {<JoinTwitterModal />}
-              {<InspectTweetImageModal />}
+              <ComposeTweet />
+              <HamburgerMenu />
+              <AuthModalTrigger />
+              <JoinTwitterModal />
+              <InspectTweetImageModal />
             </div>
           </ReactQueryWrapper>
         </NextAuthProvider>

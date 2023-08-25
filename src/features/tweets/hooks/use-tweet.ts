@@ -11,7 +11,6 @@ export const useTweet = ({
   initialData?: ITweet;
 }) => {
   const queryClient = useQueryClient();
-  console.log(initialData);
 
   return useQuery<ITweet>(
     ["tweets", id],
