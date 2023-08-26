@@ -1,7 +1,13 @@
-import { NotificationsClientPage } from "./client";
+import { Header, NotificationsHeader } from "@/features/header";
 
 const Notifications = () => {
-  return <NotificationsClientPage />;
+  return (
+    <div>
+      <Header>
+        <NotificationsHeader />
+      </Header>
+    </div>
+  );
 };
 
 export default Notifications;
