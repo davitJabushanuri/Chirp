@@ -1,26 +1,63 @@
+"use client";
 import { useSession } from "next-auth/react";
+import { useEffect, useRef, useState } from "react";
 
 import { DotIcon } from "@/assets/dot-icon";
 import { EllipsisWrapper } from "@/components/elements/ellipsis-wrapper";
+import { Modal } from "@/components/elements/modal";
 import { Avatar, UserName, UserScreenName } from "@/features/profile";
-import { useAuthModal } from "@/stores/use-auth-modal";
 
 import { SessionOwnerModal } from "./session-owner-modal";
 import styles from "./styles/session-owner-button.module.scss";
 
 export const SessionOwnerButton = () => {
   const { data: session } = useSession();
-  const openUserModal = useAuthModal((state) => state.openUserModal);
-  const isUserModalOpen = useAuthModal((state) => state.isUserModalOpen);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  const [buttonBoundaries, setButtonBoundaries] = useState<DOMRect | null>(
+    buttonRef.current?.getBoundingClientRect() ?? null,
+  );
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (buttonRef.current) {
+        setButtonBoundaries(buttonRef.current.getBoundingClientRect());
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [buttonRef]);
+
+  useEffect(() => {
+    setButtonBoundaries(buttonRef.current?.getBoundingClientRect() ?? null);
+  }, []);
+
+  const style: React.CSSProperties = {
+    top: buttonBoundaries?.top ? buttonBoundaries?.top - 120 : "50%",
+    left: buttonBoundaries?.left ? buttonBoundaries?.left : "50%",
+    transform: buttonBoundaries?.top
+      ? "translate(0, 0)"
+      : "translate(-50%, -50%)",
+  };
 
   return (
     <>
       <button
         aria-label="Account menu"
         tabIndex={0}
-        onClick={() => openUserModal()}
+        onClick={openModal}
         className={styles.container}
         data-title="Accounts"
+        ref={buttonRef}
       >
         <div className={styles.avatar}>
           <Avatar userImage={session?.user?.profile_image_url} />
@@ -41,7 +78,17 @@ export const SessionOwnerButton = () => {
           <DotIcon />
         </div>
       </button>
-      {isUserModalOpen && <SessionOwnerModal />}
+
+      {isModalOpen && (
+        <Modal
+          onClose={() => setIsModalOpen(false)}
+          style={style}
+          background="none"
+          minViewportWidth={500}
+        >
+          <SessionOwnerModal />
+        </Modal>
+      )}
     </>
   );
 };
