@@ -13,7 +13,6 @@ import { InspectTweetImageModal } from "@/features/tweets";
 import NextAuthProvider from "@/utils/next-auth-provider";
 import ReactQueryWrapper from "@/utils/react-query";
 
-import { ComposeTweet } from "./compose-tweet";
 import styles from "./styles/toast.module.scss";
 import "./styles/layout.scss";
 
@@ -39,7 +38,6 @@ export default async function RootLayout({
           <ReactQueryWrapper>
             <div className="layout">
               <MobileNavbar />
-
               <MobileTweetButton />
 
               <Sidebar />
@@ -59,7 +57,6 @@ export default async function RootLayout({
                 toastClassName={styles.toast}
               />
 
-              <ComposeTweet />
               <HamburgerMenu />
               <AuthModalTrigger />
               <JoinTwitterModal />
