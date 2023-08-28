@@ -14,6 +14,7 @@ export const Modal = ({
   minViewportWidth = null,
   maxViewportWidth = null,
   disableScroll = false,
+  focusOnElement = null,
 }: {
   children: React.ReactNode;
   onClose: () => void;
@@ -22,6 +23,7 @@ export const Modal = ({
   minViewportWidth?: number | null;
   maxViewportWidth?: number | null;
   disableScroll?: boolean;
+  focusOnElement?: string | null;
 }) => {
   const modalRef = useRef<HTMLDivElement>(null);
   const previouslyFocusedElementRef = useRef<HTMLElement | null>(null);
@@ -99,7 +101,12 @@ export const Modal = ({
     previouslyFocusedElementRef.current = document.activeElement as HTMLElement;
 
     modal?.addEventListener("keydown", handleKeyDown);
-    firstFocusableElement?.focus();
+    if (focusOnElement) {
+      const elementToFocus = modal.querySelector(focusOnElement) as HTMLElement;
+      elementToFocus?.focus();
+    } else {
+      firstFocusableElement?.focus();
+    }
 
     if (disableScroll) {
       document.body.style.overflow = "hidden";
@@ -129,6 +136,7 @@ export const Modal = ({
     handleDisplay,
     minViewportWidth,
     maxViewportWidth,
+    focusOnElement,
   ]);
 
   const backdropStyle: React.CSSProperties = {
@@ -138,7 +146,9 @@ export const Modal = ({
 
   return createPortal(
     <div
-      onClick={closeOnBackdropClick ? onClose : undefined}
+      onClick={(e) => {
+        if (e.currentTarget === e.target && closeOnBackdropClick) onClose();
+      }}
       ref={modalRef}
       className={`${styles.container}`}
       style={backdropStyle}
