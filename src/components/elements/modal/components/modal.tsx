@@ -10,7 +10,6 @@ export const Modal = ({
   children,
   onClose,
   closeOnBackdropClick = true,
-  style,
   background,
   minViewportWidth = null,
   maxViewportWidth = null,
@@ -19,7 +18,6 @@ export const Modal = ({
   children: React.ReactNode;
   onClose: () => void;
   closeOnBackdropClick?: boolean;
-  style?: React.CSSProperties;
   background?: string;
   minViewportWidth?: number | null;
   maxViewportWidth?: number | null;
@@ -38,8 +36,10 @@ export const Modal = ({
         const modal = modalRef.current;
         if (!modal) return;
 
-        const focusableElements = modal.querySelectorAll(
-          'a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select',
+        const focusableElements = Array.from(
+          modal.querySelectorAll(
+            'a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])',
+          ),
         );
         const firstFocusableElement = focusableElements[0] as HTMLElement;
         const lastFocusableElement = focusableElements[
@@ -89,8 +89,10 @@ export const Modal = ({
     const modal = modalRef.current;
     if (!modal) return;
 
-    const focusableElements = modal?.querySelectorAll(
-      'a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select',
+    const focusableElements = Array.from(
+      modal.querySelectorAll(
+        'a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])',
+      ),
     );
     const firstFocusableElement = focusableElements?.[0] as HTMLElement;
 
@@ -129,14 +131,6 @@ export const Modal = ({
     maxViewportWidth,
   ]);
 
-  const modalStyle: React.CSSProperties = {
-    position: "fixed",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    ...style,
-  };
-
   const backdropStyle: React.CSSProperties = {
     backgroundColor:
       background === "none" ? "transparent" : "var(--clr-modal-background)",
@@ -145,20 +139,14 @@ export const Modal = ({
   return createPortal(
     <div
       onClick={closeOnBackdropClick ? onClose : undefined}
-      className={styles.backdrop}
+      ref={modalRef}
+      className={`${styles.container}`}
       style={backdropStyle}
+      id="dialog"
+      role="dialog"
+      aria-modal="true"
     >
-      <div
-        style={modalStyle}
-        onClick={(e) => e.stopPropagation()}
-        ref={modalRef}
-        className={`${styles.modal} `}
-        id="dialog"
-        role="dialog"
-        aria-modal="true"
-      >
-        {children}
-      </div>
+      {children}
     </div>,
     document.body,
   );
