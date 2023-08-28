@@ -1,8 +1,7 @@
 "use client";
 
-import { BackButton } from "@/components/designs/back-button";
-import { CloseButton } from "@/components/designs/close-button";
-import { useDisableBodyScroll } from "@/hooks";
+import { BackArrowIcon } from "@/assets/back-arrow-icon";
+import { CloseIcon } from "@/assets/close-icon";
 import { useCreateTweetModal } from "@/stores/use-create-tweet-modal";
 
 import { CreateTweet } from "./create-tweet";
@@ -13,39 +12,21 @@ export const CreateTweetModal = () => {
   const data = useCreateTweetModal((state) => state.data);
   const closeModal = useCreateTweetModal((state) => state.closeModal);
 
-  useDisableBodyScroll();
+  const innerWidth = window.innerWidth;
 
   return (
-    <div
-      onClick={() => {
-        closeModal();
-      }}
-      tabIndex={-1}
-      role="button"
-      onKeyDown={(e) => {
-        if (e.key === "Escape") {
-          closeModal();
-        }
-      }}
-      className={styles.container}
-    >
-      <div
-        onClick={(e) => e.stopPropagation()}
-        role="button"
-        tabIndex={-1}
-        onKeyDown={(e) => {
-          if (e.key === "Escape") {
-            closeModal();
-          }
-        }}
-        className={styles.modal}
-      >
-        <button onClick={() => closeModal()} className={styles.close}>
+    <div className={styles.container}>
+      <div className={styles.wrapper}>
+        <button
+          data-title={innerWidth < 700 ? "Back" : "Close"}
+          onClick={() => closeModal()}
+          className={styles.close}
+        >
           <span className={styles.arrow}>
-            <BackButton />
+            <BackArrowIcon />
           </span>
           <span className={styles.x}>
-            <CloseButton />
+            <CloseIcon />
           </span>
         </button>
         {data.parent_tweet && <CreateTweetComment tweet={data.parent_tweet} />}

@@ -7,13 +7,13 @@
   bottom: 5em;
   right: 1em;
   padding: 1em;
-  z-index: 9999;
   background-color: var(--clr-primary);
   display: grid;
   place-items: center;
   border-radius: 50%;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+  z-index: var(--z-index-fixed);
 
   &:hover {
     background-color: var(--clr-primary-hover);
