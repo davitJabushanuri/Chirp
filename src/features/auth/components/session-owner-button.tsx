@@ -42,7 +42,9 @@ export const SessionOwnerButton = () => {
   }, []);
 
   const style: React.CSSProperties = {
-    top: buttonBoundaries?.top ? buttonBoundaries?.top - 120 : "50%",
+    top: buttonBoundaries?.top
+      ? buttonBoundaries?.top - buttonBoundaries?.height - 50
+      : "50%",
     left: buttonBoundaries?.left ? buttonBoundaries?.left : "50%",
     transform: buttonBoundaries?.top
       ? "translate(0, 0)"
