@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import React, { useEffect, useRef } from "react";
+import React, { useCallback, useLayoutEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 
 import styles from "./styles/modal.module.scss";
@@ -28,26 +28,24 @@ export const Modal = ({
   const modalRef = useRef<HTMLDivElement>(null);
   const previouslyFocusedElementRef = useRef<HTMLElement | null>(null);
 
-  useEffect(() => {
-    const modal = modalRef.current;
-    const focusableElements = modal?.querySelectorAll(
-      'a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select',
-    );
-    const firstFocusableElement = focusableElements?.[0] as HTMLElement;
-    const lastFocusableElement = focusableElements?.[
-      focusableElements.length - 1
-    ] as HTMLElement;
-
-    previouslyFocusedElementRef.current = document.activeElement as HTMLElement;
-
-    firstFocusableElement?.focus();
-
-    const handleKeyDown = (e: KeyboardEvent) => {
+  const handleKeyDown = useCallback(
+    (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         onClose();
       }
 
       if (e.key === "Tab") {
+        const modal = modalRef.current;
+        if (!modal) return;
+
+        const focusableElements = modal.querySelectorAll(
+          'a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select',
+        );
+        const firstFocusableElement = focusableElements[0] as HTMLElement;
+        const lastFocusableElement = focusableElements[
+          focusableElements.length - 1
+        ] as HTMLElement;
+
         if (e.shiftKey) {
           if (document.activeElement === firstFocusableElement) {
             lastFocusableElement.focus();
@@ -60,15 +58,46 @@ export const Modal = ({
           }
         }
       }
-    };
+    },
+    [onClose],
+  );
 
-    modal?.addEventListener("keydown", handleKeyDown);
-
-    const handleScroll = (e: Event) => {
+  const handleScroll = useCallback(
+    (e: Event) => {
       if (disableScroll) {
         e.preventDefault();
       }
-    };
+    },
+    [disableScroll],
+  );
+
+  const handleDisplay = useCallback(() => {
+    const modal = modalRef.current;
+    if (!modal) return;
+
+    const viewportWidth = window.innerWidth;
+
+    if (
+      (minViewportWidth && viewportWidth < minViewportWidth) ||
+      (maxViewportWidth && viewportWidth > maxViewportWidth)
+    ) {
+      onClose();
+    }
+  }, [onClose, minViewportWidth, maxViewportWidth]);
+
+  useLayoutEffect(() => {
+    const modal = modalRef.current;
+    if (!modal) return;
+
+    const focusableElements = modal?.querySelectorAll(
+      'a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select',
+    );
+    const firstFocusableElement = focusableElements?.[0] as HTMLElement;
+
+    previouslyFocusedElementRef.current = document.activeElement as HTMLElement;
+
+    modal?.addEventListener("keydown", handleKeyDown);
+    firstFocusableElement?.focus();
 
     if (disableScroll) {
       document.body.style.overflow = "hidden";
@@ -76,19 +105,8 @@ export const Modal = ({
       window.addEventListener("scroll", handleScroll);
     }
 
-    const handleDisplay = () => {
-      const viewportWidth = window.innerWidth;
-
-      if (
-        (minViewportWidth && viewportWidth < minViewportWidth) ||
-        (maxViewportWidth && viewportWidth > maxViewportWidth)
-      ) {
-        onClose();
-      }
-    };
-
     if (minViewportWidth || maxViewportWidth) {
-      window.addEventListener("resize", handleDisplay);
+      handleDisplay();
     }
 
     return () => {
@@ -100,12 +118,16 @@ export const Modal = ({
         document.body.style.paddingRight = "";
         window.removeEventListener("scroll", handleScroll);
       }
-
-      if (minViewportWidth || maxViewportWidth) {
-        window.removeEventListener("resize", handleDisplay);
-      }
     };
-  }, [onClose, disableScroll, minViewportWidth, maxViewportWidth]);
+  }, [
+    onClose,
+    disableScroll,
+    handleKeyDown,
+    handleScroll,
+    handleDisplay,
+    minViewportWidth,
+    maxViewportWidth,
+  ]);
 
   const modalStyle: React.CSSProperties = {
     position: "fixed",
