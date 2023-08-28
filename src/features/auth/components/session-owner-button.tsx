@@ -42,6 +42,7 @@ export const SessionOwnerButton = () => {
   }, []);
 
   const style: React.CSSProperties = {
+    position: "fixed",
     top: buttonBoundaries?.top
       ? buttonBoundaries?.top - buttonBoundaries?.height - 50
       : "50%",
@@ -84,11 +85,10 @@ export const SessionOwnerButton = () => {
       {isModalOpen && (
         <Modal
           onClose={() => setIsModalOpen(false)}
-          style={style}
           background="none"
           minViewportWidth={500}
         >
-          <SessionOwnerModal />
+          <SessionOwnerModal style={style} />
         </Modal>
       )}
     </>
