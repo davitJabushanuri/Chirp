@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+import { motion } from "framer-motion";
 import React, { useCallback, useLayoutEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 
@@ -145,7 +146,10 @@ export const Modal = ({
   };
 
   return createPortal(
-    <div
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
       onClick={(e) => {
         if (e.currentTarget === e.target && closeOnBackdropClick) onClose();
       }}
@@ -157,7 +161,7 @@ export const Modal = ({
       aria-modal="true"
     >
       {children}
-    </div>,
+    </motion.div>,
     document.body,
   );
 };
