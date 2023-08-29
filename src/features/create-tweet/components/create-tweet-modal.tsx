@@ -17,18 +17,20 @@ export const CreateTweetModal = () => {
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
-        <button
-          data-title={innerWidth < 700 ? "Back" : "Close"}
-          onClick={() => closeModal()}
-          className={styles.close}
-        >
-          <span className={styles.arrow}>
-            <BackArrowIcon />
-          </span>
-          <span className={styles.x}>
-            <CloseIcon />
-          </span>
-        </button>
+        <div className={styles.closeButtonContainer}>
+          <button
+            data-title={innerWidth < 700 ? "Back" : "Close"}
+            onClick={() => closeModal()}
+            className={styles.close}
+          >
+            <span className={styles.arrow}>
+              <BackArrowIcon />
+            </span>
+            <span className={styles.x}>
+              <CloseIcon />
+            </span>
+          </button>
+        </div>
         {data.parent_tweet && <CreateTweetComment tweet={data.parent_tweet} />}
 
         <CreateTweet
@@ -36,6 +38,7 @@ export const CreateTweetModal = () => {
           in_reply_to_screen_name={data.in_reply_to_screen_name}
           in_reply_to_status_id={data.in_reply_to_status_id}
           placeholder={data.placeholder}
+          container="modal"
         />
       </div>
     </div>

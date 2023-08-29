@@ -5,56 +5,58 @@
   width: 100%;
   height: 100%;
   background-color: var(--clr-background);
-  overflow: auto;
 
   .wrapper {
     margin-inline: auto;
     max-width: 600px;
 
-    .close {
-      @include tooltip(bottom, 2px);
-      margin: 0.5em;
+    .closeButtonContainer {
       padding: 0.5em;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      cursor: pointer;
-      transition: background-color 0.1s ease-in-out;
 
-      &:hover {
-        background-color: var(--clr-nav-hover);
-      }
+      .close {
+        @include tooltip(bottom, 2px);
+        padding: 0.5em;
+        border-radius: 50%;
+        display: inline-grid;
+        place-items: center;
+        cursor: pointer;
+        transition: background-color 0.1s ease-in-out;
 
-      &:active {
-        outline: 2px solid var(--clr-nav-active);
-      }
+        &:hover {
+          background-color: var(--clr-nav-hover);
+        }
 
-      &:focus-visible {
-        outline: 2px solid var(--clr-secondary);
-        background-color: var(--clr-nav-hover);
-      }
+        &:active {
+          background-color: var(--clr-nav-active);
+        }
 
-      svg {
-        width: var(--fs-h2);
-        height: var(--fs-h2);
-        fill: var(--clr-secondary);
-      }
+        &:focus-visible {
+          outline: 2px solid var(--clr-secondary);
+          background-color: var(--clr-nav-hover);
+        }
 
-      span {
-        display: flex;
-      }
+        svg {
+          width: var(--fs-h2);
+          height: var(--fs-h2);
+          fill: var(--clr-secondary);
+        }
 
-      .x {
-        display: none;
-      }
-
-      @include mq("medium") {
-        .arrow {
-          display: none;
+        span {
+          display: grid;
         }
 
         .x {
-          display: flex;
+          display: none;
+        }
+
+        @include mq("medium") {
+          .arrow {
+            display: none;
+          }
+
+          .x {
+            display: grid;
+          }
         }
       }
     }
@@ -66,17 +68,15 @@
     max-width: 600px;
     border-radius: 1rem;
     height: fit-content;
-    max-height: 700px;
-
     animation: slideUp 0.2s ease;
   }
 }
 
 @keyframes slideUp {
   from {
-    transform: translateY(2rem);
+    transform: translateY(4rem) scale(0.9);
   }
   to {
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
