@@ -1,4 +1,5 @@
 "use client";
+import { AnimatePresence } from "framer-motion";
 import { useSession } from "next-auth/react";
 import { useEffect, useRef, useState } from "react";
 
@@ -82,15 +83,17 @@ export const SessionOwnerButton = () => {
         </div>
       </button>
 
-      {isModalOpen && (
-        <Modal
-          onClose={() => setIsModalOpen(false)}
-          background="none"
-          minViewportWidth={500}
-        >
-          <SessionOwnerModal style={style} />
-        </Modal>
-      )}
+      <AnimatePresence>
+        {isModalOpen && (
+          <Modal
+            onClose={() => setIsModalOpen(false)}
+            background="none"
+            minViewportWidth={500}
+          >
+            <SessionOwnerModal style={style} />
+          </Modal>
+        )}
+      </AnimatePresence>
     </>
   );
 };

@@ -1,4 +1,5 @@
 "use client";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 
@@ -14,13 +15,24 @@ export const SessionOwnerModal = ({
   if (!session) return null;
 
   return (
-    <div className={styles.container} style={style} role="group">
+    <motion.div
+      initial={{ opacity: 0, y: "100%" }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: "100%" }}
+      transition={{
+        ease: "easeInOut",
+        duration: 0.2,
+      }}
+      className={styles.container}
+      style={style}
+      role="group"
+    >
       <Link href={`/auth/signin`} role="menuitem">
         Add an existing account
       </Link>
       <Link href={`/auth/signout`} role="menuitem">
         Log out @{session?.user?.email.split("@")[0]}
       </Link>
-    </div>
+    </motion.div>
   );
 };

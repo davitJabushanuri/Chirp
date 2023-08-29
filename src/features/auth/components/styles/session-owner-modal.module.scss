@@ -7,7 +7,6 @@
   border-radius: 1rem;
   padding: 0.8em 0;
   overflow: hidden;
-  animation: slideIn 0.1s ease-in-out forwards;
 
   a {
     font-size: var(--fs-milli);
@@ -30,17 +29,5 @@
       outline: 2px solid var(--clr-primary-disabled);
       outline-offset: -2px;
     }
-  }
-}
-
-@keyframes slideIn {
-  0% {
-    transform: translateY(2rem);
-    opacity: 0;
-  }
-
-  100% {
-    transform: translateY(0);
-    opacity: 1;
   }
 }
