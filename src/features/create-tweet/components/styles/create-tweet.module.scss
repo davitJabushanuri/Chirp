@@ -21,12 +21,20 @@
   form {
     .content {
       overflow: auto;
+      margin-bottom: 11px;
+      max-height: calc(
+        100dvh - var(--avatar-width) - var(--fs-nano) - var(--fs-h2) - 3em
+      );
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
 
       .text {
-        max-height: 690px;
+        max-height: 720px;
         overflow-y: auto;
         overflow-x: hidden;
-        margin: 11px 0;
+        margin: 12px 0;
 
         textarea {
           overflow: hidden;
@@ -45,13 +53,13 @@
         }
       }
 
-      .chosen_images {
-        margin-bottom: 11px;
-      }
-
       .quotedTweet {
         margin: 8px 0;
       }
+    }
+
+    .modalHeight {
+      max-height: calc(100dvh - 300px);
     }
 
     .actions {
@@ -103,12 +111,11 @@
         .tweetButton {
           background-color: var(--clr-primary);
           border-radius: 100vmax;
-          height: 34px;
-          width: 72px;
+          padding: 0.6em 1em;
           font-size: var(--fs-milli);
-          font-weight: 700;
-          cursor: pointer;
+          font-weight: var(--fw-700);
           color: var(--clr-light);
+          cursor: pointer;
           display: grid;
           place-items: center;
 

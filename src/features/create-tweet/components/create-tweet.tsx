@@ -28,12 +28,14 @@ export const CreateTweet = ({
   in_reply_to_status_id,
   placeholder = "What's happening?",
   isInspectModal = false,
+  container = "tweet",
 }: {
   quoted_tweet?: ITweet | null;
   in_reply_to_screen_name?: string | null;
   in_reply_to_status_id?: string | null;
   placeholder?: string | null;
   isInspectModal?: boolean;
+  container?: "tweet" | "modal" | "comment";
 }) => {
   const { data: session } = useSession();
 
@@ -71,7 +73,15 @@ export const CreateTweet = ({
       </div>
 
       <form>
-        <div className={styles.content}>
+        <div
+          className={`${styles.content} ${
+            container === "modal"
+              ? styles.modalHeight
+              : container === "comment"
+              ? styles.commentHeight
+              : ""
+          }`}
+        >
           <div className={styles.text}>
             <textarea
               ref={inputRef}
