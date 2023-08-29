@@ -68,15 +68,15 @@
     max-width: 600px;
     border-radius: 1rem;
     height: fit-content;
-    animation: slideUp 0.2s ease;
+    // animation: slideUp 0.2s ease;
   }
 }
 
-@keyframes slideUp {
-  from {
-    transform: translateY(4rem) scale(0.9);
-  }
-  to {
-    transform: translateY(0) scale(1);
-  }
-}
+// @keyframes slideUp {
+//   from {
+//     transform: translateY(4rem) scale(0.9);
+//   }
+//   to {
+//     transform: translateY(0) scale(1);
+//   }
+// }

@@ -1,4 +1,5 @@
 "use client";
+import { AnimatePresence } from "framer-motion";
 import { useSession } from "next-auth/react";
 
 import { Modal } from "@/components/elements/modal";
@@ -34,16 +35,18 @@ export const TweetButton = () => {
         <span className={styles.text}>Tweet</span>
       </button>
 
-      {isModalOpen && (
-        <Modal
-          onClose={closeModal}
-          disableScroll={true}
-          background="var(--clr-modal-background)"
-          focusOnElement={`textarea`}
-        >
-          <CreateTweetModal />
-        </Modal>
-      )}
+      <AnimatePresence>
+        {isModalOpen && (
+          <Modal
+            onClose={closeModal}
+            disableScroll={true}
+            background="var(--clr-modal-background)"
+            focusOnElement={`textarea`}
+          >
+            <CreateTweetModal />
+          </Modal>
+        )}
+      </AnimatePresence>
     </>
   );
 };

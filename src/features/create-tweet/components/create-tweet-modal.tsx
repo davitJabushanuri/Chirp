@@ -1,4 +1,5 @@
 "use client";
+import { motion } from "framer-motion";
 
 import { BackArrowIcon } from "@/assets/back-arrow-icon";
 import { CloseIcon } from "@/assets/close-icon";
@@ -15,7 +16,16 @@ export const CreateTweetModal = () => {
   const innerWidth = window.innerWidth;
 
   return (
-    <div className={styles.container}>
+    <motion.div
+      initial={{ opacity: 0, y: 200, scale: 0.8 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      exit={{ opacity: 0, y: 200, scale: 0.8 }}
+      transition={{
+        ease: "easeOut",
+        duration: 0.2,
+      }}
+      className={styles.container}
+    >
       <div className={styles.wrapper}>
         <div className={styles.closeButtonContainer}>
           <button
@@ -41,6 +51,6 @@ export const CreateTweetModal = () => {
           container="modal"
         />
       </div>
-    </div>
+    </motion.div>
   );
 };
