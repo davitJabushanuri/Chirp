@@ -12,8 +12,9 @@
   }
 
   .following {
+    width: calc(var(--fs-kilo) * 3);
     color: var(--clr-secondary);
-    border: 1px solid var(--clr-border);
+    border: 1px solid var(--clr-tertiary);
 
     &:hover {
       color: var(--clr-red);
