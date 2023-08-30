@@ -13,11 +13,7 @@ export const Connect = () => {
   const { data: people, isLoading, isError } = useUsers();
 
   return (
-    <section
-      aria-label="Who to follow"
-      role="complementary"
-      className={styles.container}
-    >
+    <section aria-label="Who to follow" className={styles.container}>
       {isLoading ? (
         <div className={styles.loading}>
           <LoadingSpinner />

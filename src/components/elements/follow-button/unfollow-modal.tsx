@@ -1,5 +1,5 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
+import { motion } from "framer-motion";
+
 import { useFollow } from "@/features/profile";
 
 import styles from "./styles/unfollow-modal.module.scss";
@@ -18,19 +18,20 @@ export const UnfollowModal = ({
   const mutation = useFollow("unfollow");
 
   return (
-    <div
-      onClick={() => {
-        setIsModalOpen(false);
-      }}
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 50 }}
+      transition={{ duration: 0.2 }}
       className={styles.container}
     >
-      <div onClick={(e) => e.stopPropagation()} className={styles.modal}>
-        <h1>Unfollow @{username}?</h1>
-        <p>
-          Their Tweets will no longer show up in your home timeline. You can
-          still view their profile, unless their Tweets are protected.
-        </p>
+      <h2>Unfollow @{username}?</h2>
+      <p>
+        Their Tweets will no longer show up in your home timeline. You can still
+        view their profile, unless their Tweets are protected.
+      </p>
 
+      <div className={styles.buttons}>
         <button
           onClick={() => {
             mutation.mutate({
@@ -47,6 +48,6 @@ export const UnfollowModal = ({
           Cancel
         </button>
       </div>
-    </div>
+    </motion.div>
   );
 };
