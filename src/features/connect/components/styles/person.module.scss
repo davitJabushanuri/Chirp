@@ -1,26 +1,40 @@
 .container {
-  padding: 0.75em 1em;
-  display: grid;
-  align-items: center;
-  grid-template-columns: auto 1fr auto;
-  gap: 12px;
+  position: relative;
   cursor: pointer;
-  outline-offset: -2px;
-
-  &:hover {
-    background-color: var(--clr-connect-hover);
-  }
-
-  &:active:not(:focus-within) {
-    background-color: var(--clr-connect-active);
-  }
-
-  &:focus-visible {
-    outline: 2px solid var(--clr-primary-disabled);
-    background-color: var(--clr-connect-hover);
-  }
 
   &:focus-within {
     background-color: var(--clr-connect-hover);
+  }
+
+  .person {
+    width: 100%;
+    padding: 0.75em 1em;
+    display: grid;
+    align-items: center;
+    grid-template-columns: auto 1fr auto;
+    gap: 12px;
+    outline-offset: -2px;
+    transition: background-color 0.2s ease-in-out;
+    padding-right: calc(var(--fs-kilo) * 3 + 12px);
+
+    &:hover {
+      background-color: var(--clr-connect-hover);
+    }
+
+    &:active {
+      background-color: var(--clr-connect-active);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--clr-primary-disabled);
+      background-color: var(--clr-connect-hover);
+    }
+  }
+
+  .follow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 1em;
   }
 }
