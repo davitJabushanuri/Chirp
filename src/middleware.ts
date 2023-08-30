@@ -9,7 +9,7 @@ export async function middleware(req: NextRequest) {
   const url = req.nextUrl.clone();
 
   if (isAuthenticated) {
-    if (url.pathname === "/" || url.pathname === "/auth/signin") {
+    if (url.pathname === "/") {
       return NextResponse.redirect(new URL("/home", req.url));
     }
   }
