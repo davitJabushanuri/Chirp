@@ -7,8 +7,10 @@ import styles from "./styles/session-owner-modal.module.scss";
 
 export const SessionOwnerModal = ({
   style,
+  onClose,
 }: {
   style: React.CSSProperties;
+  onClose: () => void;
 }) => {
   const { data: session } = useSession();
 
@@ -27,10 +29,10 @@ export const SessionOwnerModal = ({
       style={style}
       role="group"
     >
-      <Link href={`/auth/signin`} role="menuitem">
+      <Link href={`/auth/signin`} role="menuitem" onClick={onClose}>
         Add an existing account
       </Link>
-      <Link href={`/auth/signout`} role="menuitem">
+      <Link href={`/auth/signout`} role="menuitem" onClick={onClose}>
         Log out @{session?.user?.email.split("@")[0]}
       </Link>
     </motion.div>

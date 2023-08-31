@@ -4,101 +4,92 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100dvw;
-  height: 100dvh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--clr-signout-background);
-  z-index: 999999999;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  background-color: var(--clr-background);
+  padding: 2em;
+  border-radius: 1rem;
+  max-width: 320px;
+  height: fit-content;
 
-  .modal {
-    width: 100%;
-    height: 100%;
-    background-color: var(--clr-background);
-    overflow: hidden;
-    border-radius: 1rem;
-    padding: 1.9rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  .logo {
+    display: grid;
+    place-items: center;
+    margin-bottom: 1em;
 
-    .logo {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      svg {
-        width: 2.2rem;
-        height: 2.2rem;
-        fill: var(--clr-primary);
-      }
+    svg {
+      width: var(--fs-kilo);
+      height: var(--fs-kilo);
+      fill: var(--clr-primary);
     }
+  }
 
-    .title {
-      font-size: var(--fs-h2);
-      font-weight: var(--fs-500);
-      color: var(--clr-secondary);
-    }
+  .title {
+    font-size: var(--fs-h2);
+    font-weight: var(--fw-700);
+    color: var(--clr-secondary);
+    margin-bottom: 0.5rem;
+  }
 
-    .description {
+  .description {
+    font-size: var(--fs-milli);
+    color: var(--clr-tertiary);
+    line-height: 1.6;
+    margin-bottom: 1.6em;
+  }
+
+  .buttons {
+    display: grid;
+    gap: 0.5em;
+
+    button {
       font-size: var(--fs-milli);
-      color: var(--clr-tertiary);
-      line-height: 1.6;
+      font-weight: var(--fw-700);
+      color: var(--clr-background);
+      border-radius: 100vmax;
+      padding: 0.8em;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      transition: background-color 0.2s ease-in-out;
     }
 
-    .buttons {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.6rem;
+    .signout {
+      background-color: var(--clr-secondary);
+      color: var(--clr-background);
 
-      button {
-        width: 100%;
-        color: var(--clr-background);
-        font-size: var(--fs-milli);
-        font-weight: 500;
-        border-radius: 100vmax;
-        border: 1px solid var(--clr-auth-border);
-        padding: 0.7rem;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.2s ease-in-out;
+      &:hover {
+        background-color: var(--clr-signout-logout-hover);
       }
 
-      .signout {
-        background-color: var(--clr-secondary);
-        color: var(--clr-background);
-
-        &:hover {
-          background-color: var(--clr-signout-logout-hover);
-        }
-
-        &:active {
-          background-color: var(--clr-signout-logout-active);
-        }
+      &:active {
+        background-color: var(--clr-signout-logout-active);
       }
 
-      .cancel {
-        background-color: var(--clr-background);
-        color: var(--clr-secondary);
-
-        &:hover {
-          background-color: var(--clr-signout-cancel-hover);
-        }
-
-        &:active {
-          background-color: var(--clr-signout-cancel-active);
-        }
+      &:focus-visible {
+        outline: 2px solid var(--clr-secondary);
+        background-color: var(--clr-signout-logout-hover);
       }
     }
 
-    @include mq("small") {
-      width: 320px;
-      height: 340px;
+    .cancel {
+      border: 1px solid var(--clr-tertiary);
+      background-color: var(--clr-background);
+      color: var(--clr-secondary);
+
+      &:hover {
+        background-color: var(--clr-signout-cancel-hover);
+      }
+
+      &:active {
+        background-color: var(--clr-signout-cancel-active);
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--clr-secondary);
+        background-color: var(--clr-signout-cancel-hover);
+      }
     }
   }
 }
