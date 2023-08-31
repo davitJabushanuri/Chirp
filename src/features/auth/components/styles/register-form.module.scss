@@ -2,73 +2,37 @@
   background-color: var(--clr-background);
   border: 1px solid var(--clr-border);
   border-radius: 1rem;
+  padding: 1em 0.8em;
 
   .title {
-    padding: 11px 15px;
     font-size: var(--fs-h3);
     font-weight: var(--fw-700);
+    margin-bottom: 0.5em;
   }
 
   .description {
-    padding: 0 11px;
     font-size: var(--fs-nano);
     color: var(--clr-tertiary);
-    line-height: 1.6;
+    margin-bottom: 0.8em;
   }
 
   .buttons {
-    padding: 15px 11px;
     display: grid;
-    gap: 11px;
-
-    button {
-      display: grid;
-      grid-template-columns: auto auto;
-      place-content: center;
-      gap: 8px;
-      height: 38px;
-      border-radius: 100vmax;
-      background-color: var(--clr-light);
-      color: var(--clr-dark);
-      border: 1px solid var(--clr-auth-border);
-      font-size: var(--fs-micro);
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.1s ease-in-out;
-
-      &:hover {
-        background-color: var(--clr-light-hover);
-      }
-
-      &:active {
-        background-color: var(--clr-light-active);
-      }
-
-      .icon {
-        svg {
-          width: 1.2rem;
-          height: 1.2rem;
-        }
-      }
-
-      .text {
-        display: grid;
-        place-content: center;
-      }
-    }
+    padding: 0.8em 0;
+    gap: 0.8em;
   }
 
   .terms {
-    padding: 0 11px 15px 11px;
     font-size: var(--fs-nano);
     color: var(--clr-tertiary);
-    line-height: 1.2;
+    line-height: 1.5;
 
     a {
       color: var(--clr-blue);
       cursor: pointer;
 
-      &:hover {
+      &:hover,
+      &:focus-visible {
         text-decoration: underline;
       }
     }
