@@ -2,8 +2,7 @@
 import { useRouter } from "next/navigation";
 
 import { Modal } from "@/components/elements/modal";
-
-import { SignOutModal } from "..";
+import { SignOutModal } from "@/features/auth";
 
 export const SignOut = () => {
   const router = useRouter();
