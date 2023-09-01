@@ -25,7 +25,7 @@ export const SignInModal = ({ onClose }: { onClose: () => void }) => {
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 50 }}
-      transition={{ duration: 0.2, ease: "easeInOut" }}
+      transition={{ duration: 0.2 }}
       role="group"
       className={styles.container}
     >

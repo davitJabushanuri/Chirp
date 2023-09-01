@@ -1,4 +1,5 @@
 "use client";
+import { motion } from "framer-motion";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
 
@@ -36,17 +37,27 @@ export const CreateTweetWrapper = ({
           }`}
         >
           {in_reply_to_screen_name && (
-            <div className={styles.replyingTo}>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.2 }}
+              className={styles.replyingTo}
+            >
               <ReplyingTo screen_name={in_reply_to_screen_name} link={false} />
-            </div>
+            </motion.div>
           )}
-
-          <CreateTweet
-            in_reply_to_screen_name={in_reply_to_screen_name}
-            in_reply_to_status_id={in_reply_to_status_id}
-            placeholder={`Tweet your reply!`}
-            isInspectModal={isInspectModal}
-          />
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            <CreateTweet
+              in_reply_to_screen_name={in_reply_to_screen_name}
+              in_reply_to_status_id={in_reply_to_status_id}
+              placeholder={`Tweet your reply!`}
+              isInspectModal={isInspectModal}
+            />
+          </motion.div>
         </div>
       )}
     </div>
