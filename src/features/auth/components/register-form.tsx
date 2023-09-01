@@ -9,7 +9,7 @@ import styles from "./styles/register-form.module.scss";
 export const RegisterForm = () => {
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>New to Twitter?</h1>
+      <h2 className={styles.title}>New to Chirp?</h2>
       <p className={styles.description}>
         Sign up now to get your own personalized timeline!
       </p>

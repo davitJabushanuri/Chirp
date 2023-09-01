@@ -8,6 +8,7 @@ import { AppleLogo } from "../assets/apple-logo";
 import { GoogleLogo } from "../assets/google-logo";
 
 import styles from "./styles/login-form.module.scss";
+import { AuthButton } from "./AuthButton";
 
 export const LoginForm = ({ onClose }: { onClose: () => void }) => {
   return (
@@ -33,34 +34,18 @@ export const LoginForm = ({ onClose }: { onClose: () => void }) => {
         <div className={styles.content}>
           <h2 className={styles.title}>Sign in to Chirp</h2>
 
-          <div className={styles.buttonContainer}>
-            <button
-              onClick={() =>
+          <div className={styles.authButtons}>
+            <AuthButton
+              onClick={() => {
                 signIn("google", {
                   callbackUrl: "/home",
-                })
-              }
-            >
-              <span className={styles.icon}>
-                <GoogleLogo />
-              </span>
-              <span className={styles.text}>Sign in with Google</span>
-            </button>
-          </div>
+                });
+              }}
+              icon={<GoogleLogo />}
+              text="Sign in with Google"
+            />
 
-          <div className={styles.buttonContainer}>
-            <button
-              onClick={() =>
-                signIn("apple", {
-                  callbackUrl: "/home",
-                })
-              }
-            >
-              <span className={styles.icon}>
-                <AppleLogo />
-              </span>
-              <span className={styles.text}>Sign in with Apple</span>
-            </button>
+            <AuthButton icon={<AppleLogo />} text="Sign in with Apple" />
           </div>
 
           <div className={styles.divider}>
@@ -86,13 +71,10 @@ export const LoginForm = ({ onClose }: { onClose: () => void }) => {
                 <span aria-hidden="true">Phone, email, or username</span>
               </label>
             </div>
-            <div className={styles.buttonContainer}>
-              <button className={styles.submit}>Next</button>
-            </div>
+            <button className={styles.submit}>Next</button>
           </form>
-          <div className={`${styles.forgotPassword} ${styles.buttonContainer}`}>
-            <button>Forgot password?</button>
-          </div>
+
+          <button className={styles.forgotPassword}>Forgot password?</button>
         </div>
       </div>
     </div>
