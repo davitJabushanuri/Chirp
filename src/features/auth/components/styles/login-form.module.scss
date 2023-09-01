@@ -106,57 +106,6 @@
   form {
     .inputContainer {
       margin-bottom: 1.4em;
-      label {
-        height: 55px;
-        border-radius: 0.2rem;
-        position: relative;
-        display: inline-block;
-        width: 100%;
-        display: flex;
-        align-items: flex-end;
-        padding: 0.5rem;
-        cursor: text;
-        overflow: hidden;
-        border: 1px solid var(--clr-auth-border);
-        transition: all 0.2s ease-in-out;
-
-        &:focus-within {
-          outline: 2px solid var(--clr-blue);
-        }
-
-        span {
-          pointer-events: none;
-          position: absolute;
-          left: 0;
-          top: 0;
-          bottom: 0;
-          transition: 0.2s ease-in-out;
-          display: flex;
-          align-items: center;
-          font-size: var(--fs-base);
-          padding: 0.5rem;
-          color: var(--clr-tertiary);
-        }
-
-        input {
-          width: 100%;
-
-          &::placeholder {
-            color: transparent;
-          }
-        }
-
-        input:focus + span {
-          font-size: var(--fs-nano);
-          transform: translateY(-0.6rem);
-          color: var(--clr-blue);
-        }
-
-        input:not(:placeholder-shown) + span {
-          transform: translateY(-0.6rem);
-          font-size: var(--fs-nano);
-        }
-      }
     }
 
     .submit {

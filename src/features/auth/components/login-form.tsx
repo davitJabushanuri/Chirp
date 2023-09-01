@@ -1,16 +1,24 @@
 "use client";
 import { signIn } from "next-auth/react";
+import { useState } from "react";
 
 import { CloseIcon } from "@/assets/close-icon";
 import { TwitterLogo } from "@/assets/twitter-logo";
+import { TextInput } from "@/components/elements/text-input";
 
 import { AppleLogo } from "../assets/apple-logo";
 import { GoogleLogo } from "../assets/google-logo";
 
-import styles from "./styles/login-form.module.scss";
 import { AuthButton } from "./AuthButton";
+import styles from "./styles/login-form.module.scss";
 
 export const LoginForm = ({ onClose }: { onClose: () => void }) => {
+  const [text, setText] = useState("");
+
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setText(e.target.value);
+  };
+
   return (
     <div role="group" className={styles.container}>
       <div className={styles.header}>
@@ -56,21 +64,15 @@ export const LoginForm = ({ onClose }: { onClose: () => void }) => {
 
           <form>
             <div className={styles.inputContainer}>
-              <label htmlFor="name">
-                <input
-                  autoCapitalize="sentences"
-                  autoComplete="name"
-                  autoCorrect="on"
-                  spellCheck="true"
-                  dir="auto"
-                  name="text"
-                  type="text"
-                  id="name"
-                  placeholder="Phone, email, or username"
-                />
-                <span aria-hidden="true">Phone, email, or username</span>
-              </label>
+              <TextInput
+                onChange={onChange}
+                value={text}
+                placeholder="Phone, email, or username"
+                id="text"
+                name="Name"
+              />
             </div>
+
             <button className={styles.submit}>Next</button>
           </form>
 
