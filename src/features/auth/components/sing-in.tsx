@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 
 import { Modal } from "@/components/elements/modal";
 
-import { LoginForm } from "..";
+import { SignInModal } from "./sign-in-modal";
 
 export const SignIn = () => {
   const router = useRouter();
@@ -15,7 +15,7 @@ export const SignIn = () => {
       closeOnBackdropClick={false}
       background="var(--clr-modal-background)"
     >
-      <LoginForm onClose={() => router.back()} />
+      <SignInModal onClose={() => router.back()} />
     </Modal>
   );
 };
