@@ -1,7 +1,15 @@
-import { SearchClientPage } from "./client";
+import { ExploreHeader, Header } from "@/features/header";
+import { SearchResults } from "@/features/search";
 
 const SearchPage = () => {
-  return <SearchClientPage />;
+  return (
+    <>
+      <Header>
+        <ExploreHeader />
+      </Header>
+      <SearchResults />
+    </>
+  );
 };
 
 export default SearchPage;

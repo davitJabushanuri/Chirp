@@ -8,17 +8,15 @@
   gap: 1rem;
   padding-inline: 1em;
 
-  form {
+  label {
     height: 26px;
   }
 
   @include mq("small") {
     grid-template-columns: 1fr auto;
 
-    .search {
-      form {
-        height: 100%;
-      }
+    label {
+      height: 100%;
     }
   }
 }
