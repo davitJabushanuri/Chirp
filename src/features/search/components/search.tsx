@@ -1,4 +1,5 @@
 "use client";
+import { AnimatePresence } from "framer-motion";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
@@ -34,51 +35,67 @@ export const Search = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <form
-        onFocus={() => {
-          openResultsModal();
-        }}
-        onSubmit={(e) => {
-          e.preventDefault();
-          router.push(`/search?query=${query}`);
-          closeResultsModal();
-          setQuery("");
-        }}
-      >
+    <form
+      id="search-container"
+      className={styles.container}
+      action="#"
+      aria-label="Search"
+      role="search"
+      onSubmit={(e) => {
+        e.preventDefault();
+        router.push(`/search?query=${query}`);
+        closeResultsModal();
+        setQuery("");
+      }}
+    >
+      <label htmlFor="search">
         <div className={styles.icon}>
           <SearchIcon />
         </div>
         <input
+          aria-autocomplete="list"
+          aria-label="Search query"
+          aria-activedescendant="search-results-dropdown"
+          aria-owns="search-results-dropdown"
+          aria-controls="search-results-dropdown"
+          autoComplete="off"
+          autoCorrect="off"
+          role="combobox"
+          spellCheck="false"
+          enterKeyHint="search"
+          aria-expanded={isResultsModalOpen}
+          id="search"
           value={query}
-          onChange={handleChange}
           type="text"
-          placeholder="Search Twitter"
+          placeholder="Search"
+          list="search-results-dropdown"
+          name="search"
+          onChange={(e) => {
+            handleChange(e);
+            if (!isResultsModalOpen) {
+              openResultsModal();
+            }
+          }}
+          onFocus={() => {
+            openResultsModal();
+          }}
         />
-        {query && (
-          <button
-            type="button"
-            onClick={() => setQuery("")}
-            className={styles.close}
-          >
-            <SearchCloseIcon />
-          </button>
-        )}
-      </form>
 
-      {isResultsModalOpen && (
-        <div className={styles.modal}>
-          <button
-            onClick={() => closeResultsModal()}
-            className={styles.underlay}
-          >
-            hello
-          </button>
-          <div className={styles.results}>
-            <SearchResultsModal query={debounceValue} setQuery={setQuery} />
-          </div>
-        </div>
-      )}
-    </div>
+        <button
+          aria-label="Clear"
+          tabIndex={-1}
+          type="button"
+          onClick={() => setQuery("")}
+          className={`${styles.close} ${query ? styles.visible : ""}`}
+        >
+          <SearchCloseIcon />
+        </button>
+      </label>
+      <AnimatePresence>
+        {isResultsModalOpen && (
+          <SearchResultsModal query={debounceValue} setQuery={setQuery} />
+        )}
+      </AnimatePresence>
+    </form>
   );
 };
