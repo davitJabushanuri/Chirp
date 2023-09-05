@@ -1,4 +1,15 @@
+@use "./abstracts/media-query" as *;
+
 .container {
+  position: fixed;
+  top: calc(var(--avatar-width) + var(--fs-nano));
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--clr-background);
+  z-index: var(--z-index-modal);
+  overflow: auto;
+
   .progressbar {
     height: 3px;
   }
@@ -25,6 +36,11 @@
         background-color: var(--clr-tweet-hover);
       }
 
+      &:focus-visible {
+        outline: 2px solid var(--clr-primary);
+        background-color: var(--clr-tweet-hover);
+      }
+
       .icon {
         height: 53px;
         width: 53px;
@@ -46,32 +62,72 @@
     }
 
     .people {
-      .person {
-        width: 100%;
-        padding: 11px 15px;
-        display: grid;
-        grid-template-columns: 53px 1fr;
-        gap: 11px;
-        transition: background-color 0.2s ease-in-out;
-        cursor: pointer;
+      .option {
+        .person {
+          width: 100%;
+          padding: 0.8em 1em;
+          display: grid;
+          grid-template-columns: auto 1fr;
+          gap: 0.5em;
+          transition: background-color 0.2s ease-in-out;
+          cursor: pointer;
 
-        &:hover {
-          background-color: var(--clr-tweet-hover);
+          &:hover {
+            background-color: var(--clr-tweet-hover);
+          }
+
+          &:focus-visible {
+            outline: 2px solid var(--clr-primary);
+            background-color: var(--clr-tweet-hover);
+          }
         }
       }
     }
 
-    .link {
-      width: 100%;
-      padding: 15px;
-      font-size: var(--fs-milli);
-      color: var(--clr-secondary);
-      cursor: pointer;
-      transition: background-color 0.2s ease-in-out;
+    .option {
+      .link {
+        width: 100%;
+        padding: 15px;
+        font-size: var(--fs-milli);
+        color: var(--clr-secondary);
+        cursor: pointer;
+        transition: background-color 0.2s ease-in-out;
 
-      &:hover {
-        background-color: var(--clr-tweet-hover);
+        &:hover {
+          background-color: var(--clr-tweet-hover);
+        }
+
+        &:focus-visible {
+          outline: 2px solid var(--clr-primary);
+          background-color: var(--clr-tweet-hover);
+        }
       }
     }
   }
+
+  @include mq("small") {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 110%;
+    border-radius: 1rem;
+    box-shadow: 0 0rem 10px -2px var(--clr-tertiary);
+    height: fit-content;
+    min-height: 100px;
+    max-height: min(800px, calc(100vh - 100px));
+  }
+}
+
+.option {
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--clr-tweet-hover);
+  }
+}
+
+.selected {
+  background-color: var(--clr-tweet-hover);
+  outline: 2px solid var(--clr-primary);
+  outline-offset: -2px;
 }
