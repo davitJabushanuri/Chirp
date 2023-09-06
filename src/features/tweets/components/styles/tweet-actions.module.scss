@@ -1,14 +1,13 @@
 .container {
   margin: 0 auto;
-  padding: 0.225rem 0;
+  padding: 0.2em 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
   max-width: 600px;
 
-  svg {
-    width: 17.5px;
-    height: 17.5px;
+  span {
+    transition: background 0.1s ease-in;
   }
 }
 
@@ -16,8 +15,8 @@
   justify-content: space-between;
 
   svg {
-    width: 17.5px;
-    height: 17.5px;
+    width: var(--fs-h3);
+    height: var(--fs-h3);
   }
 }
 
@@ -25,7 +24,7 @@
   justify-content: space-around;
 
   svg {
-    width: 21px;
-    height: 21px;
+    width: var(--fs-h1);
+    height: var(--fs-h1);
   }
 }
