@@ -32,92 +32,92 @@
     }
   }
 
-  .tweet {
+  .tweetContainer {
     position: relative;
     display: grid;
     gap: 0.8em;
     grid-template-columns: auto 1fr;
-  }
 
-  .left {
-    .avatar {
-      margin: 11px 0 0 15px;
-      border-radius: 100vmax;
+    .left {
+      .avatar {
+        margin: 11px 0 0 15px;
+        border-radius: 100vmax;
 
-      &:has(:focus-visible) {
-        outline: 2px solid var(--clr-primary-disabled);
-      }
-    }
-  }
-
-  .user_details {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    white-space: nowrap;
-    margin: 11px 50px 2px 0;
-
-    .username_time {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-
-      .dot {
-        color: var(--clr-tertiary);
-      }
-
-      .date {
-        font-size: var(--fs-milli);
-        color: var(--clr-tertiary);
-        cursor: pointer;
-
-        &:hover {
-          text-decoration: underline;
+        &:has(:focus-visible) {
+          outline: 2px solid var(--clr-primary-disabled);
         }
       }
     }
 
-    @media screen and (max-width: 360px) {
-      flex-wrap: wrap;
-    }
-  }
+    .user_details {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+      margin: 11px 50px 2px 0;
 
-  .options {
-    position: absolute;
-    top: 4px;
-    right: 8px;
-  }
+      .username_time {
+        display: flex;
+        align-items: center;
+        gap: 4px;
 
-  .replyingTo {
-    margin: 0 15px 2px 0;
-  }
+        .dot {
+          color: var(--clr-tertiary);
+        }
 
-  .tweet {
-    padding-right: 15px;
+        .date {
+          font-size: var(--fs-milli);
+          color: var(--clr-tertiary);
+          cursor: pointer;
 
-    .text {
-      font-size: var(--fs-milli);
-      white-space: pre-wrap;
-    }
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
 
-    .media {
-      overflow: hidden;
-      border-radius: 15px;
-      margin-top: 11px;
-    }
-
-    .quotedTweet {
-      border-radius: 15px;
-      transition: all 0.2s ease-in-out;
-
-      &:hover {
-        backdrop-filter: brightness(1.1);
+      @media screen and (max-width: 360px) {
+        flex-wrap: wrap;
       }
     }
-  }
 
-  .actions {
-    max-width: 400px;
-    margin-right: 8px;
+    .options {
+      position: absolute;
+      top: 4px;
+      right: 8px;
+    }
+
+    .replyingTo {
+      margin: 0 15px 2px 0;
+    }
+
+    .tweet {
+      padding-right: 15px;
+
+      .text {
+        font-size: var(--fs-milli);
+        white-space: pre-wrap;
+      }
+
+      .media {
+        overflow: hidden;
+        border-radius: 15px;
+        margin-top: 11px;
+      }
+
+      .quotedTweet {
+        border-radius: 15px;
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+          backdrop-filter: brightness(1.1);
+        }
+      }
+    }
+
+    .actions {
+      max-width: 400px;
+      margin-right: 8px;
+    }
   }
 }

@@ -48,7 +48,7 @@ export const Tweet = ({
         </div>
       )}
 
-      <div className={styles.tweet}>
+      <div className={styles.tweetContainer}>
         <div className={styles.left}>
           <div className={styles.avatar}>
             <UserModalWrapper userId={tweet?.author?.id}>
@@ -101,7 +101,6 @@ export const Tweet = ({
               <ReplyingTo screen_name={tweet?.in_reply_to_screen_name} />
             </div>
           )}
-
           <div className={styles.tweet}>
             {tweet?.text && (
               <div className={styles.text}>
@@ -113,7 +112,6 @@ export const Tweet = ({
                 <TweetMedia media={tweet?.media} tweetId={tweet?.id} />
               </div>
             )}
-
             {tweet?.quoted_tweet && (
               <div className={styles.quotedTweet}>
                 <QuotedTweet tweet={tweet?.quoted_tweet} />
