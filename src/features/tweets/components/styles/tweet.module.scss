@@ -1,8 +1,4 @@
 .container {
-  position: relative;
-  display: grid;
-  gap: 11px;
-  grid-template-columns: auto 1fr;
   cursor: pointer;
   transition: background-color 0.2s linear;
   outline-offset: -2px;
@@ -18,6 +14,29 @@
 
   &:focus-within {
     background-color: var(--clr-tweet-hover);
+  }
+
+  .pin {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: var(--fs-nano);
+    font-weight: var(--fw-700);
+    color: var(--clr-tertiary);
+    padding: 0.5rem 0 0 3rem;
+
+    svg {
+      fill: var(--clr-tertiary);
+      width: var(--fs-base);
+      height: var(--fs-base);
+    }
+  }
+
+  .tweet {
+    position: relative;
+    display: grid;
+    gap: 0.8em;
+    grid-template-columns: auto 1fr;
   }
 
   .left {
