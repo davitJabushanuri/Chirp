@@ -60,11 +60,18 @@
     }
 
     .link {
+      display: block;
       padding: 1em;
       font-size: var(--fs-milli);
       font-weight: var(--fw-400);
       color: var(--clr-secondary);
       cursor: pointer;
+    }
+
+    .border {
+      background-color: var(--clr-border);
+      height: 1px;
+      margin: 4px 0;
     }
   }
 

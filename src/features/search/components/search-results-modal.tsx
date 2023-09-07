@@ -1,13 +1,12 @@
 import { motion } from "framer-motion";
-import { useRouter } from "next/navigation";
 import React, { useCallback, useEffect, useState } from "react";
 
-import { SearchIcon } from "@/assets/search-icon";
 import { Progressbar } from "@/components/designs/progressbar";
 import { EllipsisWrapper } from "@/components/elements/ellipsis-wrapper";
 import { TryAgain } from "@/components/elements/try-again";
 import { Avatar, UserName, UserScreenName } from "@/features/profile";
 
+import { SearchIcon } from "../assets/search-icon";
 import { useSearch } from "../hooks/use-search";
 import { useSearchStore } from "../stores/use-search";
 
@@ -15,12 +14,11 @@ import styles from "./styles/search-results-modal.module.scss";
 
 export const SearchResultsModal = ({
   query,
-  setQuery,
+  deleteQuery,
 }: {
   query: string;
-  setQuery: (query: string) => void;
+  deleteQuery: (path: string) => void;
 }) => {
-  const router = useRouter();
   const closeResultsModal = useSearchStore((state) => state.closeResultsModal);
   const options: HTMLOptionElement[] = Array.from(
     document.querySelectorAll("#search-results-dropdown div[role=option]"),
@@ -51,18 +49,14 @@ export const SearchResultsModal = ({
       }
 
       if (e.key === "Enter") {
-        e.preventDefault();
-        if (query === "") return;
-        else if (currentIndex === -1) {
-          router.push(`/search?query=${query}`);
-          closeResultsModal();
-          setQuery("");
+        if (!query) return;
+        else if (!currentIndex) {
+          deleteQuery(`/search?query=${query}`);
         } else {
-          if (currentIndex) {
-            const option = options[currentIndex];
-            router.push(option.dataset.href!);
-            closeResultsModal();
-            setQuery("");
+          e.preventDefault();
+          const href = options[currentIndex]?.getAttribute("data-href");
+          if (href) {
+            deleteQuery(href);
           }
         }
       }
@@ -78,14 +72,8 @@ export const SearchResultsModal = ({
       if (container && !container.contains(target)) {
         closeResultsModal();
       }
-
-      if (target.tagName === "DIV[role=option]") {
-        router.push(target.dataset.href!);
-        closeResultsModal();
-        setQuery("");
-      }
     },
-    [closeResultsModal, router, setQuery],
+    [closeResultsModal],
   );
 
   useEffect(() => {
@@ -127,24 +115,29 @@ export const SearchResultsModal = ({
           <SearchResult
             href={`/search?query=${query}`}
             selected={currentIndex === 0}
+            deleteQuery={deleteQuery}
           >
-            <div className={styles.link}>Search for &quot;{query}&quot;</div>
+            <span className={styles.link}>Search for &quot;{query}&quot;</span>
           </SearchResult>
+
+          <div className={styles.border}></div>
+
           {data?.hashtags && (
             <div className={styles.hashtags}>
               {data?.hashtags?.map((hashtag, index) => {
                 return (
                   <SearchResult
+                    key={hashtag?.id}
                     href={`/search?query=${hashtag?.text}`}
                     selected={currentIndex === index + 1}
-                    key={hashtag?.id}
+                    deleteQuery={deleteQuery}
                   >
-                    <div className={styles.hashtag}>
+                    <span className={styles.hashtag}>
                       <span className={styles.icon}>
                         <SearchIcon />
                       </span>
                       <span className={styles.text}>{hashtag?.text}</span>
-                    </div>
+                    </span>
                   </SearchResult>
                 );
               })}
@@ -155,13 +148,14 @@ export const SearchResultsModal = ({
               {data?.people?.map((person, index) => {
                 return (
                   <SearchResult
+                    key={person?.id}
                     selected={
                       currentIndex === index + 1 + (data?.hashtags?.length ?? 0)
                     }
                     href={`/${person?.id}`}
-                    key={person?.id}
+                    deleteQuery={deleteQuery}
                   >
-                    <div className={styles.person}>
+                    <span className={styles.person}>
                       <Avatar userImage={person?.profile_image_url} />
                       <span className={styles.info}>
                         <EllipsisWrapper>
@@ -177,7 +171,7 @@ export const SearchResultsModal = ({
                           />
                         </EllipsisWrapper>
                       </span>
-                    </div>
+                    </span>
                   </SearchResult>
                 );
               })}
@@ -186,8 +180,9 @@ export const SearchResultsModal = ({
           <SearchResult
             href={`/${query}`}
             selected={currentIndex === options.length - 1}
+            deleteQuery={deleteQuery}
           >
-            <div className={styles.link}>Go to @{query}</div>
+            <span className={styles.link}>Go to @{query}</span>
           </SearchResult>
         </div>
       )}
@@ -199,20 +194,30 @@ const SearchResult = ({
   children,
   selected,
   href,
+  deleteQuery,
 }: {
   children: React.ReactNode;
   selected: boolean;
-  href?: string;
+  href: string;
+  deleteQuery: (path: string) => void;
 }) => {
   return (
     <div
       role="option"
       aria-selected={selected}
       data-href={href}
+      data-role="option"
       tabIndex={0}
       className={`${styles.option} ${selected ? styles.selected : ""}`}
     >
-      {children}
+      <button
+        onClick={(e) => {
+          e.preventDefault();
+          deleteQuery(href);
+        }}
+      >
+        {children}
+      </button>
     </div>
   );
 };

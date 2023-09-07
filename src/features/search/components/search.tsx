@@ -15,12 +15,23 @@ import styles from "./styles/search.module.scss";
 export const Search = () => {
   const router = useRouter();
   const pathname = usePathname();
+  const path = pathname?.split("/")[1];
   const searchParams = useSearchParams();
   const [query, setQuery] = useState(
-    pathname?.split("/")[1] === "search"
+    path === "search"
       ? decodeURIComponent(searchParams?.get("query") || "")
       : "",
   );
+
+  console.log(searchParams.get("query"));
+
+  const deleteQuery = (path: string) => {
+    if (path !== "search") {
+      setQuery("");
+    }
+    closeResultsModal();
+    router.push(path);
+  };
 
   const isResultsModalOpen = useSearchStore(
     (state) => state.isResultsModalOpen,
@@ -38,14 +49,11 @@ export const Search = () => {
     <form
       id="search-container"
       className={styles.container}
-      action="#"
       aria-label="Search"
       role="search"
       onSubmit={(e) => {
         e.preventDefault();
-        router.push(`/search?query=${query}`);
-        closeResultsModal();
-        setQuery("");
+        deleteQuery(`/search?query=${query}`);
       }}
     >
       <label htmlFor="search">
@@ -93,7 +101,7 @@ export const Search = () => {
       </label>
       <AnimatePresence>
         {isResultsModalOpen && (
-          <SearchResultsModal query={debounceValue} setQuery={setQuery} />
+          <SearchResultsModal query={debounceValue} deleteQuery={deleteQuery} />
         )}
       </AnimatePresence>
     </form>
