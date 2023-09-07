@@ -3,6 +3,8 @@ import { Metadata } from "next";
 import { Header, ProfileHeader } from "@/features/header";
 import { Profile, ProfileTweets, getUserMetadata } from "@/features/profile";
 
+import NotFound from "../not-found";
+
 export async function generateMetadata({
   params,
 }: {
@@ -37,6 +39,8 @@ const ProfileTweetsPage = async ({
     user_id: params.user,
     type: "tweets",
   });
+
+  if (!user) return <NotFound />;
 
   return (
     <>
