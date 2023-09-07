@@ -15,7 +15,7 @@
   }
 
   .placeholder {
-    padding: 19px 11px 11px;
+    padding: 1.4em 0.8em;
     font-size: var(--fs-milli);
     color: var(--clr-tertiary);
     text-align: center;
@@ -23,85 +23,48 @@
 
   .results {
     .hashtag {
-      width: 100%;
-      padding: 11px 15px;
+      padding: 0.8em 1em;
       display: grid;
-      grid-template-columns: 53px 1fr;
+      grid-template-columns: auto 1fr;
       align-items: center;
-      gap: 11px;
+      gap: 0.8em;
       cursor: pointer;
-      transition: background-color 0.2s ease-in-out;
-
-      &:hover {
-        background-color: var(--clr-tweet-hover);
-      }
-
-      &:focus-visible {
-        outline: 2px solid var(--clr-primary);
-        background-color: var(--clr-tweet-hover);
-      }
 
       .icon {
-        height: 53px;
-        width: 53px;
+        padding: 0.6em;
         display: grid;
         place-items: center;
 
         svg {
+          height: var(--fs-h2);
+          width: var(--fs-h2);
           fill: var(--clr-secondary);
-          height: 27px;
-          width: 27px;
         }
       }
 
       .text {
         color: var(--clr-secondary);
         font-size: var(--fs-milli);
-        font-weight: 600;
+        font-weight: var(--fw-700);
       }
     }
 
     .people {
-      .option {
-        .person {
-          width: 100%;
-          padding: 0.8em 1em;
-          display: grid;
-          grid-template-columns: auto 1fr;
-          gap: 0.5em;
-          transition: background-color 0.2s ease-in-out;
-          cursor: pointer;
-
-          &:hover {
-            background-color: var(--clr-tweet-hover);
-          }
-
-          &:focus-visible {
-            outline: 2px solid var(--clr-primary);
-            background-color: var(--clr-tweet-hover);
-          }
-        }
+      .person {
+        padding: 0.8em 1em;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 0.8em;
+        cursor: pointer;
       }
     }
 
-    .option {
-      .link {
-        width: 100%;
-        padding: 15px;
-        font-size: var(--fs-milli);
-        color: var(--clr-secondary);
-        cursor: pointer;
-        transition: background-color 0.2s ease-in-out;
-
-        &:hover {
-          background-color: var(--clr-tweet-hover);
-        }
-
-        &:focus-visible {
-          outline: 2px solid var(--clr-primary);
-          background-color: var(--clr-tweet-hover);
-        }
-      }
+    .link {
+      padding: 1em;
+      font-size: var(--fs-milli);
+      font-weight: var(--fw-400);
+      color: var(--clr-secondary);
+      cursor: pointer;
     }
   }
 
@@ -110,8 +73,8 @@
     left: 0;
     right: 0;
     top: 110%;
-    border-radius: 1rem;
-    box-shadow: 0 0rem 10px -2px var(--clr-tertiary);
+    border-radius: 0.5rem;
+    box-shadow: 0 0rem 10px -5px var(--clr-tertiary);
     height: fit-content;
     min-height: 100px;
     max-height: min(800px, calc(100vh - 100px));
@@ -120,14 +83,17 @@
 
 .option {
   cursor: pointer;
+  transition: background-color 0.1s ease-in;
 
   &:hover {
     background-color: var(--clr-tweet-hover);
   }
 }
 
+.option {
+  display: grid;
+}
+
 .selected {
   background-color: var(--clr-tweet-hover);
-  outline: 2px solid var(--clr-primary);
-  outline-offset: -2px;
 }
