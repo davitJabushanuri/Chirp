@@ -23,14 +23,17 @@ export const Search = () => {
       : "",
   );
 
-  console.log(searchParams.get("query"));
+  const handleSearch = (path: string) => {
+    router.push(path);
+    closeResultsModal();
 
-  const deleteQuery = (path: string) => {
     if (path !== "search") {
       setQuery("");
     }
-    closeResultsModal();
-    router.push(path);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(e.target.value);
   };
 
   const isResultsModalOpen = useSearchStore(
@@ -41,19 +44,17 @@ export const Search = () => {
 
   const debounceValue = useDebounce(query, 500);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(e.target.value);
-  };
-
   return (
     <form
-      id="search-container"
+      id="search-form"
+      action="#"
       className={styles.container}
       aria-label="Search"
       role="search"
       onSubmit={(e) => {
         e.preventDefault();
-        deleteQuery(`/search?query=${query}`);
+        if (!query) return;
+        handleSearch(`/search?query=${query}`);
       }}
     >
       <label htmlFor="search">
@@ -101,7 +102,10 @@ export const Search = () => {
       </label>
       <AnimatePresence>
         {isResultsModalOpen && (
-          <SearchResultsModal query={debounceValue} deleteQuery={deleteQuery} />
+          <SearchResultsModal
+            query={debounceValue}
+            handleSearch={handleSearch}
+          />
         )}
       </AnimatePresence>
     </form>

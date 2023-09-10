@@ -14,10 +14,10 @@ import styles from "./styles/search-results-modal.module.scss";
 
 export const SearchResultsModal = ({
   query,
-  deleteQuery,
+  handleSearch,
 }: {
   query: string;
-  deleteQuery: (path: string) => void;
+  handleSearch: (path: string) => void;
 }) => {
   const closeResultsModal = useSearchStore((state) => state.closeResultsModal);
   const options: HTMLOptionElement[] = Array.from(
@@ -49,14 +49,15 @@ export const SearchResultsModal = ({
       }
 
       if (e.key === "Enter") {
-        if (!query) return;
-        else if (!currentIndex) {
-          deleteQuery(`/search?query=${query}`);
+        if (!query) {
+          return;
+        } else if (currentIndex === null) {
+          handleSearch(`/search?query=${query}`);
         } else {
           e.preventDefault();
           const href = options[currentIndex]?.getAttribute("data-href");
           if (href) {
-            deleteQuery(href);
+            handleSearch(href);
           }
         }
       }
@@ -115,7 +116,7 @@ export const SearchResultsModal = ({
           <SearchResult
             href={`/search?query=${query}`}
             selected={currentIndex === 0}
-            deleteQuery={deleteQuery}
+            handleSearch={handleSearch}
           >
             <span className={styles.link}>Search for &quot;{query}&quot;</span>
           </SearchResult>
@@ -130,7 +131,7 @@ export const SearchResultsModal = ({
                     key={hashtag?.id}
                     href={`/search?query=${hashtag?.text}`}
                     selected={currentIndex === index + 1}
-                    deleteQuery={deleteQuery}
+                    handleSearch={handleSearch}
                   >
                     <span className={styles.hashtag}>
                       <span className={styles.icon}>
@@ -153,7 +154,7 @@ export const SearchResultsModal = ({
                       currentIndex === index + 1 + (data?.hashtags?.length ?? 0)
                     }
                     href={`/${person?.id}`}
-                    deleteQuery={deleteQuery}
+                    handleSearch={handleSearch}
                   >
                     <span className={styles.person}>
                       <Avatar userImage={person?.profile_image_url} />
@@ -180,7 +181,7 @@ export const SearchResultsModal = ({
           <SearchResult
             href={`/${query}`}
             selected={currentIndex === options.length - 1}
-            deleteQuery={deleteQuery}
+            handleSearch={handleSearch}
           >
             <span className={styles.link}>Go to @{query}</span>
           </SearchResult>
@@ -194,12 +195,12 @@ const SearchResult = ({
   children,
   selected,
   href,
-  deleteQuery,
+  handleSearch,
 }: {
   children: React.ReactNode;
   selected: boolean;
   href: string;
-  deleteQuery: (path: string) => void;
+  handleSearch: (path: string) => void;
 }) => {
   return (
     <div
@@ -213,7 +214,7 @@ const SearchResult = ({
       <button
         onClick={(e) => {
           e.preventDefault();
-          deleteQuery(href);
+          handleSearch(href);
         }}
       >
         {children}
