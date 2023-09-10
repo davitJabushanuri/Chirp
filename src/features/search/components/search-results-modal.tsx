@@ -29,8 +29,6 @@ export const SearchResultsModal = ({
 
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
-      console.log("keydown");
-
       if (e.key === "Escape" || e.key === "Tab") {
         closeResultsModal();
       }

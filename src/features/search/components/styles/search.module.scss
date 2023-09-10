@@ -12,7 +12,7 @@
     color: var(--clr-secondary);
     font-size: var(--fs-milli);
     border-radius: 100vmax;
-    padding: 0.7em;
+    padding: 0.2em 0.7em;
     cursor: text;
 
     &:focus-within {
@@ -66,6 +66,10 @@
 
     .visible {
       visibility: visible;
+    }
+
+    @include mq("small") {
+      padding: 0.7em;
     }
   }
 }

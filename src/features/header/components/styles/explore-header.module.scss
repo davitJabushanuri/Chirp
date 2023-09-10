@@ -8,16 +8,8 @@
   gap: 1rem;
   padding-inline: 1em;
 
-  label {
-    height: 26px;
-  }
-
   @include mq("small") {
     grid-template-columns: 1fr auto;
-
-    label {
-      height: 100%;
-    }
   }
 }
 
