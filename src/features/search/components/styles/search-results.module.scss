@@ -6,13 +6,13 @@
     border-bottom: 1px solid var(--clr-border);
 
     h1 {
-      padding: 11px 15px;
+      padding: 0.8rem 1rem;
       font-size: var(--fs-h2);
       font-weight: var(--fw-700);
     }
 
     .viewAll {
-      padding: 15px;
+      padding: 1em;
       width: 100%;
       text-align: left;
       border: none;
@@ -24,6 +24,11 @@
 
       &:hover {
         background-color: var(--clr-tweet-hover);
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--clr-primary-disabled);
+        outline-offset: -2px;
       }
     }
   }
