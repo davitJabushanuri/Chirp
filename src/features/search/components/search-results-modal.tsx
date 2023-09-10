@@ -29,11 +29,30 @@ export const SearchResultsModal = ({
 
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
+      console.log("keydown");
+
       if (e.key === "Escape" || e.key === "Tab") {
         closeResultsModal();
       }
 
       if (e.key === "ArrowDown") {
+        const option =
+          options[
+            currentIndex === null || currentIndex === options.length - 1
+              ? 0
+              : currentIndex + 1
+          ];
+
+        if (currentIndex !== null) {
+          if (option) {
+            option.scrollIntoView({
+              block: "nearest",
+              inline: "nearest",
+              behavior: "smooth",
+            });
+          }
+        }
+
         e.preventDefault();
         setCurrentIndex((prev) => {
           if (prev === null) return 0;
@@ -42,6 +61,23 @@ export const SearchResultsModal = ({
       }
 
       if (e.key === "ArrowUp") {
+        const option =
+          options[
+            currentIndex === null || currentIndex === 0
+              ? options.length - 1
+              : currentIndex - 1
+          ];
+
+        if (currentIndex !== null) {
+          if (option) {
+            option.scrollIntoView({
+              block: "nearest",
+              inline: "nearest",
+              behavior: "smooth",
+            });
+          }
+        }
+
         e.preventDefault();
         setCurrentIndex((prev) => {
           return !prev ? options.length - 1 : prev - 1;
@@ -62,13 +98,14 @@ export const SearchResultsModal = ({
         }
       }
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [currentIndex],
   );
 
   const handleClick = useCallback(
     (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      const container = document.getElementById("search-container");
+      const container = document.getElementById("search-form");
 
       if (container && !container.contains(target)) {
         closeResultsModal();
