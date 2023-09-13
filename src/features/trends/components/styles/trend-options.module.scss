@@ -1,0 +1,46 @@
+@use "abstracts/tooltips" as *;
+
+.container {
+  position: relative;
+
+  .optionsButton {
+    width: 33.5px;
+    height: 33.5px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    @include tooltip(bottom, 2px);
+
+    &:hover {
+      background-color: var(--clr-options-hover);
+
+      svg {
+        fill: var(--clr-primary);
+      }
+    }
+
+    &:active {
+      background-color: var(--clr-options-active);
+
+      svg {
+        fill: var(--clr-primary);
+      }
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--clr-primary-disabled);
+      background-color: var(--clr-options-hover);
+      outline-offset: -2px;
+
+      svg {
+        fill: var(--clr-primary);
+      }
+    }
+
+    svg {
+      width: 17.5px;
+      height: 17.5px;
+      fill: var(--clr-tertiary);
+    }
+  }
+}
