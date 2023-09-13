@@ -151,7 +151,11 @@ export const Modal = ({
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       onClick={(e) => {
+        e.stopPropagation();
         if (e.currentTarget === e.target && closeOnBackdropClick) onClose();
+      }}
+      onKeyDown={(e) => {
+        e.stopPropagation();
       }}
       ref={modalRef}
       className={`${styles.container}`}
