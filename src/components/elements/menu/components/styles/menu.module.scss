@@ -1,0 +1,43 @@
+@use "./abstracts/media-query" as *;
+
+.container {
+  border-radius: 1rem 1rem 0 0;
+  background-color: var(--clr-background);
+  width: 100%;
+  display: grid;
+  overflow: hidden;
+  box-shadow: 0 0 0 100000px var(--clr-modal-background);
+
+  .cancel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.7rem 1rem;
+    margin: 0.6rem 1rem;
+    border-radius: 100vmax;
+    font-size: var(--fs-milli);
+    font-weight: var(--fw-700);
+    background-color: var(--clr-background);
+    border: 1px solid var(--clr-border);
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--clr-nav-hover);
+    }
+
+    &:active {
+      background-color: var(--clr-nav-active);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--clr-secondary);
+    }
+  }
+
+  @include mq("small") {
+    width: max-content;
+    height: max-content;
+    border-radius: 0.8rem;
+    box-shadow: 0 0 10px -2px var(--clr-border);
+  }
+}
