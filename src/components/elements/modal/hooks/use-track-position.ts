@@ -44,12 +44,5 @@ export const useTrackPosition = ({
     setButtonBoundaries,
   ]);
 
-  const style: React.CSSProperties = {
-    position: "fixed",
-    top: buttonBoundaries?.top,
-    left: buttonBoundaries?.left,
-    transform: `translateX(calc(-${100}% + ${buttonBoundaries?.width}px))`,
-  };
-
-  return style;
+  return buttonBoundaries;
 };

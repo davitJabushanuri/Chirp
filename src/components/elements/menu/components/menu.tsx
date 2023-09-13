@@ -1,4 +1,3 @@
-/* eslint-disable react/display-name */
 import { motion } from "framer-motion";
 import { forwardRef } from "react";
 
@@ -16,10 +15,17 @@ export const Menu = forwardRef<
 >(({ children, onClose, trackScroll = false }, ref) => {
   const innerWidth = window.innerWidth;
 
-  const style = useTrackPosition({
+  const buttonBoundaries = useTrackPosition({
     buttonRef: ref as React.RefObject<HTMLButtonElement>,
     trackScroll,
   });
+
+  const style: React.CSSProperties = {
+    position: "fixed",
+    top: buttonBoundaries?.top,
+    left: buttonBoundaries?.left,
+    transform: `translateX(calc(-${100}% + ${buttonBoundaries?.width}px))`,
+  };
 
   const modalStyle: React.CSSProperties = {
     ...(innerWidth < 500
@@ -55,3 +61,5 @@ export const Menu = forwardRef<
     </motion.div>
   );
 });
+
+Menu.displayName = "Menu";

@@ -1,7 +1,7 @@
 "use client";
 import { AnimatePresence } from "framer-motion";
 import { useSession } from "next-auth/react";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 import { DotIcon } from "@/assets/dot-icon";
 import { EllipsisWrapper } from "@/components/elements/ellipsis-wrapper";
@@ -16,41 +16,8 @@ export const SessionOwnerButton = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
-  const [buttonBoundaries, setButtonBoundaries] = useState<DOMRect | null>(
-    buttonRef.current?.getBoundingClientRect() ?? null,
-  );
-
   const openModal = () => {
     setIsModalOpen(true);
-  };
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (buttonRef.current) {
-        setButtonBoundaries(buttonRef.current.getBoundingClientRect());
-      }
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [buttonRef]);
-
-  useEffect(() => {
-    setButtonBoundaries(buttonRef.current?.getBoundingClientRect() ?? null);
-  }, []);
-
-  const style: React.CSSProperties = {
-    position: "fixed",
-    top: buttonBoundaries?.top
-      ? buttonBoundaries?.top - buttonBoundaries?.height - 50
-      : "50%",
-    left: buttonBoundaries?.left ? buttonBoundaries?.left : "50%",
-    transform: buttonBoundaries?.top
-      ? "translate(0, 0)"
-      : "translate(-50%, -50%)",
   };
 
   return (
@@ -91,7 +58,7 @@ export const SessionOwnerButton = () => {
             minViewportWidth={500}
           >
             <SessionOwnerModal
-              style={style}
+              ref={buttonRef}
               onClose={() => setIsModalOpen(false)}
             />
           </Modal>
