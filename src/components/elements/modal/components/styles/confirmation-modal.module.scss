@@ -12,6 +12,18 @@
   padding: 2em;
   border-radius: 1rem;
 
+  .logo {
+    display: grid;
+    place-items: center;
+    margin-bottom: 1em;
+
+    svg {
+      width: var(--fs-kilo);
+      height: var(--fs-kilo);
+      fill: var(--clr-primary);
+    }
+  }
+
   h1 {
     font-size: var(--fs-h2);
     font-weight: var(--fw-700);
@@ -71,6 +83,24 @@
 
       &:focus-visible {
         outline: 2px solid var(--clr-secondary);
+      }
+    }
+
+    .signout {
+      background-color: var(--clr-secondary);
+      color: var(--clr-background);
+
+      &:hover {
+        background-color: var(--clr-signout-logout-hover);
+      }
+
+      &:active {
+        background-color: var(--clr-signout-logout-active);
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--clr-secondary);
+        background-color: var(--clr-signout-logout-hover);
       }
     }
 

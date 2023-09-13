@@ -10,6 +10,7 @@ export const ConfirmationModal = ({
   confirmButtonStyle = "delete",
   cancelButtonText,
   cancelButtonClick,
+  logo,
 }: {
   heading: string;
   paragraph: string;
@@ -18,6 +19,7 @@ export const ConfirmationModal = ({
   confirmButtonStyle: "delete" | "unfollow" | "logout";
   cancelButtonText: string;
   cancelButtonClick: () => void;
+  logo?: React.ReactNode;
 }) => {
   return (
     <motion.div
@@ -27,6 +29,7 @@ export const ConfirmationModal = ({
       transition={{ duration: 0.2 }}
       className={styles.container}
     >
+      {logo && <div className={styles.logo}>{logo}</div>}
       <h1>{heading}</h1>
       <p>{paragraph}</p>
 
