@@ -1,10 +1,11 @@
 "use client";
-
+import { AnimatePresence } from "framer-motion";
 import { useSession } from "next-auth/react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 import { RetweetIcon } from "@/assets/retweet-icon";
-import { Action, ActionsModal } from "@/components/elements/actions-modal";
+import { Menu, MenuItem } from "@/components/elements/menu";
+import { Modal } from "@/components/elements/modal";
 import { useJoinTwitter } from "@/features/auth";
 import { useCreateTweetModal } from "@/stores/use-create-tweet-modal";
 
@@ -29,45 +30,14 @@ export const RetweetButton = ({
   const setData = useCreateTweetModal((state) => state.setData);
   const setJoinTwitterData = useJoinTwitter((state) => state.setData);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   const retweetMutation = useRetweet(setIsModalOpen);
 
   return (
     <div className={styles.container}>
-      {isModalOpen && (
-        <ActionsModal setIsModalOpen={setIsModalOpen}>
-          <button
-            onClick={() => {
-              retweetMutation.mutate({
-                tweetId: tweet?.id,
-                userId: session?.user?.id,
-              });
-            }}
-          >
-            <Action
-              icon={<RetweetIcon />}
-              text={hasRetweeted ? `Undo retweet` : `Retweet`}
-            />
-          </button>
-
-          <button
-            onClick={() => {
-              setData({
-                in_reply_to_screen_name: null,
-                in_reply_to_status_id: null,
-                parent_tweet: null,
-                quoted_tweet: tweet,
-                placeholder: "Add a comment!",
-              });
-              setIsModalOpen(false);
-            }}
-          >
-            <Action icon={<QuoteTweetIcon />} text={`Quote Tweet`} />
-          </button>
-        </ActionsModal>
-      )}
-
       <button
+        ref={buttonRef}
         aria-expanded={isModalOpen}
         aria-haspopup="menu"
         aria-label={hasRetweeted ? "Undo retweet" : "Retweet"}
@@ -95,6 +65,49 @@ export const RetweetButton = ({
           <span className={styles.stats}>{tweet?.retweets?.length}</span>
         )}
       </button>
+
+      <AnimatePresence>
+        {isModalOpen && (
+          <Modal
+            background="none"
+            onClose={() => {
+              setIsModalOpen(false);
+            }}
+          >
+            <Menu
+              onClose={() => setIsModalOpen(false)}
+              ref={buttonRef}
+              trackScroll={true}
+            >
+              <MenuItem
+                onClick={() => {
+                  retweetMutation.mutate({
+                    tweetId: tweet?.id,
+                    userId: session?.user?.id,
+                  });
+                }}
+              >
+                <RetweetIcon /> {hasRetweeted ? `Undo retweet` : `Retweet`}
+              </MenuItem>
+
+              <MenuItem
+                onClick={() => {
+                  setData({
+                    in_reply_to_screen_name: null,
+                    in_reply_to_status_id: null,
+                    parent_tweet: null,
+                    quoted_tweet: tweet,
+                    placeholder: "Add a comment!",
+                  });
+                  setIsModalOpen(false);
+                }}
+              >
+                <QuoteTweetIcon /> Quote Tweet
+              </MenuItem>
+            </Menu>
+          </Modal>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

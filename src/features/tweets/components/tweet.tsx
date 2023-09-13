@@ -14,11 +14,11 @@ import {
 
 import { ITweet } from "../types";
 
+import { TweetOptions } from "./options/tweet-options";
 import { QuotedTweet } from "./quoted-tweet";
 import styles from "./styles/tweet.module.scss";
 import { TweetActions } from "./tweet-actions";
 import { TweetMedia } from "./tweet-media";
-import { TweetOptions } from "./tweet-options";
 
 export const Tweet = ({
   tweet,
