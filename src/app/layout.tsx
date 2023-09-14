@@ -9,7 +9,6 @@ import { AuthModalTrigger, JoinTwitterModal } from "@/features/auth";
 import { MobileTweetButton } from "@/features/create-tweet";
 import { HamburgerMenu, MobileNavbar } from "@/features/navbar";
 import { Sidebar } from "@/features/sidebar";
-import { InspectTweetImageModal } from "@/features/tweets";
 import NextAuthProvider from "@/utils/next-auth-provider";
 import ReactQueryWrapper from "@/utils/react-query";
 
@@ -60,7 +59,6 @@ export default async function RootLayout({
               <HamburgerMenu />
               <AuthModalTrigger />
               <JoinTwitterModal />
-              <InspectTweetImageModal />
             </div>
           </ReactQueryWrapper>
         </NextAuthProvider>

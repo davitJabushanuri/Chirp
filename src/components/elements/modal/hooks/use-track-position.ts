@@ -1,3 +1,4 @@
+"use client";
 import { useState, useLayoutEffect } from "react";
 
 export const useTrackPosition = ({

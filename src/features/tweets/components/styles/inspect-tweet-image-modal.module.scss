@@ -1,7 +1,5 @@
-@use './abstracts/media-query' as *;
-$modal: var(--clr-modal);
-
-
+@use "./abstracts/media-query" as *;
+@use "./abstracts/tooltips" as *;
 
 .container {
   position: fixed;
@@ -10,37 +8,30 @@ $modal: var(--clr-modal);
   width: 100%;
   height: 100%;
   background-color: var(--clr-modal);
-  z-index: 99;
   display: flex;
 
   .loading,
   .error {
+    position: relative;
     width: 100%;
     height: 100vh;
     height: 100dvh;
     display: grid;
     place-items: center;
-  }
-
-
-  .images {
-    width: 100%;
-    position: relative;
-    display: grid;
-    grid-template-rows: 1fr 46px;
 
     .close {
+      @include tooltip(bottom, 2px);
       position: absolute;
       top: 1rem;
       left: 1rem;
-      width: 2rem;
-      height: 2rem;
       cursor: pointer;
-      display: flex;
-      align-items: center;
+      padding: 0.5em;
       justify-content: center;
-      border-radius: 50%;
+      border-radius: 100vmax;
       background-color: var(--clr-modal);
+      transition: background-color 0.2s ease-in-out;
+      display: grid;
+      place-items: center;
 
       &:hover {
         background-color: var(--clr-modal-hover);
@@ -50,46 +41,95 @@ $modal: var(--clr-modal);
         background-color: var(--clr-modal-active);
       }
 
+      &:focus-visible {
+        outline: 2px solid var(--clr-secondary);
+        background-color: var(--clr-modal-hover);
+      }
+
       svg {
-        width: 19px;
-        height: 19px;
-        fill: var(--clr-light);
+        width: var(--fs-h2);
+        height: var(--fs-h2);
+        fill: var(--clr-secondary);
+      }
+    }
+  }
+
+  .images {
+    width: 100%;
+    position: relative;
+    display: grid;
+    grid-template-rows: 1fr 46px;
+
+    .close {
+      @include tooltip(bottom, 2px);
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      cursor: pointer;
+      padding: 0.5em;
+      justify-content: center;
+      border-radius: 100vmax;
+      background-color: var(--clr-modal);
+      transition: background-color 0.2s ease-in-out;
+      display: grid;
+      place-items: center;
+
+      &:hover {
+        background-color: var(--clr-modal-hover);
+      }
+
+      &:active {
+        background-color: var(--clr-modal-active);
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--clr-secondary);
+        background-color: var(--clr-modal-hover);
+      }
+
+      svg {
+        width: var(--fs-h2);
+        height: var(--fs-h2);
+        fill: var(--clr-secondary);
       }
     }
 
-    .toggleTweetDetails {
+    .toggleDetails {
       position: absolute;
       top: 1rem;
       right: 1rem;
+      cursor: pointer;
+      padding: 0.5em;
+      justify-content: center;
+      border-radius: 100vmax;
+      background-color: var(--clr-modal);
+      transition: background-color 0.2s ease-in-out;
       display: none;
 
-      button {
-        width: 2rem;
-        height: 2rem;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        background-color: var(--clr-modal);
-
-        &:hover {
-          background-color: var(--clr-modal-hover);
-        }
-
-        &:active {
-          background-color: var(--clr-modal-active);
-        }
-
-        svg {
-          width: 19px;
-          height: 19px;
-          fill: var(--clr-secondary);
-        }
+      &:hover {
+        background-color: var(--clr-modal-hover);
       }
 
-      @include mq('medium') {
-        display: block;
+      &:active {
+        background-color: var(--clr-modal-active);
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--clr-secondary);
+        background-color: var(--clr-modal-hover);
+      }
+
+      svg {
+        width: var(--fs-h2);
+        height: var(--fs-h2);
+        fill: var(--clr-secondary);
+      }
+
+      @include mq("medium") {
+        @include tooltip(bottom, 2px);
+        position: absolute;
+        display: grid;
+        place-items: center;
       }
     }
 
@@ -100,6 +140,7 @@ $modal: var(--clr-modal);
     }
 
     .tweetActions {
+      padding-inline: 1rem;
       svg {
         fill: var(--clr-light);
       }
@@ -121,7 +162,8 @@ $modal: var(--clr-modal);
 
   .tweetDetails {
     background-color: var(--clr-background);
-    min-width: 350px;
+    width: 100%;
+    max-width: 350px;
     overflow-y: auto;
     display: none;
 
@@ -147,7 +189,7 @@ $modal: var(--clr-modal);
       border-bottom: 1px solid var(--clr-border);
     }
 
-    @include mq('medium') {
+    @include mq("medium") {
       display: block;
     }
 
@@ -161,7 +203,7 @@ $modal: var(--clr-modal);
     }
   }
 
-  @include mq('medium') {
-    background-color: var(--clr-modal-opacity)
+  @include mq("medium") {
+    background-color: var(--clr-modal-opacity);
   }
 }

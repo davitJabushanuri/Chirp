@@ -108,9 +108,7 @@ export const Tweet = ({
               </div>
             )}
             {tweet?.media?.length > 0 && (
-              <div className={styles.media}>
-                <TweetMedia media={tweet?.media} tweetId={tweet?.id} />
-              </div>
+              <TweetMedia media={tweet?.media} tweetId={tweet?.id} />
             )}
             {tweet?.quoted_tweet && (
               <div className={styles.quotedTweet}>

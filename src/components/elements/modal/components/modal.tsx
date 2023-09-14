@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+"use client";
 import { motion } from "framer-motion";
 import React, { useCallback, useLayoutEffect, useRef } from "react";
 import { createPortal } from "react-dom";

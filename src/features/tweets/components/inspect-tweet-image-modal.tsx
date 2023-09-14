@@ -1,12 +1,13 @@
-"use client";
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
+"use client";
+import { AnimatePresence, motion } from "framer-motion";
+import { useState } from "react";
+
 import { CloseIcon } from "@/assets/close-icon";
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
 import { CreateTweetWrapper } from "@/features/create-tweet";
-import { useDisableBodyScroll } from "@/hooks";
-import { useInspectTweetImage } from "@/stores/use-inspect-tweet-images";
 
 import { ShowArrowsIcon, HideArrowsIcon } from "../assets/double-arrows-icon";
 import { useTweet } from "../hooks/use-tweet";
@@ -19,26 +20,16 @@ import { TweetAuthor } from "./tweet-author";
 import { TweetCreationDate } from "./tweet-creation-date";
 import { TweetStatistics } from "./tweet-statistics";
 
-export const InspectTweetImageModal = () => {
-  const isTweetImageModalOpen = useInspectTweetImage(
-    (state) => state.isTweetImageModalOpen,
-  );
-
-  const closeTweetImageModal = useInspectTweetImage(
-    (state) => state.closeTweetImageModal,
-  );
-
-  const isTweetDetailsOpen = useInspectTweetImage(
-    (state) => state.isTweetDetailsOpen,
-  );
-  const showTweetDetails = useInspectTweetImage(
-    (state) => state.showTweetDetails,
-  );
-  const hideTweetDetails = useInspectTweetImage(
-    (state) => state.hideTweetDetails,
-  );
-
-  const tweetId = useInspectTweetImage((state) => state.tweetId);
+export const InspectTweetImageModal = ({
+  tweetId,
+  imageIndex,
+  onClose,
+}: {
+  tweetId: string;
+  imageIndex: number;
+  onClose: () => void;
+}) => {
+  const [isDetailsOpen, setIsDetailsOpen] = useState(true);
 
   const {
     data: tweet,
@@ -48,103 +39,150 @@ export const InspectTweetImageModal = () => {
     id: tweetId,
   });
 
-  useDisableBodyScroll();
-
-  if (!isTweetImageModalOpen) return null;
-
   return (
-    <div className={styles.container}>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{
+        duration: 0.2,
+      }}
+      className={styles.container}
+    >
       {isLoading ? (
-        <div className={styles.loading}>
+        <div
+          onClick={(e) => {
+            e.stopPropagation();
+            onClose();
+          }}
+          className={styles.loading}
+        >
+          <button
+            aria-label="Close"
+            data-title="Close"
+            onClick={(e) => {
+              e.stopPropagation();
+              onClose();
+            }}
+            className={styles.close}
+          >
+            <CloseIcon />
+          </button>
           <LoadingSpinner />
         </div>
       ) : isError ? (
-        <div className={styles.error}>
+        <div
+          onClick={(e) => {
+            e.stopPropagation();
+            onClose();
+          }}
+          className={styles.error}
+        >
+          <button
+            aria-label="Close"
+            data-title="Close"
+            onClick={(e) => {
+              e.stopPropagation();
+              onClose();
+            }}
+            className={styles.close}
+          >
+            <CloseIcon />
+          </button>
           <TryAgain />
         </div>
       ) : (
         <>
-          <div onClick={() => closeTweetImageModal()} className={styles.images}>
+          <div
+            onClick={(e) => {
+              e.stopPropagation();
+              onClose();
+            }}
+            className={styles.images}
+          >
             <button
+              aria-label="Close"
+              data-title="Close"
               onClick={(e) => {
                 e.stopPropagation();
-                closeTweetImageModal();
+                onClose();
               }}
               className={styles.close}
             >
               <CloseIcon />
             </button>
 
-            <div className={styles.toggleTweetDetails}>
-              {isTweetDetailsOpen ? (
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    hideTweetDetails();
-                  }}
-                >
-                  <ShowArrowsIcon />
-                </button>
-              ) : (
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    showTweetDetails();
-                  }}
-                >
-                  <HideArrowsIcon />
-                </button>
-              )}
-            </div>
+            <button
+              className={styles.toggleDetails}
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsDetailsOpen((prev) => !prev);
+              }}
+              aria-label={
+                isDetailsOpen ? "Hide tweet details" : "Show tweet details"
+              }
+              data-title={isDetailsOpen ? "Hide" : "Show"}
+            >
+              {isDetailsOpen ? <ShowArrowsIcon /> : <HideArrowsIcon />}
+            </button>
 
             <div className={styles.imagesContainer}>
-              <ImageCarousel images={tweet?.media} />
+              <ImageCarousel images={tweet?.media} imageIndex={imageIndex} />
             </div>
             <div className={styles.tweetActions}>
               <TweetActions tweet={tweet} showStats={true} />
             </div>
           </div>
-          {isTweetDetailsOpen && (
-            <div className={styles.tweetDetails}>
-              <div className={styles.tweetAuthor}>
-                <TweetAuthor tweet={tweet} />
-              </div>
-              {tweet?.text && (
-                <div className={styles.text}>
-                  {decodeURIComponent(tweet?.text)}
+
+          <AnimatePresence>
+            {isDetailsOpen && (
+              <motion.div
+                initial={{ x: 0 }}
+                animate={{ x: 0 }}
+                exit={{ x: "100%" }}
+                transition={{ duration: 0.2 }}
+                className={styles.tweetDetails}
+              >
+                <div className={styles.tweetAuthor}>
+                  <TweetAuthor tweet={tweet} />
                 </div>
-              )}
+                {tweet?.text && (
+                  <div className={styles.text}>
+                    {decodeURIComponent(tweet?.text)}
+                  </div>
+                )}
 
-              <div className={styles.tweetDate}>
-                <TweetCreationDate date={tweet?.created_at} />
-              </div>
+                <div className={styles.tweetDate}>
+                  <TweetCreationDate date={tweet?.created_at} />
+                </div>
 
-              <div className={styles.tweetStatistics}>
-                <TweetStatistics
-                  retweet_count={tweet?._count?.retweets}
-                  quote_count={tweet?._count?.quotes}
-                  likes_count={tweet?._count?.likes}
-                  bookmarks_count={tweet?._count?.bookmarks}
+                <div className={styles.tweetStatistics}>
+                  <TweetStatistics
+                    retweet_count={tweet?._count?.retweets}
+                    quote_count={tweet?._count?.quotes}
+                    likes_count={tweet?._count?.likes}
+                    bookmarks_count={tweet?._count?.bookmarks}
+                  />
+                </div>
+
+                <div className={styles.tweetActions}>
+                  <TweetActions tweet={tweet} />
+                </div>
+
+                <CreateTweetWrapper
+                  in_reply_to_screen_name={tweet?.author?.email?.split("@")[0]}
+                  in_reply_to_status_id={tweet?.id}
+                  isInspectModal={true}
                 />
-              </div>
 
-              <div className={styles.tweetActions}>
-                <TweetActions tweet={tweet} />
-              </div>
-
-              <CreateTweetWrapper
-                in_reply_to_screen_name={tweet?.author?.email?.split("@")[0]}
-                in_reply_to_status_id={tweet?.id}
-                isInspectModal={true}
-              />
-
-              <div className={styles.comments}>
-                <Comments tweetId={tweet?.id} />
-              </div>
-            </div>
-          )}
+                <div className={styles.comments}>
+                  <Comments tweetId={tweet?.id} />
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </>
       )}
-    </div>
+    </motion.div>
   );
 };
