@@ -99,12 +99,10 @@ export const CreateTweet = ({
           </div>
 
           {chosenImages && (
-            <div className={styles.chosen_images}>
-              <ChosenImages
-                chosenImages={chosenImages}
-                setChosenImages={setChosenImages}
-              />
-            </div>
+            <ChosenImages
+              chosenImages={chosenImages}
+              setChosenImages={setChosenImages}
+            />
           )}
 
           {quoted_tweet && (

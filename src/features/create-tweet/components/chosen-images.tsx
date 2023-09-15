@@ -31,6 +31,8 @@ export const ChosenImages = ({
         return (
           <div key={image.id} className={styles.imageContainer}>
             <button
+              aria-label="Remove media"
+              data-title="Remove"
               onClick={() => {
                 setChosenImages(
                   chosenImages.filter((img) => img.id !== image.id),

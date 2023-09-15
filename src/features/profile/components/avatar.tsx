@@ -10,7 +10,6 @@ export const Avatar = ({ userImage }: { userImage: string | null }) => {
         alt="profile picture"
         draggable={true}
         fill={true}
-        loading="lazy"
         sizes="var(--avatar-size)"
       />
     </div>
