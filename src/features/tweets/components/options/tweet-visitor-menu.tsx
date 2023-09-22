@@ -19,8 +19,6 @@ export const TweetVisitorMenu = ({
 }) => {
   const { data: session } = useSession();
 
-  if (!session) return null;
-
   return (
     <>
       <MenuItem
@@ -31,29 +29,35 @@ export const TweetVisitorMenu = ({
         <SadFaceIcon /> Not interested in this Tweet
       </MenuItem>
 
-      <MenuItem
-        onClick={() => {
-          setIsMenuOpen(false);
-        }}
-      >
-        <UnfollowIcon /> Unfollow @{tweet?.author?.email?.split("@")[0]}
-      </MenuItem>
+      {session && (
+        <MenuItem
+          onClick={() => {
+            setIsMenuOpen(false);
+          }}
+        >
+          <UnfollowIcon /> Unfollow @{tweet?.author?.email?.split("@")[0]}
+        </MenuItem>
+      )}
 
-      <MenuItem
-        onClick={() => {
-          setIsMenuOpen(false);
-        }}
-      >
-        <MuteIcon /> Mute @{tweet?.author?.email?.split("@")[0]}
-      </MenuItem>
+      {session && (
+        <MenuItem
+          onClick={() => {
+            setIsMenuOpen(false);
+          }}
+        >
+          <MuteIcon /> Mute @{tweet?.author?.email?.split("@")[0]}
+        </MenuItem>
+      )}
 
-      <MenuItem
-        onClick={() => {
-          setIsMenuOpen(false);
-        }}
-      >
-        <BlockIcon /> Block @{tweet?.author?.email?.split("@")[0]}
-      </MenuItem>
+      {session && (
+        <MenuItem
+          onClick={() => {
+            setIsMenuOpen(false);
+          }}
+        >
+          <BlockIcon /> Block @{tweet?.author?.email?.split("@")[0]}
+        </MenuItem>
+      )}
 
       <MenuItem
         onClick={() => {
