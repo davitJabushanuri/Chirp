@@ -11,6 +11,7 @@ export const HomeClientPage = () => {
       <Header>
         <HomeHeader />
       </Header>
+
       <div className={styles.createTweet}>
         <CreateTweet />
       </div>

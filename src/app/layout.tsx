@@ -5,13 +5,14 @@ import "react-toastify/dist/ReactToastify.css";
 
 import "./styles/layout.scss";
 import { Aside } from "@/features/aside";
-import { AuthModalTrigger, JoinTwitterModal } from "@/features/auth";
+import { AuthModalTrigger } from "@/features/auth";
 import { MobileTweetButton } from "@/features/create-tweet";
 import { HamburgerMenu, MobileNavbar } from "@/features/navbar";
 import { Sidebar } from "@/features/sidebar";
 import NextAuthProvider from "@/utils/next-auth-provider";
 import ReactQueryWrapper from "@/utils/react-query";
 
+import { JoinTwitter } from "./join-twitter";
 import styles from "./styles/toast.module.scss";
 import "./styles/layout.scss";
 
@@ -58,7 +59,7 @@ export default async function RootLayout({
 
               <HamburgerMenu />
               <AuthModalTrigger />
-              <JoinTwitterModal />
+              <JoinTwitter />
             </div>
           </ReactQueryWrapper>
         </NextAuthProvider>
