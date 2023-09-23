@@ -11,29 +11,29 @@ export const ExploreHeader = () => {
   const isResultsModalOpen = useSearchStore(
     (state) => state.isResultsModalOpen,
   );
+  const closeResultsModal = useSearchStore((state) => state.closeResultsModal);
 
   return (
     <div className={styles.container}>
-      {isResultsModalOpen ? <CloseSearchResultsModal /> : <HamburgerButton />}
+      <div className={styles.back}>
+        {isResultsModalOpen ? (
+          <CloseButton
+            onClick={() => {
+              closeResultsModal();
+            }}
+            ariaLabel="Back"
+            title="Back"
+          >
+            <BackArrowIcon />
+          </CloseButton>
+        ) : (
+          <HamburgerButton />
+        )}
+      </div>
 
       <Search />
 
       <HeaderSettings href={`/settings/explore`} ariaLabel="Settings" />
     </div>
-  );
-};
-
-const CloseSearchResultsModal = () => {
-  const closeResultsModal = useSearchStore((state) => state.closeResultsModal);
-  return (
-    <CloseButton
-      onClick={() => {
-        closeResultsModal();
-      }}
-      ariaLabel="Back"
-      title="Back"
-    >
-      <BackArrowIcon />
-    </CloseButton>
   );
 };

@@ -1,7 +1,7 @@
 @use "./abstracts/media-query" as *;
 
 .container {
-  background-color: var(--clr-background);
+  background: var(--clr-background);
   z-index: 2;
   position: sticky;
   top: 0;

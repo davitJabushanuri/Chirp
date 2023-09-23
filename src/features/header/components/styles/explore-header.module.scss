@@ -10,5 +10,9 @@
 
   @include mq("small") {
     grid-template-columns: 1fr auto;
+
+    .back {
+      display: none;
+    }
   }
 }

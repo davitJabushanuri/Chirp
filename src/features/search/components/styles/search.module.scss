@@ -7,6 +7,7 @@
     display: grid;
     align-items: center;
     grid-template-columns: auto 1fr auto;
+    align-items: center;
     gap: 1rem;
     background-color: var(--clr-search-background);
     color: var(--clr-secondary);
@@ -32,6 +33,7 @@
     }
 
     input {
+      width: 100%;
       &::placeholder {
         color: var(--clr-tertiary);
       }
