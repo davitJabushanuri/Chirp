@@ -4,7 +4,8 @@
 "use client";
 import Image from "next/image";
 
-import { CloseButton } from "@/components/designs/close-button";
+import { CloseIcon } from "@/assets/close-icon";
+import { CloseButton } from "@/components/elements/close-button";
 import { useDisableBodyScroll } from "@/hooks";
 import { useInspectImage } from "@/stores/use-inspect-profile-image";
 
@@ -19,9 +20,15 @@ export const InspectImageModal = () => {
 
   return (
     <div onClick={() => closeInspectModal()} className={styles.container}>
-      <button className={styles.close}>
-        <CloseButton />
-      </button>
+      <div className={styles.close}>
+        <CloseButton
+          onClick={() => closeInspectModal()}
+          ariaLabel="Close"
+          title="Close"
+        >
+          <CloseIcon />
+        </CloseButton>
+      </div>
       <div className={sourceType === "banner" ? styles.banner : styles.avatar}>
         {source && (
           <Image

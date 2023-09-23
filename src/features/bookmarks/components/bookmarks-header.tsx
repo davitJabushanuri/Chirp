@@ -1,9 +1,11 @@
 "use client";
 import { AnimatePresence } from "framer-motion";
+import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 
+import { BackArrowIcon } from "@/assets/back-arrow-icon";
 import { DotIcon } from "@/assets/dot-icon";
-import { BackButton } from "@/components/elements/back-button";
+import { CloseButton } from "@/components/elements/close-button";
 import { EllipsisWrapper } from "@/components/elements/ellipsis-wrapper";
 import { Menu, MenuItem } from "@/components/elements/menu";
 import { ConfirmationModal, Modal } from "@/components/elements/modal";
@@ -22,6 +24,8 @@ export const BookmarksHeader = ({
   username: string | undefined;
   userId: string | undefined;
 }) => {
+  const router = useRouter();
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
@@ -31,7 +35,15 @@ export const BookmarksHeader = ({
   return (
     <div className={styles.container}>
       <div className={styles.backButton}>
-        <BackButton />
+        <CloseButton
+          onClick={() => {
+            router.back();
+          }}
+          ariaLabel="Back"
+          title="Back"
+        >
+          <BackArrowIcon />
+        </CloseButton>
       </div>
 
       <div className={styles.user}>

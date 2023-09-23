@@ -6,7 +6,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 
-import { CloseButton } from "@/components/designs/close-button";
+import { CloseIcon } from "@/assets/close-icon";
+import { CloseButton } from "@/components/elements/close-button";
 import { Avatar, useUser } from "@/features/profile";
 import { useHamburger } from "@/stores/use-hamburger";
 
@@ -36,9 +37,13 @@ export const HamburgerMenu = () => {
       <div onClick={(e) => e.stopPropagation()} className={styles.hamburger}>
         <div className={styles.actions}>
           <h1>Account info</h1>
-          <button onClick={() => closeHamburger()}>
-            <CloseButton />
-          </button>
+          <CloseButton
+            onClick={() => closeHamburger()}
+            ariaLabel="Close"
+            title="Close"
+          >
+            <CloseIcon />
+          </CloseButton>
         </div>
 
         <div className={styles.profile}>

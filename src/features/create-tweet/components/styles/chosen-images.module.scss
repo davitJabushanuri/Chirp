@@ -1,5 +1,3 @@
-@use "./abstracts/tooltips" as *;
-
 .container {
   margin: 4px 0;
   display: grid;
@@ -16,17 +14,9 @@
     }
 
     .close {
-      @include tooltip(bottom, 2px);
       position: absolute;
       top: 0.6rem;
       right: 0.6rem;
-      background-color: var(--clr-background);
-      border-radius: 50%;
-
-      &:focus-visible {
-        outline: 2px solid var(--clr-tertiary);
-        background-color: var(--clr-trends-hover);
-      }
     }
   }
 }

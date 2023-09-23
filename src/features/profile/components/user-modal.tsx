@@ -2,82 +2,117 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 "use client";
+import { motion } from "framer-motion";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+import { forwardRef } from "react";
+import { createPortal } from "react-dom";
 
 import { FollowButton } from "@/components/elements/follow-button";
+import { LoadingSpinner } from "@/components/elements/loading-spinner";
+import { useTrackPosition } from "@/components/elements/modal";
+import { TryAgain } from "@/components/elements/try-again";
 
 import { useUser } from "../hooks/use-user";
 import { following } from "../utils/following";
 
-import { Avatar } from "./avatar";
 import styles from "./styles/user-modal.module.scss";
 
-export const UserModal = ({ userId }: { userId: string }) => {
-  const { data: session } = useSession();
-  const { data: user } = useUser({ id: userId });
+export const UserModal = forwardRef<HTMLDivElement, { userId: string }>(
+  ({ userId }, ref) => {
+    const router = useRouter();
+    const pathname = usePathname();
+    const { data: session } = useSession();
+    const { data: user, isLoading, isError } = useUser({ id: userId });
+    const buttonBoundaries = useTrackPosition({
+      buttonRef: ref as React.RefObject<HTMLButtonElement>,
+      trackScroll: true,
+    });
 
-  const router = useRouter();
-  const pathname = usePathname();
+    const isFollowing = following({
+      user,
+      session_owner_id: session?.user?.id,
+    });
 
-  if (!user) return null;
+    const style: React.CSSProperties = {
+      position: "fixed",
+      top: buttonBoundaries?.top,
+      left: buttonBoundaries?.left,
+      transform: `translate(-50%, calc(${buttonBoundaries?.height}px + 10px))`,
+    };
 
-  const isFollowing = following({
-    user,
-    session_owner_id: session?.user?.id,
-  });
+    return createPortal(
+      <motion.div
+        style={style}
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+        className={styles.container}
+      >
+        {isLoading ? (
+          <LoadingSpinner />
+        ) : isError ? (
+          <TryAgain />
+        ) : (
+          <>
+            {" "}
+            <div className={styles.hero}>
+              <div className={styles.avatar}>
+                <Image
+                  src={user?.profile_image_url || "/user_placeholder.png"}
+                  alt={user?.name}
+                  width={60}
+                  height={60}
+                />
+              </div>
 
-  return (
-    <div
-      onClick={(e) => {
-        e.stopPropagation();
-      }}
-      className={styles.container}
-    >
-      <div className={styles.userInfo}>
-        <div className={styles.userImage}>
-          <Avatar userImage={user?.profile_image_url} />
-        </div>
+              <div className={styles.follow}>
+                <FollowButton
+                  user_id={user?.id}
+                  session_owner_id={session?.user?.id}
+                  isFollowing={isFollowing}
+                  username={user?.email?.split("@")[0]}
+                />
+              </div>
+            </div>
+            <div className={styles.userDetails}>
+              <h2 className={styles.name}>{user?.name}</h2>
+              <span className={styles.username}>
+                @{user?.email?.split("@")[0]}
+              </span>
 
-        <h2 className={styles.name}>{user?.name}</h2>
-        <p className={styles.username}>@{user?.email?.split("@")[0]}</p>
-      </div>
+              {user?.description && (
+                <p className={styles.description}>{user?.description}</p>
+              )}
 
-      <div className={styles.follow}>
-        <FollowButton
-          user_id={user?.id}
-          session_owner_id={session?.user?.id}
-          isFollowing={isFollowing}
-          username={user?.email?.split("@")[0]}
-        />
-      </div>
-
-      <div className={styles.userDetails}>
-        {user?.description && (
-          <p className={styles.description}>{user?.description}</p>
+              <div className={styles.stats}>
+                <button
+                  onClick={() => router.push(`${pathname}/following`)}
+                  className={styles.stat}
+                >
+                  <span className={styles.number}>
+                    {user?.following?.length || 0}
+                  </span>
+                  <span className={styles.text}>Following</span>
+                </button>
+                <button
+                  onClick={() => router.push(`${pathname}/followers`)}
+                  className={styles.stat}
+                >
+                  <span className={styles.number}>
+                    {user?.followers?.length || 0}
+                  </span>
+                  <span className={styles.text}>Followers</span>
+                </button>
+              </div>
+            </div>
+          </>
         )}
+      </motion.div>,
+      document.body,
+    );
+  },
+);
 
-        <div className={styles.stats}>
-          <button
-            onClick={() => router.push(`${pathname}/following`)}
-            className={styles.stat}
-          >
-            <span className={styles.number}>
-              {user?.following?.length || 0}
-            </span>
-            <span className={styles.text}>Following</span>
-          </button>
-          <button
-            onClick={() => router.push(`${pathname}/followers`)}
-            className={styles.stat}
-          >
-            <span className={styles.number}>
-              {user?.followers?.length || 0}
-            </span>
-            <span className={styles.text}>Followers</span>
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-};
+UserModal.displayName = "UserModal";

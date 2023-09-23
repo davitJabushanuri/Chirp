@@ -1,6 +1,6 @@
 "use client";
-
-import { BackButton } from "@/components/designs/back-button";
+import { BackArrowIcon } from "@/assets/back-arrow-icon";
+import { CloseButton } from "@/components/elements/close-button";
 import { HamburgerButton } from "@/components/elements/hamburger-button";
 import { Search, useSearchStore } from "@/features/search";
 
@@ -26,15 +26,14 @@ export const ExploreHeader = () => {
 const CloseSearchResultsModal = () => {
   const closeResultsModal = useSearchStore((state) => state.closeResultsModal);
   return (
-    <button
-      aria-label="Back"
-      tabIndex={0}
-      className={styles.back}
+    <CloseButton
       onClick={() => {
         closeResultsModal();
       }}
+      ariaLabel="Back"
+      title="Back"
     >
-      <BackButton />
-    </button>
+      <BackArrowIcon />
+    </CloseButton>
   );
 };

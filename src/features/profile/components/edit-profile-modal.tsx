@@ -1,11 +1,11 @@
+"use client";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
 import { useRef, useState } from "react";
 
+import { BackArrowIcon } from "@/assets/back-arrow-icon";
 import { CloseIcon } from "@/assets/close-icon";
-import { BackButton } from "@/components/designs/back-button";
-import { CloseButton } from "@/components/designs/close-button";
-import { useDisableBodyScroll } from "@/hooks";
+import { CloseButton } from "@/components/elements/close-button";
 import { useEditProfile } from "@/stores/use-edit-profile";
 
 import { updateProfile } from "../api/update-profile";
@@ -15,7 +15,7 @@ import { IProfile, IUser } from "../types";
 import styles from "./styles/edit-profile-modal.module.scss";
 
 export const EditProfileModal = ({ user }: { user: IUser }) => {
-  useDisableBodyScroll();
+  const innerWidth = window.innerWidth;
 
   const closeEditProfileModal = useEditProfile(
     (state) => state.closeEditProfileModal,
@@ -81,17 +81,13 @@ export const EditProfileModal = ({ user }: { user: IUser }) => {
     <div className={styles.container}>
       <div className={styles.modal}>
         <div className={styles.header}>
-          <button
+          <CloseButton
             onClick={() => closeEditProfileModal()}
-            className={styles.close}
+            ariaLabel={innerWidth <= 700 ? "Back" : "Close"}
+            title={innerWidth <= 700 ? "Back" : "Close"}
           >
-            <span className={styles.arrow}>
-              <BackButton />
-            </span>
-            <span className={styles.x}>
-              <CloseButton />
-            </span>
-          </button>
+            {innerWidth <= 700 ? <BackArrowIcon /> : <CloseIcon />}
+          </CloseButton>
 
           <h2>Edit Profile</h2>
 

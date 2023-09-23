@@ -15,8 +15,6 @@
     position: absolute;
     top: 1rem;
     left: 1rem;
-    background-color: var(--clr-modal);
-    border-radius: 50%;
   }
 
   .banner {
@@ -39,6 +37,5 @@
     img {
       object-fit: cover;
     }
-
   }
 }

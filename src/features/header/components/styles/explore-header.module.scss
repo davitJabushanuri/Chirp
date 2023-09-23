@@ -12,24 +12,3 @@
     grid-template-columns: 1fr auto;
   }
 }
-
-.back {
-  border-radius: 100vmax;
-
-  &:hover {
-    background-color: var(--clr-trends-hover);
-  }
-
-  &:active {
-    background-color: var(--clr-trends-active);
-  }
-
-  &:focus-visible {
-    outline: 2px solid var(--clr-primary-disabled);
-    background-color: var(--clr-trends-hover);
-  }
-
-  @include mq("small") {
-    display: none;
-  }
-}

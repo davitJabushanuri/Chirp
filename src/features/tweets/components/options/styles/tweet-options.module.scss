@@ -4,6 +4,7 @@
   position: relative;
 
   .optionsButton {
+    @include tooltip(bottom, 4px);
     width: 33.5px;
     height: 33.5px;
     border-radius: 100vmax;
@@ -11,7 +12,6 @@
     fill: var(--clr-tertiary);
     display: grid;
     place-items: center;
-    @include tooltip(bottom, 4px);
 
     &:hover {
       background-color: var(--clr-options-hover);

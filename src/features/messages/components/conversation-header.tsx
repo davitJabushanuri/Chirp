@@ -1,6 +1,7 @@
 import { usePathname, useRouter } from "next/navigation";
 
 import { BackArrowIcon } from "@/assets/back-arrow-icon";
+import { CloseButton } from "@/components/elements/close-button";
 
 import { InfoIcon } from "../assets/info-icon";
 
@@ -19,6 +20,16 @@ export const ConversationHeader = () => {
       >
         <BackArrowIcon />
       </button>
+
+      <CloseButton
+        onClick={() => {
+          router.push(`/messages`);
+        }}
+        ariaLabel="Back"
+        title="Back"
+      >
+        <BackArrowIcon />
+      </CloseButton>
 
       <button
         onClick={() => router.push(`/messages/${id}/info`)}

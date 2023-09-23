@@ -1,10 +1,11 @@
 import Image from "next/image";
 import { useRef, useState } from "react";
 
+import { CloseIcon } from "@/assets/close-icon";
 import { EmojiIcon } from "@/assets/emoji-icon";
 import { GifIcon } from "@/assets/gif-icon";
 import { ImageIcon } from "@/assets/image-icon";
-import { CloseButton } from "@/components/designs/close-button";
+import { CloseButton } from "@/components/elements/close-button";
 import { IChosenImages } from "@/features/create-tweet";
 
 import { SendIcon } from "../assets/send-icon";
@@ -59,16 +60,17 @@ export const MessageInput = ({
           {chosenImages.map((image) => {
             return (
               <div key={image.id} className={styles.imageContainer}>
-                <button
+                <CloseButton
                   onClick={() => {
                     setChosenImages(
                       chosenImages.filter((img) => img.id !== image.id),
                     );
                   }}
-                  className={styles.close}
+                  ariaLabel="Remove media"
+                  title="Remove"
                 >
-                  <CloseButton />
-                </button>
+                  <CloseIcon />
+                </CloseButton>
                 <Image
                   src={image.url as string}
                   alt=""

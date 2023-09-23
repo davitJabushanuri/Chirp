@@ -1,10 +1,11 @@
+"use client";
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import { BackButton } from "@/components/designs/back-button";
-import { CloseButton } from "@/components/designs/close-button";
+import { BackArrowIcon } from "@/assets/back-arrow-icon";
+import { CloseIcon } from "@/assets/close-icon";
+import { CloseButton } from "@/components/elements/close-button";
 import { PersonDetails } from "@/features/connect";
 import { IUser } from "@/features/profile";
-import { useInspectTweetImage } from "@/stores/use-inspect-tweet-images";
 
 import styles from "./styles/tweet-statistics-modal.module.scss";
 
@@ -17,10 +18,7 @@ export const TweetStatisticsModal = ({
   title: string;
   setIsModalOpen: (value: boolean) => void;
 }) => {
-  const closeTweetImageModal = useInspectTweetImage(
-    (state) => state.closeTweetImageModal,
-  );
-
+  const innerWidth = window.innerWidth;
   return (
     <div
       onClick={() => {
@@ -30,20 +28,15 @@ export const TweetStatisticsModal = ({
     >
       <div onClick={(e) => e.stopPropagation()} className={styles.modal}>
         <header>
-          <button
+          <CloseButton
             onClick={() => {
               setIsModalOpen(false);
             }}
-            className={styles.close}
+            ariaLabel={innerWidth < 700 ? `Close` : `Back`}
+            title={innerWidth < 700 ? `Close` : `Back`}
           >
-            <span className={styles.arrow}>
-              <BackButton />
-            </span>
-
-            <span className={styles.x}>
-              <CloseButton />
-            </span>
-          </button>
+            {innerWidth < 700 ? <BackArrowIcon /> : <CloseIcon />}
+          </CloseButton>
 
           <h2 className={styles.title}>
             {title === `likes` ? `Liked By` : `Retweeted By`}
@@ -56,7 +49,6 @@ export const TweetStatisticsModal = ({
               <div
                 onClick={() => {
                   setIsModalOpen(false);
-                  closeTweetImageModal();
                 }}
                 key={author?.id}
               >
