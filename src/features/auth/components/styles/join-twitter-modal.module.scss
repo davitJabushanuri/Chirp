@@ -9,31 +9,23 @@
   margin: auto;
   background-color: var(--clr-background);
   padding-bottom: 3rem;
-  display: grid;
-  grid-template-rows: auto 1fr;
 
   .close {
     padding: 0.6em;
   }
 
-  .wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
   .icon {
     display: grid;
     place-items: center;
-    padding: 15px 0;
+    padding: 1em 0;
 
     .comment,
     .retweet,
     .like,
     .follow {
       svg {
-        width: 46px;
-        height: 46px;
+        width: calc(var(--fs-kilo) + var(--fs-base));
+        height: calc(var(--fs-kilo) + var(--fs-base));
       }
     }
 
@@ -62,73 +54,75 @@
     }
   }
 
-  .contentWrapper {
-    display: grid;
-    place-items: center;
-    padding: 30px;
+  .content {
+    margin: 2em auto;
+    width: 100%;
+    max-width: 400px;
 
-    .content {
-      width: 100%;
-      max-width: 400px;
+    .title {
+      font-size: var(--fs-h1);
+      font-weight: var(--fw-700);
+      margin-bottom: 0.5em;
+    }
 
-      .title {
-        font-size: var(--fs-h1);
-        font-weight: var(--fw-800);
-        margin-bottom: 8px;
+    .subtitle {
+      font-size: var(--fs-milli);
+      line-height: 1.5em;
+      color: var(--clr-tertiary);
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      display: grid;
+      gap: 1em;
+
+      button {
+        background-color: var(--clr-primary);
+        color: var(--clr-light);
+        font-size: var(--fs-base);
+        font-weight: var(--fw-700);
+        display: grid;
+        place-items: center;
+        padding: 1em 0;
+        border-radius: 100vmax;
+        cursor: pointer;
+        transition: background-color 0.2s ease-in-out;
       }
 
-      .subtitle {
-        font-size: var(--fs-micro);
-        font-weight: 400;
-        letter-spacing: 0.5px;
-        color: var(--clr-tertiary);
-        margin-bottom: 30px;
+      .signin {
+        background-color: var(--clr-primary);
+        border: 1px solid transparent;
+
+        &:hover {
+          background-color: var(--clr-primary-hover);
+        }
+
+        &:active {
+          background-color: var(--clr-primary-active);
+        }
+
+        &:focus-visible {
+          outline: 2px solid var(--clr-primary);
+          background-color: var(--clr-primary-hover);
+        }
       }
 
-      .buttons {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
+      .signup {
+        background-color: var(--clr-background);
+        border: 1px solid var(--clr-border);
+        color: var(--clr-primary);
 
-        button {
-          width: 100%;
-          background-color: var(--clr-primary);
-          color: var(--clr-light);
-          font-size: var(--fs-base);
-          font-weight: 700;
-          display: grid;
-          place-items: center;
-          padding: 14px 0;
-          border-radius: 100vmax;
-          cursor: pointer;
-          transition: background-color 0.2s ease-in-out;
+        &:hover {
+          background-color: var(--clr-background-hover);
         }
 
-        .signin {
-          background-color: var(--clr-primary);
-          border: 1px solid transparent;
-
-          &:hover {
-            background-color: var(--clr-primary-hover);
-          }
-
-          &:active {
-            background-color: var(--clr-primary-active);
-          }
+        &:active {
+          background-color: var(--clr-background-active);
         }
 
-        .signup {
-          background-color: var(--clr-background);
-          border: 1px solid var(--clr-border);
-          color: var(--clr-primary);
-
-          &:hover {
-            background-color: var(--clr-background-hover);
-          }
-
-          &:active {
-            background-color: var(--clr-background-active);
-          }
+        &:focus-visible {
+          outline: 2px solid var(--clr-primary);
+          background-color: var(--clr-background-hover);
         }
       }
     }
