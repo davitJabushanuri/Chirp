@@ -7,7 +7,7 @@
   place-items: center;
   border-radius: 100vmax;
   transition: background-color 0.15s ease-in-out;
-  @include tooltip(bottom, 2px);
+  @include tooltip(bottom, 4px);
 
   svg {
     width: var(-fs-h2);
