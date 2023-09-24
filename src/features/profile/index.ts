@@ -20,4 +20,5 @@ export * from "./hooks/use-user";
 export * from "./hooks/use-users";
 export * from "./utils/following";
 export * from "./components/follows-navigation";
+export * from "./components/follows-link";
 export * from "./api/get-user-metadata";

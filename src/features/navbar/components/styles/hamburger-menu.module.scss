@@ -6,27 +6,14 @@
   height: 100%;
   background-color: var(--clr-background);
 
-  .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem;
-
-    h2 {
-      font-size: var(--fs-h2);
-      font-weight: var(--fw-500);
-      color: var(--clr-secondary);
-    }
-  }
-
   .profile {
     padding: 1rem;
-    margin-bottom: 1rem;
 
     .accounts {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
+      margin-bottom: 0.5rem;
 
       .addAccount {
         display: grid;
@@ -58,44 +45,11 @@
       }
     }
 
-    .name {
-      font-size: var(--fs-base);
-      font-weight: var(--fw-700);
-      color: var(--clr-secondary);
-      margin-bottom: 4px;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-
-    .username {
-      display: block;
-      font-size: var(--fs-milli);
-      color: var(--clr-tertiary);
-      margin-bottom: 0.8rem;
-    }
-
     .stats {
+      margin-top: 0.8rem;
       display: flex;
-      align-items: center;
       gap: 1rem;
-      font-size: var(--fs-nano);
-      color: var(--clr-tertiary);
-
-      span {
-        cursor: pointer;
-
-        &:hover {
-          text-decoration: underline;
-        }
-      }
-
-      strong {
-        font-size: var(--fs-milli);
-        font-weight: var(--fw-700);
-        color: var(--clr-secondary);
-      }
+      flex-wrap: wrap;
     }
   }
 

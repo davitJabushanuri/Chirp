@@ -15,7 +15,12 @@ export const LinkToProfile = ({
 }) => {
   return (
     <Link
-      onClick={(e) => e.stopPropagation()}
+      onClick={(e) => {
+        e.stopPropagation();
+        if (onClick) {
+          onClick();
+        }
+      }}
       className={styles.container}
       tabIndex={tabIndex}
       href={`/${userId}`}
