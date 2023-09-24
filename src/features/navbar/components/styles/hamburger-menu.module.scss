@@ -56,42 +56,41 @@
   nav {
     display: flex;
     flex-direction: column;
-
-    .link {
-      padding: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      font-size: var(--fs-h2);
-      font-weight: var(--fw-500);
-      color: var(--clr-secondary);
-      cursor: pointer;
-
-      &:hover {
-        background-color: var(--clr-nav-hover);
-      }
-
-      &:active {
-        background-color: var(--clr-nav-active);
-      }
-
-      .icon {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 1.6rem;
-        width: 1.6rem;
-
-        svg {
-          height: 100%;
-          width: 100%;
-          fill: var(--clr-secondary);
-        }
-      }
-    }
   }
 
   @include mq("small") {
     display: none;
+  }
+}
+
+.hamburgerLink {
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-500);
+  color: var(--clr-secondary);
+  cursor: pointer;
+  transition: background-color 0.1s ease-in-out;
+
+  &:hover {
+    background-color: var(--clr-nav-hover);
+  }
+
+  &:active {
+    background-color: var(--clr-nav-active);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--clr-primary-disabled);
+    outline-offset: -2px;
+    background-color: var(--clr-nav-hover);
+  }
+
+  svg {
+    height: var(--fs-h1);
+    width: var(--fs-h1);
+    fill: var(--clr-secondary);
   }
 }

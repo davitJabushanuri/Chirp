@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 "use client";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -37,7 +35,7 @@ export const HamburgerMenu = () => {
       className={styles.container}
     >
       <div className={styles.profile}>
-        <div className={styles.accounts}>
+        <div aria-label="Account" className={styles.accounts}>
           <LinkToProfile
             onClick={() => {
               closeHamburger();
@@ -105,13 +103,20 @@ export const HamburgerMenu = () => {
           title="Profile"
           path={session?.user?.id}
           icon={<User />}
+          onclick={() => closeHamburger()}
         />
         <HamburgerLink
           title="Bookmarks"
           path={`bookmarks`}
           icon={<Bookmark />}
+          onclick={() => closeHamburger()}
         />
-        <HamburgerLink title="Settings" path={`settings`} icon={<Gear />} />
+        <HamburgerLink
+          title="Settings"
+          path={`settings`}
+          icon={<Gear />}
+          onclick={() => closeHamburger()}
+        />
       </nav>
     </motion.div>
   );
@@ -121,19 +126,17 @@ const HamburgerLink = ({
   title,
   path,
   icon,
+  onclick,
 }: {
   title: string;
   path: string;
   icon: React.ReactNode;
+  onclick: () => void;
 }) => {
-  const closeHamburger = useHamburger((state) => state.closeHamburger);
-
   return (
-    <Link href={`/${path}`}>
-      <button onClick={() => closeHamburger()} className={styles.link}>
-        <span className={styles.icon}>{icon}</span>
-        <span className={styles.text}>{title}</span>
-      </button>
+    <Link href={`/${path}`} onClick={onclick} className={styles.hamburgerLink}>
+      {icon}
+      {title}
     </Link>
   );
 };
