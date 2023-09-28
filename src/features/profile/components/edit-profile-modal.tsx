@@ -1,5 +1,6 @@
 "use client";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import { useRef, useState } from "react";
 
@@ -78,115 +79,119 @@ export const EditProfileModal = ({ user }: { user: IUser }) => {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.modal}>
-        <div className={styles.header}>
-          <CloseButton
-            onClick={() => closeEditProfileModal()}
-            ariaLabel={innerWidth <= 700 ? "Back" : "Close"}
-            title={innerWidth <= 700 ? "Back" : "Close"}
-          >
-            {innerWidth <= 700 ? <BackArrowIcon /> : <CloseIcon />}
-          </CloseButton>
+    <motion.div
+      initial={{ opacity: 0, y: 100 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 100 }}
+      transition={{ duration: 0.2 }}
+      className={styles.container}
+    >
+      <div className={styles.header}>
+        <CloseButton
+          onClick={() => closeEditProfileModal()}
+          ariaLabel={innerWidth <= 700 ? "Back" : "Close"}
+          title={innerWidth <= 700 ? "Back" : "Close"}
+        >
+          {innerWidth <= 700 ? <BackArrowIcon /> : <CloseIcon />}
+        </CloseButton>
 
-          <h2>Edit Profile</h2>
+        <h2>Edit Profile</h2>
 
-          <button
-            onClick={() => mutation.mutate({ profile, userId: user.id })}
-            disabled={profile?.name.length === 0}
-            className={styles.save}
-          >
-            Save
-          </button>
-        </div>
+        <button
+          onClick={() => mutation.mutate({ profile, userId: user.id })}
+          disabled={profile?.name.length === 0}
+          className={styles.save}
+        >
+          Save
+        </button>
+      </div>
 
-        <div className={styles.banner}>
-          {profile?.banner?.url && (
-            <Image
-              src={profile?.banner?.url}
-              alt="banner"
-              width={500}
-              height={500}
-            />
-          )}
-
-          <input
-            className={styles.bannerInput}
-            type="file"
-            accept="image/*"
-            ref={bannerInputRef}
-            onChange={(e) => chooseImage(e, "banner")}
-          />
-          <div className={styles.actions}>
-            <button
-              onClick={() => bannerInputRef.current?.click()}
-              className={styles.chooseBanner}
-            >
-              <CameraIcon />
-            </button>
-
-            {profile?.banner?.url && (
-              <button
-                onClick={() => {
-                  setProfile({
-                    ...profile,
-                    banner: { url: "", file: undefined },
-                  });
-                }}
-                className={styles.removeBanner}
-              >
-                <CloseIcon />
-              </button>
-            )}
-          </div>
-        </div>
-
-        <div className={styles.avatar}>
+      <div className={styles.banner}>
+        {profile?.banner?.url && (
           <Image
-            src={
-              profile?.avatar?.file
-                ? (profile?.avatar?.url as string)
-                : user?.profile_image_url
-                ? user?.profile_image_url
-                : `/user_placeholder.png`
-            }
-            alt="avatar"
-            width={100}
-            height={100}
+            src={profile?.banner?.url}
+            alt="banner"
+            width={500}
+            height={500}
           />
+        )}
 
-          <input
-            className={styles.avatarInput}
-            type="file"
-            accept="image/*"
-            ref={avatarInputRef}
-            onChange={(e) => chooseImage(e, "avatar")}
-          />
-
+        <input
+          className={styles.bannerInput}
+          type="file"
+          accept="image/*"
+          ref={bannerInputRef}
+          onChange={(e) => chooseImage(e, "banner")}
+        />
+        <div className={styles.actions}>
           <button
-            onClick={() => avatarInputRef?.current?.click()}
-            className={styles.chooseAvatar}
+            onClick={() => bannerInputRef.current?.click()}
+            className={styles.chooseBanner}
           >
             <CameraIcon />
           </button>
-        </div>
 
-        <div className={styles.form}>
-          <Input label="name" value={profile.name} setProfile={setProfile} />
-          <Input label="bio" value={profile.bio} setProfile={setProfile} />
-          <Input
-            label="location"
-            value={profile.location}
-            setProfile={setProfile}
-          />
-          <Input
-            label="website"
-            value={profile.website}
-            setProfile={setProfile}
-          />
+          {profile?.banner?.url && (
+            <button
+              onClick={() => {
+                setProfile({
+                  ...profile,
+                  banner: { url: "", file: undefined },
+                });
+              }}
+              className={styles.removeBanner}
+            >
+              <CloseIcon />
+            </button>
+          )}
         </div>
       </div>
-    </div>
+
+      <div className={styles.avatar}>
+        <Image
+          src={
+            profile?.avatar?.file
+              ? (profile?.avatar?.url as string)
+              : user?.profile_image_url
+              ? user?.profile_image_url
+              : `/user_placeholder.png`
+          }
+          alt="avatar"
+          width={100}
+          height={100}
+        />
+
+        <input
+          className={styles.avatarInput}
+          type="file"
+          accept="image/*"
+          ref={avatarInputRef}
+          onChange={(e) => chooseImage(e, "avatar")}
+        />
+
+        <button
+          onClick={() => avatarInputRef?.current?.click()}
+          className={styles.chooseAvatar}
+        >
+          <CameraIcon />
+        </button>
+      </div>
+
+      <div className={styles.form}>
+        <Input label="name" value={profile.name} setProfile={setProfile} />
+        <Input label="bio" value={profile.bio} setProfile={setProfile} />
+        <Input
+          label="location"
+          value={profile.location}
+          setProfile={setProfile}
+        />
+        <Input
+          label="website"
+          value={profile.website}
+          setProfile={setProfile}
+        />
+      </div>
+    </motion.div>
   );
 };
 

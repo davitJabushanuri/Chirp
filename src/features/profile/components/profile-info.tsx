@@ -1,4 +1,5 @@
 "use client";
+import { AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
@@ -9,6 +10,7 @@ import { MessageIcon } from "@/assets/message-icon";
 import { ReceiveNotificationsIcon } from "@/assets/notifications-icon";
 import { EllipsisWrapper } from "@/components/elements/ellipsis-wrapper";
 import { FollowButton } from "@/components/elements/follow-button";
+import { Modal } from "@/components/elements/modal";
 import { useEditProfile } from "@/stores/use-edit-profile";
 import { useInspectImage } from "@/stores/use-inspect-profile-image";
 
@@ -38,6 +40,12 @@ export const ProfileInfo = ({ user, id }: { user: IUser; id: string }) => {
   const isInspectModalOpen = useInspectImage(
     (state) => state.isInspectModalOpen,
   );
+
+  const closeEditProfileModal = useEditProfile(
+    (state) => state.closeEditProfileModal,
+  );
+
+  const closeInspectModal = useInspectImage((state) => state.closeInspectModal);
 
   const isFollowing = following({
     user: user,
@@ -195,8 +203,31 @@ export const ProfileInfo = ({ user, id }: { user: IUser; id: string }) => {
         </div>
       </div>
 
-      {isEditProfileModalOpen && <EditProfileModal user={user} />}
-      {isInspectModalOpen && <InspectImageModal />}
+      <AnimatePresence>
+        {isEditProfileModalOpen && (
+          <Modal
+            onClose={() => {
+              closeEditProfileModal();
+            }}
+            disableScroll={true}
+            background="var(--clr-modal-background)"
+          >
+            <EditProfileModal user={user} />
+          </Modal>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {isInspectModalOpen && (
+          <Modal
+            onClose={() => {
+              closeInspectModal();
+            }}
+          >
+            <InspectImageModal />
+          </Modal>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
