@@ -1,41 +1,43 @@
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  background-color: var(--clr-modal-background);
+.close {
   position: fixed;
+  top: 0.5rem;
+  left: 0.5rem;
+}
+
+.banner {
+  position: absolute;
   top: 0;
   left: 0;
-  z-index: 100;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  width: 100%;
+  aspect-ratio: 3 / 1;
+  overflow: hidden;
 
-  .close {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-  }
-
-  .banner {
+  img {
     width: 100%;
-    aspect-ratio: 3 / 1;
-    overflow: hidden;
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    height: 100%;
+    object-fit: cover;
   }
+}
 
-  .avatar {
-    aspect-ratio: 1 / 1;
-    border-radius: 50%;
-    overflow: hidden;
+.avatar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 1 / 1;
+  border-radius: 100vmax;
+  overflow: hidden;
 
-    img {
-      object-fit: cover;
-    }
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 }
