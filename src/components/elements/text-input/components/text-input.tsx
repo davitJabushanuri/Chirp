@@ -8,6 +8,8 @@ export const TextInput = ({
   name,
   id,
   placeholder,
+  isError,
+  errorMessage,
   maxLength,
 }: {
   onChange: ChangeEventHandler<HTMLInputElement>;
@@ -16,10 +18,12 @@ export const TextInput = ({
   id: string;
   placeholder: string;
   maxLength?: number;
+  isError?: boolean;
+  errorMessage?: string;
 }) => {
   return (
     <div className={styles.container}>
-      <label htmlFor={id}>
+      <label htmlFor={id} className={isError ? styles.isError : ""}>
         <input
           type="text"
           value={value ?? null}
@@ -29,13 +33,23 @@ export const TextInput = ({
           placeholder={placeholder}
           maxLength={maxLength}
           autoCapitalize="sentences"
-          autoComplete={name}
+          autoComplete="off"
           autoCorrect="on"
           spellCheck="true"
           dir="auto"
         />
         <span>{placeholder}</span>
       </label>
+
+      <span className={`${styles.error} ${isError ? styles.displayError : ""}`}>
+        {errorMessage}
+      </span>
+
+      {maxLength && (
+        <span className={styles.maxLength}>
+          {value?.length + " / " + maxLength}
+        </span>
+      )}
     </div>
   );
 };

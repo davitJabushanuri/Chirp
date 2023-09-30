@@ -1,9 +1,9 @@
 .container {
+  position: relative;
   label {
     height: 55px;
     border-radius: 0.2rem;
     position: relative;
-    display: inline-block;
     width: 100%;
     display: flex;
     align-items: flex-end;
@@ -13,7 +13,7 @@
     border: 1px solid var(--clr-auth-border);
 
     &:focus-within {
-      outline: 2px solid var(--clr-blue);
+      outline: 1px solid var(--clr-blue);
     }
 
     span {
@@ -48,6 +48,44 @@
     input:not(:placeholder-shown) + span {
       transform: translateY(-0.6rem);
       font-size: var(--fs-nano);
+    }
+  }
+
+  .isError {
+    border: 1px solid var(--clr-red);
+
+    &:focus-within {
+      outline: 1px solid var(--clr-red);
+
+      span {
+        color: var(--clr-red);
+      }
+    }
+  }
+
+  .error {
+    color: var(--clr-red);
+    font-size: var(--fs-nano);
+    margin-left: 0.5rem;
+    visibility: hidden;
+  }
+
+  .displayError {
+    visibility: visible;
+  }
+
+  .maxLength {
+    color: var(--clr-tertiary);
+    font-size: var(--fs-nano);
+    position: absolute;
+    right: 0.4rem;
+    top: 0.4rem;
+    display: none;
+  }
+
+  &:has(:focus) {
+    .maxLength {
+      display: block;
     }
   }
 }
