@@ -1,4 +1,3 @@
-"use client";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -8,7 +7,6 @@ import { BackArrowIcon } from "@/assets/back-arrow-icon";
 import { CloseIcon } from "@/assets/close-icon";
 import { CloseButton } from "@/components/elements/close-button";
 import { TextInput } from "@/components/elements/text-input";
-import { useEditProfile } from "@/stores/use-edit-profile";
 
 import { updateProfile } from "../api/update-profile";
 import { CameraIcon } from "../assets/camera-icon";
@@ -16,12 +14,15 @@ import { IProfile, IUser } from "../types";
 
 import styles from "./styles/edit-profile-modal.module.scss";
 
-export const EditProfileModal = ({ user }: { user: IUser }) => {
+export const EditProfileModal = ({
+  user,
+  closeModal,
+}: {
+  user: IUser;
+  closeModal: () => void;
+}) => {
   const innerWidth = window.innerWidth;
 
-  const closeEditProfileModal = useEditProfile(
-    (state) => state.closeEditProfileModal,
-  );
   const queryClient = useQueryClient();
   const mutation = useMutation(
     ({ profile, userId }: { profile: IProfile; userId: string }) => {
@@ -36,7 +37,7 @@ export const EditProfileModal = ({ user }: { user: IUser }) => {
         console.log(error);
       },
       onSettled: () => {
-        closeEditProfileModal();
+        closeModal();
         queryClient.invalidateQueries(["users", user?.id]);
       },
     },
@@ -89,7 +90,7 @@ export const EditProfileModal = ({ user }: { user: IUser }) => {
     >
       <div className={styles.header}>
         <CloseButton
-          onClick={() => closeEditProfileModal()}
+          onClick={() => closeModal()}
           ariaLabel={innerWidth <= 700 ? "Back" : "Close"}
           title={innerWidth <= 700 ? "Back" : "Close"}
         >
