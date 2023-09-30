@@ -1,4 +1,5 @@
 @use "./abstracts/media-query" as *;
+@use "./abstracts/tooltips" as *;
 
 .container {
   position: fixed;
@@ -11,7 +12,7 @@
   background-color: var(--clr-background);
   width: 100%;
   height: 100%;
-  padding-bottom: 4rem;
+  padding-bottom: 2rem;
 
   .header {
     padding: 1rem;
@@ -72,6 +73,7 @@
     aspect-ratio: 3/1;
 
     img {
+      display: block;
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -84,32 +86,6 @@
       transform: translate(-50%, -50%);
       display: flex;
       gap: 1rem;
-
-      button {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        cursor: pointer;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transition: all 0.15s ease-in-out;
-        background-color: var(--clr-action);
-
-        &:hover {
-          background-color: var(--clr-action-hover);
-        }
-
-        &:active {
-          background-color: var(--clr-action-active);
-        }
-
-        svg {
-          width: 21px;
-          height: 21px;
-          fill: var(--clr-light);
-        }
-      }
     }
 
     .bannerInput {
@@ -133,6 +109,7 @@
     background-color: var(--clr-auth-border);
 
     img {
+      display: block;
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -143,29 +120,6 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transition: all 0.15s ease-in-out;
-      background-color: var(--clr-action);
-
-      &:hover {
-        background-color: var(--clr-action-hover);
-      }
-
-      &:active {
-        background-color: var(--clr-action-active);
-      }
-
-      svg {
-        width: 21px;
-        height: 21px;
-        fill: var(--clr-light);
-      }
     }
 
     .avatarInput {
@@ -175,9 +129,8 @@
 
   .form {
     padding: 0 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.6rem;
+    display: grid;
+    gap: 1rem;
   }
 
   @include mq("medium") {
@@ -188,76 +141,32 @@
   }
 }
 
-.input {
-  height: 55px;
+.inputButton {
+  border-radius: 100vmax;
+  padding: 0.6rem;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: background 0.2s ease-in-out;
+  background-color: var(--clr-action);
+  @include tooltip(bottom, 4px);
 
-  label {
-    border-radius: 0.3rem;
-    position: relative;
-    display: inline-block;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: flex-end;
-    padding: 0.5rem;
-    cursor: text;
-    overflow: hidden;
-    outline: 1px solid var(--clr-auth-border);
-    transition: all 0.1s ease-in-out;
-
-    &:focus-within {
-      outline: 2px solid var(--clr-primary);
-    }
-
-    span {
-      pointer-events: none;
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      transition: 0.2s ease-in-out;
-      display: flex;
-      align-items: center;
-      font-size: var(--fs-base);
-      padding: 0.5rem;
-      color: var(--clr-tertiary);
-    }
-
-    input {
-      width: 100%;
-
-      &::placeholder {
-        color: transparent;
-      }
-    }
-
-    input:focus + span {
-      font-size: var(--fs-nano);
-      transform: translateY(-0.6rem);
-      color: var(--clr-primary);
-    }
-
-    input:not(:placeholder-shown) + span {
-      transform: translateY(-0.6rem);
-      font-size: var(--fs-nano);
-    }
+  &:hover {
+    background-color: var(--clr-action-hover);
   }
 
-  .isError {
-    outline: 1px solid #f4212e;
-
-    &:focus-within {
-      outline: 2px solid #f4212e;
-
-      span {
-        color: #f4212e;
-      }
-    }
+  &:active {
+    background-color: var(--clr-action-active);
   }
 
-  .error {
-    color: #f4212e;
-    font-size: var(--fs-nano);
-    margin-left: 0.5rem;
+  &:focus-visible {
+    outline: 2px solid var(--clr-tertiary);
+    background-color: var(--clr-action-hover);
+  }
+
+  svg {
+    width: var(--fs-h1);
+    height: var(--fs-h1);
+    fill: var(--clr-light);
   }
 }

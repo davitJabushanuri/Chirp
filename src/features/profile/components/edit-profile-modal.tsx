@@ -7,6 +7,7 @@ import { useRef, useState } from "react";
 import { BackArrowIcon } from "@/assets/back-arrow-icon";
 import { CloseIcon } from "@/assets/close-icon";
 import { CloseButton } from "@/components/elements/close-button";
+import { TextInput } from "@/components/elements/text-input";
 import { useEditProfile } from "@/stores/use-edit-profile";
 
 import { updateProfile } from "../api/update-profile";
@@ -98,6 +99,7 @@ export const EditProfileModal = ({ user }: { user: IUser }) => {
         <h2>Edit Profile</h2>
 
         <button
+          aria-label="Save"
           onClick={() => mutation.mutate({ profile, userId: user.id })}
           disabled={profile?.name.length === 0}
           className={styles.save}
@@ -117,32 +119,37 @@ export const EditProfileModal = ({ user }: { user: IUser }) => {
         )}
 
         <input
+          accept="image/jpeg,image/png,image/webp"
+          tabIndex={-1}
           className={styles.bannerInput}
           type="file"
-          accept="image/*"
           ref={bannerInputRef}
           onChange={(e) => chooseImage(e, "banner")}
         />
         <div className={styles.actions}>
-          <button
-            onClick={() => bannerInputRef.current?.click()}
-            className={styles.chooseBanner}
+          <InputButton
+            ariaLabel="Add banner photo"
+            title="Add photo"
+            onClick={() => {
+              bannerInputRef.current?.click();
+            }}
           >
             <CameraIcon />
-          </button>
+          </InputButton>
 
           {profile?.banner?.url && (
-            <button
+            <InputButton
+              ariaLabel="Remove banner photo"
+              title="Remove photo"
               onClick={() => {
                 setProfile({
                   ...profile,
                   banner: { url: "", file: undefined },
                 });
               }}
-              className={styles.removeBanner}
             >
               <CloseIcon />
-            </button>
+            </InputButton>
           )}
         </div>
       </div>
@@ -157,79 +164,113 @@ export const EditProfileModal = ({ user }: { user: IUser }) => {
               : `/user_placeholder.png`
           }
           alt="avatar"
-          width={100}
-          height={100}
+          width={500}
+          height={500}
         />
 
         <input
           className={styles.avatarInput}
           type="file"
-          accept="image/*"
+          accept="image/jpeg,image/png,image/webp"
+          tabIndex={-1}
           ref={avatarInputRef}
           onChange={(e) => chooseImage(e, "avatar")}
         />
-
-        <button
-          onClick={() => avatarInputRef?.current?.click()}
-          className={styles.chooseAvatar}
-        >
-          <CameraIcon />
-        </button>
+        <div className={styles.chooseAvatar}>
+          <InputButton
+            ariaLabel="Add avatar photo"
+            title="Add photo"
+            onClick={() => {
+              avatarInputRef.current?.click();
+            }}
+          >
+            <CameraIcon />
+          </InputButton>
+        </div>
       </div>
 
       <div className={styles.form}>
-        <Input label="name" value={profile.name} setProfile={setProfile} />
-        <Input label="bio" value={profile.bio} setProfile={setProfile} />
-        <Input
-          label="location"
-          value={profile.location}
-          setProfile={setProfile}
+        <TextInput
+          id="name"
+          name="name"
+          onChange={(e) => {
+            setProfile((prev: IProfile) => ({
+              ...prev,
+              name: e.target.value,
+            }));
+          }}
+          placeholder="Name"
+          value={profile.name}
+          maxLength={50}
+          isError={profile?.name.length === 0}
+          errorMessage="Name can't be blank"
         />
-        <Input
-          label="website"
-          value={profile.website}
-          setProfile={setProfile}
+
+        <TextInput
+          id="bio"
+          name="bio"
+          placeholder="Bio"
+          value={profile.bio || ""}
+          onChange={(e) => {
+            setProfile((prev: IProfile) => ({
+              ...prev,
+              bio: e.target.value,
+            }));
+          }}
+          maxLength={160}
+        />
+
+        <TextInput
+          id="location"
+          name="location"
+          placeholder="Location"
+          value={profile.location || ""}
+          onChange={(e) => {
+            setProfile((prev: IProfile) => ({
+              ...prev,
+              location: e.target.value,
+            }));
+          }}
+          maxLength={30}
+        />
+
+        <TextInput
+          id="website"
+          name="website"
+          placeholder="Website"
+          value={profile.website || ""}
+          onChange={(e) => {
+            setProfile((prev: IProfile) => ({
+              ...prev,
+              website: e.target.value,
+            }));
+          }}
+          maxLength={100}
         />
       </div>
     </motion.div>
   );
 };
 
-const Input = ({
-  label,
-  value,
-  setProfile,
+const InputButton = ({
+  ariaLabel,
+  title,
+  onClick,
+  children,
 }: {
-  label: string;
-  value: string | undefined;
-  setProfile: (value: string | any) => void;
+  ariaLabel: string;
+  title: string;
+  onClick: () => void;
+  children: React.ReactNode;
 }) => {
   return (
-    <div className={styles.input}>
-      <label
-        htmlFor={label}
-        className={
-          label === "name" && value?.length === 0 ? styles.isError : ""
-        }
-      >
-        <input
-          type="text"
-          name={label}
-          id={label}
-          placeholder="Name"
-          value={value}
-          onChange={(e) =>
-            setProfile((prev: IProfile) => ({
-              ...prev,
-              [label]: e.target.value,
-            }))
-          }
-        />
-        <span>{label.charAt(0).toUpperCase() + label.slice(1)}</span>
-      </label>
-      {label === "name" && value?.length === 0 && (
-        <span className={styles.error}>Name can&apos;t be blank</span>
-      )}
-    </div>
+    <button
+      aria-label={ariaLabel}
+      data-title={title}
+      onClick={onClick}
+      className={styles.inputButton}
+    >
+      {children}
+    </button>
   );
 };
