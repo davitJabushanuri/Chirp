@@ -92,6 +92,8 @@ export const TweetStatistics = ({
             onClose={() => {
               setStatisticsModal({ isOpen: false, title: null });
             }}
+            disableScroll={true}
+            background="var(--clr-modal-background)"
           >
             <TweetStatisticsModal
               onClose={() => {
