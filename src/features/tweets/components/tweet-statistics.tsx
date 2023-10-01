@@ -61,7 +61,7 @@ export const TweetStatistics = ({
 
         {quote_count > 0 && (
           <Link href={`/status/${tweetId}/quotes`} className={styles.statistic}>
-            <strong>{quote_count}</strong>
+            <strong>{quote_count}</strong>{" "}
             <span>{quote_count === 1 ? `Quote Tweet` : `Quote Tweets`}</span>
           </Link>
         )}

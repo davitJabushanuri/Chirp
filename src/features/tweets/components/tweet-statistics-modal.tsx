@@ -29,7 +29,9 @@ export const TweetStatisticsModal = ({
   } = useQuery<IUser[]>(
     [`tweet`, tweetId, title],
     async () => {
-      const response = await fetch(`/api/tweet/${tweetId}/${title}`);
+      const response = await fetch(
+        `/api/tweets/statistics?tweet_id=${tweetId}&type=${title}`,
+      );
       const data = await response.json();
       return data;
     },
