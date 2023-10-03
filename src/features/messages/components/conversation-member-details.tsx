@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 import { useRouter } from "next/navigation";
 
 import { EllipsisWrapper } from "@/components/elements/ellipsis-wrapper";
@@ -23,7 +21,10 @@ export const ConversationMemberDetails = ({
 
   return (
     <div
+      role="button"
       onClick={() => router.push(`/${user?.id}`)}
+      onKeyDown={() => router.push(`/${user?.id}`)}
+      tabIndex={0}
       className={styles.container}
     >
       <div className={styles.avatar}>
