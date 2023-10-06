@@ -1,5 +1,4 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
+import { motion } from "framer-motion";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
 
@@ -21,42 +20,44 @@ export const NewMessageModal = () => {
   const mutation = useCreateConversation();
 
   return (
-    <div onClick={closeModal} className={styles.container}>
-      <div onClick={(e) => e.stopPropagation()} className={styles.modal}>
-        <NewMessageHeader />
-        <SearchPeople
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
-        />
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 50 }}
+      transition={{ duration: 0.2 }}
+      className={styles.container}
+    >
+      <NewMessageHeader />
 
-        {!searchQuery ? (
-          <div className={styles.conversations}>
-            <Contacts receiverId={receiverId} setReceiverId={setReceiverId} />
-          </div>
-        ) : (
-          <div className={styles.searchResults}>
-            <SearchPeopleResults
-              searchQuery={searchQuery}
-              receiverId={receiverId}
-              setReceiverId={setReceiverId}
-            />
-          </div>
-        )}
+      <button
+        onClick={() => {
+          mutation.mutate({
+            senderId: session?.user?.id,
+            receiverId: receiverId,
+          });
+          closeModal();
+        }}
+        disabled={!receiverId}
+        className={styles.createConversation}
+      >
+        Next
+      </button>
 
-        <button
-          onClick={() => {
-            mutation.mutate({
-              senderId: session?.user?.id,
-              receiverId: receiverId,
-            });
-            closeModal();
-          }}
-          disabled={!receiverId}
-          className={styles.createConversation}
-        >
-          Next
-        </button>
-      </div>
-    </div>
+      <SearchPeople searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+
+      {!searchQuery ? (
+        <div className={styles.conversations}>
+          <Contacts receiverId={receiverId} setReceiverId={setReceiverId} />
+        </div>
+      ) : (
+        <div className={styles.searchResults}>
+          <SearchPeopleResults
+            searchQuery={searchQuery}
+            receiverId={receiverId}
+            setReceiverId={setReceiverId}
+          />
+        </div>
+      )}
+    </motion.div>
   );
 };

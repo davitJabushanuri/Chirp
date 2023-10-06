@@ -1,0 +1,91 @@
+.container {
+  position: relative;
+  label {
+    height: 55px;
+    border-radius: 0.2rem;
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    padding: 0.5rem;
+    cursor: text;
+    overflow: hidden;
+    border: 1px solid var(--clr-auth-border);
+
+    &:focus-within {
+      outline: 1px solid var(--clr-blue);
+    }
+
+    span {
+      pointer-events: none;
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      font-size: var(--fs-base);
+      color: var(--clr-tertiary);
+      padding: 0.5rem;
+      transition: 0.15s ease-in-out;
+    }
+
+    input {
+      width: 100%;
+      font-size: var(--fs-milli);
+
+      &::placeholder {
+        color: transparent;
+      }
+    }
+
+    input:focus + span {
+      font-size: var(--fs-nano);
+      transform: translateY(-0.6rem);
+      color: var(--clr-blue);
+    }
+
+    input:not(:placeholder-shown) + span {
+      transform: translateY(-0.6rem);
+      font-size: var(--fs-nano);
+    }
+  }
+
+  .isError {
+    border: 1px solid var(--clr-red);
+
+    &:focus-within {
+      outline: 1px solid var(--clr-red);
+
+      span {
+        color: var(--clr-red);
+      }
+    }
+  }
+
+  .error {
+    color: var(--clr-red);
+    font-size: var(--fs-nano);
+    margin-left: 0.5rem;
+    visibility: hidden;
+  }
+
+  .displayError {
+    visibility: visible;
+  }
+
+  .maxLength {
+    color: var(--clr-tertiary);
+    font-size: var(--fs-nano);
+    position: absolute;
+    right: 0.4rem;
+    top: 0.4rem;
+    display: none;
+  }
+
+  &:has(:focus) {
+    .maxLength {
+      display: block;
+    }
+  }
+}

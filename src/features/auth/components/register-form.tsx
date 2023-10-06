@@ -3,48 +3,31 @@ import { signIn } from "next-auth/react";
 import { AppleLogo } from "../assets/apple-logo";
 import { GoogleLogo } from "../assets/google-logo";
 
+import { AuthButton } from "./AuthButton";
 import styles from "./styles/register-form.module.scss";
 
 export const RegisterForm = () => {
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>New to Twitter?</h1>
+      <h2 className={styles.title}>New to Chirp?</h2>
       <p className={styles.description}>
         Sign up now to get your own personalized timeline!
       </p>
 
       <div className={styles.buttons}>
-        <button
+        <AuthButton
           onClick={() =>
             signIn("google", {
               callbackUrl: "/home",
             })
           }
-          className={styles.google}
-        >
-          <span className={styles.icon}>
-            <GoogleLogo />
-          </span>
-          <span className={styles.text}>Sign up with Google</span>
-        </button>
+          icon={<GoogleLogo />}
+          text="Sign up with Google"
+        />
 
-        <button
-          onClick={() =>
-            signIn("apple", {
-              callbackUrl: "/home",
-            })
-          }
-          className={styles.apple}
-        >
-          <span className={styles.icon}>
-            <AppleLogo />
-          </span>
-          <span className={styles.text}>Sign up with Apple</span>
-        </button>
+        <AuthButton icon={<AppleLogo />} text="Sign up with Apple" />
 
-        <button className={styles.email}>
-          <span className={styles.text}>Create account</span>
-        </button>
+        <AuthButton icon={<GoogleLogo />} text="Create account" />
       </div>
 
       <div className={styles.terms}>

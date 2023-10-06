@@ -1,26 +1,34 @@
+"use client";
+import { AnimatePresence } from "framer-motion";
 import { useSession } from "next-auth/react";
+import { useRef, useState } from "react";
 
 import { DotIcon } from "@/assets/dot-icon";
 import { EllipsisWrapper } from "@/components/elements/ellipsis-wrapper";
+import { Modal } from "@/components/elements/modal";
 import { Avatar, UserName, UserScreenName } from "@/features/profile";
-import { useAuthModal } from "@/stores/use-auth-modal";
 
 import { SessionOwnerModal } from "./session-owner-modal";
 import styles from "./styles/session-owner-button.module.scss";
 
 export const SessionOwnerButton = () => {
   const { data: session } = useSession();
-  const openUserModal = useAuthModal((state) => state.openUserModal);
-  const isUserModalOpen = useAuthModal((state) => state.isUserModalOpen);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
 
   return (
     <>
       <button
         aria-label="Account menu"
         tabIndex={0}
-        onClick={() => openUserModal()}
+        onClick={openModal}
         className={styles.container}
         data-title="Accounts"
+        ref={buttonRef}
       >
         <div className={styles.avatar}>
           <Avatar userImage={session?.user?.profile_image_url} />
@@ -41,7 +49,21 @@ export const SessionOwnerButton = () => {
           <DotIcon />
         </div>
       </button>
-      {isUserModalOpen && <SessionOwnerModal />}
+
+      <AnimatePresence>
+        {isModalOpen && (
+          <Modal
+            onClose={() => setIsModalOpen(false)}
+            background="none"
+            minViewportWidth={500}
+          >
+            <SessionOwnerModal
+              ref={buttonRef}
+              onClose={() => setIsModalOpen(false)}
+            />
+          </Modal>
+        )}
+      </AnimatePresence>
     </>
   );
 };

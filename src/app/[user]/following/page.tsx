@@ -30,7 +30,7 @@ const FollowingPage = async ({
     );
 
   return (
-    <>
+    <div>
       <Header>
         <ProfileHeader
           heading={user?.name}
@@ -39,7 +39,7 @@ const FollowingPage = async ({
       </Header>
       <FollowsNavigation />
       <Following />
-    </>
+    </div>
   );
 };
 

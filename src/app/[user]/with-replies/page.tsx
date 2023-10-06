@@ -45,7 +45,7 @@ const ProfileTweetsWithRepliesPage = async ({
   });
 
   return (
-    <>
+    <div>
       <Header>
         <ProfileHeader
           heading={user?.name}
@@ -56,7 +56,7 @@ const ProfileTweetsWithRepliesPage = async ({
       </Header>
       <Profile initialUser={user as any} />
       <ProfileTweetsAndReplies />
-    </>
+    </div>
   );
 };
 

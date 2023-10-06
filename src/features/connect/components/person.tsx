@@ -25,49 +25,51 @@ export const Person = ({ person }: { person: IUser }) => {
   });
 
   return (
-    <div
-      tabIndex={0}
-      role="button"
-      onKeyDown={(e) => {
-        if (e.key === "Enter") {
-          router.push(`/${person?.id}`);
-        }
-      }}
-      onClick={() => router.push(`/${person?.id}`)}
-      className={styles.container}
-    >
-      <div className={styles.avatar}>
-        <UserModalWrapper userId={person?.id}>
-          <Avatar userImage={person?.profile_image_url} />
-        </UserModalWrapper>
-      </div>
+    <div className={styles.container}>
+      <button
+        className={styles.person}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            router.push(`/${person?.id}`);
+          }
+        }}
+        onClick={() => router.push(`/${person?.id}`)}
+      >
+        <div className={styles.avatar}>
+          <UserModalWrapper userId={person?.id}>
+            <Avatar userImage={person?.profile_image_url} />
+          </UserModalWrapper>
+        </div>
 
-      <div className={styles.info}>
-        <UserModalWrapper userId={person?.id}>
-          <LinkToProfile userId={person?.id}>
+        <div className={styles.info}>
+          <UserModalWrapper userId={person?.id}>
+            <LinkToProfile userId={person?.id}>
+              <EllipsisWrapper>
+                <UserName
+                  name={person?.name}
+                  isVerified={person?.verified}
+                  hover={true}
+                />
+              </EllipsisWrapper>
+            </LinkToProfile>
+          </UserModalWrapper>
+
+          <UserModalWrapper userId={person?.id}>
             <EllipsisWrapper>
-              <UserName
-                name={person?.name}
-                isVerified={person?.verified}
-                hover={true}
-              />
+              <UserScreenName screenName={person?.email?.split("@")[0]} />
             </EllipsisWrapper>
-          </LinkToProfile>
-        </UserModalWrapper>
+          </UserModalWrapper>
+        </div>
+      </button>
 
-        <UserModalWrapper userId={person?.id}>
-          <EllipsisWrapper>
-            <UserScreenName screenName={person?.email?.split("@")[0]} />
-          </EllipsisWrapper>
-        </UserModalWrapper>
+      <div className={styles.follow}>
+        <FollowButton
+          user_id={person?.id}
+          session_owner_id={session?.user?.id}
+          isFollowing={isFollowing}
+          username={person?.email?.split("@")[0]}
+        />
       </div>
-
-      <FollowButton
-        user_id={person?.id}
-        session_owner_id={session?.user?.id}
-        isFollowing={isFollowing}
-        username={person?.email?.split("@")[0]}
-      />
     </div>
   );
 };

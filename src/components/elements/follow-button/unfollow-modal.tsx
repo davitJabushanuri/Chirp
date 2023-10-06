@@ -1,8 +1,6 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 import { useFollow } from "@/features/profile";
 
-import styles from "./styles/unfollow-modal.module.scss";
+import { ConfirmationModal } from "../modal";
 
 export const UnfollowModal = ({
   username = "user",
@@ -18,35 +16,20 @@ export const UnfollowModal = ({
   const mutation = useFollow("unfollow");
 
   return (
-    <div
-      onClick={() => {
+    <ConfirmationModal
+      heading={`Unfollow @${username}?`}
+      paragraph={`Their Tweets will no longer show up in your home timeline. You can still view their profile, unless their Tweets are protected.`}
+      confirmButtonText="Unfollow"
+      confirmButtonClick={() => {
+        mutation.mutate({
+          user_id,
+          session_owner_id,
+        });
         setIsModalOpen(false);
       }}
-      className={styles.container}
-    >
-      <div onClick={(e) => e.stopPropagation()} className={styles.modal}>
-        <h1>Unfollow @{username}?</h1>
-        <p>
-          Their Tweets will no longer show up in your home timeline. You can
-          still view their profile, unless their Tweets are protected.
-        </p>
-
-        <button
-          onClick={() => {
-            mutation.mutate({
-              user_id,
-              session_owner_id,
-            });
-            setIsModalOpen(false);
-          }}
-          className={styles.unfollow}
-        >
-          Unfollow
-        </button>
-        <button onClick={() => setIsModalOpen(false)} className={styles.cancel}>
-          Cancel
-        </button>
-      </div>
-    </div>
+      confirmButtonStyle="unfollow"
+      cancelButtonText="Cancel"
+      cancelButtonClick={() => setIsModalOpen(false)}
+    />
   );
 };

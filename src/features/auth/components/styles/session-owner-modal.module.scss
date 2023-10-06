@@ -1,84 +1,33 @@
 @use "abstracts/media-query" as *;
 
 .container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  width: 100dvw;
-  height: 100vh;
-  height: 100dvh;
-  display: none;
+  width: 300px;
+  background-color: var(--clr-background);
+  box-shadow: 0 0rem 10px -2px var(--clr-tertiary);
+  border-radius: 1rem;
+  padding: 0.8em 0;
+  overflow: hidden;
 
-  .modalContainer {
-    height: 100%;
-    margin: auto;
-    display: flex;
-    align-items: flex-end;
-
-    .modal {
-      margin-bottom: 5rem;
-      margin-left: 0.4rem;
-      width: 100%;
-      max-width: 300px;
-      background-color: var(--clr-background);
-      overflow: hidden;
-      box-shadow: 0 0rem 0.8rem rgba(192, 192, 192, 0.2);
-      border-radius: 1rem;
-      padding: 10px 0;
-      animation: slideIn 0.2s ease-in-out;
-      z-index: 999;
-    }
-
-    button {
-      width: 100%;
-      padding: 0.8rem;
-      cursor: pointer;
-      transition: all 0.2s ease-in-out;
-
-      &:hover {
-        background-color: var(--clr-trends-hover);
-      }
-
-      &:active {
-        background-color: var(--clr-trends-active);
-      }
-    }
-
-    .addAccount {
-      border-top: 1px solid var(--clr-border);
-    }
-
-    @include mq("medium") {
-      max-width: 700px;
-    }
-
-    @include mq("large") {
-      max-width: 1020px;
-    }
-
-    @include mq("x-large") {
-      max-width: 1120px;
-    }
-
-    @include mq("xx-large") {
-      max-width: 1300px;
-    }
-  }
-
-  @include mq("small") {
+  a {
+    font-size: var(--fs-milli);
+    font-weight: var(--fw-700);
     display: block;
-  }
-}
+    padding: 0.8em 1em;
+    cursor: pointer;
+    transition: background-color 0.1s ease-in-out;
 
-@keyframes slideIn {
-  0% {
-    transform: translateY(2rem);
-    opacity: 0;
-  }
+    &:hover {
+      background-color: var(--clr-trends-hover);
+    }
 
-  100% {
-    transform: translateY(0);
-    opacity: 1;
+    &:active {
+      background-color: var(--clr-trends-active);
+    }
+
+    &:focus-visible {
+      background-color: var(--clr-trends-hover);
+      outline: 2px solid var(--clr-primary-disabled);
+      outline-offset: -2px;
+    }
   }
 }

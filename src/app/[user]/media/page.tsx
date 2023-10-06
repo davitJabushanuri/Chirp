@@ -41,7 +41,7 @@ const ProfileMediaPage = async ({
   });
 
   return (
-    <>
+    <div>
       <Header>
         <ProfileHeader
           heading={user?.name}
@@ -52,7 +52,7 @@ const ProfileMediaPage = async ({
       </Header>
       <Profile initialUser={user as any} />
       <ProfileMedia />
-    </>
+    </div>
   );
 };
 

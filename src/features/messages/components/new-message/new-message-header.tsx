@@ -1,4 +1,6 @@
-import { CloseButton } from "@/components/designs/close-button";
+"use client";
+import { CloseIcon } from "@/assets/close-icon";
+import { CloseButton } from "@/components/elements/close-button";
 
 import { useNewMessageStore } from "../../stores/use-new-message-store";
 
@@ -9,9 +11,9 @@ export const NewMessageHeader = () => {
 
   return (
     <div className={styles.container}>
-      <button onClick={closeModal} className={styles.close}>
-        <CloseButton />
-      </button>
+      <CloseButton onClick={closeModal} ariaLabel="Close" title="Close">
+        <CloseIcon />
+      </CloseButton>
 
       <h1>New message</h1>
     </div>

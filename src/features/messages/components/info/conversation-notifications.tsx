@@ -1,8 +1,9 @@
 "use client";
+import { AnimatePresence } from "framer-motion";
+import { useRef, useState } from "react";
 
-import { useState } from "react";
-
-import { Action, ActionsModal } from "@/components/elements/actions-modal";
+import { Menu, MenuItem } from "@/components/elements/menu";
+import { Modal } from "@/components/elements/modal";
 import { IUser } from "@/features/profile";
 
 import styles from "./styles/conversation-notifications.module.scss";
@@ -14,6 +15,7 @@ export const ConversationNotifications = ({
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [snooze, setSnooze] = useState(false);
+  const buttonRef = useRef<HTMLLabelElement | null>(null);
 
   return (
     <div className={styles.container}>
@@ -30,50 +32,58 @@ export const ConversationNotifications = ({
               checked={snooze}
               id="cbx-3"
             />
-            <label htmlFor="cbx-3" className={styles["toggle"]}>
+            <label ref={buttonRef} htmlFor="cbx-3" className={styles["toggle"]}>
               <span></span>
             </label>
           </div>
 
-          {isModalOpen && (
-            <ActionsModal setIsModalOpen={setIsModalOpen}>
-              <button
-                onClick={() => {
-                  setSnooze(true);
-                  setIsModalOpen(false);
-                }}
-              >
-                <Action icon={``} text={`1 hour`} />
-              </button>
+          <AnimatePresence>
+            {isModalOpen && (
+              <Modal onClose={() => setIsModalOpen(false)} background="none">
+                <Menu
+                  onClose={() => setIsModalOpen(false)}
+                  trackScroll={true}
+                  ref={buttonRef as any}
+                >
+                  <MenuItem
+                    onClick={() => {
+                      setSnooze(true);
+                      setIsModalOpen(false);
+                    }}
+                  >
+                    1 hour
+                  </MenuItem>
 
-              <button
-                onClick={() => {
-                  setSnooze(true);
-                  setIsModalOpen(false);
-                }}
-              >
-                <Action icon={``} text={`8 hours`} />
-              </button>
+                  <MenuItem
+                    onClick={() => {
+                      setSnooze(true);
+                      setIsModalOpen(false);
+                    }}
+                  >
+                    8 hours
+                  </MenuItem>
 
-              <button
-                onClick={() => {
-                  setSnooze(true);
-                  setIsModalOpen(false);
-                }}
-              >
-                <Action icon={``} text={`1 week`} />
-              </button>
+                  <MenuItem
+                    onClick={() => {
+                      setSnooze(true);
+                      setIsModalOpen(false);
+                    }}
+                  >
+                    1 week
+                  </MenuItem>
 
-              <button
-                onClick={() => {
-                  setSnooze(true);
-                  setIsModalOpen(false);
-                }}
-              >
-                <Action icon={``} text={`Forever`} />
-              </button>
-            </ActionsModal>
-          )}
+                  <MenuItem
+                    onClick={() => {
+                      setSnooze(true);
+                      setIsModalOpen(false);
+                    }}
+                  >
+                    Forever
+                  </MenuItem>
+                </Menu>
+              </Modal>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </div>

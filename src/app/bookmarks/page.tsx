@@ -1,7 +1,7 @@
-import { BookmarksClientPage } from "./client";
+import { Bookmarks } from "@/features/bookmarks";
 
 const BookmarksPage = () => {
-  return <BookmarksClientPage />;
+  return <Bookmarks />;
 };
 
 export default BookmarksPage;

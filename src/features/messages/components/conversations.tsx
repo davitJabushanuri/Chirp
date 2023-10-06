@@ -1,9 +1,10 @@
 "use client";
-
+import { AnimatePresence } from "framer-motion";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
 
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
+import { Modal } from "@/components/elements/modal";
 import { TryAgain } from "@/components/elements/try-again";
 
 import { useGetConversations } from "../hooks/use-get-conversations";
@@ -22,6 +23,7 @@ export const Conversations = () => {
   const [isSearching, setIsSearching] = useState(false);
 
   const isModalOpen = useNewMessageStore((state) => state.isModalOpen);
+  const closeModal = useNewMessageStore((state) => state.closeModal);
 
   const {
     data: conversations,
@@ -69,7 +71,13 @@ export const Conversations = () => {
         />
       )}
 
-      {isModalOpen && <NewMessageModal />}
+      <AnimatePresence>
+        {isModalOpen && (
+          <Modal onClose={() => closeModal()} disableScroll={true}>
+            <NewMessageModal />
+          </Modal>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

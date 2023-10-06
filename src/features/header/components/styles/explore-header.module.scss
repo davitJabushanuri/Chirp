@@ -8,38 +8,11 @@
   gap: 1rem;
   padding-inline: 1em;
 
-  form {
-    height: 26px;
-  }
-
   @include mq("small") {
     grid-template-columns: 1fr auto;
 
-    .search {
-      form {
-        height: 100%;
-      }
+    .back {
+      display: none;
     }
-  }
-}
-
-.back {
-  border-radius: 100vmax;
-
-  &:hover {
-    background-color: var(--clr-trends-hover);
-  }
-
-  &:active {
-    background-color: var(--clr-trends-active);
-  }
-
-  &:focus-visible {
-    outline: 2px solid var(--clr-primary-disabled);
-    background-color: var(--clr-trends-hover);
-  }
-
-  @include mq("small") {
-    display: none;
   }
 }

@@ -1,8 +1,8 @@
 "use client";
+import { motion } from "framer-motion";
 
-import { BackButton } from "@/components/designs/back-button";
-import { CloseButton } from "@/components/designs/close-button";
-import { useDisableBodyScroll } from "@/hooks";
+import { BackArrowIcon } from "@/assets/back-arrow-icon";
+import { CloseIcon } from "@/assets/close-icon";
 import { useCreateTweetModal } from "@/stores/use-create-tweet-modal";
 
 import { CreateTweet } from "./create-tweet";
@@ -10,47 +10,37 @@ import { CreateTweetComment } from "./create-tweet-comment";
 import styles from "./styles/create-tweet-modal.module.scss";
 
 export const CreateTweetModal = () => {
-  const isTweetModalOpen = useCreateTweetModal((state) => state.isModalOpen);
   const data = useCreateTweetModal((state) => state.data);
   const closeModal = useCreateTweetModal((state) => state.closeModal);
 
-  useDisableBodyScroll();
-
-  if (!isTweetModalOpen) return null;
+  const innerWidth = window.innerWidth;
 
   return (
-    <div
-      onClick={() => {
-        closeModal();
-      }}
-      tabIndex={-1}
-      role="button"
-      onKeyDown={(e) => {
-        if (e.key === "Escape") {
-          closeModal();
-        }
+    <motion.div
+      initial={{ opacity: 0, y: 200, scale: 0.8 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      exit={{ opacity: 0, y: 200, scale: 0.8 }}
+      transition={{
+        ease: "easeOut",
+        duration: 0.2,
       }}
       className={styles.container}
     >
-      <div
-        onClick={(e) => e.stopPropagation()}
-        role="button"
-        tabIndex={-1}
-        onKeyDown={(e) => {
-          if (e.key === "Escape") {
-            closeModal();
-          }
-        }}
-        className={styles.modal}
-      >
-        <button onClick={() => closeModal()} className={styles.close}>
-          <span className={styles.arrow}>
-            <BackButton />
-          </span>
-          <span className={styles.x}>
-            <CloseButton />
-          </span>
-        </button>
+      <div className={styles.wrapper}>
+        <div className={styles.closeButtonContainer}>
+          <button
+            data-title={innerWidth < 700 ? "Back" : "Close"}
+            onClick={() => closeModal()}
+            className={styles.close}
+          >
+            <span className={styles.arrow}>
+              <BackArrowIcon />
+            </span>
+            <span className={styles.x}>
+              <CloseIcon />
+            </span>
+          </button>
+        </div>
         {data.parent_tweet && <CreateTweetComment tweet={data.parent_tweet} />}
 
         <CreateTweet
@@ -58,8 +48,9 @@ export const CreateTweetModal = () => {
           in_reply_to_screen_name={data.in_reply_to_screen_name}
           in_reply_to_status_id={data.in_reply_to_status_id}
           placeholder={data.placeholder}
+          container="modal"
         />
       </div>
-    </div>
+    </motion.div>
   );
 };

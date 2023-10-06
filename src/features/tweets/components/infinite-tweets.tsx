@@ -1,5 +1,4 @@
 "use client";
-import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
@@ -22,27 +21,27 @@ export const InfiniteTweets = ({
   fetchNextPage: () => Promise<any> | void;
   hasNextPage: boolean | undefined;
 }) => {
-  const { ref, inView } = useInView();
-
-  useEffect(() => {
-    if (inView && hasNextPage) {
-      fetchNextPage();
-    }
-  }, [inView, hasNextPage, fetchNextPage]);
+  const { ref } = useInView({
+    onChange: (inView) => {
+      inView && hasNextPage && fetchNextPage();
+    },
+  });
 
   return (
     <div className={styles.container}>
       {isSuccess &&
         tweets?.pages?.map((page) => {
-          return page?.tweets?.map((tweet, index) => (
-            <div
-              ref={index === page.tweets.length - 4 ? ref : undefined}
-              className={styles.tweetContainer}
-              key={tweet.id}
-            >
-              <Tweet tweet={tweet} />
-            </div>
-          ));
+          return page?.tweets?.map((tweet, index) =>
+            index === page.tweets.length - 1 ? (
+              <div ref={ref} className={styles.tweetContainer} key={tweet.id}>
+                <Tweet tweet={tweet} />
+              </div>
+            ) : (
+              <div className={styles.tweetContainer} key={tweet.id}>
+                <Tweet tweet={tweet} />
+              </div>
+            ),
+          );
         })}
 
       {isFetchingNextPage && <LoadingSpinner />}

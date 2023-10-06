@@ -1,10 +1,6 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 "use client";
 import Image from "next/image";
 import { useState } from "react";
-
-import { useInspectTweetImage } from "@/stores/use-inspect-tweet-images";
 
 import { BackwardArrowIcon } from "../assets/backward-arrow-icon";
 import { ForwardArrowIcon } from "../assets/forward-arrow-icon";
@@ -12,9 +8,13 @@ import { IMedia } from "../types";
 
 import styles from "./styles/image-carousel.module.scss";
 
-export const ImageCarousel = ({ images }: { images: IMedia[] | undefined }) => {
-  const imageIndex = useInspectTweetImage((state) => state.imageIndex);
-
+export const ImageCarousel = ({
+  images,
+  imageIndex,
+}: {
+  images: IMedia[] | undefined;
+  imageIndex: number;
+}) => {
   const [activeSlide, setActiveSlide] = useState(imageIndex || 0);
 
   return (
@@ -54,6 +54,7 @@ const ForwardButton = ({
 }) => {
   return (
     <button
+      aria-label="Next slide"
       onClick={(e) => {
         e.stopPropagation();
         setActiveSlide(activeSlide + 1);
@@ -76,6 +77,7 @@ const BackwardButton = ({
 }) => {
   return (
     <button
+      aria-label="Previous slide"
       onClick={(e) => {
         e.stopPropagation();
         setActiveSlide(activeSlide - 1);

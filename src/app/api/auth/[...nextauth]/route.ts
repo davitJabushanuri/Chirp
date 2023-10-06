@@ -57,10 +57,7 @@ const authOptions: AuthOptions = {
 
   pages: {
     signIn: "/auth/signin",
-    newUser: "/auth/new-user",
-    error: "/auth/error",
     signOut: "/auth/signout",
-    verifyRequest: "/auth/verify-request",
   },
 
   adapter: PrismaAdapter(prisma),

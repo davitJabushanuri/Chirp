@@ -1,8 +1,7 @@
 "use client";
-
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
@@ -34,7 +33,7 @@ export const Messages = () => {
     });
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     scrollToBottom();
 
     return () => scrollToBottom();

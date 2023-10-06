@@ -1,8 +1,4 @@
 .container {
-  position: relative;
-  display: grid;
-  gap: 11px;
-  grid-template-columns: auto 1fr;
   cursor: pointer;
   transition: background-color 0.2s linear;
   outline-offset: -2px;
@@ -20,85 +16,102 @@
     background-color: var(--clr-tweet-hover);
   }
 
-  .left {
-    .avatar {
-      margin: 11px 0 0 15px;
-      border-radius: 100vmax;
+  .pin {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: var(--fs-nano);
+    font-weight: var(--fw-700);
+    color: var(--clr-tertiary);
+    padding: 0.5rem 0 0 3rem;
 
-      &:has(:focus-visible) {
-        outline: 2px solid var(--clr-primary-disabled);
-      }
+    svg {
+      fill: var(--clr-tertiary);
+      width: var(--fs-base);
+      height: var(--fs-base);
     }
   }
 
-  .user_details {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    white-space: nowrap;
-    margin: 11px 50px 2px 0;
+  .tweetContainer {
+    position: relative;
+    display: grid;
+    gap: 0.8em;
+    grid-template-columns: auto 1fr;
 
-    .username_time {
-      display: flex;
-      align-items: center;
-      gap: 4px;
+    .left {
+      .avatar {
+        margin: 11px 0 0 15px;
+        border-radius: 100vmax;
 
-      .dot {
-        color: var(--clr-tertiary);
-      }
-
-      .date {
-        font-size: var(--fs-milli);
-        color: var(--clr-tertiary);
-        cursor: pointer;
-
-        &:hover {
-          text-decoration: underline;
+        &:has(:focus-visible) {
+          outline: 2px solid var(--clr-primary-disabled);
         }
       }
     }
 
-    @media screen and (max-width: 360px) {
-      flex-wrap: wrap;
-    }
-  }
+    .user_details {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+      margin: 11px 50px 2px 0;
 
-  .options {
-    position: absolute;
-    top: 4px;
-    right: 8px;
-  }
+      .username_time {
+        display: flex;
+        align-items: center;
+        gap: 4px;
 
-  .replyingTo {
-    margin: 0 15px 2px 0;
-  }
+        .dot {
+          color: var(--clr-tertiary);
+        }
 
-  .tweet {
-    padding-right: 15px;
+        .date {
+          font-size: var(--fs-milli);
+          color: var(--clr-tertiary);
+          cursor: pointer;
 
-    .text {
-      font-size: var(--fs-milli);
-      white-space: pre-wrap;
-    }
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
 
-    .media {
-      overflow: hidden;
-      border-radius: 15px;
-      margin-top: 11px;
-    }
-
-    .quotedTweet {
-      border-radius: 15px;
-      transition: all 0.2s ease-in-out;
-
-      &:hover {
-        backdrop-filter: brightness(1.1);
+      @media screen and (max-width: 360px) {
+        flex-wrap: wrap;
       }
     }
-  }
 
-  .actions {
-    max-width: 400px;
-    margin-right: 8px;
+    .options {
+      position: absolute;
+      top: 4px;
+      right: 8px;
+    }
+
+    .replyingTo {
+      margin: 0 15px 2px 0;
+    }
+
+    .tweet {
+      padding-right: 15px;
+
+      .text {
+        font-size: var(--fs-milli);
+        white-space: pre-wrap;
+      }
+
+      .quotedTweet {
+        border-radius: 15px;
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+          backdrop-filter: brightness(1.1);
+        }
+      }
+    }
+
+    .actions {
+      max-width: 400px;
+      margin-right: 8px;
+    }
   }
 }

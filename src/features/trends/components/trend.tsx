@@ -1,15 +1,12 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 
-import { DotIcon } from "@/assets/dot-icon";
-import { SadFaceIcon } from "@/assets/sad-face-icon";
-import { Action, ActionsModal } from "@/components/elements/actions-modal";
 import { useSearchStore } from "@/features/search";
 
 import { iTrendProps } from "../types";
 
 import styles from "./styles/trend.module.scss";
+import { TrendOptions } from "./trend-options";
 
 export const Trend = ({ ranking = 1, title, tweets = 1 }: iTrendProps) => {
   const router = useRouter();
@@ -42,55 +39,6 @@ export const Trend = ({ ranking = 1, title, tweets = 1 }: iTrendProps) => {
         </div>
       </div>
       <TrendOptions />
-    </div>
-  );
-};
-
-const TrendOptions = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  return (
-    <div className={styles.options}>
-      <button
-        aria-expanded={isModalOpen}
-        aria-haspopup="menu"
-        aria-label="More"
-        data-title="More"
-        tabIndex={0}
-        className={styles.optionsButton}
-        onKeyDown={(e) => {
-          e.stopPropagation();
-        }}
-        onClick={(e) => {
-          e.stopPropagation();
-          setIsModalOpen(true);
-        }}
-      >
-        <DotIcon />
-      </button>
-
-      {isModalOpen && (
-        <ActionsModal setIsModalOpen={setIsModalOpen}>
-          <button
-            onClick={() => {
-              setIsModalOpen(false);
-            }}
-          >
-            <Action icon={<SadFaceIcon />} text={`Not interested in this`} />
-          </button>
-
-          <button
-            onClick={() => {
-              setIsModalOpen(false);
-            }}
-          >
-            <Action
-              icon={<SadFaceIcon />}
-              text={`This trend is harmful or spammy`}
-            />
-          </button>
-        </ActionsModal>
-      )}
     </div>
   );
 };

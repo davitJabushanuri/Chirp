@@ -1,6 +1,7 @@
 import Image from "next/image";
 
-import { CloseButton } from "@/components/designs/close-button";
+import { CloseIcon } from "@/assets/close-icon";
+import { CloseButton } from "@/components/elements/close-button";
 
 import { IChosenImages } from "../types";
 
@@ -30,16 +31,19 @@ export const ChosenImages = ({
       {chosenImages.map((image) => {
         return (
           <div key={image.id} className={styles.imageContainer}>
-            <button
-              onClick={() => {
-                setChosenImages(
-                  chosenImages.filter((img) => img.id !== image.id),
-                );
-              }}
-              className={styles.close}
-            >
-              <CloseButton />
-            </button>
+            <div className={styles.close}>
+              <CloseButton
+                onClick={() => {
+                  setChosenImages(
+                    chosenImages.filter((img) => img.id !== image.id),
+                  );
+                }}
+                ariaLabel="Remove media"
+                title="Remove"
+              >
+                <CloseIcon />
+              </CloseButton>
+            </div>
             <Image
               src={image.url as string}
               alt=""

@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import { BackArrowIcon } from "@/assets/back-arrow-icon";
 import { SearchIcon } from "@/assets/search-icon";
+import { CloseButton } from "@/components/elements/close-button";
 
 import { XICon } from "../assets/x-icon";
 
@@ -21,15 +22,16 @@ export const SearchConversations = ({
   return (
     <div className={styles.container}>
       {isSearching && (
-        <button
+        <CloseButton
           onClick={() => {
             setSearchTerm("");
             setIsSearching(false);
           }}
-          className={styles.backButton}
+          ariaLabel="Back"
+          title="Back"
         >
           <BackArrowIcon />
-        </button>
+        </CloseButton>
       )}
 
       <div

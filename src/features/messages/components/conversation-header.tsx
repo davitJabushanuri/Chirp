@@ -1,6 +1,7 @@
 import { usePathname, useRouter } from "next/navigation";
 
 import { BackArrowIcon } from "@/assets/back-arrow-icon";
+import { CloseButton } from "@/components/elements/close-button";
 
 import { InfoIcon } from "../assets/info-icon";
 
@@ -13,12 +14,15 @@ export const ConversationHeader = () => {
 
   return (
     <div className={styles.container}>
-      <button
-        onClick={() => router.push(`/messages`)}
-        className={styles.backButton}
+      <CloseButton
+        onClick={() => {
+          router.push(`/messages`);
+        }}
+        ariaLabel="Back"
+        title="Back"
       >
         <BackArrowIcon />
-      </button>
+      </CloseButton>
 
       <button
         onClick={() => router.push(`/messages/${id}/info`)}

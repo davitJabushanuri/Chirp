@@ -1,3 +1,4 @@
+"use client";
 import { useRouter } from "next/navigation";
 
 import { ReloadIcon } from "./assets/reload-icon";

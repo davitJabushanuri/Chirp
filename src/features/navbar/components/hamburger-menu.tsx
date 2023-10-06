@@ -1,117 +1,124 @@
 "use client";
-/* eslint-disable @next/next/no-img-element */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
+import { motion } from "framer-motion";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 
-import { CloseButton } from "@/components/designs/close-button";
-import { Avatar, useUser } from "@/features/profile";
+import {
+  Avatar,
+  FollowsLink,
+  LinkToProfile,
+  UserName,
+  UserScreenName,
+  useUser,
+} from "@/features/profile";
 import { useHamburger } from "@/stores/use-hamburger";
 
+import { AdditionIcon } from "../assets/addition-icon";
 import { Bookmark } from "../assets/bookmark-icon";
 import { Gear } from "../assets/gear-icon";
-import { PlusIcon } from "../assets/plus-icon";
 import { User } from "../assets/user-icon";
 
 import styles from "./styles/hamburger-menu.module.scss";
 
 export const HamburgerMenu = () => {
-  const isHamburgerOpen = useHamburger((state) => state.isHamburgerOpen);
   const closeHamburger = useHamburger((state) => state.closeHamburger);
 
-  const router = useRouter();
   const { data: session } = useSession();
   const { data: user } = useUser({ id: session?.user?.id });
 
-  if (!isHamburgerOpen) return null;
-
   return (
-    <div
-      onClick={() => closeHamburger()}
-      className={`${styles.container} 
-    ${isHamburgerOpen ? styles.visible : styles.hidden}`}
+    <motion.div
+      initial={{ x: `-100%` }}
+      animate={{ x: `0%` }}
+      exit={{ x: `-100%` }}
+      transition={{ duration: 0.2 }}
+      className={styles.container}
     >
-      <div onClick={(e) => e.stopPropagation()} className={styles.hamburger}>
-        <div className={styles.actions}>
-          <h1>Account info</h1>
-          <button onClick={() => closeHamburger()}>
-            <CloseButton />
-          </button>
-        </div>
-
-        <div className={styles.profile}>
-          <button
+      <div className={styles.profile}>
+        <div aria-label="Account" className={styles.accounts}>
+          <LinkToProfile
             onClick={() => {
-              router.push(`/${session?.user?.id}`);
               closeHamburger();
             }}
-            className={styles.image}
+            userId={session?.user?.id}
+            tabIndex={-1}
           >
             <Avatar userImage={session?.user?.profile_image_url} />
-          </button>
+          </LinkToProfile>
 
-          <button
-            onClick={() => {
-              router.push(`/${session?.user?.id}`);
-              closeHamburger();
-            }}
-            className={styles.name}
+          <Link
+            aria-label="Add account"
+            href={`/auth/signin`}
+            onClick={() => closeHamburger()}
+            className={styles.addAccount}
           >
-            {session?.user?.name}
-          </button>
-          <button
-            onClick={() => {
-              router.push(`/${session?.user?.id}`);
-              closeHamburger();
-            }}
-            className={styles.username}
-          >
-            @{session?.user?.email?.split("@")[0]}
-          </button>
-          {user && (
-            <div className={styles.stats}>
-              <span
-                onClick={() => {
-                  router.push(`/${session?.user?.id}/following`);
-                  closeHamburger();
-                }}
-                className={styles.following}
-              >
-                <strong>{user?.following?.length}</strong> Following
-              </span>
-              <span
-                onClick={() => {
-                  router.push(`/${session?.user?.id}/followers`);
-                  closeHamburger();
-                }}
-                className={styles.followers}
-              >
-                <strong>{user?.followers?.length}</strong> Followers
-              </span>
-              <button className={styles.switchAccount}>
-                <PlusIcon />
-              </button>
-            </div>
-          )}
+            <AdditionIcon />
+          </Link>
         </div>
 
-        <nav>
-          <HamburgerLink
-            title="Profile"
-            path={session?.user?.id}
-            icon={<User />}
+        <LinkToProfile
+          userId={session?.user?.id}
+          onClick={() => {
+            closeHamburger();
+          }}
+        >
+          <UserName
+            name={session?.user?.name}
+            hover={true}
+            isVerified={session?.user?.isVerified}
           />
-          <HamburgerLink
-            title="Bookmarks"
-            path={`bookmarks`}
-            icon={<Bookmark />}
-          />
-          <HamburgerLink title="Settings" path={`settings`} icon={<Gear />} />
-        </nav>
+        </LinkToProfile>
+
+        <LinkToProfile
+          userId={session?.user?.id}
+          onClick={() => {
+            closeHamburger();
+          }}
+          tabIndex={-1}
+        >
+          <UserScreenName screenName={session?.user?.email?.split("@")[0]} />
+        </LinkToProfile>
+
+        {user && (
+          <div className={styles.stats}>
+            <FollowsLink
+              stats={user?.following?.length}
+              text="Following"
+              link={`/${session?.user?.id}/following`}
+              onClick={() => closeHamburger()}
+            />
+
+            <FollowsLink
+              stats={user?.followers?.length}
+              text="Followers"
+              link={`/${session?.user?.id}/followers`}
+              onClick={() => closeHamburger()}
+            />
+          </div>
+        )}
       </div>
-    </div>
+
+      <nav>
+        <HamburgerLink
+          title="Profile"
+          path={session?.user?.id}
+          icon={<User />}
+          onclick={() => closeHamburger()}
+        />
+        <HamburgerLink
+          title="Bookmarks"
+          path={`bookmarks`}
+          icon={<Bookmark />}
+          onclick={() => closeHamburger()}
+        />
+        <HamburgerLink
+          title="Settings"
+          path={`settings`}
+          icon={<Gear />}
+          onclick={() => closeHamburger()}
+        />
+      </nav>
+    </motion.div>
   );
 };
 
@@ -119,19 +126,17 @@ const HamburgerLink = ({
   title,
   path,
   icon,
+  onclick,
 }: {
   title: string;
   path: string;
   icon: React.ReactNode;
+  onclick: () => void;
 }) => {
-  const closeHamburger = useHamburger((state) => state.closeHamburger);
-
   return (
-    <Link href={`/${path}`}>
-      <div onClick={() => closeHamburger()} className={styles.link}>
-        <span className={styles.icon}>{icon}</span>
-        <span className={styles.text}>{title}</span>
-      </div>
+    <Link href={`/${path}`} onClick={onclick} className={styles.hamburgerLink}>
+      {icon}
+      {title}
     </Link>
   );
 };

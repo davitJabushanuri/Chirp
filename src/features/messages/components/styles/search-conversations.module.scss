@@ -4,30 +4,6 @@
   gap: 4px;
   padding: 11px;
 
-  .backButton {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
-
-    &:hover {
-      background-color: var(--clr-nav-hover);
-    }
-
-    &:active {
-      background-color: var(--clr-nav-active);
-    }
-
-    svg {
-      width: 19px;
-      height: 19px;
-      fill: var(--clr-secondary);
-    }
-  }
-
   .inputContainer {
     display: grid;
     place-items: center;

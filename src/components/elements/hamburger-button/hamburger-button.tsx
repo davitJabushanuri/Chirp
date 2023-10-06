@@ -21,7 +21,6 @@ export const HamburgerButton = () => {
           aria-expanded={isHamburgerOpen}
           aria-haspopup="menu"
           aria-label={`Profile menu ${session?.user?.name}`}
-          tabIndex={0}
           onClick={() => openHamburger()}
           className={styles.container}
         >

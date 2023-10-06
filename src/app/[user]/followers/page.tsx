@@ -30,7 +30,7 @@ const page = async ({
     );
 
   return (
-    <>
+    <div>
       <Header>
         <ProfileHeader
           heading={user?.name}
@@ -39,7 +39,7 @@ const page = async ({
       </Header>
       <FollowsNavigation />
       <Followers />
-    </>
+    </div>
   );
 };
 

@@ -1,0 +1,30 @@
+@use "./abstracts/tooltips" as *;
+
+.container {
+  cursor: pointer;
+  display: inline-grid;
+  padding: 0.5em;
+  place-items: center;
+  border-radius: 100vmax;
+  transition: background-color 0.15s ease-in-out;
+  @include tooltip(bottom, 4px);
+
+  svg {
+    width: var(-fs-h2);
+    height: var(--fs-h2);
+    fill: var(--clr-secondary);
+  }
+
+  &:hover {
+    background-color: var(--clr-nav-hover);
+  }
+
+  &:active {
+    background-color: var(--clr-nav-active);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--clr-secondary);
+    background-color: var(--clr-nav-hover);
+  }
+}
