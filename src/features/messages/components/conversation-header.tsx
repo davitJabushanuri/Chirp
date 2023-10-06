@@ -14,13 +14,6 @@ export const ConversationHeader = () => {
 
   return (
     <div className={styles.container}>
-      <button
-        onClick={() => router.push(`/messages`)}
-        className={styles.backButton}
-      >
-        <BackArrowIcon />
-      </button>
-
       <CloseButton
         onClick={() => {
           router.push(`/messages`);

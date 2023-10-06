@@ -3,12 +3,12 @@ import { SearchResults } from "@/features/search";
 
 const SearchPage = () => {
   return (
-    <>
+    <div>
       <Header>
         <ExploreHeader />
       </Header>
       <SearchResults />
-    </>
+    </div>
   );
 };
 

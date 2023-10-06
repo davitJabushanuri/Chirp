@@ -43,7 +43,7 @@ const ProfileTweetsPage = async ({
   if (!user) return <NotFound />;
 
   return (
-    <>
+    <div>
       <Header>
         <ProfileHeader
           heading={user?.name}
@@ -54,7 +54,7 @@ const ProfileTweetsPage = async ({
       </Header>
       <Profile initialUser={user as any} />
       <ProfileTweets />
-    </>
+    </div>
   );
 };
 

@@ -3,12 +3,12 @@ import { ExploreHeader, Header } from "@/features/header";
 
 const ExplorePage = () => {
   return (
-    <>
+    <div>
       <Header>
         <ExploreHeader />
       </Header>
       <Explore />
-    </>
+    </div>
   );
 };
 

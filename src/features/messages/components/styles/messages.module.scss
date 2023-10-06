@@ -1,9 +1,9 @@
 .container {
+  height: 100dvh;
   height: 100vh;
   overflow: hidden;
   display: grid;
   grid-template-rows: auto 1fr auto;
-
 
   .conversation {
     overflow-y: auto;
