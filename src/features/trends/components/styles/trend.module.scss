@@ -1,5 +1,3 @@
-@use "abstracts/tooltips" as *;
-
 .container {
   padding: 0.2rem 0.6rem 0.2rem 1rem;
   display: flex;
@@ -44,51 +42,6 @@
       font-size: var(--fs-milli);
       font-weight: var(--fw-500);
       color: var(--clr-secondary);
-    }
-  }
-}
-
-.options {
-  position: relative;
-
-  .optionsButton {
-    width: 33.5px;
-    height: 33.5px;
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
-    @include tooltip(bottom, 2px);
-
-    &:hover {
-      background-color: var(--clr-options-hover);
-
-      svg {
-        fill: var(--clr-primary);
-      }
-    }
-
-    &:active {
-      background-color: var(--clr-options-active);
-
-      svg {
-        fill: var(--clr-primary);
-      }
-    }
-
-    &:focus-visible {
-      outline: 2px solid var(--clr-primary-disabled);
-      background-color: var(--clr-options-hover);
-      outline-offset: -2px;
-
-      svg {
-        fill: var(--clr-primary);
-      }
-    }
-
-    svg {
-      width: 17.5px;
-      height: 17.5px;
-      fill: var(--clr-tertiary);
     }
   }
 }

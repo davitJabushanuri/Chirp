@@ -1,4 +1,8 @@
-import { BackButton } from "@/components/elements/back-button";
+"use client";
+import { useRouter } from "next/navigation";
+
+import { BackArrowIcon } from "@/assets/back-arrow-icon";
+import { CloseButton } from "@/components/elements/close-button";
 import { EllipsisWrapper } from "@/components/elements/ellipsis-wrapper";
 import { HeaderHeading } from "@/features/header";
 
@@ -11,9 +15,19 @@ export const ProfileHeader = ({
   heading: string | undefined;
   stats: string | undefined;
 }) => {
+  const router = useRouter();
+
   return (
     <div className={styles.container}>
-      <BackButton />
+      <CloseButton
+        onClick={() => {
+          router.back();
+        }}
+        ariaLabel="Back"
+        title="Back"
+      >
+        <BackArrowIcon />
+      </CloseButton>
 
       <div className={styles.user}>
         <HeaderHeading title={heading || "Profile"} />

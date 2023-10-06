@@ -1,3 +1,4 @@
+"use client";
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
 import { Trends } from "@/features/trends";
@@ -30,7 +31,7 @@ export const Explore = () => {
         <Trends title={`Trends for you`} />
       </div>
 
-      <div className={styles?.scores}></div>
+      <div className={styles.scores}></div>
 
       <div className={styles.tweets}>
         <InfiniteTweets

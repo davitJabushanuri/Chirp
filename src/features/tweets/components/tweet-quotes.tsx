@@ -1,9 +1,12 @@
+"use client";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import { usePathname } from "next/navigation";
 
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
 
-import { useTweet } from "../hooks/use-tweet";
+import { ITweet } from "..";
 
 import styles from "./styles/tweet-quotes.module.scss";
 import { Tweet } from "./tweet";
@@ -13,12 +16,21 @@ export const TweetQuotes = () => {
   const tweetId = pathname?.split(`/`)[2] || ``;
 
   const {
-    data: tweet,
+    data: tweets,
     isLoading,
     isError,
-  } = useTweet({
-    id: tweetId,
-  });
+  } = useQuery<ITweet[]>(
+    ["tweets", tweetId, "quotes"],
+    async () => {
+      const { data } = await axios.get(
+        `/api/tweets/quotes?tweet_id=${tweetId}`,
+      );
+      return data;
+    },
+    {
+      refetchOnWindowFocus: false,
+    },
+  );
 
   if (isLoading) {
     return <LoadingSpinner />;
@@ -30,7 +42,7 @@ export const TweetQuotes = () => {
 
   return (
     <div className={styles.container}>
-      {tweet?.quotes?.map((quote) => {
+      {tweets?.map((quote) => {
         return (
           <div key={quote?.id} className={styles.quote}>
             <Tweet tweet={quote} />

@@ -1,11 +1,7 @@
-import { SignInClientPage } from "./client";
+import { SignIn } from "@/features/auth";
 
 const SignInPage = async () => {
-  return (
-    <div>
-      <SignInClientPage />
-    </div>
-  );
+  return <SignIn />;
 };
 
 export default SignInPage;

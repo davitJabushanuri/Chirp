@@ -7,22 +7,19 @@
   flex-wrap: wrap;
 
   .statistic {
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
+    font-size: var(--fs-micro);
+    color: var(--clr-secondary);
 
-    .number {
-      font-size: var(--fs-micro);
+    strong {
       font-weight: var(--fw-700);
-      color: var(--clr-secondary);
     }
 
-    .text {
-      font-size: var(--fs-micro);
+    span {
       color: var(--clr-tertiary);
     }
   }
 
+  button,
   a {
     cursor: pointer;
 

@@ -24,7 +24,7 @@ export const Contacts = ({
   if (isError) return null;
 
   return (
-    <div>
+    <div role="listbox">
       {conversations.map((conversation) => {
         return (
           <Contact

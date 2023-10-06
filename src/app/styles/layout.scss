@@ -33,7 +33,10 @@ body {
 
       main {
         border-left: 1px solid var(--clr-border);
-        padding-bottom: calc(100vh - 4rem);
+
+        > div {
+          padding-bottom: calc(100vh - 4rem);
+        }
       }
 
       a {
@@ -64,4 +67,15 @@ body {
       max-width: 1265px;
     }
   }
+}
+
+.visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
 }

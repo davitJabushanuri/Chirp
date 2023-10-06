@@ -1,307 +1,172 @@
 @use "./abstracts/media-query" as *;
+@use "./abstracts/tooltips" as *;
 
 .container {
   position: fixed;
   top: 0;
   left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  overflow-y: auto;
+  background-color: var(--clr-background);
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  animation: fadeIn 0.3s ease-in-out;
+  padding-bottom: 2rem;
 
-  .modal {
-    background-color: var(--clr-background);
-    border-radius: 1rem;
+  .header {
+    padding: 1rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+
+    h2 {
+      font-size: var(--fs-h2);
+      font-weight: var(--fw-700);
+      color: var(--clr-secondary);
+    }
+
+    .save {
+      margin-left: auto;
+      padding: 0.5rem 1rem;
+      border-radius: 100vmax;
+      background-color: var(--clr-secondary);
+      color: var(--clr-background);
+      font-size: var(--fs-micro);
+      font-weight: var(--fw-700);
+      cursor: pointer;
+      transition: background 0.2s ease-in-out;
+
+      &:hover {
+        background-color: var(--clr-secondary-hover);
+      }
+
+      &:active {
+        background-color: var(--clr-secondary-active);
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--clr-secondary);
+        background-color: var(--clr-secondary-hover);
+      }
+
+      &:disabled {
+        opacity: 0.6;
+        cursor: default;
+
+        &:hover {
+          background-color: var(--clr-secondary);
+        }
+
+        &:active {
+          background-color: var(--clr-secondary);
+        }
+      }
+    }
+  }
+
+  .banner {
+    position: relative;
     width: 100%;
-    height: 100%;
-    padding-bottom: 2rem;
+    background-color: var(--clr-trends-background);
+    aspect-ratio: 3/1;
 
-    .header {
-      padding: 1rem;
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      gap: 1rem;
-
-      .close {
-        .x {
-          display: none;
-        }
-
-        @include mq("medium") {
-          .arrow {
-            display: none;
-          }
-
-          .x {
-            display: flex;
-          }
-        }
-      }
-
-      h2 {
-        font-size: var(--fs-h2);
-        font-weight: var(--fw-700);
-        color: var(--clr-secondary);
-      }
-
-      .save {
-        margin-left: auto;
-        padding: 0.5rem 1rem;
-        border-radius: 100vmax;
-        background-color: var(--clr-secondary);
-        color: var(--clr-background);
-        font-size: var(--fs-micro);
-        font-weight: var(--fw-700);
-        cursor: pointer;
-        transition: all 0.2s ease-in-out;
-
-        &:hover {
-          background-color: var(--clr-secondary-hover);
-        }
-
-        &:active {
-          background-color: var(--clr-secondary-active);
-        }
-
-        &:disabled {
-          opacity: 0.6;
-          cursor: default;
-
-          &:hover {
-            background-color: var(--clr-secondary);
-          }
-
-          &:active {
-            background-color: var(--clr-secondary);
-          }
-        }
-      }
-    }
-
-    .banner {
-      position: relative;
+    img {
+      display: block;
       width: 100%;
-      background-color: var(--clr-trends-background);
-      aspect-ratio: 3/1;
-
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      .actions {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        display: flex;
-        gap: 1rem;
-
-        button {
-          width: 40px;
-          height: 40px;
-          border-radius: 50%;
-          cursor: pointer;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          transition: all 0.15s ease-in-out;
-          background-color: var(--clr-action);
-
-          &:hover {
-            background-color: var(--clr-action-hover);
-          }
-
-          &:active {
-            background-color: var(--clr-action-active);
-          }
-
-          svg {
-            width: 21px;
-            height: 21px;
-            fill: var(--clr-light);
-          }
-        }
-      }
-
-      .bannerInput {
-        display: none;
-      }
+      height: 100%;
+      object-fit: cover;
     }
 
-    .avatar {
-      $avatar-size: clamp(50px, 20vw, 110px);
-      $avatar-border: 4px;
-      $avatar-top: calc(-1 * #{$avatar-size} / 2 - #{$avatar-border});
-
-      position: relative;
-      top: $avatar-top;
-      left: 1rem;
-      width: $avatar-size;
-      height: $avatar-size;
-      border-radius: 50%;
-      border: 4px solid var(--clr-background);
-      overflow: hidden;
-      background-color: var(--clr-auth-border);
-
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      .chooseAvatar {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        cursor: pointer;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transition: all 0.15s ease-in-out;
-        background-color: var(--clr-action);
-
-        &:hover {
-          background-color: var(--clr-action-hover);
-        }
-
-        &:active {
-          background-color: var(--clr-action-active);
-        }
-
-        svg {
-          width: 21px;
-          height: 21px;
-          fill: var(--clr-light);
-        }
-      }
-
-      .avatarInput {
-        display: none;
-      }
-    }
-
-    .form {
-      padding: 0 1rem;
+    .actions {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       display: flex;
-      flex-direction: column;
-      gap: 1.6rem;
+      gap: 1rem;
     }
 
-    @include mq("medium") {
-      max-width: 600px;
-      height: fit-content;
-      animation: slideIn 0.3s ease-in-out;
+    .bannerInput {
+      display: none;
     }
+  }
+
+  .avatar {
+    $avatar-size: clamp(50px, 20vw, 110px);
+    $avatar-border: 4px;
+    $avatar-top: calc(-1 * #{$avatar-size} / 2 - #{$avatar-border});
+
+    position: relative;
+    top: $avatar-top;
+    left: 1rem;
+    width: $avatar-size;
+    height: $avatar-size;
+    border-radius: 50%;
+    border: 4px solid var(--clr-background);
+    overflow: hidden;
+    background-color: var(--clr-auth-border);
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .chooseAvatar {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .avatarInput {
+      display: none;
+    }
+  }
+
+  .form {
+    padding: 0 1rem;
+    display: grid;
+    gap: 1rem;
   }
 
   @include mq("medium") {
-    background-color: var(--clr-modal-background);
-    padding-top: 4rem;
+    max-width: 600px;
+    height: fit-content;
+    max-height: 90vh;
+    border-radius: 1rem;
   }
 }
 
-@keyframes slideIn {
-  0% {
-    // opacity: 0;
-    transform: translateY(2rem);
+.inputButton {
+  border-radius: 100vmax;
+  padding: 0.6rem;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: background 0.2s ease-in-out;
+  background-color: var(--clr-action);
+  @include tooltip(bottom, 4px);
+
+  &:hover {
+    background-color: var(--clr-action-hover);
   }
 
-  100% {
-    // opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
+  &:active {
+    background-color: var(--clr-action-active);
   }
 
-  100% {
-    opacity: 1;
-  }
-}
-
-.input {
-  height: 55px;
-
-  label {
-    border-radius: 0.3rem;
-    position: relative;
-    display: inline-block;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: flex-end;
-    padding: 0.5rem;
-    cursor: text;
-    overflow: hidden;
-    outline: 1px solid var(--clr-auth-border);
-    transition: all 0.1s ease-in-out;
-
-    &:focus-within {
-      outline: 2px solid var(--clr-primary);
-    }
-
-    span {
-      pointer-events: none;
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      transition: 0.2s ease-in-out;
-      display: flex;
-      align-items: center;
-      font-size: var(--fs-base);
-      padding: 0.5rem;
-      color: var(--clr-tertiary);
-    }
-
-    input {
-      width: 100%;
-
-      &::placeholder {
-        color: transparent;
-      }
-    }
-
-    input:focus + span {
-      font-size: var(--fs-nano);
-      transform: translateY(-0.6rem);
-      color: var(--clr-primary);
-    }
-
-    input:not(:placeholder-shown) + span {
-      transform: translateY(-0.6rem);
-      font-size: var(--fs-nano);
-    }
+  &:focus-visible {
+    outline: 2px solid var(--clr-tertiary);
+    background-color: var(--clr-action-hover);
   }
 
-  .isError {
-    outline: 1px solid #f4212e;
-
-    &:focus-within {
-      outline: 2px solid #f4212e;
-
-      span {
-        color: #f4212e;
-      }
-    }
-  }
-
-  .error {
-    color: #f4212e;
-    font-size: var(--fs-nano);
-    margin-left: 0.5rem;
+  svg {
+    width: var(--fs-h1);
+    height: var(--fs-h1);
+    fill: var(--clr-light);
   }
 }

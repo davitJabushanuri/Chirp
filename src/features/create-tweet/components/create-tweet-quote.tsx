@@ -43,11 +43,7 @@ export const CreateTweetQuote = ({ tweet }: { tweet: ITweet }) => {
 
         {tweet?.media?.length > 0 && (
           <div className={styles.media}>
-            <TweetMedia
-              media={tweet?.media}
-              tweetId={tweet?.id}
-              links={false}
-            />
+            <TweetMedia media={tweet?.media} tweetId={tweet?.id} />
           </div>
         )}
       </div>

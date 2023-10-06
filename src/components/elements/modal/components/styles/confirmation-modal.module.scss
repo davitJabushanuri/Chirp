@@ -1,0 +1,125 @@
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: fit-content;
+  max-width: 320px;
+  height: fit-content;
+  margin: auto;
+  background-color: var(--clr-background);
+  padding: 2em;
+  border-radius: 1rem;
+
+  .logo {
+    display: grid;
+    place-items: center;
+    margin-bottom: 1em;
+
+    svg {
+      width: var(--fs-kilo);
+      height: var(--fs-kilo);
+      fill: var(--clr-primary);
+    }
+  }
+
+  h1 {
+    font-size: var(--fs-h2);
+    font-weight: var(--fw-700);
+    margin-bottom: 0.5em;
+  }
+
+  p {
+    font-size: var(--fs-milli);
+    color: var(--clr-tertiary);
+    margin-bottom: 2rem;
+    line-height: 1.4;
+  }
+
+  .buttons {
+    display: grid;
+    gap: 0.8rem;
+
+    button {
+      display: grid;
+      place-items: center;
+      padding: 0.9em;
+      border-radius: 100vmax;
+      font-size: var(--fs-milli);
+      font-weight: var(--fw-700);
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .delete {
+      background-color: var(--clr-red);
+
+      &:hover {
+        background-color: var(--clr-red-hover);
+      }
+
+      &:active {
+        background-color: var(--clr-red-active);
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--clr-secondary);
+        background-color: var(--clr-red-hover);
+      }
+    }
+
+    .unfollow {
+      background-color: var(--clr-secondary);
+      color: var(--clr-background);
+
+      &:hover {
+        background-color: var(--clr-secondary-hover);
+      }
+
+      &:active {
+        background-color: var(--clr-secondary-active);
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--clr-secondary);
+      }
+    }
+
+    .signout {
+      background-color: var(--clr-secondary);
+      color: var(--clr-background);
+
+      &:hover {
+        background-color: var(--clr-signout-logout-hover);
+      }
+
+      &:active {
+        background-color: var(--clr-signout-logout-active);
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--clr-secondary);
+        background-color: var(--clr-signout-logout-hover);
+      }
+    }
+
+    .cancel {
+      color: var(--clr-secondary);
+      border: 1px solid var(--clr-tertiary);
+
+      &:hover {
+        background-color: var(--clr-trends-hover);
+      }
+
+      &:active {
+        background-color: var(--clr-trends-active);
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--clr-secondary);
+        background-color: var(--clr-trends-hover);
+      }
+    }
+  }
+}

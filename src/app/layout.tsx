@@ -5,18 +5,17 @@ import "react-toastify/dist/ReactToastify.css";
 
 import "./styles/layout.scss";
 import { Aside } from "@/features/aside";
-import { AuthModalTrigger, JoinTwitterModal } from "@/features/auth";
-import { CreateTweetModal, MobileTweetButton } from "@/features/create-tweet";
-import { HamburgerMenu, MobileNavbar } from "@/features/navbar";
+import { AuthModalTrigger } from "@/features/auth";
+import { MobileTweetButton } from "@/features/create-tweet";
+import { MobileNavbar } from "@/features/navbar";
 import { Sidebar } from "@/features/sidebar";
-import { InspectTweetImageModal } from "@/features/tweets";
 import NextAuthProvider from "@/utils/next-auth-provider";
 import ReactQueryWrapper from "@/utils/react-query";
 
+import { Hamburger } from "./hamburger";
+import { JoinTwitter } from "./join-twitter";
 import styles from "./styles/toast.module.scss";
 import "./styles/layout.scss";
-
-export const revalidate = 0;
 
 export default async function RootLayout({
   children,
@@ -40,7 +39,6 @@ export default async function RootLayout({
           <ReactQueryWrapper>
             <div className="layout">
               <MobileNavbar />
-
               <MobileTweetButton />
 
               <Sidebar />
@@ -60,11 +58,9 @@ export default async function RootLayout({
                 toastClassName={styles.toast}
               />
 
-              {<CreateTweetModal />}
-              {<HamburgerMenu />}
-              {<AuthModalTrigger />}
-              {<JoinTwitterModal />}
-              {<InspectTweetImageModal />}
+              <AuthModalTrigger />
+              <JoinTwitter />
+              <Hamburger />
             </div>
           </ReactQueryWrapper>
         </NextAuthProvider>

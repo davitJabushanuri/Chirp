@@ -1,11 +1,7 @@
-import { DefaultClientPage } from "./client";
+import { LandingPageClient } from "./client";
 
 const DefaultPage = () => {
-  return (
-    <div>
-      <DefaultClientPage />
-    </div>
-  );
+  return <LandingPageClient />;
 };
 
 export default DefaultPage;

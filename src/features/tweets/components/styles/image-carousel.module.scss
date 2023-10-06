@@ -3,16 +3,14 @@
   top: 50%;
   transform: translateY(-50%);
   right: 10px;
-  width: 2rem;
-  height: 2rem;
-  border-radius: 50%;
+  padding: 0.5em;
+  border-radius: 100vmax;
   background-color: var(--clr-modal);
   border: none;
   cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 10;
+  display: grid;
+  place-items: center;
+  transition: background-color 0.2s ease-in-out;
 
   &:hover {
     background-color: var(--clr-modal-hover);
@@ -22,10 +20,14 @@
     background-color: var(--clr-modal-active);
   }
 
+  &:focus-visible {
+    outline: 2px solid var(--clr-secondary);
+    background-color: var(--clr-modal-hover);
+  }
 
   svg {
-    width: 19px;
-    height: 19px;
+    width: var(--fs-h2);
+    height: var(--fs-h2);
     fill: var(--clr-light);
   }
 }
@@ -35,16 +37,13 @@
   top: 50%;
   transform: translateY(-50%);
   left: 10px;
-  width: 2rem;
-  height: 2rem;
-  border-radius: 50%;
+  padding: 0.5em;
+  border-radius: 100vmax;
   background-color: var(--clr-modal);
-  border: none;
   cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 10;
+  display: grid;
+  place-items: center;
+  transition: background-color 0.2s ease-in-out;
 
   &:hover {
     background-color: var(--clr-modal-hover);
@@ -54,9 +53,14 @@
     background-color: var(--clr-modal-active);
   }
 
+  &:focus-visible {
+    outline: 2px solid var(--clr-secondary);
+    background-color: var(--clr-modal-hover);
+  }
+
   svg {
-    width: 19px;
-    height: 19px;
+    width: var(--fs-h2);
+    height: var(--fs-h2);
     fill: var(--clr-light);
   }
 }
@@ -68,35 +72,14 @@
 .container {
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  place-items: center;
 
   .imageContainer {
     img {
       width: 100%;
       height: 100%;
-      max-height: calc(100vh - 46px);
+      max-height: calc(100vh - 50px);
     }
-  }
-}
-
-@keyframes slideIn {
-  0% {
-    transform: translateX(100%);
-  }
-
-  100% {
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideOut {
-  0% {
-    transform: translateX(0);
-  }
-
-  100% {
-    transform: translateX(-100%);
   }
 }

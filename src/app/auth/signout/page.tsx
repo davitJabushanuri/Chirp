@@ -1,13 +1,11 @@
-"use client";
+import { SignOut } from "@/features/auth";
 
-import { SignOutModal } from "@/features/sidebar";
-
-const SignOut = () => {
+const SignOutPage = () => {
   return (
     <div>
-      <SignOutModal />
+      <SignOut />
     </div>
   );
 };
 
-export default SignOut;
+export default SignOutPage;

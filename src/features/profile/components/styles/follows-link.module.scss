@@ -1,0 +1,22 @@
+.container {
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-400);
+  color: var(--clr-secondary);
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    text-decoration: underline;
+  }
+
+  strong {
+    font-weight: var(--fw-700);
+  }
+
+  span {
+    color: var(--clr-tertiary);
+  }
+}

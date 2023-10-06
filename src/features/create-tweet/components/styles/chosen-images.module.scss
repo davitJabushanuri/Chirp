@@ -4,11 +4,10 @@
 
   .imageContainer {
     position: relative;
-    // max-height: 700px;
-    border-radius: 1rem;
-    overflow: hidden;
 
     img {
+      display: block;
+      border-radius: 1rem;
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -16,10 +15,8 @@
 
     .close {
       position: absolute;
-      top: 4px;
-      left: 4px;
-      background-color: var(--clr-background);
-      border-radius: 50%;
+      top: 0.6rem;
+      right: 0.6rem;
     }
   }
 }

@@ -141,11 +141,14 @@ export async function DELETE(request: Request) {
           id: bookmark_id,
         },
       });
-      return NextResponse.json({
-        message: "Bookmark removed",
-      });
+      return NextResponse.json(
+        {
+          message: "Bookmark removed",
+        },
+        { status: 200 },
+      );
     } catch (error: any) {
-      return NextResponse.json({ error: error.message }, { status: 500 });
+      return Response.json({ error: error.message }, { status: 500 });
     }
   } else if (user_id) {
     try {
@@ -154,11 +157,14 @@ export async function DELETE(request: Request) {
           user_id,
         },
       });
-      return NextResponse.json({
-        message: "Bookmarks removed",
-      });
+      return Response.json(
+        {
+          message: "Bookmarks removed",
+        },
+        { status: 200 },
+      );
     } catch (error: any) {
-      return NextResponse.json({ error: error.message }, { status: 500 });
+      return Response.json({ error: error.message }, { status: 500 });
     }
   }
 }

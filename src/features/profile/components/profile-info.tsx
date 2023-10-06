@@ -1,7 +1,9 @@
 "use client";
+import { AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
+import { useState } from "react";
 
 import { DotIcon } from "@/assets/dot-icon";
 import { LocationIcon } from "@/assets/location-icon";
@@ -9,8 +11,7 @@ import { MessageIcon } from "@/assets/message-icon";
 import { ReceiveNotificationsIcon } from "@/assets/notifications-icon";
 import { EllipsisWrapper } from "@/components/elements/ellipsis-wrapper";
 import { FollowButton } from "@/components/elements/follow-button";
-import { useEditProfile } from "@/stores/use-edit-profile";
-import { useInspectImage } from "@/stores/use-inspect-profile-image";
+import { Modal } from "@/components/elements/modal";
 
 import { WebsiteIcon } from "../assets/website-icon";
 import { IUser } from "../types";
@@ -24,20 +25,13 @@ import { UserJoinDate } from "./user-join-date";
 export const ProfileInfo = ({ user, id }: { user: IUser; id: string }) => {
   const { data: session } = useSession();
 
-  const openEditProfileModal = useEditProfile(
-    (state) => state.openEditProfileModal,
-  );
+  const [isEditProfileModalOpen, setIsEditProfileModalOpen] = useState(false);
 
-  const openInspectModal = useInspectImage((state) => state.openInspectModal);
-  const setSource = useInspectImage((state) => state.setSource);
-  const setSourceType = useInspectImage((state) => state.setSourceType);
-
-  const isEditProfileModalOpen = useEditProfile(
-    (state) => state.isEditProfileModalOpen,
-  );
-  const isInspectModalOpen = useInspectImage(
-    (state) => state.isInspectModalOpen,
-  );
+  const [inspectModal, setInspectModal] = useState({
+    isOpen: false,
+    source: "",
+    sourceType: "",
+  });
 
   const isFollowing = following({
     user: user,
@@ -53,9 +47,11 @@ export const ProfileInfo = ({ user, id }: { user: IUser; id: string }) => {
             aria-hidden="true"
             tabIndex={-1}
             onClick={() => {
-              setSource(user?.profile_banner_url || "");
-              setSourceType("banner");
-              openInspectModal();
+              setInspectModal({
+                isOpen: true,
+                source: user?.profile_banner_url || "",
+                sourceType: "banner",
+              });
             }}
           >
             <Image
@@ -73,9 +69,11 @@ export const ProfileInfo = ({ user, id }: { user: IUser; id: string }) => {
             className={styles.avatarButton}
             aria-label="Inspect profile picture"
             onClick={() => {
-              setSource(user?.profile_image_url || "");
-              setSourceType("avatar");
-              openInspectModal();
+              setInspectModal({
+                isOpen: true,
+                source: user?.profile_image_url || "",
+                sourceType: "avatar",
+              });
             }}
           >
             <Image
@@ -93,7 +91,7 @@ export const ProfileInfo = ({ user, id }: { user: IUser; id: string }) => {
               aria-expanded="false"
               aria-haspopup="menu"
               aria-label="Edit profile"
-              onClick={() => openEditProfileModal()}
+              onClick={() => setIsEditProfileModalOpen(true)}
               className={styles.editProfileButton}
             >
               Edit Profile
@@ -195,8 +193,50 @@ export const ProfileInfo = ({ user, id }: { user: IUser; id: string }) => {
         </div>
       </div>
 
-      {isEditProfileModalOpen && <EditProfileModal user={user} />}
-      {isInspectModalOpen && <InspectImageModal />}
+      <AnimatePresence>
+        {isEditProfileModalOpen && (
+          <Modal
+            onClose={() => {
+              setIsEditProfileModalOpen(false);
+            }}
+            disableScroll={true}
+            background="var(--clr-modal-background)"
+          >
+            <EditProfileModal
+              user={user}
+              closeModal={() => setIsEditProfileModalOpen(false)}
+            />
+          </Modal>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {inspectModal.isOpen && (
+          <Modal
+            onClose={() => {
+              setInspectModal({
+                isOpen: false,
+                source: "",
+                sourceType: "",
+              });
+            }}
+            disableScroll={true}
+            background="var(--clr-modal-background)"
+          >
+            <InspectImageModal
+              source={inspectModal.source}
+              sourceType={inspectModal.sourceType}
+              closeModal={() => {
+                setInspectModal({
+                  isOpen: false,
+                  source: "",
+                  sourceType: "",
+                });
+              }}
+            />
+          </Modal>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

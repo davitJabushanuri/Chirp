@@ -1,16 +1,16 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-import dayjs from "dayjs";
+import { AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 import { DotIcon } from "@/assets/dot-icon";
 import { PinIcon } from "@/assets/pin-icon";
 import { ReportIcon } from "@/assets/report-icon";
 import { TrashIcon } from "@/assets/trash-icon";
-import { Action, ActionsModal } from "@/components/elements/actions-modal";
+import { CreateDate } from "@/components/elements/create-date";
 import { EllipsisWrapper } from "@/components/elements/ellipsis-wrapper";
+import { Menu, MenuItem } from "@/components/elements/menu";
+import { Modal } from "@/components/elements/modal";
 import {
   Avatar,
   LinkToProfile,
@@ -18,7 +18,7 @@ import {
   UserScreenName,
 } from "@/features/profile";
 
-import { SnoozeNotificationsIon } from "../assets/snooze-notifications-ion";
+import { SnoozeNotificationsIcon } from "../assets/snooze-notifications-icon";
 import { useDeleteConversation } from "../hooks/use-delete-conversation";
 import { IConversation } from "../types";
 
@@ -32,6 +32,7 @@ export const ConversationCard = ({
   const { data: session } = useSession();
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   const user = conversation?.users.filter(
     (user) => user.id !== session?.user?.id,
@@ -42,11 +43,16 @@ export const ConversationCard = ({
 
   return (
     <div
+      role="button"
+      tabIndex={0}
       onClick={() => router?.push(`/messages/${conversation?.id}`)}
+      onKeyDown={(e) => {
+        if (e.key === "Enter") router?.push(`/messages/${conversation?.id}`);
+      }}
       className={styles.container}
     >
       <div className={styles.avatar}>
-        <LinkToProfile userId={user?.id}>
+        <LinkToProfile userId={user?.id} tabIndex={-1}>
           <Avatar userImage={user?.profile_image_url} />
         </LinkToProfile>
       </div>
@@ -59,51 +65,72 @@ export const ConversationCard = ({
               </EllipsisWrapper>
             </LinkToProfile>
 
-            <LinkToProfile userId={user?.id}>
+            <LinkToProfile userId={user?.id} tabIndex={-1}>
               <EllipsisWrapper>
                 <UserScreenName screenName={user?.email?.split("@")[0]} />
               </EllipsisWrapper>
             </LinkToProfile>
             <span className={styles.dot}>·</span>
             <span className={styles.date}>
-              {dayjs(lastMessage?.created_at).format("MMM D")}
+              <CreateDate
+                focus={false}
+                hover={false}
+                date={lastMessage?.created_at}
+              />
             </span>
           </div>
-          <div onClick={(e) => e.stopPropagation()} className={styles.options}>
+          <div className={styles.options}>
             <button
+              aria-expanded={isModalOpen}
+              aria-haspopup="menu"
+              aria-label="More"
+              data-title="More"
+              ref={buttonRef}
               className={styles.optionsButton}
-              onClick={() => setIsModalOpen(true)}
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsModalOpen(true);
+              }}
+              onKeyDown={(e) => {
+                e.stopPropagation();
+              }}
             >
               <DotIcon />
             </button>
 
-            {isModalOpen && (
-              <ActionsModal setIsModalOpen={setIsModalOpen}>
-                <button>
-                  <Action icon={<PinIcon />} text={`Pin conversation`} />
-                </button>
+            <AnimatePresence>
+              {isModalOpen && (
+                <Modal onClose={() => setIsModalOpen(false)} background="none">
+                  <Menu
+                    onClose={() => setIsModalOpen}
+                    trackScroll={true}
+                    ref={buttonRef}
+                  >
+                    <MenuItem onClick={() => setIsModalOpen(false)}>
+                      <PinIcon /> Pin conversation
+                    </MenuItem>
 
-                <button>
-                  <Action
-                    icon={<SnoozeNotificationsIon />}
-                    text={`Snooze conversation`}
-                  />
-                </button>
+                    <MenuItem onClick={() => setIsModalOpen(false)}>
+                      <SnoozeNotificationsIcon /> Snooze conversation
+                    </MenuItem>
 
-                <button>
-                  <Action icon={<ReportIcon />} text={`Report conversation`} />
-                </button>
+                    <MenuItem onClick={() => setIsModalOpen(false)}>
+                      <ReportIcon /> Report conversation
+                    </MenuItem>
 
-                <button
-                  onClick={() => {
-                    mutation.mutate({ conversationId: conversation?.id });
-                  }}
-                  className={styles.delete}
-                >
-                  <Action icon={<TrashIcon />} text={`Delete conversation`} />
-                </button>
-              </ActionsModal>
-            )}
+                    <MenuItem
+                      onClick={() => {
+                        mutation.mutate({ conversationId: conversation?.id });
+                        setIsModalOpen(false);
+                      }}
+                      color="red"
+                    >
+                      <TrashIcon /> Delete conversation
+                    </MenuItem>
+                  </Menu>
+                </Modal>
+              )}
+            </AnimatePresence>
           </div>
         </div>
 

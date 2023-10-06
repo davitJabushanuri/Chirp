@@ -1,11 +1,12 @@
 "use client";
-
+import { AnimatePresence } from "framer-motion";
 import { useSession } from "next-auth/react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { toast } from "react-toastify";
 
 import { MessageIcon } from "@/assets/message-icon";
-import { Action, ActionsModal } from "@/components/elements/actions-modal";
+import { Menu, MenuItem } from "@/components/elements/menu";
+import { Modal } from "@/components/elements/modal";
 import { BASE_URL } from "@/config";
 import { useJoinTwitter } from "@/features/auth";
 import { useToggleBookmark } from "@/features/bookmarks";
@@ -23,6 +24,7 @@ import styles from "./styles/actions.module.scss";
 export const ShareButton = ({ tweet }: { tweet: ITweet }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { data: session } = useSession();
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   const url = `${BASE_URL}/status/${tweet?.id}`;
   const notify = () => toast("Copied to clipboard");
@@ -39,78 +41,8 @@ export const ShareButton = ({ tweet }: { tweet: ITweet }) => {
 
   return (
     <div className={styles.container}>
-      {isModalOpen && (
-        <ActionsModal setIsModalOpen={setIsModalOpen}>
-          <button
-            onClick={() => {
-              navigator.clipboard.writeText(url);
-              setIsModalOpen(false);
-              notify();
-            }}
-          >
-            <Action icon={<CopyLinkIcon />} text={`Copy link to Tweet`} />
-          </button>
-
-          <button>
-            <Action icon={<ShareIcon />} text={`Share Tweet via ...`} />
-          </button>
-
-          <button
-            onClick={() => {
-              if (!session) {
-                setJoinTwitterData({
-                  isModalOpen: true,
-                  action: "message",
-                  user: tweet?.author?.name,
-                });
-                setIsModalOpen(false);
-              } else {
-                console.log("DM");
-              }
-            }}
-          >
-            <Action icon={<MessageIcon />} text={`Send via Direct Message`} />
-          </button>
-
-          {isBookmarked ? (
-            <button
-              onClick={() => {
-                mutation.mutate({
-                  tweetId: tweet?.id,
-                  userId: session?.user?.id,
-                  action: "remove",
-                  bookmarkId: tweet?.bookmarks?.find(
-                    (bookmark) => bookmark?.user_id === session?.user?.id,
-                  )?.id,
-                });
-                setIsModalOpen(false);
-                removedFromBookmarks();
-              }}
-            >
-              <Action
-                icon={<RemoveFromBookmarksIcon />}
-                text={`Remove Tweet from Bookmarks`}
-              />
-            </button>
-          ) : session ? (
-            <button
-              onClick={() => {
-                mutation.mutate({
-                  tweetId: tweet?.id,
-                  userId: session?.user?.id,
-                  action: "add",
-                });
-                setIsModalOpen(false);
-                addedToBookmarks();
-              }}
-            >
-              <Action icon={<AddToBookmarksIcon />} text={`Bookmark`} />
-            </button>
-          ) : null}
-        </ActionsModal>
-      )}
-
       <button
+        ref={buttonRef}
         aria-expanded={isModalOpen}
         aria-haspopup="menu"
         aria-label="Share Tweet"
@@ -129,6 +61,91 @@ export const ShareButton = ({ tweet }: { tweet: ITweet }) => {
           <ShareIcon />
         </span>
       </button>
+
+      <AnimatePresence>
+        {isModalOpen && (
+          <Modal
+            background="none"
+            onClose={() => {
+              setIsModalOpen(false);
+            }}
+          >
+            <Menu
+              onClose={() => setIsModalOpen(false)}
+              ref={buttonRef}
+              trackScroll={true}
+            >
+              <MenuItem
+                onClick={() => {
+                  navigator.clipboard.writeText(url);
+                  setIsModalOpen(false);
+                  notify();
+                }}
+              >
+                <CopyLinkIcon /> Copy link to Tweet
+              </MenuItem>
+
+              <MenuItem
+                onClick={() => {
+                  setIsModalOpen(false);
+                }}
+              >
+                <ShareIcon /> Share Tweet via ...
+              </MenuItem>
+
+              <MenuItem
+                onClick={() => {
+                  if (!session) {
+                    setJoinTwitterData({
+                      isModalOpen: true,
+                      action: "message",
+                      user: tweet?.author?.name,
+                    });
+                    setIsModalOpen(false);
+                  } else {
+                    console.log("DM");
+                  }
+                }}
+              >
+                <MessageIcon /> Send via Direct Message
+              </MenuItem>
+
+              {isBookmarked ? (
+                <MenuItem
+                  onClick={() => {
+                    mutation.mutate({
+                      tweetId: tweet?.id,
+                      userId: session?.user?.id,
+                      action: "remove",
+                      bookmarkId: tweet?.bookmarks?.find(
+                        (bookmark) => bookmark?.user_id === session?.user?.id,
+                      )?.id,
+                    });
+                    setIsModalOpen(false);
+                    removedFromBookmarks();
+                  }}
+                >
+                  <RemoveFromBookmarksIcon /> Remove Tweet from Bookmarks
+                </MenuItem>
+              ) : session ? (
+                <MenuItem
+                  onClick={() => {
+                    mutation.mutate({
+                      tweetId: tweet?.id,
+                      userId: session?.user?.id,
+                      action: "add",
+                    });
+                    setIsModalOpen(false);
+                    addedToBookmarks();
+                  }}
+                >
+                  <AddToBookmarksIcon /> Add Tweet to Bookmarks
+                </MenuItem>
+              ) : null}
+            </Menu>
+          </Modal>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

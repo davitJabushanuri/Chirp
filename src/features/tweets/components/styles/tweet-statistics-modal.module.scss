@@ -4,74 +4,51 @@
   position: fixed;
   top: 0;
   left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
   width: 100%;
   height: 100%;
-  background-color: var(--clr-modal-background);
-  z-index: 100;
-  display: grid;
-  place-items: center;
+  overflow-x: auto;
+  background-color: var(--clr-background);
 
-  .modal {
+  &::-webkit-scrollbar {
+    width: 11px;
+  }
+
+  &::-webkit-scrollbar-track {
     background-color: var(--clr-background);
-    width: 100%;
-    height: 100%;
-    overflow-x: auto;
+    border-radius: 0 1rem 1rem 0;
+  }
 
-    &::-webkit-scrollbar {
-      width: 11px;
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--clr-nav-active);
+    border-radius: 1rem;
+  }
+
+  header {
+    position: sticky;
+    top: 0;
+    background-color: var(--clr-background);
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    z-index: 1;
+
+    .title {
+      font-size: var(--fs-h2);
+      font-weight: var(--fw-700);
     }
+  }
 
-    &::-webkit-scrollbar-track {
-      background-color: var(--clr-background);
-      border-radius: 0 1rem 1rem 0;
-    }
+  .people {
+    padding-bottom: calc(100% - 4rem);
+  }
 
-    &::-webkit-scrollbar-thumb {
-      background-color: var(--clr-nav-active);
-      border-radius: 1rem;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      background-color: var(--clr-background);
-      filter: opacity(0.9);
-      backdrop-filter: blur(5px);
-      padding: 0.5rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-
-      .close {
-        .x {
-          display: none;
-        }
-
-        @include mq("medium") {
-          .arrow {
-            display: none;
-          }
-
-          .x {
-            display: block;
-          }
-        }
-      }
-
-      .title {
-        font-size: var(--fs-h2);
-        font-weight: var(--fw-700);
-      }
-    }
-
-    .people {
-      padding-bottom: calc(100% - 4rem);
-    }
-
-    @include mq("medium") {
-      width: 600px;
-      max-height: 600px;
-      border-radius: 1rem;
-    }
+  @include mq("medium") {
+    width: 600px;
+    max-height: min(600px, 90vh);
+    border-radius: 1rem;
   }
 }

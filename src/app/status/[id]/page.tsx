@@ -39,10 +39,10 @@ const TweetPage = async ({
   });
 
   return (
-    <>
+    <div>
       <TweetHeader />
       <TweetDetails initialTweet={initialTweet as any} />
-    </>
+    </div>
   );
 };
 

@@ -1,12 +1,12 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import { useRef, useState } from "react";
 
+import { BackArrowIcon } from "@/assets/back-arrow-icon";
 import { CloseIcon } from "@/assets/close-icon";
-import { BackButton } from "@/components/designs/back-button";
-import { CloseButton } from "@/components/designs/close-button";
-import { useDisableBodyScroll } from "@/hooks";
-import { useEditProfile } from "@/stores/use-edit-profile";
+import { CloseButton } from "@/components/elements/close-button";
+import { TextInput } from "@/components/elements/text-input";
 
 import { updateProfile } from "../api/update-profile";
 import { CameraIcon } from "../assets/camera-icon";
@@ -14,12 +14,15 @@ import { IProfile, IUser } from "../types";
 
 import styles from "./styles/edit-profile-modal.module.scss";
 
-export const EditProfileModal = ({ user }: { user: IUser }) => {
-  useDisableBodyScroll();
+export const EditProfileModal = ({
+  user,
+  closeModal,
+}: {
+  user: IUser;
+  closeModal: () => void;
+}) => {
+  const innerWidth = window.innerWidth;
 
-  const closeEditProfileModal = useEditProfile(
-    (state) => state.closeEditProfileModal,
-  );
   const queryClient = useQueryClient();
   const mutation = useMutation(
     ({ profile, userId }: { profile: IProfile; userId: string }) => {
@@ -34,7 +37,7 @@ export const EditProfileModal = ({ user }: { user: IUser }) => {
         console.log(error);
       },
       onSettled: () => {
-        closeEditProfileModal();
+        closeModal();
         queryClient.invalidateQueries(["users", user?.id]);
       },
     },
@@ -78,157 +81,197 @@ export const EditProfileModal = ({ user }: { user: IUser }) => {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.modal}>
-        <div className={styles.header}>
-          <button
-            onClick={() => closeEditProfileModal()}
-            className={styles.close}
-          >
-            <span className={styles.arrow}>
-              <BackButton />
-            </span>
-            <span className={styles.x}>
-              <CloseButton />
-            </span>
-          </button>
+    <motion.div
+      initial={{ opacity: 0, y: 100 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 100 }}
+      transition={{ duration: 0.2 }}
+      className={styles.container}
+    >
+      <div className={styles.header}>
+        <CloseButton
+          onClick={() => closeModal()}
+          ariaLabel={innerWidth <= 700 ? "Back" : "Close"}
+          title={innerWidth <= 700 ? "Back" : "Close"}
+        >
+          {innerWidth <= 700 ? <BackArrowIcon /> : <CloseIcon />}
+        </CloseButton>
 
-          <h2>Edit Profile</h2>
+        <h2>Edit Profile</h2>
 
-          <button
-            onClick={() => mutation.mutate({ profile, userId: user.id })}
-            disabled={profile?.name.length === 0}
-            className={styles.save}
-          >
-            Save
-          </button>
-        </div>
+        <button
+          aria-label="Save"
+          onClick={() => mutation.mutate({ profile, userId: user.id })}
+          disabled={profile?.name.length === 0}
+          className={styles.save}
+        >
+          Save
+        </button>
+      </div>
 
-        <div className={styles.banner}>
-          {profile?.banner?.url && (
-            <Image
-              src={profile?.banner?.url}
-              alt="banner"
-              width={500}
-              height={500}
-            />
-          )}
-
-          <input
-            className={styles.bannerInput}
-            type="file"
-            accept="image/*"
-            ref={bannerInputRef}
-            onChange={(e) => chooseImage(e, "banner")}
-          />
-          <div className={styles.actions}>
-            <button
-              onClick={() => bannerInputRef.current?.click()}
-              className={styles.chooseBanner}
-            >
-              <CameraIcon />
-            </button>
-
-            {profile?.banner?.url && (
-              <button
-                onClick={() => {
-                  setProfile({
-                    ...profile,
-                    banner: { url: "", file: undefined },
-                  });
-                }}
-                className={styles.removeBanner}
-              >
-                <CloseIcon />
-              </button>
-            )}
-          </div>
-        </div>
-
-        <div className={styles.avatar}>
+      <div className={styles.banner}>
+        {profile?.banner?.url && (
           <Image
-            src={
-              profile?.avatar?.file
-                ? (profile?.avatar?.url as string)
-                : user?.profile_image_url
-                ? user?.profile_image_url
-                : `/user_placeholder.png`
-            }
-            alt="avatar"
-            width={100}
-            height={100}
+            src={profile?.banner?.url}
+            alt="banner"
+            width={500}
+            height={500}
           />
+        )}
 
-          <input
-            className={styles.avatarInput}
-            type="file"
-            accept="image/*"
-            ref={avatarInputRef}
-            onChange={(e) => chooseImage(e, "avatar")}
-          />
-
-          <button
-            onClick={() => avatarInputRef?.current?.click()}
-            className={styles.chooseAvatar}
+        <input
+          accept="image/jpeg,image/png,image/webp"
+          tabIndex={-1}
+          className={styles.bannerInput}
+          type="file"
+          ref={bannerInputRef}
+          onChange={(e) => chooseImage(e, "banner")}
+        />
+        <div className={styles.actions}>
+          <InputButton
+            ariaLabel="Add banner photo"
+            title="Add photo"
+            onClick={() => {
+              bannerInputRef.current?.click();
+            }}
           >
             <CameraIcon />
-          </button>
-        </div>
+          </InputButton>
 
-        <div className={styles.form}>
-          <Input label="name" value={profile.name} setProfile={setProfile} />
-          <Input label="bio" value={profile.bio} setProfile={setProfile} />
-          <Input
-            label="location"
-            value={profile.location}
-            setProfile={setProfile}
-          />
-          <Input
-            label="website"
-            value={profile.website}
-            setProfile={setProfile}
-          />
+          {profile?.banner?.url && (
+            <InputButton
+              ariaLabel="Remove banner photo"
+              title="Remove photo"
+              onClick={() => {
+                setProfile({
+                  ...profile,
+                  banner: { url: "", file: undefined },
+                });
+              }}
+            >
+              <CloseIcon />
+            </InputButton>
+          )}
         </div>
       </div>
-    </div>
+
+      <div className={styles.avatar}>
+        <Image
+          src={
+            profile?.avatar?.file
+              ? (profile?.avatar?.url as string)
+              : user?.profile_image_url
+              ? user?.profile_image_url
+              : `/user_placeholder.png`
+          }
+          alt="avatar"
+          width={500}
+          height={500}
+        />
+
+        <input
+          className={styles.avatarInput}
+          type="file"
+          accept="image/jpeg,image/png,image/webp"
+          tabIndex={-1}
+          ref={avatarInputRef}
+          onChange={(e) => chooseImage(e, "avatar")}
+        />
+        <div className={styles.chooseAvatar}>
+          <InputButton
+            ariaLabel="Add avatar photo"
+            title="Add photo"
+            onClick={() => {
+              avatarInputRef.current?.click();
+            }}
+          >
+            <CameraIcon />
+          </InputButton>
+        </div>
+      </div>
+
+      <div className={styles.form}>
+        <TextInput
+          id="name"
+          name="name"
+          onChange={(e) => {
+            setProfile((prev: IProfile) => ({
+              ...prev,
+              name: e.target.value,
+            }));
+          }}
+          placeholder="Name"
+          value={profile.name}
+          maxLength={50}
+          isError={profile?.name.length === 0}
+          errorMessage="Name can't be blank"
+        />
+
+        <TextInput
+          id="bio"
+          name="bio"
+          placeholder="Bio"
+          value={profile.bio || ""}
+          onChange={(e) => {
+            setProfile((prev: IProfile) => ({
+              ...prev,
+              bio: e.target.value,
+            }));
+          }}
+          maxLength={160}
+        />
+
+        <TextInput
+          id="location"
+          name="location"
+          placeholder="Location"
+          value={profile.location || ""}
+          onChange={(e) => {
+            setProfile((prev: IProfile) => ({
+              ...prev,
+              location: e.target.value,
+            }));
+          }}
+          maxLength={30}
+        />
+
+        <TextInput
+          id="website"
+          name="website"
+          placeholder="Website"
+          value={profile.website || ""}
+          onChange={(e) => {
+            setProfile((prev: IProfile) => ({
+              ...prev,
+              website: e.target.value,
+            }));
+          }}
+          maxLength={100}
+        />
+      </div>
+    </motion.div>
   );
 };
 
-const Input = ({
-  label,
-  value,
-  setProfile,
+const InputButton = ({
+  ariaLabel,
+  title,
+  onClick,
+  children,
 }: {
-  label: string;
-  value: string | undefined;
-  setProfile: (value: string | any) => void;
+  ariaLabel: string;
+  title: string;
+  onClick: () => void;
+  children: React.ReactNode;
 }) => {
   return (
-    <div className={styles.input}>
-      <label
-        htmlFor={label}
-        className={
-          label === "name" && value?.length === 0 ? styles.isError : ""
-        }
-      >
-        <input
-          type="text"
-          name={label}
-          id={label}
-          placeholder="Name"
-          value={value}
-          onChange={(e) =>
-            setProfile((prev: IProfile) => ({
-              ...prev,
-              [label]: e.target.value,
-            }))
-          }
-        />
-        <span>{label.charAt(0).toUpperCase() + label.slice(1)}</span>
-      </label>
-      {label === "name" && value?.length === 0 && (
-        <span className={styles.error}>Name can&apos;t be blank</span>
-      )}
-    </div>
+    <button
+      aria-label={ariaLabel}
+      data-title={title}
+      onClick={onClick}
+      className={styles.inputButton}
+    >
+      {children}
+    </button>
   );
 };
