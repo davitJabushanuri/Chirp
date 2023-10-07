@@ -15,18 +15,18 @@
 
     &:hover {
       background-color: var(--clr-options-hover);
-      fill: var(--clr-blue);
+      fill: var(--clr-primary);
     }
 
     &:active {
       background-color: var(--clr-options-active);
-      fill: var(--clr-blue);
+      fill: var(--clr-primary);
     }
 
     &:focus-visible {
       outline: 2px solid var(--clr-primary-disabled);
       background-color: var(--clr-options-hover);
-      fill: var(--clr-blue);
+      fill: var(--clr-primary);
     }
 
     svg {
