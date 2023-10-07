@@ -29,6 +29,7 @@ export const CreateTweet = ({
   placeholder = "What's happening?",
   isInspectModal = false,
   container = "tweet",
+  inputId = "tweet-text",
 }: {
   quoted_tweet?: ITweet | null;
   in_reply_to_screen_name?: string | null;
@@ -36,6 +37,7 @@ export const CreateTweet = ({
   placeholder?: string | null;
   isInspectModal?: boolean;
   container?: "tweet" | "modal" | "comment";
+  inputId?: string;
 }) => {
   const { data: session } = useSession();
 
@@ -84,7 +86,7 @@ export const CreateTweet = ({
         >
           <div className={styles.text}>
             <textarea
-              id="tweet-text"
+              id={inputId}
               ref={inputRef}
               style={{ height: "0" }}
               contentEditable="true"
@@ -174,7 +176,7 @@ export const CreateTweet = ({
               </span>
             )}
 
-            <EmojiButton setText={setText} />
+            <EmojiButton setText={setText} inputId={inputId} />
 
             {!isInspectModal && (
               <span className={styles.hide}>

@@ -49,6 +49,7 @@ export const CreateTweetModal = () => {
           in_reply_to_status_id={data.in_reply_to_status_id}
           placeholder={data.placeholder}
           container="modal"
+          inputId="tweet-text-modal"
         />
       </div>
     </motion.div>

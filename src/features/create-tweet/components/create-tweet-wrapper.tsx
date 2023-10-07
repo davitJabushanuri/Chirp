@@ -56,6 +56,7 @@ export const CreateTweetWrapper = ({
               in_reply_to_status_id={in_reply_to_status_id}
               placeholder={`Tweet your reply!`}
               isInspectModal={isInspectModal}
+              inputId="tweet-text-comment"
             />
           </motion.div>
         </div>
