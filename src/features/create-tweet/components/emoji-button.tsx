@@ -11,8 +11,10 @@ import styles from "./styles/emoji-button.module.scss";
 
 export const EmojiButton = ({
   setText,
+  inputId,
 }: {
   setText: Dispatch<SetStateAction<string>>;
+  inputId: string;
 }) => {
   const emojiButtonRef = useRef<HTMLButtonElement>(null);
 
@@ -42,7 +44,7 @@ export const EmojiButton = ({
           <Modal
             onClose={() => setIsEmojiPickerOpen(false)}
             background="none"
-            focusAfterClose={`#tweet-text`}
+            focusAfterClose={`#${inputId}`}
           >
             <EmojiPickerModal onClick={onEmojiClick} ref={emojiButtonRef} />
           </Modal>
