@@ -98,7 +98,10 @@ export const Tweet = ({
 
           {tweet?.in_reply_to_status_id && (
             <div className={styles.replyingTo}>
-              <ReplyingTo screen_name={tweet?.in_reply_to_screen_name} />
+              <ReplyingTo
+                screen_name={tweet?.in_reply_to_screen_name}
+                id={tweet?.author?.id}
+              />
             </div>
           )}
           <div className={styles.tweet}>

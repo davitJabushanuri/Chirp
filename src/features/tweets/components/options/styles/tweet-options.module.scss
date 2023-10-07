@@ -1,17 +1,15 @@
 @use "abstracts/tooltips" as *;
 
 .container {
-  position: relative;
-
   .optionsButton {
     @include tooltip(bottom, 4px);
-    width: 33.5px;
-    height: 33.5px;
     border-radius: 100vmax;
     cursor: pointer;
     fill: var(--clr-tertiary);
     display: grid;
     place-items: center;
+    padding: 0.5em;
+    transition: background-color 0.2s ease-in-out;
 
     &:hover {
       background-color: var(--clr-options-hover);
@@ -30,8 +28,9 @@
     }
 
     svg {
-      width: 17.5px;
-      height: 17.5px;
+      width: var(--fs-h3);
+      height: var(--fs-h3);
+      transition: fill 0.2s ease-in-out;
     }
   }
 }

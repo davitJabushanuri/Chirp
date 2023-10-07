@@ -43,7 +43,7 @@ export const CreateTweetWrapper = ({
               transition={{ duration: 0.2 }}
               className={styles.replyingTo}
             >
-              <ReplyingTo screen_name={in_reply_to_screen_name} link={false} />
+              <ReplyingTo screen_name={in_reply_to_screen_name} />
             </motion.div>
           )}
           <motion.div

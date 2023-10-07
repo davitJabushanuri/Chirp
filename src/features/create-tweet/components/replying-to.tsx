@@ -4,21 +4,25 @@ import styles from "./styles/replying-to.module.scss";
 
 export const ReplyingTo = ({
   screen_name,
-  link = true,
+  id,
 }: {
   screen_name: string | null;
-  link?: boolean;
+  id?: string | null;
 }) => {
   return (
     <div className={styles.container}>
-      <span>
-        Replying to{" "}
-        {link ? (
-          <Link href={`/${screen_name}`}>@{screen_name}</Link>
-        ) : (
-          <span className={styles.username}>@{screen_name}</span>
-        )}
-      </span>
+      Replying to{" "}
+      {id ? (
+        <Link
+          className={styles.link}
+          onClick={(e) => e.stopPropagation()}
+          href={`/${id}`}
+        >
+          @{screen_name}
+        </Link>
+      ) : (
+        <span className={styles.username}>@{screen_name}</span>
+      )}
     </div>
   );
 };
