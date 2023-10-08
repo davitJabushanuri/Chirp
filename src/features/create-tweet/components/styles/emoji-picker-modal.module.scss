@@ -1,0 +1,6 @@
+.container {
+  width: min(320px, 100%);
+  height: min(400px, 100%);
+  border-radius: 1rem;
+  box-shadow: 0 0 10px -5px var(--clr-secondary);
+}

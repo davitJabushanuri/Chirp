@@ -45,7 +45,10 @@ export const CreateTweetComment = ({ tweet }: { tweet: ITweet | null }) => {
 
         {tweet?.author?.email && (
           <div className={styles.replyingTo}>
-            <ReplyingTo screen_name={tweet?.author?.email?.split("@")[0]} />
+            <ReplyingTo
+              screen_name={tweet?.author?.email?.split("@")[0]}
+              id={tweet?.author?.id}
+            />
           </div>
         )}
       </div>

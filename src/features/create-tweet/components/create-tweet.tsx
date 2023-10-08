@@ -2,7 +2,6 @@
 import { useSession } from "next-auth/react";
 import { useCallback, useLayoutEffect, useRef, useState } from "react";
 
-import { EmojiIcon } from "@/assets/emoji-icon";
 import { GifIcon } from "@/assets/gif-icon";
 import { ImageIcon } from "@/assets/image-icon";
 import { LocationIcon } from "@/assets/location-icon";
@@ -19,6 +18,7 @@ import { resizeTextarea } from "../utils/resize-textarea";
 import Action from "./action";
 import { ChosenImages } from "./chosen-images";
 import { CreateTweetQuote } from "./create-tweet-quote";
+import { EmojiButton } from "./emoji-button";
 import styles from "./styles/create-tweet.module.scss";
 import { TextProgressBar } from "./text-progress-bar";
 
@@ -29,6 +29,7 @@ export const CreateTweet = ({
   placeholder = "What's happening?",
   isInspectModal = false,
   container = "tweet",
+  inputId = "tweet-text",
 }: {
   quoted_tweet?: ITweet | null;
   in_reply_to_screen_name?: string | null;
@@ -36,6 +37,7 @@ export const CreateTweet = ({
   placeholder?: string | null;
   isInspectModal?: boolean;
   container?: "tweet" | "modal" | "comment";
+  inputId?: string;
 }) => {
   const { data: session } = useSession();
 
@@ -84,6 +86,7 @@ export const CreateTweet = ({
         >
           <div className={styles.text}>
             <textarea
+              id={inputId}
               ref={inputRef}
               style={{ height: "0" }}
               contentEditable="true"
@@ -173,16 +176,7 @@ export const CreateTweet = ({
               </span>
             )}
 
-            <button
-              type="button"
-              className={styles.action}
-              aria-label="Add emoji"
-              data-title="Emoji"
-              aria-haspopup="menu"
-              tabIndex={0}
-            >
-              <Action icon={<EmojiIcon />} />
-            </button>
+            <EmojiButton setText={setText} inputId={inputId} />
 
             {!isInspectModal && (
               <span className={styles.hide}>

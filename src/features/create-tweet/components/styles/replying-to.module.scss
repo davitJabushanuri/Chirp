@@ -1,22 +1,21 @@
 .container {
-  span {
-    color: var(--clr-tertiary);
-    font-size: var(--fs-milli);
-    word-wrap: break-word;
-    word-break: break-all;
+  color: var(--clr-tertiary);
+  font-size: var(--fs-milli);
+  word-wrap: break-word;
+  word-break: break-all;
 
-    a {
-      color: var(--clr-primary);
-      cursor: pointer;
+  .link {
+    color: var(--clr-primary);
+    cursor: pointer;
 
-      &:focus-visible {
-        text-decoration: underline;
-      }
+    &:focus-visible,
+    &:hover {
+      text-decoration: underline;
     }
+  }
 
-    .username {
-      color: var(--clr-primary);
-      cursor: pointer;
-    }
+  .username {
+    color: var(--clr-primary);
+    cursor: pointer;
   }
 }
