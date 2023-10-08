@@ -1,8 +1,7 @@
-import { getCookie } from "cookies-next";
 import EmojiPicker, {
   EmojiClickData,
   EmojiStyle,
-  Theme,
+  SuggestionMode,
 } from "emoji-picker-react";
 import { motion } from "framer-motion";
 import { forwardRef } from "react";
@@ -10,6 +9,7 @@ import { forwardRef } from "react";
 import { useTrackPosition } from "@/components/elements/modal";
 
 import styles from "./styles/emoji-picker-modal.module.scss";
+import "./styles/emoji-picker-variables.scss";
 
 export const EmojiPickerModal = forwardRef<
   HTMLButtonElement,
@@ -17,8 +17,6 @@ export const EmojiPickerModal = forwardRef<
     onClick: (e: EmojiClickData, event: MouseEvent) => void;
   }
 >(({ onClick }, ref) => {
-  const theme = getCookie("theme") === "theme-light" ? "light" : "dark";
-
   const boundaries = useTrackPosition({
     buttonRef: ref as React.RefObject<HTMLButtonElement>,
     trackScroll: true,
@@ -35,11 +33,11 @@ export const EmojiPickerModal = forwardRef<
     <motion.div style={style} className={styles.container}>
       <EmojiPicker
         onEmojiClick={onClick}
-        theme={theme as Theme}
         emojiStyle={EmojiStyle.TWITTER}
         searchPlaceHolder="Search emojis"
         width={`100%`}
         height={`100%`}
+        suggestedEmojisMode={SuggestionMode.RECENT}
       />
     </motion.div>
   );
