@@ -1,6 +1,42 @@
 @use "main.scss";
 @use "abstracts/media-query" as *;
 
+// Emoji Picker React Styles
+.EmojiPickerReact {
+  --epr-bg-color: var(--clr-background) !important;
+  --epr-text-color: var(--clr-secondary) !important;
+  --epr-picker-border-color: transparent !important;
+
+  // border radius
+  --epr-picker-border-radius: 1rem !important;
+
+  // search
+  --epr-header-padding: 0.4em !important;
+
+  --epr-search-input-bg-color: var(--clr-nav-hover) !important;
+  --epr-search-input-bg-color-active: var(--clr-nav-hover) !important;
+
+  --epr-search-input-border-radius: 100vmax !important;
+  --epr-search-border-color: var(--clr-primary-disabled) !important;
+
+  --epr-search-input-text-color: var(--clr-secondary) !important;
+  --epr-search-input-placeholder-color: var(--clr-tertiary) !important;
+
+  // category navigation
+  --epr-category-navigation-button-size: var(--fs-h1) !important;
+  --epr-category-label-bg-color: var(--clr-background) !important;
+
+  // emoji
+  --epr-emoji-size: var(--fs-h2) !important;
+  --epr-hover-bg-color: var(--clr-nav-hover) !important;
+  --epr-focus-bg-color: var(--clr-nav-active) !important;
+
+  // preview
+  --epr-preview-height: 70px !important;
+  --epr-preview-text-size: var(--fs-micro);
+  --epr-preview-text-color: var(--clr-primary-disabled);
+}
+
 *::-webkit-scrollbar {
   width: 11px;
 }
