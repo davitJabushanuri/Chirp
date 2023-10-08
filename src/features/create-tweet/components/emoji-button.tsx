@@ -1,5 +1,4 @@
 import { EmojiClickData } from "emoji-picker-react";
-import { AnimatePresence } from "framer-motion";
 import { Dispatch, SetStateAction, useRef, useState } from "react";
 
 import { EmojiIcon } from "@/assets/emoji-icon";
@@ -39,17 +38,15 @@ export const EmojiButton = ({
         <Action icon={<EmojiIcon />} />
       </button>
 
-      <AnimatePresence>
-        {isEmojiPickerOpen && (
-          <Modal
-            onClose={() => setIsEmojiPickerOpen(false)}
-            background="none"
-            focusAfterClose={`#${inputId}`}
-          >
-            <EmojiPickerModal onClick={onEmojiClick} ref={emojiButtonRef} />
-          </Modal>
-        )}
-      </AnimatePresence>
+      {isEmojiPickerOpen && (
+        <Modal
+          onClose={() => setIsEmojiPickerOpen(false)}
+          background="none"
+          focusAfterClose={`#${inputId}`}
+        >
+          <EmojiPickerModal onClick={onEmojiClick} ref={emojiButtonRef} />
+        </Modal>
+      )}
     </>
   );
 };
