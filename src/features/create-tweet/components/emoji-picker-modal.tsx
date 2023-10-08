@@ -3,13 +3,11 @@ import EmojiPicker, {
   EmojiStyle,
   SuggestionMode,
 } from "emoji-picker-react";
-import { motion } from "framer-motion";
 import { forwardRef } from "react";
 
 import { useTrackPosition } from "@/components/elements/modal";
 
 import styles from "./styles/emoji-picker-modal.module.scss";
-import "./styles/emoji-picker-variables.scss";
 
 export const EmojiPickerModal = forwardRef<
   HTMLButtonElement,
@@ -30,7 +28,7 @@ export const EmojiPickerModal = forwardRef<
   };
 
   return (
-    <motion.div style={style} className={styles.container}>
+    <div style={style} className={styles.container}>
       <EmojiPicker
         onEmojiClick={onClick}
         emojiStyle={EmojiStyle.TWITTER}
@@ -39,7 +37,7 @@ export const EmojiPickerModal = forwardRef<
         height={`100%`}
         suggestedEmojisMode={SuggestionMode.RECENT}
       />
-    </motion.div>
+    </div>
   );
 });
 
