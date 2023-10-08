@@ -17,6 +17,7 @@ export const Modal = ({
   maxViewportWidth = null,
   disableScroll = false,
   focusOnElement = null,
+  focusAfterClose = null,
 }: {
   children: React.ReactNode;
   onClose: () => void;
@@ -26,6 +27,7 @@ export const Modal = ({
   maxViewportWidth?: number | null;
   disableScroll?: boolean;
   focusOnElement?: string | null;
+  focusAfterClose?: string | null;
 }) => {
   const modalRef = useRef<HTMLDivElement>(null);
   const previouslyFocusedElementRef = useRef<HTMLElement | null>(null);
@@ -122,7 +124,14 @@ export const Modal = ({
 
     return () => {
       modal?.removeEventListener("keydown", handleKeyDown);
-      previouslyFocusedElementRef.current?.focus();
+      if (focusAfterClose) {
+        const elementToFocus = document.querySelector(
+          focusAfterClose,
+        ) as HTMLElement;
+        elementToFocus?.focus();
+      } else {
+        previouslyFocusedElementRef.current?.focus();
+      }
 
       if (disableScroll) {
         document.body.style.overflow = "";
@@ -139,6 +148,7 @@ export const Modal = ({
     minViewportWidth,
     maxViewportWidth,
     focusOnElement,
+    focusAfterClose,
   ]);
 
   const backdropStyle: React.CSSProperties = {

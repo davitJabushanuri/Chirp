@@ -1,7 +1,7 @@
 {
   "name": "chirp",
   "description": "Chirp is a social media app built with Next.js, Prisma, and Supabase",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "private": true,
   "engines": {
     "node": ">= 16.0.0",
@@ -34,6 +34,7 @@
     "@types/react": "^18.2.22",
     "@types/react-dom": "18.2.7",
     "axios": "^1.5.0",
+    "emoji-picker-react": "^4.5.2",
     "eslint": "^8.49.0",
     "eslint-config-next": "^13.5.1",
     "framer-motion": "^10.16.4",
