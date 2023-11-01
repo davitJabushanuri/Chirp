@@ -16,6 +16,7 @@ module.exports = {
     "plugin:testing-library/react",
     "plugin:jest-dom/recommended",
     "plugin:cypress/recommended",
+    "plugin:@tanstack/eslint-plugin-query/recommended",
   ],
 
   plugins: [
@@ -25,6 +26,7 @@ module.exports = {
     "testing-library",
     "jest-dom",
     "cypress",
+    "@tanstack/query",
   ],
 
   globals: {
@@ -82,5 +84,7 @@ module.exports = {
         eventModules: ["fire-event"],
       },
     ],
+    "@tanstack/query/exhaustive-deps": "warn",
+    "@tanstack/query/stable-query-client": "warn",
   },
 };
