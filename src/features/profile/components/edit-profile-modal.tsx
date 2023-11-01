@@ -24,24 +24,28 @@ export const EditProfileModal = ({
   const innerWidth = window.innerWidth;
 
   const queryClient = useQueryClient();
-  const mutation = useMutation(
-    ({ profile, userId }: { profile: IProfile; userId: string }) => {
+  const mutation = useMutation({
+    mutationFn: ({
+      profile,
+      userId,
+    }: {
+      profile: IProfile;
+      userId: string;
+    }) => {
       return updateProfile(profile, userId);
     },
 
-    {
-      onSuccess: () => {
-        console.log("success");
-      },
-      onError: (error) => {
-        console.log(error);
-      },
-      onSettled: () => {
-        closeModal();
-        queryClient.invalidateQueries(["users", user?.id]);
-      },
+    onSuccess: () => {
+      console.log("success");
     },
-  );
+    onError: (error) => {
+      console.log(error);
+    },
+    onSettled: () => {
+      closeModal();
+      queryClient.invalidateQueries({ queryKey: ["users", user?.id] });
+    },
+  });
 
   const [profile, setProfile] = useState<IProfile>({
     name: user?.name || "",

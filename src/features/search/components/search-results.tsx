@@ -23,7 +23,7 @@ export const SearchResults = () => {
 
   const people = useSearchPeople(query);
 
-  if (tweets.isLoading || tweets.isFetching) return <LoadingSpinner />;
+  if (tweets.isPending || tweets.isFetching) return <LoadingSpinner />;
 
   if (tweets.isError) return <TryAgain />;
 

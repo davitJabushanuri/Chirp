@@ -7,13 +7,12 @@ import { IUser } from "../types";
 export const useUsers = () => {
   const { data: session } = useSession();
 
-  return useQuery<IUser[]>(
-    ["users"],
-    async () => {
+  return useQuery<IUser[]>({
+    // eslint-disable-next-line @tanstack/query/exhaustive-deps
+    queryKey: ["users"],
+    queryFn: async () => {
       return getUsers(session?.user?.id);
     },
-    {
-      refetchOnWindowFocus: false,
-    },
-  );
+    refetchOnWindowFocus: false,
+  });
 };

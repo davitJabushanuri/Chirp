@@ -10,7 +10,7 @@ import { Person } from "./person";
 import styles from "./styles/connect.module.scss";
 
 export const Connect = () => {
-  const { data: people, isLoading, isError } = useUsers();
+  const { data: people, isLoading, isError, isSuccess } = useUsers();
 
   return (
     <section aria-label="Who to follow" className={styles.container}>
@@ -26,7 +26,8 @@ export const Connect = () => {
         <>
           <h2>Who to follow</h2>
           <div className={styles.people}>
-            {people.length > 0 &&
+            {isSuccess &&
+              people.length > 0 &&
               people?.slice(0, 3)?.map((person) => {
                 return <Person key={person.id} person={person} />;
               })}

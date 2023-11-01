@@ -24,7 +24,7 @@ export const UserModal = forwardRef<HTMLDivElement, { userId: string }>(
     const router = useRouter();
     const pathname = usePathname();
     const { data: session } = useSession();
-    const { data: user, isLoading, isError } = useUser({ id: userId });
+    const { data: user, isPending, isError } = useUser({ id: userId });
     const buttonBoundaries = useTrackPosition({
       buttonRef: ref as React.RefObject<HTMLButtonElement>,
       trackScroll: true,
@@ -50,7 +50,7 @@ export const UserModal = forwardRef<HTMLDivElement, { userId: string }>(
         }}
         className={styles.container}
       >
-        {isLoading ? (
+        {isPending ? (
           <LoadingSpinner />
         ) : isError ? (
           <TryAgain />

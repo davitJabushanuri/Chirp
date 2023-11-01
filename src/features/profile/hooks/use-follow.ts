@@ -6,8 +6,8 @@ import { unfollowUser } from "../api/unfollow-user";
 export const useFollow = (type: "follow" | "unfollow") => {
   const queryClient = useQueryClient();
 
-  return useMutation(
-    ({
+  return useMutation({
+    mutationFn: ({
       user_id,
       session_owner_id,
     }: {
@@ -19,18 +19,16 @@ export const useFollow = (type: "follow" | "unfollow") => {
         : unfollowUser(user_id, session_owner_id);
     },
 
-    {
-      onSuccess: () => {
-        console.log("success");
-      },
-
-      onError: () => {
-        console.log("error");
-      },
-
-      onSettled: () => {
-        queryClient.invalidateQueries(["users"]);
-      },
+    onSuccess: () => {
+      console.log("success");
     },
-  );
+
+    onError: () => {
+      console.log("error");
+    },
+
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: ["users"] });
+    },
+  });
 };

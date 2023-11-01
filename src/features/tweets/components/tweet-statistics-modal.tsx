@@ -26,20 +26,18 @@ export const TweetStatisticsModal = ({
     data: authors,
     isLoading,
     isError,
-  } = useQuery<IUser[]>(
-    [`tweet`, tweetId, title],
-    async () => {
+  } = useQuery<IUser[]>({
+    queryKey: [`tweet`, tweetId, title],
+    queryFn: async () => {
       const response = await fetch(
         `/api/tweets/statistics?tweet_id=${tweetId}&type=${title}`,
       );
       const data = await response.json();
       return data;
     },
-    {
-      enabled: !!tweetId,
-      refetchOnWindowFocus: false,
-    },
-  );
+    enabled: !!tweetId,
+    refetchOnWindowFocus: false,
+  });
 
   return (
     <motion.div

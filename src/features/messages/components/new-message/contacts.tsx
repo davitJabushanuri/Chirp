@@ -17,6 +17,7 @@ export const Contacts = ({
     data: conversations,
     isLoading,
     isError,
+    isSuccess,
   } = useGetConversations(session?.user?.id);
 
   if (isLoading) return null;
@@ -25,20 +26,21 @@ export const Contacts = ({
 
   return (
     <div role="listbox">
-      {conversations.map((conversation) => {
-        return (
-          <Contact
-            key={conversation?.id}
-            user={
-              conversation?.users?.filter(
-                (user) => user?.id !== session?.user?.id,
-              )[0]
-            }
-            receiverId={receiverId}
-            setReceiverId={setReceiverId}
-          />
-        );
-      })}
+      {isSuccess &&
+        conversations.map((conversation) => {
+          return (
+            <Contact
+              key={conversation?.id}
+              user={
+                conversation?.users?.filter(
+                  (user) => user?.id !== session?.user?.id,
+                )[0]
+              }
+              receiverId={receiverId}
+              setReceiverId={setReceiverId}
+            />
+          );
+        })}
     </div>
   );
 };
