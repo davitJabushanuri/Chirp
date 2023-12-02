@@ -86,5 +86,7 @@ module.exports = {
     ],
     "@tanstack/query/exhaustive-deps": "warn",
     "@tanstack/query/stable-query-client": "warn",
+
+    "jsx-a11y/label-has-associated-control": [1],
   },
 };
