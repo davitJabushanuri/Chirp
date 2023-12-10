@@ -5,25 +5,23 @@ import { handleRetweet } from "../api/handle-retweet";
 export const useRetweet = (setIsModalOpen: (isModalOpen: boolean) => void) => {
   const QueryClient = useQueryClient();
 
-  return useMutation(
-    ({ tweetId, userId }: { tweetId: string; userId: string }) => {
+  return useMutation({
+    mutationFn: ({ tweetId, userId }: { tweetId: string; userId: string }) => {
       return handleRetweet(tweetId, userId);
     },
 
-    {
-      onMutate: () => {
-        setIsModalOpen(false);
-      },
-
-      onSuccess: () => {
-        QueryClient.invalidateQueries(["tweets"]);
-      },
-
-      onError: (error: any) => {
-        console.log(error);
-      },
-
-      onSettled: () => {},
+    onMutate: () => {
+      setIsModalOpen(false);
     },
-  );
+
+    onSuccess: () => {
+      QueryClient.invalidateQueries({ queryKey: ["tweets"] });
+    },
+
+    onError: (error: any) => {
+      console.log(error);
+    },
+
+    onSettled: () => {},
+  });
 };

@@ -7,22 +7,24 @@ export const useDeleteConversation = () => {
   const queryClient = useQueryClient();
   const router = useRouter();
 
-  return useMutation(
-    async ({ conversationId }: { conversationId: string | undefined }) => {
+  return useMutation({
+    mutationFn: async ({
+      conversationId,
+    }: {
+      conversationId: string | undefined;
+    }) => {
       return deleteConversation(conversationId);
     },
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries(["conversations"]);
-      },
-
-      onError: (error) => {
-        console.log("error", error);
-      },
-
-      onSettled: () => {
-        router.push("/messages");
-      },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["conversations"] });
     },
-  );
+
+    onError: (error) => {
+      console.log("error", error);
+    },
+
+    onSettled: () => {
+      router.push("/messages");
+    },
+  });
 };

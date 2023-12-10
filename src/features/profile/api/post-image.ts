@@ -1,6 +1,6 @@
 import cuid from "cuid";
 
-import supabase from "@/utils/supabaseClient";
+import { supabase } from "@/utils/supabase-client";
 
 export const postImage = async (file: File, bucket: string) => {
   try {

@@ -15,7 +15,7 @@ export const InfiniteTweets = ({
   fetchNextPage,
   hasNextPage,
 }: {
-  tweets: IInfiniteTweets;
+  tweets: IInfiniteTweets | undefined;
   isSuccess: boolean | undefined;
   isFetchingNextPage: boolean | undefined;
   fetchNextPage: () => Promise<any> | void;

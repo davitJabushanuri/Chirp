@@ -33,7 +33,7 @@ export const InspectTweetImageModal = ({
 
   const {
     data: tweet,
-    isLoading,
+    isPending,
     isError,
   } = useTweet({
     id: tweetId,
@@ -49,7 +49,7 @@ export const InspectTweetImageModal = ({
       }}
       className={styles.container}
     >
-      {isLoading ? (
+      {isPending ? (
         <div
           onClick={(e) => {
             e.stopPropagation();

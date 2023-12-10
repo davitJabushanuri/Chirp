@@ -10,13 +10,11 @@ export const useGetFollows = ({
   id: string | undefined;
   type: string | undefined;
 }) => {
-  return useQuery<IUser[]>(
-    ["users", id, type],
-    async () => {
+  return useQuery<IUser[]>({
+    queryKey: ["users", id, type],
+    queryFn: async () => {
       return getFollows(id, type);
     },
-    {
-      refetchOnWindowFocus: false,
-    },
-  );
+    refetchOnWindowFocus: false,
+  });
 };

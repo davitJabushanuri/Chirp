@@ -5,18 +5,17 @@ import { DeleteAllBookmarks } from "../api/delete-all-bookmarks";
 export const useDeleteAllBookmarks = () => {
   const queryClient = useQueryClient();
 
-  return useMutation(
-    ({ userId }: { userId: string | undefined }) => {
+  return useMutation({
+    mutationFn: ({ userId }: { userId: string | undefined }) => {
       return DeleteAllBookmarks(userId);
     },
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries(["bookmarks"]);
-        queryClient.invalidateQueries(["tweets"]);
-      },
-      onError: () => {
-        console.log("error");
-      },
+
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["bookmarks"] });
+      queryClient.invalidateQueries({ queryKey: ["tweets"] });
     },
-  );
+    onError: () => {
+      console.log("error");
+    },
+  });
 };

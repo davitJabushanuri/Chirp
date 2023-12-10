@@ -12,8 +12,8 @@ export const useCreateMessage = ({
   setChosenImages: (chosenImages: IChosenImages[]) => void;
 }) => {
   const queryClient = useQueryClient();
-  return useMutation(
-    ({
+  return useMutation({
+    mutationFn: ({
       text,
       files,
       conversationId,
@@ -34,20 +34,19 @@ export const useCreateMessage = ({
         receiverId,
       });
     },
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries(["conversations"]);
-        queryClient.invalidateQueries(["media"]);
-      },
 
-      onError: (error) => {
-        console.log("error", error);
-      },
-
-      onSettled: () => {
-        setText("");
-        setChosenImages([]);
-      },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["conversations"] });
+      queryClient.invalidateQueries({ queryKey: ["media"] });
     },
-  );
+
+    onError: (error) => {
+      console.log("error", error);
+    },
+
+    onSettled: () => {
+      setText("");
+      setChosenImages([]);
+    },
+  });
 };
