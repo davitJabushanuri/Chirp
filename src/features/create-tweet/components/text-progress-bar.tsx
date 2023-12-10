@@ -18,10 +18,10 @@ export const TextProgressBar = ({ progress }: { progress: number }) => {
     remainingChars > 20
       ? "var(--clr-primary)"
       : remainingChars <= 20 && remainingChars > 0
-      ? "#ffd400"
-      : remainingChars <= 0 && remainingChars > -10
-      ? "#F4212E"
-      : `transparent`;
+        ? "#ffd400"
+        : remainingChars <= 0 && remainingChars > -10
+          ? "#F4212E"
+          : `transparent`;
 
   const trackColor =
     remainingChars > -10 ? "var(--clr-trends-background)" : `transparent`;

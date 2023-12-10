@@ -28,12 +28,12 @@ export const TweetMedia = ({
           media?.length === 1
             ? styles.one
             : media?.length === 2
-            ? styles.two
-            : media?.length === 3
-            ? styles.three
-            : media?.length === 4
-            ? styles.four
-            : ""
+              ? styles.two
+              : media?.length === 3
+                ? styles.three
+                : media?.length === 4
+                  ? styles.four
+                  : ""
         }`}
       >
         {media?.map((media, index) => {
