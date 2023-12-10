@@ -77,25 +77,25 @@ export const JoinTwitterModal = () => {
           {data.action === `comment`
             ? `Reply to join the conversation.`
             : data.action === `retweet`
-            ? `Retweet to spread the word.`
-            : data.action === `like`
-            ? `Like a Tweet to share the love.`
-            : data.action === `follow`
-            ? `Follow ${data.user} to see what they share on Twitter.`
-            : data.action === `message`
-            ? `Join Twitter now so you can share The New European - Think Without Borders’s Tweet privately.`
-            : `Don’t miss what’s happening`}
+              ? `Retweet to spread the word.`
+              : data.action === `like`
+                ? `Like a Tweet to share the love.`
+                : data.action === `follow`
+                  ? `Follow ${data.user} to see what they share on Twitter.`
+                  : data.action === `message`
+                    ? `Join Twitter now so you can share The New European - Think Without Borders’s Tweet privately.`
+                    : `Don’t miss what’s happening`}
         </h1>
         <p className={styles.subtitle}>
           {data.action === `comment`
             ? `Once you join Twitter, you can respond to ${data.user}’s Tweet.`
             : data.action === `retweet`
-            ? `When you join Twitter, you can share ${data.user}’s Tweet with your followers.`
-            : data.action === `like`
-            ? `Join Twitter now to let ${data.user} know you like their Tweet.`
-            : data.action === `follow`
-            ? `Sign up so you never miss their Tweets.`
-            : `People on Twitter are the first to know.`}
+              ? `When you join Twitter, you can share ${data.user}’s Tweet with your followers.`
+              : data.action === `like`
+                ? `Join Twitter now to let ${data.user} know you like their Tweet.`
+                : data.action === `follow`
+                  ? `Sign up so you never miss their Tweets.`
+                  : `People on Twitter are the first to know.`}
         </p>
 
         <div className={styles.buttons}>

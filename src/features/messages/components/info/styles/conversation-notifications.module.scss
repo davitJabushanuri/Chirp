@@ -87,7 +87,8 @@
   input:checked + .toggle span {
     background: var(--clr-primary);
     transform: translateX(20px);
-    transition: all 0.2s cubic-bezier(0.8, 0.4, 0.3, 1.25),
+    transition:
+      all 0.2s cubic-bezier(0.8, 0.4, 0.3, 1.25),
       background 0.15s ease;
     box-shadow: 0 3px 8px rgba(79, 46, 220, 0.2);
   }

@@ -119,7 +119,15 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
-  const { tweet } = await request.json();
+  const { tweet } = (await request.json()) as {
+    tweet: {
+      text: string;
+      author_id: string;
+      in_reply_to_screen_name?: string;
+      in_reply_to_status_id?: string;
+      quoted_tweet_id?: string;
+    };
+  };
 
   tweet.text = encodeURIComponent(tweet?.text);
 

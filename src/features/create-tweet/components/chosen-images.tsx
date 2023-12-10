@@ -20,12 +20,12 @@ export const ChosenImages = ({
         chosenImages.length === 1
           ? styles.one
           : chosenImages.length === 2
-          ? styles.two
-          : chosenImages.length === 3
-          ? styles.three
-          : chosenImages.length === 4
-          ? styles.four
-          : ""
+            ? styles.two
+            : chosenImages.length === 3
+              ? styles.three
+              : chosenImages.length === 4
+                ? styles.four
+                : ""
       }`}
     >
       {chosenImages.map((image) => {

@@ -165,8 +165,8 @@ export const EditProfileModal = ({
             profile?.avatar?.file
               ? (profile?.avatar?.url as string)
               : user?.profile_image_url
-              ? user?.profile_image_url
-              : `/user_placeholder.png`
+                ? user?.profile_image_url
+                : `/user_placeholder.png`
           }
           alt="avatar"
           width={500}

@@ -47,7 +47,10 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
-  const { sender_id, receiver_id } = await request.json();
+  const { sender_id, receiver_id } = (await request.json()) as {
+    sender_id: string;
+    receiver_id: string;
+  };
 
   const conversationSchema = z
     .object({

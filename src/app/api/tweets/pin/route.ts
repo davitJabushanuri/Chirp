@@ -38,7 +38,10 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
-  const { tweet_id, user_id } = await request.json();
+  const { tweet_id, user_id } = (await request.json()) as {
+    tweet_id: string;
+    user_id: string;
+  };
 
   const userSchema = z
     .object({
@@ -71,7 +74,7 @@ export async function POST(request: Request) {
 }
 
 export async function PUT(request: Request) {
-  const { id } = await request.json();
+  const { id } = (await request.json()) as { id: string };
 
   const userSchema = z.string();
 

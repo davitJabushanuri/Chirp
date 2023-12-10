@@ -42,7 +42,10 @@ export async function GET(request: Request) {
 }
 
 export async function PUT(request: Request) {
-  const { user_id, session_owner_id } = await request.json();
+  const { user_id, session_owner_id } = (await request.json()) as {
+    user_id: string;
+    session_owner_id: string;
+  };
 
   const followerIdSchema = z
     .object({

@@ -80,8 +80,8 @@ export const CreateTweet = ({
             container === "modal"
               ? styles.modalHeight
               : container === "comment"
-              ? styles.commentHeight
-              : ""
+                ? styles.commentHeight
+                : ""
           }`}
         >
           <div className={styles.text}>
