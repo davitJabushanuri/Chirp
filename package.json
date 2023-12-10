@@ -12,6 +12,7 @@
     "lint:fix": "next lint --fix",
     "format": "prettier --write .",
     "format:fix": "prettier --write .",
+    "type-check": "tsc --noEmit",
     "test": "jest",
     "test:ci": "jest --ci",
     "test:watch": "jest --watch",

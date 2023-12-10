@@ -18,7 +18,7 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
-  const { hashtags } = await request.json();
+  const { hashtags } = (await request.json()) as { hashtags: string[] };
 
   const hashtagsSchema = z.array(z.string());
 

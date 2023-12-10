@@ -4,7 +4,10 @@ import { z } from "zod";
 import { prisma } from "@/lib/prisma";
 
 export async function POST(request: Request) {
-  const { tweet_id, user_id } = await request.json();
+  const { tweet_id, user_id } = (await request.json()) as {
+    tweet_id: string;
+    user_id: string;
+  };
 
   const retweetSchema = z
     .object({
