@@ -4,7 +4,15 @@ import { z } from "zod";
 import { prisma } from "@/lib/prisma";
 
 export async function POST(request: Request) {
-  const { media } = await request.json();
+  const { media } = (await request.json()) as {
+    media: {
+      tweet_id: string | null;
+      message_id: string | null;
+      media_url: string;
+      media_type: string;
+      media_path: string;
+    };
+  };
 
   const mediaSchema = z
     .object({

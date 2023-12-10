@@ -50,3 +50,7 @@ Thumbs.db
 
 .turbo
 .vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts

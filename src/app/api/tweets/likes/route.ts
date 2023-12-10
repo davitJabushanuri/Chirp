@@ -52,7 +52,10 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
-  const { tweet_id, user_id } = await request.json();
+  const { tweet_id, user_id } = (await request.json()) as {
+    tweet_id: string;
+    user_id: string;
+  };
 
   const likeSchema = z
     .object({

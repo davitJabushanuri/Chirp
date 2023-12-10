@@ -44,7 +44,12 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
-  const message = await request.json();
+  const message = (await request.json()) as {
+    text: string;
+    conversation_id: string;
+    sender_id: string;
+    receiver_id: string;
+  };
 
   const messageSchema = z.object({
     text: z.string(),

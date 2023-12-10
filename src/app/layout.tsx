@@ -1,4 +1,6 @@
+import { Analytics } from "@vercel/analytics/react";
 import { cookies } from "next/headers";
+import { AxiomWebVitals } from "next-axiom";
 import { ToastContainer, Slide } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
@@ -64,6 +66,8 @@ export default async function RootLayout({
             </div>
           </ReactQueryProvider>
         </NextAuthProvider>
+        <Analytics />
+        <AxiomWebVitals />
       </body>
     </html>
   );

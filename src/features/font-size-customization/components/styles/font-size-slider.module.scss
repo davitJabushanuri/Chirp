@@ -5,7 +5,8 @@
   height: 16px;
   background-color: var(--clr-primary);
   border-radius: 50%;
-  box-shadow: var(--clr-primary-opacity) 0px 0px 7px,
+  box-shadow:
+    var(--clr-primary-opacity) 0px 0px 7px,
     var(--clr-primary-opacity) 0px 1px 3px 1px;
   transition: all 0.1s ease-in-out;
 }
@@ -14,7 +15,8 @@
   width: 18px;
   height: 18px;
   outline-offset: 5px;
-  box-shadow: var(--clr-primary-opacity) 0px 0px 7px,
+  box-shadow:
+    var(--clr-primary-opacity) 0px 0px 7px,
     var(--clr-primary-opacity) 0px 1px 3px 1px;
   outline: 2px solid var(--clr-primary);
 }

@@ -9,7 +9,6 @@
     grid-auto-columns: minmax(100px, 1fr);
     overflow-x: auto;
 
-
     .navItem {
       padding: 0 15px;
       height: 50px;
@@ -26,7 +25,6 @@
       &.active {
         background-color: var(--clr-nav-active);
       }
-
 
       .text {
         display: grid;

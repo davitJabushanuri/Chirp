@@ -66,7 +66,15 @@ export async function PUT(request: Request) {
     url,
     profile_banner_url,
     profile_image_url,
-  } = await request.json();
+  } = (await request.json()) as {
+    user_id: string;
+    name: string;
+    description: string;
+    location: string;
+    url: string;
+    profile_banner_url: string;
+    profile_image_url: string;
+  };
 
   const userSchema = z
     .object({

@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import { motion } from "framer-motion";
 
 import { BackArrowIcon } from "@/assets/back-arrow-icon";
@@ -29,10 +30,9 @@ export const TweetStatisticsModal = ({
   } = useQuery<IUser[]>({
     queryKey: [`tweet`, tweetId, title],
     queryFn: async () => {
-      const response = await fetch(
+      const { data } = await axios.get(
         `/api/tweets/statistics?tweet_id=${tweetId}&type=${title}`,
       );
-      const data = await response.json();
       return data;
     },
     enabled: !!tweetId,
