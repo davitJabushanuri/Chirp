@@ -5,7 +5,7 @@ export const getTweets = async ({
   type,
   id,
 }: {
-  pageParam?: string;
+  pageParam?: string | unknown;
   limit?: number;
   type?: string;
   id?: string;

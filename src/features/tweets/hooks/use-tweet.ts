@@ -10,14 +10,12 @@ export const useTweet = ({
   id: string;
   initialData?: ITweet;
 }) => {
-  return useQuery<ITweet>(
-    ["tweets", id],
-    async () => {
+  return useQuery<ITweet>({
+    queryKey: ["tweets", id],
+    queryFn: async () => {
       return getTweet(id);
     },
-    {
-      refetchOnWindowFocus: false,
-      initialData: initialData ?? undefined,
-    },
-  );
+    refetchOnWindowFocus: false,
+    initialData: initialData ?? undefined,
+  });
 };

@@ -9,8 +9,8 @@ import { AuthModalTrigger } from "@/features/auth";
 import { MobileTweetButton } from "@/features/create-tweet";
 import { MobileNavbar } from "@/features/navbar";
 import { Sidebar } from "@/features/sidebar";
-import NextAuthProvider from "@/utils/next-auth-provider";
-import ReactQueryWrapper from "@/utils/react-query";
+import { NextAuthProvider } from "@/utils/next-auth-provider";
+import { ReactQueryProvider } from "@/utils/react-query-provider";
 
 import { Hamburger } from "./hamburger";
 import { JoinTwitter } from "./join-twitter";
@@ -36,7 +36,7 @@ export default async function RootLayout({
     >
       <body suppressHydrationWarning={true}>
         <NextAuthProvider>
-          <ReactQueryWrapper>
+          <ReactQueryProvider>
             <div className="layout">
               <MobileNavbar />
               <MobileTweetButton />
@@ -62,7 +62,7 @@ export default async function RootLayout({
               <JoinTwitter />
               <Hamburger />
             </div>
-          </ReactQueryWrapper>
+          </ReactQueryProvider>
         </NextAuthProvider>
       </body>
     </html>

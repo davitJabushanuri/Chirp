@@ -1,4 +1,4 @@
-import supabase from "@/utils/supabaseClient";
+import { supabase } from "@/utils/supabase-client";
 
 export const deleteMedia = async (media: string[]) => {
   try {

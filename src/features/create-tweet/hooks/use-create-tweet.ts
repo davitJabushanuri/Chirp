@@ -16,8 +16,8 @@ export const useCreateTweet = ({
 
   const queryClient = useQueryClient();
 
-  return useMutation(
-    ({
+  return useMutation({
+    mutationFn: ({
       text,
       userId,
       files,
@@ -41,19 +41,18 @@ export const useCreateTweet = ({
         quoted_tweet_id,
       });
     },
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries(["tweets"]);
-        queryClient.invalidateQueries(["hashtags"]);
-      },
-      onError: (error) => {
-        console.log("error", error);
-      },
-      onSettled: () => {
-        closeModal();
-        setText("");
-        setChosenImages([]);
-      },
+
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["tweets"] });
+      queryClient.invalidateQueries({ queryKey: ["hashtags"] });
     },
-  );
+    onError: (error) => {
+      console.log("error", error);
+    },
+    onSettled: () => {
+      closeModal();
+      setText("");
+      setChosenImages([]);
+    },
+  });
 };

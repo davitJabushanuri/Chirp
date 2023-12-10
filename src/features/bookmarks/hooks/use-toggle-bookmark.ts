@@ -6,8 +6,8 @@ import { RemoveFromBookmarks } from "../api/remove-from-bookmarks";
 export const useToggleBookmark = () => {
   const queryClient = useQueryClient();
 
-  return useMutation(
-    ({
+  return useMutation({
+    mutationFn: ({
       tweetId,
       userId,
       bookmarkId,
@@ -22,14 +22,13 @@ export const useToggleBookmark = () => {
         ? AddToBookmarks({ tweetId, userId })
         : RemoveFromBookmarks(bookmarkId);
     },
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries(["bookmarks"]);
-        queryClient.invalidateQueries(["tweets"]);
-      },
-      onError: () => {
-        console.log("error");
-      },
+
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["bookmarks"] });
+      queryClient.invalidateQueries({ queryKey: ["tweets"] });
     },
-  );
+    onError: () => {
+      console.log("error");
+    },
+  });
 };

@@ -28,14 +28,14 @@ export const TweetDetails = ({
 
   const {
     data: tweet,
-    isLoading,
+    isPending,
     isError,
   } = useTweet({
     id: tweetId,
     initialData: initialTweet,
   });
 
-  if (isLoading) return <LoadingSpinner />;
+  if (isPending) return <LoadingSpinner />;
 
   if (isError) return <TryAgain />;
 

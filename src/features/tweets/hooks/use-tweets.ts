@@ -1,10 +1,16 @@
 "use client";
 import { useInfiniteQuery } from "@tanstack/react-query";
 
+import { ITweet } from "..";
 import { getTweets } from "../api/get-tweets";
 
+interface IInfiniteTweets {
+  nextId: string;
+  tweets: ITweet[];
+}
+
 export const useTweets = ({
-  queryKey,
+  queryKey = ["tweets"],
   type,
   id,
 }: {
@@ -12,23 +18,22 @@ export const useTweets = ({
   type?: string;
   id?: string;
 }) => {
-  const data = useInfiniteQuery(
-    queryKey ?? ["tweets"],
-    ({ pageParam = "" }) =>
-      getTweets({
+  return useInfiniteQuery<IInfiniteTweets>({
+    // eslint-disable-next-line @tanstack/query/exhaustive-deps
+    queryKey,
+    queryFn: ({ pageParam }) => {
+      return getTweets({
         pageParam,
         limit: 20,
         type,
         id,
-      }),
-
-    {
-      getNextPageParam: (lastPage) => {
-        return lastPage?.nextId ?? false;
-      },
-      refetchOnWindowFocus: false,
+      });
     },
-  );
+    initialPageParam: "",
 
-  return data;
+    getNextPageParam: (lastPage) => {
+      return lastPage?.nextId;
+    },
+    refetchOnWindowFocus: false,
+  });
 };

@@ -1,7 +1,7 @@
 import axios from "axios";
 import cuid from "cuid";
 
-import supabase from "@/utils/supabaseClient";
+import { supabase } from "@/utils/supabase-client";
 
 export const postMedia = async ({
   files,

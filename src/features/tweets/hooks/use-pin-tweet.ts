@@ -6,8 +6,8 @@ import { unpinTweet } from "../api/unpin-tweet";
 export const usePinTweet = () => {
   const queryClient = useQueryClient();
 
-  return useMutation(
-    ({
+  return useMutation({
+    mutationFn: ({
       tweetId,
       userId,
       action,
@@ -18,13 +18,11 @@ export const usePinTweet = () => {
     }) => {
       return action === "pin" ? pinTweet(tweetId, userId) : unpinTweet(userId);
     },
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries(["tweets"]);
-      },
-      onError: () => {
-        console.log("error");
-      },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["tweets"] });
     },
-  );
+    onError: () => {
+      console.log("error");
+    },
+  });
 };

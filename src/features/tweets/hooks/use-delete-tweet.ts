@@ -5,17 +5,15 @@ import { deleteTweet } from "../api/delete-tweet";
 export const useDeleteTweet = () => {
   const queryClient = useQueryClient();
 
-  return useMutation(
-    ({ tweetId }: { tweetId: string }) => {
+  return useMutation({
+    mutationFn: ({ tweetId }: { tweetId: string }) => {
       return deleteTweet(tweetId);
     },
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries(["tweets"]);
-      },
-      onError: (error) => {
-        console.log(error);
-      },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["tweets"] });
     },
-  );
+    onError: (error) => {
+      console.log(error);
+    },
+  });
 };

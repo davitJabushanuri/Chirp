@@ -19,18 +19,16 @@ export const TweetQuotes = () => {
     data: tweets,
     isLoading,
     isError,
-  } = useQuery<ITweet[]>(
-    ["tweets", tweetId, "quotes"],
-    async () => {
+  } = useQuery<ITweet[]>({
+    queryKey: ["tweets", tweetId, "quotes"],
+    queryFn: async () => {
       const { data } = await axios.get(
         `/api/tweets/quotes?tweet_id=${tweetId}`,
       );
       return data;
     },
-    {
-      refetchOnWindowFocus: false,
-    },
-  );
+    refetchOnWindowFocus: false,
+  });
 
   if (isLoading) {
     return <LoadingSpinner />;

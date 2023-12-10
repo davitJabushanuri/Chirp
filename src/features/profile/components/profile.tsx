@@ -16,18 +16,18 @@ export const Profile = ({ initialUser }: { initialUser: IUser }) => {
 
   const {
     data: user,
-    isLoading,
     isError,
+    status,
   } = useUser({
     id,
     initialData: initialUser,
   });
 
-  if (isLoading) {
+  if (status === "pending") {
     return <LoadingSpinner />;
   }
 
-  if (isError) {
+  if (status === "error" || isError) {
     return <TryAgain />;
   }
 

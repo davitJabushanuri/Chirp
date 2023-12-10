@@ -136,7 +136,8 @@ export const MessageInput = ({
               });
             }}
             disabled={
-              (text === "" && chosenImages.length <= 0) || mutation.isLoading
+              (text === "" && chosenImages.length <= 0) ||
+              mutation.status === "pending"
             }
             className={styles.icon}
           >
