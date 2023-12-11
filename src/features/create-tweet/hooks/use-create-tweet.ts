@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 import { useCreateTweetModal } from "@/stores/use-create-tweet-modal";
 
@@ -45,9 +46,11 @@ export const useCreateTweet = ({
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["tweets"] });
       queryClient.invalidateQueries({ queryKey: ["hashtags"] });
+      toast(`Your tweet was sent`);
     },
     onError: (error) => {
       console.log("error", error);
+      toast("Something went wrong");
     },
     onSettled: () => {
       closeModal();
