@@ -51,13 +51,14 @@ export default async function RootLayout({
 
               <ToastContainer
                 position="bottom-center"
-                autoClose={4000}
+                autoClose={2000}
                 hideProgressBar={true}
                 transition={Slide}
                 closeButton={false}
-                closeOnClick={false}
+                closeOnClick={true}
                 className={styles.container}
                 toastClassName={styles.toast}
+                role="alert"
               />
 
               <AuthModalTrigger />
