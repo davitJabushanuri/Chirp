@@ -9,5 +9,8 @@
     font-size: var(--fs-micro);
     min-width: fit-content;
     min-height: fit-content;
+    padding: 0.6em 0.8em;
+    cursor: text;
+    animation-duration: 0.2s;
   }
 }

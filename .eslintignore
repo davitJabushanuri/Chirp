@@ -50,3 +50,5 @@ Thumbs.db
 
 .turbo
 .vercel
+*.css
+*.scss
