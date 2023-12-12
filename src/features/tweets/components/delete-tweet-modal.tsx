@@ -1,5 +1,4 @@
 import { ConfirmationModal } from "@/components/elements/modal";
-import { useDisableBodyScroll } from "@/hooks";
 
 import { deleteMedia } from "../api/delete-media";
 import { useDeleteTweet } from "../hooks/use-delete-tweet";
@@ -14,8 +13,6 @@ export const DeleteTweetModal = ({
   setIsDeleteModalOpen: (value: boolean) => void;
   setIsMenuOpen: (value: boolean) => void;
 }) => {
-  useDisableBodyScroll();
-
   const mutation = useDeleteTweet();
 
   return (

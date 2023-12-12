@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 
 import styles from "./styles/confirmation-modal.module.scss";
 
@@ -21,6 +22,16 @@ export const ConfirmationModal = ({
   cancelButtonClick: () => void;
   logo?: React.ReactNode;
 }) => {
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    document.body.style.paddingRight = "11px";
+
+    return () => {
+      document.body.style.overflow = "unset";
+      document.body.style.paddingRight = "0";
+    };
+  }, []);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
