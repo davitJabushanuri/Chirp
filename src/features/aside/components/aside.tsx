@@ -1,5 +1,4 @@
 "use client";
-
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
 
@@ -16,7 +15,13 @@ export const Aside = () => {
   const pathname = usePathname();
 
   return (
-    <aside className={styles.container}>
+    <aside
+      id="trending"
+      aria-label="Trending"
+      className={styles.container}
+      /* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */
+      tabIndex={0}
+    >
       {session && (
         <>
           {pathname !== "/" &&

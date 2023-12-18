@@ -37,15 +37,28 @@ export default async function RootLayout({
       lang="en"
     >
       <body suppressHydrationWarning={true}>
+        <a href="#home-timeline" className="skip-link">
+          Skip to home timeline
+        </a>
+
+        <a href="#trending" className="skip-link">
+          Skip to trending
+        </a>
+
         <NextAuthProvider>
           <ReactQueryProvider>
             <div className="layout">
               <MobileNavbar />
               <MobileTweetButton />
 
-              <Sidebar />
+              <div className="sidebar">
+                <Sidebar />
+              </div>
 
-              <main>{children}</main>
+              {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
+              <main aria-label="Home timeline" id="home-timeline" tabIndex={0}>
+                {children}
+              </main>
 
               <Aside />
 
