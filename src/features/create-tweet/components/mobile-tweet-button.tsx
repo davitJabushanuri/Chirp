@@ -1,4 +1,5 @@
 "use client";
+import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
 
 import { useCreateTweetModal } from "@/stores/use-create-tweet-modal";
@@ -10,8 +11,10 @@ import styles from "./styles/mobile-tweet-button.module.scss";
 export const MobileTweetButton = () => {
   const { data: session } = useSession();
   const openModal = useCreateTweetModal((state) => state.openModal);
+  const pathname = usePathname();
+  const path = pathname.split("/")[1];
 
-  if (!session) return null;
+  if (!session || path === "messages") return null;
 
   return (
     <button
