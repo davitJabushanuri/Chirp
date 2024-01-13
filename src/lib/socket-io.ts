@@ -6,15 +6,8 @@ const URL =
   process.env.NODE_ENV === "production" ? SOCKET_URL : "http://localhost:8080";
 
 export const socket = io(URL, {
+  autoConnect: false,
   reconnectionAttempts: 5,
-});
-
-socket.on("connect", () => {
-  console.log("connected to socket");
-});
-
-socket.on("disconnect", () => {
-  console.log("disconnected from socket");
 });
 
 socket.on("connect_error", (err) => {
