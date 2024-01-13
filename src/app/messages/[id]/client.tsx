@@ -3,7 +3,7 @@ import { Messages } from "@/features/messages";
 
 export const ConversationClientPage = () => {
   return (
-    <div>
+    <div className="no-padding">
       <Messages />
     </div>
   );
