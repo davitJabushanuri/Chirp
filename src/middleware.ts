@@ -11,19 +11,19 @@ const ratelimit = new Ratelimit({
 
 export async function middleware(req: NextRequest) {
   // rate limit api routes
-  if (req.nextUrl.pathname.startsWith("/api")) {
-    const path = req.nextUrl.pathname;
-    if (path.startsWith("/api/blocked")) {
-      return NextResponse.next();
-    }
+  // if (req.nextUrl.pathname.startsWith("/api")) {
+  //   const path = req.nextUrl.pathname;
+  //   if (path.startsWith("/api/blocked")) {
+  //     return NextResponse.next();
+  //   }
 
-    const ip = req.ip ?? "127.0.0.1";
-    const { success } = await ratelimit.limit(ip);
+  //   const ip = req.ip ?? "127.0.0.1";
+  //   const { success } = await ratelimit.limit(ip);
 
-    if (!success) {
-      return NextResponse.redirect(new URL("/api/blocked", req.url));
-    }
-  }
+  //   if (!success) {
+  //     return NextResponse.redirect(new URL("/api/blocked", req.url));
+  //   }
+  // }
   const url = req.nextUrl.clone();
   const token = await getToken({ req });
   const isAuthenticated = !!token;
