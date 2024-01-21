@@ -55,7 +55,12 @@ export const Conversation = () => {
 
   return (
     <div className={styles.container}>
-      <ConversationHeader />
+      <ConversationHeader
+        user_id={conversationMember?.id}
+        user_name={conversationMember?.name}
+        user_image={conversationMember?.profile_image_url}
+        isVerified={conversationMember?.verified}
+      />
       <div id="chat-container" className={styles.conversation}>
         <ConversationMemberDetails user={conversationMember} />
         <Chat conversation_id={conversation?.id} />

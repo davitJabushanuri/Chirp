@@ -1,17 +1,31 @@
+@use "./abstracts/tooltips" as *;
+
 .container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 8px 11px;
+  padding: 0.6rem;
+  gap: 1rem;
 
-  button {
-    width: 32px;
-    height: 32px;
+  .memberDetails {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    span {
+      font-size: var(--fs-base);
+      font-weight: var(--fw-700);
+    }
+  }
+
+  .details {
+    margin-left: auto;
     display: grid;
     place-items: center;
     border-radius: 50%;
+    padding: 0.5rem;
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
+    @include tooltip(bottom, 4px);
 
     &:hover {
       background-color: var(--clr-nav-hover);
@@ -19,6 +33,11 @@
 
     &:active {
       background-color: var(--clr-nav-active);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--clr-secondary);
+      background-color: var(--clr-nav-hover);
     }
 
     svg {
