@@ -12,6 +12,8 @@ import styles from "./styles/mobile-navbar.module.scss";
 export const MobileNavbar = () => {
   const pathname = usePathname();
 
+  if (pathname.split("/")[1] === `messages`) return null;
+
   return (
     <nav className={styles.container}>
       <NavItem
