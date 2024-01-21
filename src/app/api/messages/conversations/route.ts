@@ -28,7 +28,6 @@ export async function GET(request: Request) {
           include: {
             sender: true,
             receiver: true,
-            media: true,
           },
         },
 
