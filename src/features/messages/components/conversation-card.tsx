@@ -135,10 +135,10 @@ export const ConversationCard = ({
         </div>
 
         <div className={styles.messageContainer}>
-          {lastMessage?.media?.length > 0 &&
+          {lastMessage?.image &&
           lastMessage?.sender_id === session?.user?.id ? (
             <span className={styles.message}>You sent a photo</span>
-          ) : lastMessage?.media?.length > 0 &&
+          ) : lastMessage?.image &&
             lastMessage?.receiver_id === session?.user?.id ? (
             <span className={`${styles.message} ${styles.photo}`}>
               Sent a photo

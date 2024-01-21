@@ -6,7 +6,7 @@ export interface IMessage extends Message {
   sender: IUser;
   receiver: IUser;
   conversation: IConversation;
-  status?: "sending" | "sent" | "seen" | "failed";
+  status: "sending" | "sent" | "seen" | "failed";
   file?: File | null;
 }
 
