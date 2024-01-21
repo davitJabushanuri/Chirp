@@ -1,7 +1,7 @@
 .container {
-  background-color: var(--clr-message-input-background);
-  border-radius: 15px;
-  padding: 4px;
+  background-color: var(--clr-background);
+  border-top: 1px solid var(--clr-border);
+  padding: 0.3rem 0.6rem;
 
   .mediaPreview {
     padding: 4px 11px;
@@ -36,11 +36,14 @@
     display: grid;
     grid-template-columns: auto 1fr auto;
     align-items: center;
+    background-color: var(--clr-message-input-background);
+    border-radius: 15px;
+    padding: 4px;
 
     button {
       width: 32px;
       height: 32px;
-      border-radius: 50%;
+      border-radius: 50100vmax;
       cursor: pointer;
       display: grid;
       place-items: center;
@@ -66,33 +69,27 @@
       }
     }
 
-    .input {
-      input {
-        width: 100%;
-        padding: 4px 11px;
-        font-size: var(--fs-milli);
+    input {
+      font-size: var(--fs-milli);
 
-        &::placeholder {
-          color: var(--clr-tertiary);
-        }
+      &::placeholder {
+        color: var(--clr-tertiary);
       }
     }
 
     .send {
       margin-left: auto;
 
-      button {
-        &:disabled {
-          opacity: 0.5;
-          cursor: default;
+      &:disabled {
+        opacity: 0.5;
+        cursor: default;
 
-          &:hover {
-            background-color: transparent;
-          }
+        &:hover {
+          background-color: transparent;
+        }
 
-          &:active {
-            background-color: transparent;
-          }
+        &:active {
+          background-color: transparent;
         }
       }
     }
