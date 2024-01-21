@@ -14,7 +14,6 @@ export const NoResults = ({ query }: { query: string | undefined }) => {
             width={320}
             height={160}
             quality={100}
-            loading="lazy"
           />
         </div>
         <h1>No results for &quot;{query}&quot;</h1>
