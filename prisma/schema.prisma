@@ -75,8 +75,8 @@ model User {
   tweets             Tweet[]
   pinned_tweet       Tweet?         @relation("pinned_tweet", fields: [pinned_tweet_id], references: [id])
   conversations      Conversation[] @relation("ConversationToUser")
-  User_A             User[]         @relation("Followers")
-  User_B             User[]         @relation("Followers")
+  followers             User[]         @relation("Followers")
+  following             User[]         @relation("Followers")
 }
 
 model Tweet {
@@ -157,6 +157,8 @@ model Message {
   id              String       @id @default(cuid())
   text            String?
   image           String?
+  image_width     Int?
+  image_height    Int?
   created_at      DateTime     @default(now())
   sender_id       String
   receiver_id     String
