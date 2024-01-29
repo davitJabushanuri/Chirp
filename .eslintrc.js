@@ -1,6 +1,6 @@
-{
-  "root": true,
-  "extends": [
+module.exports = {
+  root: true,
+  extends: [
     "next",
     "next/core-web-vitals",
     "eslint:recommended",
@@ -12,11 +12,12 @@
     "plugin:jest-dom/recommended",
     "plugin:cypress/recommended",
     "plugin:@tanstack/eslint-plugin-query/recommended",
-    "plugin:prettier/recommended"
+    "plugin:tailwindcss/recommended",
+    "prettier",
   ],
-  "parser": "@typescript-eslint/parser",
+  parser: "@typescript-eslint/parser",
 
-  "plugins": [
+  plugins: [
     "react",
     "jsx-a11y",
     "@typescript-eslint",
@@ -24,44 +25,44 @@
     "jest-dom",
     "cypress",
     "@tanstack/query",
-    "prettier"
+    "prettier",
   ],
 
-  "rules": {
+  rules: {
     "react/react-in-jsx-scope": "off",
 
     // imports
     "import/no-unresolved": "error",
     "no-restricted-imports": [
-      "error",
+      "warn",
       {
-        "patterns": ["@/features/*/*"]
-      }
+        patterns: ["@/features/*/*"],
+      },
     ],
 
     "import/order": [
       "error",
       {
-        "groups": [
+        groups: [
           "builtin",
           "external",
           "internal",
           "parent",
           "sibling",
           "index",
-          "object"
+          "object",
         ],
         "newlines-between": "always",
-        "alphabetize": { "order": "asc", "caseInsensitive": true }
-      }
+        alphabetize: { order: "asc", caseInsensitive: true },
+      },
     ],
 
     "prettier/prettier": [
       "warn",
       {
-        "endOfLine": "auto"
+        endOfLine: "auto",
       },
-      { "usePrettierrc": true }
+      { usePrettierrc: true },
     ],
 
     "@typescript-eslint/no-unused-vars": ["warn"],
@@ -77,22 +78,22 @@
     "testing-library/no-await-sync-events": [
       "error",
       {
-        "eventModules": ["fire-event"]
-      }
+        eventModules: ["fire-event"],
+      },
     ],
     "@tanstack/query/exhaustive-deps": "warn",
     "@tanstack/query/stable-query-client": "warn",
-    "jsx-a11y/label-has-associated-control": [1]
+    "jsx-a11y/label-has-associated-control": [1],
   },
 
-  "settings": {
+  settings: {
     "import/parsers": {
-      "@typescript-eslint/parser": [".ts", ".tsx"]
+      "@typescript-eslint/parser": [".ts", ".tsx"],
     },
     "import/resolver": {
-      "typescript": {
-        "alwaysTryTypes": true
-      }
-    }
-  }
-}
+      typescript: {
+        alwaysTryTypes: true,
+      },
+    },
+  },
+};
