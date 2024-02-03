@@ -4,15 +4,20 @@ import { useSession } from "next-auth/react";
 import { getUsers } from "../api/get-users";
 import { IUser } from "../types";
 
-export const useUsers = () => {
+export const useUsers = ({
+  queryKey,
+  limit,
+}: {
+  queryKey: string[];
+  limit?: number;
+}) => {
   const { data: session } = useSession();
 
   return useQuery<IUser[]>({
     // eslint-disable-next-line @tanstack/query/exhaustive-deps
-    queryKey: ["users"],
+    queryKey,
     queryFn: async () => {
-      return getUsers(session?.user?.id);
+      return getUsers({ id: session?.user?.id, limit });
     },
-    refetchOnWindowFocus: false,
   });
 };
