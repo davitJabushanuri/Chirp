@@ -1,5 +1,4 @@
 "use client";
-
 import Link from "next/link";
 
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
@@ -10,7 +9,14 @@ import { Person } from "./person";
 import styles from "./styles/connect.module.scss";
 
 export const Connect = () => {
-  const { data: people, isLoading, isError, isSuccess } = useUsers();
+  const {
+    data: people = [],
+    isLoading,
+    isError,
+  } = useUsers({
+    queryKey: ["people-to-follow"],
+    limit: 3,
+  });
 
   return (
     <section aria-label="Who to follow" className={styles.container}>
@@ -26,11 +32,9 @@ export const Connect = () => {
         <>
           <h2>Who to follow</h2>
           <div className={styles.people}>
-            {isSuccess &&
-              people.length > 0 &&
-              people?.slice(0, 3)?.map((person) => {
-                return <Person key={person.id} person={person} />;
-              })}
+            {people.map((person) => {
+              return <Person key={person.id} person={person} />;
+            })}
           </div>
 
           <Link className={styles.showMore} href={`/people`}>
