@@ -7,7 +7,8 @@ import { CloseIcon } from "@/assets/close-icon";
 import { EmojiIcon } from "@/assets/emoji-icon";
 import { GifIcon } from "@/assets/gif-icon";
 import { ImageIcon } from "@/assets/image-icon";
-import { CloseButton } from "@/components/elements/close-button";
+import { Button } from "@/components/elements/button";
+import { TooltipProvider } from "@/components/elements/tooltip";
 import { IChosenImages } from "@/features/create-tweet";
 import { socket } from "@/lib/socket-io";
 
@@ -40,17 +41,24 @@ export const MessageInput = ({
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => {
-        setChosenImage({
-          url: reader.result,
-          id: Math.random(),
-          file: file,
-        });
+        const img = document.createElement("img");
+        img.src = reader.result as string;
+
+        img.onload = () => {
+          console.log();
+          setChosenImage({
+            url: reader.result,
+            id: Math.random(),
+            file: file,
+            width: img.width,
+            height: img.height,
+          });
+        };
       };
     }
   };
 
   const onFocus = () => {
-    // detect if the last message is from the current user
     const chat = queryClient.getQueryData<IMessage[]>([
       "chat",
       conversation_id,
@@ -70,6 +78,8 @@ export const MessageInput = ({
     sender_id,
     receiver_id,
     image,
+    image_width,
+    image_height,
     file,
     status,
   }: {
@@ -79,6 +89,8 @@ export const MessageInput = ({
     sender_id: string | undefined;
     receiver_id: string | undefined;
     image: string | ArrayBuffer | null;
+    image_width: number | null;
+    image_height: number | null;
     file: File | null;
     status: "sending" | "sent" | "seen" | "failed";
   }) => {
@@ -89,12 +101,15 @@ export const MessageInput = ({
       sender_id,
       receiver_id,
       image,
+      image_width,
+      image_height,
       file,
       status,
     };
   };
 
-  const onSubmit = async () => {
+  const onSubmit = async (e: any) => {
+    e.preventDefault();
     const id = createId();
 
     const message = createMessage({
@@ -104,6 +119,8 @@ export const MessageInput = ({
       sender_id,
       receiver_id,
       image: chosenImage?.url ?? null,
+      image_width: chosenImage?.width ?? null,
+      image_height: chosenImage?.height ?? null,
       file: chosenImage?.file ?? null,
       status: "sending",
     });
@@ -116,6 +133,8 @@ export const MessageInput = ({
       id,
       text,
       image: chosenImage ? chosenImage.file : null,
+      image_width: chosenImage ? chosenImage.width : null,
+      image_height: chosenImage ? chosenImage.height : null,
       conversation_id,
       sender_id,
       receiver_id,
@@ -127,79 +146,98 @@ export const MessageInput = ({
 
   return (
     <aside aria-label="Start a new message" className={styles.container}>
-      {chosenImage && (
-        <div className={styles.mediaPreview}>
-          <div className={styles.imageContainer}>
-            <CloseButton
-              onClick={() => {
-                setChosenImage(null);
-              }}
-              ariaLabel="Remove media"
-              title="Remove"
-            >
-              <CloseIcon />
-            </CloseButton>
-            <Image
-              src={(chosenImage.url as string) ?? ""}
-              alt=""
-              width={100}
-              height={100}
-            />
-          </div>
-        </div>
-      )}
-
-      <div
-        className={`${styles.inputContainer} ${
-          chosenImage ? styles.active : ""
-        }`}
-      >
-        {!chosenImage && (
-          <div className={styles.actions}>
-            <button
-              type="button"
-              onClick={() => imageUploadRef.current?.click()}
-              className={styles.icon}
-            >
+      <form onSubmit={onSubmit}>
+        <div
+          className={`${styles.inputContainer} ${chosenImage ? styles.row : styles.column}`}
+        >
+          {chosenImage ? (
+            <div className={styles.mediaPreview}>
+              <div className={styles.imageContainer}>
+                <div className={styles.remove}>
+                  <TooltipProvider text="Remove">
+                    <Button
+                      onClick={() => {
+                        setChosenImage(null);
+                      }}
+                      aria-label="Remove media"
+                      className="bg-black-300/80 outline-tertiary-100 backdrop-blur-sm hover:bg-black-200/80 active:bg-black-100/80"
+                    >
+                      <CloseIcon />
+                    </Button>
+                  </TooltipProvider>
+                </div>
+                <Image
+                  src={(chosenImage.url as string) ?? ""}
+                  alt=""
+                  width={chosenImage.width}
+                  height={chosenImage.height}
+                />
+              </div>
+            </div>
+          ) : (
+            <div className={styles.actions}>
               <input
                 className={styles.fileInput}
                 type="file"
                 onChange={chooseImage}
                 ref={imageUploadRef}
               />
-              <ImageIcon />
-            </button>
+              <TooltipProvider text="Media">
+                <Button
+                  type="button"
+                  onClick={() => imageUploadRef.current?.click()}
+                  aria-label="Add Photo or video"
+                  className="fill-primary-100 p-[0.44rem] hover:bg-primary-100/10 active:bg-primary-100/20 [&>svg]:w-[1.250rem]"
+                >
+                  <ImageIcon />
+                </Button>
+              </TooltipProvider>
 
-            <button type="button" className={styles.icon}>
-              <GifIcon />
-            </button>
+              <TooltipProvider text="GIF">
+                <Button
+                  type="button"
+                  aria-label="Add a GIF"
+                  className="fill-primary-100 p-[0.44rem] hover:bg-primary-100/10 active:bg-primary-100/20 [&>svg]:w-[1.250rem]"
+                >
+                  <GifIcon />
+                </Button>
+              </TooltipProvider>
 
-            <button type="button" className={styles.icon}>
-              <EmojiIcon />
-            </button>
-          </div>
-        )}
+              <TooltipProvider text="Emoji">
+                <Button
+                  type="button"
+                  aria-haspopup="menu"
+                  aria-label="Add emoji"
+                  className="fill-primary-100 p-[0.44rem] hover:bg-primary-100/10 active:bg-primary-100/20 [&>svg]:w-[1.250rem]"
+                >
+                  <EmojiIcon />
+                </Button>
+              </TooltipProvider>
+            </div>
+          )}
 
-        <input
-          onFocus={() => {
-            onFocus();
-          }}
-          type="text"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          placeholder="Start a new message"
-        />
+          <input
+            onFocus={() => {
+              onFocus();
+            }}
+            type="text"
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            placeholder="Start a new message"
+          />
+        </div>
 
-        <button
-          aria-label="Send"
-          type="submit"
-          onClick={onSubmit}
-          disabled={text === "" && !chosenImage}
-          className={styles.send}
-        >
-          <SendIcon />
-        </button>
-      </div>
+        <TooltipProvider text="Send">
+          <Button
+            aria-label="Send"
+            type="submit"
+            disabled={text === "" && !chosenImage}
+            className="fill-primary-100 p-[0.44rem] hover:bg-primary-100/10 active:bg-primary-100/20 [&>svg]:w-[1.250rem]"
+          >
+            <SendIcon />
+          </Button>
+        </TooltipProvider>
+      </form>
     </aside>
   );
 };
