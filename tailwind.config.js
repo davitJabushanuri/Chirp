@@ -11,6 +11,8 @@ module.exports = {
     },
 
     colors: {
+      transparent: "transparent",
+
       primary: {
         100: "rgb(var(--tw-clr-primary-100) / <alpha-value>)",
         200: "rgb(var(--tw-clr-primary-200) / <alpha-value>)",
@@ -40,8 +42,16 @@ module.exports = {
 
       background: "rgb(var(--tw-clr-background) / <alpha-value>)",
 
-      white: "rgb(var(--tw-clr-white) / <alpha-value>)",
-      black: "rgb(var(--tw-clr-black) / <alpha-value>)",
+      white: {
+        100: "rgb(var(--tw-clr-white-100) / <alpha-value>)",
+        200: "rgb(var(--tw-clr-white-200) / <alpha-value>)",
+        300: "rgb(var(--tw-clr-white-300) / <alpha-value>)",
+      },
+      black: {
+        100: "rgb(var(--tw-clr-black-100) / <alpha-value>)",
+        200: "rgb(var(--tw-clr-black-200) / <alpha-value>)",
+        300: "rgb(var(--tw-clr-black-300) / <alpha-value>)",
+      },
 
       blue: {
         100: "rgb(var(--tw-clr-blue-100) / <alpha-value>)",
