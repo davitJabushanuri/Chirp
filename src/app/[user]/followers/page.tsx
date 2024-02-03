@@ -62,9 +62,9 @@ export async function generateMetadata({
     };
 
   return {
-    title: `People following ${user?.name?.split(
-      " ",
-    )[0]} (@${user?.email?.split("@")[0]})`,
+    title: `People following ${
+      user?.name?.split(" ")[0]
+    } (@${user?.email?.split("@")[0]})`,
     description: user?.description,
   };
 }

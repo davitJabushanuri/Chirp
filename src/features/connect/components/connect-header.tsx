@@ -20,7 +20,7 @@ export const ConnectHeader = () => {
       >
         <BackArrowIcon />
       </CloseButton>
-      <h1>Connect</h1>
+      <h2>Connect</h2>
     </div>
   );
 };

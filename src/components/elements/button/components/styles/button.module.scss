@@ -1,18 +1,13 @@
-@use "./abstracts/tooltips" as *;
-
 .container {
-  background-color: var(--clr-background);
   cursor: pointer;
   display: grid;
-  padding: 0.5em;
   place-items: center;
+  padding: 0.5em;
   border-radius: 100vmax;
   transition: background-color 0.15s ease-in-out;
-  opacity: 0.8;
-  @include tooltip(bottom, 4px);
 
   svg {
-    width: var(-fs-h2);
+    width: var(--fs-h2);
     height: var(--fs-h2);
     fill: var(--clr-secondary);
   }

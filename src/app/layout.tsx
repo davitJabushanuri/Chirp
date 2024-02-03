@@ -4,8 +4,8 @@ import { AxiomWebVitals } from "next-axiom";
 import { ToastContainer, Slide } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
-
 import "./styles/layout.scss";
+import "./styles/tailwind.css";
 import { Aside } from "@/features/aside";
 import { AuthModalTrigger } from "@/features/auth";
 import { MobileTweetButton } from "@/features/create-tweet";
@@ -31,6 +31,7 @@ export default async function RootLayout({
 
   return (
     <html
+      data-theme="dark"
       className={`${theme?.value ?? ""} ${color?.value ?? ""} ${
         fontSize?.value ?? ""
       }`}

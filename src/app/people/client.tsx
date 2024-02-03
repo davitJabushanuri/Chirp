@@ -2,15 +2,25 @@
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
 import { ConnectHeader, PersonDetails } from "@/features/connect";
+import { Header } from "@/features/header";
 import { useUsers } from "@/features/profile";
 
 export const ConnectClientPage = () => {
-  const { data: people, isLoading, isError, isSuccess } = useUsers();
+  const {
+    data: people = [],
+    isLoading,
+    isError,
+  } = useUsers({
+    queryKey: ["people"],
+    limit: 20,
+  });
 
   if (isLoading) {
     return (
       <>
-        <ConnectHeader />
+        <Header>
+          <ConnectHeader />
+        </Header>
         <LoadingSpinner />
       </>
     );
@@ -19,7 +29,9 @@ export const ConnectClientPage = () => {
   if (isError) {
     return (
       <>
-        <ConnectHeader />
+        <Header>
+          <ConnectHeader />
+        </Header>
         <TryAgain />
       </>
     );
@@ -31,7 +43,9 @@ export const ConnectClientPage = () => {
         paddingBottom: "calc(100vh - 8rem)",
       }}
     >
-      <ConnectHeader />
+      <Header>
+        <ConnectHeader />
+      </Header>
       <h1
         style={{
           fontSize: "19px",
@@ -41,8 +55,7 @@ export const ConnectClientPage = () => {
       >
         Suggested for you
       </h1>
-      {isSuccess &&
-        people.length > 0 &&
+      {people.length > 0 &&
         people?.map((person) => {
           return (
             <div key={person.id}>
