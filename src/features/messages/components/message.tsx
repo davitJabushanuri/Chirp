@@ -48,7 +48,12 @@ export const Message = ({
     <div className={`${styles.container} ${isSender ? styles.isSender : ""} `}>
       {message.image && (
         <div className={styles.media}>
-          <Image src={message.image} alt="" width={500} height={200} />
+          <Image
+            src={message.image}
+            alt=""
+            width={message.image_width ?? 0}
+            height={message.image_height ?? 0}
+          />
         </div>
       )}
 
@@ -71,7 +76,7 @@ export const Message = ({
         ) : (
           show_status && (
             <div className={styles.delivered}>
-              {message.status === "sending" ? "Sending..." : message.status}
+              {message.status === "sending" ? "sending..." : message.status}
             </div>
           )
         )}
