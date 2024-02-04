@@ -83,6 +83,7 @@ export default async function RootLayout({
         </NextAuthProvider>
         <Analytics />
         <AxiomWebVitals />
+        <div id="tooltip-root" />
       </body>
     </html>
   );
