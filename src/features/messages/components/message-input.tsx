@@ -8,7 +8,7 @@ import { EmojiIcon } from "@/assets/emoji-icon";
 import { GifIcon } from "@/assets/gif-icon";
 import { ImageIcon } from "@/assets/image-icon";
 import { Button } from "@/components/elements/button";
-import { TooltipProvider } from "@/components/elements/tooltip";
+import { Tooltip } from "@/components/elements/tooltip";
 import { IChosenImages } from "@/features/create-tweet";
 import { socket } from "@/lib/socket-io";
 
@@ -154,7 +154,7 @@ export const MessageInput = ({
             <div className={styles.mediaPreview}>
               <div className={styles.imageContainer}>
                 <div className={styles.remove}>
-                  <TooltipProvider text="Remove">
+                  <Tooltip text="Remove">
                     <Button
                       onClick={() => {
                         setChosenImage(null);
@@ -164,7 +164,7 @@ export const MessageInput = ({
                     >
                       <CloseIcon />
                     </Button>
-                  </TooltipProvider>
+                  </Tooltip>
                 </div>
                 <Image
                   src={(chosenImage.url as string) ?? ""}
@@ -182,7 +182,7 @@ export const MessageInput = ({
                 onChange={chooseImage}
                 ref={imageUploadRef}
               />
-              <TooltipProvider text="Media">
+              <Tooltip text="Media">
                 <Button
                   type="button"
                   onClick={() => imageUploadRef.current?.click()}
@@ -191,9 +191,9 @@ export const MessageInput = ({
                 >
                   <ImageIcon />
                 </Button>
-              </TooltipProvider>
+              </Tooltip>
 
-              <TooltipProvider text="GIF">
+              <Tooltip text="GIF">
                 <Button
                   type="button"
                   aria-label="Add a GIF"
@@ -201,9 +201,9 @@ export const MessageInput = ({
                 >
                   <GifIcon />
                 </Button>
-              </TooltipProvider>
+              </Tooltip>
 
-              <TooltipProvider text="Emoji">
+              <Tooltip text="Emoji">
                 <Button
                   type="button"
                   aria-haspopup="menu"
@@ -212,7 +212,7 @@ export const MessageInput = ({
                 >
                   <EmojiIcon />
                 </Button>
-              </TooltipProvider>
+              </Tooltip>
             </div>
           )}
 
@@ -227,7 +227,7 @@ export const MessageInput = ({
           />
         </div>
 
-        <TooltipProvider text="Send">
+        <Tooltip text="Send">
           <Button
             aria-label="Send"
             type="submit"
@@ -236,7 +236,7 @@ export const MessageInput = ({
           >
             <SendIcon />
           </Button>
-        </TooltipProvider>
+        </Tooltip>
       </form>
     </aside>
   );
