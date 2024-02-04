@@ -42,7 +42,7 @@ export const Tooltip: FC<Tooltip> = ({ children, delay = 500, ...props }) => {
   };
 
   const handleFocus = () => {
-    setDisplayTooltip(true);
+    if (!displayTooltip) setDisplayTooltip(true);
   };
 
   const handleBlur = () => {
@@ -60,7 +60,6 @@ export const Tooltip: FC<Tooltip> = ({ children, delay = 500, ...props }) => {
       onBlur={handleBlur}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="relative"
     >
       {displayTooltip && !isDisabled && (
         <TooltipContent {...props} parentRef={divRef} />
