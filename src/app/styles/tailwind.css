@@ -278,12 +278,11 @@
 }
 
 @layer utilities {
-  .box-shadow-primary {
-    @apply 0 0 15px rgb(var(--tw-clr-secondary-100), 0.2),
-    0 0 3px 1px rgb(var(--tw-clr-secondary-100), 0.15);
-  }
-
   .disabled-button {
     @apply disabled:cursor-default disabled:opacity-50 disabled:hover:bg-transparent disabled:active:bg-transparent;
+  }
+
+  .shadow-main {
+    @apply shadow-[0px_0px_10px_0px,0px_1px_3px_1px] shadow-secondary-100/25;
   }
 }
