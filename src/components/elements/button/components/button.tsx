@@ -13,10 +13,9 @@ export const Button: FC<IButton> = ({ children, className, ...props }) => {
       className={cn(
         "grid cursor-pointer place-items-center rounded-full",
         "transition-all duration-200 ease-in-out",
-        `fill-secondary-100 p-[0.4em]
-         `,
-        "ring-secondary-100 focus-visible:ring-2 focus-visible:ring-primary-100",
-        "fill-secondary-100 [&>svg]:w-[1.125rem]",
+        "fill-secondary-100 p-[0.4em]",
+        "focus-visible:ring-2 focus-visible:ring-primary-100",
+        "fill-secondary-100 [&>svg]:w-h2",
         "disabled-button",
         className,
       )}
