@@ -130,6 +130,23 @@ module.exports = {
       popover: 1060,
       tooltip: 1070,
     },
+
+    extend: {
+      spacing: {
+        kilo: "var(--tw-fs-kilo)",
+        h1: "var(--tw-fs-h1)",
+        h2: "var(--tw-fs-h2)",
+        h3: "var(--tw-fs-h3)",
+
+        base: "var(--tw-fs-base)",
+
+        large: "var(--tw-fs-large)",
+        milli: "var(--tw-fs-milli)",
+        micro: "var(--tw-fs-micro)",
+        nano: "var(--tw-fs-nano)",
+        pico: "var(--tw-fs-pico)",
+      },
+    },
   },
   plugins: [],
 };
