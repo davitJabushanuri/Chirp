@@ -2,6 +2,7 @@
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useEffect } from "react";
+import { useInView } from "react-intersection-observer";
 
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
@@ -16,6 +17,7 @@ import { MessageInput } from "./message-input";
 
 export const Conversation = () => {
   const { data: session } = useSession();
+  const { ref, inView } = useInView();
 
   const pathname = usePathname();
   const id = pathname?.split("/")[2];
@@ -57,9 +59,12 @@ export const Conversation = () => {
         user_name={conversationMember?.name}
         user_image={conversationMember?.profile_image_url}
         isVerified={conversationMember?.verified}
+        inView={inView}
       />
       <div className="overflow-y-auto">
-        <ConversationMemberDetails user={conversationMember} />
+        <div ref={ref}>
+          <ConversationMemberDetails user={conversationMember} />
+        </div>
         <Chat conversation_id={conversation?.id} />
       </div>
 

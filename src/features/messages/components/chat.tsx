@@ -12,7 +12,6 @@ import { useSocketEvents } from "../hooks/use-socket-events";
 import { scrollIntoView } from "../utils/scroll-into-view";
 
 import { Message } from "./message";
-import styles from "./styles/chat.module.scss";
 
 export type status = "sending" | "sent" | "seen" | "failed";
 
@@ -63,7 +62,7 @@ export const Chat = ({
   if (isError) return <TryAgain />;
 
   return (
-    <div className={`${styles.container}`}>
+    <div className="p-[1em_1em_0]">
       {chat?.map((message, index) => {
         return (
           <div key={message?.id} ref={index === chat.length - 1 ? ref : null}>
