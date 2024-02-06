@@ -1,66 +1,52 @@
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 import { EllipsisWrapper } from "@/components/elements/ellipsis-wrapper";
 import {
   Avatar,
   IUser,
-  LinkToProfile,
   UserJoinDate,
   UserName,
   UserScreenName,
 } from "@/features/profile";
-
-import styles from "./styles/conversation-member-details.module.scss";
+import { cn } from "@/utils/cn";
 
 export const ConversationMemberDetails = ({
   user,
 }: {
   user: IUser | undefined;
 }) => {
-  const router = useRouter();
-
   return (
-    <div
-      role="button"
-      onClick={() => router.push(`/${user?.id}`)}
-      onKeyDown={() => router.push(`/${user?.id}`)}
-      tabIndex={0}
-      className={styles.container}
+    <Link
+      href={`/${user?.id}`}
+      className={cn(
+        "mx-[1em] mt-[2px] grid cursor-pointer place-items-center rounded-sm border-b-[1px] border-neutral-600 p-[1em] text-center",
+        "transition-colors duration-200 ease-in-out",
+        "hover:bg-neutral-200 focus-visible:bg-neutral-200 focus-visible:ring-2 focus-visible:ring-secondary-100",
+      )}
     >
-      <div className={styles.avatar}>
-        <LinkToProfile userId={user?.id}>
-          <Avatar userImage={user?.profile_image_url ?? ""} />
-        </LinkToProfile>
-      </div>
-      <LinkToProfile userId={user?.id}>
-        <EllipsisWrapper>
-          <UserName name={user?.name} isVerified={user?.verified} />
-        </EllipsisWrapper>
-      </LinkToProfile>
-      <div className={styles.username}>
-        <LinkToProfile userId={user?.id}>
-          <EllipsisWrapper>
-            <UserScreenName screenName={user?.email?.split("@")[0]} />
-          </EllipsisWrapper>
-        </LinkToProfile>
-      </div>
+      <Avatar
+        userImage={user?.profile_image_url ?? ""}
+        className="w-[calc(var(--tw-fs-kilo)*2)]"
+      />
+      <UserName name={user?.name} isVerified={user?.verified} hover={true} />
+      <EllipsisWrapper>
+        <UserScreenName screenName={user?.email?.split("@")[0]} />
+      </EllipsisWrapper>
       {user?.description && (
-        <div className={styles.bio}>
+        <div className="my-[1em] text-base">
           <p>{user?.description}</p>
         </div>
       )}
 
-      <div className={styles.stats}>
+      <div className="my-[0.6em] flex items-center gap-1 text-micro text-tertiary-100">
         <UserJoinDate showIcon={false} date={user?.created_at} />
-        <span className={styles.dot}>·</span>
-        <span className={styles.followers}>
-          {user?.followers?.length ?? 0} Followers
-        </span>
+        <span>·</span>
+        <span>{user?.followers?.length ?? 0} Followers</span>
       </div>
 
-      <p className={styles.followersInfo}>
+      <p className="mb-[4rem] text-nano text-tertiary-100">
         Not followed by anyone you&apos;re following
       </p>
-    </div>
+    </Link>
   );
 };
