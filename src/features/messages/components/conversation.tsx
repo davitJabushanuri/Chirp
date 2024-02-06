@@ -13,7 +13,6 @@ import { Chat } from "./chat";
 import { ConversationHeader } from "./conversation-header";
 import { ConversationMemberDetails } from "./conversation-member-details";
 import { MessageInput } from "./message-input";
-import styles from "./styles/conversation.module.scss";
 
 export const Conversation = () => {
   const { data: session } = useSession();
@@ -52,14 +51,14 @@ export const Conversation = () => {
     );
 
   return (
-    <div className={styles.container}>
+    <div className="relative grid h-[100svh] grid-rows-[auto,1fr,auto] overflow-hidden">
       <ConversationHeader
         user_id={conversationMember?.id}
         user_name={conversationMember?.name}
         user_image={conversationMember?.profile_image_url}
         isVerified={conversationMember?.verified}
       />
-      <div className={styles.conversation}>
+      <div className="overflow-y-auto">
         <ConversationMemberDetails user={conversationMember} />
         <Chat conversation_id={conversation?.id} />
       </div>
