@@ -14,9 +14,9 @@ export const Button = forwardRef<HTMLButtonElement, IButton>(
         {...props}
         className={cn(
           "grid cursor-pointer place-items-center rounded-full",
-          "transition-all duration-200 ease-in-out",
+          "transition-colors duration-200 ease-in-out",
           "fill-secondary-100 p-[0.5em]",
-          "focus-visible:ring-2 focus-visible:ring-primary-100",
+          "focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-100",
           "fill-secondary-100 [&>svg]:w-h2",
           "disabled-button",
           className,

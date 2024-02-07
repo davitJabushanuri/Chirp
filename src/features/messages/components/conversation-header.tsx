@@ -33,7 +33,7 @@ export const ConversationHeader = ({
               router.back();
             }}
             aria-label="Back"
-            className="hover:bg-neutral-500 focus-visible:bg-neutral-500 focus-visible:ring-secondary-100 active:bg-neutral-600"
+            className="hover:bg-neutral-500 focus-visible:bg-neutral-500 focus-visible:outline-secondary-100 active:bg-neutral-600"
           >
             <BackArrowIcon />
           </Button>
@@ -42,7 +42,7 @@ export const ConversationHeader = ({
         {user_name && (
           <>
             {!inView && (
-              <div className="rounded-full ring-primary-100 focus-within:ring-2">
+              <div className="rounded-full has-[:focus]:outline has-[:focus]:outline-2 has-[:focus]:outline-primary-100">
                 <LinkToProfile userId={user_id}>
                   <Avatar
                     userImage={user_image || ""}
@@ -59,7 +59,7 @@ export const ConversationHeader = ({
       <Tooltip text="Details">
         <Button
           onClick={() => router.push(`/messages/${id}/info`)}
-          className="hover:bg-neutral-500 focus-visible:bg-neutral-500 focus-visible:ring-secondary-100 active:bg-neutral-600"
+          className="hover:bg-neutral-500 focus-visible:bg-neutral-500 focus-visible:outline-secondary-100 active:bg-neutral-600"
           aria-label="Conversation info"
         >
           <InfoIcon />

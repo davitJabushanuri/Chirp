@@ -37,7 +37,7 @@ export const TweetOptions = ({ tweet }: { tweet: ITweet }) => {
           onKeyDown={(e) => {
             e.stopPropagation();
           }}
-          className="fill-tertiary-100 hover:bg-primary-100/10 hover:fill-primary-100 focus-visible:bg-primary-100/10 focus-visible:fill-primary-100 focus-visible:ring-primary-100 active:bg-primary-100/20 active:fill-primary-100"
+          className="fill-tertiary-100 hover:bg-primary-100/10 hover:fill-primary-100 focus-visible:bg-primary-100/10 focus-visible:fill-primary-100 focus-visible:outline-primary-100 active:bg-primary-100/20 active:fill-primary-100"
         >
           <DotIcon />
         </Button>

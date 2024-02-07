@@ -21,7 +21,7 @@ export const ConversationMemberDetails = ({
       className={cn(
         "mx-[1em] mt-[2px] grid cursor-pointer place-items-center rounded-sm border-b-[1px] border-neutral-600 p-[1em] text-center",
         "transition-colors duration-200 ease-in-out",
-        "hover:bg-neutral-200 focus-visible:bg-neutral-200 focus-visible:ring-2 focus-visible:ring-secondary-100",
+        "hover:bg-neutral-200 focus-visible:bg-neutral-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-secondary-100",
       )}
     >
       <Avatar
