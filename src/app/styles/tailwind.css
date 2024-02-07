@@ -285,4 +285,8 @@
   .shadow-main {
     @apply shadow-[0px_0px_10px_0px,0px_1px_3px_1px] shadow-secondary-100/25;
   }
+
+  .shadow-secondary {
+    @apply shadow-[0_0_0_1000000px] shadow-tertiary-100/40;
+  }
 }
