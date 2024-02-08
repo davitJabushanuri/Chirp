@@ -138,8 +138,6 @@ const TooltipContent = ({
     }
   }
 
-  // unnecessary
-
   return createPortal(
     <div
       role="tooltip"
