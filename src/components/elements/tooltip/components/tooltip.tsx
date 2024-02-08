@@ -138,13 +138,15 @@ const TooltipContent = ({
     }
   }
 
+  // unnecessary
+
   return createPortal(
     <div
       role="tooltip"
       style={styles}
       ref={tooltipRef}
       className={cn(
-        "pointer-events-none z-tooltip overflow-hidden text-ellipsis text-nowrap rounded-sm bg-tertiary-200/80 px-[0.2em] py-[0.1em] text-nano ",
+        "pointer-events-none z-tooltip overflow-hidden text-ellipsis text-nowrap rounded-sm bg-tertiary-200/90 p-[0.3em] text-[calc(var(--tw-fs-nano)-1px)] leading-none",
       )}
     >
       {text}
