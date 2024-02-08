@@ -1,6 +1,8 @@
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
 
+import { Tooltip } from "@/components/elements/tooltip";
+
 import { BellActive, Bell } from "../assets/bell-icon";
 import { Bookmark, BookmarkActive } from "../assets/bookmark-icon";
 import { Envelope, EnvelopeActive } from "../assets/envelope-icon";
@@ -10,7 +12,6 @@ import { HomeActive, Home } from "../assets/home-icon";
 import { User, UserActive } from "../assets/user-icon";
 
 import NavItem from "./navbar-item";
-import styles from "./styles/navbar.module.scss";
 
 export const Navbar = () => {
   const pathname = usePathname();
@@ -18,65 +19,86 @@ export const Navbar = () => {
   const { data: session } = useSession();
 
   return (
-    <nav aria-label="Primary" className={styles.container}>
+    <nav aria-label="Primary">
       {session && (
-        <NavItem
-          icon={pathname === `/home` ? <HomeActive /> : <Home />}
-          title={`Home`}
-          path={`home`}
-          isActive={pathname === `/home`}
-        />
+        <Tooltip text="Home" maxWidth={1300}>
+          <NavItem
+            href={`/home`}
+            icon={pathname === `/home` ? <HomeActive /> : <Home />}
+            text="Home"
+            aria-label="Home"
+            isActive={pathname === `/home`}
+          />
+        </Tooltip>
       )}
 
-      <NavItem
-        icon={pathname === `/explore` ? <HashtagActive /> : <Hashtag />}
-        title={`Explore`}
-        path={`explore`}
-        isActive={pathname === `/explore`}
-      />
+      <Tooltip text="Explore" maxWidth={1300}>
+        <NavItem
+          href={`/explore`}
+          icon={pathname === `/explore` ? <HashtagActive /> : <Hashtag />}
+          text="Explore"
+          aria-label="Search and Explore"
+          isActive={pathname === `/explore`}
+        />
+      </Tooltip>
 
       {session && (
-        <NavItem
-          icon={pathname === `/notifications` ? <BellActive /> : <Bell />}
-          title={`Notifications`}
-          path={`notifications`}
-          isActive={pathname === `/notifications`}
-        />
-      )}
-
-      {session && (
-        <NavItem
-          icon={pathname === `/messages` ? <EnvelopeActive /> : <Envelope />}
-          title={`Messages`}
-          path={`messages`}
-          isActive={pathname === `/messages`}
-        />
-      )}
-
-      {session && (
-        <NavItem
-          icon={pathname === `/bookmarks` ? <BookmarkActive /> : <Bookmark />}
-          title={`Bookmarks`}
-          path={`bookmarks`}
-          isActive={pathname === `/bookmarks`}
-        />
+        <Tooltip text="Notifications" maxWidth={1300}>
+          <NavItem
+            href={`/notifications`}
+            icon={pathname === `/notifications` ? <BellActive /> : <Bell />}
+            text="Notifications"
+            aria-label="Notifications"
+            isActive={pathname === `/notifications`}
+          />
+        </Tooltip>
       )}
 
       {session && (
-        <NavItem
-          icon={path === `${session?.user?.id}` ? <UserActive /> : <User />}
-          title={`Profile`}
-          path={session?.user?.id}
-          isActive={path === `${session?.user?.id}`}
-        />
+        <Tooltip text="Messages" maxWidth={1300}>
+          <NavItem
+            href={`/messages`}
+            icon={pathname === `/messages` ? <EnvelopeActive /> : <Envelope />}
+            text="Messages"
+            aria-label="Direct Messages"
+            isActive={pathname === `/messages`}
+          />
+        </Tooltip>
       )}
 
-      <NavItem
-        icon={pathname === `/settings` ? <GearActive /> : <Gear />}
-        title={`Settings`}
-        path={`settings`}
-        isActive={pathname === `/settings`}
-      />
+      {session && (
+        <Tooltip text="Bookmarks" maxWidth={1300}>
+          <NavItem
+            href={`/bookmarks`}
+            icon={pathname === `/bookmarks` ? <BookmarkActive /> : <Bookmark />}
+            text="Bookmarks"
+            aria-label="Bookmarks"
+            isActive={pathname === `/bookmarks`}
+          />
+        </Tooltip>
+      )}
+
+      {session && (
+        <Tooltip text="Profile" maxWidth={1300}>
+          <NavItem
+            href={`/${session?.user?.id}`}
+            icon={path === `${session?.user?.id}` ? <UserActive /> : <User />}
+            text="Profile"
+            aria-label="Profile"
+            isActive={path === `${session?.user?.id}`}
+          />
+        </Tooltip>
+      )}
+
+      <Tooltip text="Settings" maxWidth={1300}>
+        <NavItem
+          href={`/settings`}
+          icon={pathname === `/settings` ? <GearActive /> : <Gear />}
+          text="Settings"
+          aria-label="Settings"
+          isActive={pathname === `/settings`}
+        />
+      </Tooltip>
     </nav>
   );
 };
