@@ -53,6 +53,12 @@ module.exports = {
         300: "rgb(var(--tw-clr-black-300) / <alpha-value>)",
       },
 
+      dim: {
+        100: "rgb(var(--tw-clr-dim-100) / <alpha-value>)",
+        200: "rgb(var(--tw-clr-dim-200) / <alpha-value>)",
+        300: "rgb(var(--tw-clr-dim-300) / <alpha-value>)",
+      },
+
       blue: {
         100: "rgb(var(--tw-clr-blue-100) / <alpha-value>)",
         200: "rgb(var(--tw-clr-blue-200) / <alpha-value>)",

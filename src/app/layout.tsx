@@ -25,16 +25,15 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const nextCookies = cookies();
-  const theme = nextCookies.get("theme");
-  const color = nextCookies.get("color");
-  const fontSize = nextCookies.get("font-size");
+  const theme = nextCookies.get("theme")?.value ?? "default";
+  const color = nextCookies.get("color")?.value ?? "blue";
+  const fontSize = nextCookies.get("font-size")?.value ?? "medium";
 
   return (
     <html
-      data-theme="dark"
-      className={`${theme?.value ?? ""} ${color?.value ?? ""} ${
-        fontSize?.value ?? ""
-      }`}
+      data-theme={theme}
+      data-color={color}
+      data-fontsize={fontSize}
       lang="en"
     >
       <body suppressHydrationWarning={true}>
