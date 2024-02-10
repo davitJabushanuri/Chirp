@@ -25,7 +25,6 @@ export const Theme = ({
     >
       <input
         {...props}
-        value={value}
         type="radio"
         name="theme"
         id={value as string}

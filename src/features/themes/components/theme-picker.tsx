@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 import { Theme } from "./theme";
 
-type Theme = "default" | "dim" | "dark";
+type ThemeType = "default" | "dim" | "dark";
 
 export const ThemePicker = () => {
   const [mounted, setMounted] = useState(false);
@@ -23,7 +23,7 @@ export const ThemePicker = () => {
       ? document.documentElement.dataset.theme
       : undefined;
 
-  const [currentTheme, setCurrentTheme] = useState<Theme>(
+  const [currentTheme, setCurrentTheme] = useState<ThemeType>(
     theme === "default" || theme === "dim" || theme === "dark"
       ? theme
       : prefersDarkMode
@@ -33,7 +33,7 @@ export const ThemePicker = () => {
 
   const handleThemeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value === currentTheme) return;
-    setCurrentTheme(e.target.value as Theme);
+    setCurrentTheme(e.target.value as ThemeType);
     document.documentElement.dataset.theme = e.target.value;
 
     setCookie("theme", e.target.value, {

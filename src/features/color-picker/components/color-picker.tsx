@@ -1,89 +1,121 @@
 "use client";
-import { getCookie, setCookie } from "cookies-next";
-import { useState } from "react";
+import { setCookie } from "cookies-next";
+import { useEffect, useState } from "react";
 
 import Color from "./color";
-import styles from "./styles/color-picker.module.scss";
 
-enum IColor {
-  BLUE = "color-blue",
-  YELLOW = "color-yellow",
-  ROSE = "color-rose",
-  VIOLET = "color-violet",
-  ORANGE = "color-orange",
-  GREEN = "color-green",
-}
+type ColorType = "blue" | "yellow" | "rose" | "violet" | "orange" | "green";
 
 export const ColorPicker = () => {
-  const color = getCookie("color") ?? "color-blue";
+  const [mounted, setMounted] = useState(false);
 
-  const [currentColor, setCurrentColor] = useState(color as IColor);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const color =
+    typeof window !== "undefined"
+      ? document.documentElement.dataset.color
+      : undefined;
+
+  const [currentColor, setCurrentColor] = useState(
+    color === "blue" ||
+      color === "yellow" ||
+      color === "rose" ||
+      color === "violet" ||
+      color === "orange" ||
+      color === "green"
+      ? color
+      : "blue",
+  );
 
   const handleColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!Object.values(IColor).includes(e.target.value as IColor)) return;
+    if (e.target.value === currentColor) return;
+    setCurrentColor(e.target.value as ColorType);
 
-    document.documentElement.className =
-      document.documentElement.className.replace(/\bcolor-\S+/g, "");
-
-    document.documentElement.classList.add(e.target.value);
+    document.documentElement.dataset.color = e.target.value;
 
     setCookie("color", e.target.value, {
       maxAge: 60 * 60 * 24 * 365,
     });
-
-    setCurrentColor(e.target.value as IColor);
   };
 
+  if (!mounted) return null;
+
   return (
-    <fieldset
-      aria-label="Color options"
+    <div
+      role="radiogroup"
+      aria-labelledby="color-heading"
       data-testid={`color-fieldset`}
-      className={styles.container}
+      className="border-t border-neutral-600"
     >
-      <legend>Color</legend>
-      <ul className={styles.colors}>
+      <h2
+        id="color-heading"
+        className="px-4 py-3 text-h2 font-bold text-secondary-100"
+      >
+        Color
+      </h2>
+      <ul className="grid grid-cols-3 place-items-center px-4 py-3 md:grid-cols-6">
         <Color
-          value="color-blue"
-          label="Blue"
-          checked={currentColor === "color-blue"}
+          value="blue"
+          checked={currentColor === "blue"}
+          aria-checked={currentColor === "blue"}
+          tabIndex={currentColor === "blue" ? 0 : -1}
           onChange={handleColorChange}
+          aria-label="Blue"
+          className="bg-blue-100"
         />
 
         <Color
-          value="color-yellow"
-          label="Yellow"
-          checked={currentColor === "color-yellow"}
+          value="yellow"
+          checked={currentColor === "yellow"}
+          aria-checked={currentColor === "yellow"}
+          tabIndex={currentColor === "yellow" ? 0 : -1}
           onChange={handleColorChange}
+          aria-label="Yellow"
+          className="bg-yellow-100"
         />
 
         <Color
-          value="color-rose"
-          label="Rose"
-          checked={currentColor === "color-rose"}
+          value="rose"
+          checked={currentColor === "rose"}
+          aria-checked={currentColor === "rose"}
+          tabIndex={currentColor === "rose" ? 0 : -1}
           onChange={handleColorChange}
+          aria-label="Rose"
+          className="bg-rose-100"
         />
 
         <Color
-          value="color-violet"
-          label="Violet"
-          checked={currentColor === "color-violet"}
+          value="violet"
+          checked={currentColor === "violet"}
+          aria-checked={currentColor === "violet"}
+          tabIndex={currentColor === "violet" ? 0 : -1}
           onChange={handleColorChange}
+          aria-label="Violet"
+          className="bg-violet-100"
         />
 
         <Color
-          value="color-orange"
-          label="Orange"
-          checked={currentColor === "color-orange"}
+          value="orange"
+          checked={currentColor === "orange"}
+          aria-checked={currentColor === "orange"}
+          tabIndex={currentColor === "orange" ? 0 : -1}
           onChange={handleColorChange}
+          aria-label="Orange"
+          className="bg-orange-100"
         />
 
         <Color
-          value="color-green"
-          label="Green"
-          checked={currentColor === "color-green"}
+          value="green"
+          checked={currentColor === "green"}
+          aria-checked={currentColor === "green"}
+          tabIndex={currentColor === "green" ? 0 : -1}
           onChange={handleColorChange}
+          aria-label="Green"
+          className="bg-green-100"
         />
       </ul>
-    </fieldset>
+    </div>
   );
 };
