@@ -43,19 +43,18 @@ export const ColorPicker = () => {
   if (!mounted) return null;
 
   return (
-    <div
-      role="radiogroup"
-      aria-labelledby="color-heading"
-      data-testid={`color-fieldset`}
-      className="border-t border-neutral-600"
-    >
+    <div className="border-t border-neutral-600">
       <h2
         id="color-heading"
         className="px-4 py-3 text-h2 font-bold text-secondary-100"
       >
         Color
       </h2>
-      <ul className="grid grid-cols-3 place-items-center px-4 py-3 md:grid-cols-6">
+      <div
+        aria-labelledby="color-heading"
+        role="radiogroup"
+        className="grid grid-cols-3 place-items-center px-4 py-3 md:flex md:justify-between"
+      >
         <Color
           value="blue"
           checked={currentColor === "blue"}
@@ -115,7 +114,7 @@ export const ColorPicker = () => {
           aria-label="Green"
           className="bg-green-100"
         />
-      </ul>
+      </div>
     </div>
   );
 };

@@ -12,6 +12,7 @@ export const Theme = ({
   className,
   checked,
   value,
+  onChange,
   ...props
 }: ITheme) => {
   return (
@@ -25,6 +26,9 @@ export const Theme = ({
     >
       <input
         {...props}
+        value={value}
+        onChange={onChange}
+        checked={checked}
         type="radio"
         name="theme"
         id={value as string}

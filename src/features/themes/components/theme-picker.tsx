@@ -44,19 +44,18 @@ export const ThemePicker = () => {
   if (!mounted) return null;
 
   return (
-    <div
-      role="radiogroup"
-      aria-labelledby="theme-heading"
-      data-testid={`theme-fieldset`}
-      className="border-t border-neutral-600"
-    >
+    <div className="border-t border-neutral-600">
       <h2
         id="theme-heading"
         className="px-4 py-3 text-h2 font-bold text-secondary-100"
       >
         Background
       </h2>
-      <ul className="grid px-4 py-1 md:grid-cols-3">
+      <div
+        aria-labelledby="theme-heading"
+        role="radiogroup"
+        className="grid px-4 py-1 md:grid-cols-3"
+      >
         <Theme
           value="default"
           checked={currentTheme === "default"}
@@ -92,7 +91,7 @@ export const ThemePicker = () => {
         >
           Lights out
         </Theme>
-      </ul>
+      </div>
     </div>
   );
 };
