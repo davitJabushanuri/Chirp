@@ -15,13 +15,7 @@ export const Aside = () => {
   const pathname = usePathname();
 
   return (
-    <aside
-      id="trending"
-      aria-label="Trending"
-      className={styles.container}
-      /* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */
-      tabIndex={0}
-    >
+    <aside id="trending" aria-label="Trending" className={styles.container}>
       {session && (
         <>
           {pathname !== "/" &&
