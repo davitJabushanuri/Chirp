@@ -19,18 +19,17 @@ export const Theme = ({
       htmlFor={value as string}
       className={cn(
         "group relative m-1 flex cursor-pointer items-center rounded-[4px] border border-neutral-600 p-3 text-milli font-bold text-secondary-100",
-        checked && " border-2 border-primary-100",
+        checked && "border-2 border-primary-100",
         className,
       )}
     >
       <input
-        checked={checked}
-        value={value}
         {...props}
+        value={value}
         type="radio"
         name="theme"
         id={value as string}
-        className="peer absolute left-0 top-0 size-full max-h-full max-w-full"
+        className="peer absolute left-0 top-0 z-[-1] size-full cursor-pointer"
       />
 
       <span

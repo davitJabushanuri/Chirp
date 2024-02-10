@@ -1,25 +1,37 @@
 "use client";
-import { getCookie, setCookie } from "cookies-next";
-import { useState } from "react";
+import { setCookie } from "cookies-next";
+import { useEffect, useState } from "react";
 
 import { Theme } from "./theme";
 
 type Theme = "default" | "dim" | "dark";
 
 export const ThemePicker = () => {
-  const prefersDarkMode = window.matchMedia(
-    "(prefers-color-scheme: dark)",
-  ).matches;
+  const [mounted, setMounted] = useState(false);
 
-  const theme: Theme =
-    (getCookie("theme") as Theme) ?? (prefersDarkMode ? "dark" : "default");
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
-  const [currentTheme, setCurrentTheme] = useState<"default" | "dim" | "dark">(
-    theme,
+  const prefersDarkMode =
+    typeof window !== "undefined"
+      ? window.matchMedia("(prefers-color-scheme: dark)").matches
+      : false;
+
+  const theme =
+    typeof window !== "undefined"
+      ? document.documentElement.dataset.theme
+      : undefined;
+
+  const [currentTheme, setCurrentTheme] = useState<Theme>(
+    theme === "default" || theme === "dim" || theme === "dark"
+      ? theme
+      : prefersDarkMode
+        ? "dark"
+        : "default",
   );
 
   const handleThemeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value, currentTheme);
     if (e.target.value === currentTheme) return;
     setCurrentTheme(e.target.value as Theme);
     document.documentElement.dataset.theme = e.target.value;
@@ -28,6 +40,8 @@ export const ThemePicker = () => {
       maxAge: 60 * 60 * 24 * 365,
     });
   };
+
+  if (!mounted) return null;
 
   return (
     <div
