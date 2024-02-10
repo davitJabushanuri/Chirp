@@ -25,15 +25,15 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const nextCookies = cookies();
-  const theme = nextCookies.get("theme")?.value ?? "default";
-  const color = nextCookies.get("color")?.value ?? "blue";
-  const fontSize = nextCookies.get("font-size")?.value ?? "medium";
+  const theme = nextCookies.get("theme")?.value;
+  const color = nextCookies.get("color")?.value;
+  const fontSize = nextCookies.get("font-size")?.value;
 
   return (
     <html
-      data-theme={theme}
-      data-color={color}
-      data-fontsize={fontSize}
+      {...(theme && { "data-theme": theme })}
+      {...(color && { "data-color": color })}
+      {...(fontSize && { "data-font-size": fontSize })}
       lang="en"
     >
       <body suppressHydrationWarning={true}>
@@ -55,8 +55,7 @@ export default async function RootLayout({
                 <Sidebar />
               </div>
 
-              {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
-              <main aria-label="Home timeline" id="home-timeline" tabIndex={0}>
+              <main aria-label="Home timeline" id="home-timeline">
                 {children}
               </main>
 
