@@ -33,6 +33,7 @@ const NavItem = ({ href, icon, text, isActive, ...props }: INavItem) => {
         <span
           className={cn(
             "fill-secondary-100 [&>svg]:w-[calc(var(--tw-fs-h1)+3.5px)]",
+            "sm:[&>svg]:w-[calc(var(--tw-fs-h1)+7px)]",
           )}
         >
           {icon}

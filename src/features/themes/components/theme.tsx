@@ -19,7 +19,7 @@ export const Theme = ({
     <label
       htmlFor={value as string}
       className={cn(
-        "group relative m-1 flex cursor-pointer items-center rounded-[4px] border border-neutral-600 p-3 text-milli font-bold text-secondary-100",
+        "group relative m-1 flex cursor-pointer items-center rounded-[4px] border border-neutral-600 p-3 font-bold text-secondary-100",
         checked && "border-2 border-primary-100",
         className,
       )}
@@ -50,7 +50,7 @@ export const Theme = ({
         <TickIcon />
       </span>
 
-      <span aria-hidden="true" className="m-auto translate-x-[-10px]">
+      <span aria-hidden="true" className="m-auto translate-x-[-10px] text-base">
         {children}
       </span>
     </label>
