@@ -33,7 +33,7 @@ export default async function RootLayout({
     <html
       {...(theme && { "data-theme": theme })}
       {...(color && { "data-color": color })}
-      {...(fontSize && { "data-font-size": fontSize })}
+      {...(fontSize && { "data-fontsize": fontSize })}
       lang="en"
     >
       <body suppressHydrationWarning={true}>
