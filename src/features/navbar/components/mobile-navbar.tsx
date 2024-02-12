@@ -17,7 +17,7 @@ export const MobileNavbar = () => {
 
   return (
     <nav
-      className="fixed bottom-0 z-fixed grid w-full grid-flow-col border-t-[1px] border-neutral-600 bg-background sm:hidden"
+      className="fixed bottom-0 z-fixed grid w-full grid-flow-col place-items-center border-t-[1px] border-neutral-600 bg-background sm:hidden"
       aria-label="Primary"
     >
       <Tooltip text="Home" maxWidth={1300}>

@@ -19,7 +19,10 @@ export const Navbar = () => {
   const { data: session } = useSession();
 
   return (
-    <nav aria-label="Primary">
+    <nav
+      aria-label="Primary"
+      className="flex flex-col items-center xl:items-start"
+    >
       {session && (
         <Tooltip text="Home" maxWidth={1300}>
           <NavItem
