@@ -1,5 +1,5 @@
 "use client";
-import React, { FC, useEffect, useRef, useState } from "react";
+import React, { FC, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
 import { cn } from "@/utils/cn";
@@ -60,6 +60,7 @@ export const Tooltip: FC<Tooltip> = ({ children, delay = 500, ...props }) => {
       onBlur={handleBlur}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      className="size-min"
     >
       {displayTooltip && !isDisabled && (
         <TooltipContent {...props} parentRef={divRef} />
@@ -84,7 +85,7 @@ const TooltipContent = ({
     null,
   );
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (parentRef?.current) {
       setParentBoundaries(parentRef?.current.getBoundingClientRect());
     }
@@ -115,21 +116,23 @@ const TooltipContent = ({
       styles.top = parentBoundaries?.bottom + offset;
     }
 
-    if (tooltipBoundaries?.width > innerWidth - 16) {
-      styles.left = 8;
-      styles.right = 8;
+    if (tooltipBoundaries?.width > innerWidth) {
+      styles.left = 0;
+      styles.right = 0;
     } else if (
       parentBoundaries?.left +
         parentBoundaries?.width / 2 -
         tooltipBoundaries?.width / 2 <=
-      8
+      0
     ) {
-      styles.left = 8;
+      styles.left = 0;
     } else if (
-      parentBoundaries?.right + tooltipBoundaries?.width / 2 >
-      innerWidth - 8
+      parentBoundaries?.left +
+        parentBoundaries?.width / 2 +
+        tooltipBoundaries?.width / 2 >
+      innerWidth - 0
     ) {
-      styles.right = 8;
+      styles.right = 0;
     } else {
       styles.left =
         parentBoundaries?.left +
@@ -149,6 +152,6 @@ const TooltipContent = ({
     >
       {text}
     </div>,
-    (document.getElementById("tooltip-root") as HTMLElement) || document.body,
+    document.body,
   );
 };
