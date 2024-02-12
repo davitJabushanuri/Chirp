@@ -1,7 +1,8 @@
 import Image from "next/image";
 
 import { CloseIcon } from "@/assets/close-icon";
-import { CloseButton } from "@/components/elements/close-button";
+import { Button } from "@/components/elements/button";
+import { Tooltip } from "@/components/elements/tooltip";
 
 import { IChosenImages } from "../types";
 
@@ -31,18 +32,20 @@ export const ChosenImages = ({
       {chosenImages.map((image) => {
         return (
           <div key={image.id} className={styles.imageContainer}>
-            <div className={styles.close}>
-              <CloseButton
-                onClick={() => {
-                  setChosenImages(
-                    chosenImages.filter((img) => img.id !== image.id),
-                  );
-                }}
-                ariaLabel="Remove media"
-                title="Remove"
-              >
-                <CloseIcon />
-              </CloseButton>
+            <div className="absolute right-2 top-2">
+              <Tooltip text="Remove">
+                <Button
+                  aria-label="Remove media"
+                  onClick={() => {
+                    setChosenImages(
+                      chosenImages.filter((img) => img.id !== image.id),
+                    );
+                  }}
+                  className="hover:bg-neutral-500/80 focus-visible:bg-neutral-500/80 focus-visible:outline-secondary-100  active:bg-neutral-600/80"
+                >
+                  <CloseIcon />
+                </Button>
+              </Tooltip>
             </div>
             <Image
               src={image.url as string}
