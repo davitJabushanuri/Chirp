@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-import { Header, ProfileHeader } from "@/features/header";
+import { ProfileHeader } from "@/features/header";
 import { Profile, ProfileTweets, getUserMetadata } from "@/features/profile";
 
 import NotFound from "../not-found";
@@ -44,14 +44,12 @@ const ProfileTweetsPage = async ({
 
   return (
     <div>
-      <Header>
-        <ProfileHeader
-          heading={user?.name}
-          stats={`${user?._count?.tweets} ${
-            user?._count?.tweets === 1 ? "tweet" : "tweets"
-          }`}
-        />
-      </Header>
+      <ProfileHeader
+        heading={user?.name}
+        stats={`${user?._count?.tweets} ${
+          user?._count?.tweets === 1 ? "tweet" : "tweets"
+        }`}
+      />
       <Profile initialUser={user as any} />
       <ProfileTweets />
     </div>

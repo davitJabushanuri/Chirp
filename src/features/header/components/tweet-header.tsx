@@ -2,24 +2,27 @@
 import { useRouter } from "next/navigation";
 
 import { BackArrowIcon } from "@/assets/back-arrow-icon";
-import { CloseButton } from "@/components/elements/close-button";
+import { Button } from "@/components/elements/button";
+import { Tooltip } from "@/components/elements/tooltip";
 
-import styles from "./styles/tweet-header.module.scss";
+import { Header } from "./header";
 
-export const TweetHeader = ({ heading = "Tweet" }: { heading?: string }) => {
+export const TweetHeader = () => {
   const router = useRouter();
   return (
-    <div className={styles.container}>
-      <CloseButton
-        onClick={() => {
-          router.back();
-        }}
-        ariaLabel="Back"
-        title="Back"
-      >
-        <BackArrowIcon />
-      </CloseButton>
-      <h2 className={styles.title}>{heading}</h2>
-    </div>
+    <Header>
+      <Tooltip text="Back">
+        <Button
+          aria-label="Back"
+          onClick={() => {
+            router.back();
+          }}
+          className="hover:bg-neutral-500/80 focus-visible:bg-neutral-500/80 focus-visible:outline-secondary-100  active:bg-neutral-600/80"
+        >
+          <BackArrowIcon />
+        </Button>
+      </Tooltip>
+      <h2>Home</h2>
+    </Header>
   );
 };

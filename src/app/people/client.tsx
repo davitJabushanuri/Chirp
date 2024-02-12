@@ -2,7 +2,6 @@
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
 import { ConnectHeader, PersonDetails } from "@/features/connect";
-import { Header } from "@/features/header";
 import { useUsers } from "@/features/profile";
 
 export const ConnectClientPage = () => {
@@ -18,9 +17,7 @@ export const ConnectClientPage = () => {
   if (isLoading) {
     return (
       <>
-        <Header>
-          <ConnectHeader />
-        </Header>
+        <ConnectHeader />
         <LoadingSpinner />
       </>
     );
@@ -29,9 +26,7 @@ export const ConnectClientPage = () => {
   if (isError) {
     return (
       <>
-        <Header>
-          <ConnectHeader />
-        </Header>
+        <ConnectHeader />
         <TryAgain />
       </>
     );
@@ -43,18 +38,10 @@ export const ConnectClientPage = () => {
         paddingBottom: "calc(100vh - 8rem)",
       }}
     >
-      <Header>
-        <ConnectHeader />
-      </Header>
-      <h1
-        style={{
-          fontSize: "19px",
-          fontWeight: 700,
-          padding: "11px 15px",
-        }}
-      >
+      <ConnectHeader />
+      <h2 className="px-4 py-3 text-h2 font-bold text-secondary-100">
         Suggested for you
-      </h1>
+      </h2>
       {people.length > 0 &&
         people?.map((person) => {
           return (
