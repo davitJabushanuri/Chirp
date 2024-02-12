@@ -21,7 +21,7 @@ export const Navbar = () => {
   return (
     <nav
       aria-label="Primary"
-      className="flex flex-col items-center xl:items-start"
+      className="flex flex-col items-center xxl:items-start"
     >
       {session && (
         <Tooltip text="Home" maxWidth={1300}>

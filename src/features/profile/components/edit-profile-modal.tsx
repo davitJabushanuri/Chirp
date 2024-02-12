@@ -5,8 +5,9 @@ import { useRef, useState } from "react";
 
 import { BackArrowIcon } from "@/assets/back-arrow-icon";
 import { CloseIcon } from "@/assets/close-icon";
-import { CloseButton } from "@/components/elements/close-button";
+import { Button } from "@/components/elements/button";
 import { TextInput } from "@/components/elements/text-input";
+import { Tooltip } from "@/components/elements/tooltip";
 
 import { updateProfile } from "../api/update-profile";
 import { CameraIcon } from "../assets/camera-icon";
@@ -93,13 +94,17 @@ export const EditProfileModal = ({
       className={styles.container}
     >
       <div className={styles.header}>
-        <CloseButton
-          onClick={() => closeModal()}
-          ariaLabel={innerWidth <= 700 ? "Back" : "Close"}
-          title={innerWidth <= 700 ? "Back" : "Close"}
-        >
-          {innerWidth <= 700 ? <BackArrowIcon /> : <CloseIcon />}
-        </CloseButton>
+        <Tooltip text="Back">
+          <Button
+            aria-label={innerWidth <= 700 ? "Back" : "Close"}
+            onClick={() => {
+              closeModal();
+            }}
+            className="hover:bg-neutral-500 focus-visible:bg-neutral-500 focus-visible:outline-secondary-100 active:bg-neutral-600"
+          >
+            {innerWidth <= 700 ? <BackArrowIcon /> : <CloseIcon />}
+          </Button>
+        </Tooltip>
 
         <h2>Edit Profile</h2>
 

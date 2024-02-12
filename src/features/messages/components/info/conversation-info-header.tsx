@@ -2,25 +2,27 @@
 import { useRouter } from "next/navigation";
 
 import { BackArrowIcon } from "@/assets/back-arrow-icon";
-import { CloseButton } from "@/components/elements/close-button";
-
-import styles from "./styles/conversation-info-header.module.scss";
+import { Button } from "@/components/elements/button";
+import { Tooltip } from "@/components/elements/tooltip";
+import { Header } from "@/features/header";
 
 export const ConversationInfoHeader = () => {
   const router = useRouter();
 
   return (
-    <div className={styles.container}>
-      <CloseButton
-        onClick={() => {
-          router.back();
-        }}
-        ariaLabel="Back"
-        title="Back"
-      >
-        <BackArrowIcon />
-      </CloseButton>
-      <h1>Conversation info</h1>
-    </div>
+    <Header>
+      <Tooltip text="Back">
+        <Button
+          aria-label="Back"
+          onClick={() => {
+            router.back();
+          }}
+          className="hover:bg-neutral-500 focus-visible:bg-neutral-500 focus-visible:outline-secondary-100 active:bg-neutral-600"
+        >
+          <BackArrowIcon />
+        </Button>
+      </Tooltip>
+      <h2>Conversation info</h2>
+    </Header>
   );
 };

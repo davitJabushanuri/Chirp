@@ -10,7 +10,7 @@ import { EllipsisWrapper } from "@/components/elements/ellipsis-wrapper";
 import { Menu, MenuItem } from "@/components/elements/menu";
 import { ConfirmationModal, Modal } from "@/components/elements/modal";
 import { Tooltip } from "@/components/elements/tooltip";
-import { HeaderHeading } from "@/features/header";
+import { Header } from "@/features/header";
 import { UserScreenName } from "@/features/profile";
 
 import { useDeleteAllBookmarks } from "../hooks/use-delete-all-bookmarks";
@@ -33,7 +33,7 @@ export const BookmarksHeader = ({
   const mutation = useDeleteAllBookmarks();
 
   return (
-    <div className="flex items-center gap-3 px-3 sm:gap-0">
+    <Header>
       <Tooltip text="Back">
         <Button
           onClick={() => {
@@ -47,7 +47,7 @@ export const BookmarksHeader = ({
       </Tooltip>
 
       <div>
-        <HeaderHeading title={"Bookmarks"} />
+        <h2 className="text-h2 font-bold text-secondary-100">Bookmarks</h2>
         {username && (
           <EllipsisWrapper>
             <UserScreenName screenName={username} />
@@ -125,6 +125,6 @@ export const BookmarksHeader = ({
           </AnimatePresence>
         </div>
       )}
-    </div>
+    </Header>
   );
 };
