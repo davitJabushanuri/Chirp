@@ -5,7 +5,9 @@ import { useState } from "react";
 
 import { CloseIcon } from "@/assets/close-icon";
 import { TwitterLogo } from "@/assets/twitter-logo";
+import { Button } from "@/components/elements/button";
 import { TextInput } from "@/components/elements/text-input";
+import { Tooltip } from "@/components/elements/tooltip";
 
 import { AppleLogo } from "../assets/apple-logo";
 import { GoogleLogo } from "../assets/google-logo";
@@ -30,14 +32,15 @@ export const SignInModal = ({ onClose }: { onClose: () => void }) => {
       className={styles.container}
     >
       <div className={styles.header}>
-        <button
-          onClick={onClose}
-          aria-label="Close"
-          data-title="Close"
-          className={styles.close}
-        >
-          <CloseIcon />
-        </button>
+        <Tooltip text="Close">
+          <Button
+            aria-label="Close"
+            onClick={() => onClose()}
+            className="hover:bg-neutral-500 focus-visible:bg-neutral-500 focus-visible:outline-secondary-100 active:bg-neutral-600"
+          >
+            <CloseIcon />
+          </Button>
+        </Tooltip>
 
         <div className={styles.logo}>
           <TwitterLogo />
