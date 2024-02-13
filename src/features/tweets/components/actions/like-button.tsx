@@ -45,7 +45,7 @@ export const LikeButton = ({
           }
           mutation.mutate({ tweetId: tweet?.id, userId: session?.user?.id });
         }}
-        className="group flex gap-[2px] p-0 focus-visible:outline-0"
+        className="group flex gap-[2px] p-0 text-nano focus-visible:outline-0"
       >
         <span
           className={cn(
@@ -60,7 +60,7 @@ export const LikeButton = ({
         {tweet && tweet?._count?.likes > 0 && (
           <span
             className={cn(
-              "text-nano text-tertiary-100 group-hover:text-rose-100 group-focus-visible:text-rose-100 group-active:text-rose-100",
+              "text-tertiary-100 group-hover:text-rose-100 group-focus-visible:text-rose-100 group-active:text-rose-100",
               hasLiked && "text-rose-100",
             )}
           >

@@ -66,7 +66,6 @@ export const Tooltip: FC<ITooltip> = ({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       className={cn("size-min", className)}
-      aria-hidden="true"
     >
       {displayTooltip && !isDisabled && (
         <TooltipContent {...props} parentRef={divRef} />
