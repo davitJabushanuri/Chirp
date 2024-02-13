@@ -49,7 +49,9 @@ export default async function RootLayout({
           <ReactQueryProvider>
             <div className="layout">
               <MobileNavbar />
-              <MobileTweetButton />
+              <div className="fixed bottom-20 right-4 z-fixed sm:hidden">
+                <MobileTweetButton />
+              </div>
 
               <div className="sidebar">
                 <Sidebar />
