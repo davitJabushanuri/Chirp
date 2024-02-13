@@ -7,10 +7,12 @@ import { DotIcon } from "@/assets/dot-icon";
 import { PinIcon } from "@/assets/pin-icon";
 import { ReportIcon } from "@/assets/report-icon";
 import { TrashIcon } from "@/assets/trash-icon";
+import { Button } from "@/components/elements/button";
 import { CreateDate } from "@/components/elements/create-date";
 import { EllipsisWrapper } from "@/components/elements/ellipsis-wrapper";
 import { Menu, MenuItem } from "@/components/elements/menu";
 import { Modal } from "@/components/elements/modal";
+import { Tooltip } from "@/components/elements/tooltip";
 import {
   Avatar,
   LinkToProfile,
@@ -21,8 +23,6 @@ import {
 import { SnoozeNotificationsIcon } from "../assets/snooze-notifications-icon";
 import { useDeleteConversation } from "../hooks/use-delete-conversation";
 import { IConversation } from "../types";
-
-import styles from "./styles/conversation-card.module.scss";
 
 export const ConversationCard = ({
   conversation,
@@ -49,54 +49,48 @@ export const ConversationCard = ({
       onKeyDown={(e) => {
         if (e.key === "Enter") router?.push(`/messages/${conversation?.id}`);
       }}
-      className={styles.container}
+      className="group relative flex cursor-pointer gap-2 p-4 outline-offset-[-2px] transition-colors duration-200 ease-in-out hover:bg-neutral-300 focus-visible:bg-neutral-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-100 active:bg-neutral-400 "
     >
-      <div className={styles.avatar}>
+      <div className="mt-2">
         <LinkToProfile userId={user?.id} tabIndex={-1}>
           <Avatar userImage={user?.profile_image_url} />
         </LinkToProfile>
       </div>
-      <div className={styles.content}>
-        <div className={styles.info}>
-          <div className={styles.user}>
-            <LinkToProfile userId={user?.id}>
-              <EllipsisWrapper>
-                <UserName name={user?.name} isVerified={user?.verified} />
-              </EllipsisWrapper>
-            </LinkToProfile>
+      <div className="flex-1">
+        <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1">
+            <UserName name={user?.name} isVerified={user?.verified} />
 
-            <LinkToProfile userId={user?.id} tabIndex={-1}>
-              <EllipsisWrapper>
-                <UserScreenName screenName={user?.email?.split("@")[0]} />
-              </EllipsisWrapper>
-            </LinkToProfile>
-            <span className={styles.dot}>·</span>
-            <span className={styles.date}>
-              <CreateDate
-                focus={false}
-                hover={false}
-                date={lastMessage?.created_at}
-              />
-            </span>
+            <EllipsisWrapper>
+              <UserScreenName screenName={user?.email?.split("@")[0]} />
+            </EllipsisWrapper>
+            <span className="text-tertiary-100">·</span>
+            <CreateDate
+              focus={false}
+              hover={false}
+              date={lastMessage?.created_at}
+            />
           </div>
-          <div className={styles.options}>
-            <button
-              aria-expanded={isModalOpen}
-              aria-haspopup="menu"
-              aria-label="More"
-              data-title="More"
-              ref={buttonRef}
-              className={styles.optionsButton}
-              onClick={(e) => {
-                e.stopPropagation();
-                setIsModalOpen(true);
-              }}
-              onKeyDown={(e) => {
-                e.stopPropagation();
-              }}
-            >
-              <DotIcon />
-            </button>
+          <div className="ml-auto">
+            <Tooltip text="More">
+              <Button
+                aria-expanded={isModalOpen}
+                aria-haspopup="menu"
+                aria-label="More"
+                data-title="More"
+                ref={buttonRef}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsModalOpen(true);
+                }}
+                onKeyDown={(e) => {
+                  e.stopPropagation();
+                }}
+                className="invisible fill-tertiary-100 hover:bg-primary-100/10 hover:fill-primary-100 focus-visible:bg-primary-100/10 active:bg-primary-100/15 group-hover:visible"
+              >
+                <DotIcon />
+              </Button>
+            </Tooltip>
 
             <AnimatePresence>
               {isModalOpen && (
@@ -134,17 +128,21 @@ export const ConversationCard = ({
           </div>
         </div>
 
-        <div className={styles.messageContainer}>
+        <div className="grid grid-flow-col overflow-hidden">
           {lastMessage?.image &&
           lastMessage?.sender_id === session?.user?.id ? (
-            <span className={styles.message}>You sent a photo</span>
+            <span className="truncate text-milli text-tertiary-100">
+              You sent a photo
+            </span>
           ) : lastMessage?.image &&
             lastMessage?.receiver_id === session?.user?.id ? (
-            <span className={`${styles.message} ${styles.photo}`}>
+            <span className="truncate text-milli font-medium text-tertiary-100">
               Sent a photo
             </span>
           ) : (
-            <span className={styles.message}>{lastMessage?.text}</span>
+            <span className="truncate text-milli text-tertiary-100">
+              {lastMessage?.text}
+            </span>
           )}
         </div>
       </div>
