@@ -1,5 +1,4 @@
 @use "./abstracts/media-query" as *;
-@use "./abstracts/tooltips" as *;
 
 .container {
   position: fixed;
@@ -138,35 +137,5 @@
     height: fit-content;
     max-height: 90vh;
     border-radius: 1rem;
-  }
-}
-
-.inputButton {
-  border-radius: 100vmax;
-  padding: 0.6rem;
-  cursor: pointer;
-  display: grid;
-  place-items: center;
-  transition: background 0.2s ease-in-out;
-  background-color: var(--clr-action);
-  @include tooltip(bottom, 4px);
-
-  &:hover {
-    background-color: var(--clr-action-hover);
-  }
-
-  &:active {
-    background-color: var(--clr-action-active);
-  }
-
-  &:focus-visible {
-    outline: 2px solid var(--clr-tertiary);
-    background-color: var(--clr-action-hover);
-  }
-
-  svg {
-    width: var(--fs-h1);
-    height: var(--fs-h1);
-    fill: var(--clr-light);
   }
 }

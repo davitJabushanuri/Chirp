@@ -1,5 +1,3 @@
-@use "abstracts/tooltips" as *;
-
 $avatar-size: clamp(70px, 20vw, 146px);
 $avatar-border: 4px;
 $avatar-top: calc(-1 * #{$avatar-size} / 2 - #{$avatar-border});
@@ -90,45 +88,6 @@ $avatar-top: calc(-1 * #{$avatar-size} / 2 - #{$avatar-border});
         &:focus-visible {
           outline: 2px solid var(--clr-secondary);
           background-color: var(--clr-signout-cancel-hover);
-        }
-      }
-
-      .visitorActions {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        flex-wrap: wrap;
-
-        .options,
-        .message,
-        .notifications {
-          border-radius: 50%;
-          padding: 0.4em;
-          display: grid;
-          place-items: center;
-          cursor: pointer;
-          border: 1px solid var(--clr-auth-border);
-          transition: all 0.2s ease-in-out;
-          @include tooltip(bottom, 4px);
-
-          &:hover {
-            background-color: var(--clr-signout-cancel-hover);
-          }
-
-          &:active {
-            background-color: var(--clr-signout-cancel-active);
-          }
-
-          &:focus-visible {
-            outline: 2px solid var(--clr-secondary);
-            background-color: var(--clr-signout-cancel-hover);
-          }
-
-          svg {
-            width: var(--fs-h2);
-            height: var(--fs-h2);
-            fill: var(--clr-secondary);
-          }
         }
       }
     }
