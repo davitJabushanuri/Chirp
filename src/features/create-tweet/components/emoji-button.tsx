@@ -2,11 +2,11 @@ import { EmojiClickData } from "emoji-picker-react";
 import { Dispatch, SetStateAction, useRef, useState } from "react";
 
 import { EmojiIcon } from "@/assets/emoji-icon";
+import { Button } from "@/components/elements/button";
 import { Modal } from "@/components/elements/modal";
+import { Tooltip } from "@/components/elements/tooltip";
 
-import Action from "./action";
 import { EmojiPickerModal } from "./emoji-picker-modal";
-import styles from "./styles/emoji-button.module.scss";
 
 export const EmojiButton = ({
   setText,
@@ -25,18 +25,19 @@ export const EmojiButton = ({
 
   return (
     <>
-      <button
-        ref={emojiButtonRef}
-        type="button"
-        className={styles.container}
-        aria-label="Add emoji"
-        data-title="Emoji"
-        aria-haspopup="menu"
-        aria-expanded={isEmojiPickerOpen}
-        onClick={() => setIsEmojiPickerOpen(true)}
-      >
-        <Action icon={<EmojiIcon />} />
-      </button>
+      <Tooltip text="Emoji">
+        <Button
+          ref={emojiButtonRef}
+          type="button"
+          aria-label="Add emoji"
+          aria-haspopup="menu"
+          aria-expanded={isEmojiPickerOpen}
+          onClick={() => setIsEmojiPickerOpen(true)}
+          className="fill-primary-100 hover:bg-neutral-500 focus-visible:bg-neutral-500 active:bg-neutral-600"
+        >
+          <EmojiIcon />
+        </Button>
+      </Tooltip>
 
       {isEmojiPickerOpen && (
         <Modal
