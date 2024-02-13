@@ -4,20 +4,25 @@ import { createPortal } from "react-dom";
 
 import { cn } from "@/utils/cn";
 
-type Tooltip = {
-  children: React.ReactNode;
+interface ITooltip extends React.HTMLAttributes<HTMLDivElement> {
   text: string;
   delay?: number;
   minWidth?: number;
   maxWidth?: number;
   offset?: number;
-};
+  children: React.ReactNode;
+}
 
-type TooltipContent = Omit<Tooltip, "children" | "delay"> & {
+type TooltipContent = Omit<ITooltip, "children" | "delay"> & {
   parentRef: React.RefObject<HTMLDivElement>;
 };
 
-export const Tooltip: FC<Tooltip> = ({ children, delay = 500, ...props }) => {
+export const Tooltip: FC<ITooltip> = ({
+  children,
+  className,
+  delay = 500,
+  ...props
+}) => {
   const [displayTooltip, setDisplayTooltip] = useState(false);
   const divRef = useRef<HTMLDivElement>(null);
   const [hovering, setHovering] = useState(false);
@@ -60,7 +65,8 @@ export const Tooltip: FC<Tooltip> = ({ children, delay = 500, ...props }) => {
       onBlur={handleBlur}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="size-min"
+      className={cn("size-min", className)}
+      aria-hidden="true"
     >
       {displayTooltip && !isDisabled && (
         <TooltipContent {...props} parentRef={divRef} />
