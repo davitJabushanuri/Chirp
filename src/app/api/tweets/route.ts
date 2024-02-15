@@ -99,6 +99,15 @@ export async function GET(request: Request) {
             created_at: "desc",
           },
         },
+
+        _count: {
+          select: {
+            comments: true,
+            likes: true,
+            quotes: true,
+            retweets: true,
+          },
+        },
       },
 
       orderBy: {

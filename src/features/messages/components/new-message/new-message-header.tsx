@@ -1,6 +1,7 @@
 "use client";
 import { CloseIcon } from "@/assets/close-icon";
-import { CloseButton } from "@/components/elements/close-button";
+import { Button } from "@/components/elements/button";
+import { Tooltip } from "@/components/elements/tooltip";
 
 import { useNewMessageStore } from "../../stores/use-new-message-store";
 
@@ -11,9 +12,17 @@ export const NewMessageHeader = () => {
 
   return (
     <div className={styles.container}>
-      <CloseButton onClick={closeModal} ariaLabel="Close" title="Close">
-        <CloseIcon />
-      </CloseButton>
+      <Tooltip text="Back">
+        <Button
+          aria-label="Back"
+          onClick={() => {
+            closeModal();
+          }}
+          className="hover:bg-neutral-500 focus-visible:bg-neutral-500 focus-visible:outline-secondary-100 active:bg-neutral-600"
+        >
+          <CloseIcon />
+        </Button>
+      </Tooltip>
 
       <h1>New message</h1>
     </div>

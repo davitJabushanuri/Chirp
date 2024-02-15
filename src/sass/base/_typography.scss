@@ -74,7 +74,7 @@
   --logo-size: 1.875rem; //30px
 }
 
-.font-size-xs {
+html[data-fontsize="extra-small"] {
   --fs-kilo: #{$xs-kilo};
 
   --fs-h1: #{$xs-h1};
@@ -98,7 +98,7 @@
   --logo-size: 1.75rem; //28px
 }
 
-.font-size-sm {
+html[data-fontsize="small"] {
   --fs-kilo: #{$sm-kilo};
 
   --fs-h1: #{$sm-h1};
@@ -122,7 +122,7 @@
   --logo-size: 1.75rem; //28px
 }
 
-.font-size-md {
+html[data-fontsize="default"] {
   --fs-kilo: #{$md-kilo};
 
   --fs-h1: #{$md-h1};
@@ -146,7 +146,7 @@
   --logo-size: 1.875rem; //30px
 }
 
-.font-size-lg {
+html[data-fontsize="large"] {
   --fs-kilo: #{$lg-kilo};
 
   --fs-h1: #{$lg-h1};
@@ -170,7 +170,7 @@
   --logo-size: 2.125rem; //34px
 }
 
-.font-size-xl {
+html[data-fontsize="extra-large"] {
   --fs-kilo: #{$xl-kilo};
 
   --fs-h1: #{$xl-h1};

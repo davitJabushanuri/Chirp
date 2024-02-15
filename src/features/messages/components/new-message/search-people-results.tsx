@@ -11,7 +11,14 @@ export const SearchPeopleResults = ({
   receiverId: string | null;
   setReceiverId: (id: string | null) => void;
 }) => {
-  const { data: people, isLoading, error } = useUsers();
+  const {
+    data: people,
+    isLoading,
+    error,
+  } = useUsers({
+    queryKey: ["users"],
+    limit: 10,
+  });
 
   if (isLoading) {
     return null;

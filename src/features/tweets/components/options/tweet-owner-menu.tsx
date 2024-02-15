@@ -11,8 +11,6 @@ import { EmbedIcon } from "../../assets/embed-icon";
 import { usePinTweet } from "../../hooks/use-pin-tweet";
 import { ITweet } from "../../types";
 
-import styles from "./styles/tweet-options.module.scss";
-
 export const TweetOwnerMenu = ({
   tweet,
   setIsMenuOpen,
@@ -29,14 +27,13 @@ export const TweetOwnerMenu = ({
   return (
     <>
       <MenuItem
+        color="red"
         onClick={() => {
           setIsMenuOpen(false);
           setIsDeleteModalOpen(true);
         }}
       >
-        <div className={styles.delete}>
-          <TrashIcon /> Delete
-        </div>
+        <TrashIcon /> Delete
       </MenuItem>
 
       {tweet?.id === user?.pinned_tweet?.id ? (

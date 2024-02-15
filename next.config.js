@@ -11,9 +11,6 @@ const nextConfig = {
     ],
   },
 
-  experimental: {
-    scrollRestoration: true,
-  },
   sassOptions: {
     includePaths: [path.join(__dirname, "src/sass")],
   },

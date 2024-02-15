@@ -5,11 +5,14 @@ import { useRef, useState } from "react";
 import { toast } from "react-toastify";
 
 import { MessageIcon } from "@/assets/message-icon";
+import { Button } from "@/components/elements/button";
 import { Menu, MenuItem } from "@/components/elements/menu";
 import { Modal } from "@/components/elements/modal";
+import { Tooltip } from "@/components/elements/tooltip";
 import { BASE_URL } from "@/config";
 import { useJoinTwitter } from "@/features/auth";
 import { useToggleBookmark } from "@/features/bookmarks";
+import { cn } from "@/utils/cn";
 
 import {
   AddToBookmarksIcon,
@@ -18,8 +21,6 @@ import {
 import { CopyLinkIcon } from "../../assets/copy-link-icon";
 import { ShareIcon } from "../../assets/share-icon";
 import { ITweet } from "../../types";
-
-import styles from "./styles/actions.module.scss";
 
 export const ShareButton = ({ tweet }: { tweet: ITweet }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -40,27 +41,33 @@ export const ShareButton = ({ tweet }: { tweet: ITweet }) => {
   const mutation = useToggleBookmark();
 
   return (
-    <div className={styles.container}>
-      <button
-        ref={buttonRef}
-        aria-expanded={isModalOpen}
-        aria-haspopup="menu"
-        aria-label="Share Tweet"
-        data-title="Share"
-        tabIndex={0}
-        onKeyDown={(e) => {
-          e.stopPropagation();
-        }}
-        onClick={(e) => {
-          e.stopPropagation();
-          setIsModalOpen(true);
-        }}
-        className={styles.share}
-      >
-        <span className={styles.icon}>
-          <ShareIcon />
-        </span>
-      </button>
+    <div>
+      <Tooltip text="Share">
+        <Button
+          ref={buttonRef}
+          aria-expanded={isModalOpen}
+          aria-haspopup="menu"
+          aria-label="Share Tweet"
+          onKeyDown={(e) => {
+            e.stopPropagation();
+          }}
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsModalOpen(true);
+          }}
+          className="group flex gap-[2px] p-0 focus-visible:outline-0"
+        >
+          <span
+            className={cn(
+              "rounded-full fill-tertiary-100 p-2 group-hover:bg-blue-100/20 group-hover:fill-blue-100  group-active:bg-blue-100/25 group-active:fill-blue-100",
+              "outline-offset-[-2px] group-focus-visible:bg-blue-100/20 group-focus-visible:fill-blue-100 group-focus-visible:outline group-focus-visible:outline-2 group-focus-visible:outline-blue-100",
+              "transition-colors duration-200 ease-in-out",
+            )}
+          >
+            <ShareIcon />
+          </span>
+        </Button>
+      </Tooltip>
 
       <AnimatePresence>
         {isModalOpen && (

@@ -4,7 +4,7 @@ import { TweetQuotes } from "@/features/tweets";
 const Quotes = () => {
   return (
     <>
-      <TweetHeader heading="Quotes" />
+      <TweetHeader />
       <TweetQuotes />
     </>
   );

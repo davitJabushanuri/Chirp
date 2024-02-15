@@ -4,8 +4,8 @@ import { AxiomWebVitals } from "next-axiom";
 import { ToastContainer, Slide } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
-
 import "./styles/layout.scss";
+import "./styles/tailwind.css";
 import { Aside } from "@/features/aside";
 import { AuthModalTrigger } from "@/features/auth";
 import { MobileTweetButton } from "@/features/create-tweet";
@@ -25,27 +25,39 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const nextCookies = cookies();
-  const theme = nextCookies.get("theme");
-  const color = nextCookies.get("color");
-  const fontSize = nextCookies.get("font-size");
+  const theme = nextCookies.get("theme")?.value;
+  const color = nextCookies.get("color")?.value;
+  const fontSize = nextCookies.get("font-size")?.value;
 
   return (
     <html
-      className={`${theme?.value ?? ""} ${color?.value ?? ""} ${
-        fontSize?.value ?? ""
-      }`}
+      {...(theme && { "data-theme": theme })}
+      {...(color && { "data-color": color })}
+      {...(fontSize && { "data-fontsize": fontSize })}
       lang="en"
     >
       <body suppressHydrationWarning={true}>
+        <a href="#home-timeline" className="sr-only">
+          Skip to home timeline
+        </a>
+
+        <a href="#trending" className="sr-only">
+          Skip to trending
+        </a>
+
         <NextAuthProvider>
           <ReactQueryProvider>
             <div className="layout">
               <MobileNavbar />
-              <MobileTweetButton />
+              <div className="fixed bottom-20 right-4 z-fixed sm:hidden">
+                <MobileTweetButton />
+              </div>
 
               <Sidebar />
 
-              <main>{children}</main>
+              <main aria-label="Home timeline" id="home-timeline">
+                {children}
+              </main>
 
               <Aside />
 

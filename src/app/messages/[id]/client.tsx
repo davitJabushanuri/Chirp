@@ -1,10 +1,10 @@
 "use client";
-import { Messages } from "@/features/messages";
+import { Conversation } from "@/features/messages";
 
 export const ConversationClientPage = () => {
   return (
-    <div>
-      <Messages />
+    <div className="no-padding">
+      <Conversation />
     </div>
   );
 };

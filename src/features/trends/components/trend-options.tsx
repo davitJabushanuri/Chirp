@@ -3,10 +3,10 @@ import { useRef, useState } from "react";
 
 import { DotIcon } from "@/assets/dot-icon";
 import { SadFaceIcon } from "@/assets/sad-face-icon";
+import { Button } from "@/components/elements/button";
 import { Menu, MenuItem } from "@/components/elements/menu";
 import { Modal } from "@/components/elements/modal";
-
-import styles from "./styles/trend-options.module.scss";
+import { Tooltip } from "@/components/elements/tooltip";
 
 export const TrendOptions = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -17,24 +17,25 @@ export const TrendOptions = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <button
-        ref={buttonRef}
-        aria-expanded={isModalOpen}
-        aria-haspopup="menu"
-        aria-label="More"
-        data-title="More"
-        className={styles.optionsButton}
-        onKeyDown={(e) => {
-          e.stopPropagation();
-        }}
-        onClick={(e) => {
-          e.stopPropagation();
-          setIsModalOpen(true);
-        }}
-      >
-        <DotIcon />
-      </button>
+    <div className="relative">
+      <Tooltip text="More">
+        <Button
+          ref={buttonRef}
+          aria-expanded={isModalOpen}
+          aria-haspopup="menu"
+          aria-label="More"
+          onKeyDown={(e) => {
+            e.stopPropagation();
+          }}
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsModalOpen(true);
+          }}
+          className="aspect-square fill-tertiary-100 hover:bg-primary-100/10 hover:fill-primary-100 focus-visible:bg-primary-100/10 active:bg-primary-100/15 [&>svg]:size-h3"
+        >
+          <DotIcon />
+        </Button>
+      </Tooltip>
 
       <AnimatePresence>
         {isModalOpen && (

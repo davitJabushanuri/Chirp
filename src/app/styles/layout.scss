@@ -70,8 +70,13 @@ body {
       main {
         border-left: 1px solid var(--clr-border);
 
-        > div {
+        > div:not(.no-padding) {
           padding-bottom: calc(100vh - 4rem);
+        }
+
+        &:focus-visible {
+          outline: 2px solid var(--clr-secondary);
+          outline-offset: -2px;
         }
       }
 
@@ -103,15 +108,4 @@ body {
       max-width: 1265px;
     }
   }
-}
-
-.visually-hidden {
-  border: 0;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
 }
