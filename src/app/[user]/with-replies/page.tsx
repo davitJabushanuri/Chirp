@@ -25,9 +25,9 @@ export async function generateMetadata({
     };
 
   return {
-    title: `Tweets with replies by ${user?.name?.split(
-      " ",
-    )[0]} (@${user?.email?.split("@")[0]})`,
+    title: `Tweets with replies by ${
+      user?.name?.split(" ")[0]
+    } (@${user?.email?.split("@")[0]})`,
     description: user?.description,
   };
 }

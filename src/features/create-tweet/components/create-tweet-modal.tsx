@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 
 import { BackArrowIcon } from "@/assets/back-arrow-icon";
 import { CloseIcon } from "@/assets/close-icon";
+import { Button } from "@/components/elements/button";
+import { Tooltip } from "@/components/elements/tooltip";
 import { useCreateTweetModal } from "@/stores/use-create-tweet-modal";
 
 import { CreateTweet } from "./create-tweet";
@@ -28,18 +30,15 @@ export const CreateTweetModal = () => {
     >
       <div className={styles.wrapper}>
         <div className={styles.closeButtonContainer}>
-          <button
-            data-title={innerWidth < 700 ? "Back" : "Close"}
-            onClick={() => closeModal()}
-            className={styles.close}
-          >
-            <span className={styles.arrow}>
-              <BackArrowIcon />
-            </span>
-            <span className={styles.x}>
-              <CloseIcon />
-            </span>
-          </button>
+          <Tooltip text={innerWidth < 700 ? "Back" : "Close"}>
+            <Button
+              aria-label={innerWidth < 700 ? "Back" : "Close"}
+              onClick={() => closeModal()}
+              className="hover:bg-neutral-500 focus-visible:bg-neutral-500 focus-visible:outline-secondary-100 active:bg-neutral-600"
+            >
+              {innerWidth < 700 ? <BackArrowIcon /> : <CloseIcon />}
+            </Button>
+          </Tooltip>
         </div>
         {data.parent_tweet && <CreateTweetComment tweet={data.parent_tweet} />}
 

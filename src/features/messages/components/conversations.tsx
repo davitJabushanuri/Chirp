@@ -29,6 +29,7 @@ export const Conversations = () => {
     data: conversations,
     isLoading,
     isError,
+    isSuccess,
   } = useGetConversations(session?.user?.id);
 
   if (isLoading) return <LoadingSpinner />;
@@ -53,13 +54,14 @@ export const Conversations = () => {
             </div>
           ) : (
             <div className={styles.conversations}>
-              {conversations?.map((conversation) => {
-                return (
-                  <div className={styles.conversation} key={conversation.id}>
-                    <ConversationCard conversation={conversation} />
-                  </div>
-                );
-              })}
+              {isSuccess &&
+                conversations?.map((conversation) => {
+                  return (
+                    <div className={styles.conversation} key={conversation.id}>
+                      <ConversationCard conversation={conversation} />
+                    </div>
+                  );
+                })}
             </div>
           )}
         </>

@@ -9,9 +9,11 @@ import { DotIcon } from "@/assets/dot-icon";
 import { LocationIcon } from "@/assets/location-icon";
 import { MessageIcon } from "@/assets/message-icon";
 import { ReceiveNotificationsIcon } from "@/assets/notifications-icon";
+import { Button } from "@/components/elements/button";
 import { EllipsisWrapper } from "@/components/elements/ellipsis-wrapper";
 import { FollowButton } from "@/components/elements/follow-button";
 import { Modal } from "@/components/elements/modal";
+import { Tooltip } from "@/components/elements/tooltip";
 
 import { WebsiteIcon } from "../assets/website-icon";
 import { IUser } from "../types";
@@ -97,35 +99,38 @@ export const ProfileInfo = ({ user, id }: { user: IUser; id: string }) => {
               Edit Profile
             </button>
           ) : (
-            <div className={styles.visitorActions}>
+            <div className="flex flex-wrap items-center gap-2">
               {session && (
-                <button
-                  aria-expanded="false"
-                  aria-haspopup="menu"
-                  aria-label="More"
-                  data-title="More"
-                  className={styles.options}
-                >
-                  <DotIcon />
-                </button>
+                <Tooltip text="More">
+                  <Button
+                    aria-expanded="false"
+                    aria-haspopup="menu"
+                    aria-label="More"
+                    className="border-[1px] border-tertiary-100 p-[0.4em] hover:bg-neutral-500 focus-visible:bg-neutral-500 focus-visible:outline-secondary-100 active:bg-neutral-600"
+                  >
+                    <DotIcon />
+                  </Button>
+                </Tooltip>
               )}
               {session && (
-                <button
-                  aria-label="Message"
-                  data-title="Message"
-                  className={styles.message}
-                >
-                  <MessageIcon />
-                </button>
+                <Tooltip text="Message">
+                  <Button
+                    aria-label="Message"
+                    className="border-[1px] border-tertiary-100 p-[0.4em] hover:bg-neutral-500 focus-visible:bg-neutral-500 focus-visible:outline-secondary-100 active:bg-neutral-600"
+                  >
+                    <MessageIcon />
+                  </Button>
+                </Tooltip>
               )}
               {session && (
-                <button
-                  aria-label="Turn on Tweet notifications"
-                  data-title="Notify"
-                  className={styles.notifications}
-                >
-                  <ReceiveNotificationsIcon />
-                </button>
+                <Tooltip text="Notify">
+                  <Button
+                    aria-label="Turn on Tweet notifications"
+                    className="border-[1px] border-tertiary-100 p-[0.4em] hover:bg-neutral-500 focus-visible:bg-neutral-500 focus-visible:outline-secondary-100 active:bg-neutral-600"
+                  >
+                    <ReceiveNotificationsIcon />
+                  </Button>
+                </Tooltip>
               )}
 
               <FollowButton

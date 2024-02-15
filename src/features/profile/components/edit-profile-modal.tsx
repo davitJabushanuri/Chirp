@@ -5,8 +5,9 @@ import { useRef, useState } from "react";
 
 import { BackArrowIcon } from "@/assets/back-arrow-icon";
 import { CloseIcon } from "@/assets/close-icon";
-import { CloseButton } from "@/components/elements/close-button";
+import { Button } from "@/components/elements/button";
 import { TextInput } from "@/components/elements/text-input";
+import { Tooltip } from "@/components/elements/tooltip";
 
 import { updateProfile } from "../api/update-profile";
 import { CameraIcon } from "../assets/camera-icon";
@@ -93,13 +94,17 @@ export const EditProfileModal = ({
       className={styles.container}
     >
       <div className={styles.header}>
-        <CloseButton
-          onClick={() => closeModal()}
-          ariaLabel={innerWidth <= 700 ? "Back" : "Close"}
-          title={innerWidth <= 700 ? "Back" : "Close"}
-        >
-          {innerWidth <= 700 ? <BackArrowIcon /> : <CloseIcon />}
-        </CloseButton>
+        <Tooltip text="Back">
+          <Button
+            aria-label={innerWidth <= 700 ? "Back" : "Close"}
+            onClick={() => {
+              closeModal();
+            }}
+            className="hover:bg-neutral-500 focus-visible:bg-neutral-500 focus-visible:outline-secondary-100 active:bg-neutral-600"
+          >
+            {innerWidth <= 700 ? <BackArrowIcon /> : <CloseIcon />}
+          </Button>
+        </Tooltip>
 
         <h2>Edit Profile</h2>
 
@@ -132,29 +137,33 @@ export const EditProfileModal = ({
           onChange={(e) => chooseImage(e, "banner")}
         />
         <div className={styles.actions}>
-          <InputButton
-            ariaLabel="Add banner photo"
-            title="Add photo"
-            onClick={() => {
-              bannerInputRef.current?.click();
-            }}
-          >
-            <CameraIcon />
-          </InputButton>
+          <Tooltip text="Add photo">
+            <Button
+              aria-label="Add banner photo"
+              onClick={() => {
+                bannerInputRef.current?.click();
+              }}
+              className="bg-black-300/40 hover:bg-black-300/50 focus-visible:bg-black-300/50 focus-visible:outline-secondary-100 active:bg-black-300/60"
+            >
+              <CameraIcon />
+            </Button>
+          </Tooltip>
 
           {profile?.banner?.url && (
-            <InputButton
-              ariaLabel="Remove banner photo"
-              title="Remove photo"
-              onClick={() => {
-                setProfile({
-                  ...profile,
-                  banner: { url: "", file: undefined },
-                });
-              }}
-            >
-              <CloseIcon />
-            </InputButton>
+            <Tooltip text="Remove photo">
+              <Button
+                aria-label="Remove banner photo"
+                onClick={() => {
+                  setProfile({
+                    ...profile,
+                    banner: { url: "", file: undefined },
+                  });
+                }}
+                className="bg-black-300/40 hover:bg-black-300/50 focus-visible:bg-black-300/50 focus-visible:outline-secondary-100 active:bg-black-300/60"
+              >
+                <CloseIcon />
+              </Button>
+            </Tooltip>
           )}
         </div>
       </div>
@@ -182,15 +191,17 @@ export const EditProfileModal = ({
           onChange={(e) => chooseImage(e, "avatar")}
         />
         <div className={styles.chooseAvatar}>
-          <InputButton
-            ariaLabel="Add avatar photo"
-            title="Add photo"
-            onClick={() => {
-              avatarInputRef.current?.click();
-            }}
-          >
-            <CameraIcon />
-          </InputButton>
+          <Tooltip text="Add photo">
+            <Button
+              aria-label="Add avatar photo"
+              onClick={() => {
+                avatarInputRef.current?.click();
+              }}
+              className="bg-black-300/40 hover:bg-black-300/50 focus-visible:bg-black-300/50 focus-visible:outline-secondary-100 active:bg-black-300/60"
+            >
+              <CameraIcon />
+            </Button>
+          </Tooltip>
         </div>
       </div>
 
@@ -254,28 +265,5 @@ export const EditProfileModal = ({
         />
       </div>
     </motion.div>
-  );
-};
-
-const InputButton = ({
-  ariaLabel,
-  title,
-  onClick,
-  children,
-}: {
-  ariaLabel: string;
-  title: string;
-  onClick: () => void;
-  children: React.ReactNode;
-}) => {
-  return (
-    <button
-      aria-label={ariaLabel}
-      data-title={title}
-      onClick={onClick}
-      className={styles.inputButton}
-    >
-      {children}
-    </button>
   );
 };

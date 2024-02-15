@@ -21,13 +21,6 @@ export async function GET(request: Request) {
       },
 
       include: {
-        messages: {
-          include: {
-            receiver: true,
-            sender: true,
-            media: true,
-          },
-        },
         users: {
           include: {
             followers: true,

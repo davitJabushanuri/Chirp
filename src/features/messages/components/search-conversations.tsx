@@ -2,7 +2,8 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import { BackArrowIcon } from "@/assets/back-arrow-icon";
 import { SearchIcon } from "@/assets/search-icon";
-import { CloseButton } from "@/components/elements/close-button";
+import { Button } from "@/components/elements/button";
+import { Tooltip } from "@/components/elements/tooltip";
 
 import { XICon } from "../assets/x-icon";
 
@@ -22,16 +23,18 @@ export const SearchConversations = ({
   return (
     <div className={styles.container}>
       {isSearching && (
-        <CloseButton
-          onClick={() => {
-            setSearchTerm("");
-            setIsSearching(false);
-          }}
-          ariaLabel="Back"
-          title="Back"
-        >
-          <BackArrowIcon />
-        </CloseButton>
+        <Tooltip text="Back">
+          <Button
+            aria-label="Back"
+            onClick={() => {
+              setSearchTerm("");
+              setIsSearching(false);
+            }}
+            className="hover:bg-neutral-500 focus-visible:bg-neutral-500 focus-visible:outline-secondary-100 active:bg-neutral-600"
+          >
+            <BackArrowIcon />
+          </Button>
+        </Tooltip>
       )}
 
       <div

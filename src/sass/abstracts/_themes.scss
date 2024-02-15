@@ -190,7 +190,7 @@
   --clr-primary-background: #{$blue-primary-background};
 }
 
-.theme-light {
+html[data-theme="default"] {
   --clr-background: #{$light-background};
 
   --clr-primary: #{$light-primary};
@@ -256,7 +256,7 @@
   --clr-message-input-background: #{$light-message-input-background};
 }
 
-.theme-dark {
+html[data-theme="dark"] {
   --clr-background: #{$dark-background};
 
   --clr-primary: #{$dark-primary};
@@ -322,7 +322,7 @@
   --clr-message-input-background: #{$dark-message-input-background};
 }
 
-.theme-dim {
+html[data-theme="dim"] {
   --clr-background: #{$dim-background};
 
   --clr-primary: #{$dim-primary};
@@ -390,7 +390,7 @@
 
 // PRIMARY COLORS
 
-.color-blue {
+html[data-color="blue"] {
   --clr-primary: #{$blue-primary};
   --clr-primary-hover: #{$blue-primary-hover};
   --clr-primary-active: #{$blue-primary-active};
@@ -398,7 +398,7 @@
   --clr-primary-background: #{$blue-primary-background};
 }
 
-.color-yellow {
+html[data-color="yellow"] {
   --clr-primary: #{$yellow-primary};
   --clr-primary-hover: #{$yellow-primary-hover};
   --clr-primary-active: #{$yellow-primary-active};
@@ -406,7 +406,7 @@
   --clr-primary-background: #{$yellow-primary-background};
 }
 
-.color-rose {
+html[data-color="rose"] {
   --clr-primary: #{$rose-primary};
   --clr-primary-hover: #{$rose-primary-hover};
   --clr-primary-active: #{$rose-primary-active};
@@ -414,7 +414,7 @@
   --clr-primary-background: #{$rose-primary-background};
 }
 
-.color-violet {
+html[data-color="violet"] {
   --clr-primary: #{$violet-primary};
   --clr-primary-hover: #{$violet-primary-hover};
   --clr-primary-active: #{$violet-primary-active};
@@ -422,7 +422,7 @@
   --clr-primary-background: #{$violet-primary-background};
 }
 
-.color-orange {
+html[data-color="orange"] {
   --clr-primary: #{$orange-primary};
   --clr-primary-hover: #{$orange-primary-hover};
   --clr-primary-active: #{$orange-primary-active};
@@ -430,7 +430,7 @@
   --clr-primary-background: #{$orange-primary-background};
 }
 
-.color-green {
+html[data-color="green"] {
   --clr-primary: #{$green-primary};
   --clr-primary-hover: #{$green-primary-hover};
   --clr-primary-active: #{$green-primary-active};

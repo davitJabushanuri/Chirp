@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import React, { useCallback, useEffect, useState } from "react";
 
-import { Progressbar } from "@/components/designs/progressbar";
 import { EllipsisWrapper } from "@/components/elements/ellipsis-wrapper";
+import { ProgressBar } from "@/components/elements/progress-bar";
 import { TryAgain } from "@/components/elements/try-again";
 import { Avatar, UserName, UserScreenName } from "@/features/profile";
 
@@ -140,7 +140,7 @@ export const SearchResultsModal = ({
       className={`${styles.container}`}
     >
       <div className={styles.progressbar}>
-        {!!query && isLoading && <Progressbar />}
+        {!!query && isLoading && <ProgressBar />}
       </div>
       {!query ? (
         <div className={styles.placeholder}>

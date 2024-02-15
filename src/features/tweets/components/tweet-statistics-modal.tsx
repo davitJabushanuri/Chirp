@@ -4,8 +4,9 @@ import { motion } from "framer-motion";
 
 import { BackArrowIcon } from "@/assets/back-arrow-icon";
 import { CloseIcon } from "@/assets/close-icon";
-import { CloseButton } from "@/components/elements/close-button";
+import { Button } from "@/components/elements/button";
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
+import { Tooltip } from "@/components/elements/tooltip";
 import { TryAgain } from "@/components/elements/try-again";
 import { PersonDetails } from "@/features/connect";
 import { IUser } from "@/features/profile";
@@ -48,13 +49,17 @@ export const TweetStatisticsModal = ({
       className={styles.container}
     >
       <header>
-        <CloseButton
-          onClick={onClose}
-          ariaLabel={innerWidth < 700 ? `Close` : `Back`}
-          title={innerWidth < 700 ? `Close` : `Back`}
-        >
-          {innerWidth < 700 ? <BackArrowIcon /> : <CloseIcon />}
-        </CloseButton>
+        <Tooltip text={innerWidth < 700 ? `Close` : `Back`}>
+          <Button
+            aria-label={innerWidth < 700 ? `Close` : `Back`}
+            onClick={() => {
+              onClose();
+            }}
+            className="hover:bg-neutral-500 focus-visible:bg-neutral-500 focus-visible:outline-secondary-100 active:bg-neutral-600"
+          >
+            {innerWidth < 700 ? <BackArrowIcon /> : <CloseIcon />}
+          </Button>
+        </Tooltip>
 
         <h2 className={styles.title}>
           {title === `likes` ? `Liked By` : `Retweeted By`}

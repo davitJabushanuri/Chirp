@@ -5,6 +5,8 @@ import { useCallback, useLayoutEffect, useRef, useState } from "react";
 import { GifIcon } from "@/assets/gif-icon";
 import { ImageIcon } from "@/assets/image-icon";
 import { LocationIcon } from "@/assets/location-icon";
+import { Button } from "@/components/elements/button";
+import { Tooltip } from "@/components/elements/tooltip";
 import { Avatar, LinkToProfile } from "@/features/profile";
 import { ITweet } from "@/features/tweets";
 
@@ -15,7 +17,6 @@ import { IChosenImages } from "../types";
 import { chooseImages } from "../utils/choose-images";
 import { resizeTextarea } from "../utils/resize-textarea";
 
-import Action from "./action";
 import { ChosenImages } from "./chosen-images";
 import { CreateTweetQuote } from "./create-tweet-quote";
 import { EmojiButton } from "./emoji-button";
@@ -109,106 +110,107 @@ export const CreateTweet = ({
           )}
 
           {quoted_tweet && (
-            <div className={styles.quotedTweet}>
+            <div className="my-2">
               <CreateTweetQuote tweet={quoted_tweet} />
             </div>
           )}
         </div>
 
-        <div className={styles.actions}>
-          <div className={styles.tweet_actions}>
-            <button
-              type="button"
-              className={styles.action}
-              aria-label="Add photos or video"
-              data-title="Media"
-              tabIndex={0}
-              disabled={chosenImages.length >= 4}
-              onClick={() => {
-                if (fileInputRef.current) {
-                  fileInputRef.current.click();
-                }
-              }}
-            >
-              <Action icon={<ImageIcon />} />
-
-              <input
-                ref={fileInputRef}
-                id="media"
-                className={styles.fileInput}
-                tabIndex={-1}
-                type="file"
-                onChange={(e) =>
-                  chooseImages({
-                    event: e,
-                    chosenImagesLength: chosenImages.length,
-                    setChosenImages,
-                  })
-                }
-                accept="image/jpeg,image/png,image/webp,image/gif,video/mp4,video/quicktime"
-                max={4}
-                multiple
+        <div className="flex flex-wrap items-center gap-2">
+          <div className="flex flex-1 translate-x-[-8px] flex-wrap items-center">
+            <Tooltip text="Media">
+              <Button
+                type="button"
+                aria-label="Add photos or video"
+                data-title="Media"
+                tabIndex={0}
                 disabled={chosenImages.length >= 4}
-              />
-            </button>
+                onClick={() => {
+                  if (fileInputRef.current) {
+                    fileInputRef.current.click();
+                  }
+                }}
+                className="fill-primary-100 hover:bg-neutral-500 focus-visible:bg-neutral-500 active:bg-neutral-600"
+              >
+                <ImageIcon />
+                <input
+                  ref={fileInputRef}
+                  id="media"
+                  className="hidden"
+                  tabIndex={-1}
+                  type="file"
+                  onChange={(e) =>
+                    chooseImages({
+                      event: e,
+                      chosenImagesLength: chosenImages.length,
+                      setChosenImages,
+                    })
+                  }
+                  accept="image/jpeg,image/png,image/webp,image/gif,video/mp4,video/quicktime"
+                  max={4}
+                  multiple
+                  disabled={chosenImages.length >= 4}
+                />
+              </Button>
+            </Tooltip>
 
-            <button
-              type="button"
-              className={styles.action}
-              aria-label="Add a GIF"
-              data-title="GIF"
-              tabIndex={0}
-            >
-              <Action icon={<GifIcon />} />
-            </button>
+            <Tooltip text="GIF">
+              <Button
+                type="button"
+                aria-label="Add a GIF"
+                className="fill-primary-100 hover:bg-neutral-500 focus-visible:bg-neutral-500 active:bg-neutral-600"
+              >
+                <GifIcon />
+              </Button>
+            </Tooltip>
 
             {!isInspectModal && (
-              <span className={styles.hide}>
-                <button
-                  type="button"
-                  className={styles.action}
-                  aria-label="Add poll"
-                  data-title="Poll"
-                  tabIndex={0}
-                >
-                  <Action icon={<PollIcon />} />
-                </button>
-              </span>
+              <div className="hidden md:block">
+                <Tooltip text="Poll">
+                  <Button
+                    type="button"
+                    aria-label="Add poll"
+                    className="fill-primary-100 hover:bg-neutral-500 focus-visible:bg-neutral-500 active:bg-neutral-600"
+                  >
+                    <PollIcon />
+                  </Button>
+                </Tooltip>
+              </div>
             )}
 
             <EmojiButton setText={setText} inputId={inputId} />
 
             {!isInspectModal && (
-              <span className={styles.hide}>
-                <button
-                  type="button"
-                  className={styles.action}
-                  aria-label="Schedule Tweet"
-                  data-title="Schedule"
-                  tabIndex={0}
-                >
-                  <Action icon={<ScheduleIcon />} />
-                </button>
-              </span>
+              <div className="hidden md:block">
+                <Tooltip text="Schedule">
+                  <Button
+                    type="button"
+                    aria-label="Schedule tweet"
+                    className="fill-primary-100 hover:bg-neutral-500 focus-visible:bg-neutral-500 active:bg-neutral-600"
+                  >
+                    <ScheduleIcon />
+                  </Button>
+                </Tooltip>
+              </div>
             )}
 
-            <button
-              type="button"
-              className={styles.action}
-              aria-label="Tag Location"
-              data-title="Location"
-              tabIndex={0}
-            >
-              <Action icon={<LocationIcon />} />
-            </button>
+            <Tooltip text="Location">
+              <Button
+                type="button"
+                aria-label="Tag location"
+                className="fill-primary-100 hover:bg-neutral-500 focus-visible:bg-neutral-500 active:bg-neutral-600"
+              >
+                <LocationIcon />
+              </Button>
+            </Tooltip>
           </div>
 
-          <div className={styles.buttons}>
+          <div className="flex items-center gap-2">
             {text.length > 0 && <TextProgressBar progress={text.length} />}
-            <button
+
+            <Button
               type="button"
-              aria-label="Add Tweet"
-              tabIndex={0}
+              aria-label="Add tweet"
               onClick={() =>
                 mutation.mutate({
                   text: text.trim(),
@@ -223,10 +225,10 @@ export const CreateTweet = ({
                 (text.length === 0 || text.length > 280) &&
                 chosenImages.length === 0
               }
-              className={styles.tweetButton}
+              className="bg-primary-100 px-[1em] py-[0.45em] text-milli font-bold hover:bg-primary-200 focus-visible:bg-primary-200 focus-visible:outline-secondary-100 active:bg-primary-300"
             >
               Tweet
-            </button>
+            </Button>
           </div>
         </div>
       </form>

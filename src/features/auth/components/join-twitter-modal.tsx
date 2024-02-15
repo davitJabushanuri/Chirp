@@ -9,11 +9,11 @@ import { FollowIcon } from "@/assets/follow-icon";
 import { HeartIconActive } from "@/assets/heart-icon";
 import { MessageIcon } from "@/assets/message-icon";
 import { RetweetIcon } from "@/assets/retweet-icon";
-import { CloseButton } from "@/components/elements/close-button";
+import { Button } from "@/components/elements/button";
+import { Tooltip } from "@/components/elements/tooltip";
+import { cn } from "@/utils/cn";
 
 import { useJoinTwitter } from "../stores/useJoinTwitter";
-
-import styles from "./styles/join-twitter-modal.module.scss";
 
 export const JoinTwitterModal = () => {
   const router = useRouter();
@@ -30,10 +30,10 @@ export const JoinTwitterModal = () => {
       transition={{
         duration: 0.2,
       }}
-      className={styles.container}
+      className="fixed inset-0 rounded-xl bg-background p-2 text-center md:m-auto md:h-fit md:w-[clamp(480px,400px+20vw,600px)]"
     >
-      <div className={styles.close}>
-        <CloseButton
+      <Tooltip text={innerWidth < 700 ? "Back" : "Close"}>
+        <Button
           onClick={() => {
             setJoinTwitterData({
               isModalOpen: false,
@@ -41,39 +41,37 @@ export const JoinTwitterModal = () => {
               user: "",
             });
           }}
-          ariaLabel={innerWidth < 700 ? "Back" : "Close"}
-          title={innerWidth < 700 ? "Back" : "Close"}
+          aria-label="Back"
+          className="hover:bg-neutral-500 focus-visible:bg-neutral-500 focus-visible:outline-secondary-100 active:bg-neutral-600"
         >
           {innerWidth < 700 ? <BackArrowIcon /> : <CloseIcon />}
-        </CloseButton>
-      </div>
+        </Button>
+      </Tooltip>
 
-      <div className={styles.icon}>
+      <div
+        className={cn(
+          "flex justify-center py-[1em] [&>svg]:size-[calc(var(--tw-fs-kilo)+var(--tw-fs-base))]",
+          data.action === `comment` && "fill-blue-100",
+          data.action === `retweet` && "fill-green-100",
+          data.action === `like` && "fill-rose-100",
+          data.action === `follow` && "fill-blue-100",
+        )}
+      >
         {data.action === `comment` ? (
-          <span className={styles.comment}>
-            <CommentIconFill />
-          </span>
+          <CommentIconFill />
         ) : data.action === `retweet` ? (
-          <span className={styles.retweet}>
-            <RetweetIcon />
-          </span>
+          <RetweetIcon />
         ) : data.action === `like` ? (
-          <span className={styles.like}>
-            <HeartIconActive />
-          </span>
+          <HeartIconActive />
         ) : data.action === `follow` ? (
-          <span className={styles.follow}>
-            <FollowIcon />
-          </span>
+          <FollowIcon />
         ) : data.action === `message` ? (
-          <span className={styles.comment}>
-            <MessageIcon />
-          </span>
+          <MessageIcon />
         ) : null}
       </div>
 
-      <div className={styles.content}>
-        <h1 className={styles.title}>
+      <div className="mx-auto my-[2em] max-w-[400px]">
+        <h2 className="mb-[0.5em] text-h1 font-bold">
           {data.action === `comment`
             ? `Reply to join the conversation.`
             : data.action === `retweet`
@@ -85,8 +83,8 @@ export const JoinTwitterModal = () => {
                   : data.action === `message`
                     ? `Join Twitter now so you can share The New European - Think Without Borders’s Tweet privately.`
                     : `Don’t miss what’s happening`}
-        </h1>
-        <p className={styles.subtitle}>
+        </h2>
+        <p className="mb-8 text-milli text-tertiary-100">
           {data.action === `comment`
             ? `Once you join Twitter, you can respond to ${data.user}’s Tweet.`
             : data.action === `retweet`
@@ -98,36 +96,35 @@ export const JoinTwitterModal = () => {
                   : `People on Twitter are the first to know.`}
         </p>
 
-        <div className={styles.buttons}>
-          <button
-            role="link"
-            onClick={() => {
-              setJoinTwitterData({
-                isModalOpen: false,
-                action: "",
-                user: "",
-              });
-              router.push(`/auth/signin`);
-            }}
-            className={styles.signin}
-          >
-            Log in
-          </button>
-          <button
-            role="link"
-            onClick={() => {
-              setJoinTwitterData({
-                isModalOpen: false,
-                action: "",
-                user: "",
-              });
-              router.push(`/auth/signin`);
-            }}
-            className={styles.signup}
-          >
-            Sign up
-          </button>
-        </div>
+        <Button
+          role="link"
+          onClick={() => {
+            setJoinTwitterData({
+              isModalOpen: false,
+              action: "",
+              user: "",
+            });
+            router.push(`/auth/signin`);
+          }}
+          className="mb-4 w-full bg-primary-100 p-[1em] text-base font-bold text-white-100 outline-offset-2 hover:bg-primary-200 focus-visible:bg-primary-200 focus-visible:outline-primary-200 active:bg-primary-300"
+        >
+          Log in
+        </Button>
+
+        <Button
+          role="link"
+          onClick={() => {
+            setJoinTwitterData({
+              isModalOpen: false,
+              action: "",
+              user: "",
+            });
+            router.push(`/auth/signin`);
+          }}
+          className="w-full border border-neutral-600 p-[1em] text-base font-bold text-primary-100 hover:bg-neutral-200 focus-visible:bg-neutral-100 active:bg-neutral-300"
+        >
+          Sign up
+        </Button>
       </div>
     </motion.div>
   );
