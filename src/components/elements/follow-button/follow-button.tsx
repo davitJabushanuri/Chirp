@@ -55,8 +55,6 @@ export const FollowButton = ({
     <div className={styles.container}>
       <button
         aria-label={`${buttonText} @${username}`}
-        aria-describedby="follow-button-description"
-        tabIndex={0}
         onKeyDown={(e) => {
           e.stopPropagation();
         }}
@@ -73,11 +71,6 @@ export const FollowButton = ({
       >
         {isFollowing ? "Following" : "Follow"}
       </button>
-
-      <div
-        id="follow-button-description"
-        className="visually-hidden"
-      >{`Click to ${isFollowing ? "unfollow" : "follow"} ${username}`}</div>
 
       <AnimatePresence>
         {isModalOpen && (
