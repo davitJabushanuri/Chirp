@@ -37,11 +37,11 @@ export default async function RootLayout({
       lang="en"
     >
       <body suppressHydrationWarning={true}>
-        <a href="#home-timeline" className="skip-link">
+        <a href="#home-timeline" className="sr-only">
           Skip to home timeline
         </a>
 
-        <a href="#trending" className="skip-link">
+        <a href="#trending" className="sr-only">
           Skip to trending
         </a>
 
@@ -53,9 +53,7 @@ export default async function RootLayout({
                 <MobileTweetButton />
               </div>
 
-              <div className="sidebar">
-                <Sidebar />
-              </div>
+              <Sidebar />
 
               <main aria-label="Home timeline" id="home-timeline">
                 {children}
