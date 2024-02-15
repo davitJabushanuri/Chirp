@@ -1,0 +1,26 @@
+.progressbar {
+  position: relative;
+  height: 3px;
+  background-color: var(--clr-background);
+  overflow: hidden;
+
+  span {
+    position: absolute;
+    display: block;
+    height: 100%;
+    width: 80px;
+    border-radius: 100vmax;
+    background-color: var(--clr-primary);
+    animation: progress 1s linear infinite;
+  }
+}
+
+@keyframes progress {
+  0% {
+    left: 0;
+  }
+
+  100% {
+    left: 100%;
+  }
+}
