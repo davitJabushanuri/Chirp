@@ -1,5 +1,4 @@
 @use "./abstracts/media-query" as *;
-@use "./abstracts/tooltips" as *;
 
 .container {
   height: 100%;
@@ -18,35 +17,6 @@
     max-width: 600px;
     margin-inline: auto;
     padding: 0.6em;
-
-    .close {
-      border-radius: 100vmax;
-      padding: 0.5em;
-      display: grid;
-      place-content: center;
-      cursor: pointer;
-      @include tooltip(bottom, 2px);
-      transition: background 0.2s ease-in-out;
-
-      &:hover {
-        background-color: var(--clr-nav-hover);
-      }
-
-      &:active {
-        background-color: var(--clr-nav-active);
-      }
-
-      &:focus-visible {
-        outline: 2px solid var(--clr-secondary);
-        background-color: var(--clr-nav-hover);
-      }
-
-      svg {
-        width: var(--fs-h2);
-        height: var(--fs-h2);
-        fill: var(--clr-secondary);
-      }
-    }
 
     .logo {
       display: grid;

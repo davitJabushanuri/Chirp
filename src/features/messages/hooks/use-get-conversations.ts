@@ -10,6 +10,6 @@ export const useGetConversations = (userId: string | undefined) => {
       return getConversations(userId);
     },
 
-    refetchOnWindowFocus: false,
+    refetchInterval: 5000,
   });
 };

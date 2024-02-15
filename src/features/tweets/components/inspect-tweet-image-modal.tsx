@@ -5,7 +5,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 
 import { CloseIcon } from "@/assets/close-icon";
+import { Button } from "@/components/elements/button";
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
+import { Tooltip } from "@/components/elements/tooltip";
 import { TryAgain } from "@/components/elements/try-again";
 import { CreateTweetWrapper } from "@/features/create-tweet";
 
@@ -57,17 +59,18 @@ export const InspectTweetImageModal = ({
           }}
           className={styles.loading}
         >
-          <button
-            aria-label="Close"
-            data-title="Close"
-            onClick={(e) => {
-              e.stopPropagation();
-              onClose();
-            }}
-            className={styles.close}
-          >
-            <CloseIcon />
-          </button>
+          <div className="absolute left-4 top-4">
+            <Tooltip text="Close">
+              <Button
+                aria-label="Close"
+                onClick={() => onClose()}
+                className="bg-neutral-100/50 hover:bg-neutral-100/60 focus-visible:bg-neutral-100/60 focus-visible:outline-tertiary-100 active:bg-neutral-100/70"
+              >
+                <CloseIcon />
+              </Button>
+            </Tooltip>
+          </div>
+
           <LoadingSpinner />
         </div>
       ) : isError ? (
@@ -78,17 +81,17 @@ export const InspectTweetImageModal = ({
           }}
           className={styles.error}
         >
-          <button
-            aria-label="Close"
-            data-title="Close"
-            onClick={(e) => {
-              e.stopPropagation();
-              onClose();
-            }}
-            className={styles.close}
-          >
-            <CloseIcon />
-          </button>
+          <div className="absolute left-4 top-4">
+            <Tooltip text="Close">
+              <Button
+                aria-label="Close"
+                onClick={() => onClose()}
+                className="bg-neutral-100/50 hover:bg-neutral-100/60 focus-visible:bg-neutral-100/60 focus-visible:outline-tertiary-100 active:bg-neutral-100/70"
+              >
+                <CloseIcon />
+              </Button>
+            </Tooltip>
+          </div>
           <TryAgain />
         </div>
       ) : (
@@ -100,31 +103,34 @@ export const InspectTweetImageModal = ({
             }}
             className={styles.images}
           >
-            <button
-              aria-label="Close"
-              data-title="Close"
-              onClick={(e) => {
-                e.stopPropagation();
-                onClose();
-              }}
-              className={styles.close}
-            >
-              <CloseIcon />
-            </button>
+            <div className="absolute left-4 top-4">
+              <Tooltip text="Close">
+                <Button
+                  aria-label="Close"
+                  onClick={() => onClose()}
+                  className="bg-neutral-100/50 hover:bg-neutral-100/60 focus-visible:bg-neutral-100/60 focus-visible:outline-tertiary-100 active:bg-neutral-100/70"
+                >
+                  <CloseIcon />
+                </Button>
+              </Tooltip>
+            </div>
 
-            <button
-              className={styles.toggleDetails}
-              onClick={(e) => {
-                e.stopPropagation();
-                setIsDetailsOpen((prev) => !prev);
-              }}
-              aria-label={
-                isDetailsOpen ? "Hide tweet details" : "Show tweet details"
-              }
-              data-title={isDetailsOpen ? "Hide" : "Show"}
-            >
-              {isDetailsOpen ? <ShowArrowsIcon /> : <HideArrowsIcon />}
-            </button>
+            <div className="absolute right-4 top-4">
+              <Tooltip text={isDetailsOpen ? "Hide" : "Show"}>
+                <Button
+                  aria-label={
+                    isDetailsOpen ? "Hide tweet details" : "Show tweet details"
+                  }
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsDetailsOpen((prev) => !prev);
+                  }}
+                  className="bg-neutral-100/50 hover:bg-neutral-100/60 focus-visible:bg-neutral-100/60 focus-visible:outline-tertiary-100 active:bg-neutral-100/70"
+                >
+                  {isDetailsOpen ? <ShowArrowsIcon /> : <HideArrowsIcon />}
+                </Button>
+              </Tooltip>
+            </div>
 
             <div className={styles.imagesContainer}>
               <ImageCarousel images={tweet?.media} imageIndex={imageIndex} />

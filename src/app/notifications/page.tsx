@@ -1,11 +1,9 @@
-import { Header, NotificationsHeader } from "@/features/header";
+import { NotificationsHeader } from "@/features/header";
 
 const Notifications = () => {
   return (
     <div>
-      <Header>
-        <NotificationsHeader />
-      </Header>
+      <NotificationsHeader />
     </div>
   );
 };

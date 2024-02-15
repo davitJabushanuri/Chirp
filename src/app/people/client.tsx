@@ -5,7 +5,14 @@ import { ConnectHeader, PersonDetails } from "@/features/connect";
 import { useUsers } from "@/features/profile";
 
 export const ConnectClientPage = () => {
-  const { data: people, isLoading, isError, isSuccess } = useUsers();
+  const {
+    data: people = [],
+    isLoading,
+    isError,
+  } = useUsers({
+    queryKey: ["people"],
+    limit: 20,
+  });
 
   if (isLoading) {
     return (
@@ -32,17 +39,10 @@ export const ConnectClientPage = () => {
       }}
     >
       <ConnectHeader />
-      <h1
-        style={{
-          fontSize: "19px",
-          fontWeight: 700,
-          padding: "11px 15px",
-        }}
-      >
+      <h2 className="px-4 py-3 text-h2 font-bold text-secondary-100">
         Suggested for you
-      </h1>
-      {isSuccess &&
-        people.length > 0 &&
+      </h2>
+      {people.length > 0 &&
         people?.map((person) => {
           return (
             <div key={person.id}>

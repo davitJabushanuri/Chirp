@@ -59,6 +59,24 @@ body {
   overflow-y: scroll;
   overflow-x: hidden;
 
+  .skip-link {
+    position: absolute;
+    top: -100vh;
+    left: 0;
+    background-color: var(--clr-secondary);
+    color: var(--clr-primary);
+    font-size: var(--fs-base);
+    font-weight: var(--fw-500);
+    padding: 0.6em 0.8em;
+    border-radius: 0 0 0.5em;
+    text-decoration: underline;
+    text-underline-offset: 0.1em;
+
+    &:focus {
+      top: 0;
+    }
+  }
+
   .layout {
     margin: 0 auto;
     display: grid;
@@ -70,8 +88,13 @@ body {
       main {
         border-left: 1px solid var(--clr-border);
 
-        > div {
+        > div:not(.no-padding) {
           padding-bottom: calc(100vh - 4rem);
+        }
+
+        &:focus-visible {
+          outline: 2px solid var(--clr-secondary);
+          outline-offset: -2px;
         }
       }
 

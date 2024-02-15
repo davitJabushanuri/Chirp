@@ -3,7 +3,9 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import updateLocale from "dayjs/plugin/updateLocale";
 import Link from "next/link";
 
-import styles from "./styles/create-date.module.scss";
+import { cn } from "@/utils/cn";
+
+import { Tooltip } from "../../tooltip";
 
 dayjs.extend(relativeTime);
 dayjs.extend(updateLocale);
@@ -40,16 +42,24 @@ export const CreateDate = ({
   const isMoreThan24Hours = Date.now() - created.valueOf() < day;
 
   return (
-    <Link
-      className={`${styles.container} ${hover ? styles.hover : ""}`}
-      tabIndex={focus ? 0 : -1}
-      href={`#`}
-      aria-label={created.format("MMM D")}
-      data-title={created.format("h:mm A · MMM D, YYYY")}
-    >
-      <time dateTime={created.format("YYYY-MM-DDTHH:mm:ssZ")}>
-        {isMoreThan24Hours ? created.fromNow(true) : created.format("MMM D")}
-      </time>
-    </Link>
+    <Tooltip text={created.format("h:mm A · MMM D, YYYY")}>
+      <Link
+        className={cn(
+          "text-nowrap",
+          hover && "hover:underline focus-visible:underline",
+        )}
+        tabIndex={focus ? 0 : -1}
+        href={`#`}
+        aria-label={created.format("MMM D")}
+        data-title={created.format("h:mm A · MMM D, YYYY")}
+      >
+        <time
+          dateTime={created.format("YYYY-MM-DDTHH:mm:ssZ")}
+          className="text-milli text-tertiary-100"
+        >
+          {isMoreThan24Hours ? created.fromNow(true) : created.format("MMM D")}
+        </time>
+      </Link>
+    </Tooltip>
   );
 };

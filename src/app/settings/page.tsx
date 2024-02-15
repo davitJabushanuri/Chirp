@@ -2,9 +2,10 @@ import Link from "next/link";
 
 import { VerifiedIcon } from "@/assets/verified-icon";
 import { EllipsisWrapper } from "@/components/elements/ellipsis-wrapper";
+import { HamburgerButton } from "@/components/elements/hamburger-button";
 import { ColorPicker } from "@/features/color-picker";
 import { FontSizeCustomization } from "@/features/font-size-customization";
-import { Header, SettingsHeader } from "@/features/header";
+import { Header } from "@/features/header";
 import { Avatar } from "@/features/profile";
 import { ThemePicker } from "@/features/themes";
 
@@ -14,7 +15,8 @@ const Settings = () => {
   return (
     <div className={styles.container}>
       <Header>
-        <SettingsHeader />
+        <HamburgerButton />
+        <h2>Settings</h2>
       </Header>
 
       <div className={styles.settings}>

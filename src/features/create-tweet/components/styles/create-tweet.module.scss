@@ -1,5 +1,4 @@
 @use "./abstracts/media-query" as *;
-@use "./abstracts/tooltips" as *;
 
 .container {
   position: relative;
@@ -52,99 +51,10 @@
           }
         }
       }
-
-      .quotedTweet {
-        margin: 8px 0;
-      }
     }
 
     .modalHeight {
       max-height: calc(100dvh - 300px);
-    }
-
-    .actions {
-      display: flex;
-      align-items: center;
-
-      gap: 11px;
-      flex-wrap: wrap;
-
-      .tweet_actions {
-        flex-grow: 1;
-        transform: translateX(-8px);
-        display: flex;
-        align-items: center;
-        flex-wrap: wrap;
-
-        .action {
-          border-radius: 100vmax;
-          @include tooltip(bottom, 4px);
-
-          &:focus-visible {
-            outline: 2px solid var(--clr-primary-disabled);
-          }
-
-          &:disabled {
-            opacity: 0.5;
-            cursor: default;
-          }
-
-          .fileInput {
-            display: none;
-          }
-        }
-
-        .hide {
-          display: none;
-
-          @include mq("medium") {
-            display: block;
-          }
-        }
-      }
-
-      .buttons {
-        display: flex;
-        align-items: center;
-        gap: 11px;
-
-        .tweetButton {
-          background-color: var(--clr-primary);
-          border-radius: 100vmax;
-          padding: 0.6em 1em;
-          font-size: var(--fs-milli);
-          font-weight: var(--fw-700);
-          color: var(--clr-light);
-          cursor: pointer;
-          display: grid;
-          place-items: center;
-
-          &:hover {
-            background-color: var(--clr-primary-hover);
-          }
-
-          &:active {
-            background-color: var(--clr-primary-active);
-          }
-
-          &:focus-visible {
-            outline: 2px solid var(--clr-primary-disabled);
-          }
-
-          &:disabled {
-            opacity: 0.5;
-            cursor: default;
-
-            &:hover {
-              background-color: var(--clr-primary);
-            }
-
-            &:active {
-              background-color: var(--clr-primary);
-            }
-          }
-        }
-      }
     }
   }
 }

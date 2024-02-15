@@ -21,14 +21,14 @@ model Account {
   type               String
   provider           String
   providerAccountId  String
-  refresh_token      String? @db.Text
-  access_token       String? @db.Text
-  oath_token         String? @db.Text
+  refresh_token      String?
+  access_token       String?
+  oath_token         String?
   oauth_token_secret String?
   expires_at         Int?
   token_type         String?
   scope              String?
-  id_token           String? @db.Text
+  id_token           String?
   session_state      String?
   user               User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -41,11 +41,6 @@ model Session {
   expires      DateTime
   userId       String
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
-
-enum UserRole {
-  ADMIN
-  USER
 }
 
 model User {
@@ -61,7 +56,6 @@ model User {
   emailVerified      DateTime?
   image              String?
   password           String?
-  role               UserRole       @default(USER)
   created_at         DateTime       @default(now())
   followers_count    Int            @default(0)
   friends_count      Int            @default(0)
@@ -69,19 +63,20 @@ model User {
   statuses_count     Int            @default(0)
   profile_banner_url String?
   profile_image_url  String?
+  pinned_tweet_id    String?
+  role               UserRole       @default(USER)
   accounts           Account[]
-  sessions           Session[]
-  tweets             Tweet[]
-  likes              Like[]
-  followers          User[]         @relation(name: "Followers")
-  following          User[]         @relation(name: "Followers")
-  retweets           Retweet[]
   bookmarks          Bookmark[]
+  likes              Like[]
   sent_messages      Message[]      @relation("receiver")
   received_messages  Message[]      @relation("sender")
-  conversations      Conversation[]
+  retweets           Retweet[]
+  sessions           Session[]
+  tweets             Tweet[]
   pinned_tweet       Tweet?         @relation("pinned_tweet", fields: [pinned_tweet_id], references: [id])
-  pinned_tweet_id    String?
+  conversations      Conversation[] @relation("ConversationToUser")
+  followers             User[]         @relation("Followers")
+  following             User[]         @relation("Followers")
 }
 
 model Tweet {
@@ -99,57 +94,55 @@ model Tweet {
   possibly_sensitive      Boolean    @default(false)
   lang                    String     @default("en")
   created_at              DateTime   @default(now())
-  author                  User       @relation(fields: [author_id], references: [id], onDelete: Cascade)
-  author_id               String
-  media                   Media[]
-  likes                   Like[]
-  retweets                Retweet[]
-  quotes                  Tweet[]    @relation("quoted_tweet")
   quoted_tweet_id         String?
-  quoted_tweet            Tweet?     @relation("quoted_tweet", fields: [quoted_tweet_id], references: [id])
-  comments                Tweet[]    @relation("tweet-comment")
   in_reply_to_status_id   String?
-  tweet_comment           Tweet?     @relation("tweet-comment", fields: [in_reply_to_status_id], references: [id])
+  author_id               String
   bookmarks               Bookmark[]
+  likes                   Like[]
+  media                   Media[]
+  retweets                Retweet[]
+  author                  User       @relation(fields: [author_id], references: [id], onDelete: Cascade)
+  tweet_comment           Tweet?     @relation("tweet-comment", fields: [in_reply_to_status_id], references: [id])
+  comments                Tweet[]    @relation("tweet-comment")
+  quoted_tweet            Tweet?     @relation("quoted_tweet", fields: [quoted_tweet_id], references: [id])
+  quotes                  Tweet[]    @relation("quoted_tweet")
   pinned_by_users         User[]     @relation("pinned_tweet")
 }
 
 model Media {
-  id         String   @id @default(cuid())
+  id         String  @id @default(cuid())
   media_url  String
   media_type String
   media_path String
-  tweet      Tweet?   @relation(fields: [tweet_id], references: [id], onDelete: Cascade)
   tweet_id   String?
-  Message    Message? @relation(fields: [message_id], references: [id], onDelete: Cascade)
-  message_id String?
+  tweet      Tweet?  @relation(fields: [tweet_id], references: [id], onDelete: Cascade)
 }
 
 model Like {
   id         String   @id @default(cuid())
-  tweet      Tweet    @relation(fields: [tweet_id], references: [id], onDelete: Cascade)
   tweet_id   String
-  user       User     @relation(fields: [user_id], references: [id])
   user_id    String
   created_at DateTime @default(now())
+  tweet      Tweet    @relation(fields: [tweet_id], references: [id], onDelete: Cascade)
+  user       User     @relation(fields: [user_id], references: [id])
 }
 
 model Retweet {
   id         String   @id @default(cuid())
-  tweet      Tweet    @relation(fields: [tweet_id], references: [id], onDelete: Cascade)
   tweet_id   String
-  user       User     @relation(fields: [user_id], references: [id])
   user_id    String
   created_at DateTime @default(now())
+  tweet      Tweet    @relation(fields: [tweet_id], references: [id], onDelete: Cascade)
+  user       User     @relation(fields: [user_id], references: [id])
 }
 
 model Bookmark {
   id         String   @id @default(cuid())
-  tweet      Tweet    @relation(fields: [tweet_id], references: [id], onDelete: Cascade)
   tweet_id   String
-  user       User     @relation(fields: [user_id], references: [id])
   user_id    String
   created_at DateTime @default(now())
+  tweet      Tweet    @relation(fields: [tweet_id], references: [id], onDelete: Cascade)
+  user       User     @relation(fields: [user_id], references: [id])
 }
 
 model Hashtag {
@@ -164,19 +157,26 @@ model Message {
   id              String       @id @default(cuid())
   text            String?
   image           String?
+  image_width     Int?
+  image_height    Int?
   created_at      DateTime     @default(now())
-  sender          User         @relation(name: "sender", fields: [sender_id], references: [id], onDelete: Cascade)
   sender_id       String
-  receiver        User         @relation(name: "receiver", fields: [receiver_id], references: [id], onDelete: Cascade)
   receiver_id     String
-  conversation    Conversation @relation(fields: [conversation_id], references: [id], onDelete: Cascade)
   conversation_id String
-  media           Media[]
+  status          String       @default("sent")
+  conversation    Conversation @relation(fields: [conversation_id], references: [id], onDelete: Cascade)
+  receiver        User         @relation("receiver", fields: [receiver_id], references: [id], onDelete: Cascade)
+  sender          User         @relation("sender", fields: [sender_id], references: [id], onDelete: Cascade)
 }
 
 model Conversation {
   id         String    @id @default(cuid())
-  users      User[]
-  messages   Message[]
   created_at DateTime  @default(now())
+  messages   Message[]
+  users      User[]    @relation("ConversationToUser")
+}
+
+enum UserRole {
+  ADMIN
+  USER
 }

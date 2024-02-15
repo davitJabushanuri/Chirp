@@ -5,15 +5,15 @@ import { useRef, useState } from "react";
 
 import { BackArrowIcon } from "@/assets/back-arrow-icon";
 import { DotIcon } from "@/assets/dot-icon";
-import { CloseButton } from "@/components/elements/close-button";
+import { Button } from "@/components/elements/button";
 import { EllipsisWrapper } from "@/components/elements/ellipsis-wrapper";
 import { Menu, MenuItem } from "@/components/elements/menu";
 import { ConfirmationModal, Modal } from "@/components/elements/modal";
-import { HeaderHeading } from "@/features/header";
+import { Tooltip } from "@/components/elements/tooltip";
+import { Header } from "@/features/header";
+import { UserScreenName } from "@/features/profile";
 
 import { useDeleteAllBookmarks } from "../hooks/use-delete-all-bookmarks";
-
-import styles from "./styles/bookmarks-header.module.scss";
 
 export const BookmarksHeader = ({
   hasBookmarks = false,
@@ -33,43 +33,44 @@ export const BookmarksHeader = ({
   const mutation = useDeleteAllBookmarks();
 
   return (
-    <div className={styles.container}>
-      <div className={styles.backButton}>
-        <CloseButton
+    <Header>
+      <Tooltip text="Back">
+        <Button
           onClick={() => {
             router.back();
           }}
-          ariaLabel="Back"
-          title="Back"
+          aria-label="Back"
+          className="hover:bg-neutral-500 focus-visible:bg-neutral-500 focus-visible:outline-secondary-100 active:bg-neutral-600 sm:hidden"
         >
           <BackArrowIcon />
-        </CloseButton>
-      </div>
+        </Button>
+      </Tooltip>
 
-      <div className={styles.user}>
-        <HeaderHeading title={"Bookmarks"} />
+      <div>
+        <h2 className="text-h2 font-bold text-secondary-100">Bookmarks</h2>
         {username && (
           <EllipsisWrapper>
-            <span>@{username}</span>
+            <UserScreenName screenName={username} />
           </EllipsisWrapper>
         )}
       </div>
 
       {hasBookmarks && (
-        <div className={styles.optionsContainer}>
-          <button
-            ref={buttonRef}
-            aria-expanded={isModalOpen}
-            aria-haspopup="menu"
-            aria-label="More"
-            data-title="More"
-            onClick={() => {
-              setIsModalOpen(true);
-            }}
-            className={styles.options}
-          >
-            <DotIcon />
-          </button>
+        <div className="relative ml-auto">
+          <Tooltip text="More">
+            <Button
+              ref={buttonRef}
+              aria-expanded={isModalOpen}
+              aria-haspopup="menu"
+              aria-label="More"
+              onClick={() => {
+                setIsModalOpen(true);
+              }}
+              className="hover:bg-neutral-500 focus-visible:bg-neutral-500 focus-visible:outline-secondary-100 active:bg-neutral-600"
+            >
+              <DotIcon />
+            </Button>
+          </Tooltip>
 
           <AnimatePresence>
             {isModalOpen && (
@@ -90,7 +91,7 @@ export const BookmarksHeader = ({
                       setIsModalOpen(false);
                     }}
                   >
-                    <span className={styles.delete}>Clear all Bookmarks</span>
+                    <span className="text-red-100">Clear all Bookmarks</span>
                   </MenuItem>
                 </Menu>
               </Modal>
@@ -124,6 +125,6 @@ export const BookmarksHeader = ({
           </AnimatePresence>
         </div>
       )}
-    </div>
+    </Header>
   );
 };

@@ -9,7 +9,5 @@ export const useGetConversation = (id: string | undefined) => {
     queryFn: async () => {
       return getConversation(id);
     },
-
-    refetchOnWindowFocus: false,
   });
 };

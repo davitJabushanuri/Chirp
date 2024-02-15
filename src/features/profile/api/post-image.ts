@@ -1,10 +1,10 @@
-import cuid from "cuid";
+import { createId } from "@paralleldrive/cuid2";
 
 import { supabase } from "@/utils/supabase-client";
 
 export const postImage = async (file: File, bucket: string) => {
   try {
-    const imagePath = cuid();
+    const imagePath = createId();
 
     const { error } = await supabase.storage
       .from(bucket)

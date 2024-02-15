@@ -1,72 +1,97 @@
 "use client";
-import { getCookie, setCookie } from "cookies-next";
-import { useState } from "react";
+import { setCookie } from "cookies-next";
+import { useEffect, useState } from "react";
 
-import styles from "./styles/theme-picker.module.scss";
 import { Theme } from "./theme";
 
-enum ITheme {
-  LIGHT = "theme-light",
-  DIM = "theme-dim",
-  DARK = "theme-dark",
-}
+type ThemeType = "default" | "dim" | "dark";
 
 export const ThemePicker = () => {
-  const theme = getCookie("theme");
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const prefersDarkMode =
     typeof window !== "undefined"
       ? window.matchMedia("(prefers-color-scheme: dark)").matches
       : false;
 
-  const [currentTheme, setCurrentTheme] = useState(
-    theme ?? (prefersDarkMode ? "theme-dark" : "theme-light"),
+  const theme =
+    typeof window !== "undefined"
+      ? document.documentElement.dataset.theme
+      : undefined;
+
+  const [currentTheme, setCurrentTheme] = useState<ThemeType>(
+    theme === "default" || theme === "dim" || theme === "dark"
+      ? theme
+      : prefersDarkMode
+        ? "dark"
+        : "default",
   );
 
   const handleThemeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!Object.values(ITheme).includes(e.target.value as ITheme)) return;
-
-    document.documentElement.className =
-      document.documentElement.className.replace(/\btheme-\S+/g, "");
-
-    document.documentElement.classList.add(e.target.value);
+    if (e.target.value === currentTheme) return;
+    setCurrentTheme(e.target.value as ThemeType);
+    document.documentElement.dataset.theme = e.target.value;
 
     setCookie("theme", e.target.value, {
       maxAge: 60 * 60 * 24 * 365,
     });
-
-    setCurrentTheme(e.target.value);
   };
 
+  if (!mounted) return null;
+
   return (
-    <fieldset
-      aria-label="Theme Options"
-      data-testid={`theme-fieldset`}
-      className={styles.container}
-    >
-      <legend>Background</legend>
-      <ul className={styles.themes}>
+    <section className="border-t border-neutral-600">
+      <h2
+        id="theme-heading"
+        className="px-4 py-3 text-h2 font-bold text-secondary-100"
+      >
+        Background
+      </h2>
+      <div
+        aria-labelledby="theme-heading"
+        role="radiogroup"
+        className="grid px-4 py-1 md:grid-cols-3"
+      >
         <Theme
-          value="theme-light"
-          label="Default"
-          checked={currentTheme === "theme-light"}
+          value="default"
+          checked={currentTheme === "default"}
+          aria-checked={currentTheme === "default"}
+          tabIndex={currentTheme === "default" ? 0 : -1}
           onChange={handleThemeChange}
-        />
+          className="bg-white-100 text-black-100"
+          aria-label="Light"
+        >
+          Default
+        </Theme>
 
         <Theme
-          value="theme-dim"
-          label="Dim"
-          checked={currentTheme === "theme-dim"}
+          value="dim"
+          checked={currentTheme === "dim"}
+          aria-checked={currentTheme === "dim"}
+          tabIndex={currentTheme === "dim" ? 0 : -1}
           onChange={handleThemeChange}
-        />
+          className="bg-dim-100 text-white-100"
+          aria-label="Dim"
+        >
+          Dim
+        </Theme>
 
         <Theme
-          value="theme-dark"
-          label="Lights out"
-          checked={currentTheme === "theme-dark"}
+          value="dark"
+          checked={currentTheme === "dark"}
+          aria-checked={currentTheme === "dark"}
+          tabIndex={currentTheme === "dark" ? 0 : -1}
           onChange={handleThemeChange}
-        />
-      </ul>
-    </fieldset>
+          className="bg-black-300 text-white-100"
+          aria-label="Lights out"
+        >
+          Lights out
+        </Theme>
+      </div>
+    </section>
   );
 };
