@@ -37,14 +37,6 @@ export default async function RootLayout({
       lang="en"
     >
       <body suppressHydrationWarning={true}>
-        <a href="#home-timeline" className="sr-only">
-          Skip to home timeline
-        </a>
-
-        <a href="#trending" className="sr-only">
-          Skip to trending
-        </a>
-
         <NextAuthProvider>
           <ReactQueryProvider>
             <div className="layout">
