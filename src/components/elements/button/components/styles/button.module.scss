@@ -1,0 +1,27 @@
+.container {
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  padding: 0.5em;
+  border-radius: 100vmax;
+  transition: background-color 0.15s ease-in-out;
+
+  svg {
+    width: var(--fs-h2);
+    height: var(--fs-h2);
+    fill: var(--clr-secondary);
+  }
+
+  &:hover {
+    background-color: var(--clr-nav-hover);
+  }
+
+  &:active {
+    background-color: var(--clr-nav-active);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--clr-secondary);
+    background-color: var(--clr-nav-hover);
+  }
+}
