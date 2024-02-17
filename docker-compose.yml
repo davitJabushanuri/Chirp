@@ -8,8 +8,6 @@ services:
         NEXT_PUBLIC_SUPABASE_ANON_KEY: ${NEXT_PUBLIC_SUPABASE_ANON_KEY}
     image: chirp
     ports:
-      - "8080:8080"
+      - "3000:3000"
     env_file:
       - .env
-    volumes:
-      - .:/app
