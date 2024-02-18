@@ -35,9 +35,9 @@ dependencies:
   '@upstash/ratelimit':
     specifier: ^1.0.1
     version: 1.0.1
-  '@vercel/kv':
-    specifier: ^1.0.1
-    version: 1.0.1
+  '@upstash/redis':
+    specifier: ^1.28.4
+    version: 1.28.4
   axios:
     specifier: ^1.6.7
     version: 1.6.7
@@ -2127,23 +2127,10 @@ packages:
       '@upstash/core-analytics': 0.0.7
     dev: false
 
-  /@upstash/redis@1.25.1:
-    resolution: {integrity: sha512-ACj0GhJ4qrQyBshwFgPod6XufVEfKX2wcaihsEvSdLYnY+m+pa13kGt1RXm/yTHKf4TQi/Dy2A8z/y6WUEOmlg==}
-    dependencies:
-      crypto-js: 4.2.0
-    dev: false
-
   /@upstash/redis@1.28.4:
     resolution: {integrity: sha512-UalkSAny/dz1m8giEhD3Y5ru1o+CPHI32wFyS3MyzDzj2TRvEN+lTw+mPwi20ojk0H2gs8TBW3qsrvwuLLy+pA==}
     dependencies:
       crypto-js: 4.2.0
-    dev: false
-
-  /@vercel/kv@1.0.1:
-    resolution: {integrity: sha512-uTKddsqVYS2GRAM/QMNNXCTuw9N742mLoGRXoNDcyECaxEXvIHG0dEY+ZnYISV4Vz534VwJO+64fd9XeSggSKw==}
-    engines: {node: '>=14.6'}
-    dependencies:
-      '@upstash/redis': 1.25.1
     dev: false
 
   /JSONStream@1.3.5:
