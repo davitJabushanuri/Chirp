@@ -56,3 +56,5 @@ Thumbs.db
 next-env.d.ts
 
 Dockerfile
+.dockerignore
+.git
