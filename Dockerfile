@@ -1,18 +1,14 @@
-# syntax = docker/dockerfile:1
-
-# Adjust NODE_VERSION as desired
 ARG NODE_VERSION=20.10.0
+# base image
 FROM node:${NODE_VERSION}-slim as base
 
-LABEL fly_launch_runtime="Next.js/Prisma"
-
-# Next.js/Prisma app lives here
-WORKDIR /app
-
-# Set production environment
-ENV NODE_ENV="production"
+# Set output property to standalone for minimal image size
 ENV BUILD_STANDALONE="true"
 
+# Disable telemetry
+ENV NEXT_TELEMETRY_DISABLED="1"
+
+# Set environment variables needed for the build process
 ARG NEXT_PUBLIC_SUPABASE_URL
 ENV NEXT_PUBLIC_SUPABASE_URL=${NEXT_PUBLIC_SUPABASE_URL}
 
@@ -22,21 +18,28 @@ ENV NEXT_PUBLIC_SUPABASE_ANON_KEY=${NEXT_PUBLIC_SUPABASE_ANON_KEY}
 ARG NEXT_PUBLIC_SOCKET_URL
 ENV NEXT_PUBLIC_SOCKET_URL=${NEXT_PUBLIC_SOCKET_URL}
 
+# Install openssl for Prisma
+RUN apt-get update && apt-get install -y openssl
+
 # Install pnpm
 ARG PNPM_VERSION=8.15.1
 RUN npm install -g pnpm@$PNPM_VERSION
 
-
-# Throw-away build stage to reduce size of final image
-FROM base as build
-
-# Install packages needed to build node modules
-RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential node-gyp openssl pkg-config python-is-python3
+# Install dependencies
+FROM base as deps
+WORKDIR /app
 
 # Install node modules
 COPY --link package.json pnpm-lock.yaml ./
-RUN pnpm install --frozen-lockfile --prod=false
+RUN pnpm install --frozen-lockfile
+
+# Build the application
+FROM base as build
+WORKDIR /app
+
+COPY --from=deps /app/node_modules ./node_modules
+COPY --from=deps /app/package.json ./package.json
+COPY --from=deps /app/pnpm-lock.yaml ./pnpm-lock.yaml
 
 # Generate Prisma Client
 COPY --link prisma .
@@ -46,23 +49,24 @@ RUN npx prisma generate
 COPY --link . .
 
 # Build application
-RUN pnpm run build
+RUN pnpm build
 
-# Remove development dependencies
-RUN pnpm prune --prod
+# Development image
+FROM base as dev
+WORKDIR /app
 
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
 
-# Final stage for app image
-FROM base
+RUN npx prisma generate
 
-# Install packages needed for deployment
-RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y openssl && \
-    rm -rf /var/lib/apt/lists /var/cache/apt/archives
+# Production image
+FROM base as prod
+WORKDIR /app
 
-# Copy built application
-COPY --from=build /app /app
+COPY --from=build /app/public ./public
+COPY --from=build /app/.next/standalone ./
+COPY --from=build /app/.next/static ./.next/static
 
-# Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
-CMD [ "pnpm", "run", "start" ]
+CMD [ "node", "server.js" ]
