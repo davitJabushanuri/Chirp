@@ -1,6 +1,7 @@
 version: "3.8"
 services:
   app:
+    container_name: chirp
     build:
       context: .
       args:
