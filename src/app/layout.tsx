@@ -1,6 +1,4 @@
-import { Analytics } from "@vercel/analytics/react";
 import { cookies } from "next/headers";
-import { AxiomWebVitals } from "next-axiom";
 import { ToastContainer, Slide } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
@@ -37,14 +35,6 @@ export default async function RootLayout({
       lang="en"
     >
       <body suppressHydrationWarning={true}>
-        <a href="#home-timeline" className="sr-only">
-          Skip to home timeline
-        </a>
-
-        <a href="#trending" className="sr-only">
-          Skip to trending
-        </a>
-
         <NextAuthProvider>
           <ReactQueryProvider>
             <div className="layout">
@@ -79,8 +69,6 @@ export default async function RootLayout({
             </div>
           </ReactQueryProvider>
         </NextAuthProvider>
-        <Analytics />
-        <AxiomWebVitals />
       </body>
     </html>
   );
