@@ -30,7 +30,7 @@ FROM base as deps
 WORKDIR /app
 
 # Install node modules
-COPY --link package.json pnpm-lock.yaml ./
+COPY package.json pnpm-lock.yaml ./
 RUN pnpm install --frozen-lockfile
 
 # Build the application
