@@ -37,16 +37,18 @@ RUN pnpm install --frozen-lockfile
 FROM base as build
 WORKDIR /app
 
+# Copy application code
+COPY src/ src/
+COPY public/ public/
+COPY prisma/schema.prisma prisma/
+COPY next.config.js postcss.config.js tailwind.config.js tsconfig.json reset.d.ts ./
+
 COPY --from=deps /app/node_modules ./node_modules
 COPY --from=deps /app/package.json ./package.json
 COPY --from=deps /app/pnpm-lock.yaml ./pnpm-lock.yaml
 
 # Generate Prisma Client
-COPY --link prisma .
 RUN npx prisma generate
-
-# Copy application code
-COPY --link . .
 
 # Build application
 RUN pnpm build
@@ -54,6 +56,8 @@ RUN pnpm build
 # Production image
 FROM base as prod
 WORKDIR /app
+
+ENV NODE_ENV="production"
 
 COPY --from=build /app/public ./public
 COPY --from=build /app/.next/standalone ./
