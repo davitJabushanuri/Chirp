@@ -11,11 +11,11 @@ const nextConfig = {
     ],
   },
 
+  output: process.env.BUILD_STANDALONE === "true" ? "standalone" : undefined,
+
   sassOptions: {
     includePaths: [path.join(__dirname, "src/sass")],
   },
 };
 
-const { withAxiom } = require("next-axiom");
-
-module.exports = withAxiom(nextConfig);
+module.exports = nextConfig;

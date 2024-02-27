@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  app:
+    container_name: chirp
+    build:
+      context: .
+      args:
+        NEXT_PUBLIC_SUPABASE_URL: ${NEXT_PUBLIC_SUPABASE_URL}
+        NEXT_PUBLIC_SUPABASE_ANON_KEY: ${NEXT_PUBLIC_SUPABASE_ANON_KEY}
+        NEXT_PUBLIC_SOCKET_URL: ${NEXT_PUBLIC_SOCKET_URL}
+    image: chirp
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
