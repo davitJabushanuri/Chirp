@@ -4,9 +4,9 @@
   "version": "1.9.1",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
     "start": "next start",
+    "build": "next build",
+    "dev": "next dev",
     "lint": "next lint",
     "lint:debug": "next lint --debug",
     "lint:fix": "next lint --fix",
@@ -20,7 +20,6 @@
     "test:coverage": "jest --coverage",
     "prepare": "husky install",
     "preinstall": "npx only-allow pnpm",
-    "docker:dev": "docker compose -f docker-compose.dev.yml up --build",
     "docker:prod": "docker compose up --build"
   },
   "dependencies": {

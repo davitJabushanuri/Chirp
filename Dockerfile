@@ -51,15 +51,6 @@ COPY --link . .
 # Build application
 RUN pnpm build
 
-# Development image
-FROM base as dev
-WORKDIR /app
-
-COPY --from=deps /app/node_modules ./node_modules
-COPY . .
-
-RUN npx prisma generate
-
 # Production image
 FROM base as prod
 WORKDIR /app
