@@ -1,7 +1,7 @@
 {
   "name": "chirp",
   "description": "Chirp is a social media app built with Next.js, Prisma, and Supabase",
-  "version": "1.9.3",
+  "version": "1.9.4",
   "private": true,
   "scripts": {
     "start": "next start",
