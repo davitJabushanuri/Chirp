@@ -4,17 +4,11 @@ Pull requests are welcome. For major changes, please [open an issue](https://git
 
 ## Setup
 
-1. Fork and clone the repo
-2. Run yarn to install dependencies
-3. Create a branch for your PR with git checkout -b your-branch-name
-
-To keep main branch pointing to remote repository and make pull requests from branches on your fork. To do this, run:
-
-```bash
-git remote add upstream https://github.com/davitJabushanuri/Chirp.git
-git fetch upstream
-git branch --set-upstream-to=upstream/main main
-```
+1. Fork the Project
+2. Create your feature branch `git checkout -b feature/amazing-feature`
+3. Commit your changes `git commit -m 'feat: add some amazing feature'`
+4. Push to the branch `git push origin feature/AmazingFeature`
+5. Open a Pull Request
 
 ## Pull Request Guidelines
 
