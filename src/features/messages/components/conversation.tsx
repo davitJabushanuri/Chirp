@@ -65,7 +65,7 @@ export const Conversation = () => {
         <div ref={ref}>
           <ConversationMemberDetails user={conversationMember} />
         </div>
-        <Chat conversation_id={conversation?.id} />
+        <Chat />
       </div>
 
       <MessageInput
