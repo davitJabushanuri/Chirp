@@ -63,8 +63,8 @@ export const MessageInput = ({
       "chat",
       conversation_id,
     ]);
-    if (!chat) return;
-    const lastMessage = chat.at(-1);
+    if (!chat || chat.length === 0) return;
+    const lastMessage = chat[chat.length - 1];
 
     if (lastMessage?.sender_id === sender_id) return;
 
