@@ -3,7 +3,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { getChat } from "../api/get-chat";
 import { IMessage } from "../types";
 
-interface IInfiniteChat {
+export interface IInfiniteChat {
   nextId: string;
   chat: IMessage[];
 }
@@ -20,8 +20,14 @@ export const useChat = (conversation_id: string | undefined) => {
     },
   });
 
+  const chat = response?.data?.pages?.reduce((acc, page) => {
+    const reversedChat = [...page.chat].reverse();
+
+    return [...reversedChat, ...acc];
+  }, [] as IMessage[]);
+
   return {
-    data: response.data?.pages.flatMap((page) => page.chat),
+    data: chat,
     isLoading: response.isLoading,
     isError: response.isError,
     isFetchingNextPage: response.isFetchingNextPage,
