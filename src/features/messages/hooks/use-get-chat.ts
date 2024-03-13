@@ -18,12 +18,17 @@ export const useChat = (conversation_id: string | undefined) => {
     getNextPageParam: (lastPage) => {
       return lastPage?.nextId;
     },
+
+    select: (data) => ({
+      pages: [...data.pages].reverse(),
+      pageParams: [...data.pageParams].reverse(),
+    }),
   });
 
   const chat = response?.data?.pages?.reduce((acc, page) => {
     const reversedChat = [...page.chat].reverse();
 
-    return [...reversedChat, ...acc];
+    return [...acc, ...reversedChat];
   }, [] as IMessage[]);
 
   return {
