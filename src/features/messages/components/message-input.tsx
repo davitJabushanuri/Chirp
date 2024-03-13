@@ -1,5 +1,5 @@
 import { createId } from "@paralleldrive/cuid2";
-import { useQueryClient } from "@tanstack/react-query";
+import { InfiniteData, useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
 import { useRef, useState } from "react";
 
@@ -13,7 +13,7 @@ import { IChosenImages } from "@/features/create-tweet";
 import { socket } from "@/lib/socket-io";
 
 import { SendIcon } from "../assets/send-icon";
-import { IMessage } from "../types";
+import { IInfiniteChat } from "../hooks/use-get-chat";
 
 import styles from "./styles/message-input.module.scss";
 
@@ -59,12 +59,12 @@ export const MessageInput = ({
   };
 
   const onFocus = () => {
-    const chat = queryClient.getQueryData<IMessage[]>([
+    const chat = queryClient.getQueryData<InfiniteData<IInfiniteChat>>([
       "chat",
       conversation_id,
     ]);
-    if (!chat || chat.length === 0) return;
-    const lastMessage = chat[chat.length - 1];
+
+    const lastMessage = chat?.pages?.at(-1)?.chat?.at(-1);
 
     if (lastMessage?.sender_id === sender_id) return;
 
@@ -125,9 +125,36 @@ export const MessageInput = ({
       status: "sending",
     });
 
-    queryClient.setQueryData(["chat", conversation_id], (oldData: any) => {
-      return [...oldData, message];
-    });
+    queryClient.setQueryData(
+      ["chat", conversation_id],
+      (oldData: InfiniteData<IInfiniteChat>) => {
+        const lastPage = oldData.pages?.at(0);
+        if (lastPage?.chat && lastPage.chat.length >= 20) {
+          console.log("hello");
+          return {
+            ...oldData,
+            pages: [
+              {
+                chat: [message],
+                nextId: message.id,
+              },
+              ...oldData.pages,
+            ],
+          };
+        } else {
+          return {
+            ...oldData,
+            pages: [
+              {
+                chat: [message, ...(lastPage?.chat ?? [])],
+                nextId: lastPage?.nextId,
+              },
+              ...oldData.pages.slice(1),
+            ],
+          };
+        }
+      },
+    );
 
     socket.emit("message", {
       id,
