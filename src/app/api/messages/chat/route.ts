@@ -27,6 +27,10 @@ export async function GET(request: Request) {
       where: {
         conversation_id: conversation_id,
       },
+
+      orderBy: {
+        created_at: "desc",
+      },
     });
 
     const nextId = chat.length < take ? undefined : chat[chat.length - 1].id;
