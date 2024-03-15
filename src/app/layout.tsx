@@ -9,8 +9,7 @@ import { AuthModalTrigger } from "@/features/auth";
 import { MobileTweetButton } from "@/features/create-tweet";
 import { MobileNavbar } from "@/features/navbar";
 import { Sidebar } from "@/features/sidebar";
-import { NextAuthProvider } from "@/utils/next-auth-provider";
-import { ReactQueryProvider } from "@/utils/react-query-provider";
+import { AppProviders } from "@/providers";
 
 import { Hamburger } from "./hamburger";
 import { JoinTwitter } from "./join-twitter";
@@ -35,40 +34,38 @@ export default async function RootLayout({
       lang="en"
     >
       <body suppressHydrationWarning={true}>
-        <NextAuthProvider>
-          <ReactQueryProvider>
-            <div className="layout">
-              <MobileNavbar />
-              <div className="fixed bottom-20 right-4 z-fixed sm:hidden">
-                <MobileTweetButton />
-              </div>
-
-              <Sidebar />
-
-              <main aria-label="Home timeline" id="home-timeline">
-                {children}
-              </main>
-
-              <Aside />
-
-              <ToastContainer
-                position="bottom-center"
-                autoClose={2000}
-                hideProgressBar={true}
-                transition={Slide}
-                closeButton={false}
-                closeOnClick={true}
-                className={styles.container}
-                toastClassName={styles.toast}
-                role="alert"
-              />
-
-              <AuthModalTrigger />
-              <JoinTwitter />
-              <Hamburger />
+        <AppProviders>
+          <div className="layout">
+            <MobileNavbar />
+            <div className="fixed bottom-20 right-4 z-fixed sm:hidden">
+              <MobileTweetButton />
             </div>
-          </ReactQueryProvider>
-        </NextAuthProvider>
+
+            <Sidebar />
+
+            <main aria-label="Home timeline" id="home-timeline">
+              {children}
+            </main>
+
+            <Aside />
+
+            <ToastContainer
+              position="bottom-center"
+              autoClose={2000}
+              hideProgressBar={true}
+              transition={Slide}
+              closeButton={false}
+              closeOnClick={true}
+              className={styles.container}
+              toastClassName={styles.toast}
+              role="alert"
+            />
+
+            <AuthModalTrigger />
+            <JoinTwitter />
+            <Hamburger />
+          </div>
+        </AppProviders>
       </body>
     </html>
   );
