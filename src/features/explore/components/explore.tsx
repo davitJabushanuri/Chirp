@@ -41,7 +41,6 @@ export const Explore = () => {
       <ExploreHeader />
       <div className={styles.trends}>
         <Trends title={`Trends for you`} />
-        Explore
       </div>
 
       <div className={styles.scores}></div>
