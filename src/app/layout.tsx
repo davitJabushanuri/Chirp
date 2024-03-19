@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./styles/layout.scss";
 import "./styles/tailwind.css";
 import { Aside } from "@/features/aside";
-import { AuthModalTrigger } from "@/features/auth";
+import { AuthFlow } from "@/features/auth";
 import { MobileTweetButton } from "@/features/create-tweet";
 import { MobileNavbar } from "@/features/navbar";
 import { Sidebar } from "@/features/sidebar";
@@ -63,7 +63,7 @@ export default async function RootLayout({
                 role="alert"
               />
 
-              <AuthModalTrigger />
+              <AuthFlow />
               <JoinTwitter />
               <Hamburger />
             </div>
