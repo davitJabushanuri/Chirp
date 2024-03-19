@@ -1,18 +1,19 @@
 "use client";
 import { motion } from "framer-motion";
-import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { forwardRef } from "react";
 
+import { Button } from "@/components/elements/button";
 import { useTrackPosition } from "@/components/elements/modal";
+
+import { useAuthFlow } from "../hooks/use-auth-flow";
 
 import styles from "./styles/session-owner-modal.module.scss";
 
-export const SessionOwnerModal = forwardRef<
-  HTMLButtonElement,
-  { onClose: () => void }
->(({ onClose }, ref) => {
+export const SessionOwnerModal = forwardRef<HTMLButtonElement>((ref) => {
   const { data: session } = useSession();
+
+  const { openLogInModal, openLogOutModal } = useAuthFlow();
 
   const buttonBoundaries = useTrackPosition({
     buttonRef: ref as React.RefObject<HTMLButtonElement>,
@@ -45,12 +46,25 @@ export const SessionOwnerModal = forwardRef<
       style={style}
       role="group"
     >
-      <Link href={`/auth/signin`} role="menuitem" onClick={onClose}>
+      <Button
+        className="w-full justify-start rounded-none py-[0.8em] -outline-offset-2 hover:bg-neutral-400 focus-visible:bg-neutral-400 active:bg-neutral-500"
+        onClick={() => {
+          openLogInModal();
+        }}
+        role="menuitem"
+      >
         Add an existing account
-      </Link>
-      <Link href={`/auth/signout`} role="menuitem" onClick={onClose}>
+      </Button>
+
+      <Button
+        className="w-full justify-start rounded-none py-[0.8em] -outline-offset-2 hover:bg-neutral-400 focus-visible:bg-neutral-400 active:bg-neutral-500"
+        onClick={() => {
+          openLogOutModal();
+        }}
+        role="menuitem"
+      >
         Log out @{session?.user?.email.split("@")[0]}
-      </Link>
+      </Button>
     </motion.div>
   );
 });
