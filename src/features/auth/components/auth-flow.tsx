@@ -19,7 +19,6 @@ export const AuthFlow = () => {
     isLogOutModalOpen,
     openLogInModal,
     closeLogInModal,
-    openLogOutModal,
     closeLogOutModal,
   } = useAuthFlow();
 
@@ -52,7 +51,7 @@ export const AuthFlow = () => {
               <button onClick={openLogInModal} className={styles.signIn}>
                 Log in
               </button>
-              <button onClick={openLogOutModal} className={styles.signUp}>
+              <button onClick={openLogInModal} className={styles.signUp}>
                 Sign up
               </button>
             </div>
