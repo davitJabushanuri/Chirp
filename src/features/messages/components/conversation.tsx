@@ -29,10 +29,10 @@ export const Conversation = () => {
 
   useEffect(() => {
     socket.auth = { conversation_id: id };
-    socket.connect();
+    socket?.connect();
 
     return () => {
-      socket.disconnect();
+      socket?.disconnect();
     };
   }, [id]);
 
