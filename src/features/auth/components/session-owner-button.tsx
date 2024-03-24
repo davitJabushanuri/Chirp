@@ -58,10 +58,7 @@ export const SessionOwnerButton = () => {
             background="none"
             minViewportWidth={500}
           >
-            <SessionOwnerModal
-              ref={buttonRef}
-              onClose={() => setIsModalOpen(false)}
-            />
+            <SessionOwnerModal ref={buttonRef} />
           </Modal>
         )}
       </AnimatePresence>

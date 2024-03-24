@@ -1,6 +1,7 @@
 "use client";
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
+import { ExploreHeader } from "@/features/header";
 import { Trends } from "@/features/trends";
 import { InfiniteTweets, useTweets } from "@/features/tweets";
 
@@ -18,15 +19,26 @@ export const Explore = () => {
   } = useTweets({});
 
   if (isLoading) {
-    return <LoadingSpinner />;
+    return (
+      <>
+        <ExploreHeader />
+        <LoadingSpinner />
+      </>
+    );
   }
 
   if (isError) {
-    return <TryAgain />;
+    return (
+      <>
+        <ExploreHeader />
+        <TryAgain />
+      </>
+    );
   }
 
   return (
     <div className={styles.container}>
+      <ExploreHeader />
       <div className={styles.trends}>
         <Trends title={`Trends for you`} />
       </div>
