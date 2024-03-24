@@ -6,7 +6,7 @@
   right: 0;
   left: 0;
   height: 3.8rem;
-  z-index: 1000;
+  z-index: var(--z-index-fixed);
   background-color: var(--clr-background);
   display: flex;
   align-items: center;

@@ -1,13 +1,7 @@
 import { Explore } from "@/features/explore";
-import { ExploreHeader } from "@/features/header";
 
 const ExplorePage = () => {
-  return (
-    <div>
-      <ExploreHeader />
-      <Explore />
-    </div>
-  );
+  return <Explore />;
 };
 
 export default ExplorePage;

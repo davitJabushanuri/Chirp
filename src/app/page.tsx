@@ -1,7 +1,7 @@
-import { LandingPageClient } from "./client";
+import { Explore } from "@/features/explore";
 
 const DefaultPage = () => {
-  return <LandingPageClient />;
+  return <Explore />;
 };
 
 export default DefaultPage;
