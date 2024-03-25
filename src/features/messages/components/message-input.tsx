@@ -45,7 +45,6 @@ export const MessageInput = ({
         img.src = reader.result as string;
 
         img.onload = () => {
-          console.log();
           setChosenImage({
             url: reader.result,
             id: Math.random(),
@@ -64,8 +63,7 @@ export const MessageInput = ({
       conversation_id,
     ]);
 
-    const lastMessage = chat?.pages?.at(-1)?.chat?.at(-1);
-
+    const lastMessage = chat?.pages?.at(0)?.chat?.at(0);
     if (lastMessage?.sender_id === sender_id) return;
 
     socket.emit("status", { status: "seen", message_id: lastMessage?.id });
@@ -130,7 +128,6 @@ export const MessageInput = ({
       (oldData: InfiniteData<IInfiniteChat>) => {
         const lastPage = oldData.pages?.at(0);
         if (lastPage?.chat && lastPage.chat.length >= 20) {
-          console.log("hello");
           return {
             ...oldData,
             pages: [
