@@ -13,7 +13,7 @@ import { Button } from "@/components/elements/button";
 import { Tooltip } from "@/components/elements/tooltip";
 import { cn } from "@/utils/cn";
 
-import { useJoinTwitter } from "../stores/useJoinTwitter";
+import { useJoinTwitter } from "../hooks/use-join-twitter";
 
 export const JoinTwitterModal = () => {
   const router = useRouter();

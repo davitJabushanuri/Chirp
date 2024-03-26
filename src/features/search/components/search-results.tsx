@@ -4,6 +4,7 @@ import { useSearchParams } from "next/navigation";
 import { LoadingSpinner } from "@/components/elements/loading-spinner";
 import { TryAgain } from "@/components/elements/try-again";
 import { PersonDetails } from "@/features/connect";
+import { ExploreHeader } from "@/features/header";
 import { InfiniteTweets, useTweets } from "@/features/tweets";
 
 import { useSearchPeople } from "../hooks/use-search-people";
@@ -23,12 +24,25 @@ export const SearchResults = () => {
 
   const people = useSearchPeople(query);
 
-  if (tweets.isPending || tweets.isFetching) return <LoadingSpinner />;
+  if (tweets.isPending || tweets.isFetching)
+    return (
+      <>
+        <ExploreHeader />
+        <LoadingSpinner />
+      </>
+    );
 
-  if (tweets.isError) return <TryAgain />;
+  if (tweets.isError)
+    return (
+      <>
+        <ExploreHeader />
+        <TryAgain />
+      </>
+    );
 
   return (
     <div className={styles.container}>
+      <ExploreHeader />
       {tweets?.data?.pages &&
       tweets?.data?.pages[0]?.tweets?.length === 0 &&
       people?.data?.length === 0 ? (
