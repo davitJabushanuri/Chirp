@@ -11,10 +11,10 @@ import styles from "./styles/message.module.scss";
 
 export const Message = ({
   message,
-  show_status,
+  show_status = false,
 }: {
   message: IMessage;
-  show_status: boolean;
+  show_status?: boolean;
 }) => {
   const { data: session } = useSession();
   const isSender = session?.user?.id === message.sender_id;
