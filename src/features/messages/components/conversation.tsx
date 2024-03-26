@@ -29,10 +29,10 @@ export const Conversation = () => {
 
   useEffect(() => {
     socket.auth = { conversation_id: id };
-    socket.connect();
+    socket?.connect();
 
     return () => {
-      socket.disconnect();
+      socket?.disconnect();
     };
   }, [id]);
 
@@ -65,7 +65,7 @@ export const Conversation = () => {
         <div ref={ref}>
           <ConversationMemberDetails user={conversationMember} />
         </div>
-        <Chat conversation_id={conversation?.id} />
+        <Chat />
       </div>
 
       <MessageInput

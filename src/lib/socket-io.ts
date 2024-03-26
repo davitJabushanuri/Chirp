@@ -6,8 +6,10 @@ const URL = SOCKET_URL;
 
 export const socket = io(URL, {
   autoConnect: false,
-  reconnectionAttempts: 5,
-  reconnectionDelay: 5000,
+  transports: ["websocket"],
+  reconnection: true,
+  reconnectionAttempts: 10,
+  reconnectionDelay: 1000,
 });
 
 socket.on("connect_error", (error) => {

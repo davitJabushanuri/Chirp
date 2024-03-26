@@ -1,13 +1,11 @@
-import { useQueryClient } from "@tanstack/react-query";
+import { InfiniteData, useQueryClient } from "@tanstack/react-query";
 import { useEffect } from "react";
 
 import { socket } from "@/lib/socket-io";
 
-import {
-  IMessage,
-  SocketEmitMessagePayload,
-  SocketEmitStatusPayload,
-} from "../types";
+import { SocketEmitMessagePayload, SocketEmitStatusPayload } from "../types";
+
+import { IInfiniteChat } from "./use-get-chat";
 
 export const useSocketEvents = (conversation_id: string | undefined) => {
   const queryClient = useQueryClient();
@@ -17,17 +15,22 @@ export const useSocketEvents = (conversation_id: string | undefined) => {
       queryClient.setQueryData(
         ["chat", conversation_id],
 
-        (oldData: IMessage[]) => {
-          const newData = oldData.map((message: IMessage) => {
-            if (message.id === data.message_id) {
-              return {
-                ...message,
-                status: data.status,
-              };
+        (oldData: InfiniteData<IInfiniteChat>) => {
+          const newData = oldData?.pages?.map((page) => {
+            if (page) {
+              const newChat = page.chat.map((message) => {
+                if (message.id === data.message_id) {
+                  return { ...message, status: data.status };
+                }
+
+                return message;
+              });
+
+              return { ...page, chat: newChat };
             }
-            return message;
           });
-          return newData;
+
+          return { ...oldData, pages: newData };
         },
       );
     });
@@ -35,9 +38,32 @@ export const useSocketEvents = (conversation_id: string | undefined) => {
     socket.on("message", (data: SocketEmitMessagePayload) => {
       queryClient.setQueryData(
         ["chat", conversation_id],
-        (oldData: IMessage[]) => {
-          const newData = [...oldData, data.message];
-          return newData;
+        (oldData: InfiniteData<IInfiniteChat>) => {
+          const lastPage = oldData.pages?.at(0);
+
+          if (lastPage?.chat && lastPage.chat.length >= 20) {
+            return {
+              ...oldData,
+              pages: [
+                {
+                  chat: [data.message],
+                  nextId: data.message.id,
+                },
+                ...oldData.pages,
+              ],
+            };
+          } else {
+            return {
+              ...oldData,
+              pages: [
+                {
+                  chat: [data.message, ...(lastPage?.chat ?? [])],
+                  nextId: lastPage?.nextId,
+                },
+                ...oldData.pages.slice(1),
+              ],
+            };
+          }
         },
       );
     });
