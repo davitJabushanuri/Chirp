@@ -20,24 +20,26 @@ export const useChat = (conversation_id: string | undefined) => {
     },
 
     select: (data) => {
+      const pages = data?.pages?.map((page) => {
+        if (page && page.chat) {
+          return {
+            ...page,
+            chat: page.chat.concat().reverse(),
+          };
+        }
+
+        return page;
+      });
+
       return {
-        pages: [...data.pages].reverse(),
-        pageParams: [...data.pageParams].reverse(),
+        pages: pages.concat().reverse(),
+        pageParams: data.pageParams.concat().reverse(),
       };
     },
   });
 
-  const chat = response?.data?.pages?.reduce((acc, page) => {
-    if (page && page.chat) {
-      const reversedChat = [...page.chat].reverse();
-      return [...acc, ...reversedChat];
-    }
-
-    return acc;
-  }, [] as IMessage[]);
-
   return {
-    data: chat,
+    data: response.data,
     isLoading: response.isLoading,
     isError: response.isError,
     isFetchingNextPage: response.isFetchingNextPage,
