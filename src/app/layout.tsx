@@ -60,7 +60,7 @@ export default async function RootLayout({
               toastClassName={styles.toast}
               role="alert"
             />
-            
+
             <AuthFlow />
             <JoinTwitter />
             <Hamburger />
