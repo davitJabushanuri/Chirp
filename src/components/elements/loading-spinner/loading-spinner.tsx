@@ -1,9 +1,9 @@
-import styles from "./styles/loading-spinner.module.scss";
+import { LoadingSpinnerIcon } from "./assets/loading-spinner-icon";
 
 export const LoadingSpinner = () => {
   return (
-    <div className={styles.container}>
-      <span className={styles.loading}></span>
+    <div className="flex justify-center p-4">
+      <LoadingSpinnerIcon />
     </div>
   );
 };
