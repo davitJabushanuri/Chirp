@@ -1,5 +1,7 @@
+"use client";
 import { FC } from "react";
 
+import { ErrorBoundaryProvider } from "./error-boundary-provider";
 import { NextAuthProvider } from "./next-auth-provider";
 import { ReactQueryProvider } from "./react-query-provider";
 
@@ -9,8 +11,10 @@ type AppProvidersProps = {
 
 export const AppProviders: FC<AppProvidersProps> = ({ children }) => {
   return (
-    <NextAuthProvider>
-      <ReactQueryProvider>{children}</ReactQueryProvider>
-    </NextAuthProvider>
+    <ErrorBoundaryProvider>
+      <NextAuthProvider>
+        <ReactQueryProvider>{children}</ReactQueryProvider>
+      </NextAuthProvider>
+    </ErrorBoundaryProvider>
   );
 };
