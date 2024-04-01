@@ -8,11 +8,13 @@ import { ErrorFallback } from "@/components/elements/error-fallback";
 interface IErrorProvider {
   children: React.ReactNode;
   fallback?: ComponentType<FallbackProps> | undefined;
+  onReset?: () => void;
 }
 
 export const ErrorBoundaryProvider: FC<IErrorProvider> = ({
   children,
   fallback,
+  onReset,
 }) => {
   const router = useRouter();
 
@@ -25,7 +27,11 @@ export const ErrorBoundaryProvider: FC<IErrorProvider> = ({
       FallbackComponent={fallback ?? ErrorFallback}
       onError={logError}
       onReset={() => {
-        router.refresh();
+        if (onReset) {
+          onReset();
+        } else {
+          router.refresh();
+        }
       }}
     >
       {children}
