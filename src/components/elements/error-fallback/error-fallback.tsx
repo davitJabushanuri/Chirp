@@ -14,7 +14,7 @@ export const ErrorFallback: FC<IErrorFallback> = ({
   resetErrorBoundary,
 }) => {
   return (
-    <div className="fixed inset-0 z-fixed flex flex-col items-center justify-center">
+    <div className="fixed inset-0 z-fixed flex flex-col items-center justify-center bg-background">
       <p className="mb-5 text-milli text-tertiary-100">{error.message}</p>
       <Button
         className="flex gap-2 bg-primary-100 px-4 text-milli font-semibold outline-offset-2 hover:bg-primary-200 active:bg-primary-300"
