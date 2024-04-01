@@ -4,12 +4,13 @@ import { ToastContainer, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./styles/layout.scss";
 import "./styles/tailwind.css";
-import { Aside } from "@/features/aside";
+import { Aside, AsideFallback } from "@/features/aside";
 import { AuthFlow } from "@/features/auth";
 import { MobileTweetButton } from "@/features/create-tweet";
 import { MobileNavbar } from "@/features/navbar";
 import { Sidebar } from "@/features/sidebar";
 import { AppProviders } from "@/providers";
+import { ErrorBoundaryProvider } from "@/providers/error-boundary-provider";
 
 import { Hamburger } from "./hamburger";
 import { JoinTwitter } from "./join-twitter";
@@ -47,7 +48,9 @@ export default async function RootLayout({
               {children}
             </main>
 
-            <Aside />
+            <ErrorBoundaryProvider fallback={AsideFallback}>
+              <Aside />
+            </ErrorBoundaryProvider>
 
             <ToastContainer
               position="bottom-center"
