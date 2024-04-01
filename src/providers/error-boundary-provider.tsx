@@ -1,15 +1,19 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { ErrorInfo, FC } from "react";
-import { ErrorBoundary } from "react-error-boundary";
+import { ComponentType, ErrorInfo, FC } from "react";
+import { ErrorBoundary, FallbackProps } from "react-error-boundary";
 
 import { ErrorFallback } from "@/components/elements/error-fallback";
 
 interface IErrorProvider {
   children: React.ReactNode;
+  fallback?: ComponentType<FallbackProps> | undefined;
 }
 
-export const ErrorBoundaryProvider: FC<IErrorProvider> = ({ children }) => {
+export const ErrorBoundaryProvider: FC<IErrorProvider> = ({
+  children,
+  fallback,
+}) => {
   const router = useRouter();
 
   const logError = (error: Error, info: ErrorInfo) => {
@@ -18,7 +22,7 @@ export const ErrorBoundaryProvider: FC<IErrorProvider> = ({ children }) => {
 
   return (
     <ErrorBoundary
-      FallbackComponent={ErrorFallback}
+      FallbackComponent={fallback ?? ErrorFallback}
       onError={logError}
       onReset={() => {
         router.refresh();
