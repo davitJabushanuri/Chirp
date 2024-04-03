@@ -180,3 +180,11 @@ enum UserRole {
   ADMIN
   USER
 }
+
+model ErrorLog {
+  id        Int      @id @default(autoincrement())
+  message   String
+  stack     String
+  info      Json
+  createdAt DateTime @default(now())
+}
