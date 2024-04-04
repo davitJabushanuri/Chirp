@@ -75,8 +75,8 @@ model User {
   tweets             Tweet[]
   pinned_tweet       Tweet?         @relation("pinned_tweet", fields: [pinned_tweet_id], references: [id])
   conversations      Conversation[] @relation("ConversationToUser")
-  followers             User[]         @relation("Followers")
-  following             User[]         @relation("Followers")
+  followers          User[]         @relation("Followers")
+  following          User[]         @relation("Followers")
 }
 
 model Tweet {
@@ -182,9 +182,11 @@ enum UserRole {
 }
 
 model ErrorLog {
-  id        Int      @id @default(autoincrement())
-  message   String
-  stack     String
-  info      Json
-  createdAt DateTime @default(now())
+  id              String   @id @default(cuid())
+  name            String
+  message         String
+  error_stack     String
+  component_stack String
+  info            Json
+  createdAt       DateTime @default(now())
 }
