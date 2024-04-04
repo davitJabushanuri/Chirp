@@ -1,5 +1,6 @@
 "use client";
 import { FC } from "react";
+import { createPortal } from "react-dom";
 
 import { Button } from "../button";
 import { ReloadIcon } from "../try-again/assets/reload-icon";
@@ -13,7 +14,7 @@ export const ErrorFallback: FC<IErrorFallback> = ({
   error,
   resetErrorBoundary,
 }) => {
-  return (
+  return createPortal(
     <div className="fixed inset-0 z-fixed flex flex-col items-center justify-center bg-background">
       <p className="mb-5 text-milli text-tertiary-100">{error.message}</p>
       <Button
@@ -23,6 +24,7 @@ export const ErrorFallback: FC<IErrorFallback> = ({
         <ReloadIcon />
         Retry
       </Button>
-    </div>
+    </div>,
+    document.body,
   );
 };
