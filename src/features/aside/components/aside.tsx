@@ -6,7 +6,7 @@ import { RegisterForm } from "@/features/auth";
 import { Connect, ConnectFallback } from "@/features/connect";
 import { Footer } from "@/features/footer";
 import { Search } from "@/features/search";
-import { Trends } from "@/features/trends";
+import { Trends, TrendsFallback } from "@/features/trends";
 import { ErrorBoundaryProvider } from "@/providers/error-boundary-provider";
 
 import styles from "./styles/aside.module.scss";
@@ -30,7 +30,9 @@ export const Aside = () => {
             pathname !== "/explore" &&
             pathname !== "/trends" && (
               <div className={styles.trends}>
-                <Trends />
+                <ErrorBoundaryProvider fallback={TrendsFallback}>
+                  <Trends />
+                </ErrorBoundaryProvider>
               </div>
             )}
           {pathname !== `/people` && (
