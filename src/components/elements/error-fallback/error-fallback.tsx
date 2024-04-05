@@ -5,7 +5,7 @@ import { createPortal } from "react-dom";
 import { Button } from "../button";
 import { ReloadIcon } from "../try-again/assets/reload-icon";
 
-interface IErrorFallback {
+export interface IErrorFallback {
   error: Error;
   resetErrorBoundary: () => void;
 }

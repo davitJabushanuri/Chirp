@@ -3,10 +3,11 @@ import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
 
 import { RegisterForm } from "@/features/auth";
-import { Connect } from "@/features/connect";
+import { Connect, ConnectFallback } from "@/features/connect";
 import { Footer } from "@/features/footer";
 import { Search } from "@/features/search";
 import { Trends } from "@/features/trends";
+import { ErrorBoundaryProvider } from "@/providers/error-boundary-provider";
 
 import styles from "./styles/aside.module.scss";
 
@@ -34,7 +35,9 @@ export const Aside = () => {
             )}
           {pathname !== `/people` && (
             <div className={styles.connect}>
-              <Connect />
+              <ErrorBoundaryProvider fallback={ConnectFallback}>
+                <Connect />
+              </ErrorBoundaryProvider>
             </div>
           )}
         </>
