@@ -14,6 +14,7 @@ import { ErrorBoundaryProvider } from "@/providers/error-boundary-provider";
 
 import { Hamburger } from "./hamburger";
 import { JoinTwitter } from "./join-twitter";
+import { PageFallback } from "./page-fallback";
 import styles from "./styles/toast.module.scss";
 import "./styles/layout.scss";
 
@@ -42,10 +43,14 @@ export default async function RootLayout({
               <MobileTweetButton />
             </div>
 
-            <Sidebar />
+            <ErrorBoundaryProvider fallback={AsideFallback}>
+              <Sidebar />
+            </ErrorBoundaryProvider>
 
             <main aria-label="Home timeline" id="home-timeline">
-              {children}
+              <ErrorBoundaryProvider fallback={PageFallback}>
+                {children}
+              </ErrorBoundaryProvider>
             </main>
 
             <ErrorBoundaryProvider fallback={AsideFallback}>
