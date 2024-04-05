@@ -22,9 +22,7 @@ export const ErrorBoundaryProvider: FC<IErrorProvider> = ({
   const logError = (error: Error, info: ErrorInfo) => {
     const stackLines = error.stack?.split("\n") ?? [];
     const errorStack = stackLines.slice(0, 5).join("\n");
-    const componentStack =
-      info.componentStack?.replace(/ \([\s\S]*?\)/g, "").split("html")[0] +
-      "html";
+    const componentStack = info.componentStack?.split("html")[0] + "html";
 
     submitError({
       name: error.name,
