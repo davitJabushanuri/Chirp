@@ -19,17 +19,21 @@ export const ErrorBoundaryProvider: FC<IErrorProvider> = ({
 }) => {
   const router = useRouter();
 
-  const logError = (error: Error, info: ErrorInfo) => {
+  const logError = async (error: Error, info: ErrorInfo) => {
     const stackLines = error.stack?.split("\n") ?? [];
     const errorStack = stackLines.slice(0, 5).join("\n");
     const componentStack = info.componentStack?.split("html")[0] + "html";
 
-    submitError({
-      name: error.name,
-      message: error.message,
-      error_stack: errorStack,
-      component_stack: componentStack,
-    });
+    try {
+      await axios.post("/api/error", {
+        name: error.name,
+        message: error.message,
+        error_stack: errorStack,
+        component_stack: componentStack,
+      });
+    } catch (error) {
+      throw new Error("Error submitting error");
+    }
   };
 
   return (
@@ -47,27 +51,4 @@ export const ErrorBoundaryProvider: FC<IErrorProvider> = ({
       {children}
     </ErrorBoundary>
   );
-};
-
-const submitError = async ({
-  name,
-  message,
-  error_stack,
-  component_stack,
-}: {
-  name: string;
-  message: string;
-  error_stack: string;
-  component_stack: string;
-}) => {
-  try {
-    await axios.post("/api/error", {
-      name,
-      message,
-      error_stack,
-      component_stack,
-    });
-  } catch (error) {
-    throw new Error("Error submitting error");
-  }
 };
