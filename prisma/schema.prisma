@@ -187,6 +187,5 @@ model ErrorLog {
   message         String
   error_stack     String
   component_stack String
-  info            Json
   createdAt       DateTime @default(now())
 }
