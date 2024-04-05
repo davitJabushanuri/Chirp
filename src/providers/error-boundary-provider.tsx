@@ -24,6 +24,10 @@ export const ErrorBoundaryProvider: FC<IErrorProvider> = ({
     const errorStack = stackLines.slice(0, 5).join("\n");
     const componentStack = info.componentStack?.split("html")[0] + "html";
 
+    // only log the error if NODE_ENV is production
+
+    if (process.env.NODE_ENV !== "production") return;
+
     try {
       await axios.post("/api/error", {
         name: error.name,
