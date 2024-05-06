@@ -1,4 +1,3 @@
-import { Button } from "@/components/elements/button";
 import { prisma } from "@/lib/prisma";
 import { Log } from "./log";
 
@@ -9,7 +8,6 @@ const getLogs = async () => {
 
 async function LogsPage() {
   const logs = await getLogs();
-  console.log(logs);
 
   if (!logs || logs.length === 0) {
     return (
