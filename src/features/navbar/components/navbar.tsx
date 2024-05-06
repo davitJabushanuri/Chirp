@@ -5,6 +5,7 @@ import { Tooltip } from "@/components/elements/tooltip";
 
 import { BellActive, Bell } from "../assets/bell-icon";
 import { Bookmark, BookmarkActive } from "../assets/bookmark-icon";
+import { DashboardIcon } from "../assets/dashboard-icon";
 import { Envelope, EnvelopeActive } from "../assets/envelope-icon";
 import { Gear, GearActive } from "../assets/gear-icon";
 import { Hashtag, HashtagActive } from "../assets/hashtag-icon";
@@ -23,6 +24,16 @@ export const Navbar = () => {
       aria-label="Primary"
       className="flex flex-col items-center xxl:items-start"
     >
+      <Tooltip text="Home" maxWidth={1300}>
+        <NavItem
+          href={`/admin`}
+          icon={pathname === `/admin` ? <DashboardIcon /> : <DashboardIcon />}
+          text="Dashboard"
+          aria-label="Admin Dashboard"
+          isActive={pathname === `/admin`}
+        />
+      </Tooltip>
+
       {session && (
         <Tooltip text="Home" maxWidth={1300}>
           <NavItem
