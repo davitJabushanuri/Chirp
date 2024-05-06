@@ -152,6 +152,17 @@ module.exports = {
         nano: "var(--tw-fs-nano)",
         pico: "var(--tw-fs-pico)",
       },
+
+      animation: {
+        spin: "spin 0.8s linear infinite",
+      },
+
+      keyframes: {
+        spin: {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
+      },
     },
   },
   plugins: [],
