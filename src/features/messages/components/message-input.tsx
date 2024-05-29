@@ -9,13 +9,23 @@ import { GifIcon } from "@/assets/gif-icon";
 import { ImageIcon } from "@/assets/image-icon";
 import { Button } from "@/components/elements/button";
 import { Tooltip } from "@/components/elements/tooltip";
-import { IChosenImages } from "@/features/create-tweet";
 import { socket } from "@/lib/socket-io";
 
+import { postImage } from "../api/post-image";
 import { SendIcon } from "../assets/send-icon";
 import { IInfiniteChat } from "../hooks/use-get-chat";
+import { chooseImage } from "../utils/choose-image";
+import { handleFocus } from "../utils/handle-focus";
 
 import styles from "./styles/message-input.module.scss";
+
+export interface IMessage {
+  text: string | null;
+  image_width: number | null;
+  image_height: number | null;
+  image_preview?: string | ArrayBuffer | null;
+  image_file?: File | null;
+}
 
 export const MessageInput = ({
   conversation_id,
@@ -26,102 +36,53 @@ export const MessageInput = ({
   sender_id: string | undefined;
   receiver_id: string | undefined;
 }) => {
-  const [text, setText] = useState("");
   const imageUploadRef = useRef<HTMLInputElement>(null);
-  const [chosenImage, setChosenImage] = useState<IChosenImages | null>(null);
+
+  const [message, setMessage] = useState<IMessage>({
+    text: null,
+    image_width: null,
+    image_height: null,
+    image_preview: null,
+    image_file: null,
+  });
 
   const queryClient = useQueryClient();
 
-  const chooseImage = (e: any) => {
-    const file = e.target.files[0];
-
-    if (imageUploadRef.current) imageUploadRef.current.value = "";
-
-    if (file) {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        const img = document.createElement("img");
-        img.src = reader.result as string;
-
-        img.onload = () => {
-          setChosenImage({
-            url: reader.result,
-            id: Math.random(),
-            file: file,
-            width: img.width,
-            height: img.height,
-          });
-        };
-      };
-    }
-  };
-
-  const onFocus = () => {
-    const chat = queryClient.getQueryData<InfiniteData<IInfiniteChat>>([
-      "chat",
-      conversation_id,
-    ]);
-
-    const lastMessage = chat?.pages?.at(0)?.chat?.at(0);
-    if (lastMessage?.sender_id === sender_id) return;
-
-    socket.emit("status", { status: "seen", message_id: lastMessage?.id });
-  };
-
-  const createMessage = ({
-    id,
-    text,
-    conversation_id,
-    sender_id,
-    receiver_id,
-    image,
-    image_width,
-    image_height,
-    file,
-    status,
-  }: {
+  interface INewMessage {
     id: string;
-    text: string;
+    text: string | null;
+    image: string | null;
+    image_width: number | null;
+    image_height: number | null;
     conversation_id: string | undefined;
     sender_id: string | undefined;
     receiver_id: string | undefined;
-    image: string | ArrayBuffer | null;
-    image_width: number | null;
-    image_height: number | null;
-    file: File | null;
-    status: "sending" | "sent" | "seen" | "failed";
-  }) => {
-    return {
-      id,
-      text,
-      conversation_id,
-      sender_id,
-      receiver_id,
-      image,
-      image_width,
-      image_height,
-      file,
-      status,
-    };
-  };
+    status: "sending" | "sent" | "seen" | "delivered" | "failed";
+  }
 
   const onSubmit = async (e: any) => {
     e.preventDefault();
+
     const id = createId();
 
-    const message = createMessage({
+    const newMessage: INewMessage = {
       id,
-      text,
+      text: message.text,
+      status: "sending",
       conversation_id,
       sender_id,
       receiver_id,
-      image: chosenImage?.url ?? null,
-      image_width: chosenImage?.width ?? null,
-      image_height: chosenImage?.height ?? null,
-      file: chosenImage?.file ?? null,
-      status: "sending",
-    });
+      image: null,
+      image_width: null,
+      image_height: null,
+    };
+
+    if (message.image_file) {
+      const { url } = await postImage(message.image_file, "images");
+      newMessage.image = url;
+      newMessage.image_width = message.image_width;
+      newMessage.image_height = message.image_height;
+    }
 
     queryClient.setQueryData(
       ["chat", conversation_id],
@@ -132,8 +93,8 @@ export const MessageInput = ({
             ...oldData,
             pages: [
               {
-                chat: [message],
-                nextId: message.id,
+                chat: [newMessage],
+                nextId: newMessage.id,
               },
               ...oldData.pages,
             ],
@@ -143,7 +104,7 @@ export const MessageInput = ({
             ...oldData,
             pages: [
               {
-                chat: [message, ...(lastPage?.chat ?? [])],
+                chat: [newMessage, ...(lastPage?.chat ?? [])],
                 nextId: lastPage?.nextId,
               },
               ...oldData.pages.slice(1),
@@ -154,34 +115,47 @@ export const MessageInput = ({
     );
 
     socket.emit("message", {
-      id,
-      text,
-      image: chosenImage ? chosenImage.file : null,
-      image_width: chosenImage ? chosenImage.width : null,
-      image_height: chosenImage ? chosenImage.height : null,
+      id: newMessage.id,
+      text: newMessage.text,
+      image: newMessage.image,
+      image_width: newMessage.image_width,
+      image_height: newMessage.image_height,
       conversation_id,
       sender_id,
       receiver_id,
     });
 
-    setText("");
-    setChosenImage(null);
+    setMessage({
+      text: null,
+      image_width: null,
+      image_height: null,
+      image_preview: null,
+      image_file: null,
+    });
   };
 
   return (
     <aside aria-label="Start a new message" className={styles.container}>
       <form onSubmit={onSubmit}>
         <div
-          className={`${styles.inputContainer} ${chosenImage ? styles.row : styles.column}`}
+          className={`${styles.inputContainer} ${message.image_file ? styles.row : styles.column}`}
         >
-          {chosenImage ? (
+          {message.image_file ? (
             <div className={styles.mediaPreview}>
               <div className={styles.imageContainer}>
                 <div className={styles.remove}>
                   <Tooltip text="Remove">
                     <Button
                       onClick={() => {
-                        setChosenImage(null);
+                        setMessage((prev) => {
+                          return {
+                            ...prev,
+                            image_preview: null,
+                            image_file: null,
+                            image_width: null,
+                            image_height: null,
+                          };
+                        });
                       }}
                       aria-label="Remove media"
                       className="bg-black-300/80 outline-tertiary-100 backdrop-blur-sm hover:bg-black-200/80 active:bg-black-100/80"
@@ -191,10 +165,10 @@ export const MessageInput = ({
                   </Tooltip>
                 </div>
                 <Image
-                  src={(chosenImage.url as string) ?? ""}
+                  src={(message.image_preview as string) ?? ""}
                   alt=""
-                  width={chosenImage.width}
-                  height={chosenImage.height}
+                  width={message.image_width as number}
+                  height={message.image_height as number}
                 />
               </div>
             </div>
@@ -203,7 +177,7 @@ export const MessageInput = ({
               <input
                 className={styles.fileInput}
                 type="file"
-                onChange={chooseImage}
+                onChange={(e) => chooseImage(e, imageUploadRef, setMessage)}
                 ref={imageUploadRef}
               />
               <Tooltip text="Media">
@@ -242,11 +216,11 @@ export const MessageInput = ({
 
           <input
             onFocus={() => {
-              onFocus();
+              handleFocus(queryClient, socket, sender_id, conversation_id);
             }}
             type="text"
-            value={text}
-            onChange={(e) => setText(e.target.value)}
+            value={message.text ?? ""}
+            onChange={(e) => setMessage({ ...message, text: e.target.value })}
             placeholder="Start a new message"
           />
         </div>
@@ -255,7 +229,7 @@ export const MessageInput = ({
           <Button
             aria-label="Send"
             type="submit"
-            disabled={text === "" && !chosenImage}
+            disabled={message.text === null && message.image_file === null}
             className="fill-primary-100 p-[0.44rem] hover:bg-primary-100/10 active:bg-primary-100/20 [&>svg]:w-[1.250rem]"
           >
             <SendIcon />
