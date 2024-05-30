@@ -1,12 +1,13 @@
 import { ChangeEvent } from "react";
+import { UseFormSetValue } from "react-hook-form";
 import { toast } from "react-toastify";
 
-import { IMessage } from "../components/message-input";
+import { Inputs } from "../components/message-input";
 
 export const chooseImage = (
   e: ChangeEvent<HTMLInputElement>,
   imageUploadRef: React.RefObject<HTMLInputElement>,
-  setMessage: React.Dispatch<React.SetStateAction<IMessage>>,
+  setValue: UseFormSetValue<Inputs>,
 ) => {
   const file = e.target.files?.[0];
 
@@ -14,7 +15,7 @@ export const chooseImage = (
 
   if (file) {
     if (file.size > 5000000) {
-      toast.error("Image size should not exceed 5MB");
+      toast.error("The image you've selected is too large.");
       return;
     }
 
@@ -25,14 +26,11 @@ export const chooseImage = (
       img.src = reader.result as string;
 
       img.onload = () => {
-        setMessage((prev) => {
-          return {
-            ...prev,
-            image_preview: reader.result,
-            image_file: file,
-            image_width: img.width,
-            image_height: img.height,
-          };
+        setValue("image", {
+          file: file,
+          width: img.width,
+          height: img.height,
+          preview: reader.result,
         });
       };
     };
