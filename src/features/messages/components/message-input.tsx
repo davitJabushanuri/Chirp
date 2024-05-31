@@ -1,8 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { createId } from "@paralleldrive/cuid2";
-import { InfiniteData, useQueryClient } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -11,15 +10,16 @@ import { EmojiIcon } from "@/assets/emoji-icon";
 import { GifIcon } from "@/assets/gif-icon";
 import { ImageIcon } from "@/assets/image-icon";
 import { Button } from "@/components/elements/button";
+import { ProgressBar } from "@/components/elements/progress-bar";
 import { Tooltip } from "@/components/elements/tooltip";
 import { socket } from "@/lib/socket-io";
 
-import { postImage } from "../api/post-image";
 import { SendIcon } from "../assets/send-icon";
-import { IInfiniteChat } from "../hooks/use-get-chat";
-import { IMessageInput, INewMessage } from "../types";
+import { IMessageInput } from "../types";
 import { chooseImage } from "../utils/choose-image";
+import { createNewMessage } from "../utils/create-new-message";
 import { handleFocus } from "../utils/handle-focus";
+import { updateQueryData } from "../utils/update-query-data";
 
 import styles from "./styles/message-input.module.scss";
 
@@ -49,6 +49,10 @@ export const MessageInput = ({
   sender_id: string | undefined;
   receiver_id: string | undefined;
 }) => {
+  const queryClient = useQueryClient();
+  const [isUploadingImage, setIsUploadingImage] = useState(false);
+  const [isSendingMessage, setIsSendingMessage] = useState(false);
+
   const { register, handleSubmit, watch, setValue, reset, setFocus } =
     useForm<IMessageInput>({
       defaultValues: {
@@ -67,68 +71,35 @@ export const MessageInput = ({
   const text = watch("text");
 
   const onSubmit: SubmitHandler<IMessageInput> = async (data) => {
-    const id = createId();
-    const message: INewMessage = {
-      id,
-      text: null,
-      image: null,
-      image_width: null,
-      image_height: null,
+    if (data.text === "" && !data.image?.file) return;
+
+    setIsSendingMessage(true);
+    const message = await createNewMessage(
+      data,
       conversation_id,
       sender_id,
       receiver_id,
-      status: "sending",
-    };
-
-    message.text = data.text;
-    if (data.image?.file) {
-      const { url } = await postImage(data.image.file, "images");
-      message.image = url;
-      message.image_width = data.image.width;
-      message.image_height = data.image.height;
-    }
-
-    queryClient.setQueryData(
-      ["chat", conversation_id],
-      (oldData: InfiniteData<IInfiniteChat>) => {
-        const lastPage = oldData.pages?.at(0);
-        if (lastPage?.chat && lastPage.chat.length >= 20) {
-          return {
-            ...oldData,
-            pages: [
-              {
-                chat: [message],
-                nextId: message.id,
-              },
-              ...oldData.pages,
-            ],
-          };
-        } else {
-          return {
-            ...oldData,
-            pages: [
-              {
-                chat: [message, ...(lastPage?.chat ?? [])],
-                nextId: lastPage?.nextId,
-              },
-              ...oldData.pages.slice(1),
-            ],
-          };
-        }
-      },
+      setIsUploadingImage,
     );
 
+    updateQueryData(message, conversation_id, queryClient);
     socket.emit("message", message);
-
     reset();
+    setIsSendingMessage(false);
   };
 
   const imageUploadRef = useRef<HTMLInputElement>(null);
 
-  const queryClient = useQueryClient();
-
   return (
-    <aside aria-label="Start a new message" className={styles.container}>
+    <aside
+      aria-label="Start a new message"
+      className={`relative ${styles.container}`}
+    >
+      {isUploadingImage && (
+        <div className="absolute top-0 w-full">
+          <ProgressBar />
+        </div>
+      )}
       <form onSubmit={handleSubmit(onSubmit)}>
         <div
           className={`${styles.inputContainer} ${image?.file ? styles.row : styles.column}`}
@@ -217,7 +188,6 @@ export const MessageInput = ({
             placeholder="Start a new message"
           />
         </div>
-
         <Tooltip text="Send">
           <Button
             aria-label="Send"
@@ -226,7 +196,7 @@ export const MessageInput = ({
             }}
             type="submit"
             className="fill-primary-100 p-[0.44rem] hover:bg-primary-100/10 active:bg-primary-100/20 [&>svg]:w-[1.250rem]"
-            disabled={!text && !image?.file}
+            disabled={(!text && !image?.file) || isSendingMessage}
           >
             <SendIcon />
           </Button>
