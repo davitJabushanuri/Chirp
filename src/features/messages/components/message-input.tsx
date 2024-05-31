@@ -17,34 +17,11 @@ import { socket } from "@/lib/socket-io";
 import { postImage } from "../api/post-image";
 import { SendIcon } from "../assets/send-icon";
 import { IInfiniteChat } from "../hooks/use-get-chat";
+import { IMessageInput, INewMessage } from "../types";
 import { chooseImage } from "../utils/choose-image";
 import { handleFocus } from "../utils/handle-focus";
 
 import styles from "./styles/message-input.module.scss";
-
-export interface IFile {
-  file: File | null;
-  width: number | null;
-  height: number | null;
-  preview: string | ArrayBuffer | null;
-}
-
-export interface Inputs {
-  text: string;
-  image: IFile;
-}
-
-interface IMessage {
-  id: string;
-  text: string | null;
-  image: string | null;
-  image_width: number | null;
-  image_height: number | null;
-  conversation_id: string | undefined;
-  sender_id: string | undefined;
-  receiver_id: string | undefined;
-  status: "sending" | "sent" | "seen" | "delivered" | "failed";
-}
 
 const messageSchema = z.object({
   text: z
@@ -73,7 +50,7 @@ export const MessageInput = ({
   receiver_id: string | undefined;
 }) => {
   const { register, handleSubmit, watch, setValue, reset, setFocus } =
-    useForm<Inputs>({
+    useForm<IMessageInput>({
       defaultValues: {
         text: "",
         image: {
@@ -89,9 +66,9 @@ export const MessageInput = ({
   const image = watch("image");
   const text = watch("text");
 
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+  const onSubmit: SubmitHandler<IMessageInput> = async (data) => {
     const id = createId();
-    const message: IMessage = {
+    const message: INewMessage = {
       id,
       text: null,
       image: null,

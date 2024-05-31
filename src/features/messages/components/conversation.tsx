@@ -53,7 +53,7 @@ export const Conversation = () => {
     );
 
   return (
-    <div className="relative grid h-[100svh] grid-rows-[auto,1fr,auto] overflow-hidden">
+    <div className="relative grid h-svh grid-rows-[auto,1fr,auto] overflow-hidden">
       <ConversationHeader
         user_id={conversationMember?.id}
         user_name={conversationMember?.name}

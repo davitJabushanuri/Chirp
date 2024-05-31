@@ -14,8 +14,6 @@ import { scrollIntoView } from "../utils/scroll-into-view";
 
 import { Message } from "./message";
 
-export type status = "sending" | "sent" | "seen" | "failed";
-
 export const Chat = memo(() => {
   const pathname = usePathname();
   const conversation_id = pathname?.split("/")[2];
@@ -85,40 +83,42 @@ export const Chat = memo(() => {
   if (isError) return <TryAgain />;
 
   return (
-    <div className="p-[1em_1em_0]">
-      {isFetchingNextPage && <LoadingSpinner />}
+    <div className="relative">
+      <div className="p-[1em_1em_0]">
+        {isFetchingNextPage && <LoadingSpinner />}
 
-      {data?.pages?.map((page, pageIndex) => {
-        return page?.chat?.map((message, messageIndex) => {
-          return (
-            <div
-              ref={
-                messageIndex === 0 && pageIndex === 0
-                  ? firstMessageRef
-                  : messageIndex === page.chat.length - 1 &&
-                      pageIndex === data.pages.length - 1
-                    ? lastMessageRef
-                    : null
-              }
-              key={message.id}
-            >
-              <Message
-                show_status={
-                  message.sender_id === session?.user?.id &&
-                  messageIndex === page.chat.length - 1 &&
-                  pageIndex === data.pages.length - 1
+        {data?.pages?.map((page, pageIndex) => {
+          return page?.chat?.map((message, messageIndex) => {
+            return (
+              <div
+                ref={
+                  messageIndex === 0 && pageIndex === 0
+                    ? firstMessageRef
+                    : messageIndex === page.chat.length - 1 &&
+                        pageIndex === data.pages.length - 1
+                      ? lastMessageRef
+                      : null
                 }
-                message={message}
-              />
-            </div>
-          );
-        });
-      })}
-      <div id="anchor" ref={anchorRef} />
+                key={message.id}
+              >
+                <Message
+                  show_status={
+                    message.sender_id === session?.user?.id &&
+                    messageIndex === page.chat.length - 1 &&
+                    pageIndex === data.pages.length - 1
+                  }
+                  message={message}
+                />
+              </div>
+            );
+          });
+        })}
+        <div id="anchor" ref={anchorRef} />
+      </div>
 
       {toast === "new message" && (
         <Button
-          className="shadow-main absolute bottom-[5rem] left-[50%] translate-x-[-50%] bg-background px-[1em] py-[0.5em] text-milli font-bold text-primary-100 hover:bg-neutral-500 focus-visible:bg-neutral-500 focus-visible:outline-secondary-100/50 active:bg-neutral-600"
+          className="shadow-main absolute bottom-20 left-1/2 translate-x-1/2 bg-background px-[1em] py-[0.5em] text-milli font-bold text-primary-100 hover:bg-neutral-500 focus-visible:bg-neutral-500 focus-visible:outline-secondary-100/50 active:bg-neutral-600"
           onClick={handleToastClick}
         >
           ↓ New messages
@@ -133,7 +133,7 @@ export const Chat = memo(() => {
               behavior: "smooth",
             });
           }}
-          className="shadow-main absolute bottom-[5rem] right-[1.6rem] bg-background fill-primary-100 px-[1em] py-[0.5em] hover:bg-neutral-500 focus-visible:bg-neutral-500 focus-visible:outline-secondary-100/50 active:bg-neutral-600"
+          className="shadow-main absolute bottom-20 right-[1.6rem] bg-background fill-primary-100 px-[1em] py-[0.5em] hover:bg-neutral-500 focus-visible:bg-neutral-500 focus-visible:outline-secondary-100/50 active:bg-neutral-600"
         >
           <ArrowDownIcon />
         </Button>
