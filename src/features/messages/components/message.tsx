@@ -6,6 +6,8 @@ import { useSession } from "next-auth/react";
 import { socket } from "@/lib/socket-io";
 
 import { IMessage } from "../types";
+import { removeMessageFromQueryData } from "../utils/remove-message-from-query";
+import { resendMessage } from "../utils/resend-message";
 
 import styles from "./styles/message.module.scss";
 
@@ -20,29 +22,6 @@ export const Message = ({
   const isSender = session?.user?.id === message.sender_id;
 
   const queryClient = useQueryClient();
-
-  const resendMessage = () => {
-    const newMessage = {
-      id: message.id,
-      text: message.text,
-      conversation_id: message.conversation_id,
-      sender_id: message.sender_id,
-      receiver_id: message.receiver_id,
-      image: message.file,
-    };
-
-    socket.emit("message", newMessage);
-  };
-
-  const deleteMessage = () => {
-    queryClient.setQueryData(
-      ["chat", message.conversation_id],
-      (oldData: IMessage[]) => {
-        const newData = oldData.filter((msg) => msg.id !== message.id);
-        return newData;
-      },
-    );
-  };
 
   return (
     <div className={`${styles.container} ${isSender ? styles.isSender : ""} `}>
@@ -83,11 +62,23 @@ export const Message = ({
       </div>
       {message.status === "failed" && (
         <div className={styles.failedActions}>
-          <button onClick={resendMessage} className={styles.tryAgain}>
+          <button
+            onClick={() => resendMessage({ message, socket, queryClient })}
+            className={styles.tryAgain}
+          >
             Try again
           </button>
           <span>·</span>
-          <button onClick={deleteMessage} className={styles.delete}>
+          <button
+            onClick={() =>
+              removeMessageFromQueryData(
+                message.id,
+                message.conversation_id,
+                queryClient,
+              )
+            }
+            className={styles.delete}
+          >
             Delete for you
           </button>
         </div>

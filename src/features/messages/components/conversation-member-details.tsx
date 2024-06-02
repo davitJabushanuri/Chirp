@@ -44,7 +44,7 @@ export const ConversationMemberDetails = ({
         <span>{user?.followers?.length ?? 0} Followers</span>
       </div>
 
-      <p className="mb-[4rem] text-nano text-tertiary-100">
+      <p className="mb-16 text-nano text-tertiary-100">
         Not followed by anyone you&apos;re following
       </p>
     </Link>

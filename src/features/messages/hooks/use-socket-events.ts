@@ -3,7 +3,7 @@ import { useEffect } from "react";
 
 import { socket } from "@/lib/socket-io";
 
-import { SocketEmitMessagePayload, SocketEmitStatusPayload } from "../types";
+import { IStatusPayload, IMessagePayload } from "../types";
 
 import { IInfiniteChat } from "./use-get-chat";
 
@@ -11,7 +11,7 @@ export const useSocketEvents = (conversation_id: string | undefined) => {
   const queryClient = useQueryClient();
 
   useEffect(() => {
-    socket.on("status", (data: SocketEmitStatusPayload) => {
+    socket.on("status", (data: IStatusPayload) => {
       queryClient.setQueryData(
         ["chat", conversation_id],
 
@@ -35,7 +35,7 @@ export const useSocketEvents = (conversation_id: string | undefined) => {
       );
     });
 
-    socket.on("message", (data: SocketEmitMessagePayload) => {
+    socket.on("message", (data: IMessagePayload) => {
       queryClient.setQueryData(
         ["chat", conversation_id],
         (oldData: InfiniteData<IInfiniteChat>) => {
