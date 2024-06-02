@@ -20,7 +20,7 @@ export interface INewMessage {
   conversation_id: string | undefined;
   sender_id: string | undefined;
   receiver_id: string | undefined;
-  status: status;
+  status: string;
 }
 
 export interface IImage {
