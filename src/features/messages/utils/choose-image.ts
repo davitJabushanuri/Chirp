@@ -2,12 +2,12 @@ import { ChangeEvent } from "react";
 import { UseFormSetValue } from "react-hook-form";
 import { toast } from "react-toastify";
 
-import { Inputs } from "../components/message-input";
+import { IMessageInput } from "../types";
 
 export const chooseImage = (
   e: ChangeEvent<HTMLInputElement>,
   imageUploadRef: React.RefObject<HTMLInputElement>,
-  setValue: UseFormSetValue<Inputs>,
+  setValue: UseFormSetValue<IMessageInput>,
 ) => {
   const file = e.target.files?.[0];
 
