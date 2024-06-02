@@ -7,7 +7,7 @@ import { socket } from "@/lib/socket-io";
 
 import { IMessage } from "../types";
 import { removeMessageFromQueryData } from "../utils/remove-message-from-query";
-import { updateQueryData } from "../utils/update-query-data";
+import { resendMessage } from "../utils/resend-message";
 
 import styles from "./styles/message.module.scss";
 
@@ -22,31 +22,6 @@ export const Message = ({
   const isSender = session?.user?.id === message.sender_id;
 
   const queryClient = useQueryClient();
-
-  const resendMessage = () => {
-    const newMessage = {
-      ...message,
-      status: "sending",
-    };
-
-    removeMessageFromQueryData(
-      message.id,
-      message.conversation_id,
-      queryClient,
-    );
-
-    updateQueryData(newMessage, message.conversation_id, queryClient);
-
-    socket.emit("message", newMessage);
-  };
-
-  const deleteMessage = () => {
-    removeMessageFromQueryData(
-      message.id,
-      message.conversation_id,
-      queryClient,
-    );
-  };
 
   return (
     <div className={`${styles.container} ${isSender ? styles.isSender : ""} `}>
@@ -87,11 +62,23 @@ export const Message = ({
       </div>
       {message.status === "failed" && (
         <div className={styles.failedActions}>
-          <button onClick={resendMessage} className={styles.tryAgain}>
+          <button
+            onClick={() => resendMessage({ message, socket, queryClient })}
+            className={styles.tryAgain}
+          >
             Try again
           </button>
           <span>·</span>
-          <button onClick={deleteMessage} className={styles.delete}>
+          <button
+            onClick={() =>
+              removeMessageFromQueryData(
+                message.id,
+                message.conversation_id,
+                queryClient,
+              )
+            }
+            className={styles.delete}
+          >
             Delete for you
           </button>
         </div>
