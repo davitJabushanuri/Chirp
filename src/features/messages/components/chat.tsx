@@ -83,7 +83,7 @@ export const Chat = memo(() => {
   if (isError) return <TryAgain />;
 
   return (
-    <div className="relative">
+    <div>
       <div className="p-[1em_1em_0]">
         {isFetchingNextPage && <LoadingSpinner />}
 

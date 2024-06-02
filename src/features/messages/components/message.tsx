@@ -6,6 +6,8 @@ import { useSession } from "next-auth/react";
 import { socket } from "@/lib/socket-io";
 
 import { IMessage } from "../types";
+import { removeMessageFromQueryData } from "../utils/remove-message-from-query";
+import { updateQueryData } from "../utils/update-query-data";
 
 import styles from "./styles/message.module.scss";
 
@@ -23,24 +25,26 @@ export const Message = ({
 
   const resendMessage = () => {
     const newMessage = {
-      id: message.id,
-      text: message.text,
-      conversation_id: message.conversation_id,
-      sender_id: message.sender_id,
-      receiver_id: message.receiver_id,
-      image: message.file,
+      ...message,
+      status: "sending",
     };
+
+    removeMessageFromQueryData(
+      message.id,
+      message.conversation_id,
+      queryClient,
+    );
+
+    updateQueryData(newMessage, message.conversation_id, queryClient);
 
     socket.emit("message", newMessage);
   };
 
   const deleteMessage = () => {
-    queryClient.setQueryData(
-      ["chat", message.conversation_id],
-      (oldData: IMessage[]) => {
-        const newData = oldData.filter((msg) => msg.id !== message.id);
-        return newData;
-      },
+    removeMessageFromQueryData(
+      message.id,
+      message.conversation_id,
+      queryClient,
     );
   };
 
